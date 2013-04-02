@@ -15,5 +15,20 @@
             </widgets>
         </section>
     </screen>
-
+    
+    <screen name="WebSiteCMSNav">
+        <section>
+            <actions>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="parameters.webSiteId" value="SHOPMAX_CENTRAL"/>
+                <set field="webSiteId" from-field="parameters.webSiteId"/>
+                <entity-one entity-name="WebSite" value-field="webSite"/>
+                <script location="component://growerpfrontend/webapp/frontend/WEB-INF/actions/WebsiteHomeContent.groovy"/>
+                <set field="language" from-field="userLogin.lastLocale" default-value="en"/>
+            </actions>
+            <widgets>
+                <platform-specific><html><html-template location="component://growerpfrontend/webapp/frontend/website/WebsiteCMSNav.ftl"/></html></platform-specific>
+            </widgets>
+        </section>
+    </screen>
 </screens>

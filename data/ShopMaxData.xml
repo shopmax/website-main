@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <WebSite webSiteId="SHOPMAX_CENTRAL" siteName="ShopMax Web Site"
+        httpHost="shopmax.localhost" httpPort="8080"
+        httpsHost="shopmax.localhost" httpsPort="8443"
+        standardContentPrefix="http://growerpbackend.localhost:8080"
+        secureContentPrefix="https://growerpbackend.localhost:8443"/>
+</entity-engine-xml>
