@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <SecurityGroupPermission groupId="FULLADMIN" permissionId="SHOPMAX_ADMIN"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="SHOPMAX_CREATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="SHOPMAX_DELETE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="SHOPMAX_UPDATE"/>
+    <SecurityGroupPermission groupId="FLEXADMIN" permissionId="SHOPMAX_VIEW"/>
+    <SecurityGroupPermission groupId="VIEWADMIN" permissionId="SHOPMAX_VIEW"/>
+    <SecurityGroupPermission groupId="BIZADMIN" permissionId="SHOPMAX_ADMIN"/>
+</entity-engine-xml>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <SecurityPermission description="View operations in the ShopMax Component." permissionId="SHOPMAX_VIEW"/>
+    <SecurityPermission description="Create operations in the ShopMax Component." permissionId="SHOPMAX_CREATE"/>
+    <SecurityPermission description="Update operations in the ShopMax Component." permissionId="SHOPMAX_UPDATE"/>
+    <SecurityPermission description="Delete operations in the ShopMax Component." permissionId="SHOPMAX_DELETE"/>
+    <SecurityPermission description="ALL operations in the ShopMax Component." permissionId="SHOPMAX_ADMIN"/>
+
+    <SecurityGroupPermission groupId="SUPER" permissionId="SHOPMAX_ADMIN"/>
+
+</entity-engine-xml>
