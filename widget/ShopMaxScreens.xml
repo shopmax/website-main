@@ -16,8 +16,8 @@
         </section>
     </screen>
     
-    <screen name="WebSiteCMSNav">
-        <section>
+    <screen name="LeftPanel">
+        <!-- <section>
             <actions>
                 <property-map resource="ContentUiLabels" map-name="uiLabelMap" global="true"/>
                 <set field="parameters.webSiteId" value="SHOPMAX_CENTRAL"/>
@@ -29,6 +29,6 @@
             <widgets>
                 <platform-specific><html><html-template location="component://growerpfrontend/webapp/frontend/website/WebsiteCMSNav.ftl"/></html></platform-specific>
             </widgets>
-        </section>
+        </section> -->
     </screen>
 </screens>

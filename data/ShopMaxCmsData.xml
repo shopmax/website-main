@@ -9,17 +9,10 @@
     <ContentPurpose contentId="SHOPMAX_ACTION_DEC" contentPurposeTypeId="SECTION"/>
     
     <!-- Main Decorator -->
-    <!--
-         GROWERPFES_DEC (Content of type DECORATOR associated to a DataResource with placeholders for mapKeys "htmlHead", "header", "footer")
-          |_____(ContentAssoc of type SUB_CONTENT with mapKey "htmlHead")______> GROWERPFES_HHEAD (Content of type DOCUMENT)
-          |_____(ContentAssoc of type SUB_CONTENT with mapKey "header")________> GROWERPFES_HEADER (Content of type DOCUMENT)
-          |_____(ContentAssoc of type SUB_CONTENT with mapKey "footer")________> GROWERPFES_FOOTER (Content of type DOCUMENT)
-    -->
     <DataResource dataResourceId="SHOPMAX_DEC" dataResourceTypeId="ELECTRONIC_TEXT" dataTemplateTypeId="FTL"/>
     <ElectronicText dataResourceId="SHOPMAX_DEC">
         <textData><![CDATA[
         ${(decoratedContent.subcontent.htmlHead)?default((thisContent.subcontent.htmlHead)?if_exists)}
-        ${(decoratedContent.subcontent.announce)?default((thisContent.subcontent.announce)?if_exists)}
         ${(decoratedContent.subcontent.header)?default((thisContent.subcontent.header)?if_exists)}
         ${decoratedContent}
         ${(decoratedContent.subcontent.footer)?default((thisContent.subcontent.footer)?if_exists)}
@@ -41,14 +34,14 @@
             </div>
         ]]></textData>
     </ElectronicText>
-    <Content contentId="WEBSITE_CMS" contentTypeId="DOCUMENT" decoratorContentId="GROWERPFES_DEC" contentName="WebSite CMS" dataResourceId="WEBSITE_CMS"/>
+    <Content contentId="WEBSITE_CMS" contentTypeId="DOCUMENT" decoratorContentId="SHOPMAX_DEC" contentName="WebSite CMS" dataResourceId="WEBSITE_CMS"/>
     <ContentPurpose contentId="WEBSITE_CMS" contentPurposeTypeId="SECTION" />
     <ContentAssoc contentId="SHOPMAX_PPOINT" contentIdTo="WEBSITE_CMS" contentAssocTypeId="SUB_CONTENT" fromDate="2013-04-01 00:00:00" mapKey="main"/>
     <WebSiteContent webSiteId="SHOPMAX_CENTRAL" contentId="WEBSITE_CMS" webSiteContentTypeId="DEFAULT_PAGE" fromDate="2013-04-01 00:00:00"/>
     <WebSitePathAlias webSiteId="SHOPMAX_CENTRAL" pathAlias="main" aliasTo="WEBSITE_CMS" contentId="WEBSITE_CMS" />
     
     <!-- Left Panel -->
-    <DataResource dataResourceId="SHOPMAX_LEFTPANEL" dataResourceTypeId="URL_RESOURCE" dataTemplateTypeId="SCREEN_COMBINED" objectInfo="component://shopmax/widget/shopmax/ShopMaxScreen.xml#WebSiteCMSNav" />
+    <DataResource dataResourceId="SHOPMAX_LEFTPANEL" dataResourceTypeId="URL_RESOURCE" dataTemplateTypeId="SCREEN_COMBINED" objectInfo="component://shopmax/widget/ShopMaxScreens.xml#LeftPanel" />
     <Content contentId="SHOPMAX_LEFTPANEL" contentTypeId="DOCUMENT" contentName="ShopMax Left Panel" dataResourceId="SHOPMAX_LEFTPANEL"/>
     <ContentPurpose contentId="SHOPMAX_LEFTPANEL" contentPurposeTypeId="SECTION"/>
     <ContentAssoc contentId="WEBSITE_CMS" contentIdTo="SHOPMAX_LEFTPANEL" contentAssocTypeId="SUB_CONTENT" mapKey="leftPanel" fromDate="2013-04-01 00:00:00"/>
@@ -60,7 +53,7 @@
             
         ]]></textData>
     </ElectronicText>
-    <Content contentId="SHOPMAX_HHEAD" contentTypeId="DOCUMENT" contentName="ShopMax HTML Head" dataResourceId="SHOPMAXS_HHEAD"/>
+    <Content contentId="SHOPMAX_HHEAD" contentTypeId="DOCUMENT" contentName="ShopMax HTML Head" dataResourceId="SHOPMAX_HHEAD"/>
     <ContentPurpose contentId="SHOPMAX_HHEAD" contentPurposeTypeId="SECTION"/>
     <ContentAssoc contentId="SHOPMAX_PPOINT" contentIdTo="SHOPMAX_HHEAD" contentAssocTypeId="SUB_CONTENT" fromDate="2013-04-01 00:00:00" mapKey="htmlHead"/>
     
