@@ -5,7 +5,7 @@
     
     <!-- Action Decorator -->
     <DataResource dataResourceId="SHOPMAX_ACTION_DEC" dataResourceTypeId="URL_RESOURCE" dataTemplateTypeId="SCREEN_COMBINED" objectInfo="component://shopmax/widget/CommonScreens.xml#action-decorator" />
-    <Content contentId="SHOPMAX_ACTION_DEC" contentTypeId="DOCUMENT" contentName="Action Decorator" dataResourceId="SHOPMAX_ACTION_DEC"/>
+    <Content contentId="SHOPMAX_ACTION_DEC" contentTypeId="DOCUMENT" contentName="ShopMax Action Decorator" dataResourceId="SHOPMAX_ACTION_DEC"/>
     <ContentPurpose contentId="SHOPMAX_ACTION_DEC" contentPurposeTypeId="SECTION"/>
     
     <!-- Main Decorator -->
@@ -25,7 +25,7 @@
         ${(decoratedContent.subcontent.footer)?default((thisContent.subcontent.footer)?if_exists)}
     ]]></textData>
     </ElectronicText>
-    <Content contentId="SHOPMAX_DEC" contentTypeId="DECORATOR" contentName="CMS Site Main Decorator" dataResourceId="SHOPMAX_DEC" decoratorContentId="SHOPMAX_ACTION_DEC"/>
+    <Content contentId="SHOPMAX_DEC" contentTypeId="DECORATOR" contentName="ShopMax Main Decorator" dataResourceId="SHOPMAX_DEC" decoratorContentId="SHOPMAX_ACTION_DEC"/>
     <ContentPurpose contentId="SHOPMAX_DEC" contentPurposeTypeId="SECTION"/>
     <ContentAssoc contentId="SHOPMAX_PPOINT" contentIdTo="SHOPMAX_DEC" contentAssocTypeId="SUB_CONTENT" fromDate="2013-04-01 00:00:00" mapKey="mainDecorator"/>
     
@@ -49,7 +49,42 @@
     
     <!-- Left Panel -->
     <DataResource dataResourceId="SHOPMAX_LEFTPANEL" dataResourceTypeId="URL_RESOURCE" dataTemplateTypeId="SCREEN_COMBINED" objectInfo="component://shopmax/widget/shopmax/ShopMaxScreen.xml#WebSiteCMSNav" />
-    <Content contentId="SHOPMAX_LEFTPANEL" contentTypeId="DOCUMENT" contentName="GrowERP Front-End Site Left Panel" dataResourceId="SHOPMAX_LEFTPANEL"/>
+    <Content contentId="SHOPMAX_LEFTPANEL" contentTypeId="DOCUMENT" contentName="ShopMax Left Panel" dataResourceId="SHOPMAX_LEFTPANEL"/>
     <ContentPurpose contentId="SHOPMAX_LEFTPANEL" contentPurposeTypeId="SECTION"/>
-    <ContentAssoc contentId="WEBSITE_CMS" contentIdTo="SHOPMAX_LEFTPANEL" contentAssocTypeId="SUB_CONTENT" mapKey="leftpanel" fromDate="2013-04-01 00:00:00"/>
+    <ContentAssoc contentId="WEBSITE_CMS" contentIdTo="SHOPMAX_LEFTPANEL" contentAssocTypeId="SUB_CONTENT" mapKey="leftPanel" fromDate="2013-04-01 00:00:00"/>
+    
+    <!-- HTML Header -->
+    <DataResource dataResourceId="SHOPMAX_HHEAD" dataResourceTypeId="ELECTRONIC_TEXT" dataTemplateTypeId="FTL"/>
+    <ElectronicText dataResourceId="SHOPMAX_HHEAD">
+        <textData><![CDATA[
+            
+        ]]></textData>
+    </ElectronicText>
+    <Content contentId="SHOPMAX_HHEAD" contentTypeId="DOCUMENT" contentName="ShopMax HTML Head" dataResourceId="SHOPMAXS_HHEAD"/>
+    <ContentPurpose contentId="SHOPMAX_HHEAD" contentPurposeTypeId="SECTION"/>
+    <ContentAssoc contentId="SHOPMAX_PPOINT" contentIdTo="SHOPMAX_HHEAD" contentAssocTypeId="SUB_CONTENT" fromDate="2013-04-01 00:00:00" mapKey="htmlHead"/>
+    
+    <!-- Header -->
+    <DataResource dataResourceId="SHOPMAX_HEADER" dataResourceTypeId="ELECTRONIC_TEXT" dataTemplateTypeId="FTL"/>
+    <ElectronicText dataResourceId="SHOPMAX_HEADER">
+        <textData><![CDATA[
+            
+        ]]></textData>
+    </ElectronicText>
+    <Content contentId="SHOPMAX_HEADER" contentTypeId="DOCUMENT" contentName="ShopMax Header" dataResourceId="SHOPMAX_HEADER"/>
+    <ContentPurpose contentId="SHOPMAX_HEADER" contentPurposeTypeId="SECTION"/>
+    
+    <!-- Footer -->
+    <DataResource dataResourceId="SHOPMAX_FOOTER" dataResourceTypeId="ELECTRONIC_TEXT" dataTemplateTypeId="FTL"/>
+    <ElectronicText dataResourceId="SHOPMAX_FOOTER">
+        <textData><![CDATA[
+            
+        ]]></textData>
+    </ElectronicText>
+    <Content contentId="SHOPMAX_FOOTER" contentTypeId="DOCUMENT" contentName="ShopMax Footer" dataResourceId="GROWERPFES_FOOTER"/>
+    <ContentPurpose contentId="SHOPMAX_FOOTER" contentPurposeTypeId="SECTION"/>
+    
+    <ContentAssoc contentId="SHOPMAX_DEC" contentIdTo="SHOPMAX_HHEAD" contentAssocTypeId="SUB_CONTENT" mapKey="htmlHead" fromDate="2013-04-01 00:00:00"/>
+    <ContentAssoc contentId="SHOPMAX_DEC" contentIdTo="SHOPMAX_HEADER" contentAssocTypeId="SUB_CONTENT" mapKey="header" fromDate="2013-04-01 00:00:00"/>
+    <ContentAssoc contentId="SHOPMAX_DEC" contentIdTo="SHOPMAX_FOOTER" contentAssocTypeId="SUB_CONTENT" mapKey="footer" fromDate="2013-04-01 00:00:00"/>
 </entity-engine-xml>
