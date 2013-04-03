@@ -16,6 +16,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
         <footer>
             <div id="top-foot" class="georgia">
                 <div class="container">
@@ -23,34 +24,33 @@ under the License.
                         <div class="span2">
                             <h3>Quick Links</h3>
                             <ul>
-                            <li><a href="todays-deal.html">Today's Deal</a></li>
-                            <li><a href="featured.html">Featured</a></li>
-                            <li><a href="special.html">Special</a></li>
-                            <li><a href="top-seller.html">Top Seller</a></li>
-                            <li><a href="shops.html">Shops</a></li>
-                            <li><a href="shipping.html">Shipping &amp; Returns</a></li>
+	                            <li><a href="todays-deal.html">Today's Deal</a></li>
+	                            <li><a href="featured.html">Featured</a></li>
+	                            <li><a href="special.html">Special</a></li>
+	                            <li><a href="top-seller.html">Top Seller</a></li>
+	                            <li><a href="shops.html">Shops</a></li>
+	                            <li><a href="shipping.html">Shipping &amp; Returns</a></li>
                             </ul>
                         </div>
                         <div class="span2">
                             <h3>Top Categories</h3>
                             <ul>
-                            <li><a href="#">Maecenas faucibus</a></li>
-                            <li><a href="#">Interdum enean eu</a></li>
-                            <li><a href="#">Quam ellentesque</a></li>
-                            <li><a href="#">Sem lacinia quam</a></li>
-                            <li><a href="#">Venenatis vestibum</a></li>
-                            <li><a href="#">Prasent commodo</a></li>
+	                            <li><a href="#">Maecenas faucibus</a></li>
+	                            <li><a href="#">Interdum enean eu</a></li>
+	                            <li><a href="#">Quam ellentesque</a></li>
+	                            <li><a href="#">Sem lacinia quam</a></li>
+	                            <li><a href="#">Venenatis vestibum</a></li>
+	                            <li><a href="#">Prasent commodo</a></li>
                             </ul>
-                            
                         </div>
                         <div class="span2 noheading">
                             <ul>
-                            <li><a href="#">Maecenas faucibus</a></li>
-                            <li><a href="#">Interdum enean eu</a></li>
-                            <li><a href="#">Quam ellentesque</a></li>
-                            <li><a href="#">Sem lacinia quam</a></li>
-                            <li><a href="#">Venenatis vestibum</a></li>
-                            <li><a href="#">Prasent commodo</a></li>
+	                            <li><a href="#">Maecenas faucibus</a></li>
+	                            <li><a href="#">Interdum enean eu</a></li>
+	                            <li><a href="#">Quam ellentesque</a></li>
+	                            <li><a href="#">Sem lacinia quam</a></li>
+	                            <li><a href="#">Venenatis vestibum</a></li>
+	                            <li><a href="#">Prasent commodo</a></li>
                             </ul>                       
                         </div>
                         <div class="span3">
@@ -63,7 +63,6 @@ under the License.
                             <h3>Contact us for a Quotation</h3>
                             <p><strong>0800 123 456</strong> <em>or</em> <strong><a href="mailto:abc@xyz.com">Email Us</a></strong><br />
                             <dfn>7 days 9am to 5pm NZDT</dfn></p>
-                        
                         </div>
                         <div class="span3">
                             <h3>Sign Up Our Newsletter</h3>
@@ -78,7 +77,6 @@ under the License.
                                 <li class="pull-left"><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/icon-gplus.png</@ofbizContentUrl>" width="33" height="33" alt="" /></a></li>
                                 <li class="pull-left"><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/icon-rss.png</@ofbizContentUrl>" width="33" height="33" alt="" /></a></li>
                             </ul>
-                        
                         </div>
                     </div><!-- /. row -->
                 </div><!-- /.container -->

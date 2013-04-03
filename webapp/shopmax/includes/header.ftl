@@ -16,6 +16,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
 <header id="topnav" class="navbar navbar-inverse navbar-fixed-top clearfix">
     <div class="navbar-inner">
         <div class="container">
@@ -52,20 +53,17 @@ under the License.
                     <div class="field search-filters">
                         <div class="main-search-control">
                             <div class="main-search-dropdown bold">
-                                <!--
-                            <span class="drop-container">                   
-                            
-                                <span class="drop-label"></span>        
+                            <!--
+                            <span class="drop-container">
+                                <span class="drop-label"></span>
                                 <span class="drop-arrow"></span>
                                 -->
-                                
                                 <select id="SearchType" name="searchType" class="drop-select chosen combo" data-search-bar="true">
-                                        <option value="shop1" selected="selected">This Shop</option>
-                                        <option value="shop2">Shop 2</option>
-                                        <option value="shop3">Shop 3</option>
-                                        <option value="shop4">Shop 4</option>
+                                    <option value="shop1" selected="selected">This Shop</option>
+                                    <option value="shop2">Shop 2</option>
+                                    <option value="shop3">Shop 3</option>
+                                    <option value="shop4">Shop 4</option>
                                 </select>
-
                             <!-- </span> -->
                             </div>
                             <div class="main-search-input">
@@ -98,5 +96,5 @@ under the License.
                 <p><a href="check-out.html" class="btn-flat checkout">Check Out</a></p>
             </div>
         </div><!--/.container -->
-    </div><!--/. navbar-inner --> 
+    </div><!--/. navbar-inner -->
 </header><!--/. navbar -->
