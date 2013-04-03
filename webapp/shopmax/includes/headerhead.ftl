@@ -32,6 +32,7 @@ under the License.
             </#list>
         </#if>
         <#-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
+        <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js</@ofbizContentUrl>"></script>
         <script>window.jQuery || document.write('<script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery-1.8.3.min.js</@ofbizContentUrl>"><\/script>')</script>
         <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/bootstrap.min.js</@ofbizContentUrl>"></script>
         <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/chosen.jquery.min.js</@ofbizContentUrl>"></script>

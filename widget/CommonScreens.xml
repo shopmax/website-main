@@ -13,12 +13,11 @@
                     <field-map field-name="themeResources" from-field="layoutSettings" />
                 </service>
                 <set field="layoutSettings" from-field="themeResources" default-value="${layoutSettings}" global="true" />
-                
-                <set field="layoutSettings.shortcutIcon" value="/shopmax/shopmaximages/img/favicon.ico" global="true"/>
             </actions>
             <widgets>
                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/headerhead.ftl"/></html></platform-specific>
                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/header.ftl"/></html></platform-specific>
+                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/menu.ftl"/></html></platform-specific>
                 <container id="main">
                     <decorator-section-include name="body"/>
                 </container>

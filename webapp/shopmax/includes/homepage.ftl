@@ -17,22 +17,6 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<nav id="mainnav" class="navbar navbar-static-top"><!-- blue navbar -->
-    <div class="navbar-inner">
-        <div class="container">
-            <ul class="nav">
-                <li class="on"><a href="/">Home</a></li>
-                <li><a href="shops.html">Shops</a></li>
-                <li><a href="group-bang.html">Group Bang</a></li>
-                <li><a href="rush-hour.html">Rush Hour</a></li>
-                <li><a href="multi-buy.html">Multi Buy</a></li>
-                <li><a href="about-us.html">About Us</a></li>
-                <li><a href="help.html">Help</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
 <div class="container content">
     <div class="row">
         <a class="skip-link small" href="#side-menu">Skip to sidebar menu</a>
