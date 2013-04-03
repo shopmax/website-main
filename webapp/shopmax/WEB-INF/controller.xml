@@ -87,7 +87,7 @@ under the License.
     
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>
-    <view-map name="productdetail" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#product"/>
+    <view-map name="product" type="screen" page="component://shopmax/widget/CatalogScreens.xml#product"/>
     <view-map name="category" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#category"/>
     <view-map name="shoppingcart" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#shoppingcart"/>
     <view-map name="checkoutlogin" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#checkoutlogin"/>
