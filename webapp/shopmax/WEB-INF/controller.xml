@@ -27,7 +27,7 @@
     <request-map uri="cms">
         <security https="false" auth="false"/>
         <event type="java" path="org.ofbiz.content.cms.CmsEvents" invoke="cms"/>
-        <response name="success" type="none"/>
+        <response name="success" type="view" value="main"/>
         <response name="error" type="view" value="error"/>
     </request-map>
     

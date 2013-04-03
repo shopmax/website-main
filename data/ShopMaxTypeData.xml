@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entity-engine-xml>
 
+    <VisualTheme visualThemeId="SHOPMAX_THEME" visualThemeSetId="SHOPMAX" description="Shop Max Layout"/>
+    <VisualThemeResource visualThemeId="SHOPMAX_THEME" resourceTypeEnumId="VT_SHORTCUT_ICON" resourceValue="/shopmax/shopmaximages/img/favicon.ico" sequenceId="01"/>
+    <VisualThemeResource visualThemeId="SHOPMAX_THEME" resourceTypeEnumId="VT_STYLESHEET" resourceValue="/frontend-pinktan/css/leftpanel.css" sequenceId="02"/>
 </entity-engine-xml>

@@ -1,1 +1,1 @@
-<%response.sendRedirect("control/main");%>
+<%pageContext.forward("cms/cms");%>

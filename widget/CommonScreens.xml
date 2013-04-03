@@ -7,7 +7,10 @@
             <actions>
                 <property-map resource="ShopMaxUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
-
+                
+                <!-- The default (global) shortcut icon -->
+                <set field="layoutSettings.shortcutIcon" value="/shopmax/shopmaximages/img/favicon.ico" global="true"/>
+                
                 <set field="layoutSettings.companyName" from-field="uiLabelMap.ShopMaxCompanyName" global="true"/>
                 <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.ShopMaxCompanySubtitle" global="true"/>
 
@@ -15,9 +18,29 @@
                 <set field="applicationMenuName" value="MainAppBar" global="true"/>
                 <set field="applicationMenuLocation" value="component://shopmax/widget/ShopMaxMenus.xml" global="true"/>
                 <set field="applicationTitle" value="${uiLabelMap.ShopMaxApplication}" global="true"/>
+                
+                <set field="headerTemplateLocation" from-field="layoutSettings.VT_HDR_TMPLT_LOC[0]" default-value="component://shopmax/webapp/shopmax/includes/header.ftl"/>
+                <set field="footerTemplateLocation" from-field="layoutSettings.VT_FTR_TMPLT_LOC[0]" default-value="component://shopmax/webapp/shopmax/includes/footer.ftl"/>
             </actions>
             <widgets>
-                <include-screen name="ApplicationDecorator" location="component://commonext/widget/CommonScreens.xml"/>
+<!--                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/headerhead.ftl"/></html></platform-specific> -->
+<!--                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/openhtmlbody.ftl"/></html></platform-specific> -->
+                
+<!--                 render header -->
+<!--                 <platform-specific> -->
+<!--                     <html><html-template location="${headerTemplateLocation}"/></html> -->
+<!--                 </platform-specific> -->
+                
+<!--                 <container id="main"> -->
+<!--                     <decorator-section-include name="body"/> -->
+<!--                 </container> -->
+                
+<!--                 <platform-specific> -->
+<!--                     <html><html-template location="${footerTemplateLocation}" /></html> -->
+<!--                 </platform-specific> -->
+                
+<!--                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/closehtmlbody.ftl"/></html></platform-specific> -->
+<!--                 <include-screen name="ApplicationDecorator" location="component://commonext/widget/CommonScreens.xml"/> -->
             </widgets>
         </section>
     </screen>
@@ -30,15 +53,15 @@
                 <decorator-screen name="main-decorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <section>
-                            <condition>
+                            <!-- <condition>
                                 <if-has-permission permission="SHOPMAX" action="_VIEW"/>
-                            </condition>
+                            </condition> -->
                             <widgets>
                                 <decorator-section-include name="body"/>
                             </widgets>
-                            <fail-widgets>
+                            <!-- <fail-widgets>
                                 <label style="h3">${uiLabelMap.ShopMaxViewPermissionError}</label>
-                            </fail-widgets>
+                            </fail-widgets> -->
                         </section>
                     </decorator-section>
                 </decorator-screen>
@@ -56,7 +79,7 @@
             </actions>
             <widgets>
                 <include-screen name="GlobalActions" location="component://shopmax/widget/CommonScreens.xml"/>
-                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/website/actiondecorator.ftl"/></html></platform-specific>
+                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/website/ActionDecorator.ftl"/></html></platform-specific>
             </widgets>
         </section>
     </screen>
@@ -64,52 +87,6 @@
     <screen name="GlobalActions">
         <section>
             <actions>
-                <!-- The default (global) java scripts -->
-                <!-- jQuery part -->
-                <!-- Load available JS Language Files -->
-                <set field="initialLocaleComplete" type="String" value="${groovy:parameters?.userLogin?.lastLocale}" default-value="${groovy:locale.toString()}" />
-                <set field="layoutSettings.javaScripts[+0]" value="${groovy: org.ofbiz.common.JsLanguageFilesMapping.datejs.getFilePath(initialLocaleComplete)}" global="true" />
-                <set field="layoutSettings.javaScripts[+0]" value="${groovy: org.ofbiz.common.JsLanguageFilesMapping.jquery.getFilePath(initialLocaleComplete)}" global="true" />
-                <set field="layoutSettings.javaScripts[+0]" value="${groovy: org.ofbiz.common.JsLanguageFilesMapping.validation.getFilePath(initialLocaleComplete)}" global="true" />
-                <set field="layoutSettings.javaScripts[+0]" value="${groovy: org.ofbiz.common.JsLanguageFilesMapping.dateTime.getFilePath(initialLocaleComplete)}" global="true" />
-                <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/plugins/asmselect/jquery.asmselect-1.0.4a-beta.js" global="true" />
-                <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/plugins/datetimepicker/jquery-ui-timepicker-addon-1.0.5.js" global="true" />
-                <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/plugins/jquery.maskedinput-1.2.2.min.js" global="true" />
-                <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/ui/js/jquery-ui-1.9.0.custom.min.js" global="true" />
-                <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/plugins/jeditable/jquery.jeditable.js" global="true" />
-                <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/plugins/validate/jquery.validate.min.js" global="true" />
-                <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/plugins/fjTimer/jquerytimer-min.js" global="true" />
-                <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/ui/development-bundle/ui/jquery.ui.datepicker.js" global="true" />
-                <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/jquery-1.8.2.min.js" global="true" />
-                <set field="layoutSettings.javaScripts[+0]" value="/images/miscAjaxFunctions.js" global="true" />
-                
-                <!-- jQuery CSSs -->
-                <set field="layoutSettings.styleSheets[+0]" value="/images/jquery/plugins/asmselect/jquery.asmselect-1.0.4a-beta.css" global="true" />
-                <set field="layoutSettings.javaScripts[]" value="/images/selectall.js" global="true" />
-                <set field="layoutSettings.javaScripts[]" value="/images/fieldlookup.js" global="true" />
-                <set field="layoutSettings.javaScripts[]" value="/images/GooglemapMarkers.js" global="true" />
-                <set field="layoutSettings.javaScripts[]" value="/images/miscAjaxFunctions.js" global="true" />
-                <set field="layoutSettings.javaScripts[]" value="/images/selectMultipleRelatedValues.js" global="true" />
-                
-                <set field="layoutSettings.javaScripts[]" value="/images/jquery/plugins/jsTree/jquery.jstree.js" global="true" />
-                <set field="layoutSettings.javaScripts[]" value="/images/jquery/plugins/elrte-1.3/js/elrte.min.js" global="true" />
-                <set field="layoutSettings.javaScripts[]" value="/images/jquery/ui/development-bundle/external/jquery.cookie.js" global="true" />
-                <set field="layoutSettings.javaScripts[]" value="/ecommerce/images/checkoutProcess.js" global="true" />
-                <set field="layoutSettings.javaScripts[]" value="/ordermgr/images/js/geoAutoCompleter.js" global="true" />
-                <set field="layoutSettings.javaScripts[]" value="/images/miscAjaxFunctions.js" global="true" />
-                <set field="layoutSettings.javaScripts[]" value="/growerpwebsite-default/js/jquery.tools.js" global="true" />
-                <set field="layoutSettings.javaScripts[]" value="/growerpwebsite-default/js/site.js" global="true" />
-                
-                <service service-name="getFrontendUserPreferenceGroup" result-map="getFrontendUserPreferenceGroupOutMap">
-                    <field-map field-name="userPrefGroupTypeId" value="GLOBAL_PREFERENCES"/>
-                </service>
-                
-                <set field="visualThemeId" from-field="getFrontendUserPreferenceGroupOutMap.userPrefMap.VISUAL_FE_THEME" global="true" />
-                <service service-name="getVisualThemeResources">
-                    <field-map field-name="visualThemeId" />
-                    <field-map field-name="themeResources" from-field="layoutSettings" />
-                </service>
-                <set field="layoutSettings" from-field="themeResources" default-value="${layoutSettings}" global="true" />
             </actions>
             <widgets />
         </section>

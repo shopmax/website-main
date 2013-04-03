@@ -6,10 +6,14 @@
         <section>
             <actions>
                 <set field="headerItem" value="main"/><!-- this highlights the selected menu-item with name "main" -->
+                <set field="1" value="${groovy:println &quot;=============come in============&quot;"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
+                        <platform-specific>
+                            <html><html-template location="component://shopmax/webapp/shopmax/includes/mainhomepage.ftl"/></html>
+                        </platform-specific>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
@@ -17,18 +21,11 @@
     </screen>
     
     <screen name="LeftPanel">
-        <!-- <section>
+        <section>
             <actions>
-                <property-map resource="ContentUiLabels" map-name="uiLabelMap" global="true"/>
-                <set field="parameters.webSiteId" value="SHOPMAX_CENTRAL"/>
-                <set field="webSiteId" from-field="parameters.webSiteId"/>
-                <entity-one entity-name="WebSite" value-field="webSite"/>
-                <script location="component://growerpfrontend/webapp/frontend/WEB-INF/actions/WebsiteHomeContent.groovy"/>
-                <set field="language" from-field="userLogin.lastLocale" default-value="en"/>
             </actions>
             <widgets>
-                <platform-specific><html><html-template location="component://growerpfrontend/webapp/frontend/website/WebsiteCMSNav.ftl"/></html></platform-specific>
             </widgets>
-        </section> -->
+        </section>
     </screen>
 </screens>
