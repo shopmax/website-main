@@ -80,7 +80,7 @@ under the License.
     </request-map>
     
     <request-map uri="confirmation">
-        <security https="true" auth="true"/>
+        <security https="true" auth="false"/>
         <response name="success" type="view" value="confirmation"/>
         <response name="error" type="view" value="confirmation"/>
     </request-map>
@@ -89,8 +89,8 @@ under the License.
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>
     <view-map name="product" type="screen" page="component://shopmax/widget/CatalogScreens.xml#product"/>
     <view-map name="category" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#category"/>
-    <view-map name="shoppingcart" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#shoppingcart"/>
+    <view-map name="shoppingcart" type="screen" page="component://shopmax/widget/CartScreens.xml#shoppingcart"/>
     <view-map name="checkoutlogin" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#checkoutlogin"/>
     <view-map name="checkoutnonlogin" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#checkoutnonlogin"/>
-    <view-map name="confirmation" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#confirmation"/>
+    <view-map name="confirmation" type="screen" page="component://shopmax/widget/OrderScreens.xml#confirmation"/>
 </site-conf>
