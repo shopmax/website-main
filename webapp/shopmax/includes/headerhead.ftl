@@ -31,11 +31,11 @@ under the License.
             </#list>
         </#if>
         <#-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
-        <script>window.jQuery || document.write('<script src="<@ofbizContentUrl>shopmax/shopmaximages/js/vendor/jquery-1.8.3.min.js</@ofbizContentUrl>"><\/script>')</script>
-        <script src="<@ofbizContentUrl>shopmax/shopmaximages/js/vendor/bootstrap.min.js</@ofbizContentUrl>"></script>
-        <script src="<@ofbizContentUrl>shopmax/shopmaximages/js/vendor/chosen.jquery.min.js</@ofbizContentUrl>"></script>
-        <script src="<@ofbizContentUrl>shopmax/shopmaximages/js/vendor/jquery.anythingslider.min.js</@ofbizContentUrl>"></script>
-        <script src="<@ofbizContentUrl>shopmax/shopmaximages/js/fancybox/source/jquery.fancybox.pack.js</@ofbizContentUrl>"></script>  
-        <script src="<@ofbizContentUrl>shopmax/shopmaximages/js/main.js</@ofbizContentUrl>"></script>
+        <script>window.jQuery || document.write('<script src="<@ofbizContentUrl>shopmax-default/js/vendor/jquery-1.8.3.min.js</@ofbizContentUrl>"><\/script>')</script>
+        <script src="<@ofbizContentUrl>shopmax-default/js/vendor/bootstrap.min.js</@ofbizContentUrl>"></script>
+        <script src="<@ofbizContentUrl>shopmax-default/js/vendor/chosen.jquery.min.js</@ofbizContentUrl>"></script>
+        <script src="<@ofbizContentUrl>shopmax-default/js/vendor/jquery.anythingslider.min.js</@ofbizContentUrl>"></script>
+        <script src="<@ofbizContentUrl>shopmax-default/js/fancybox/source/jquery.fancybox.pack.js</@ofbizContentUrl>"></script>  
+        <script src="<@ofbizContentUrl>shopmax-default/js/main.js</@ofbizContentUrl>"></script>
     </head>
     <body class="home">

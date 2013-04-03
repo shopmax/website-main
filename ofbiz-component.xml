@@ -39,4 +39,12 @@
         location="webapp/shopmax"
         base-permission="OFBTOOLS,SHOPMAX"
         mount-point="/shopmax"/>
+        
+    <!-- Default Theme -->
+    <webapp name="shopmax-default"
+        title="Shopmax Default Theme"
+        app-bar-display="false"
+        server="default-server"
+        location="webapp/shopmax-default"
+        mount-point="/shopmax-default"/>
 </ofbiz-component>

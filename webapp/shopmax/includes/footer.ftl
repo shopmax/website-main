@@ -73,10 +73,10 @@ under the License.
                             </form>
                             <h3>Connect with us</h3>
                             <ul id="connect">
-                                <li class="pull-left"><a href="#"><img src="img/icon-twitter.png" width="33" height="33" alt="" /></a></li>
-                                <li class="pull-left"><a href="#"><img src="img/icon-fb.png" width="34" height="33" alt="" /></a></li>
-                                <li class="pull-left"><a href="#"><img src="img/icon-gplus.png" width="33" height="33" alt="" /></a></li>
-                                <li class="pull-left"><a href="#"><img src="img/icon-rss.png" width="33" height="33" alt="" /></a></li>
+                                <li class="pull-left"><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/icon-twitter.png</@ofbizContentUrl>" width="33" height="33" alt="" /></a></li>
+                                <li class="pull-left"><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/icon-fb.png</@ofbizContentUrl>" width="34" height="33" alt="" /></a></li>
+                                <li class="pull-left"><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/icon-gplus.png</@ofbizContentUrl>" width="33" height="33" alt="" /></a></li>
+                                <li class="pull-left"><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/icon-rss.png</@ofbizContentUrl>" width="33" height="33" alt="" /></a></li>
                             </ul>
                         
                         </div>
@@ -96,7 +96,7 @@ under the License.
                             </ul>
                         </div>
                         <div id="logo" class="span2">
-                            <p><a href="#topnav" title="Jump to page top"><img src="img/shopmax-bottom-logo.png" width="106" height="30" alt="" /><!--<img src="img/logo-bottom.png" width="107" height="58" alt="" />--></a></p>
+                            <p><a href="#topnav" title="Jump to page top"><img src="<@ofbizContentUrl>/shopmax-default/img/shopmax-bottom-logo.png</@ofbizContentUrl>" width="106" height="30" alt="" /><!--<img src="img/logo-bottom.png" width="107" height="58" alt="" />--></a></p>
                         </div>
                     </div><!-- /.row -->
                 </div><!-- /. container -->

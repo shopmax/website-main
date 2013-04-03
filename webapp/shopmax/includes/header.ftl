@@ -24,7 +24,7 @@ under the License.
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <h1 title="Shopmax"><a class="brand" href="/"><img src="<@ofbizContentUrl>shopmax/shopmaximages/img/logo-2.png</@ofbizContentUrl>" width="159" height="55" alt="Shopmax logo" /></a></h1>
+            <h1 title="Shopmax"><a class="brand" href="/"><img src="<@ofbizContentUrl>/shopmax-default/img/logo-2.png</@ofbizContentUrl>" width="159" height="55" alt="Shopmax logo" /></a></h1>
             <!-- was <img src="img/logo.png" width="186" height="65" alt="" /> padding:top 10px right 27 -->
             <!--<div class="nav-collapse collapse"> to make it collapse -->
             <div class="header-search">
