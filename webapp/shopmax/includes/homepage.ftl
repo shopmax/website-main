@@ -16,7 +16,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<nav id="mainnav" class="navbar navbar-static-top"><!-- blue navbar -->         
+<nav id="mainnav" class="navbar navbar-static-top"><!-- blue navbar -->
     <div class="navbar-inner">
         <div class="container">
                 <ul class="nav">
@@ -29,7 +29,7 @@ under the License.
                     <li><a href="help.html">Help</a></li>
                 </ul>
         </div>
-    </div>  
+    </div>
 </nav>
 
 <div class="container content">
@@ -67,17 +67,17 @@ under the License.
                 <h4>Shop 1</h4>
                 <p>Description</p>
                 <p><a href="#" class="btn-general">Shop Now</a></li>
-
+                
                 <li><a href="#"><img src="<@ofbizContentUrl>shopmax/shopmaximages/img/shops-2.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
                 <h4>Shop 2</h4>
                 <p>Description</p>
                 <p><a href="#" class="btn-general">SHOP NOW</a></li>
-
+                
                 <li><a href="#"><img src="<@ofbizContentUrl>shopmax/shopmaximages/img/shops-3.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
                 <h4>Shop 3</h4>
                 <p>Description</p>
                 <p><a href="#" class="btn-general">SHOP NOW</a></li>
-
+                
                 <li><a href="#"><img src="<@ofbizContentUrl>shopmax/shopmaximages/img/shops-4.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
                 <h4>Shop 4</h4>
                 <p>Description</p>
@@ -98,7 +98,7 @@ under the License.
                 <p class="price">$129.85</p>
                 <p class="pull-right"><a href="#" class="btn-general">Add To Cart</a></p>
                 <p class="pull-right addshop"><a href="#">Add to Shopping List</a></p></li>
-
+                
                 <li class="sale"><a href="#"><img src="<@ofbizContentUrl>shopmax/shopmaximages/img/product-3.png</@ofbizContentUrl>" width="136" height="139" alt="" /></a>
                 <h4>Product 3</h4>
                 <p class="price">$129.85</p>
@@ -138,25 +138,25 @@ under the License.
                     </div><!-- /.tabs-->
                     <div id="product-tab" class="tabcontent">
                         <ul>
-                        <li><a href="/">Electronics &amp; Office</a></li>
-                                    <li><a href="#">Movies, Music &amp; Books</a></li>
-                                    <li><a href="#">Home, Furniture &amp; Patio</a></li>
-                                    <li><a href="#">Apparel, Shoes &amp; Jewellery</a></li>
-                                    <li><a href="#">Baby &amp; Kids</a></li>
-                                    <li><a href="#">Toys &amp; Video Games</a></li>
-                                    <li><a href="#">Sports, Fitness &amp; Outdoors</a></li>
+                            <li><a href="/">Electronics &amp; Office</a></li>
+                            <li><a href="#">Movies, Music &amp; Books</a></li>
+                            <li><a href="#">Home, Furniture &amp; Patio</a></li>
+                            <li><a href="#">Apparel, Shoes &amp; Jewellery</a></li>
+                            <li><a href="#">Baby &amp; Kids</a></li>
+                            <li><a href="#">Toys &amp; Video Games</a></li>
+                            <li><a href="#">Sports, Fitness &amp; Outdoors</a></li>
                         </ul>
                     </div><!-- /#product-tab -->
                     <div id="services-tab" class="tabcontent">
                         <ul>
-                        <li><a href="#">Services List</a></li>
-                        <li><a href="/">Home</a></li>
-                                    <li><a href="shops.html">Shops</a></li>
-                                    <li><a href="group-bang.html">Group Bang</a></li>
-                                    <li><a href="rush-hour.html">Rush Hour</a></li>
-                                    <li><a href="multi-buy.html">Multi Buy</a></li>
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="help.html">Help</a></li>
+                            <li><a href="#">Services List</a></li>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="shops.html">Shops</a></li>
+                            <li><a href="group-bang.html">Group Bang</a></li>
+                            <li><a href="rush-hour.html">Rush Hour</a></li>
+                            <li><a href="multi-buy.html">Multi Buy</a></li>
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="help.html">Help</a></li>
                         </ul>
                     </div><!-- /#services-tab -->
                 </div><!-- /.tabbed -->
@@ -257,5 +257,5 @@ under the License.
                 </ul>
             </div><!-- /.promotions -->
         </div><!-- /.span3.sidebar -->
-    </div><!-- /.row -->                
-</div> <!-- /container -->
+        </div><!-- /.row -->
+    </div> <!-- /container -->

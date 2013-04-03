@@ -4,14 +4,11 @@
 
     <screen name="main">
         <section>
-            <actions>
-                <set field="headerItem" value="main"/><!-- this highlights the selected menu-item with name "main" -->
-            </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <platform-specific>
-                            <html><html-template location="component://shopmax/webapp/shopmax/includes/mainhomepage.ftl"/></html>
+                            <html><html-template location="component://shopmax/webapp/shopmax/includes/homepage.ftl"/></html>
                         </platform-specific>
                     </decorator-section>
                 </decorator-screen>
