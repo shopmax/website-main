@@ -1,0 +1,14 @@
+Index: hot-deploy/shopmax/data/ShopMaxData.xml
+===================================================================
+--- hot-deploy/shopmax/data/ShopMaxData.xml	(revision 24)
++++ hot-deploy/shopmax/data/ShopMaxData.xml	(working copy)
+@@ -1,4 +1,8 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <entity-engine-xml>
+-    <WebSite webSiteId="SHOPMAX_CENTRAL" siteName="ShopMax Web Site" visualThemeSetId="SHOPMAX_THEME"/>
++    <WebSite webSiteId="SHOPMAX_CENTRAL" siteName="ShopMax Web Site" visualThemeSetId="SHOPMAX_THEME"
++        httpHost="shopmax.ofbizdemo.com" httpPort="80"
++        httpsHost="shopmax.ofbizdemo.com" httpsPort="443"
++        standardContentPrefix="http://shopmax.ofbizdemo.com"
++        secureContentPrefix="https://shopmax.ofbizdemo.com"/>
+ </entity-engine-xml>
