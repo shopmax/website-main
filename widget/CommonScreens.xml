@@ -74,8 +74,18 @@
             <actions>
                 <entity-and list="webAnalyticsConfigs" entity-name="WebAnalyticsConfig">
                     <field-map field-name="webSiteId"/>
-                    <field-map field-name="webAnalyticsTypeId" value="GOOGLE_ANALYTICS"/>
                 </entity-and>
+                <!-- <service service-name="getFrontendUserPreferenceGroup" result-map="getFrontendUserPreferenceGroupOutMap">
+                    <field-map field-name="userPrefGroupTypeId" value="GLOBAL_PREFERENCES"/>
+                </service>
+                
+                <set field="visualThemeId" from-field="getFrontendUserPreferenceGroupOutMap.userPrefMap.VISUAL_FE_THEME" global="true" /> -->
+                
+                <service service-name="getVisualThemeResources">
+                    <field-map field-name="visualThemeId" value="SHOPMAX_THEME"/>
+                    <field-map field-name="themeResources" from-field="layoutSettings" />
+                </service>
+                <set field="layoutSettings" from-field="themeResources" default-value="${layoutSettings}" global="true" />
             </actions>
             <widgets>
                 <include-screen name="GlobalActions" location="component://shopmax/widget/CommonScreens.xml"/>
