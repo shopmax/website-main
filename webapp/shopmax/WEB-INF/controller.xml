@@ -21,8 +21,7 @@
     -->
 
     <!-- Request Mappings -->
-    <default-request request-uri="cms"/>
-    <request-map uri="main"><security https="false" auth="false"/><response name="success" type="request" value="cms"/></request-map>
+    <request-map uri="main"><security https="false" auth="false"/><response name="success" type="view" value="main"/></request-map>
     
     <request-map uri="cms">
         <security https="false" auth="false"/>

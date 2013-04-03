@@ -6,7 +6,6 @@
         <section>
             <actions>
                 <set field="headerItem" value="main"/><!-- this highlights the selected menu-item with name "main" -->
-                <set field="1" value="${groovy:println &quot;=============come in============&quot;"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -16,15 +15,6 @@
                         </platform-specific>
                     </decorator-section>
                 </decorator-screen>
-            </widgets>
-        </section>
-    </screen>
-    
-    <screen name="LeftPanel">
-        <section>
-            <actions>
-            </actions>
-            <widgets>
             </widgets>
         </section>
     </screen>

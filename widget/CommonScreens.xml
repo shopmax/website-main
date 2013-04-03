@@ -23,10 +23,10 @@
                 <set field="footerTemplateLocation" from-field="layoutSettings.VT_FTR_TMPLT_LOC[0]" default-value="component://shopmax/webapp/shopmax/includes/footer.ftl"/>
             </actions>
             <widgets>
-                <!-- <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/headerhead.ftl"/></html></platform-specific>
+                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/headerhead.ftl"/></html></platform-specific>
                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/openhtmlbody.ftl"/></html></platform-specific>
                 
-                render header
+                <!-- render header -->
                 <platform-specific>
                     <html><html-template location="${headerTemplateLocation}"/></html>
                 </platform-specific>
@@ -40,11 +40,11 @@
                 </platform-specific>
                 
                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/closehtmlbody.ftl"/></html></platform-specific>
-                <include-screen name="ApplicationDecorator" location="component://commonext/widget/CommonScreens.xml"/> -->
+                <include-screen name="ApplicationDecorator" location="component://commonext/widget/CommonScreens.xml"/>
             </widgets>
         </section>
     </screen>
-
+    
     <screen name="ShopMaxCommonDecorator">
         <section>
             <actions>
