@@ -13,7 +13,7 @@
                 
                 <set field="layoutSettings.companyName" from-field="uiLabelMap.ShopMaxCompanyName" global="true"/>
                 <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.ShopMaxCompanySubtitle" global="true"/>
-
+                
                 <set field="activeApp" value="shopmax" global="true"/>
                 <set field="applicationMenuName" value="MainAppBar" global="true"/>
                 <set field="applicationMenuLocation" value="component://shopmax/widget/ShopMaxMenus.xml" global="true"/>
@@ -23,24 +23,24 @@
                 <set field="footerTemplateLocation" from-field="layoutSettings.VT_FTR_TMPLT_LOC[0]" default-value="component://shopmax/webapp/shopmax/includes/footer.ftl"/>
             </actions>
             <widgets>
-<!--                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/headerhead.ftl"/></html></platform-specific> -->
-<!--                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/openhtmlbody.ftl"/></html></platform-specific> -->
+                <!-- <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/headerhead.ftl"/></html></platform-specific>
+                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/openhtmlbody.ftl"/></html></platform-specific>
                 
-<!--                 render header -->
-<!--                 <platform-specific> -->
-<!--                     <html><html-template location="${headerTemplateLocation}"/></html> -->
-<!--                 </platform-specific> -->
+                render header
+                <platform-specific>
+                    <html><html-template location="${headerTemplateLocation}"/></html>
+                </platform-specific>
                 
-<!--                 <container id="main"> -->
-<!--                     <decorator-section-include name="body"/> -->
-<!--                 </container> -->
+                <container id="main">
+                    <decorator-section-include name="body"/>
+                </container>
                 
-<!--                 <platform-specific> -->
-<!--                     <html><html-template location="${footerTemplateLocation}" /></html> -->
-<!--                 </platform-specific> -->
+                <platform-specific>
+                    <html><html-template location="${footerTemplateLocation}" /></html>
+                </platform-specific>
                 
-<!--                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/closehtmlbody.ftl"/></html></platform-specific> -->
-<!--                 <include-screen name="ApplicationDecorator" location="component://commonext/widget/CommonScreens.xml"/> -->
+                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/closehtmlbody.ftl"/></html></platform-specific>
+                <include-screen name="ApplicationDecorator" location="component://commonext/widget/CommonScreens.xml"/> -->
             </widgets>
         </section>
     </screen>

@@ -20,7 +20,6 @@
     </ElectronicText>
     <Content contentId="action-decorator" contentTypeId="DECORATOR" contentName="ShopMax Main Decorator" dataResourceId="SHOPMAX_DEC" decoratorContentId="SHOPMAX_ACTION_DEC"/>
     <ContentPurpose contentId="SHOPMAX_DEC" contentPurposeTypeId="SECTION"/>
-    <ContentAssoc contentId="SHOPMAX_PPOINT" contentIdTo="SHOPMAX_DEC" contentAssocTypeId="SUB_CONTENT" fromDate="2013-04-01 00:00:00" mapKey="mainDecorator"/>
     
     <!-- HTML Header -->
     <DataResource dataResourceId="SHOPMAX_HHEAD" dataResourceTypeId="ELECTRONIC_TEXT" dataTemplateTypeId="FTL"/>
@@ -74,15 +73,14 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <h1 title="Shopmax"><a class="brand" href="/"><img src="<@ofbizContentUrl>shopmax/shopmaximages/img/logo-2.png</@ofbizContentUrl>" width="159" height="55" alt="Shopmax logo" /></a></h1>
+                        <h1 title="Shopmax"><a class="brand" href="<@ofbizUrl>main</@ofbizUrl>"><img src="<@ofbizContentUrl>shopmax/shopmaximages/img/logo-2.png</@ofbizContentUrl>" width="159" height="55" alt="Shopmax logo" /></a></h1>
                         <!-- was <img src="img/logo.png" width="186" height="65" alt="" /> padding:top 10px right 27 -->
                         <!--<div class="nav-collapse collapse"> to make it collapse -->
                         <div class="header-search">
                             <ul class="nav">
-                                <li><a href="upload.html">Upload Product</a></li>
-                                <li><a href="manage-product.html">Manage Product</a></li>
-                                <!--
-                                <li class="dropdown">
+                                <li><a href="<@ofbizUrl>uploadproduct</@ofbizUrl>">Upload Product</a></li>
+                                <li><a href="<@ofbizUrl>manageproduct</@ofbizUrl>Manage Product</a></li>
+                                <!-- <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#">Action</a></li>
@@ -93,10 +91,10 @@
                                         <li><a href="#">Separated link</a></li>
                                         <li><a href="#">One more separated link</a></li>
                                     </ul>
-                                </li>-->
-                                <li><a href="manage-orders.html">Manage Orders</a></li>
-                                <li><a href="shopping-list.html">Shopping List</a></li>
-                                <li class="last"><a href="buying-orders.html">Buying Orders</a></li>
+                                </li> -->
+                                <li><a href="<@ofbizUrl>manageorders</@ofbizUrl>">Manage Orders</a></li>
+                                <li><a href="<@ofbizUrl>shoppinglist</@ofbizUrl>">Shopping List</a></li>
+                                <li class="last"><a href="<@ofbizUrl>buyingorders</@ofbizUrl>">Buying Orders</a></li>
                             </ul>
                             <form class="navbar-form pull-left">
                                 <div class="field search-filters">
@@ -104,18 +102,15 @@
                                         <div class="main-search-dropdown bold">
                                             <!--
                                         <span class="drop-container">
-                                        
                                             <span class="drop-label"></span>
                                             <span class="drop-arrow"></span>
                                             -->
-                                            
                                             <select id="SearchType" name="searchType" class="drop-select chosen combo" data-search-bar="true">
-                                                    <option value="shop1" selected="selected">This Shop</option>
-                                                    <option value="shop2">Shop 2</option>
-                                                    <option value="shop3">Shop 3</option>
-                                                    <option value="shop4">Shop 4</option>
+                                                <option value="shop1" selected="selected">This Shop</option>
+                                                <option value="shop2">Shop 2</option>
+                                                <option value="shop3">Shop 3</option>
+                                                <option value="shop4">Shop 4</option>
                                             </select>
-                                            
                                         <!-- </span> -->
                                         </div>
                                         <div class="main-search-input">
@@ -144,8 +139,8 @@
                         <!-- CART INFORMATION -->
                         <div id="cart-info" class="nav-collapse collapse">
                             <h3>3 Items</h3>
-                            <p><a href="view-cart.html" class="btn-flat round">View Cart</a></p>
-                            <p><a href="check-out.html" class="btn-flat checkout">Check Out</a></p>
+                            <p><a href="<@ofbizUrl>viewcart</@ofbizUrl>" class="btn-flat round">View Cart</a></p>
+                            <p><a href="<@ofbizUrl>checkout</@ofbizUrl>" class="btn-flat checkout">Check Out</a></p>
                         </div>
                     </div><!--/.container -->
                 </div><!--/. navbar-inner --> 
@@ -166,12 +161,12 @@
                             <div class="span2">
                                 <h3>Quick Links</h3>
                                 <ul>
-                                <li><a href="todays-deal.html">Today's Deal</a></li>
-                                <li><a href="featured.html">Featured</a></li>
-                                <li><a href="special.html">Special</a></li>
-                                <li><a href="top-seller.html">Top Seller</a></li>
-                                <li><a href="shops.html">Shops</a></li>
-                                <li><a href="shipping.html">Shipping &amp; Returns</a></li>
+                                <li><a href="<@ofbizUrl>todaydeal</@ofbizUrl>">Today's Deal</a></li>
+                                <li><a href="<@ofbizUrl>featured</@ofbizUrl>">Featured</a></li>
+                                <li><a href="<@ofbizUrl>special</@ofbizUrl>">Special</a></li>
+                                <li><a href="<@ofbizUrl>topseller</@ofbizUrl>">Top Seller</a></li>
+                                <li><a href="<@ofbizUrl>shops</@ofbizUrl>">Shops</a></li>
+                                <li><a href="<@ofbizUrl>shippingreturn</@ofbizUrl>">Shipping &amp; Returns</a></li>
                                 </ul>
                             </div>
                             <div class="span2">
@@ -194,7 +189,7 @@
                                 <li><a href="#">Sem lacinia quam</a></li>
                                 <li><a href="#">Venenatis vestibum</a></li>
                                 <li><a href="#">Prasent commodo</a></li>
-                                </ul>                       
+                                </ul>
                             </div>
                             <div class="span3">
                                 <h3>Looking For Something?</h3>
@@ -221,7 +216,6 @@
                                     <li class="pull-left"><a href="#"><img src="img/icon-gplus.png" width="33" height="33" alt="" /></a></li>
                                     <li class="pull-left"><a href="#"><img src="img/icon-rss.png" width="33" height="33" alt="" /></a></li>
                                 </ul>
-                            
                             </div>
                         </div><!-- /. row -->
                     </div><!-- /.container -->
@@ -231,11 +225,11 @@
                         <div class="row">
                             <div class="span10">
                                 <ul><li>&copy; Copyright 2012 shopmax</li>
-                                    <li><a href="contact.html">Contact Us</a></li>
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li><a href="support.html">Support</a></li>
-                                    <li><a href="privacy.html">Privacy Notice</a></li>
-                                    <li><a href="conditions.html">Conditions of Use</a></li>
+                                    <li><a href="<@ofbizUrl>contact</@ofbizUrl>">Contact Us</a></li>
+                                    <li><a href="<@ofbizUrl>about</@ofbizUrl>">About Us</a></li>
+                                    <li><a href="<@ofbizUrl>support</@ofbizUrl>">Support</a></li>
+                                    <li><a href="<@ofbizUrl>privacy</@ofbizUrl>">Privacy Notice</a></li>
+                                    <li><a href="<@ofbizUrl>condition</@ofbizUrl>">Conditions of Use</a></li>
                                 </ul>
                             </div>
                             <div id="logo" class="span2">
@@ -256,9 +250,9 @@
     <ContentAssoc contentId="SHOPMAX_DEC" contentIdTo="SHOPMAX_HEADER" contentAssocTypeId="SUB_CONTENT" mapKey="header" fromDate="2013-04-01 00:00:00"/>
     <ContentAssoc contentId="SHOPMAX_DEC" contentIdTo="SHOPMAX_FOOTER" contentAssocTypeId="SUB_CONTENT" mapKey="footer" fromDate="2013-04-01 00:00:00"/>
     
-    <!-- Main Page -->
-    <DataResource dataResourceId="SHOPMAX_MAIN" dataResourceTypeId="ELECTRONIC_TEXT" dataTemplateTypeId="FTL"/>
-    <ElectronicText dataResourceId="SHOPMAX_MAIN">
+    <!-- Home Page -->
+    <DataResource dataResourceId="SHOPMAX_HOME" dataResourceTypeId="ELECTRONIC_TEXT" dataTemplateTypeId="FTL"/>
+    <ElectronicText dataResourceId="SHOPMAX_HOME">
         <textData><![CDATA[
             <nav id="mainnav" class="navbar navbar-static-top"><!-- blue navbar -->
                 <div class="navbar-inner">
@@ -273,7 +267,7 @@
                                 <li><a href="help.html">Help</a></li>
                             </ul>
                     </div>
-                </div>  
+                </div>
             </nav>
             
             <div class="container content">
@@ -382,25 +376,25 @@
                                 </div><!-- /.tabs-->
                                 <div id="product-tab" class="tabcontent">
                                     <ul>
-                                    <li><a href="/">Electronics &amp; Office</a></li>
-                                                <li><a href="#">Movies, Music &amp; Books</a></li>
-                                                <li><a href="#">Home, Furniture &amp; Patio</a></li>
-                                                <li><a href="#">Apparel, Shoes &amp; Jewellery</a></li>
-                                                <li><a href="#">Baby &amp; Kids</a></li>
-                                                <li><a href="#">Toys &amp; Video Games</a></li>
-                                                <li><a href="#">Sports, Fitness &amp; Outdoors</a></li>
+                                        <li><a href="/">Electronics &amp; Office</a></li>
+                                        <li><a href="#">Movies, Music &amp; Books</a></li>
+                                        <li><a href="#">Home, Furniture &amp; Patio</a></li>
+                                        <li><a href="#">Apparel, Shoes &amp; Jewellery</a></li>
+                                        <li><a href="#">Baby &amp; Kids</a></li>
+                                        <li><a href="#">Toys &amp; Video Games</a></li>
+                                        <li><a href="#">Sports, Fitness &amp; Outdoors</a></li>
                                     </ul>
                                 </div><!-- /#product-tab -->
                                 <div id="services-tab" class="tabcontent">
                                     <ul>
-                                    <li><a href="#">Services List</a></li>
-                                    <li><a href="/">Home</a></li>
-                                                <li><a href="shops.html">Shops</a></li>
-                                                <li><a href="group-bang.html">Group Bang</a></li>
-                                                <li><a href="rush-hour.html">Rush Hour</a></li>
-                                                <li><a href="multi-buy.html">Multi Buy</a></li>
-                                                <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="help.html">Help</a></li>
+                                        <li><a href="#">Services List</a></li>
+                                        <li><a href="/">Home</a></li>
+                                        <li><a href="shops.html">Shops</a></li>
+                                        <li><a href="group-bang.html">Group Bang</a></li>
+                                        <li><a href="rush-hour.html">Rush Hour</a></li>
+                                        <li><a href="multi-buy.html">Multi Buy</a></li>
+                                        <li><a href="about-us.html">About Us</a></li>
+                                        <li><a href="help.html">Help</a></li>
                                     </ul>
                                 </div><!-- /#services-tab -->
                             </div><!-- /.tabbed -->
@@ -506,8 +500,8 @@
         ]]></textData>
     </ElectronicText>
     
-    <Content contentId="SHOPMAX_MAIN" contentTypeId="DOCUMENT" contentName="ShopMax Main" dataResourceId="SHOPMAX_MAIN" decoratorContentId="SHOPMAX_DEC"/>
-    <ContentAssoc contentId="SHOPMAX_PPOINT" contentIdTo="SHOPMAX_MAIN" contentAssocTypeId="SUB_CONTENT" mapKey="home" fromDate="2013-04-01 00:00:00"/>
-    <ContentPurpose contentId="SHOPMAX_MAIN" contentPurposeTypeId="SECTION"/>
-    <WebSiteContent webSiteId="SHOPMAX_CENTRAL" contentId="SHOPMAX_MAIN" webSiteContentTypeId="DEFAULT_PAGE" fromDate="2013-04-01 00:00:00"/>
+    <Content contentId="SHOPMAX_HOME" contentTypeId="DOCUMENT" contentName="ShopMax Main" dataResourceId="SHOPMAX_HOME" decoratorContentId="SHOPMAX_DEC"/>
+    <ContentAssoc contentId="SHOPMAX_PPOINT" contentIdTo="SHOPMAX_HOME" contentAssocTypeId="SUB_CONTENT" mapKey="main" fromDate="2013-04-01 00:00:00"/>
+    <ContentPurpose contentId="SHOPMAX_HOME" contentPurposeTypeId="SECTION"/>
+    <WebSiteContent webSiteId="SHOPMAX_CENTRAL" contentId="SHOPMAX_HOME" webSiteContentTypeId="DEFAULT_PAGE" fromDate="2013-04-01 00:00:00"/>
 </entity-engine-xml>
