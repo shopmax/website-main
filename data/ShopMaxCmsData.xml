@@ -22,30 +22,6 @@
     <ContentPurpose contentId="SHOPMAX_DEC" contentPurposeTypeId="SECTION"/>
     <ContentAssoc contentId="SHOPMAX_PPOINT" contentIdTo="SHOPMAX_DEC" contentAssocTypeId="SUB_CONTENT" fromDate="2013-04-01 00:00:00" mapKey="mainDecorator"/>
     
-    <!-- WebSiteCMS -->
-    <DataResource dataResourceId="WEBSITE_CMS" dataResourceTypeId="ELECTRONIC_TEXT" dataTemplateTypeId="FTL"/>
-    <ElectronicText dataResourceId="WEBSITE_CMS">
-        <textData><![CDATA[
-                ${thisContent.subcontent.leftPanel}
-                </div>
-                <div id="cmscontent" class="no-clear">
-                </div>
-                </div>
-            </div>
-        ]]></textData>
-    </ElectronicText>
-    <Content contentId="WEBSITE_CMS" contentTypeId="DOCUMENT" decoratorContentId="SHOPMAX_DEC" contentName="WebSite CMS" dataResourceId="WEBSITE_CMS"/>
-    <ContentPurpose contentId="WEBSITE_CMS" contentPurposeTypeId="SECTION" />
-    <ContentAssoc contentId="SHOPMAX_PPOINT" contentIdTo="WEBSITE_CMS" contentAssocTypeId="SUB_CONTENT" fromDate="2013-04-01 00:00:00" mapKey="main"/>
-    <WebSiteContent webSiteId="SHOPMAX_CENTRAL" contentId="WEBSITE_CMS" webSiteContentTypeId="DEFAULT_PAGE" fromDate="2013-04-01 00:00:00"/>
-    <WebSitePathAlias webSiteId="SHOPMAX_CENTRAL" pathAlias="main" aliasTo="WEBSITE_CMS" contentId="WEBSITE_CMS" />
-    
-    <!-- Left Panel -->
-    <DataResource dataResourceId="SHOPMAX_LEFTPANEL" dataResourceTypeId="URL_RESOURCE" dataTemplateTypeId="SCREEN_COMBINED" objectInfo="component://shopmax/widget/ShopMaxScreens.xml#LeftPanel" />
-    <Content contentId="SHOPMAX_LEFTPANEL" contentTypeId="DOCUMENT" contentName="ShopMax Left Panel" dataResourceId="SHOPMAX_LEFTPANEL"/>
-    <ContentPurpose contentId="SHOPMAX_LEFTPANEL" contentPurposeTypeId="SECTION"/>
-    <ContentAssoc contentId="WEBSITE_CMS" contentIdTo="SHOPMAX_LEFTPANEL" contentAssocTypeId="SUB_CONTENT" mapKey="leftPanel" fromDate="2013-04-01 00:00:00"/>
-    
     <!-- HTML Header -->
     <DataResource dataResourceId="SHOPMAX_HHEAD" dataResourceTypeId="ELECTRONIC_TEXT" dataTemplateTypeId="FTL"/>
     <ElectronicText dataResourceId="SHOPMAX_HHEAD">
@@ -226,12 +202,11 @@
                                     <input type="text" placeholder="Search through our site" class="pull-left">
                                     <button type="submit" class="btn-search-large pull-left"></button>
                                 </form>
-            
+                                
                                 <h3>Contact us for a Quotation</h3>
                                 <p><strong>0800 123 456</strong> <em>or</em> <strong><a href="mailto:abc@xyz.com">Email Us</a></strong><br />
                                 <dfn>7 days 9am to 5pm NZDT</dfn></p>
                                 
-            
                             </div>
                             <div class="span3">
                                 <h3>Sign Up Our Newsletter</h3>
@@ -246,7 +221,7 @@
                                     <li class="pull-left"><a href="#"><img src="img/icon-gplus.png" width="33" height="33" alt="" /></a></li>
                                     <li class="pull-left"><a href="#"><img src="img/icon-rss.png" width="33" height="33" alt="" /></a></li>
                                 </ul>
-            
+                            
                             </div>
                         </div><!-- /. row -->
                     </div><!-- /.container -->
@@ -336,17 +311,17 @@
                             <h4>Shop 1</h4>
                             <p>Description</p>
                             <p><a href="#" class="btn-general">Shop Now</a></li>
-            
+                            
                             <li><a href="#"><img src="<@ofbizContentUrl>shopmax/shopmaximages/img/shops-2.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
                             <h4>Shop 2</h4>
                             <p>Description</p>
                             <p><a href="#" class="btn-general">SHOP NOW</a></li>
-            
+                            
                             <li><a href="#"><img src="<@ofbizContentUrl>shopmax/shopmaximages/img/shops-3.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
                             <h4>Shop 3</h4>
                             <p>Description</p>
                             <p><a href="#" class="btn-general">SHOP NOW</a></li>
-            
+                            
                             <li><a href="#"><img src="<@ofbizContentUrl>shopmax/shopmaximages/img/shops-4.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
                             <h4>Shop 4</h4>
                             <p>Description</p>
@@ -367,7 +342,7 @@
                             <p class="price">$129.85</p>
                             <p class="pull-right"><a href="#" class="btn-general">Add To Cart</a></p>
                             <p class="pull-right addshop"><a href="#">Add to Shopping List</a></p></li>
-            
+                            
                             <li class="sale"><a href="#"><img src="<@ofbizContentUrl>shopmax/shopmaximages/img/product-3.png</@ofbizContentUrl>" width="136" height="139" alt="" /></a>
                             <h4>Product 3</h4>
                             <p class="price">$129.85</p>
@@ -526,7 +501,7 @@
                             </ul>
                         </div><!-- /.promotions -->
                     </div><!-- /.span3.sidebar -->
-                    </div><!-- /.row -->                
+                    </div><!-- /.row -->
                 </div> <!-- /container -->
         ]]></textData>
     </ElectronicText>
@@ -534,5 +509,5 @@
     <Content contentId="SHOPMAX_MAIN" contentTypeId="DOCUMENT" contentName="ShopMax Main" dataResourceId="SHOPMAX_MAIN" decoratorContentId="SHOPMAX_DEC"/>
     <ContentAssoc contentId="SHOPMAX_PPOINT" contentIdTo="SHOPMAX_MAIN" contentAssocTypeId="SUB_CONTENT" mapKey="home" fromDate="2013-04-01 00:00:00"/>
     <ContentPurpose contentId="SHOPMAX_MAIN" contentPurposeTypeId="SECTION"/>
-    <WebSitePathAlias webSiteId="SHOPMAX_CENTRAL" pathAlias="home" contentId="SHOPMAX_MAIN" />
+    <WebSiteContent webSiteId="SHOPMAX_CENTRAL" contentId="SHOPMAX_MAIN" webSiteContentTypeId="DEFAULT_PAGE" fromDate="2013-04-01 00:00:00"/>
 </entity-engine-xml>
