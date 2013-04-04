@@ -271,62 +271,8 @@ under the License.
             
         </div><!-- /.span9 -->
         <div class="span3 sidebar" id="side-menu">
-            <div class="categories innerbox georgia">
-                <h2>Category list</h2>
-                <div class="category-list nested-list">
-                    <ul>
-                    <li class="expanded"><a href="#"><span>Category Lv1</span></a>
-                            <ul>
-                                <li class="expanded"><a href="#"><span>Category Lv2</span></a>
-                                    <ul>
-                                        <li class="collapsed"><a href="#"><span>Category Lv3</span></a></li>
-                                        <li class="collapsed"><a href="#"><span>Category Lv3</span></a></li>
-                                        <li class="expanded"><a href="#"><span>Category Lv3</span></a>
-                                            <ul>
-                                                <li class="collapsed"><a href="#"><span>Category Lv4</span></a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="collapsed"><a href="#"><span>Category Lv2</span></a></li>
-                            </ul>
-                    </li>
-                    <li class="collapsed"><a href="#"><span>Category Lv1</span></a></li>
-
-                    </ul>
-                </div>
-                
-            </div><!-- /.categories .innerbox -->
-            
-            <div class="categories innerbox georgia">
-                <h2 class="greentital">Category list</h2>
-                <div class="refine clearfix">
-                    <a href="#" class="tital_acc">Locations</a>
-                    <ul>
-                        <li><input type="checkbox" class="checkbox_l">Auckland Region</li>
-                        <li><input type="checkbox" class="checkbox_l">Willington Region</li>
-                        <li><input type="checkbox" class="checkbox_l">Canterbury Region</li>
-                        <li><input type="checkbox" class="checkbox_l">Bay of Plenty</li>
-                    </ul>
-                    <div class="sep"></div>
-                    <a href="#" class="tital_acc">Materials</a>
-                    <ul>
-                        <li><input type="checkbox" class="checkbox_l">Fermetum Commodo</li>
-                        <li><input type="checkbox" class="checkbox_l">Malesuada</li>
-                        <li><input type="checkbox" class="checkbox_l">Tristique Etiam</li>
-                        <li><input type="checkbox" class="checkbox_l">Adipiscing</li>
-                    </ul>
-                    <div class="sep"></div>
-                    <a href="#" class="tital_acc">Price</a>
-                    <ul>
-                        <li>
-                            <img src="<@ofbizContentUrl>/shopmax-default/img/price_con.png</@ofbizContentUrl>" alt="">
-                            <span class="pri_1">NZD $20</span>
-                            <span class="pri_2">NZD $299</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <#include "component://shopmax/webapp/shopmax/catalog/categorylist.ftl" />
+            <#include "component://shopmax/webapp/shopmax/catalog/categoryrefineby.ftl" />
         </div><!-- /.span3.sidebar -->
     </div><!-- /.row -->                
 </div> <!-- /container -->
