@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entity-engine-xml>
-    <WebSite webSiteId="SHOPMAX_CENTRAL" siteName="ShopMax Web Site" visualThemeSetId="SHOPMAX_THEME"/>
+    <WebSite webSiteId="SHOPMAX_CENTRAL" siteName="ShopMax Web Site"/>
 </entity-engine-xml>
