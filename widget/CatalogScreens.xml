@@ -21,7 +21,7 @@ under the License.
 <screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
 
-    <screen name="product">
+    <screen name="Product">
         <section>
             <actions>
                 <set field="titleProperty" value="PageTitleProductDetail"/>
@@ -40,7 +40,7 @@ under the License.
         </section>
     </screen>
     
-    <screen name="categorygridview">
+    <screen name="CategoryGridView">
         <section>
             <actions>
                 <set field="titleProperty" value="PageTitleCategory"/>
@@ -59,7 +59,7 @@ under the License.
         </section>
     </screen>
     
-    <screen name="categorylistview">
+    <screen name="CategoryListView">
         <section>
             <actions>
                 <set field="titleProperty" value="PageTitleCategory"/>
@@ -78,12 +78,12 @@ under the License.
         </section>
     </screen>
     
-    <screen name="manageproduct">
+    <screen name="ManageProduct">
         <section>
             <actions>
-                <set field="titleProperty" value="PageTitleCategoryManageProduct"/>
+                <set field="titleProperty" value="PageTitleManageProduct"/>
                 <set field="headerItem" value="manageproduct"/>
-                <set field="breadCrumTitle" value="Manage product"/>
+                <set field="breadCrumTitle" value="Manage Product"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">

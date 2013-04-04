@@ -149,5 +149,5 @@ under the License.
             </div>
             <a href="#" class="btn-general pull-right">Place Order</a>
         </div><!-- /.span9 -->
-        </div><!-- /.row -->                
-    </div> <!-- /container -->
+    </div><!-- /.row -->
+</div> <!-- /container -->

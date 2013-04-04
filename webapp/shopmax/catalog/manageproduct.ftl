@@ -185,21 +185,21 @@ under the License.
             <div class="add-product">
                 <a class="btn-general" href="#">Add New Product</a>
                 <div class="paging">
-                <ul>
-                <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/arrow-prev-grey.png</@ofbizContentUrl>" /></a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">...</a></li>
-                <li><a href="#">10</a></li>
-                <li><a href="#"><img src="img/arrow-next-blue.png" /></a></li>
-                </ul>
+                    <ul>
+                        <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/arrow-prev-grey.png</@ofbizContentUrl>" /></a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">...</a></li>
+                        <li><a href="#">10</a></li>
+                        <li><a href="#"><img src="img/arrow-next-blue.png" /></a></li>
+                    </ul>
                 </div>
             </div>
         </div><!-- /.span9 -->
         <div class="span3 sidebar" id="side-menu">
-        <#include "component://shopmax/webapp/shopmax/catalog/categorylist.ftl" />
+            <#include "component://shopmax/webapp/shopmax/catalog/categorylist.ftl" />
         </div><!-- /.span3.sidebar -->
-        </div><!-- /.row --> 
-    </div> <!-- /container -->
+    </div><!-- /.row --> 
+</div> <!-- /container -->

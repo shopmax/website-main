@@ -65,8 +65,8 @@ under the License.
             <!--<div class="nav-collapse collapse"> to make it collapse -->
             <div class="header-search">
                 <ul class="nav">
-                    <li><a href="upload.html">Upload Product</a></li>
-                    <li><a href="manage-product.html">Manage Product</a></li>
+                    <li><a href="<@ofbizUrl>uploadproduct</@ofbizUrl>">Upload Product</a></li>
+                    <li><a href="<@ofbizUrl>manageproduct</@ofbizUrl>">Manage Product</a></li>
                     <!--
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>

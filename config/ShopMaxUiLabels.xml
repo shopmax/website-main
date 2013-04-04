@@ -22,6 +22,12 @@ under the License.
     <property key="PageTitleCategory">
         <value xml:lang="en">Category</value>
     </property>
+    <property key="PageTitleCheckout">
+        <value xml:lang="en">Checkout</value>
+    </property>
+    <property key="PageTitleManageProduct">
+        <value xml:lang="en">Manage Product</value>
+    </property>
     <property key="PageTitleOrderConfirmation">
         <value xml:lang="en">Order Confirmation</value>
     </property>
@@ -30,15 +36,6 @@ under the License.
     </property>
     <property key="PageTitleShoppingCart">
         <value xml:lang="en">Shopping Cart</value>
-    </property>
-    <property key="PageTitleOrderCheckoutLogin">
-        <value xml:lang="en">Order CheckoutLogin</value>
-    </property>
-    <property key="PageTitleCategoryManageProduct">
-        <value xml:lang="en">Category Manage Product</value>
-    </property>
-    <property key="PageTitleOrderCheckoutNonLogin">
-        <value xml:lang="en">Order CheckoutLogin</value>
     </property>
     <property key="ShopMaxApplication">
         <value xml:lang="en">ShopMax Application</value>

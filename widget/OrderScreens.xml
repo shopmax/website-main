@@ -21,7 +21,39 @@ under the License.
 <screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
 
-    <screen name="confirmation">
+    <screen name="Checkout">
+        <section>
+            <actions>
+                <property-map resource="ShopMaxUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="titleProperty" value="PageTitleCheckout"/>
+                <set field="headerItem" value="checkout"/>
+                <set field="breadCrumTitle" value="Shopping Cart"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <section>
+                            <condition>
+                                <not>
+                                    <if-empty field="userLogin"/> 
+                                </not>
+                            </condition>
+                            <widgets>
+                                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/ordersummary.ftl"></html-template></html></platform-specific>
+                                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/checkoutlogin.ftl"></html-template></html></platform-specific>
+                            </widgets>
+                            <fail-widgets>
+                                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/ordersummary.ftl"></html-template></html></platform-specific>
+                                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/checkoutnonlogin.ftl"></html-template></html></platform-specific>
+                            </fail-widgets>
+                        </section>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="Confirmation">
         <section>
             <actions>
                 <set field="titleProperty" value="PageTitleOrderConfirmation"/>
@@ -32,41 +64,6 @@ under the License.
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/orderconfirmation.ftl"></html-template></html></platform-specific>
-                    </decorator-section>
-                </decorator-screen>
-            </widgets>
-        </section>
-    </screen>
-    <screen name="checkoutlogin">
-        <section>
-            <actions>
-                <property-map resource="ShopMaxUiLabels" map-name="uiLabelMap" global="true"/>
-                <set field="titleProperty" value="PageTitleOrderCheckoutLogin"/>
-                <set field="headerItem" value="checkoutlogin"/>
-                <set field="breadCrumTitle" value="Shopping Cart"/>
-            </actions>
-            <widgets>
-                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
-                    <decorator-section name="body">
-                        <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/ordersummary.ftl"></html-template></html></platform-specific>
-                        <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/checkoutlogin.ftl"></html-template></html></platform-specific>
-                    </decorator-section>
-                </decorator-screen>
-            </widgets>
-        </section>
-    </screen>
-    <screen name="checkoutnonlogin">
-        <section>
-            <actions>
-                <property-map resource="ShopMaxUiLabels" map-name="uiLabelMap" global="true"/>
-                <set field="headerItem" value="checkoutnonlogin"/>
-                <set field="breadCrumTitle" value="Shopping Cart"/>
-            </actions>
-            <widgets>
-                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
-                    <decorator-section name="body">
-                        <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/ordersummary.ftl"></html-template></html></platform-specific>
-                        <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/checkoutnonlogin.ftl"></html-template></html></platform-specific>
                     </decorator-section>
                 </decorator-screen>
             </widgets>

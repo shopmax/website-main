@@ -79,16 +79,10 @@ under the License.
         <response name="error" type="view" value="shoppingcart"/>
     </request-map>
     
-    <request-map uri="checkoutlogin">
+    <request-map uri="checkout">
         <security https="true" auth="false"/>
-        <response name="success" type="view" value="checkoutlogin"/>
-        <response name="error" type="view" value="checkoutlogin"/>
-    </request-map>
-    
-    <request-map uri="checkoutnonlogin">
-        <security https="true" auth="false"/>
-        <response name="success" type="view" value="checkoutnonlogin"/>
-        <response name="error" type="view" value="checkoutnonlogin"/>
+        <response name="success" type="view" value="checkout"/>
+        <response name="error" type="view" value="checkout"/>
     </request-map>
     
     <request-map uri="confirmation">
@@ -105,13 +99,12 @@ under the License.
     
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>
-    <view-map name="product" type="screen" page="component://shopmax/widget/CatalogScreens.xml#product"/>
-    <view-map name="category" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#category"/>
-    <view-map name="categorygridview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#categorygridview"/>
-    <view-map name="categorylistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#categorylistview"/>
-    <view-map name="shoppingcart" type="screen" page="component://shopmax/widget/CartScreens.xml#shoppingcart"/>
-    <view-map name="checkoutlogin" type="screen" page="component://shopmax/widget/OrderScreens.xml#checkoutlogin"/>
-    <view-map name="checkoutnonlogin" type="screen" page="component://shopmax/widget/OrderScreens.xml#checkoutnonlogin"/>
-    <view-map name="confirmation" type="screen" page="component://shopmax/widget/OrderScreens.xml#confirmation"/>
-    <view-map name="manageproduct" type="screen" page="component://shopmax/widget/CatalogScreens.xml#manageproduct"/>
+    <view-map name="product" type="screen" page="component://shopmax/widget/CatalogScreens.xml#Product"/>
+    <view-map name="category" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#Category"/>
+    <view-map name="categorygridview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryGridView"/>
+    <view-map name="categorylistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryListView"/>
+    <view-map name="shoppingcart" type="screen" page="component://shopmax/widget/CartScreens.xml#ShoppingCart"/>
+    <view-map name="checkout" type="screen" page="component://shopmax/widget/OrderScreens.xml#Checkout"/>
+    <view-map name="confirmation" type="screen" page="component://shopmax/widget/OrderScreens.xml#Confirmation"/>
+    <view-map name="manageproduct" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ManageProduct"/>
 </site-conf>

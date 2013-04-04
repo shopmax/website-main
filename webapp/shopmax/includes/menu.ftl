@@ -21,7 +21,7 @@ under the License.
     <div class="navbar-inner">
         <div class="container">
             <ul class="nav">
-                <li class="on"><a href="<@ofbizUrl>main</@ofbizUrl>">Home</a></li>
+                <li><a href="<@ofbizUrl>main</@ofbizUrl>">Home</a></li>
                 <li><a href="shops.html">Shops</a></li>
                 <li><a href="group-bang.html">Group Bang</a></li>
                 <li><a href="rush-hour.html">Rush Hour</a></li>

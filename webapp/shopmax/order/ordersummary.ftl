@@ -18,7 +18,7 @@ under the License.
 -->
 
 <div class="container content shopping-cart">
-<#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
+    <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
     <div class="row">
         <div class="span3 sidebar" id="side-menu">
             <div class="categories innerbox cart-summary-wrapper">
