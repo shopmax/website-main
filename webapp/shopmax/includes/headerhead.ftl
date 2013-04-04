@@ -36,6 +36,9 @@ under the License.
         </#if>
         <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/product_details.css</@ofbizContentUrl>">
         <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/new_style.css</@ofbizContentUrl>">
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.css</@ofbizContentUrl>">
+        <link rel="stylesheet" type="text/css" href="<@ofbizContentUrl>/shopmax-default/css/jquery.fancybox-1.3.4.css</@ofbizContentUrl>" media="screen" />
+        
         <#-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
         <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js</@ofbizContentUrl>"></script>
         <script>window.jQuery || document.write('<script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery-1.8.3.min.js</@ofbizContentUrl>"><\/script>')</script>
@@ -45,6 +48,17 @@ under the License.
         <script src="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.pack.js</@ofbizContentUrl>"></script>  
         <script src="<@ofbizContentUrl>/shopmax-default/js/main.js</@ofbizContentUrl>"></script>
         <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.raty.min.js</@ofbizContentUrl>"></script>
+        <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.mousewheel-3.0.4.pack.js</@ofbizContentUrl>"></script>
+        <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.fancybox-1.3.4.js</@ofbizContentUrl>"></script>
         
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $("#various1").fancybox({
+                'titlePosition'     : 'inside',
+                'transitionIn'      : 'none',
+                'transitionOut'     : 'none'
+            });
+        });
+        </script>
     </head>
     <body class="home">

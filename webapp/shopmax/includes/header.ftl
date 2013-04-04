@@ -16,7 +16,42 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-
+<div style="display: none;">
+    <div id="inline1" style="overflow:auto;">
+        <div class="login_popup">
+            <div class="title"><h6>login and registration</h6></div>
+            <div class="block-left">
+                <div class="box">
+                    <ul>
+                        <li>
+                            <label class="label-1">Email address</label>
+                            <input type="text" class="input-1">
+                        </li>
+                        <li>
+                            <label class="label-1">Password</label>
+                            <input type="password" class="input-2">
+                            <input type="submit" name="" value="Login" class="log_btn">
+                            <a href="#" class="forgot">Forgotten password?</a>
+                        </li>
+                        <li>
+                            <p>Don't have an account yet?</p>
+                            <input type="submit" name="" value="Register" class="sub_reg">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="block-right">
+                <ul>
+                    <li>OR</li>
+                    <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/fb_sign-btn.png</@ofbizContentUrl>" alt=""></a></li>
+                    <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/tweet_sign-btn.png</@ofbizContentUrl>" alt=""></a></li>
+                    <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/gplus_sign-btn.png</@ofbizContentUrl>" alt=""></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 <header id="topnav" class="navbar navbar-inverse navbar-fixed-top clearfix">
     <div class="navbar-inner">
         <div class="container">
@@ -78,7 +113,7 @@ under the License.
             </div><!--/.nav-collapse -->
             <!-- PERSONAL GREETING & LINKS -->
             <div id="personal" class="pull-left nav-collapse collapse">
-                <h4>Hi <span>James</span></h4>
+                <!--h4>Hi <span>James</span></h4>
                 <form class="rounded-form">
                     <select id="accountOptions" class="chosen actionable" name="accountOptions">
                         <option selected="selected">My Account</option>
@@ -87,7 +122,9 @@ under the License.
                         <option value="profile.html">Profile</option>
                         <option value="log-out.html">Log Out</option>
                     </select>
-                </form>
+                </form-->
+                <h2>Hello</h2>
+                <p><a id="various1" href="#inline1">Login</a> / <a href="#">Register</a></p>
             </div>
             <!-- CART INFORMATION -->
             <div id="cart-info" class="nav-collapse collapse">
