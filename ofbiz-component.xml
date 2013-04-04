@@ -39,7 +39,12 @@
         server="default-server"
         location="webapp/shopmax"
         base-permission="OFBTOOLS,SHOPMAX"
-        mount-point="/shopmax"/>
+        mount-point="/">
+        <virtual-host host-name="shopmax.localhost"/>
+        <virtual-host host-name="shopmax.ofbizdemo.com"/>
+        <virtual-host host-name="shopmax.com"/>
+        <virtual-host host-name="www.shopmax.com"/>
+    </webapp>
         
     <!-- Default Theme -->
     <webapp name="shopmax-default"

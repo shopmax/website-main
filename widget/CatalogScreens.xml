@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
 <screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
 
     <screen name="product">
         <section>
             <actions>
+                <set field="titleProperty" value="PageTitleProductDetail"/>
                 <set field="headerItem" value="product"/>
+                <set field="breadCrumTitle" value="Product"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -22,9 +43,9 @@
     <screen name="categorygridview">
         <section>
             <actions>
-                <property-map resource="ShopMaxUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="titleProperty" value="PageTitleCategory"/>
                 <set field="headerItem" value="categorygridview"/>
-                <set field="breadCrumTitle" value="${uiLabelMap.ShopMaxCategoryGridView}"/>
+                <set field="breadCrumTitle" value="Category"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -41,9 +62,9 @@
     <screen name="categorylistview">
         <section>
             <actions>
-                <property-map resource="ShopMaxUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="titleProperty" value="PageTitleCategory"/>
                 <set field="headerItem" value="categorylistview"/>
-                <set field="breadCrumTitle" value="${uiLabelMap.ShopMaxCategoryListView}"/>
+                <set field="breadCrumTitle" value="Category"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">

@@ -92,8 +92,8 @@ under the License.
             <!-- CART INFORMATION -->
             <div id="cart-info" class="nav-collapse collapse">
                 <h3>3 Items</h3>
-                <p><a href="view-cart.html" class="btn-flat round">View Cart</a></p>
-                <p><a href="check-out.html" class="btn-flat checkout">Check Out</a></p>
+                <p><a href="<@ofbizUrl>shoppingcart</@ofbizUrl>" class="btn-flat round">View Cart</a></p>
+                <p><a href="<@ofbizUrl>checkout</@ofbizUrl>" class="btn-flat checkout">Check Out</a></p>
             </div>
         </div><!--/.container -->
     </div><!--/. navbar-inner -->
