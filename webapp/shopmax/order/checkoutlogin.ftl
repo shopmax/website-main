@@ -87,64 +87,7 @@ under the License.
                     </div>
                 </div>
                 <div class="shipp_info">
-                    <table class="table bl-table sc-table-shipping ">
-                        <thead>
-                            <tr class="bl-table-header-blue">
-                                <th colspan="5" class="col1">
-                                    ${uiLabelMap.OrderSummary} <button class="btn btn-mini bl-edit-cart blue">Edit Cart</button>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="col1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
-                                <td class="col2"><strong class="green"><a href="#">Shop Name</a></strong><br />
-                                    <strong>Product name 1</strong><br />
-                                    Colour - yellow
-                                </td>
-                                <td class="col3"><strong>$25.00</strong></td>
-                                <td class="align-right col4">1</td>
-                                <td class="col5"><strong>$25.00</strong></td>
-                            </tr>
-                            <tr>
-                                <td class="col1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
-                                <td class="col2"><strong class="green"><a href="#">Shop Name</a></strong><br /><strong>Product name 1</strong><br />Colour - yellow</td>
-                                <td class="col3"><div class="old">$30.00</div><strong>$25.00</strong></td>
-                                <td class="align-right col4">1</td>
-                                <td class="col5"><strong>$25.00</strong></td>
-                            </tr>
-                            <tr>
-                                <td class="col1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
-                                <td class="col2"><strong class="green"><a href="#">Shop Name</a></strong><br /><strong>Product name 1</strong><br />Colour - yellow</td>
-                                <td class="col3">$25.00</td>
-                                <td class="align-right col4">1</td>
-                                <td class="col5"><strong>$25.00</strong></td>
-                            </tr>
-                            <tr>
-                                <td class="col1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
-                                <td class="col2"><strong class="green"><a href="#">Shop Name</a></strong><br /><strong>Product name 1</strong><br />Colour - yellow</td>
-                                <td class="col3">$25.00</td>
-                                <td class="align-right col4">1</td>
-                                <td class="col5"><strong>$25.00</strong></td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" style="width:400px;">&nbsp;</td>
-                                <td colspan="2" class="bl-table-estimate-shipping">
-                                    <table class="table table-condensed">
-                                        <tbody>
-                                            <tr><td>Sub Total</td><td class="col2">$195.00</td></tr>
-                                            <tr><td>Shipping</td><td class="col2">$195.00</td></tr>
-                                            <tr><td>Discount</td><td class="col2">$195.00</td></tr>
-                                            <tr><td>Sales Tax</td><td class="col2">$195.00</td></tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr><td>Total</td><td class="blue">$195.00</td></tr>
-                                        </tfoot>
-                                    </table>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <#include "component://shopmax/webapp/shopmax/order/ordersummarydetail.ftl" />
                 </div>
             </div>
             <a href="#" class="btn-general pull-right">Place Order</a>

@@ -21,7 +21,7 @@ under the License.
     <div class="row">
         <div class="span3 sidebar" id="side-menu">
             <div class="categories innerbox cart-summary-wrapper" style="margin-top:40px;">
-                <h2>Cart summary&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="<@ofbizContentUrl>/shopmax-default/img/icon-cart.gif</@ofbizContentUrl>"></h2>
+                <h2>Cart summary<img src="<@ofbizContentUrl>/shopmax-default/img/icon-cart.gif</@ofbizContentUrl>"></h2>
                 <div class="category-list">
                     <table class="table table-condensed cart-summary">
                         <tbody>

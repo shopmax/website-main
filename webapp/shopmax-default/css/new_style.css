@@ -891,6 +891,10 @@ ul.manage_pro li:last-child { border:none;}
 #mainnav.newnavbar ul.done { display:block !important;}
 }
 
-
+.cart-summary-wrapper h2 img{
+    float: right;
+    margin-top: 12px;
+    margin-right: 10px;
+}
 
 
