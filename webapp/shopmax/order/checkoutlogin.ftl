@@ -17,6 +17,10 @@ specific language governing permissions and limitations
 under the License.
 -->
 
+<div class="container content shopping-cart">
+    <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
+    <div class="row">
+        <#include "component://shopmax/webapp/shopmax/order/ordersummary.ftl" />
         <div class="span9 main-content">
             <ul class="sc-step">
                 <li><span class="badge badge-inactive">1</span>&nbsp;&nbsp;Shopping Cart</li>

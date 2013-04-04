@@ -17,6 +17,10 @@ specific language governing permissions and limitations
 under the License.
 -->
 
+<div class="container content shopping-cart">
+    <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
+    <div class="row">
+        <#include "component://shopmax/webapp/shopmax/order/ordersummary.ftl" />
         <div class="span9 main-content">
             <ul class="sc-step">
                 <li><span class="badge badge-inactive">1</span>&nbsp;&nbsp;Shopping Cart</li>
@@ -61,7 +65,7 @@ under the License.
                         </div>
                         <div class="form-inline">
                             <input type="text" class="input-xxlarge required" placeholder="Phone Number" />
-                            <input type="text" class="input-xxlarge required" placeholder="Additional Address Info (optional)" />
+                            <input type="text" class="input-xxlarge required" placeholder="Email Address (optional)" />
                             <input type="text" class="input-xxlarge" placeholder="Fax Number (optional)" />
                         </div>
                     </td>
@@ -105,7 +109,7 @@ under the License.
                             <input type="text" class="input-xxlarge required" placeholder="Last Name" />
                         </div>
                         <div class="form-inline">
-                            <input type="text" class="input-xxlarge" placeholder="Phone number" />
+                            <input type="text" class="input-xxlarge" placeholder="Phone Number" />
                             <input type="text" class="input-xxlarge" placeholder="Email Address (optional)" />
                             <input type="text" class="input-xxlarge" placeholder="Fax Number (optional)" />
                         </div>

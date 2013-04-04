@@ -39,11 +39,9 @@ under the License.
                                 </not>
                             </condition>
                             <widgets>
-                                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/ordersummary.ftl"></html-template></html></platform-specific>
                                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/checkoutlogin.ftl"></html-template></html></platform-specific>
                             </widgets>
                             <fail-widgets>
-                                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/ordersummary.ftl"></html-template></html></platform-specific>
                                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/checkoutnonlogin.ftl"></html-template></html></platform-specific>
                             </fail-widgets>
                         </section>

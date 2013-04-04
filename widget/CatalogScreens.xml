@@ -95,17 +95,17 @@ under the License.
         </section>
     </screen>
     
-    <screen name="ProductUpload">
+    <screen name="UploadProduct">
         <section>
             <actions>
-                <set field="titleProperty" value="PageTitleProductUpload"/>
-                <set field="headerItem" value="ProductUpload"/>
-                <set field="breadCrumTitle" value="Product Upload"/>
+                <set field="titleProperty" value="PageTitleUploadProduct"/>
+                <set field="headerItem" value="uploadproduct"/>
+                <set field="breadCrumTitle" value="Upload Product"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/productupload.ftl"/></html></platform-specific>
+                        <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/uploadproduct.ftl"/></html></platform-specific>
                     </decorator-section>
                 </decorator-screen>
             </widgets>

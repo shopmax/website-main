@@ -24,40 +24,39 @@ under the License.
         <!-- sliderdiv -->
         <div class="span9 main-content manage-product">
             <form class="form-inline form-search">
-            <label>Sort By</label>
-            
-            <select name="SortBy" class="drop-select chosen combo sortBy" data-search-bar="true">
+                <label>Sort By</label>
+                <select name="SortBy" class="drop-select chosen combo sortBy" data-search-bar="true">
                     <option value="" selected="selected">Price</option>
                     <option value="1">Name</option>
                     <option value="2">Stock</option>
-            </select>
-            
-            <div class="input-search">
-            <label>Search Product By Name or SKU  
-            </label>
-            <input type="text" class="input-large"> 
-            <button type="submit" class="btn btn-small">Edit</button>   
-            </div>
+                </select>
+                
+                <div class="input-search">
+                    <label>Search Product By Name or SKU  
+                    </label>
+                    <input type="text" class="input-large"> 
+                    <button type="submit" class="btn btn-small">Edit</button>
+                </div>
             </form>
             <div class="add-product">
                 <a class="btn-general" href="#">Add New Product</a>
                 <div class="paging">
-                <ul>
-                <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/arrow-prev-grey.png</@ofbizContentUrl>" /></a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">...</a></li>
-                <li><a href="#">10</a></li>
-                <li><a href="#"><img src="img/arrow-next-blue.png" /></a></li>
-                </ul>
+                    <ul>
+                        <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/arrow-prev-grey.png</@ofbizContentUrl>" /></a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">...</a></li>
+                        <li><a href="#">10</a></li>
+                        <li><a href="#"><img src="img/arrow-next-blue.png" /></a></li>
+                    </ul>
                 </div>
             </div>
             <ul class="media-list edit-product-list manage_pro">
                 <li class="media">
                     <a class="pull-left" href="#">
-                    <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-2.jpg</@ofbizContentUrl>" />
+                        <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-2.jpg</@ofbizContentUrl>" />
                     </a>
                     <div class="media-body">
                         <h5 class="media-category">Art/Print/Other</h5>
@@ -75,7 +74,7 @@ under the License.
                 </li>
                 <li class="media">
                     <a class="pull-left" href="#">
-                    <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-3.jpg</@ofbizContentUrl>" />
+                        <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-3.jpg</@ofbizContentUrl>" />
                     </a>
                     <div class="media-body">
                         <h5 class="media-category">Art/Print/Other</h5>
@@ -93,7 +92,7 @@ under the License.
                 </li>
                 <li class="media">
                     <a class="pull-left" href="#">
-                    <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-170x170.jpg</@ofbizContentUrl>" />
+                        <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-170x170.jpg</@ofbizContentUrl>" />
                     </a>
                     <div class="media-body">
                         <h5 class="media-category">Art/Print/Other</h5>
@@ -111,7 +110,7 @@ under the License.
                 </li>
                 <li class="media">
                     <a class="pull-left" href="#">
-                    <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-4.jpg</@ofbizContentUrl>" />
+                        <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-4.jpg</@ofbizContentUrl>" />
                     </a>
                     <div class="media-body">
                         <h5 class="media-category">Art/Print/Other</h5>
@@ -129,7 +128,7 @@ under the License.
                 </li>
                 <li class="media">
                     <a class="pull-left" href="#">
-                    <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-5.jpg</@ofbizContentUrl>" />
+                        <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-5.jpg</@ofbizContentUrl>" />
                     </a>
                     <div class="media-body">
                         <h5 class="media-category">Art/Print/Other</h5>
@@ -147,7 +146,7 @@ under the License.
                 </li>
                 <li class="media">
                     <a class="pull-left" href="#">
-                    <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-6.jpg</@ofbizContentUrl>" />
+                        <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-6.jpg</@ofbizContentUrl>" />
                     </a>
                     <div class="media-body">
                         <h5 class="media-category">Art/Print/Other</h5>
@@ -165,7 +164,7 @@ under the License.
                 </li>
                 <li class="media">
                     <a class="pull-left" href="#">
-                    <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-7.jpg</@ofbizContentUrl>" />
+                        <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-7.jpg</@ofbizContentUrl>" />
                     </a>
                     <div class="media-body">
                         <h5 class="media-category">Art/Print/Other</h5>
