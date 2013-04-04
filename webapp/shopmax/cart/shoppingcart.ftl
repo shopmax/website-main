@@ -63,7 +63,7 @@ under the License.
               </thead>
               <tbody>
                 <tr>
-                  <td class="col1"><img src="<@ofbizContentUrl>shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
+                  <td class="col1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
                   <td class="col2"><strong>Product name 1</strong><br />Colour - yellow</td>
                   <td class="col3"><strong>$25.00</strong></td>
                   <td class="col4"><input type="text" class="input-mini" /><br />
@@ -72,7 +72,7 @@ under the License.
                   <td class="col5"><strong>$25.00</strong></td>
                 </tr>
                 <tr>
-                  <td class="col1"><img src="<@ofbizContentUrl>shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
+                  <td class="col1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
                   <td class="col2"><strong>Product name 1</strong><br />Colour - yellow</td>
                   <td class="col3">
                     <div class="old">$30.00</div>
@@ -84,7 +84,7 @@ under the License.
                   <td class="col5"><strong>$25.00</strong></td>
                 </tr>
                 <tr>
-                  <td class="col1"><img src="<@ofbizContentUrl>shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
+                  <td class="col1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
                   <td class="col2"><strong>Product name 1</strong><br />Colour - yellow</td>
                   <td class="col3">$25.00</td>
                   <td class="col4"><input type="text" class="input-mini" /><br />
@@ -137,7 +137,7 @@ under the License.
               </thead>
               <tbody>
                 <tr>
-                  <td class="col1"><img src="<@ofbizContentUrl>shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
+                  <td class="col1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
                   <td class="col2"><strong>Product name 1</strong><br />Colour - yellow</td>
                   <td class="col3"><strong>$25.00</strong></td>
                   <td class="col4"><input type="text" class="input-mini" /><br />
@@ -146,7 +146,7 @@ under the License.
                   <td class="col5"><strong>$25.00</strong></td>
                 </tr>
                 <tr>
-                  <td class="col1"><img src="<@ofbizContentUrl>shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
+                  <td class="col1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
                   <td class="col2"><strong>Product name 1</strong><br />Colour - yellow</td>
                   <td class="col3">
                     <div class="old">$30.00</div>
@@ -158,7 +158,7 @@ under the License.
                   <td class="col5"><strong>$25.00</strong></td>
                 </tr>
                 <tr>
-                  <td class="col1"><img src="<@ofbizContentUrl>shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
+                  <td class="col1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
                   <td class="col2"><strong>Product name 1</strong><br />Colour - yellow</td>
                   <td class="col3">$25.00</td>
                   <td class="col4"><input type="text" class="input-mini" /><br />

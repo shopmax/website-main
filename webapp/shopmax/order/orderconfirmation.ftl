@@ -76,21 +76,21 @@ under the License.
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="col1 col_1"><img src="<@ofbizContentUrl>shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
+                                <td class="col1 col_1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
                                 <td class="col2 col_2"><strong>Product name 1</strong><br />Colour - yellow</td>
                                 <td class="col3 col_3 alighright"><strong>$25.00</strong></td>
                                 <td class="col4 col_4 alighcenter">1</td>
                                 <td class="col5"><strong>$25.00</strong></td>
                             </tr>
                             <tr>
-                                <td class="col1 col_1"><img src="<@ofbizContentUrl>shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
+                                <td class="col1 col_1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
                                 <td class="col2 col_2"><strong>Product name 1</strong><br />Colour - yellow</td>
                                 <td class="col3 col_3"><div class="old">$30.00</div><strong>$25.00</strong></td>
                                 <td class="alighcenter col4 col_4">1</td>
                                 <td class="col5"><strong>$25.00</strong></td>
                             </tr>
                             <tr>
-                                <td class="col1 col_1"><img src="<@ofbizContentUrl>shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
+                                <td class="col1 col_1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
                                 <td class="col2 col_2"><strong>Product name 1</strong><br />Colour - yellow</td>
                                 <td class="col3 col_3">$25.00</td>
                                 <td class="alighcenter col4 col_4">1</td>
@@ -142,7 +142,7 @@ under the License.
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="col1 col_1"><img src="<@ofbizContentUrl>shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
+                                <td class="col1 col_1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
                                 <td class="col2 col_2"><strong>Product name 1</strong><br />Colour - yellow</td>
                                 <td class="col3 col_3"><strong>$25.00</strong></td>
                                 <td class="align-right col4 col_4">1</td>

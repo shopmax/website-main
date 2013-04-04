@@ -26,13 +26,16 @@ under the License.
         <meta name="viewport" content="width=device-width">
         <!-- what happens with this with mobile phones? 
         <meta name="viewport" content="width=device-width, initial-scale=1" />-->
+        <#if layoutSettings.VT_SHORTCUT_ICON?has_content>
+            <link rel="shortcut icon" href="<@ofbizContentUrl>${StringUtil.wrapString(layoutSettings.VT_SHORTCUT_ICON[0])}</@ofbizContentUrl>" type="text/css"/>
+        </#if>
         <#if layoutSettings.VT_STYLESHEET?has_content>
             <#list layoutSettings.VT_STYLESHEET as styleSheet>
                 <link rel="stylesheet" href="<@ofbizContentUrl>${StringUtil.wrapString(styleSheet)}</@ofbizContentUrl>" type="text/css"/>
             </#list>
         </#if>
-        <link rel="stylesheet" href="<@ofbizContentUrl>shopmax-default/css/product_details.css</@ofbizContentUrl>">
-        <link rel="stylesheet" href="<@ofbizContentUrl>shopmax-default/css/new_style.css</@ofbizContentUrl>">
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/product_details.css</@ofbizContentUrl>">
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/new_style.css</@ofbizContentUrl>">
         <#-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
         <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js</@ofbizContentUrl>"></script>
         <script>window.jQuery || document.write('<script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery-1.8.3.min.js</@ofbizContentUrl>"><\/script>')</script>
@@ -41,5 +44,7 @@ under the License.
         <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.anythingslider.min.js</@ofbizContentUrl>"></script>
         <script src="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.pack.js</@ofbizContentUrl>"></script>  
         <script src="<@ofbizContentUrl>/shopmax-default/js/main.js</@ofbizContentUrl>"></script>
+        <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.raty.min.js</@ofbizContentUrl>"></script>
+        
     </head>
     <body class="home">

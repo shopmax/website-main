@@ -4,6 +4,12 @@
         <value xml:lang="en">ShopMax Application</value>
         <value xml:lang="zh">ShopMax应用程序</value>
     </property>
+    <property key="ShopMaxCategoryGridView">
+        <value xml:lang="en">Category grid view</value>
+    </property>
+    <property key="ShopMaxCategoryListView">
+        <value xml:lang="en">Category list view</value>
+    </property>
     <property key="ShopMaxCompanyName">
         <value xml:lang="en">OFBiz: ShopMax</value>
     </property>
