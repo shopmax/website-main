@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <Tenant tenantId="shopmax" tenantName="ShopMax" />
+    <TenantComponent tenantId="shopmax" componentName="shopmax" sequenceNum="01"/>
+    <TenantDataSource tenantId="shopmax" entityGroupName="org.ofbiz"
+        jdbcUri="jdbc:derby:shopmax;create=true" jdbcUsername="ofbiz" jdbcPassword="ofbiz"/>
+    <TenantDataSource tenantId="shopmax" entityGroupName="org.ofbiz.olap"
+        jdbcUri="jdbc:derby:shopmaxolap;create=true" jdbcUsername="ofbiz" jdbcPassword="ofbiz"/>
+    
+    <!-- Front-End -->
+    <TenantDomainName tenantId="shopmax" domainName="shopmax.ofbizdemo.com" initialPath="/shopmax"/>
+    <TenantDomainName tenantId="shopmax" domainName="shopmax.localhost" initialPath="/shopmax"/>
+    
+    <!-- Back-End -->
+    <TenantDomainName tenantId="shopmax" domainName="shopmaxbackend.ofbizdemo.com" initialPath="/backend"/>
+    <TenantDomainName tenantId="shopmax" domainName="shopmaxbackend.localhost" initialPath="/backend"/>
+</entity-engine-xml>
