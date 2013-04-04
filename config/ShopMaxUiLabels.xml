@@ -34,6 +34,9 @@ under the License.
     <property key="PageTitleOrderCheckoutLogin">
         <value xml:lang="en">Order CheckoutLogin</value>
     </property>
+    <property key="PageTitleCategoryManageProduct">
+        <value xml:lang="en">Category Manage Product</value>
+    </property>
     <property key="PageTitleOrderCheckoutNonLogin">
         <value xml:lang="en">Order CheckoutLogin</value>
     </property>
