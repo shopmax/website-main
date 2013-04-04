@@ -37,4 +37,39 @@ under the License.
             </widgets>
         </section>
     </screen>
+    <screen name="checkoutlogin">
+        <section>
+            <actions>
+                <property-map resource="ShopMaxUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="titleProperty" value="PageTitleOrderCheckoutLogin"/>
+                <set field="headerItem" value="checkoutlogin"/>
+                <set field="breadCrumTitle" value="Shopping Cart"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/ordersummary.ftl"></html-template></html></platform-specific>
+                        <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/checkoutlogin.ftl"></html-template></html></platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="checkoutnonlogin">
+        <section>
+            <actions>
+                <property-map resource="ShopMaxUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="headerItem" value="checkoutnonlogin"/>
+                <set field="breadCrumTitle" value="Shopping Cart"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/ordersummary.ftl"></html-template></html></platform-specific>
+                        <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/checkoutnonlogin.ftl"></html-template></html></platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
 </screens>

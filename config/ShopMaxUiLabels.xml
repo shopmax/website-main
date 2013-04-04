@@ -31,6 +31,12 @@ under the License.
     <property key="PageTitleShoppingCart">
         <value xml:lang="en">Shopping Cart</value>
     </property>
+    <property key="PageTitleOrderCheckoutLogin">
+        <value xml:lang="en">Order CheckoutLogin</value>
+    </property>
+    <property key="PageTitleOrderCheckoutNonLogin">
+        <value xml:lang="en">Order CheckoutLogin</value>
+    </property>
     <property key="ShopMaxApplication">
         <value xml:lang="en">ShopMax Application</value>
         <value xml:lang="zh">ShopMax应用程序</value>
@@ -47,4 +53,8 @@ under the License.
         <value xml:lang="en">You are not allowed to view this page.</value>
         <value xml:lang="zh">不允许你浏览这个页面。</value>
     </property>
+    <property key="ShopMaxOrderSummary">
+        <value xml:lang="en">Order Summary</value>
+    </property>
 </resource>
+
