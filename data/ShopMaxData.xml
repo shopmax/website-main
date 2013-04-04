@@ -22,6 +22,6 @@ under the License.
     <WebSite webSiteId="SHOPMAX_CENTRAL" siteName="ShopMax Web Site"
         httpHost="shopmax.localhost" httpPort="8080"
         httpsHost="shopmax.localhost" httpsPort="8443"
-        standardContentPrefix="http://shopmax.localhost:8080"
-        secureContentPrefix="https://shopmax.localhost:8443"/>
+        standardContentPrefix="http://shopmaxbackend.localhost:8080"
+        secureContentPrefix="https://shopmaxbackend.localhost:8443"/>
 </entity-engine-xml>
