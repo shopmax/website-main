@@ -17,17 +17,18 @@ specific language governing permissions and limitations
 under the License.
 -->
 <script>
-$('.edit').click(function(){
-    var currentView = this.id.split("-")
-    var index = currentView[2];
-    if ($('#view-edit-product-'+index).is(":hidden")) {
-        $('#view-edit-product-'+index).slideDown("slow");
-    } else {
-        $('#view-edit-product-'+index).slideUp("slow");
-    }
+$(function(){
+    $('.edit').click(function(){
+        var currentView = this.id.split("-")
+        var index = currentView[2];
+        if ($('#view-edit-product-'+index).is(":hidden")) {
+            $('#view-edit-product-'+index).slideDown("slow");
+        } else {
+            $('#view-edit-product-'+index).slideUp("slow");
+        }
+    });
 });
 </script>
-<script src="<@ofbizContentUrl>/shopmax-default/js/dev/general.js</@ofbizContentUrl>"></script>
 <div class="container content">
     <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
     <div class="row">
