@@ -54,16 +54,11 @@ under the License.
         <response name="error" type="view" value="error"/>
     </request-map>
     
+    <!-- Catalog Request -->
     <request-map uri="product">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="product"/>
         <response name="error" type="view" value="product"/>
-    </request-map>
-    
-    <request-map uri="account">
-        <security https="true" auth="false"/>
-        <response name="success" type="view" value="account"/>
-        <response name="error" type="view" value="account"/>
     </request-map>
     
     <request-map uri="category">
@@ -84,6 +79,19 @@ under the License.
         <response name="error" type="view" value="categorylistview"/>
     </request-map>
     
+    <request-map uri="manageproduct">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="manageproduct"/>
+        <response name="error" type="view" value="manageproduct"/>
+    </request-map>
+    
+    <request-map uri="uploadproduct">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="uploadproduct"/>
+        <response name="error" type="view" value="uploadproduct"/>
+    </request-map>
+    
+    <!-- Order Request -->
     <request-map uri="shoppingcart">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="shoppingcart"/>
@@ -102,36 +110,33 @@ under the License.
         <response name="error" type="view" value="confirmation"/>
     </request-map>
     
-    <request-map uri="manageproduct">
-        <security https="true" auth="false"/>
-        <response name="success" type="view" value="manageproduct"/>
-        <response name="error" type="view" value="manageproduct"/>
-    </request-map>
-    
+    <!-- Customer Request -->
     <request-map uri="profile">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="profile"/>
         <response name="error" type="view" value="profile"/>
     </request-map>
     
-    <request-map uri="uploadproduct">
+    <request-map uri="account">
         <security https="true" auth="false"/>
-        <response name="success" type="view" value="uploadproduct"/>
-        <response name="error" type="view" value="uploadproduct"/>
+        <response name="success" type="view" value="account"/>
+        <response name="error" type="view" value="account"/>
     </request-map>
     
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>
     <view-map name="helpcenter" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#HelpCenter"/>
     <view-map name="product" type="screen" page="component://shopmax/widget/CatalogScreens.xml#Product"/>
-    <view-map name="account" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Account"/>
     <view-map name="category" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#Category"/>
     <view-map name="categorygridview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryGridView"/>
     <view-map name="categorylistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryListView"/>
+    <view-map name="manageproduct" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ManageProduct"/>
+    <view-map name="uploadproduct" type="screen" page="component://shopmax/widget/CatalogScreens.xml#UploadProduct"/>
+    
     <view-map name="shoppingcart" type="screen" page="component://shopmax/widget/CartScreens.xml#ShoppingCart"/>
     <view-map name="checkout" type="screen" page="component://shopmax/widget/OrderScreens.xml#Checkout"/>
     <view-map name="confirmation" type="screen" page="component://shopmax/widget/OrderScreens.xml#Confirmation"/>
-    <view-map name="manageproduct" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ManageProduct"/>
+    
     <view-map name="profile" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Profile"/>
-    <view-map name="uploadproduct" type="screen" page="component://shopmax/widget/CatalogScreens.xml#UploadProduct"/>
+    <view-map name="account" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Account"/>
 </site-conf>

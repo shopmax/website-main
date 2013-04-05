@@ -45,7 +45,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleAccount"/>
                 <set field="headerItem" value="account"/>
-                <set field="breadCrumTitle" value="My account"/>
+                <set field="breadCrumTitle" value="My Account"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">

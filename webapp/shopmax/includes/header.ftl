@@ -113,18 +113,21 @@ under the License.
             </div><!--/.nav-collapse -->
             <!-- PERSONAL GREETING & LINKS -->
             <div id="personal" class="pull-left nav-collapse collapse">
-                <!--h4>Hi <span>James</span></h4>
-                <form class="rounded-form">
-                    <select id="accountOptions" class="chosen actionable" name="accountOptions">
-                        <option selected="selected">My Account</option>
-                        <option value="selling.html">Selling</option>
-                        <option value="buying.html">Buying</option>
-                        <option value="profile.html">Profile</option>
-                        <option value="log-out.html">Log Out</option>
-                    </select>
-                </form-->
-                <h2>Hello</h2>
-                <p><a id="various1" href="#inline1">Login</a> / <a href="#">Register</a></p>
+                <#if userLogin?has_content>
+                    <h4>Hi <span>James</span></h4>
+                    <form class="rounded-form">
+                        <select id="accountOptions" class="chosen actionable" name="accountOptions">
+                            <option selected="selected">My Account</option>
+                            <option value="selling.html">Selling</option>
+                            <option value="buying.html">Buying</option>
+                            <option value="<@ofbizUrl>profile</@ofbizUrl>">Profile</option>
+                            <option value="log-out.html">Log Out</option>
+                        </select>
+                    </form>
+                <#else>
+                    <h2>Hello</h2>
+                    <p><a id="various1" href="#inline1">Login</a> / <a href="#">Register</a></p>
+                </#if>
             </div>
             <!-- CART INFORMATION -->
             <div id="cart-info" class="nav-collapse collapse">

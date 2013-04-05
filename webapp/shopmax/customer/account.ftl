@@ -19,7 +19,7 @@ under the License.
 
 <div class="container content">
     <div class="row content-left">
-    <!-- MAIN CONTENT -->
+        <!-- MAIN CONTENT -->
         <div class="span9 main-content">
             <div class="my_acc">
                 <div class="title_grn"><h6>Buying</h6></div>
@@ -118,5 +118,5 @@ under the License.
                 </div>
             </div>
         </div><!-- /.span3.sidebar -->
-        </div><!-- /.row -->                
-    </div> <!-- /container -->
+    </div><!-- /.row -->
+</div> <!-- /container -->
