@@ -34,6 +34,9 @@ under the License.
     <property key="PageTitleProductDetail">
         <value xml:lang="en">Product Detail</value>
     </property>
+    <property key="PageTitleProfile">
+        <value xml:lang="en">Profile</value>
+    </property>
     <property key="PageTitleShoppingCart">
         <value xml:lang="en">Shopping Cart</value>
     </property>
