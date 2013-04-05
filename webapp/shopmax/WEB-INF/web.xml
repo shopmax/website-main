@@ -25,7 +25,7 @@ under the License.
 
     <context-param>
         <param-name>webSiteId</param-name>
-        <param-value>SHOPMAX_CENTRAL</param-value>
+        <param-value>SHOPMAX</param-value>
         <description>A unique ID used to look up the WebSite entity</description>
     </context-param>
     <context-param>

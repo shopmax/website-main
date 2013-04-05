@@ -65,7 +65,7 @@ under the License.
                         </div>
                         <div class="form-inline">
                             <input type="text" class="input-xxlarge required" placeholder="Phone Number" />
-                            <input type="text" class="input-xxlarge required" placeholder="Email Address (optional)" />
+                            <input type="text" class="input-xxlarge required" placeholder="Email Address" />
                             <input type="text" class="input-xxlarge" placeholder="Fax Number (optional)" />
                         </div>
                     </td>
@@ -109,8 +109,8 @@ under the License.
                             <input type="text" class="input-xxlarge required" placeholder="Last Name" />
                         </div>
                         <div class="form-inline">
-                            <input type="text" class="input-xxlarge" placeholder="Phone Number" />
-                            <input type="text" class="input-xxlarge" placeholder="Email Address (optional)" />
+                            <input type="text" class="input-xxlarge required" placeholder="Phone Number" />
+                            <input type="text" class="input-xxlarge required" placeholder="Email Address" />
                             <input type="text" class="input-xxlarge" placeholder="Fax Number (optional)" />
                         </div>
                     </td>
@@ -124,7 +124,7 @@ under the License.
                             <input type="text" class="input-xxlarge" placeholder="Zip/ Postal Code" />
                         </div>
                         <div class="form-inline">
-                            <input type="text" class="input-xxxlarge" placeholder="Additional Address Info" />
+                            <input type="text" class="input-xxxlarge" placeholder="Additional Address Info (optional)" />
                             <select name="scZip" class="drop-select chosen combo" data-search-bar="true">
                                 <option value="" selected="selected">Zip Return City, State</option>
                                 <option value="1">Option 1</option>

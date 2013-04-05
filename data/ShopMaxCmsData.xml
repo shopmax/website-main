@@ -20,7 +20,7 @@ under the License.
 
 <entity-engine-xml>
     <Content contentId="SHOPMAX_PPOINT" contentTypeId="WEB_SITE_PUB_PT" contentName="ShopMax Site Publish Point" description=""/>
-    <WebSiteContent webSiteId="SHOPMAX_CENTRAL" contentId="SHOPMAX_PPOINT" webSiteContentTypeId="PUBLISH_POINT" fromDate="2013-04-01 00:00:00"/>
+    <WebSiteContent webSiteId="SHOPMAX" contentId="SHOPMAX_PPOINT" webSiteContentTypeId="PUBLISH_POINT" fromDate="2013-04-01 00:00:00"/>
     
     <!-- Action Decorator -->
     <DataResource dataResourceId="SHOPMAX_ACTION_DEC" dataResourceTypeId="URL_RESOURCE" dataTemplateTypeId="SCREEN_COMBINED" objectInfo="component://shopmax/widget/CommonScreens.xml#action-decorator" />
@@ -523,5 +523,5 @@ under the License.
     <Content contentId="SHOPMAX_HOME" contentTypeId="DOCUMENT" contentName="ShopMax Main" dataResourceId="SHOPMAX_HOME" decoratorContentId="SHOPMAX_DEC"/>
     <ContentAssoc contentId="SHOPMAX_PPOINT" contentIdTo="SHOPMAX_HOME" contentAssocTypeId="SUB_CONTENT" mapKey="main" fromDate="2013-04-01 00:00:00"/>
     <ContentPurpose contentId="SHOPMAX_HOME" contentPurposeTypeId="SECTION"/>
-    <WebSiteContent webSiteId="SHOPMAX_CENTRAL" contentId="SHOPMAX_HOME" webSiteContentTypeId="DEFAULT_PAGE" fromDate="2013-04-01 00:00:00"/>
+    <WebSiteContent webSiteId="SHOPMAX" contentId="SHOPMAX_HOME" webSiteContentTypeId="DEFAULT_PAGE" fromDate="2013-04-01 00:00:00"/>
 </entity-engine-xml>
