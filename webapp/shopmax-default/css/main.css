@@ -413,6 +413,11 @@ span.sep {
 	font-style:italic;font-weight:500;
 }
 
+.georgia .span2 li a, .georgia p{
+	font-family:Helvetica,Arial,sans-serif;
+	font-style: normal;
+}
+
 .sidebar h1,.sidebar h2,.sidebar h3,.sidebar h4,.sidebar h5,.sidebar h6 {
 	margin-top:0;
 	text-indent:12px;
@@ -530,7 +535,19 @@ span.sep {
 	margin:0;
 }
 
-.help .sidebar .tabnavs h3 {
+.help .sidebar .tabnavs h3 a{
+    text-decoration: none;
+    color:#5C5E57;
+}
+
+.help .sidebar li.active h3 a,
+.help .sidebar .tabnavs li h3:hover a{
+    background:url('../img/help-tab-active.png') no-repeat 100% 50%;
+    color:white;
+    padding:0 12px 0 0;/* pad the right by the width of the background image */
+}
+
+.help .sidebar .tabnavs h3{
 	background:#B7DA7A url('../img/help-tab-active.png') no-repeat -100px 50%;
 	color:#5C5E57;
 	width:227px;

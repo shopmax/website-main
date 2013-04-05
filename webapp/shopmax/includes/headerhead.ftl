@@ -29,16 +29,15 @@ under the License.
         <#if layoutSettings.VT_SHORTCUT_ICON?has_content>
             <link rel="shortcut icon" href="<@ofbizContentUrl>${StringUtil.wrapString(layoutSettings.VT_SHORTCUT_ICON[0])}</@ofbizContentUrl>" type="text/css"/>
         </#if>
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/product_details.css</@ofbizContentUrl>">
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/new_style.css</@ofbizContentUrl>">
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.css</@ofbizContentUrl>">
+        <link rel="stylesheet" type="text/css" href="<@ofbizContentUrl>/shopmax-default/css/jquery.fancybox-1.3.4.css</@ofbizContentUrl>" media="screen" />
         <#if layoutSettings.VT_STYLESHEET?has_content>
             <#list layoutSettings.VT_STYLESHEET as styleSheet>
                 <link rel="stylesheet" href="<@ofbizContentUrl>${StringUtil.wrapString(styleSheet)}</@ofbizContentUrl>" type="text/css"/>
             </#list>
         </#if>
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/product_details.css</@ofbizContentUrl>">
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/new_style.css</@ofbizContentUrl>">
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.css</@ofbizContentUrl>">
-        <link rel="stylesheet" type="text/css" href="<@ofbizContentUrl>/shopmax-default/css/jquery.fancybox-1.3.4.css</@ofbizContentUrl>" media="screen" />
-        
         <#-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> -->
         <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js</@ofbizContentUrl>"></script>
         <script>window.jQuery || document.write('<script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery-1.8.3.min.js</@ofbizContentUrl>"><\/script>')</script>

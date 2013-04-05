@@ -524,4 +524,95 @@ under the License.
     <ContentAssoc contentId="SHOPMAX_PPOINT" contentIdTo="SHOPMAX_HOME" contentAssocTypeId="SUB_CONTENT" mapKey="main" fromDate="2013-04-01 00:00:00"/>
     <ContentPurpose contentId="SHOPMAX_HOME" contentPurposeTypeId="SECTION"/>
     <WebSiteContent webSiteId="SHOPMAX" contentId="SHOPMAX_HOME" webSiteContentTypeId="DEFAULT_PAGE" fromDate="2013-04-01 00:00:00"/>
+    
+    <DataResource dataResourceId="SHOPMAX_FAQs" dataResourceTypeId="ELECTRONIC_TEXT" dataTemplateTypeId="FTL" />
+    <ElectronicText dataResourceId="SHOPMAX_FAQs">
+        <textData><![CDATA[
+           <div id="faq-tab" class="tabcontent">
+               <h4>Help for Buyers</h4>
+               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent quam lorem, scelerisque et, mattis cursus, porttitor sit amet, libero. Praesent pulvinar.</p>
+               <p>Duis vitae nunc ut sapien mollis scelerisque. Sed tempor libero sed nisl. Praesent ultricies nulla. Proin sit amet mi. Sed dignissim eleifend odio. Mauris viverra lectus. Etiam tellus diam, pharetra sit amet, convallis nec, cursus eu, urna. Aliquam erat volutpat.</p>
+               <hr />
+               <h4>Help for Sellers</h4>
+               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent quam lorem, scelerisque et, mattis cursus, porttitor sit amet, libero. Praesent pulvinar.</p>
+               <p>Duis vitae nunc ut sapien mollis scelerisque. Sed tempor libero sed nisl. Praesent ultricies nulla. Proin sit amet mi. Sed dignissim eleifend odio. Mauris viverra lectus. Etiam tellus diam, pharetra sit amet, convallis nec, cursus eu, urna. Aliquam erat volutpat.</p>
+               <hr />
+               <h4>Misc</h4>
+               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent quam lorem, scelerisque et, mattis cursus, porttitor sit amet, libero. Praesent pulvinar.</p>
+               <p>Duis vitae nunc ut sapien mollis scelerisque. Sed tempor libero sed nisl. Praesent ultricies nulla. Proin sit amet mi. Sed dignissim eleifend odio. Mauris viverra lectus. Etiam tellus diam, pharetra sit amet, convallis nec, cursus eu, urna. Aliquam erat volutpat.</p>
+           </div><!-- /#faq-tab -->
+        ]]></textData>
+    </ElectronicText>
+    <Content contentId="SHOPMAX_FAQs" contentTypeId="DOCUMENT" dataResourceId="SHOPMAX_FAQs" contentName="Shop Max FAQs Page" mimeTypeId="text/html"/>
+    <ContentAssoc contentId="SHOPMAX_PPOINT" contentIdTo="SHOPMAX_FAQs" contentAssocTypeId="SUB_CONTENT" fromDate="2013-04-01 00:00:00" mapKey="FAQs" />
+    
+    <DataResource dataResourceId="SHOPMAX_ABOUT" dataResourceTypeId="ELECTRONIC_TEXT" dataTemplateTypeId="FTL" />
+    <ElectronicText dataResourceId="SHOPMAX_ABOUT">
+        <textData><![CDATA[
+           <!-- #about-us-tab -->
+           <div id="about-us-tab" class="tabcontent">
+               <h4>About Us</h4>
+               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent quam lorem, scelerisque et, mattis cursus, porttitor sit amet, libero. Praesent pulvinar.</p>
+                   <p>Duis vitae nunc ut sapien mollis scelerisque. Sed tempor libero sed nisl. Praesent ultricies nulla. Proin sit amet mi. Sed dignissim eleifend odio. Mauris viverra lectus. Etiam tellus diam, pharetra sit amet, convallis nec, cursus eu, urna. Aliquam erat volutpat.</p>
+                   <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent quam lorem, scelerisque et, mattis cursus, porttitor sit amet, libero. Praesent pulvinar.</p>
+
+           </div><!-- /#about-us-tab -->
+        ]]></textData>
+    </ElectronicText>
+    <Content contentId="SHOPMAX_ABOUT" contentTypeId="DOCUMENT" dataResourceId="SHOPMAX_ABOUT" contentName="Shop Max About Us Page" mimeTypeId="text/html"/>
+    <ContentAssoc contentId="SHOPMAX_PPOINT" contentIdTo="SHOPMAX_ABOUT" contentAssocTypeId="SUB_CONTENT" fromDate="2013-04-01 00:00:00" mapKey="AboutUs" />
+    
+    <DataResource dataResourceId="SHOPMAX_BUYER_BF" dataResourceTypeId="ELECTRONIC_TEXT" dataTemplateTypeId="FTL" />
+    <ElectronicText dataResourceId="SHOPMAX_BUYER_BF">
+        <textData><![CDATA[
+           <!-- #benefits-for-buyers-tab -->    
+           <div id="benefits-for-buyers-tab" class="tabcontent">
+               <h4>Benefits for Buyers</h4>
+               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent quam lorem, scelerisque et, mattis cursus, porttitor sit amet, libero. Praesent pulvinar.</p>
+           </div><!-- /#benefits-for-buyers-tab -->
+        ]]></textData>
+    </ElectronicText>
+    <Content contentId="SHOPMAX_BUYER_BF" contentTypeId="DOCUMENT" dataResourceId="SHOPMAX_BUYER_BF" contentName="Shop Max Benefit for Buyer Page" mimeTypeId="text/html"/>
+    <ContentAssoc contentId="SHOPMAX_PPOINT" contentIdTo="SHOPMAX_BUYER_BF" contentAssocTypeId="SUB_CONTENT" fromDate="2013-04-01 00:00:00" mapKey="BuyerBenefit" />
+    
+    <DataResource dataResourceId="SHOPMAX_SELLER_BF" dataResourceTypeId="ELECTRONIC_TEXT" dataTemplateTypeId="FTL" />
+    <ElectronicText dataResourceId="SHOPMAX_SELLER_BF">
+        <textData><![CDATA[
+           <!-- #benefits-for-sellers-tab -->   
+           <div id="benefits-for-sellers-tab" class="tabcontent">
+               <h4>Benefits for Sellers</h4>
+               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent quam lorem, scelerisque et, mattis cursus, porttitor sit amet, libero. Praesent pulvinar.</p>
+               <p>Duis vitae nunc ut sapien mollis scelerisque. Sed tempor libero sed nisl. Praesent ultricies nulla. Proin sit amet mi. Sed dignissim eleifend odio. Mauris viverra lectus. Etiam tellus diam, pharetra sit amet, convallis nec, cursus eu, urna. Aliquam erat volutpat.</p>
+               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent quam lorem, scelerisque et, mattis cursus, porttitor sit amet, libero. Praesent pulvinar.</p>
+               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent quam lorem, scelerisque et, mattis cursus, porttitor sit amet, libero. Praesent pulvinar.</p>
+           </div><!-- /#benefits-for-sellers-tab -->
+        ]]></textData>
+    </ElectronicText>
+    <Content contentId="SHOPMAX_SELLER_BF" contentTypeId="DOCUMENT" dataResourceId="SHOPMAX_SELLER_BF" contentName="Shop Max Benefit for Seller Page" mimeTypeId="text/html"/>
+    <ContentAssoc contentId="SHOPMAX_PPOINT" contentIdTo="SHOPMAX_SELLER_BF" contentAssocTypeId="SUB_CONTENT" fromDate="2013-04-01 00:00:00" mapKey="SellerBenefit" />
+    
+    <DataResource dataResourceId="SHOPMAX_CONTACT" dataResourceTypeId="ELECTRONIC_TEXT" dataTemplateTypeId="FTL" />
+    <ElectronicText dataResourceId="SHOPMAX_CONTACT">
+        <textData><![CDATA[
+            <!-- #contact-us-tabs -->
+            <div id="contact-us-tab" class="tabcontent">
+                <h4>Contact Us</h4>
+                <form>
+                    <p class="span9">
+                        <label class="pull-left margin-right-20" for="uname">Your Name</label>
+                        <input type="text" id="uname" name="uname" />
+                    </p>
+                    <p class="span9">
+                        <label for="email" class="pull-left margin-right-20">Your Email</label>
+                        <input type="text" id="email" name="email" />
+                    </p>
+                    <p class="span9"><label for="mssg">Your Message</label>
+                    <textarea id="mssg"></textarea>
+                    <p class="span9"><button type="submit" class="btn-general">Send</button></p>
+                </form>
+            </div><!-- /#contact-us-tabs -->
+        ]]></textData>
+    </ElectronicText>
+    <Content contentId="SHOPMAX_CONTACT" contentTypeId="DOCUMENT" dataResourceId="SHOPMAX_CONTACT" contentName="Shop Max Contact Us Page" mimeTypeId="text/html"/>
+    <ContentAssoc contentId="SHOPMAX_PPOINT" contentIdTo="SHOPMAX_CONTACT" contentAssocTypeId="SUB_CONTENT" fromDate="2013-04-01 00:00:00" mapKey="contact" />
 </entity-engine-xml>

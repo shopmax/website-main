@@ -34,4 +34,36 @@ under the License.
             </widgets>
         </section>
     </screen>
+    
+    <screen name="HelpCenter">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleHelpCenter"/>
+                <set field="headerItem" value="helpcenter"/>
+                <set field="breadCrumTitle" value="Help"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html><html-template location="component://shopmax/webapp/shopmax/includes/helpcenter.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="HelpCenterContent">
+        <section>
+            <actions>
+                <set field="contentId" from-field="parameters.contentId" global="true"/>
+                <entity-one entity-name="Content" value-field="content"/>
+                <script location="component://content/webapp/content/WEB-INF/actions/website/WebSiteCMSMetaInfo.groovy"/>
+            </actions>
+            <widgets>
+                <content content-id="${contentId}"/>
+            </widgets>
+        </section>
+    </screen>
 </screens>
