@@ -142,8 +142,8 @@ under the License.
     <view-map name="shoppingcart" type="screen" page="component://shopmax/widget/CartScreens.xml#ShoppingCart"/>
     <view-map name="checkout" type="screen" page="component://shopmax/widget/OrderScreens.xml#Checkout"/>
     <view-map name="confirmation" type="screen" page="component://shopmax/widget/OrderScreens.xml#Confirmation"/>
-    
     <view-map name="orderdetails" type="screen" page="component://shopmax/widget/OrderScreens.xml#OrderDetails"/>
+    
     <view-map name="profile" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Profile"/>
     <view-map name="account" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Account"/>
 </site-conf>

@@ -67,8 +67,7 @@ under the License.
                 <ul class="nav">
                     <li><a href="<@ofbizUrl>uploadproduct</@ofbizUrl>">Upload Product</a></li>
                     <li><a href="<@ofbizUrl>manageproduct</@ofbizUrl>">Manage Product</a></li>
-                    <!--
-                    <li class="dropdown">
+                    <!--<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Action</a></li>
@@ -117,7 +116,7 @@ under the License.
                     <h4>Hi <span>James</span></h4>
                     <form class="rounded-form">
                         <select id="accountOptions" class="chosen actionable" name="accountOptions">
-                            <option selected="selected">My Account</option>
+                            <option value="<@ofbizUrl>account</@ofbizUrl>">My Account</option>
                             <option value="selling.html">Selling</option>
                             <option value="buying.html">Buying</option>
                             <option value="<@ofbizUrl>profile</@ofbizUrl>">Profile</option>
