@@ -39,4 +39,23 @@ under the License.
             </widgets>
         </section>
     </screen>
+    
+    <screen name="Account">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleAccount"/>
+                <set field="headerItem" value="account"/>
+                <set field="breadCrumTitle" value="My account"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html><html-template location="component://shopmax/webapp/shopmax/customer/account.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
 </screens>

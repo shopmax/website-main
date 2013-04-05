@@ -55,6 +55,12 @@ under the License.
         <response name="error" type="view" value="product"/>
     </request-map>
     
+    <request-map uri="account">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="account"/>
+        <response name="error" type="view" value="account"/>
+    </request-map>
+    
     <request-map uri="category">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="category"/>
@@ -112,6 +118,7 @@ under the License.
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>
     <view-map name="product" type="screen" page="component://shopmax/widget/CatalogScreens.xml#Product"/>
+    <view-map name="account" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Account"/>
     <view-map name="category" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#Category"/>
     <view-map name="categorygridview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryGridView"/>
     <view-map name="categorylistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryListView"/>
