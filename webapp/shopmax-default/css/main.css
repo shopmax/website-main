@@ -1274,3 +1274,6 @@ button {margin:0;border:none;}
 .help .main-content .tabbed h3, .help .main-content .tabbed h4 {
 	color: inherit;
 }
+.btn-general.edit{
+	cursor: pointer;
+}

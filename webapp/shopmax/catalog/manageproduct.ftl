@@ -16,7 +16,18 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-
+<script>
+$('.edit').click(function(){
+    var currentView = this.id.split("-")
+    var index = currentView[2];
+    if ($('#view-edit-product-'+index).is(":hidden")) {
+        $('#view-edit-product-'+index).slideDown("slow");
+    } else {
+        $('#view-edit-product-'+index).slideUp("slow");
+    }
+});
+</script>
+<script src="<@ofbizContentUrl>/shopmax-default/js/dev/general.js</@ofbizContentUrl>"></script>
 <div class="container content">
     <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
     <div class="row">
@@ -67,9 +78,109 @@ under the License.
                             <li class="current-price">$135.00NZD</li>
                         </ul>
                         <p>Stocks: 98</p>   
-                        <a class="btn-general" href="#">Edit</a>
+                        <a class="btn-general edit" id="edit-product-1">Edit</a>
                         <a class="btn-green-small" href="#">Promote</a>
                         <a class="btn-grey-small" href="#">Remove</a>
+                    </div>
+                </li>
+                <li class="media media-edit" style="display: none;" id="view-edit-product-1">
+                    <a class="pull-left" href="#">
+                    <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-170x170.jpg</@ofbizContentUrl>" />
+                    </a>
+                    <div class="media-body">
+                        <form class="form-horizontal pull-left">
+                        <div class="control-group">
+                        <label class="control-label" for="inputProductName">Product name</label>
+                        <div class="controls">
+                        <input type="text" class="input-xlarge" id="inputProductName">
+                        </div>
+                        </div>
+                        <div class="control-group">
+                        <label class="control-label" for="inputDescription">Description</label>
+                        <div class="controls">
+                            <textarea rows="3" class="input-xlarge"></textarea>
+                        </div>
+                        </div>
+                        <div class="control-group">
+                        <label class="control-label" for="inputDescription">Picture upload (4 Max)</label>
+                        <div class="controls">
+                            <ul class="uploading">
+                                <li class="uploaded">
+                                    <div>
+                                        <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>" />
+                                    </div>
+                                    <a href="#">Remove</a>
+                                </li>
+                                <li>
+                                    <div class="uploaded-image">
+                                        <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>" />
+                                    </div>
+                                    <a href="#">Add Photo</a>
+                                </li>
+                                <li>
+                                    <div class="uploaded-image">
+                                        <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>" />
+                                    </div>
+                                    <a href="#">Add Photo</a>
+                                </li>
+                                <li>
+                                    <div class="uploaded-image">
+                                        <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>" />
+                                    </div>
+                                    <a href="#">Add Photo</a>
+                                </li>
+                            </ul>
+                        
+                        </div>
+                        </div>
+                        
+                        <div class="form-inline input-price-stock">
+                        <label>
+                            Listing price
+                            <input type="number" class="input-medium">
+                        </label>
+                        <label style="border:1px solid #E0E0E0;">
+                            Available stock
+                        <input type="number" class="input-medium">
+                        </label>
+                        </div>
+                        
+                        <!-- Promotion price -->                            
+
+                        <div class="form-inline input-promotion">
+                        <input type="checkbox">
+
+                        <label>
+                            &nbsp;Promotion price&nbsp;
+                            <input type="number" class="input-mini">
+                        </label>
+                        <label>
+                            &nbsp;&nbsp;Valid from&nbsp;
+                        <input type="number" class="input-small">
+                        
+                        </label>
+                        <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />
+                         <label>
+                            &nbsp;&nbsp;To&nbsp;
+                        <input type="number" class="input-small">
+                        
+                        </label>
+                        <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />
+                        </div>  
+                        
+                        <div class="form-inline">
+                            <label>Shipping size</label><br />
+                            <a href="#" class="btn-dark-grey-small">Xtra small</a>
+                            <a href="#" class="btn-dark-grey-small">Small</a>
+                            <a href="#" class="btn-dark-grey-small">Normal</a>
+                            <a href="#" class="btn-dark-grey-small">Large</a>
+                            <a href="#" class="btn-dark-grey-small">Xtra Large</a>
+                        </div>
+                        <div class="input-save">
+                            <a href="#" class="btn-general">Save</a><br /><br />
+                            <a href="#" class="edit-full-mode">Switch to full edit mode</a>
+                        </div>                              
+                        </form>
                     </div>
                 </li>
                 <li class="media">
@@ -85,9 +196,109 @@ under the License.
                             <li class="current-price">$135.00NZD</li>
                         </ul>
                         <p>Stocks: 98</p>   
-                        <a class="btn-general" href="#">Edit</a>
+                        <a class="btn-general edit" id="edit-product-2">Edit</a>
                         <a class="btn-green-small" href="#">Promote</a>
                         <a class="btn-grey-small" href="#">Remove</a>
+                    </div>
+                </li>
+                <li class="media media-edit" style="display: none;" id="view-edit-product-2">
+                    <a class="pull-left" href="#">
+                    <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-170x170.jpg</@ofbizContentUrl>" />
+                    </a>
+                    <div class="media-body">
+                        <form class="form-horizontal pull-left">
+                        <div class="control-group">
+                        <label class="control-label" for="inputProductName">Product name</label>
+                        <div class="controls">
+                        <input type="text" class="input-xlarge" id="inputProductName">
+                        </div>
+                        </div>
+                        <div class="control-group">
+                        <label class="control-label" for="inputDescription">Description</label>
+                        <div class="controls">
+                            <textarea rows="3" class="input-xlarge"></textarea>
+                        </div>
+                        </div>
+                        <div class="control-group">
+                        <label class="control-label" for="inputDescription">Picture upload (4 Max)</label>
+                        <div class="controls">
+                            <ul class="uploading">
+                                <li class="uploaded">
+                                    <div>
+                                        <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>" />
+                                    </div>
+                                    <a href="#">Remove</a>
+                                </li>
+                                <li>
+                                    <div class="uploaded-image">
+                                        <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>" />
+                                    </div>
+                                    <a href="#">Add Photo</a>
+                                </li>
+                                <li>
+                                    <div class="uploaded-image">
+                                        <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>" />
+                                    </div>
+                                    <a href="#">Add Photo</a>
+                                </li>
+                                <li>
+                                    <div class="uploaded-image">
+                                        <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>" />
+                                    </div>
+                                    <a href="#">Add Photo</a>
+                                </li>
+                            </ul>
+                        
+                        </div>
+                        </div>
+                        
+                        <div class="form-inline input-price-stock">
+                        <label>
+                            Listing price
+                            <input type="number" class="input-medium">
+                        </label>
+                        <label style="border:1px solid #E0E0E0;">
+                            Available stock
+                        <input type="number" class="input-medium">
+                        </label>
+                        </div>
+                        
+                        <!-- Promotion price -->                            
+
+                        <div class="form-inline input-promotion">
+                        <input type="checkbox">
+
+                        <label>
+                            &nbsp;Promotion price&nbsp;
+                            <input type="number" class="input-mini">
+                        </label>
+                        <label>
+                            &nbsp;&nbsp;Valid from&nbsp;
+                        <input type="number" class="input-small">
+                        
+                        </label>
+                        <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />
+                         <label>
+                            &nbsp;&nbsp;To&nbsp;
+                        <input type="number" class="input-small">
+                        
+                        </label>
+                        <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />
+                        </div>  
+                        
+                        <div class="form-inline">
+                            <label>Shipping size</label><br />
+                            <a href="#" class="btn-dark-grey-small">Xtra small</a>
+                            <a href="#" class="btn-dark-grey-small">Small</a>
+                            <a href="#" class="btn-dark-grey-small">Normal</a>
+                            <a href="#" class="btn-dark-grey-small">Large</a>
+                            <a href="#" class="btn-dark-grey-small">Xtra Large</a>
+                        </div>
+                        <div class="input-save">
+                            <a href="#" class="btn-general">Save</a><br /><br />
+                            <a href="#" class="edit-full-mode">Switch to full edit mode</a>
+                        </div>                              
+                        </form>
                     </div>
                 </li>
                 <li class="media">
@@ -103,7 +314,7 @@ under the License.
                             <li class="current-price">$135.00NZD</li>
                         </ul>
                         <p>Stocks: 98</p>   
-                        <a class="btn-general" href="#">Edit</a>
+                        <a class="btn-general edit" id="edit-product-3">Edit</a>
                         <a class="btn-green-small" href="#">Promote</a>
                         <a class="btn-grey-small" href="#">Remove</a>
                     </div>
@@ -121,7 +332,7 @@ under the License.
                             <li class="current-price">$135.00NZD</li>
                         </ul>
                         <p>Stocks: 98</p>   
-                        <a class="btn-general" href="#">Edit</a>
+                        <a class="btn-general edit" id="edit-product-4">Edit</a>
                         <a class="btn-green-small" href="#">Promote</a>
                         <a class="btn-grey-small" href="#">Remove</a>
                     </div>
@@ -139,7 +350,7 @@ under the License.
                             <li class="current-price">$135.00NZD</li>
                         </ul>
                         <p>Stocks: 98</p>   
-                        <a class="btn-general" href="#">Edit</a>
+                        <a class="btn-general edit" id="edit-product-5">Edit</a>
                         <a class="btn-green-small" href="#">Promote</a>
                         <a class="btn-grey-small" href="#">Remove</a>
                     </div>
@@ -157,7 +368,7 @@ under the License.
                             <li class="current-price">$135.00NZD</li>
                         </ul>
                         <p>Stocks: 98</p>   
-                        <a class="btn-general" href="#">Edit</a>
+                        <a class="btn-general edit" id="edit-product-6">Edit</a>
                         <a class="btn-green-small" href="#">Promote</a>
                         <a class="btn-grey-small" href="#">Remove</a>
                     </div>
@@ -175,7 +386,7 @@ under the License.
                             <li class="current-price">$135.00NZD</li>
                         </ul>
                         <p>Stocks: 98</p>   
-                        <a class="btn-general" href="#">Edit</a>
+                        <a class="btn-general edit" id="edit-product-7">Edit</a>
                         <a class="btn-green-small" href="#">Promote</a>
                         <a class="btn-grey-small" href="#">Remove</a>
                     </div>

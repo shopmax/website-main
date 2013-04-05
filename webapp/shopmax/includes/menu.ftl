@@ -21,13 +21,15 @@ under the License.
     <div class="navbar-inner">
         <div class="container">
             <ul class="nav">
-                <li><a href="<@ofbizUrl>main</@ofbizUrl>">Home</a></li>
-                <li><a href="shops.html">Shops</a></li>
-                <li><a href="group-bang.html">Group Bang</a></li>
-                <li><a href="rush-hour.html">Rush Hour</a></li>
-                <li><a href="multi-buy.html">Multi Buy</a></li>
-                <li><a href="about-us.html">About Us</a></li>
-                <li><a href="<@ofbizUrl>helpcenter?contentId=SHOPMAX_FAQs</@ofbizUrl>">Help</a></li>
+                <#if headerItem?has_content>
+                    <li <#if headerItem?if_exists == "home">class="on"</#if>><a href="<@ofbizUrl>main</@ofbizUrl>">Home</a></li>
+                    <li <#if headerItem?if_exists == ""></#if>><a href="shops.html">Shops</a></li>
+                    <li <#if headerItem?if_exists == ""></#if>><a href="group-bang.html">Group Bang</a></li>
+                    <li <#if headerItem?if_exists == ""></#if>><a href="rush-hour.html">Rush Hour</a></li>
+                    <li <#if headerItem?if_exists == ""></#if>><a href="multi-buy.html">Multi Buy</a></li>
+                    <li <#if headerItem?if_exists == ""></#if>><a href="about-us.html">About Us</a></li>
+                    <li <#if headerItem?if_exists == "help">class="on"</#if>><a href="<@ofbizUrl>helpcenter?contentId=SHOPMAX_FAQs</@ofbizUrl>">Help</a></li>
+                </#if>
             </ul>
         </div>
     </div>

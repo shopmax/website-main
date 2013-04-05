@@ -23,6 +23,9 @@ under the License.
 
     <screen name="main">
         <section>
+            <actions>
+                <set field="headerItem" value="home"/>
+            </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
