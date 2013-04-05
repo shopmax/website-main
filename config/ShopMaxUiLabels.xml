@@ -34,6 +34,9 @@ under the License.
     <property key="PageTitleOrderConfirmation">
         <value xml:lang="en">Order Confirmation</value>
     </property>
+    <property key="PageTitleOrderDetails">
+        <value xml:lang="en">Order Details</value>
+    </property>
     <property key="PageTitleProductDetail">
         <value xml:lang="en">Product Detail</value>
     </property>

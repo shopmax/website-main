@@ -110,6 +110,12 @@ under the License.
         <response name="error" type="view" value="confirmation"/>
     </request-map>
     
+    <request-map uri="orderdetails">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="orderdetails"/>
+        <response name="error" type="view" value="orderdetails"/>
+    </request-map>
+    
     <!-- Customer Request -->
     <request-map uri="profile">
         <security https="true" auth="false"/>
@@ -137,6 +143,7 @@ under the License.
     <view-map name="checkout" type="screen" page="component://shopmax/widget/OrderScreens.xml#Checkout"/>
     <view-map name="confirmation" type="screen" page="component://shopmax/widget/OrderScreens.xml#Confirmation"/>
     
+    <view-map name="orderdetails" type="screen" page="component://shopmax/widget/OrderScreens.xml#OrderDetails"/>
     <view-map name="profile" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Profile"/>
     <view-map name="account" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Account"/>
 </site-conf>
