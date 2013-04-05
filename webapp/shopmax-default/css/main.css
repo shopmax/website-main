@@ -1271,3 +1271,6 @@ button {margin:0;border:none;}
 	.landing .main-content > h2, .main-content .countdown-container { font-size:26px; overflow:hidden; background-repeat:repeat; padding-bottom:15px;}
 	.list-wrapper .product-list.buy-this { margin:0;}
 }
+.help .main-content .tabbed h3, .help .main-content .tabbed h4 {
+	color: inherit;
+}

@@ -27,7 +27,7 @@ under the License.
                 <li><a href="rush-hour.html">Rush Hour</a></li>
                 <li><a href="multi-buy.html">Multi Buy</a></li>
                 <li><a href="about-us.html">About Us</a></li>
-                <li><a href="<@ofbizUrl>helpcenter?contentId=SHOPMAX_FAQs</@ofbizUrl>"">Help</a></li>
+                <li><a href="<@ofbizUrl>helpcenter?contentId=SHOPMAX_FAQs</@ofbizUrl>">Help</a></li>
             </ul>
         </div>
     </div>
