@@ -28,7 +28,7 @@ under the License.
                     <li <#if headerItem?if_exists == ""></#if>><a href="rush-hour.html">Rush Hour</a></li>
                     <li <#if headerItem?if_exists == ""></#if>><a href="multi-buy.html">Multi Buy</a></li>
                     <li <#if headerItem?if_exists == ""></#if>><a href="about-us.html">About Us</a></li>
-                    <li <#if headerItem?if_exists == "help">class="on"</#if>><a href="<@ofbizUrl>helpcenter?contentId=SHOPMAX_FAQs</@ofbizUrl>">Help</a></li>
+                    <li <#if headerItem?if_exists == "helpcenter">class="on"</#if>><a href="<@ofbizUrl>helpcenter?contentId=SHOPMAX_FAQs</@ofbizUrl>">Help</a></li>
                 </#if>
             </ul>
         </div>
