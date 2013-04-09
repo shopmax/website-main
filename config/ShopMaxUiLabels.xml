@@ -37,6 +37,9 @@ under the License.
     <property key="PageTitleOrderDetails">
         <value xml:lang="en">Order Details</value>
     </property>
+    <property key="PageTitleOrderList">
+        <value xml:lang="en">Order List</value>
+    </property>
     <property key="PageTitleProductDetail">
         <value xml:lang="en">Product Detail</value>
     </property>
