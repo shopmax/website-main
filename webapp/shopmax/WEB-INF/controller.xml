@@ -128,6 +128,18 @@ under the License.
         <response name="error" type="view" value="paymentoption"/>
     </request-map>
     
+    <request-map uri="transactionhistory">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="transactionhistory"/>
+        <response name="error" type="view" value="transactionhistory"/>
+    </request-map>
+    
+    <request-map uri="shippingmethod">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="shippingmethod"/>
+        <response name="error" type="view" value="shippingmethod"/>
+    </request-map>
+    
     <!-- Customer Request -->
     <request-map uri="profile">
         <security https="true" auth="false"/>
@@ -164,6 +176,8 @@ under the License.
     <view-map name="orderdetails" type="screen" page="component://shopmax/widget/OrderScreens.xml#OrderDetails"/>
     <view-map name="orderlist" type="screen" page="component://shopmax/widget/OrderScreens.xml#OrderList"/>
     <view-map name="paymentoption" type="screen" page="component://shopmax/widget/OrderScreens.xml#PaymentOption"/>
+    <view-map name="transactionhistory" type="screen" page="component://shopmax/widget/OrderScreens.xml#TransactionHistory"/>
+    <view-map name="shippingmethod" type="screen" page="component://shopmax/widget/OrderScreens.xml#ShippingMethod"/>
     
     <view-map name="profile" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Profile"/>
     <view-map name="account" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Account"/>

@@ -28,6 +28,9 @@ under the License.
     <property key="PageTitleCheckout">
         <value xml:lang="en">Checkout</value>
     </property>
+    <property key="PageTitleCreatePromotion">
+        <value xml:lang="en">Create Promotion</value>
+    </property>
     <property key="PageTitleManageProduct">
         <value xml:lang="en">Manage Product</value>
     </property>
@@ -49,8 +52,14 @@ under the License.
     <property key="PageTitleProfile">
         <value xml:lang="en">Profile</value>
     </property>
+    <property key="PageTitleShippingMethod">
+        <value xml:lang="en">Shipping Method</value>
+    </property>
     <property key="PageTitleShoppingCart">
         <value xml:lang="en">Shopping Cart</value>
+    </property>
+    <property key="PageTitleTransactionHistory">
+        <value xml:lang="en">Transection History</value>
     </property>
     <property key="PageTitleUploadProduct">
         <value xml:lang="en">Upload Product</value>

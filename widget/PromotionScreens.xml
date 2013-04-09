@@ -26,7 +26,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleCreatePromotion"/>
                 <set field="headerItem" value="createpromotion"/>
-                <set field="breadCrumTitle" value="promotion"/>
+                <set field="breadCrumTitle" value="Promotion"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
