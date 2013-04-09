@@ -134,7 +134,6 @@ under the License.
                 <p><a href="<@ofbizUrl>shoppingcart</@ofbizUrl>" class="btn-flat round">View Cart</a></p>
                 <p><a href="<@ofbizUrl>checkout</@ofbizUrl>" class="btn-flat checkout">Check Out</a></p>
             </div>
-            <input type="hidden" id="ofbizContentUrl" value="<@ofbizContentUrl></@ofbizContentUrl>" />
         </div><!--/.container -->
     </div><!--/. navbar-inner -->
 </header><!--/. navbar -->

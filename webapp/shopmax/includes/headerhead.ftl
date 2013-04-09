@@ -49,7 +49,9 @@ under the License.
         <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.anythingslider.min.js</@ofbizContentUrl>"></script>
         <script src="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.pack.js</@ofbizContentUrl>"></script>  
         <script src="<@ofbizContentUrl>/shopmax-default/js/main.js</@ofbizContentUrl>"></script>
-        <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.raty.min.js</@ofbizContentUrl>"></script>
+        <#include "component://shopmax/webapp/shopmax/includes/ratyjavascript.ftl" />
+        <#-- <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.raty.min.js</@ofbizContentUrl>"></script>-->
+        <in
         <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.mousewheel-3.0.4.pack.js</@ofbizContentUrl>"></script>
         <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.fancybox-1.3.4.js</@ofbizContentUrl>"></script>
         

@@ -1,16 +1,6 @@
-/*!
- * jQuery Raty - A Star Rating Plugin
- *
- * Licensed under The MIT License
- *
- * @version        2.4.5
- * @author         Washington Botelho
- * @documentation  wbotelhos.com/raty
- * 
- */
-
-;
+<script>
 (function(b) {
+    var imageUrlPath = "<@ofbizContentUrl></@ofbizContentUrl>";
     var a = {
         init : function(c) {
             return this
@@ -387,7 +377,7 @@
         mouseover : undefined,
         noRatedMsg : "not rated yet",
         number : 5,
-        path : "img/",
+        path : imageUrlPath+"/shopmax-default/img/",
         precision : false,
         round : {
             down : 0.25,
@@ -411,3 +401,4 @@
         width : undefined
     };
 })(jQuery);
+</script>
