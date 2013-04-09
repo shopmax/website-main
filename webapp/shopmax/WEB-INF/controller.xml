@@ -141,6 +141,13 @@ under the License.
         <response name="error" type="view" value="account"/>
     </request-map>
     
+    <!-- Promotion Request -->
+    <request-map uri="createpromotion">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="createpromotion"/>
+        <response name="error" type="view" value="createpromotion"/>
+    </request-map>
+    
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>
     <view-map name="helpcenter" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#HelpCenter"/>
@@ -160,4 +167,6 @@ under the License.
     
     <view-map name="profile" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Profile"/>
     <view-map name="account" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Account"/>
+    
+    <view-map name="createpromotion" type="screen" page="component://shopmax/widget/PromotionScreens.xml#CreatePromotion"/>
 </site-conf>

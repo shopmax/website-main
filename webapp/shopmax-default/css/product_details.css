@@ -1619,7 +1619,9 @@ padding-left:8px;
 	background: white;
 }
 
-
 .sc-table-promotion tbody td.advanced-option {
 	padding: 30px;
+}
+.container.content.promotion .categories.innerbox h2{
+    font-size: 1.1em;
 }
