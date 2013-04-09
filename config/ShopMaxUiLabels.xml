@@ -40,6 +40,9 @@ under the License.
     <property key="PageTitleOrderList">
         <value xml:lang="en">Order List</value>
     </property>
+    <property key="PageTitlePaymentOption">
+        <value xml:lang="en">Payment Option</value>
+    </property>
     <property key="PageTitleProductDetail">
         <value xml:lang="en">Product Detail</value>
     </property>
