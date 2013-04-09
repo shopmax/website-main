@@ -65,7 +65,7 @@ under the License.
                                 <tr>
                                     <td>From</td>
                                     <td><input type="text" class="span1 textbox_1"></td>
-                                    <td>to</td>
+                                    <td>To</td>
                                     <td><input type="text" class="span1 textbox_1"></td>
                                 </tr>
                                 
@@ -113,19 +113,19 @@ under the License.
                     </ul>
                 </div>
             </div><!-- /.categories .innerbox -->
-        </div><!-- /.span3.sidebar -->          
+        </div><!-- /.span3.sidebar -->
         <!-- MAIN CONTENT -->
         <!-- sliderdiv -->
-        <div class="span9 main-content">            
+        <div class="span9 main-content">
             <table class="table table-condensed sc-table sc-table-promotion">
               <thead>
                 <tr class="sc-table-header">
-                  <th class="col1">Online Marketing Campaigns</th>
+                  <th class="col1">Order List</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                    <td class="col1">           
+                    <td class="col1">
                         <ul class="nav nav-tabs nav-tabs_large" id="myTab">
                           <li class="active"><a data-toggle="tab" href="#recentOrders">Recent orders</a></li>
                           <li class=""><a data-toggle="tab" href="#Pending">pending</a></li>

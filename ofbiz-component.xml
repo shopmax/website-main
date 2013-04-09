@@ -37,6 +37,7 @@
     <!-- web applications; will be mounted when using the embedded container -->
     <webapp name="shopmax"
         title="ShopMax"
+        app-bar-display="false"
         server="default-server"
         location="webapp/shopmax"
         base-permission="OFBTOOLS,SHOPMAX"

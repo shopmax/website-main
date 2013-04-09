@@ -20,7 +20,6 @@ under the License.
 <div class="container content promotion">
     <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
     <div class="row">
-    
         <div class="span3 sidebar" id="side-menu">
             <div class="categories innerbox largeheading">
                 <h2>Account balance</h2>
@@ -38,7 +37,6 @@ under the License.
         <!-- MAIN CONTENT -->
         <!-- sliderdiv -->
         <div class="span9 main-content">
-
             <table class="table table-condensed sc-table sc-table-promotion">
               <thead>
                 <tr class="sc-table-header">
@@ -47,7 +45,7 @@ under the License.
               </thead>
               <tbody>
                 <tr>
-                    <td class="col1">  
+                    <td class="col1">
                         <div class="fromtodate clearfix">
                             <span>From</span>
                             <input type="text" class="span1">
@@ -55,7 +53,7 @@ under the License.
                             <span class="padd">To</span>
                             <input type="text" class="span1">
                             <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" alt="" style="float:left; margin:6px 0 0 5px;">
-                        </div>      
+                        </div>
                         <ul class="nav nav-tabs nav-tabs_large" id="myTab">
                           <li class="active"><a data-toggle="tab" href="#Transaction">Transaction</a></li>
                           <li class=""><a data-toggle="tab" href="#billing">Invoice</a></li>
@@ -106,9 +104,9 @@ under the License.
                             </div>
                         </div>
                     </td>
-                </tr>      
+                </tr>
               </tbody>
-            </table>    
+            </table>
         </div><!-- /.span9 -->
     </div><!-- /.row --> 
 </div> <!-- /container -->

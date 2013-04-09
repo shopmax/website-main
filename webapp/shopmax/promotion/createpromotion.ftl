@@ -67,6 +67,7 @@ $(function(){
                     </form>
                 </div>
                 
+                <#-- Free Shipping -->
                 <div class="sub-promotion" id="free-shipping-div">
                     <table class="table table-condensed sc-table sc-table-promotion">
                       <thead>
@@ -78,15 +79,16 @@ $(function(){
                         <tr class="sc-table-body">
                             <td class="col1">
                                 <div class="form-inline">
-                                <label class="radio">
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                Order value is greater than
-                                </label>&nbsp;&nbsp;&nbsp;<strong>$</strong>&nbsp;&nbsp;<input type="text" class="input-small"/><div class="sc-or"><strong>OR</strong></div><label class="radio">
-                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                Buy at least
-                                </label>&nbsp;&nbsp;<input type="text" class="input-mini"/>&nbsp;&nbsp;(Quantity) of&nbsp;&nbsp;
-                                <input type="text" class="input-xxlarge" style="width:283px;" placeholder="Select your product or category">
-                                <a class="btn-general-small" href="#">Browse</a>
+                                    <label class="radio">
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                        Order value is greater than
+                                    </label>&nbsp;&nbsp;&nbsp;<strong>$</strong>&nbsp;&nbsp;<input type="text" class="input-small"/><div class="sc-or"><strong>OR</strong></div>
+                                    <label class="radio">
+                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                        Buy at least
+                                    </label>&nbsp;&nbsp;<input type="text" class="input-mini"/>&nbsp;&nbsp;(Quantity) of&nbsp;&nbsp;
+                                    <input type="text" class="input-xxlarge" style="width:283px;" placeholder="Select your product or category">
+                                    <a class="btn-general-small" href="#">Browse</a>
                                 </div>
                                 
                                 <table class="selected-products">
@@ -94,27 +96,26 @@ $(function(){
                                     <tr><td class="col1">Electronics > Mobiles > Smartphones</td><td class="col2"><a href="#">Remove</a></td></tr>      
                                 </table>
                                 
-                                
                                 <div class="form-inline">
                                     <br />
                                     <label>
-                                    Start date&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input type="text" class="input-small" />                                   
+                                        Start date&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" class="input-small" />
                                     </label>
                                     <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />
                                     <label class="offset1">
-                                    End date&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input type="text" class="input-small" />                                   
+                                        End date&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="text" class="input-small" />
                                     </label>
                                     <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" /> 
                                 </div>
-                            
                             </td>
-                        </tr>      
+                        </tr>
                       </tbody>
                     </table>
                 </div>
                 
+                <#-- Group Bang -->
                 <div class="sub-promotion hidden" id="group-bang-div">
                     <div class="title_grn"><h6>Group bang</h6></div>
                     <div class="block">
@@ -190,6 +191,7 @@ $(function(){
                     </div>
                 </div>
                 
+                <#-- In Store Voucher -->
                 <div class="sub-promotion hidden" id="in-store-voucher-div">
                     <div class="title_grn"><h6>In store voucher</h6></div>
                     <div class="block">
@@ -224,8 +226,9 @@ $(function(){
                     </div>
                 </div>
                 
+                <#-- Multiple Buy -->
                 <div class="sub-promotion hidden" id="multi-buy-div">
-                    <div class="title_grn"><h6>Multiple Biy</h6></div>
+                    <div class="title_grn"><h6>Multiple Buy</h6></div>
                     <div class="block">
                         <ul class="storevouc">
                             <li>
@@ -304,6 +307,7 @@ $(function(){
                     </div>
                 </div>
                 
+                <#-- Rush Hour -->
                 <div class="sub-promotion hidden" id="rush-hour-div">
                     <div class="title_grn"><h6>Rush Hour</h6></div>
                     <div class="block">
@@ -378,5 +382,5 @@ $(function(){
             </div>
         </div><!-- /.span9 -->
         <#include "component://shopmax/webapp/shopmax/promotion/promotionright.ftl" />
-    </div><!-- /.row -->                
+    </div><!-- /.row -->
 </div> <!-- /container -->

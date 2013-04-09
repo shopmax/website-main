@@ -54,7 +54,7 @@ under the License.
         <response name="error" type="view" value="error"/>
     </request-map>
     
-    <!-- Catalog Request -->
+    <!-- Catalog Requests -->
     <request-map uri="product">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="product"/>
@@ -91,7 +91,7 @@ under the License.
         <response name="error" type="view" value="uploadproduct"/>
     </request-map>
     
-    <!-- Order Request -->
+    <!-- Order Requests -->
     <request-map uri="shoppingcart">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="shoppingcart"/>
@@ -140,7 +140,7 @@ under the License.
         <response name="error" type="view" value="shippingmethod"/>
     </request-map>
     
-    <!-- Customer Request -->
+    <!-- Customer Requests -->
     <request-map uri="profile">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="profile"/>
@@ -153,7 +153,7 @@ under the License.
         <response name="error" type="view" value="account"/>
     </request-map>
     
-    <!-- Promotion Request -->
+    <!-- Promotion Requests -->
     <request-map uri="createpromotion">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="createpromotion"/>
@@ -182,5 +182,5 @@ under the License.
     <view-map name="profile" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Profile"/>
     <view-map name="account" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Account"/>
     
-    <view-map name="createpromotion" type="screen" page="component://shopmax/widget/PromotionScreens.xml#CreatePromotion"/>
+    <view-map name="createpromotion" type="screen" page="component://shopmax/widget/PromoScreens.xml#CreatePromotion"/>
 </site-conf>

@@ -20,7 +20,7 @@ under the License.
 <div class="container content promotion">
     <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
     <div class="row content-left">
-    <!-- MAIN CONTENT -->
+        <!-- MAIN CONTENT -->
         <div class="span9 main-content">
             <div class="my_acc">
                 <div class="title_grn"><h6>YOUR SHIPPING METHOD</h6></div>
@@ -48,7 +48,6 @@ under the License.
                 </div>
                 <div class="title_grn"><h6>YOUR OWN SHIPPING METHOD</h6></div>
                 <div class="block block_mar">
-                    
                     <ul class="storevouc">
                         <li>
                             <span class="heading">Name of your shipping method</span>
@@ -140,7 +139,6 @@ under the License.
                             </tr>
                         </tbody>
                     </table>
-                    
                     <table cellpadding="0" cellspacing="0" border="0" class="table table_m3">
                         <tr>
                             <td><h6>Combination Index</h6></td>

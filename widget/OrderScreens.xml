@@ -90,7 +90,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleOrderList"/>
                 <set field="headerItem" value="orderlist"/>
-                <set field="breadCrumTitle" value="Online Marketing"/>
+                <set field="breadCrumTitle" value="Order List"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">

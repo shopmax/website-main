@@ -19,5 +19,22 @@ under the License.
 -->
 
 <entity-engine-xml>
-
+    <!-- The Main Company Internal Organization -->
+    <Party partyId="SHOPMAX_COMPANY" partyTypeId="PARTY_GROUP"/>
+    <PartyGroup partyId="SHOPMAX_COMPANY" groupName="Shop Max" logoImageUrl="/shopmax-default/img/logo-2.png"/>
+    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="BILL_FROM_VENDOR"/>
+    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="BILL_TO_CUSTOMER"/>
+    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="INTERNAL_ORGANIZATIO"/>
+    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="CARRIER"/>
+    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="ACCOUNT"/>
+    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="_NA_"/>
+    <ContactMech contactMechId="SHOPMAX_EMAIL" contactMechTypeId="EMAIL_ADDRESS" infoString="ofbiztest@example.com"/>
+    <PartyContactMech partyId="SHOPMAX_COMPANY" contactMechId="SHOPMAX_EMAIL" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PartyContactMechPurpose partyId="SHOPMAX_COMPANY" contactMechId="SHOPMAX_EMAIL" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2013-04-01 00:00:00"/>
+    <ContactMech contactMechId="SHOPMAX_ADDRESS" contactMechTypeId="POSTAL_ADDRESS"/>
+    <PartyContactMech partyId="SHOPMAX_COMPANY" contactMechId="SHOPMAX_ADDRESS" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PostalAddress contactMechId="SHOPMAX_ADDRESS" toName="Company Shop Max" address1="999" city="Open City" postalCode="999999" countryGeoId="USA" stateProvinceGeoId="CA"/>
+    <PartyContactMechPurpose partyId="SHOPMAX_COMPANY" contactMechId="SHOPMAX_ADDRESS" contactMechPurposeTypeId="BILLING_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <PartyContactMechPurpose partyId="SHOPMAX_COMPANY" contactMechId="SHOPMAX_ADDRESS" contactMechPurposeTypeId="GENERAL_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <PartyContactMechPurpose partyId="SHOPMAX_COMPANY" contactMechId="SHOPMAX_ADDRESS" contactMechPurposeTypeId="PAYMENT_LOCATION" fromDate="2013-04-01 00:00:00"/>
 </entity-engine-xml>
