@@ -51,10 +51,10 @@ under the License.
                         <div class="fromtodate clearfix">
                             <span>From</span>
                             <input type="text" class="span1">
-                            <img src="img/icon-calendar.png" alt="" style="float:left; margin:6px 0 0 5px;">
+                            <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" alt="" style="float:left; margin:6px 0 0 5px;">
                             <span class="padd">To</span>
                             <input type="text" class="span1">
-                            <img src="img/icon-calendar.png" alt="" style="float:left; margin:6px 0 0 5px;">
+                            <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" alt="" style="float:left; margin:6px 0 0 5px;">
                         </div>      
                         <ul class="nav nav-tabs nav-tabs_large" id="myTab">
                           <li class="active"><a data-toggle="tab" href="#Transaction">Transaction</a></li>
