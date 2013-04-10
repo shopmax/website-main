@@ -24,7 +24,7 @@ under the License.
                 <#if headerItem?has_content>
                     <li <#if headerItem?if_exists == "home">class="on"</#if>><a href="<@ofbizUrl>main</@ofbizUrl>">Home</a></li>
                     <li <#if headerItem?if_exists == ""></#if>><a href="shops.html">Shops</a></li>
-                    <li <#if headerItem?if_exists == ""></#if>><a href="group-bang.html">Group Bang</a></li>
+                    <li <#if headerItem?if_exists == "groupbang">class="on"</#if>><a href="<@ofbizUrl>groupbang</@ofbizUrl>">Group Bang</a></li>
                     <li <#if headerItem?if_exists == ""></#if>><a href="rush-hour.html">Rush Hour</a></li>
                     <li <#if headerItem?if_exists == ""></#if>><a href="multi-buy.html">Multi Buy</a></li>
                     <li <#if headerItem?if_exists == ""></#if>><a href="about-us.html">About Us</a></li>

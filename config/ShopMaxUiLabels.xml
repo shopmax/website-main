@@ -34,6 +34,9 @@ under the License.
     <property key="PageTitleCreatePromotion">
         <value xml:lang="en">Create Promotion</value>
     </property>
+    <property key="PageTitleGroupBang">
+        <value xml:lang="en">Group Bang</value>
+    </property>
     <property key="PageTitleHelpCenter">
         <value xml:lang="en">Help</value>
     </property>

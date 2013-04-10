@@ -184,6 +184,12 @@ under the License.
         <response name="error" type="view" value="createcampaign"/>
     </request-map>
     
+    <!-- Website Requests -->
+    <request-map uri="groupbang">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="groupbang"/>
+    </request-map>
+    
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>
     <view-map name="helpcenter" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#HelpCenter"/>
@@ -212,4 +218,6 @@ under the License.
     <view-map name="createpromotion" type="screen" page="component://shopmax/widget/PromoScreens.xml#CreatePromotion"/>
     <view-map name="onlinemarketing" type="screen" page="component://shopmax/widget/PromoScreens.xml#OnlineMarketing"/>
     <view-map name="createcampaign" type="screen" page="component://shopmax/widget/PromoScreens.xml#CreateCampaign"/>
+    
+    <view-map name="groupbang" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#GroupBang"/>
 </site-conf>
