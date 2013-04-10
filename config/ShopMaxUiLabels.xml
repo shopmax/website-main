@@ -28,6 +28,9 @@ under the License.
     <property key="PageTitleCheckout">
         <value xml:lang="en">Checkout</value>
     </property>
+    <property key="PageTitleCreateCampaign">
+        <value xml:lang="en">Create Campaign</value>
+    </property>
     <property key="PageTitleCreatePromotion">
         <value xml:lang="en">Create Promotion</value>
     </property>
@@ -36,6 +39,9 @@ under the License.
     </property>
     <property key="PageTitleManageProduct">
         <value xml:lang="en">Manage Product</value>
+    </property>
+    <property key="PageTitleOnlineMarketing">
+        <value xml:lang="en">Online Marketing</value>
     </property>
     <property key="PageTitleOrderConfirmation">
         <value xml:lang="en">Order Confirmation</value>

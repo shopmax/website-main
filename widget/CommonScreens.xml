@@ -89,7 +89,7 @@ under the License.
             </actions>
             <widgets>
                 <include-screen name="GlobalActions" location="component://shopmax/widget/CommonScreens.xml"/>
-                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/website/ActionDecorator.ftl"/></html></platform-specific>
+                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/website/actiondecorator.ftl"/></html></platform-specific>
             </widgets>
         </section>
     </screen>

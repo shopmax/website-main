@@ -172,12 +172,24 @@ under the License.
         <response name="error" type="view" value="createpromotion"/>
     </request-map>
     
+    <request-map uri="onlinemarketing">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="onlinemarketing"/>
+        <response name="error" type="view" value="onlinemarketing"/>
+    </request-map>
+    
+    <request-map uri="createcampaign">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="createcampaign"/>
+        <response name="error" type="view" value="createcampaign"/>
+    </request-map>
+    
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>
     <view-map name="helpcenter" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#HelpCenter"/>
     
     <view-map name="product" type="screen" page="component://shopmax/widget/CatalogScreens.xml#Product"/>
-    <view-map name="category" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#Category"/>
+    <view-map name="category" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryGridView"/>
     <view-map name="categorygridview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryGridView"/>
     <view-map name="categorylistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryListView"/>
     <view-map name="manageproduct" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ManageProduct"/>
@@ -198,4 +210,6 @@ under the License.
     <view-map name="account" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Account"/>
     
     <view-map name="createpromotion" type="screen" page="component://shopmax/widget/PromoScreens.xml#CreatePromotion"/>
+    <view-map name="onlinemarketing" type="screen" page="component://shopmax/widget/PromoScreens.xml#OnlineMarketing"/>
+    <view-map name="createcampaign" type="screen" page="component://shopmax/widget/PromoScreens.xml#CreateCampaign"/>
 </site-conf>

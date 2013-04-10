@@ -37,4 +37,38 @@ under the License.
             </widgets>
         </section>
     </screen>
+    
+    <screen name="OnlineMarketing">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleOnlineMarketing"/>
+                <set field="headerItem" value="onlinemarketing"/>
+                <set field="breadCrumTitle" value="Online Marketing"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/promotion/onlinemarketing.ftl"></html-template></html></platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="CreateCampaign">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleCreateCampaign"/>
+                <set field="headerItem" value="createcampaign"/>
+                <set field="breadCrumTitle" value="Online Marketing"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/promotion/createcampaign.ftl"></html-template></html></platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
 </screens>
