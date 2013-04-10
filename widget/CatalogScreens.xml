@@ -78,6 +78,44 @@ under the License.
         </section>
     </screen>
     
+    <screen name="SearchGridView">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleCategory"/>
+                <set field="headerItem" value="categorygridview"/>
+                <set field="breadCrumTitle" value="Category"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html><html-template location="component://shopmax/webapp/shopmax/catalog/searchgridview.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="SearchListView">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleCategory"/>
+                <set field="headerItem" value="categorylistview"/>
+                <set field="breadCrumTitle" value="Category"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html><html-template location="component://shopmax/webapp/shopmax/catalog/searchlistview.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
     <screen name="ManageProduct">
         <section>
             <actions>

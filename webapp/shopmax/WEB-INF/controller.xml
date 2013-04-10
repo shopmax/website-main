@@ -79,6 +79,18 @@ under the License.
         <response name="error" type="view" value="categorylistview"/>
     </request-map>
     
+    <request-map uri="searchgridview">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="searchgridview"/>
+        <response name="error" type="view" value="searchgridview"/>
+    </request-map>
+    
+    <request-map uri="searchlistview">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="searchlistview"/>
+        <response name="error" type="view" value="searchlistview"/>
+    </request-map>
+    
     <request-map uri="manageproduct">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="manageproduct"/>
@@ -170,6 +182,8 @@ under the License.
     <view-map name="categorylistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryListView"/>
     <view-map name="manageproduct" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ManageProduct"/>
     <view-map name="uploadproduct" type="screen" page="component://shopmax/widget/CatalogScreens.xml#UploadProduct"/>
+    <view-map name="searchgridview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#SearchGridView"/>
+    <view-map name="searchlistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#SearchListView"/>
     
     <view-map name="shoppingcart" type="screen" page="component://shopmax/widget/CartScreens.xml#ShoppingCart"/>
     <view-map name="checkout" type="screen" page="component://shopmax/widget/OrderScreens.xml#Checkout"/>

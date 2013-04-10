@@ -21,7 +21,7 @@ under the License.
     <h2>Category list</h2>
     <div class="category-list nested-list">
         <ul>
-        <li class="expanded"><a href="#"><span>Category Lv1</span></a>
+            <li class="expanded"><a href="#"><span>Category Lv1</span></a>
                 <ul>
                     <li class="expanded"><a href="#"><span>Category Lv2</span></a>
                         <ul>
@@ -36,10 +36,8 @@ under the License.
                     </li>
                     <li class="collapsed"><a href="#"><span>Category Lv2</span></a></li>
                 </ul>
-        </li>
-        <li class="collapsed"><a href="#"><span>Category Lv1</span></a></li>
-
+            </li>
+            <li class="collapsed"><a href="#"><span>Category Lv1</span></a></li>
         </ul>
     </div>
-    
 </div><!-- /.categories .innerbox -->
