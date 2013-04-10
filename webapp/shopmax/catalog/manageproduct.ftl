@@ -63,7 +63,7 @@ $(function(){
                         <li><a href="#">4</a></li>
                         <li><a href="#">...</a></li>
                         <li><a href="#">10</a></li>
-                        <li><a href="#"><img src="img/arrow-next-blue.png" /></a></li>
+                        <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/arrow-next-blue.png</@ofbizContentUrl>" /></a></li>
                     </ul>
                 </div>
             </div>
@@ -398,7 +398,7 @@ $(function(){
                         <li><a href="#">4</a></li>
                         <li><a href="#">...</a></li>
                         <li><a href="#">10</a></li>
-                        <li><a href="#"><img src="img/arrow-next-blue.png" /></a></li>
+                        <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/arrow-next-blue.png</@ofbizContentUrl>" /></a></li>
                     </ul>
                 </div>
             </div>
