@@ -24,7 +24,7 @@ under the License.
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>ShopMax : <#if titleProperty?has_content>${uiLabelMap.get(titleProperty)}</#if></title>
+        <title>ShopMax <#if titleProperty?has_content>: ${uiLabelMap.get(titleProperty)}</#if></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <!-- what happens with this with mobile phones? 
