@@ -46,6 +46,9 @@ under the License.
     <property key="PageTitleOnlineMarketing">
         <value xml:lang="en">Online Marketing</value>
     </property>
+    <property key="PageTitleMultiBuy">
+        <value xml:lang="en">Multi Buy</value>
+    </property>
     <property key="PageTitleOrderConfirmation">
         <value xml:lang="en">Order Confirmation</value>
     </property>
