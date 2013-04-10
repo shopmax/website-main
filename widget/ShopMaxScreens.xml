@@ -70,6 +70,25 @@ under the License.
         </section>
     </screen>
     
+    <screen name="RushHour">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleRushHour"/>
+                <set field="headerItem" value="rushhour"/>
+                <set field="breadCrumTitle" value="Rush Hour"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html><html-template location="component://shopmax/webapp/shopmax/website/rushhour.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
     <screen name="GroupBang">
         <section>
             <actions>

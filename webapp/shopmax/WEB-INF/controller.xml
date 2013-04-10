@@ -54,6 +54,12 @@ under the License.
         <response name="error" type="view" value="error"/>
     </request-map>
     
+    <request-map uri="rushhour">
+        <security https="false" auth="false"/>
+        <response name="success" type="view" value="rushhour"/>
+        <response name="error" type="view" value="rushhour"/>
+    </request-map>
+    
     <!-- Catalog Requests -->
     <request-map uri="product">
         <security https="true" auth="false"/>
@@ -193,6 +199,7 @@ under the License.
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>
     <view-map name="helpcenter" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#HelpCenter"/>
+    <view-map name="rushhour" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#RushHour"/>
     
     <view-map name="product" type="screen" page="component://shopmax/widget/CatalogScreens.xml#Product"/>
     <view-map name="category" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryGridView"/>

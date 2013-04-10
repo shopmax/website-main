@@ -64,6 +64,9 @@ under the License.
     <property key="PageTitleProfile">
         <value xml:lang="en">Profile</value>
     </property>
+    <property key="PageTitleRushHour">
+        <value xml:lang="en">Rush Hour</value>
+    </property>
     <property key="PageTitleShippingMethod">
         <value xml:lang="en">Shipping Method</value>
     </property>
