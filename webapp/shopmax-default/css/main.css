@@ -1277,3 +1277,6 @@ button {margin:0;border:none;}
 .btn-general.edit{
 	cursor: pointer;
 }
+.row.content-left .white_nav{
+	margin-bottom: 36px;
+}

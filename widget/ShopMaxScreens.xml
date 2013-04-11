@@ -126,4 +126,103 @@ under the License.
             </widgets>
         </section>
     </screen>
+    
+    <screen name="ShopHomePage">
+        <section>
+            <actions>
+                <set field="titleProperty" value="Shop Name"/>
+                <set field="headerItem" value="shophome"/>
+                <set field="breadCrumTitle" value="Shop Name"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html><html-template location="component://shopmax/webapp/shopmax/shop/shophomepage.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="ShopGroupBang">
+        <section>
+            <actions>
+                <set field="titleProperty" value="Shop Name"/>
+                <set field="headerItem" value="shopproductdetail"/>
+                <set field="productDetailType" value="shopgroupbang"/>
+                <set field="breadCrumTitle" value="Shop Name"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html><html-template location="component://shopmax/webapp/shopmax/shop/productdetail.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="ShopMultiBuy">
+        <section>
+            <actions>
+                <set field="titleProperty" value="Shop Name"/>
+                <set field="headerItem" value="shopproductdetail"/>
+                <set field="productDetailType" value="shopmultibuy"/>
+                <set field="breadCrumTitle" value="Shop Name"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html><html-template location="component://shopmax/webapp/shopmax/shop/productdetail.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="ShopNormal">
+        <section>
+            <actions>
+                <set field="titleProperty" value="Shop Name"/>
+                <set field="headerItem" value="shopproductdetail"/>
+                <set field="productDetailType" value="shopnormal"/>
+                <set field="breadCrumTitle" value="Shop Name"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html><html-template location="component://shopmax/webapp/shopmax/shop/productdetail.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="ShopRushHour">
+        <section>
+            <actions>
+                <set field="titleProperty" value="Shop Name"/>
+                <set field="headerItem" value="shopproductdetail"/>
+                <set field="productDetailType" value="shoprushhour"/>
+                <set field="breadCrumTitle" value="Shop Name"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html><html-template location="component://shopmax/webapp/shopmax/shop/productdetail.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
 </screens>

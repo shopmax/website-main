@@ -55,11 +55,11 @@ under the License.
     </request-map>
     
     <!-- Catalog Requests -->
-    <request-map uri="product">
+    <!-- <request-map uri="product">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="product"/>
         <response name="error" type="view" value="product"/>
-    </request-map>
+    </request-map> -->
     
     <request-map uri="category">
         <security https="true" auth="false"/>
@@ -202,11 +202,37 @@ under the License.
         <response name="error" type="view" value="multibuy"/>
     </request-map>
     
+    <!--  Shop Requests -->
+    <request-map uri="shophomepage">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="shophomepage"/>
+    </request-map>
+    
+     <request-map uri="shopgroupbang">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="shopgroupbang"/>
+    </request-map>
+    
+    <request-map uri="shopmultibuy">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="shopmultibuy"/>
+    </request-map>
+    
+    <request-map uri="shopnormal">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="shopnormal"/>
+    </request-map>
+    
+    <request-map uri="shoprushhour">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="shoprushhour"/>
+    </request-map>
+    
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>
     <view-map name="helpcenter" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#HelpCenter"/>
     
-    <view-map name="product" type="screen" page="component://shopmax/widget/CatalogScreens.xml#Product"/>
+    <!-- <view-map name="product" type="screen" page="component://shopmax/widget/CatalogScreens.xml#Product"/> -->
     <view-map name="category" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryGridView"/>
     <view-map name="categorygridview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryGridView"/>
     <view-map name="categorylistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryListView"/>
@@ -232,6 +258,13 @@ under the License.
     <view-map name="createcampaign" type="screen" page="component://shopmax/widget/PromoScreens.xml#CreateCampaign"/>
     
     <view-map name="groupbang" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#GroupBang"/>
+
     <view-map name="rushhour" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#RushHour"/>
     <view-map name="multibuy" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#MultiBuy"/>
+    
+    <view-map name="shophomepage" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#ShopHomePage"/>
+    <view-map name="shopgroupbang" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#ShopGroupBang"/>
+    <view-map name="shopmultibuy" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#ShopMultiBuy"/>
+    <view-map name="shopnormal" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#ShopNormal"/>
+    <view-map name="shoprushhour" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#ShopRushHour"/>
 </site-conf>

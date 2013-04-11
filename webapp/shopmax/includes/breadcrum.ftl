@@ -20,6 +20,9 @@ under the License.
     <ul class="breadcrum">
         <#if headerItem?has_content>
             <li><a href="<@ofbizUrl>main</@ofbizUrl>">Home</a></li>
+            <#if headerItem?if_exists == "shopproductdetail">
+                <li><a href="<@ofbizUrl>#</@ofbizUrl>">Shops</a></li>
+            </#if>
             <li>${breadCrumTitle?if_exists}</li>
         </#if>
     </ul>
