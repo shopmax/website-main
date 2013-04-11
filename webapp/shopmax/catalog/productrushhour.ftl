@@ -21,11 +21,10 @@ under the License.
     <div class="span6">
         <div class="product-wrapper">
             <div class="product-inner">
-                <!-- <img src="http://placehold.it/472x472">  -->
                 <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-472x472.jpg</@ofbizContentUrl>" />
             </div>
         </div>
-    
+        
         <ul class="product-thumbs">
             <li>
                 <div class="product-thumb-wrapper">
@@ -56,9 +55,15 @@ under the License.
             <div class="raty" data-rating="3"></div>
             <h5 class="review-number">(768 reviews)</h5>
             <br /><br />
-            <h5 class="old">$118</h5>
-            <h1>$59</h1>
             
+            <ul class="price-option">
+                <li>was <span class="old">$118</span></li>
+                <li>discount <span class="discount-price">50%</span></li>
+                <li>save <span class="discount-price">$59</span></li>
+            </ul>
+            <h1 class="red">$59</h1><br />
+            <h5 class="georgia deal-end">Deals Ends in</h5>
+            <h3 class="time-left countdown-container"><span class="countdown" id="countdown-time-left"></span></h3>
             <div class="row selectSize" >
                 <div class="span1">Size</div>
                 <div class="span3">

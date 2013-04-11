@@ -78,13 +78,13 @@ under the License.
                     <a href="#">Size info</a>
                 </div>
             </div>
-
+            
             <div class="selectColor">
                 Colour: <strong>326-540 - Ox Red/Royal Blue</strong>
                 <ul>
                     <li>
                         <a href=#><img src="<@ofbizContentUrl>/shopmax-default/img/color-black.png</@ofbizContentUrl>" /></a>
-                    </li>                           
+                    </li>
                     <li>
                         <a href=#><img src="<@ofbizContentUrl>/shopmax-default/img/color-grey.png</@ofbizContentUrl>" /></a>
                     </li>
@@ -105,9 +105,9 @@ under the License.
                     </li>
                 </ul>
             </div>
-
+            
             Quantity: <strong>178 in stock</strong> <br /> <br />
-
+            
             <button class="btn-large blue cart" type="submit">ADD TO CART</button>
             <ul class="selectAction">
                 <li><a href="#">Add to shopping list</a></li>

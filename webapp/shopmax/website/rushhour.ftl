@@ -27,7 +27,7 @@ under the License.
 <div class="container content">
     <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
     <div class="row content-left">
-    <!-- MAIN CONTENT -->
+        <!-- MAIN CONTENT -->
         <!-- sliderdiv -->
         <div class="span12 main-content">
             <h2>Rush Hour</h2>
@@ -67,8 +67,8 @@ under the License.
                     </div>
                 </li>
             </ul>
-        
-        <h3 class="next-deal countdown-container">Next deal open in <span class="countdown" id="countdown-next-deal"></span></h3>
+            
+            <h3 class="next-deal countdown-container">Next deal open in <span class="countdown" id="countdown-next-deal"></span></h3>
             <ul class="product-list next-deal">
                 <li>
                     <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic.png</@ofbizContentUrl>" width="262" height="262" alt="" class="pull-left" />
@@ -100,5 +100,5 @@ under the License.
                 </li>
             </ul>
         </div><!-- /.span12 -->
-    </div><!-- /.row -->                
+    </div><!-- /.row -->
 </div> <!-- /container -->

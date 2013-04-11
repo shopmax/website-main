@@ -55,11 +55,11 @@ under the License.
     </request-map>
     
     <!-- Catalog Requests -->
-    <!-- <request-map uri="product">
+    <request-map uri="product">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="product"/>
         <response name="error" type="view" value="product"/>
-    </request-map> -->
+    </request-map>
     
     <request-map uri="category">
         <security https="true" auth="false"/>
@@ -101,6 +101,30 @@ under the License.
         <security https="true" auth="false"/>
         <response name="success" type="view" value="uploadproduct"/>
         <response name="error" type="view" value="uploadproduct"/>
+    </request-map>
+    
+    <request-map uri="productnormal">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="productnormal"/>
+        <response name="error" type="view" value="productnormal"/>
+    </request-map>
+    
+    <request-map uri="productgroupbang">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="productgroupbang"/>
+        <response name="error" type="view" value="productgroupbang"/>
+    </request-map>
+    
+    <request-map uri="productmultibuy">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="productmultibuy"/>
+        <response name="error" type="view" value="productmultibuy"/>
+    </request-map>
+    
+    <request-map uri="productrushhour">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="productrushhour"/>
+        <response name="error" type="view" value="productrushhour"/>
     </request-map>
     
     <!-- Order Requests -->
@@ -208,31 +232,20 @@ under the License.
         <response name="success" type="view" value="shophomepage"/>
     </request-map>
     
-     <request-map uri="shopgroupbang">
-        <security https="true" auth="false"/>
-        <response name="success" type="view" value="shopgroupbang"/>
-    </request-map>
-    
-    <request-map uri="shopmultibuy">
-        <security https="true" auth="false"/>
-        <response name="success" type="view" value="shopmultibuy"/>
-    </request-map>
-    
-    <request-map uri="shopnormal">
-        <security https="true" auth="false"/>
-        <response name="success" type="view" value="shopnormal"/>
-    </request-map>
-    
-    <request-map uri="shoprushhour">
-        <security https="true" auth="false"/>
-        <response name="success" type="view" value="shoprushhour"/>
-    </request-map>
-    
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>
     <view-map name="helpcenter" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#HelpCenter"/>
+    <view-map name="groupbang" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#GroupBang"/>
+    <view-map name="rushhour" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#RushHour"/>
+    <view-map name="multibuy" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#MultiBuy"/>
     
-    <!-- <view-map name="product" type="screen" page="component://shopmax/widget/CatalogScreens.xml#Product"/> -->
+    <view-map name="shophomepage" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#ShopHomePage"/>
+    
+    <view-map name="product" type="screen" page="component://shopmax/widget/CatalogScreens.xml#Product"/>
+    <view-map name="productnormal" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ProductNormal"/>
+    <view-map name="productgroupbang" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ProductGroupBang"/>
+    <view-map name="productmultibuy" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ProductMultiBuy"/>
+    <view-map name="productrushhour" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ProductRushHour"/>
     <view-map name="category" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryGridView"/>
     <view-map name="categorygridview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryGridView"/>
     <view-map name="categorylistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryListView"/>
@@ -256,15 +269,4 @@ under the License.
     <view-map name="createpromotion" type="screen" page="component://shopmax/widget/PromoScreens.xml#CreatePromotion"/>
     <view-map name="onlinemarketing" type="screen" page="component://shopmax/widget/PromoScreens.xml#OnlineMarketing"/>
     <view-map name="createcampaign" type="screen" page="component://shopmax/widget/PromoScreens.xml#CreateCampaign"/>
-    
-    <view-map name="groupbang" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#GroupBang"/>
-
-    <view-map name="rushhour" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#RushHour"/>
-    <view-map name="multibuy" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#MultiBuy"/>
-    
-    <view-map name="shophomepage" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#ShopHomePage"/>
-    <view-map name="shopgroupbang" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#ShopGroupBang"/>
-    <view-map name="shopmultibuy" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#ShopMultiBuy"/>
-    <view-map name="shopnormal" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#ShopNormal"/>
-    <view-map name="shoprushhour" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#ShopRushHour"/>
 </site-conf>

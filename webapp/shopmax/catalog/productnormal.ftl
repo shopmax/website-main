@@ -21,10 +21,11 @@ under the License.
     <div class="span6">
         <div class="product-wrapper">
             <div class="product-inner">
+                <!-- <img src="http://placehold.it/472x472">  -->
                 <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-472x472.jpg</@ofbizContentUrl>" />
             </div>
         </div>
-
+        
         <ul class="product-thumbs">
             <li>
                 <div class="product-thumb-wrapper">
@@ -55,51 +56,8 @@ under the License.
             <div class="raty" data-rating="3"></div>
             <h5 class="review-number">(768 reviews)</h5>
             <br /><br />
-            <h1>$135.00</h1>
-            <div class="list-wrapper">
-            <h4>Get this half price!</h4>
-            <ul class="product-list buy-this span-half">
-                <li>
-                    <form class="pull-left">
-                        <input type="checkbox" checked name="product1" />
-                    </form>
-                    <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic.png</@ofbizContentUrl>" width="60" height="60" alt="" class="pull-left" />
-                    <h5>Product Name<span class="raty" data-rating="3"></span></h5>
-                    <p class="price">$135.00</p>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent</p>
-                </li>
-                <li>
-                    <form class="pull-left">
-                        <input type="checkbox" checked name="product2" />
-                    </form>
-                    <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic.png</@ofbizContentUrl>" width="60" height="60" alt="" class="pull-left" />
-                    <h5>Product Name<span class="raty" data-rating="1"></span></h5>
-                    <p class="price">$135.00</p>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent</p>
-                </li>
-                <li>
-                    <form class="pull-left">
-                        <input type="checkbox" checked name="product3" />
-                    </form>
-                    <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic.png</@ofbizContentUrl>" width="60" height="60" alt="" class="pull-left" />
-                    <h5>Product Name<span class="raty" data-rating="2"></span></h5>
-                    <p class="price">$135.00</p>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent</p>
-                </li>
-                <li>
-                    <form class="pull-left">
-                        <input type="checkbox" checked name="product4" />
-                    </form>
-                    <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic.png</@ofbizContentUrl>" width="60" height="60" alt="" class="pull-left" />
-                    <h5>Product Name<span class="raty" data-rating="3"></span></h5>
-                    <p class="price">$135.00</p>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent</p>
-                </li>
-            </ul>
-            </div>
-            
-            <h5 class="georgia deal-end">Deals Ends in</h5>
-            <h3 class="time-left countdown-container"><span class="countdown" id="countdown-time-left"></span></h3>
+            <h5 class="old">$118</h5>
+            <h1>$59</h1>
             
             <div class="row selectSize" >
                 <div class="span1">Size</div>
@@ -115,13 +73,13 @@ under the License.
                     <a href="#">Size info</a>
                 </div>
             </div>
-
+            
             <div class="selectColor">
                 Colour: <strong>326-540 - Ox Red/Royal Blue</strong>
                 <ul>
                     <li>
                         <a href=#><img src="<@ofbizContentUrl>/shopmax-default/img/color-black.png</@ofbizContentUrl>" /></a>
-                    </li>                           
+                    </li>
                     <li>
                         <a href=#><img src="<@ofbizContentUrl>/shopmax-default/img/color-grey.png</@ofbizContentUrl>" /></a>
                     </li>
@@ -130,7 +88,7 @@ under the License.
                     </li>
                     <li>
                         <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-green.png</@ofbizContentUrl>" /></a>
-                    </li>                           
+                    </li>
                     <li>
                         <a href=#><img src="<@ofbizContentUrl>/shopmax-default/img/color-blue.png</@ofbizContentUrl>" /></a>
                     </li>
@@ -142,9 +100,9 @@ under the License.
                     </li>
                 </ul>
             </div>
-
+            
             Quantity: <strong>178 in stock</strong> <br /> <br />
-
+            
             <button class="btn-large blue cart" type="submit">ADD TO CART</button>
             <ul class="selectAction">
                 <li><a href="#">Add to shopping list</a></li>

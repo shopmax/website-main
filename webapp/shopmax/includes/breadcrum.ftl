@@ -16,11 +16,12 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
 <div>
     <ul class="breadcrum">
         <#if headerItem?has_content>
             <li><a href="<@ofbizUrl>main</@ofbizUrl>">Home</a></li>
-            <#if headerItem?if_exists == "shopproductdetail">
+            <#if headerItem?if_exists == "productdetail">
                 <li><a href="<@ofbizUrl>#</@ofbizUrl>">Shops</a></li>
             </#if>
             <li>${breadCrumTitle?if_exists}</li>
