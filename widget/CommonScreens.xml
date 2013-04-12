@@ -32,6 +32,7 @@ under the License.
                     <field-map field-name="themeResources" from-field="layoutSettings" />
                 </service>
                 <set field="layoutSettings" from-field="themeResources" default-value="${layoutSettings}" global="true" />
+                <set field="isDemo" value="${groovy:org.ofbiz.base.component.ComponentConfig.componentExists(&quot;ofbizdemo&quot;)}" type="Boolean"/>
             </actions>
             <widgets>
                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/headerhead.ftl"/></html></platform-specific>
@@ -99,34 +100,6 @@ under the License.
             <actions>
             </actions>
             <widgets />
-        </section>
-    </screen>
-    
-    <screen name="demoAnnounceMessage">
-        <section>
-            <actions>
-                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/ShopMaxSetup.groovy"/>
-            </actions>
-            <widgets>
-               <section>
-                    <condition>
-                        <if-compare field="isDemo" operator="equals" value="Y"/>
-                    </condition>
-                    <widgets>
-                        <include-screen name="demoAnnounceMessage" location="component://ofbizdemo/widget/CommonScreens.xml"/>
-                    </widgets>
-                    <fail-widgets>
-                        <section>
-                            <condition>
-                                <if-compare field="isBeta" operator="equals" value="Y"/>
-                            </condition>
-                            <widgets>
-                                <label text="This is a BETA system. The data you enter is not backed-up and cannot be quaranteed" style="top-message"/>
-                            </widgets>
-                        </section>
-                    </fail-widgets>
-                </section>
-            </widgets>
         </section>
     </screen>
 </screens>

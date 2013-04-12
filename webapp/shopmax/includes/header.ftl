@@ -16,9 +16,13 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<div class="demoMessage">
-    ${screens.render("component://shopmax/widget/CommonScreens.xml#demoAnnounceMessage")}
-</div>
+
+<#if isDemo?has_content == true>
+    <div class="demoMessage">
+        ${screens.render("component://ofbizdemo/widget/CommonScreens.xml#demoAnnounceMessage")}
+    </div>
+</#if>
+
 <div style="display: none;">
     <div id="inline1" style="overflow:auto;">
         <div class="login_popup">
