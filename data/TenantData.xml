@@ -31,6 +31,6 @@ under the License.
     <TenantDomainName tenantId="shopmax" domainName="shopmax.localhost" initialPath="/shopmax"/>
     
     <!-- Back-End -->
-    <TenantDomainName tenantId="shopmax" domainName="shopmaxbackend.ofbizdemo.com" initialPath="/backend"/>
-    <TenantDomainName tenantId="shopmax" domainName="shopmaxbackend.localhost" initialPath="/backend"/>
+    <TenantDomainName tenantId="shopmax" domainName="shopmaxbackend.ofbizdemo.com" initialPath="/catalog"/>
+    <TenantDomainName tenantId="shopmax" domainName="shopmaxbackend.localhost" initialPath="/catalog"/>
 </entity-engine-xml>
