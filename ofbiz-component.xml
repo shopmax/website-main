@@ -24,7 +24,7 @@
     <entity-resource type="data" reader-name="demo" loader="main" location="data/ShopMaxSecurityGroupDemoData.xml"/>
     <entity-resource type="data" reader-name="demo" loader="main" location="data/ShopMaxDemoData.xml"/>
     <entity-resource type="data" reader-name="ext-demo" loader="main" location="data/ShopMaxExtDemoData.xml"/>
-    <entity-resource type="data" reader-name="tenant" loader="main" location="data/TenantData.xml"/>
+    <!-- <entity-resource type="data" reader-name="tenant" loader="main" location="data/TenantData.xml"/> -->
 
     <!-- service resources: model(s), eca(s) and group definitions -->
     <service-resource type="model" loader="main" location="servicedef/services.xml"/>
