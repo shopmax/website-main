@@ -36,6 +36,7 @@ a.tool-tip:hover {color:#469BEB;text-decoration:underline;}
 -----------------------------------------------------------------*/
 #topnav {background:#302f2f;
 	border-bottom:1px solid #3C4D5D;
+	margin-top:31px;
 }
 
 .container {position:relative;top:0;}
@@ -52,6 +53,7 @@ a.tool-tip:hover {color:#469BEB;text-decoration:underline;}
 #cart-info {width:108px;margin:0 0;}
 #mainnav {background:#469BEB url('../img/mainnav-bg.png') repeat-x 0 100%;
    ;margin-bottom:0;display:block;padding:0 0 21px 0;z-index:1;overflow:hidden;
+   margin-top: 31px;
 }
 #mainnav .navbar-inner {min-height:29px;}
 .navbar-inner {min-height:100%;}
@@ -1280,3 +1282,13 @@ button {margin:0;border:none;}
 .row.content-left .white_nav{
 	margin-bottom: 36px;
 }
+.demoMessage{
+	width:100%;
+	background:#ffffff url('../img/body-bg.png') repeat;
+	z-index:99999;
+	position: fixed;
+	text-align: center;
+	margin: 0;
+	top:0;
+}
+

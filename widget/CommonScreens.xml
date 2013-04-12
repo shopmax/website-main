@@ -101,4 +101,32 @@ under the License.
             <widgets />
         </section>
     </screen>
+    
+    <screen name="demoAnnounceMessage">
+        <section>
+            <actions>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/ShopMaxSetup.groovy"/>
+            </actions>
+            <widgets>
+               <section>
+                    <condition>
+                        <if-compare field="isDemo" operator="equals" value="Y"/>
+                    </condition>
+                    <widgets>
+                        <include-screen name="demoAnnounceMessage" location="component://ofbizdemo/widget/CommonScreens.xml"/>
+                    </widgets>
+                    <fail-widgets>
+                        <section>
+                            <condition>
+                                <if-compare field="isBeta" operator="equals" value="Y"/>
+                            </condition>
+                            <widgets>
+                                <label text="This is a BETA system. The data you enter is not backed-up and cannot be quaranteed" style="top-message"/>
+                            </widgets>
+                        </section>
+                    </fail-widgets>
+                </section>
+            </widgets>
+        </section>
+    </screen>
 </screens>
