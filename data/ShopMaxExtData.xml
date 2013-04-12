@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<entity-engine-xml>
+    <Party partyId="admin" partyTypeId="PERSON"/>
+    <Person firstName="THE" lastName="ADMINISTRATOR" middleName="PRIVILEGED" partyId="admin" personalTitle="Mr."/>
+    <UserLogin  userLoginId="admin" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" enabled="Y" hasLoggedOut="Y" partyId="admin" requirePasswordChange="N"/>
+    <UserLoginSecurityGroup groupId="SUPER" userLoginId="admin" fromDate="2013-04-01 00:00:00"/>
+    
+    <Party partyId="SHOPMAX_COMPANY" partyTypeId="PARTY_GROUP"/>
+    <PartyGroup partyId="SHOPMAX_COMPANY" groupName="ShopMax" logoImageUrl="/shopmax-default/img/logo-2.png"/>
+    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="BILL_FROM_VENDOR"/>
+    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="BILL_TO_CUSTOMER"/>
+    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="INTERNAL_ORGANIZATIO"/>
+    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="CARRIER"/>
+    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="ACCOUNT"/>
+    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="_NA_"/>
+    <ContactMech contactMechId="SHOPMAX_EMAIL" contactMechTypeId="EMAIL_ADDRESS" infoString="ofbiztest@example.com"/>
+    <PartyContactMech partyId="SHOPMAX_COMPANY" contactMechId="SHOPMAX_EMAIL" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PartyContactMechPurpose partyId="SHOPMAX_COMPANY" contactMechId="SHOPMAX_EMAIL" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2013-04-01 00:00:00"/>
+    <ContactMech contactMechId="SHOPMAX_ADDRESS" contactMechTypeId="POSTAL_ADDRESS"/>
+    <PartyContactMech partyId="SHOPMAX_COMPANY" contactMechId="SHOPMAX_ADDRESS" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PostalAddress contactMechId="SHOPMAX_ADDRESS" toName="Company Shop Max" address1="999" city="Open City" postalCode="999999" countryGeoId="USA" stateProvinceGeoId="CA"/>
+    <PartyContactMechPurpose partyId="SHOPMAX_COMPANY" contactMechId="SHOPMAX_ADDRESS" contactMechPurposeTypeId="BILLING_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <PartyContactMechPurpose partyId="SHOPMAX_COMPANY" contactMechId="SHOPMAX_ADDRESS" contactMechPurposeTypeId="GENERAL_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <PartyContactMechPurpose partyId="SHOPMAX_COMPANY" contactMechId="SHOPMAX_ADDRESS" contactMechPurposeTypeId="PAYMENT_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    
+    <Facility facilityId="ShopMaxWarehouse" facilityTypeId="WAREHOUSE" facilityName="ShopMax" description="Warehouse exclusively for the Web Store " ownerPartyId="SHOPMAX_COMPANY" defaultInventoryItemTypeId="NON_SERIAL_INV_ITEM" defaultWeightUomId="WT_lb" defaultDaysToShip="25"/>
+    
+    <ProductStore productStoreId="ShopMaxStore" storeName="ShopMax Store" companyName="ShopMax" title="ShopMax"
+        subtitle="Part of the Open For Business Family of Open Source Software" payToPartyId="SHOPMAX_COMPANY" daysToCancelNonPay="30" prorateShipping="Y" prorateTaxes="Y"
+        inventoryFacilityId="ShopMaxWarehouse" oneInventoryFacility="Y" checkInventory="Y" reserveInventory="Y" balanceResOnOrderCreation="Y" reserveOrderEnumId="INVRO_FIFO_REC" requireInventory="N"
+        defaultLocaleString="en_US" defaultCurrencyUomId="USD" defaultSalesChannelEnumId="WEB_SALES_CHANNEL" allowPassword="Y" explodeOrderItems="N" retryFailedAuths="Y" reqReturnInventoryReceive="N"
+        headerApprovedStatus="ORDER_APPROVED" itemApprovedStatus="ITEM_APPROVED" digitalItemApprovedStatus="ITEM_APPROVED" headerDeclinedStatus="ORDER_REJECTED"
+        itemDeclinedStatus="ITEM_REJECTED" headerCancelStatus="ORDER_CANCELLED" itemCancelStatus="ITEM_CANCELLED" orderNumberPrefix="SM"
+        authDeclinedMessage="There has been a problem with your method of payment. Please try a different method or call customer service."
+        authFraudMessage="Your order has been rejected and your account has been disabled due to fraud."
+        authErrorMessage="Problem connecting to payment processor; we will continue to retry and notify you by email."
+        storeCreditValidDays="90" storeCreditAccountEnumId="FIN_ACCOUNT" splitPayPrefPerShpGrp="N" enableProductGroupOrder="Y"
+        visualThemeId="SHOPMAX_THEME" prodSearchExcludeVariants="Y" autoApproveInvoice="Y" shipIfCaptureFails="Y" autoApproveOrder="Y" showOutOfStockProducts="N" usePrimaryEmailUsername="Y" autoApproveReviews="Y"/>
+</entity-engine-xml>
