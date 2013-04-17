@@ -23,11 +23,11 @@ under the License.
             <ul class="nav">
                 <#if headerItem?has_content>
                     <li <#if headerItem?if_exists == "home">class="on"</#if>><a href="<@ofbizUrl>main</@ofbizUrl>">Home</a></li>
-                    <li <#if headerItem?if_exists == ""></#if>><a href="shops.html">Shops</a></li>
+                    <li <#if headerItem?if_exists == "shops">class="on"</#if>><a href="#">Shops</a></li>
                     <li <#if headerItem?if_exists == "groupbang">class="on"</#if>><a href="<@ofbizUrl>groupbang</@ofbizUrl>">Group Bang</a></li>
-                    <li <#if headerItem?if_exists == ""></#if>><a href="rush-hour.html">Rush Hour</a></li>
-                    <li <#if headerItem?if_exists == ""></#if>><a href="multi-buy.html">Multi Buy</a></li>
-                    <li <#if headerItem?if_exists == ""></#if>><a href="about-us.html">About Us</a></li>
+                    <li <#if headerItem?if_exists == "rushhour">class="on"</#if>><a href="<@ofbizUrl>rushhour</@ofbizUrl>">Rush Hour</a></li>
+                    <li <#if headerItem?if_exists == "multibuy">class="on"</#if>><a href="<@ofbizUrl>multibuy</@ofbizUrl>">Multi Buy</a></li>
+                    <li <#if headerItem?if_exists == "aboutus">class="on"</#if>><a href="<@ofbizUrl>aboutus</@ofbizUrl>">About Us</a></li>
                     <li <#if headerItem?if_exists == "helpcenter">class="on"</#if>><a href="<@ofbizUrl>helpcenter?contentId=SHOPMAX_FAQs</@ofbizUrl>">Help</a></li>
                 </#if>
             </ul>

@@ -40,12 +40,7 @@ under the License.
     -->
 
     <!-- Request Mappings -->
-    <request-map uri="main"><security https="true" auth="false"/><response name="success" type="view" value="main"/></request-map>
-    
-    <request-map uri="helpcenter">
-        <security https="true" auth="false"/>
-        <response name="success" type="view" value="helpcenter"/>
-    </request-map>
+    <request-map uri="main"><security https="false" auth="false"/><response name="success" type="view" value="main"/></request-map>
     
     <request-map uri="cms">
         <security https="false" auth="false"/>
@@ -54,39 +49,44 @@ under the License.
         <response name="error" type="view" value="error"/>
     </request-map>
     
+    <request-map uri="helpcenter">
+        <security https="false" auth="false"/>
+        <response name="success" type="view" value="helpcenter"/>
+    </request-map>
+    
     <!-- Catalog Requests -->
     <request-map uri="product">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="product"/>
         <response name="error" type="view" value="product"/>
     </request-map>
     
     <request-map uri="category">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="category"/>
         <response name="error" type="view" value="category"/>
     </request-map>
     
     <request-map uri="categorygridview">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="categorygridview"/>
         <response name="error" type="view" value="categorygridview"/>
     </request-map>
     
     <request-map uri="categorylistview">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="categorylistview"/>
         <response name="error" type="view" value="categorylistview"/>
     </request-map>
     
     <request-map uri="searchgridview">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="searchgridview"/>
         <response name="error" type="view" value="searchgridview"/>
     </request-map>
     
     <request-map uri="searchlistview">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="searchlistview"/>
         <response name="error" type="view" value="searchlistview"/>
     </request-map>
@@ -104,32 +104,32 @@ under the License.
     </request-map>
     
     <request-map uri="productnormal">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="productnormal"/>
         <response name="error" type="view" value="productnormal"/>
     </request-map>
     
     <request-map uri="productgroupbang">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="productgroupbang"/>
         <response name="error" type="view" value="productgroupbang"/>
     </request-map>
     
     <request-map uri="productmultibuy">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="productmultibuy"/>
         <response name="error" type="view" value="productmultibuy"/>
     </request-map>
     
     <request-map uri="productrushhour">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="productrushhour"/>
         <response name="error" type="view" value="productrushhour"/>
     </request-map>
     
     <!-- Order Requests -->
     <request-map uri="shoppingcart">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="shoppingcart"/>
         <response name="error" type="view" value="shoppingcart"/>
     </request-map>
@@ -210,8 +210,9 @@ under the License.
     
     <!-- Website Requests -->
     <request-map uri="groupbang">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="groupbang"/>
+         <response name="error" type="view" value="groupbang"/>
     </request-map>
     
     <request-map uri="rushhour">
@@ -228,8 +229,9 @@ under the License.
     
     <!--  Shop Requests -->
     <request-map uri="shophomepage">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="shophomepage"/>
+        <response name="error" type="view" value="shophomepage"/>
     </request-map>
     
     <!-- View Mappings -->

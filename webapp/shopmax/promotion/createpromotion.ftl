@@ -73,6 +73,7 @@ $(function(){
                       <thead>
                         <tr class="sc-table-header">
                           <th class="col1">Free Shipping</th>
+                          <div class="title_grn"><h6>Group bang</h6></div>
                         </tr>
                       </thead>
                       <tbody>
@@ -195,7 +196,6 @@ $(function(){
                 <div class="sub-promotion hidden" id="in-store-voucher-div">
                     <div class="title_grn"><h6>In store voucher</h6></div>
                     <div class="block">
-                        
                         <ul class="storevouc">
                             <li>
                                 <span class="heading">If order value is greater than</span>
