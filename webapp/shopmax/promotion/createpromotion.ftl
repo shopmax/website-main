@@ -69,13 +69,8 @@ $(function(){
                 
                 <#-- Free Shipping -->
                 <div class="sub-promotion" id="free-shipping-div">
+                    <div class="title_grn"><h6>Free Shipping</h6></div>
                     <table class="table table-condensed sc-table sc-table-promotion">
-                      <thead>
-                        <tr class="sc-table-header">
-                          <th class="col1">Free Shipping</th>
-                          <div class="title_grn"><h6>Group bang</h6></div>
-                        </tr>
-                      </thead>
                       <tbody>
                         <tr class="sc-table-body">
                             <td class="col1">

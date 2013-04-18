@@ -16,17 +16,25 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
 <div class="container content">
+    <!-- include breadcrum -->
     <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
+    
+    <div class="row content-left">
+        <!-- include shop header -->
+        <#include "component://shopmax/webapp/shopmax/shop/shopheader.ftl" />
+    </div>
+    
     <div class="row">
-        <!-- MAIN CONTENT -->
+    <!-- MAIN CONTENT -->
         <!-- sliderdiv -->
-        <div class="span9 main-content manage-product cat_grid_view">
-            <#include "component://shopmax/webapp/shopmax/catalog/productgridview.ftl" />
+        <div class="span9 main-content manage-product cat_grid_view cat_list_view">
+            <#include "component://shopmax/webapp/shopmax/catalog/productlistview.ftl" />
         </div><!-- /.span9 -->
         <div class="span3 sidebar" id="side-menu">
             <#include "component://shopmax/webapp/shopmax/catalog/categorylist.ftl" />
             <#include "component://shopmax/webapp/shopmax/catalog/categoryrefineby.ftl" />
         </div><!-- /.span3.sidebar -->
     </div><!-- /.row -->
-</div> <!-- /container -->
+</div>
