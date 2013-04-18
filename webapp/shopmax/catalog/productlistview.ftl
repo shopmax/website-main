@@ -19,15 +19,9 @@ under the License.
 
 <div class="add-product topviewbox clearfix">
     <span class="tital">SORT BY</span>
-    <div class="shortbybox">
-        <select id="accountOp" class="chosen actionable" name="accountOptions">
-            <option selected="selected">My Account</option>
-            <option value="selling.html">Selling</option>
-            <option value="buying.html">Buying</option>
-            <option value="profile.html">Profile</option>
-            <option value="log-out.html">Log Out</option>
-        </select>
-    </div>
+    <select class="span2">
+        <option></option>
+    </select>
     <span class="tital">VIEW BY</span>
     <a href="<@ofbizUrl><#if headerItem?if_exists == "categorygridview" || headerItem?if_exists == "categorylistview">categorygridview<#else>shopcategorygridview</#if></@ofbizUrl>" class="grid_view"><span class="b"></span>Grid</a>
     <a href="<@ofbizUrl><#if headerItem?if_exists == "categorygridview" || headerItem?if_exists == "categorylistview">categorylistview<#else>shopcategorylistview</#if></@ofbizUrl>" class="list_view"><span class="b"></span>List</a>
