@@ -1,1 +1,1 @@
-<%pageContext.forward("control/main");%>
+<%pageContext.forward("cms/cms");%>

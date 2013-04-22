@@ -22,7 +22,7 @@ under the License.
         <div class="container">
             <ul class="nav">
                 <#if headerItem?has_content>
-                    <li <#if headerItem?if_exists == "home">class="on"</#if>><a href="<@ofbizUrl>main</@ofbizUrl>">Home</a></li>
+                    <li <#if headerItem?if_exists == "home">class="on"</#if>><a href="<@ofbizUrl>home</@ofbizUrl>">Home</a></li>
                     <li <#if headerItem?if_exists == "shops">class="on"</#if>><a href="#">Shops</a></li>
                     <li <#if headerItem?if_exists == "groupbang">class="on"</#if>><a href="<@ofbizUrl>groupbang</@ofbizUrl>">Group Bang</a></li>
                     <li <#if headerItem?if_exists == "rushhour">class="on"</#if>><a href="<@ofbizUrl>rushhour</@ofbizUrl>">Rush Hour</a></li>
