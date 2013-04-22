@@ -18,11 +18,18 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<test-suite suite-name="ShopMaxtests"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/test-suite.xsd" delegator-name="default#default">
+<entity-eca xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/entity-eca.xsd">
     
-    <test-case case-name="create-product">
-        <simple-method-test location="component://shopmax/script/org/ofbiz/shopmax/test/ShopMaxTests.xml" name="createProduct"/>
-    </test-case>
-</test-suite>
+    <eca entity="Product" operation="create-store-remove" event="return">
+        <action service="checkPermissionCreateProduct" mode="sync"/>
+    </eca>
+    
+    <eca entity="ProductCategory" operation="create-store-remove" event="return">
+        <action service="checkPermissionCreateCatalogAndCategory" mode="sync"/>
+    </eca>
+    
+    <eca entity="ProdCatalog" operation="create-store-remove" event="return">
+        <action service="checkPermissionCreateCatalogAndCategory" mode="sync"/>
+    </eca>
+</entity-eca>

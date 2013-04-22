@@ -1238,6 +1238,10 @@ textarea,
   margin-left: 20px;
 }
 
+.product-upload .controls-row [class*="span"] + [class*="span"] {
+  margin-left: 10px;
+}
+
 input.span12,
 textarea.span12,
 .uneditable-input.span12 {
