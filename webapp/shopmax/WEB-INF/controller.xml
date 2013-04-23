@@ -252,6 +252,12 @@ under the License.
         <response name="error" type="view" value="shophomepage"/>
     </request-map>
     
+    <request-map uri="shopcomments">
+        <security https="false" auth="false"/>
+        <response name="success" type="view" value="shopcomments"/>
+        <response name="error" type="view" value="shopcomments"/>
+    </request-map>
+    
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>
     <view-map name="helpcenter" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#HelpCenter"/>
@@ -260,6 +266,7 @@ under the License.
     <view-map name="multibuy" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#MultiBuy"/>
     
     <view-map name="shophomepage" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#ShopHomePage"/>
+    <view-map name="shopcomments" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#ShopComments"/>
     
     <view-map name="product" type="screen" page="component://shopmax/widget/CatalogScreens.xml#Product"/>
     <view-map name="productnormal" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ProductNormal"/>
