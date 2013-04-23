@@ -24,12 +24,6 @@ under the License.
     <vendor></vendor>
     <version>1.0</version>
 
-    <service name="noSyntaxError" engine="interface">
-        <description>
-            Dummy service to prevent empty files and syntax error - Remove when the 1st real service will be added here 
-        </description>
-    </service> 
-    
     <service name="checkPermissionCreateProduct" engine="simple" location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml"
         invoke="checkPermissionCreateProduct" auth="true">
         <description>Check Permission to Create Product</description>
@@ -38,5 +32,11 @@ under the License.
     <service name="checkPermissionCreateCatalogAndCategory" engine="simple" location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml"
         invoke="checkPermissionCreateCatalogAndCategory" auth="true">
         <description>Check Permission to Create Catalog and Category</description>
+    </service>
+    
+    <service name="createProductCategoryToSeller" engine="simple" 
+            location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="createProductCategoryToSeller" auth="true">
+        <description>Create Product Category To Seller</description>
+        <attribute name="productCategoryId" mode="IN" type="String" optional="false"/>
     </service>
 </services>

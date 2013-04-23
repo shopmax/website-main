@@ -18,6 +18,11 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<entity-engine-xml>
-    <RoleType roleTypeId="SELLER" hasTable="N" description="Seller"/>
-</entity-engine-xml>
+<service-eca xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/service-eca.xsd">
+
+    <eca service="createProductCategory" event="commit">
+        <condition field-name="productCategoryId" operator="is-not-empty"/>
+        <action service="createProductCategoryToSeller" mode="sync"/>
+    </eca>
+</service-eca>

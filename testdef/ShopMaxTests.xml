@@ -25,4 +25,7 @@ under the License.
     <test-case case-name="create-product">
         <simple-method-test location="component://shopmax/script/org/ofbiz/shopmax/test/ShopMaxTests.xml" name="createProduct"/>
     </test-case>
+    <test-case case-name="copy-product-information">
+        <simple-method-test location="component://shopmax/script/ShopMaxTests.xmll" name="copyProductInformation"/>
+    </test-case>
 </test-suite>

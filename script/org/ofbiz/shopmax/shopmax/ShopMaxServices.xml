@@ -20,24 +20,43 @@ under the License.
 
 <simple-methods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/simple-methods-v2.xsd">
-    
+
     <simple-method method-name="checkPermissionCreateProduct" short-description="Check Permission to Create Product" login-required="false">
         <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
-        <if-compare operator="equals" value="default" field="tenantId">
+        <!-- <if-compare operator="equals" value="default" field="tenantId">
             <add-error>
                 <fail-message message="Can't create Product"/>
             </add-error>
             <check-errors/>
-        </if-compare>
+        </if-compare> -->
     </simple-method>
     
     <simple-method method-name="checkPermissionCreateCatalogAndCategory" short-description="Check Permission to Create Catalog and Category" login-required="false">
         <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
-        <if-compare operator="not-equals" value="default" field="tenantId">
+        <!-- <if-compare operator="not-equals" value="default" field="tenantId">
             <add-error>
                 <fail-message message="Can't create Catalog and Category"/>
             </add-error>
             <check-errors/>
-        </if-compare>
+        </if-compare> -->
+    </simple-method>
+    
+    <simple-method method-name="createProductCategoryToSeller" short-description="Create Product Category To Seller">
+        <entity-one entity-name="ProductCategory" value-field="productCategory">
+            <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
+        </entity-one>
+        <if-not-empty field="productCategory">
+            <entity-one entity-name="UserLogin" value-field="sysUserLogin">
+                <field-map field-name="userLoginId" value="system"/>
+            </entity-one>
+            <set field="createProductCategoryMap" value="${groovy: import org.ofbiz.entity.util.EntityUtil;
+            Map productCategoryMap = productCategory.getAllFields();
+            if (productMap) return productCategoryMap;}" type="Map"/>
+            <set field="createProductCategoryMap.userLogin" from-field="sysUserLogin"/>
+            <set field="runTenantServiceInMap.tenantId" value="shopmaxseller"/>
+            <set field="runTenantServiceInMap.serviceName" value="createProductCategory"/>
+            <set field="runTenantServiceInMap.serviceParameters" from-field="createProductCategoryMap"/>
+            <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+        </if-not-empty>
     </simple-method>
 </simple-methods>
