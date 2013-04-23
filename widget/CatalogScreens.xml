@@ -25,7 +25,7 @@ under the License.
         <section>
             <actions>
                 <set field="titleProperty" value="Shop Name"/>
-                <set field="headerItem" value="productdetail"/>
+                <set field="headerItem" value="shops"/>
                 <set field="productDetailType" value="productnormal"/>
                 <set field="breadCrumTitle" value="Shop Name"/>
             </actions>

@@ -29,7 +29,7 @@ under the License.
                 <li><a class="active" href="<@ofbizUrl>shophomepage</@ofbizUrl>">Shop Home</a></li>
                 <li><a href="#">Promotions</a></li>
                 <li><a href="#">Vouchers</a></li>
-                <li><a href="#">About Us</a></li>
+                <li><a href="<@ofbizUrl>shopaboutus</@ofbizUrl>">About Us</a></li>
                 <li><a href="<@ofbizUrl>shopcomments</@ofbizUrl>">Comments</a></li>
                 <li><a href="#">Discussions</a></li>
             </ul>
