@@ -1273,6 +1273,96 @@ button {margin:0;border:none;}
 	.landing .main-content > h2, .main-content .countdown-container { font-size:26px; overflow:hidden; background-repeat:repeat; padding-bottom:15px;}
 	.list-wrapper .product-list.buy-this { margin:0;}
 }
+/* #mainnav, .container.content, footer {
+    clear: both;
+    position: relative;
+    top: 0px !important;
+} */
+#mainnav .nav  li {float:left;}
+#master
+{
+ bottom: 168px;
+    position: relative;
+    opacity:1 !important;
+    width: 409px;
+     height: 0;
+     left:7px;
+}
+#master a
+{
+border-radius: 618px 618px 5px 5px;
+    height: 13px;
+    width: 12px;
+    margin-top: 2px;
+}
+#master1 a
+{
+border-radius: 618px 618px 5px 5px;
+    height: 13px;
+    width: 12px;
+    margin-top: 2px;
+}
+#master1
+{
+ bottom: 168px;
+    position: relative;
+    opacity:1 !important; 
+width: 415px;
+     height: 0;
+left:9px;    
+}
+#master2 a
+{
+border-radius: 618px 618px 5px 5px;
+    height: 13px;
+    width: 12px;
+    margin-top: 2px;
+}
+#master2
+{
+ bottom: 168px;
+    position: relative;
+    opacity:1 !important;
+    width: 415px;
+     height: 0;
+left:9px;    
+
+}
+#master3 a
+{
+border-radius: 618px 618px 5px 5px;
+    height: 13px;
+    width: 12px;
+    margin-top: 2px;
+}
+#master3
+{
+ bottom: 168px;
+    position: relative;
+    opacity:1 !important;
+    width: 415px;
+     height: 0;
+left:7px;    
+
+}
+
+
+#master20 a {
+    border-radius: 618px 618px 5px 5px;
+    height: 16px;
+    margin-top: 2px;
+    width: 16px;
+}
+#master20
+{
+ bottom: 145px;
+    position: relative;
+    opacity:1 !important;
+    width: 409px;
+     height: 0;
+left:4px;    
+
+}
 .help .main-content .tabbed h3, .help .main-content .tabbed h4 {
 	color: inherit;
 }

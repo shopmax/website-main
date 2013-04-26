@@ -170,6 +170,7 @@ body {
 a {
   color: #0088cc;
   text-decoration: none;
+  cursor:pointer;
 }
 
 a:hover {
@@ -200,7 +201,7 @@ a:hover {
 }
 
 .row {
-  margin-left: -20px;
+  margin-left: -20px !important;
   *zoom: 1;
 }
 
