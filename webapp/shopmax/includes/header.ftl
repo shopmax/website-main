@@ -132,7 +132,7 @@ under the License.
                     </form>
                 <#else>
                     <h2>Hello</h2>
-                    <p><a id="various1" href="#inline1">Login</a> / <a href="#">Register</a></p>
+                    <p><a id="various1" href="#inline1">Login</a> / <a href="<@ofbizUrl>registration</@ofbizUrl>">Register</a></p>
                 </#if>
             </div>
             <!-- CART INFORMATION -->

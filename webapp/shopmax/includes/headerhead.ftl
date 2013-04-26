@@ -29,7 +29,6 @@ under the License.
         <meta name="viewport" content="width=device-width">
         <!-- what happens with this with mobile phones? 
         <meta name="viewport" content="width=device-width, initial-scale=1" />-->
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/product_details.css</@ofbizContentUrl>">
         <#if layoutSettings.VT_SHORTCUT_ICON?has_content>
             <link rel="shortcut icon" href="<@ofbizContentUrl>${StringUtil.wrapString(layoutSettings.VT_SHORTCUT_ICON[0])}</@ofbizContentUrl>" type="text/css"/>
         </#if>
@@ -38,6 +37,7 @@ under the License.
                 <link rel="stylesheet" href="<@ofbizContentUrl>${StringUtil.wrapString(styleSheet)}</@ofbizContentUrl>" type="text/css"/>
             </#list>
         </#if>
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/product_details.css</@ofbizContentUrl>">
         <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/new_style.css</@ofbizContentUrl>">
         <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.css</@ofbizContentUrl>">
         <link rel="stylesheet" type="text/css" href="<@ofbizContentUrl>/shopmax-default/css/jquery.fancybox-1.3.4.css</@ofbizContentUrl>" media="screen" />

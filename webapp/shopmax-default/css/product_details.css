@@ -66,6 +66,26 @@ input.required{
 
 }
 
+
+.btn-general-small12 {
+    background: url("../img/btn-general-rpt.png") repeat-x scroll 0 0 transparent;
+    border-radius: 3px 3px 3px 3px;
+    color: white;
+    display: inline-block;
+    font-size: 85%;
+    font-weight: bold;
+    height: 27px;
+    line-height: 27px;
+    padding: 0 13px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 80px;
+	float:right;
+	position:relative;
+	bottom:30px;
+
+}
+
 .btn-dark-grey-small {
     background: url("../img/btn-dark-grey-small.png") repeat-x scroll 0 0 transparent;
     border-radius: 3px 3px 3px 3px;
@@ -887,7 +907,6 @@ margin-bottom: 12px;
 .sc-table {
 margin-top: 0px;
 border-bottom: 1px solid #DDD;
-
 }
 .sc-table-header th {
 	background: #84b234;
@@ -1338,6 +1357,20 @@ margin-right:10px;
     text-transform: uppercase;
 	width:80px;
 }
+.btn-success-small{
+  	background: url("../img/btn-green-small.png") repeat-x scroll 0 0 transparent;
+    border-radius: 3px 3px 3px 3px;
+    color: white;
+    display: inline-block;
+    font-size: 85%;
+    font-weight: bold;
+    height: 27px;
+    line-height: 27px;
+    padding: 0 13px;
+    text-align: center;
+    text-transform: uppercase;
+	width:80px;
+}
 
 .sc-table-promotion .btn-grey-small{
 	width:80px;
@@ -1463,7 +1496,7 @@ margin-right:10px;
 }
 
 .sc-table-promotion .btn-general {
-	width:160px;
+	width:134px;
 }
 
 /* product upload update */
@@ -1619,8 +1652,139 @@ padding-left:8px;
 	background: white;
 }
 
+
 .sc-table-promotion tbody td.advanced-option {
 	padding: 30px;
+}
+
+.main-content p.intro-txt{
+margin-left:20px
+}
+.sc-table-promotion .control-label-small {
+	width:125px;
+}
+.sc-table-promotion .control-label-xsmall {
+	width:90px;
+}
+.sc-table-promotion .control-label-xxsmall {
+	width:50px;
+}
+.sc-table-promotion .control-label-xlarge {
+	width:300px;
+	margin-bottom:10px;
+}
+.sc-table-promotion .control-label-llarge {
+	width:225px;
+	margin-bottom:10px;
+}
+.sc-table-promotion .control-label-big {
+	width:145px;
+	padding-top: 5px;
+}
+.sc-table-promotion .control-label-bank {
+	width:105px;
+	padding-top: 5px;
+}
+.sc-table input.input-large {
+    width: 160px;
+    margin-right: 10px;
+}
+.sc-table .upload-btn{
+	margin-top:2px;
+}
+.sc-table input.input-url {
+    width: 335px;    
+}
+.sc-table input.input-newurl {
+    width: 235px;    
+}
+.sc-table input.input-cc-xsmall {
+    width: 45px;
+   /* margin-right: 10px;  */
+}
+.sc-table input.input-cc-large{ 
+    width: 137px    
+}
+.sc-table-promotion input.input-phone-number{ 
+	width:130px;
+	padding-top: 5px;
+}
+#phoneNumber1_chzn, #phoneNumber2_chzn, #phoneNumber3_chzn,  #phoneNumber4_chzn{
+	height:28px;
+	width:45px!important;
+	margin:0 5px 0;
+	float:left
+}
+.sc-table input.input-xsmall {
+    width: 28px;
+    margin-bottom: 5px;  
+}
+
+.sc-table-promotion .btn_remove{
+	float:right;
+	width:119px;
+	margin-top:-52px;
+}
+
+.sc-table-promotion td.new-branch-area{
+	background-color:#e0e0e0;
+	padding:7px 0 7px 20px;
+}
+.sc-table-promotion .chk_regis{
+	margin-left:0px!important;
+}
+.tooltip{
+	opacity:1!important;
+	filter:alpha(opacity=100)!important; /* For IE8 and earlier */}
+.tooltip-inner{
+	border:solid 1px #00e2db;
+	color:#000;
+	background-color:#fff;
+}
+.imp-info{
+	background-color:#fff1af;
+	border:solid 1px #f5c51e;
+	width: 730px;
+	text-align:center;
+	margin-bottom:22px;	
+	box-shadow: 1px 1px 1px #C2AB6B;
+}
+.imp-info p{ 
+	margin:10px 0;
+	font-family: georgia, sans-serif;
+	color:#464646;
+	font-size:18px;
+	font-style:italic;
+}
+.sc-table-promotion  .control-label-cc{
+	width:95px;
+	
+	padding-top:5px;
+}
+.sc-table-promotion  .control-label-cc-inner{
+	width:150px;	
+	padding-left:0px;
+}.sc-table-promotion  .control-label-dc-inner{
+	width:170px;	
+	padding-left:0px;
+	margin-top:0;
+}
+.sc-table-promotion .control-label-cc-blank {
+    
+    width: 95px;
+}
+.sc-table-promotion  .control-label-dc{
+	width:115px;
+	margin-bottom:5px;
+	padding-top:5px;
+}
+.sc-table-promotion .control-label-dc-blank {
+    padding-top: 0px;
+    width: 95px;
+}
+.control-group-bank{
+margin-bottom:10px;
+float:left;
 }
 .container.content.promotion .categories.innerbox h2{
     font-size: 1.1em;

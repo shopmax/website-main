@@ -38,6 +38,25 @@ under the License.
         </section>
     </screen>
     
+    <screen name="Registration">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleRegistration"/>
+                <set field="headerItem" value="registration"/>
+                <set field="breadCrumTitle" value="Registration"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html><html-template location="component://shopmax/webapp/shopmax/website/registration.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
     <screen name="HelpCenter">
         <section>
             <actions>
@@ -177,6 +196,25 @@ under the License.
                     <decorator-section name="body">
                         <platform-specific>
                             <html><html-template location="component://shopmax/webapp/shopmax/shop/shopaboutus.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="SaleSummary">
+        <section>
+            <actions>
+                <set field="titleProperty" value="Shop Name"/>
+                <set field="headerItem" value="shops"/>
+                <set field="breadCrumTitle" value="Sale Summary"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html><html-template location="component://shopmax/webapp/shopmax/shop/salesummary.ftl"/></html>
                         </platform-specific>
                     </decorator-section>
                 </decorator-screen>
