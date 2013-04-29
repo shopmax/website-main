@@ -19,6 +19,9 @@ under the License.
 -->
 
 <entity-engine-xml>
+    <Party partyId="shopmaxseller" partyTypeId="PERSON"/>
+    <PartyRole partyId="shopmaxseller" roleTypeId="SELLER"/>
+    
     <ProdCatalog prodCatalogId="SHOPMAX_CATALOG" catalogName="ShopMax Catalog" useQuickAdd="Y"/>
     
     <ProductStoreCatalog productStoreId="ShopMaxStore" prodCatalogId="SHOPMAX_CATALOG" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
