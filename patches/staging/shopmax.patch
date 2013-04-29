@@ -1,8 +1,8 @@
 Index: hot-deploy/shopmax/ofbiz-component.xml
 ===================================================================
---- hot-deploy/shopmax/ofbiz-component.xml	(revision 89)
+--- hot-deploy/shopmax/ofbiz-component.xml	(revision 112)
 +++ hot-deploy/shopmax/ofbiz-component.xml	(working copy)
-@@ -25,7 +25,7 @@
+@@ -44,7 +44,7 @@
      <entity-resource type="data" reader-name="ext-demo" loader="main" location="data/ShopMaxExtDemoData.xml"/>
      <entity-resource type="data" reader-name="demo" loader="main" location="data/ShopMaxSecurityGroupDemoData.xml"/>
      <entity-resource type="data" reader-name="demo" loader="main" location="data/ShopMaxDemoData.xml"/>
@@ -11,3 +11,25 @@ Index: hot-deploy/shopmax/ofbiz-component.xml
  
      <!-- service resources: model(s), eca(s) and group definitions -->
      <service-resource type="model" loader="main" location="servicedef/services.xml"/>
+Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
+===================================================================
+--- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 112)
++++ hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(working copy)
+@@ -33,7 +33,7 @@
+     
+     <simple-method method-name="createProductCategoryToSeller" short-description="Create Product Category To Seller">
+         <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+-        <if-compare field="tenantId" operator="equals" value="default">
++        <if-compare field="tenantId" operator="equals" value="shopmax">
+             <entity-one entity-name="ProductCategory" value-field="productCategory">
+                 <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
+             </entity-one>
+@@ -64,7 +64,7 @@
+     
+     <simple-method method-name="updateProductCategoryToSeller" short-description="Update Product Category To Seller">
+         <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+-        <if-compare field="tenantId" operator="equals" value="default">
++        <if-compare field="tenantId" operator="equals" value="shopmax">
+             <entity-one entity-name="ProductCategory" value-field="productCategory">
+                 <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
+             </entity-one>
