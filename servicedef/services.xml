@@ -29,14 +29,15 @@ under the License.
         <description>Check Permission to Create Product</description>
     </service>
     
-    <service name="checkPermissionCreateCatalogAndCategory" engine="simple" location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml"
-        invoke="checkPermissionCreateCatalogAndCategory" auth="true">
-        <description>Check Permission to Create Catalog and Category</description>
-    </service>
-    
     <service name="createProductCategoryToSeller" engine="simple" 
             location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="createProductCategoryToSeller" auth="true">
         <description>Create Product Category To Seller</description>
+        <attribute name="productCategoryId" mode="IN" type="String" optional="false"/>
+    </service>
+    
+    <service name="updateProductCategoryToSeller" engine="simple" 
+            location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="updateProductCategoryToSeller" auth="true">
+        <description>Update Product Category To Seller</description>
         <attribute name="productCategoryId" mode="IN" type="String" optional="false"/>
     </service>
 </services>
