@@ -16,7 +16,23 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-
+<script>
+jQuery(document).ready(function() {
+    $("#changeTheme").click(function() {
+        $.fancybox([
+            '<@ofbizContentUrl>/shopmax-default/img/template/shophome_v1.jpg</@ofbizContentUrl>',
+            '<@ofbizContentUrl>/shopmax-default/img/template/shophome_v6_v2.jpg</@ofbizContentUrl>',
+            '<@ofbizContentUrl>/shopmax-default/img/template/shophome_v7.jpg</@ofbizContentUrl>',
+        ], {
+            'padding'           : 0,
+            'transitionIn'      : 'none',
+            'transitionOut'     : 'none',
+            'type'              : 'image',
+            'changeFade'        : 0
+        });
+    });
+});
+</script>
 <div class="container content">
     
     <div class="row">
@@ -130,5 +146,9 @@ under the License.
                 </table>
             </div><!-- /.promotions -->
         </div><!-- /.span3.sidebar -->
+        <div style="margin-left:20px">
+            <a id="changeTheme" href="javascript:;" class="btn-general">Change Theme</a>
+            <a href="#" class="btn-general">Decorate Your Shop</a>
+        </div>
     </div><!-- /.row -->
 </div> <!-- /container -->

@@ -42,7 +42,7 @@ under the License.
                         </li>
                         <li>
                             <p>Don't have an account yet?</p>
-                            <input type="submit" name="" value="Register" class="sub_reg">
+                            <a href="<@ofbizUrl>registration</@ofbizUrl>"><input type="submit" name="" value="Register" class="sub_reg"></a>
                         </li>
                     </ul>
                 </div>

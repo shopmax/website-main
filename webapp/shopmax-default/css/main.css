@@ -1381,4 +1381,6 @@ left:4px;
 	margin: 0;
 	top:0;
 }
-
+#content-messages{
+	margin: 50px 0 -50px;
+}

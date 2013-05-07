@@ -20,7 +20,7 @@ under the License.
 <script>
 $(function(){
     $('.edit').click(function(){
-        var currentView = this.id.split("-")
+        var currentView = this.id.split("-");
         var index = currentView[2];
         if ($('#view-edit-product-'+index).is(":hidden")) {
             $('#view-edit-product-'+index).slideDown("slow");
