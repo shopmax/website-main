@@ -49,7 +49,7 @@ under the License.
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <platform-specific>
-                            <html><html-template location="component://shopmax/webapp/shopmax/website/registration.ftl"/></html>
+                            <html><html-template location="component://shopmax/webapp/shopmax/customer/registration.ftl"/></html>
                         </platform-specific>
                     </decorator-section>
                 </decorator-screen>

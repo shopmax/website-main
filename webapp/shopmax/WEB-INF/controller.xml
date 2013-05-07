@@ -55,11 +55,6 @@ under the License.
         <response name="error" type="view" value="error"/>
     </request-map>
     
-    <request-map uri="registration">
-        <security https="true" auth="false"/>
-        <response name="success" type="view" value="registration"/>
-    </request-map>
-    
     <request-map uri="helpcenter">
         <security https="false" auth="false"/>
         <response name="success" type="view" value="helpcenter"/>
@@ -200,6 +195,11 @@ under the License.
     </request-map>
     
     <!-- Customer Requests -->
+    <request-map uri="registration">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="registration"/>
+    </request-map>
+    
     <request-map uri="profile">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="profile"/>
@@ -210,6 +210,13 @@ under the License.
         <security https="true" auth="false"/>
         <response name="success" type="view" value="account"/>
         <response name="error" type="view" value="account"/>
+    </request-map>
+    
+    <request-map uri="createShopMaxSeller">
+        <security https="true" auth="true"/>
+        <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxEvents.xml" invoke="createShopMaxSeller"/>
+        <response name="success" type="view" value="main"/>
+        <response name="error" type="view" value="registration"/>
     </request-map>
     
     <!-- Promotion Requests -->
