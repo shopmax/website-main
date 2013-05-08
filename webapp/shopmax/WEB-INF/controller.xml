@@ -212,9 +212,9 @@ under the License.
         <response name="error" type="view" value="account"/>
     </request-map>
     
-    <request-map uri="createShopMaxSeller">
+    <request-map uri="createCustomer">
         <security https="true" auth="true"/>
-        <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxEvents.xml" invoke="createShopMaxSeller"/>
+        <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/shopmax/CustomerEvents.xml" invoke="createCustomer"/>
         <response name="success" type="view" value="main"/>
         <response name="error" type="view" value="registration"/>
     </request-map>

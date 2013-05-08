@@ -160,7 +160,7 @@ under the License.
                                 <div class="pull-left"><input type="text" class="input-cc-xsmall" id="accountNumber-0" name="accountNumber-0"> - <input type="text" class="input-small" id="accountNumber-1" name="accountNumber-1"> - <input type="text" class="input-cc-large" id="accountNumber-2" name="accountNumber-2"> - <input type="text" class="input-cc-xsmall" id="accountNumber-3" name="accountNumber-3"></div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label control-label-llarge pull-left" for="inputEmailAddress">Upload yout shop's logo (153x153)</label>
+                                <label class="control-label control-label-llarge pull-left" for="inputEmailAddress">Upload your shop's logo (153x153)</label>
                                 <div class="pull-left">
                                     <input type="text" class="logo-url" id="inputFile"> <a class="btn-general-small upload-btn" href="#">BROWSE</a> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
                                 </div>

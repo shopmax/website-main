@@ -21,7 +21,4 @@ under the License.
 <simple-methods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/simple-methods-v2.xsd">
 
-    <simple-method method-name="createShopMaxSeller" short-description="Create ShopMax Seller" login-required="false">
-        
-    </simple-method>
 </simple-methods>
