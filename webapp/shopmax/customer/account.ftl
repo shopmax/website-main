@@ -95,7 +95,7 @@ under the License.
             <div class="title"><h6>Summary</h6></div>
             <div class="block">
                 <div class="box-1">
-                    <div class="img-box"><img src="img/img-1.jpg" alt=""></div>
+                    <div class="img-box"><img src="<@ofbizContentUrl>/shopmax-default/img/img-1.jpg</@ofbizContentUrl>" alt=""></div>
                     <span class="span-user">David Smith</span>
                 </div>
                 <div class="box-2">

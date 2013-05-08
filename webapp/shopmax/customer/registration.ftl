@@ -21,8 +21,17 @@ under the License.
     $(function(){
         $('.container.content').addClass('promotion');
         
-        $('#submit-createshopmaxseller').click(function(){
-            $('#createshopmaxseller').submit();
+        $('#submit-createcustomer').click(function(){
+            $('#createcustomer').submit();
+        });
+        $('.chk_regis').click(function(){
+            if($('.chk_regis').is(':checked')){
+                $('.business-registered').removeClass('hidden');
+                $('#businessUser').val("Y");
+            }
+            else{
+                $('.business-registered').addClass('hidden');
+            }
         });
     });
 </script>
@@ -50,7 +59,9 @@ under the License.
             <p>To become a seller on Shopmax, you must be a registered business in New Zealand</p>
         </div>
         <div class="span9 main-content">
-            <form action="<@ofbizUrl>createshopmaxseller</@ofbizUrl>" id="createshopmaxseller" name="createshopmaxseller" method="post">
+            <form action="<@ofbizUrl>createcustomer</@ofbizUrl>" id="createcustomer" name="createcustomer" method="post">
+                <input type="hidden" name="emailProductStoreId" value="${productStoreId}"/>
+                <input type="hidden" name="businessUser" id="businessUser" value="N"/>
                 <table class="table table-condensed sc-table sc-table-promotion">
                   <thead>
                     <tr class="sc-table-header">
@@ -67,27 +78,27 @@ under the License.
                             <div class="control-group">
                                 <label class="control-label control-label-small" for="inputEmailAddress">Email Address</label>
                                 <div class="pull-left">
-                                    <input type="text" class="input-xlarge" id="emailAddress" name="emailAddress">
+                                    <input type="text" class="input-xlarge" id="emailAddress" name="CUSTOMER_EMAIL">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label control-label-small" for="inputPromotionDescription">Password</label>
                                 <div class="pull-left">
-                                    <input type="password" class="input-xlarge" id="currentPassword" name="currentPassword">
+                                    <input type="password" class="input-xlarge" id="currentPassword" name="PASSWORD">
                                 </div>
                                 <label class="control-label control-label-small" for="inputPromotionDescription">Confirm Password</label>
                                 <div class="pull-left">
-                                    <input type="password" class="input-xlarge" id="currentPasswordVerify" name="currentPasswordVerify">
+                                    <input type="password" class="input-xlarge" id="currentPasswordVerify" name="CONFIRM_PASSWORD">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label control-label-small" for="inputPromotionDescription">First Name</label>
                                 <div class="pull-left">
-                                    <input type="text" class="input-xlarge" id="firstName" name="firstName">
+                                    <input type="text" class="input-xlarge" id="firstName" name="USER_FIRST_NAME">
                                 </div>
                                 <label class="control-label control-label-small" for="inputPromotionDescription">Last Name</label>
                                 <div class="pull-left">
-                                    <input type="text" class="input-xlarge" id="lastName" name="lastName">
+                                    <input type="text" class="input-xlarge" id="lastName" name="USER_LAST_NAME">
                                 </div>
                             </div>
                         </td>
@@ -95,352 +106,361 @@ under the License.
                   </tbody>
                 </table>
                 
-                <table class="table table-condensed sc-table sc-table-promotion">
-                  <thead>
-                    <tr class="sc-table-header">
-                      <th class="col1">Business Information</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                        <td class="col1 form-horizontal">
-                            <div class="control-group">
-                                <label class="control-label control-label-big" for="inputPromotionDescription">Official business name</label>
-                                <div class="pull-left">
-                                    <input type="text" class="input-large" id="businessName" name="businessName">
-                                </div>
-                                <label class="control-label control-label-big" for="inputPromotionDescription">Official trading name</label>
-                                <div class="pull-left">
-                                    <input type="text" class="input-large" id="tradingName" name="tradingName">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label control-label-big" for="inputPromotionDescription">Contact phone number</label>
-                                <div class="pull-left">
-                                    <input type="text" class="input-large" id="phoneNumber" name="phoneNumber">
-                                </div>                              
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label control-label-text" for="inputPromotionDescription">TXT Notification phone number</label>
-                                <select id="phoneNumber1" class="chosen phoneNumber" name="phoneNumber1">
-                                    <option selected="selected">09</option>
-                                    <option value="selling.html">08</option>
-                                    <option value="buying.html">07</option>
-                                    <option value="profile.html">06</option>
-                                    <option value="log-out.html">05</option>
-                                </select>
-                                <div class="pull-left">
-                                    <input type="text" class="input-large" id="phoneNumber" name="phoneNumber">
-                                </div>
-                                <label class="control-label control-label-text2" for="inputPromotionDescription">(We will send TXT notification to this phone number when order arrives)</label>
-                            </div>
-                            <div class="form-inline">
-                                <label class="radio">
-                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                Use your own domain name
-                                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://&nbsp;&nbsp;&nbsp;<input type="text" class="input-url" id="domianName" name="domianName"/> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" /><div class="sc-or"><strong>OR</strong></div><label class="radio">
+                <div class="business-registered hidden">
+                    <table class="table table-condensed sc-table sc-table-promotion">
+                      <thead>
+                        <tr class="sc-table-header">
+                          <th class="col1">Business Information</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <td class="col1 form-horizontal">
                                 <div class="control-group">
-                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                                    Create a free domain with shopmax
-                                    </label>&nbsp;&nbsp;&nbsp;&nbsp;http://&nbsp;&nbsp;
-                                    <input type="text" class="input-newurl" id="subDomain" name="subDomain">
-                                    .shopmax.co.nz <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                    <label class="control-label control-label-big" for="inputPromotionDescription">Official business name</label>
+                                    <div class="pull-left">
+                                        <input type="text" class="input-large" id="businessName" name="businessName">
+                                    </div>
+                                    <label class="control-label control-label-big" for="inputPromotionDescription">Official trading name</label>
+                                    <div class="pull-left">
+                                        <input type="text" class="input-large" id="tradingName" name="tradingName">
+                                    </div>
                                 </div>
-                            </div>
-                            <br/>
-                            <div class="control-group">
-                                <div class="control-group-bank">
-                                <label class="control-label control-label-big pull-left" for="inputPromotionDescription">Bank account detail</label>
-                                <label class="control-label control-label-bank pull-left" for="inputPromotionDescription">Account Name</label>
-                                <input type="text" class="input-large pull-left" id="inputAccountName" name="accountName"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
-                                </div>
-                                <div class="clearfix"></div>
-                                <label class="control-label control-label-big pull-left" for="inputPromotionDescription">&nbsp;</label>
-                                <label class="control-label control-label-bank pull-left" for="inputPromotionDescription">Account Number</label>
-                                <div class="pull-left"><input type="text" class="input-cc-xsmall" id="accountNumber-0" name="accountNumber-0"> - <input type="text" class="input-small" id="accountNumber-1" name="accountNumber-1"> - <input type="text" class="input-cc-large" id="accountNumber-2" name="accountNumber-2"> - <input type="text" class="input-cc-xsmall" id="accountNumber-3" name="accountNumber-3"></div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label control-label-llarge pull-left" for="inputEmailAddress">Upload your shop's logo (153x153)</label>
-                                <div class="pull-left">
-                                    <input type="text" class="logo-url" id="inputFile"> <a class="btn-general-small upload-btn" href="#">BROWSE</a> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <!-- <table class="selected-products">
-                                <tr><td class="col1">Electronics > Mobiles > Smartphones</td><td class="col2"><a href="#">Remove</a></td></tr>
-                                <tr><td class="col1">Electronics > Mobiles > Smartphones</td><td class="col2"><a href="#">Remove</a></td></tr>
-                            </table>
-                            
-                            <div class="form-inline">
-                                <br />
-                                <label>
-                                Start date&nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="text" class="input-small" />
-                                </label>
-                                <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />
-                                <label class="offset1">
-                                End date&nbsp;&nbsp;&nbsp;&nbsp;
-                                <input type="text" class="input-small" />
-                                </label>
-                                <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" /> 
-                            </div>
-                            -->
-                        </td>
-                    </tr>
-                  </tbody>
-                </table>
-                
-                <table class="table table-condensed sc-table sc-table-promotion">
-                  <thead>
-                    <tr class="sc-table-header">
-                      <th class="col1">PHYSICAL STORES DETAIL</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                        <td class="col1 form-horizontal">
-                            <div class="control-group">
-                                <label class="control-label control-label-xsmall" for="inputPromotionDescription">Location</label>
-                                <div class="pull-left">
-                                    <input type="text" class="input-xxlarge inputLocation" id="inputLocation_0">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label control-label-small" for="inputPromotionDescription">Store Phone number</label>
-                                <div class="pull-left">
-                                    <select id="phoneNumber2" class="chosen phoneNumber" name="phoneNumber2">
+                                <div class="control-group">
+                                    <label class="control-label control-label-big" for="inputPromotionDescription">Contact phone number</label>
+                                    <select id="phoneNumber0" class="chosen phoneNumber" name="phoneNumber">
                                         <option selected="selected">09</option>
                                         <option value="selling.html">08</option>
                                         <option value="buying.html">07</option>
                                         <option value="profile.html">06</option>
                                         <option value="log-out.html">05</option>
                                     </select>
-                                    <input type="text" class="input-phone-number" id="inputPassword">
+                                    <div class="pull-left">
+                                        <input type="text" class="input-large" id="phoneNumber" name="phoneNumber">
+                                    </div>
                                 </div>
-                                <label class="control-label control-label-small" for="inputPromotionDescription">Store Phone number</label>
-                                <div class="pull-left">
-                                    <select id="phoneNumber3" class="chosen phoneNumber" name="phoneNumber3">
+                                <div class="control-group">
+                                    <label class="control-label control-label-text" for="inputPromotionDescription">TXT Notification phone number</label>
+                                    <select id="phoneNumber1" class="chosen phoneNumber" name="phoneNumber1">
                                         <option selected="selected">09</option>
                                         <option value="selling.html">08</option>
                                         <option value="buying.html">07</option>
                                         <option value="profile.html">06</option>
                                         <option value="log-out.html">05</option>
                                     </select>
-                                    <input type="text" class="input-phone-number" id="inputPassword">
+                                    <div class="pull-left">
+                                        <input type="text" class="input-large" id="phoneNumber" name="phoneNumber">
+                                    </div>
+                                    <label class="control-label control-label-text2" for="inputPromotionDescription">(We will send TXT notification to this phone number when order arrives)</label>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label control-label-xlarge" for="inputOpeningHours">Opening Hours (24 hour format)</label>
+                                <div class="form-inline">
+                                    <label class="radio">
+                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                    Use your own domain name
+                                    </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://&nbsp;&nbsp;&nbsp;<input type="text" class="input-url" id="domianName" name="domianName"/> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" /><div class="sc-or"><strong>OR</strong></div><label class="radio">
+                                    <div class="control-group">
+                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                        Create a free domain with shopmax
+                                        </label>&nbsp;&nbsp;&nbsp;&nbsp;http://&nbsp;&nbsp;
+                                        <input type="text" class="input-newurl" id="subDomain" name="subDomain">
+                                        .shopmax.co.nz <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="control-group">
+                                    <div class="control-group-bank">
+                                    <label class="control-label control-label-big pull-left" for="inputPromotionDescription">Bank account detail</label>
+                                    <label class="control-label control-label-bank pull-left" for="inputPromotionDescription">Account Name</label>
+                                    <input type="text" class="input-large pull-left" id="inputAccountName" name="accountName"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <label class="control-label control-label-big pull-left" for="inputPromotionDescription">&nbsp;</label>
+                                    <label class="control-label control-label-bank pull-left" for="inputPromotionDescription">Account Number</label>
+                                    <div class="pull-left"><input type="text" class="input-cc-xsmall" id="accountNumber-0" name="accountNumber-0"> - <input type="text" class="input-small" id="accountNumber-1" name="accountNumber-1"> - <input type="text" class="input-cc-large" id="accountNumber-2" name="accountNumber-2"> - <input type="text" class="input-cc-xsmall" id="accountNumber-3" name="accountNumber-3"></div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label control-label-llarge pull-left" for="inputEmailAddress">Upload your shop's logo (153x153)</label>
+                                    <div class="pull-left">
+                                        <input type="text" class="logo-url" id="inputFile"> <a class="btn-general-small upload-btn" href="#">BROWSE</a> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                    </div>
+                                </div>
                                 <div class="clearfix"></div>
+                                <!-- <table class="selected-products">
+                                    <tr><td class="col1">Electronics > Mobiles > Smartphones</td><td class="col2"><a href="#">Remove</a></td></tr>
+                                    <tr><td class="col1">Electronics > Mobiles > Smartphones</td><td class="col2"><a href="#">Remove</a></td></tr>
+                                </table>
                                 
-                                <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Mon </label>
-                                <div clas="pull-left">
-                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                </div>
-                                <label class="control-label control-label-xxsmall pull-left" for="inputTuesday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Tue </label>
-                                <div clas="pull-left">
-                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                </div> 
-                                <label class="control-label control-label-xxsmall pull-left" for="inputWednesday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Wed </label>
-                                <div clas="pull-left">
-                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                </div> 
-                                <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Thu </label>
-                                <div clas="pull-left">  
-                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                </div>      
-                                <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Fri </label>
-                                <div clas="pull-left">
-                                <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                </div>
-                                <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Sat </label>
-                                <div clas="pull-left">
-                                <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                </div>
-                                <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Sun</label>
-                                <div clas="pull-left">
-                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                </div>
-                            </div>  
-                            <a class="btn-grey-small btn_remove" href="#">Remove Branch</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col1 form-horizontal">
-                            <div class="control-group">
-                                <label class="control-label control-label-xsmall" for="inputPromotionDescription">Location</label>
-                                <div class="pull-left">
-                                    <input type="text" class="input-xxlarge inputLocation" id="inputLocation_2">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label control-label-small" for="inputPromotionDescription">Store phone number</label>
-                                <div class="pull-left">
-                                    <select id="phoneNumber4" class="chosen phoneNumber" name="phoneNumber4">
-                                        <option selected="selected">09</option>
-                                        <option value="selling.html">08</option>
-                                        <option value="buying.html">07</option>
-                                        <option value="profile.html">06</option>
-                                        <option value="log-out.html">05</option>
-                                    </select>
-                                    <input type="text" class="input-phone-number" id="inputPassword">
-                                </div>
-                                <label class="control-label control-label-small" for="inputPromotionDescription">Store phone number</label>
-                                <div class="pull-left">
-                                    <select id="phoneNumber5" class="chosen phoneNumber" name="phoneNumber5">
-                                        <option selected="selected">09</option>
-                                        <option value="selling.html">08</option>
-                                        <option value="buying.html">07</option>
-                                        <option value="profile.html">06</option>
-                                        <option value="log-out.html">05</option>
-                                    </select>
-                                    <input type="text" class="input-phone-number" id="inputPassword">
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label control-label-xlarge" for="inputOpeningHours">Opening Hours (24 hour format)</label>
-                                <div class="clearfix"></div>
-                                
-                                <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Mon </label>
-                                <div clas="pull-left">
-                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                </div>
-                                <label class="control-label control-label-xxsmall pull-left" for="inputTuesday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Tue </label>
-                                <div clas="pull-left">
-                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                </div> 
-                                <label class="control-label control-label-xxsmall pull-left" for="inputWednesday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Wed </label>
-                                <div clas="pull-left">
-                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                </div> 
-                                <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Thu </label>
-                                <div clas="pull-left">  
-                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                </div>      
-                                <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Fri </label>
-                                <div clas="pull-left">
-                                <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                </div>
-                                <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Sat </label>
-                                <div clas="pull-left">
-                                <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                </div>
-                                <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Sun</label>
-                                <div clas="pull-left">
-                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                </div>
-                            </div>
-                            <a class="btn-grey-small btn_remove" href="#">Remove Branch</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="new-branch-area"><a href="#" class="btn-general">Add Another Branch</a></td>
-                    </tr>
-                  </tbody>
-                  <script type="text/javascript">
-                        $(function($, window, document, undefined){
-                            var defaults = {
-                                bounds: true,
-                                country: null,
-                                map: false,
-                                details: false,
-                                detailsAttribute: "name",
-                                location: false,
-                            }
-                        });
-                        var options = {
-                          // types: ['(cities)'],
-                           componentRestrictions: {country: 'nz'}//NewZealand only
-                           
-                        };
-                        $('.inputLocation').click(function(){
-                            var input = document.getElementById(this.id);
-                            //var autocomplete = new google.maps.places.Autocomplete($("#address")[0], {country:'tr'});
-                            var autocomplete = new google.maps.places.Autocomplete(input,options);
-                            google.maps.event.addListener(autocomplete, 'place_changed', function() {
-                                var place = autocomplete.getPlace();
-                                console.log(place.address_components);
-                            });
-                        });
-                    </script>
-                </table>
-                
-                <table class="table table-condensed sc-table sc-table-promotion">
-                  <thead>
-                    <tr class="sc-table-header">
-                      <th class="col1">PROOF OF IDENTIFICATION</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                        <td class="col1 form-horizontal">
-                            <div class="control-group">
-                                <label class="control-label control-label-llarge pull-left" for="inputEmailAddress">Upload a photo of your driver license</label>
-                                <div class="pull-left">
-                                    <input type="text" class="input-xlarge pull-left" id="inputFile"> <a class="btn-general-small upload-btn" href="#">BROWSE</a> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                  </tbody>
-                </table>
-                
-                <table class="table table-condensed sc-table sc-table-promotion">
-                  <thead>
-                    <tr class="sc-table-header">
-                      <th class="col1">Payment Method</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                        <td class="col1 form-horizontal">   
-                            <p class="intro-txt"><strong>Annual Fee: $800</strong></p>
-                            <div class="control-group">
-                                <div class="control-group-bank">
-                                    <label class="radio pull-left control-label-cc">
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Credit Card
+                                <div class="form-inline">
+                                    <br />
+                                    <label>
+                                    Start date&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="text" class="input-small" />
                                     </label>
-                                    <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Card Holder Name</label>
-                                    <input type="text" class="input-large pull-left" id="inputAccountName"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                    <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />
+                                    <label class="offset1">
+                                    End date&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="text" class="input-small" />
+                                    </label>
+                                    <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" /> 
                                 </div>
-                                <div class="control-group-bank">
-                                    <label class="control-label control-label-cc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
-                                    <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Card Number</label>
-                                    <div class="pull-left"><input type="text" class="input-cc-xsmall" id="inputAccountName"> - <input type="text" class="input-small" id="inputAccountName"> - <input type="text" class="input-cc-large" id="inputAccountName"> - <input type="text" class="input-cc-xsmall" id="inputAccountName"></div>
+                                -->
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+                    <table class="table table-condensed sc-table sc-table-promotion">
+                      <thead>
+                        <tr class="sc-table-header">
+                          <th class="col1">PHYSICAL STORES DETAIL</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <td class="col1 form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label control-label-xsmall" for="inputPromotionDescription">Location</label>
+                                    <div class="pull-left">
+                                        <input type="text" class="input-xxlarge inputLocation" id="inputLocation_0">
+                                    </div>
                                 </div>
-                                <div class="control-group-bank">
-                                    <label class="control-label control-label-cc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
-                                    <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Expiry Date</label>
-                                    <input type="text" class="input-large pull-left" id="inputAccountName"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                <div class="control-group">
+                                    <label class="control-label control-label-small" for="inputPromotionDescription">Store Phone number</label>
+                                    <div class="pull-left">
+                                        <select id="phoneNumber2" class="chosen phoneNumber" name="phoneNumber2">
+                                            <option selected="selected">09</option>
+                                            <option value="selling.html">08</option>
+                                            <option value="buying.html">07</option>
+                                            <option value="profile.html">06</option>
+                                            <option value="log-out.html">05</option>
+                                        </select>
+                                        <input type="text" class="input-phone-number" id="inputPassword">
+                                    </div>
+                                    <label class="control-label control-label-small" for="inputPromotionDescription">Store Phone number</label>
+                                    <div class="pull-left">
+                                        <select id="phoneNumber3" class="chosen phoneNumber" name="phoneNumber3">
+                                            <option selected="selected">09</option>
+                                            <option value="selling.html">08</option>
+                                            <option value="buying.html">07</option>
+                                            <option value="profile.html">06</option>
+                                            <option value="log-out.html">05</option>
+                                        </select>
+                                        <input type="text" class="input-phone-number" id="inputPassword">
+                                    </div>
                                 </div>
-                                <div class="control-group-bank">
-                                    <label class="control-label control-label-cc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
-                                    <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Security Code</label>
-                                    <input type="text" class="input-large pull-left" id="inputAccountName"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                <div class="control-group">
+                                    <label class="control-label control-label-xlarge" for="inputOpeningHours">Opening Hours (24 hour format)</label>
+                                    <div class="clearfix"></div>
+                                    
+                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Mon </label>
+                                    <div clas="pull-left">
+                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                    </div>
+                                    <label class="control-label control-label-xxsmall pull-left" for="inputTuesday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Tue </label>
+                                    <div clas="pull-left">
+                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                    </div> 
+                                    <label class="control-label control-label-xxsmall pull-left" for="inputWednesday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Wed </label>
+                                    <div clas="pull-left">
+                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                    </div> 
+                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Thu </label>
+                                    <div clas="pull-left">  
+                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                    </div>      
+                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Fri </label>
+                                    <div clas="pull-left">
+                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                    </div>
+                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Sat </label>
+                                    <div clas="pull-left">
+                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                    </div>
+                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Sun</label>
+                                    <div clas="pull-left">
+                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                    </div>
+                                </div>  
+                                <a class="btn-grey-small btn_remove" href="#">Remove Branch</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col1 form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label control-label-xsmall" for="inputPromotionDescription">Location</label>
+                                    <div class="pull-left">
+                                        <input type="text" class="input-xxlarge inputLocation" id="inputLocation_2">
+                                    </div>
                                 </div>
-                            </div>
-                            <br/>
-                            <div class="form-inline">
-                                <label class="radio pull-left control-label-dc">
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Debit Card
-                                </label>
-                                <label class="control-label control-label-dc-inner pull-left" for="inputPromotionDescription"><a href="#">Download a direct debit form</a></label>
+                                <div class="control-group">
+                                    <label class="control-label control-label-small" for="inputPromotionDescription">Store phone number</label>
+                                    <div class="pull-left">
+                                        <select id="phoneNumber4" class="chosen phoneNumber" name="phoneNumber4">
+                                            <option selected="selected">09</option>
+                                            <option value="selling.html">08</option>
+                                            <option value="buying.html">07</option>
+                                            <option value="profile.html">06</option>
+                                            <option value="log-out.html">05</option>
+                                        </select>
+                                        <input type="text" class="input-phone-number" id="inputPassword">
+                                    </div>
+                                    <label class="control-label control-label-small" for="inputPromotionDescription">Store phone number</label>
+                                    <div class="pull-left">
+                                        <select id="phoneNumber5" class="chosen phoneNumber" name="phoneNumber5">
+                                            <option selected="selected">09</option>
+                                            <option value="selling.html">08</option>
+                                            <option value="buying.html">07</option>
+                                            <option value="profile.html">06</option>
+                                            <option value="log-out.html">05</option>
+                                        </select>
+                                        <input type="text" class="input-phone-number" id="inputPassword">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label control-label-xlarge" for="inputOpeningHours">Opening Hours (24 hour format)</label>
+                                    <div class="clearfix"></div>
+                                    
+                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Mon </label>
+                                    <div clas="pull-left">
+                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                    </div>
+                                    <label class="control-label control-label-xxsmall pull-left" for="inputTuesday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Tue </label>
+                                    <div clas="pull-left">
+                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                    </div> 
+                                    <label class="control-label control-label-xxsmall pull-left" for="inputWednesday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Wed </label>
+                                    <div clas="pull-left">
+                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                    </div> 
+                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Thu </label>
+                                    <div clas="pull-left">  
+                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                    </div>      
+                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Fri </label>
+                                    <div clas="pull-left">
+                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                    </div>
+                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Sat </label>
+                                    <div clas="pull-left">
+                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                    </div>
+                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Sun</label>
+                                    <div clas="pull-left">
+                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                    </div>
+                                </div>
+                                <a class="btn-grey-small btn_remove" href="#">Remove Branch</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="new-branch-area"><a href="#" class="btn-general">Add Another Branch</a></td>
+                        </tr>
+                      </tbody>
+                      <script type="text/javascript">
+                            $(function($, window, document, undefined){
+                                var defaults = {
+                                    bounds: true,
+                                    country: null,
+                                    map: false,
+                                    details: false,
+                                    detailsAttribute: "name",
+                                    location: false,
+                                }
+                            });
+                            var options = {
+                              // types: ['(cities)'],
+                               componentRestrictions: {country: 'nz'}//NewZealand only
+                               
+                            };
+                            $('.inputLocation').click(function(){
+                                var input = document.getElementById(this.id);
+                                //var autocomplete = new google.maps.places.Autocomplete($("#address")[0], {country:'tr'});
+                                var autocomplete = new google.maps.places.Autocomplete(input,options);
+                                google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                                    var place = autocomplete.getPlace();
+                                    console.log(place.address_components);
+                                });
+                            });
+                        </script>
+                    </table>
+                    
+                    <table class="table table-condensed sc-table sc-table-promotion">
+                      <thead>
+                        <tr class="sc-table-header">
+                          <th class="col1">PROOF OF IDENTIFICATION</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <td class="col1 form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label control-label-llarge pull-left" for="inputEmailAddress">Upload a photo of your driver license</label>
+                                    <div class="pull-left">
+                                        <input type="text" class="input-xlarge pull-left" id="inputFile"> <a class="btn-general-small upload-btn" href="#">BROWSE</a> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+                    <table class="table table-condensed sc-table sc-table-promotion">
+                      <thead>
+                        <tr class="sc-table-header">
+                          <th class="col1">Payment Method</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <td class="col1 form-horizontal">   
+                                <p class="intro-txt"><strong>Annual Fee: $800</strong></p>
+                                <div class="control-group">
+                                    <div class="control-group-bank">
+                                        <label class="radio pull-left control-label-cc">
+                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Credit Card
+                                        </label>
+                                        <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Card Holder Name</label>
+                                        <input type="text" class="input-large pull-left" id="inputAccountName"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                    </div>
+                                    <div class="control-group-bank">
+                                        <label class="control-label control-label-cc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
+                                        <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Card Number</label>
+                                        <div class="pull-left"><input type="text" class="input-cc-xsmall" id="inputAccountName"> - <input type="text" class="input-small" id="inputAccountName"> - <input type="text" class="input-cc-large" id="inputAccountName"> - <input type="text" class="input-cc-xsmall" id="inputAccountName"></div>
+                                    </div>
+                                    <div class="control-group-bank">
+                                        <label class="control-label control-label-cc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
+                                        <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Expiry Date</label>
+                                        <input type="text" class="input-large pull-left" id="inputAccountName"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                    </div>
+                                    <div class="control-group-bank">
+                                        <label class="control-label control-label-cc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
+                                        <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Security Code</label>
+                                        <input type="text" class="input-large pull-left" id="inputAccountName"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-inline">
+                                    <label class="radio pull-left control-label-dc">
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Debit Card
+                                    </label>
+                                    <label class="control-label control-label-dc-inner pull-left" for="inputPromotionDescription"><a href="#">Download a direct debit form</a></label>
+                                    <div class="clearfix"></div>
+                                    <label class="control-label control-label-dc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
+                                    <label class="control-label control-label-dc-inner pull-left" for="inputPromotionDescription">Upload a direct debit form</label>
+                                    <div class="pull-left">
+                                        <input type="text" class="input-xlarge pull-left" id="inputFile"> <a class="btn-general-small upload-btn" href="#">BROWSE</a>
+                                    </div>
+                                </div>
                                 <div class="clearfix"></div>
-                                <label class="control-label control-label-dc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
-                                <label class="control-label control-label-dc-inner pull-left" for="inputPromotionDescription">Upload a direct debit form</label>
-                                <div class="pull-left">
-                                    <input type="text" class="input-xlarge pull-left" id="inputFile"> <a class="btn-general-small upload-btn" href="#">BROWSE</a>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </td>
-                    </tr>
-                  </tbody>
-                </table>
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
             </form>
             <div class="sc-table-promotion footer-button">
             <a href="#" class="btn-success-small">Save</a>&nbsp;&nbsp;
-            <a id="submit-createshopmaxseller" class="btn-general-small">Submit</a>&nbsp;&nbsp;
+            <a id="submit-createcustomer" class="btn-general-small">Submit</a>&nbsp;&nbsp;
             <a href="<@ofbizUrl>main</@ofbizUrl>" class="btn-grey-small">Cancel</a>
             </div>
         </div><!-- /.span9 -->

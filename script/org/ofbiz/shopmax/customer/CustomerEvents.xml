@@ -19,9 +19,84 @@ under the License.
 -->
 
 <simple-methods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/simple-methods-v2.xsd">
-
+        xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/simple-methods.xsd">
+    
+    <!-- <simple-method method-name="createShopMaxSeller" short-description="Create Shop Max Seller" login-required="false">
+        <entity-one entity-name="UserLogin" value-field="systemUserLogin">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        
+        <set field="personContext.firstName" from-field="parameters.firstName"/>
+        <set field="personContext.lastName" from-field="parameters.lastName"/>
+        <set field="personContext.userLogin" from-field="systemUserLogin"/>
+        <log level="info" message="=============personContext===============${personContext}"/>
+        <call-service service-name="createPerson" in-map-name="personContext">
+            <result-to-field result-name="partyId" field="customerPartyId"/>
+        </call-service>
+        
+        <set field="partyRoleContext.partyId" from-field="customerPartyId"/>
+        <set field="partyRoleContext.roleTypeId" value="SELLER"/>
+        <set field="partyRoleContext.userLogin" from-field="systemUserLogin"/>
+        <log level="info" message="=============partyRoleContext===============${partyRoleContext}"/>
+        <call-service service-name="createPartyRole" in-map-name="partyRoleContext"/>
+        
+        <call-map-processor xml-resource="component://securityext/script/org/ofbiz/securityext/login/LoginMapProcs.xml"
+                processor-name="userLogin" in-map-name="parameters" out-map-name="newUserLogin"/>
+        <sequenced-id sequence-name="UserLogin" field="newUserLogin.userLoginId"/>
+        <set field="newUserLogin.currentPasswordVerify" from-field="parameters.currentPasswordVerify"/>
+        <set field="newUserLogin.currentPassword" from-field="parameters.currentPassword"/>
+        <set field="newUserLogin.enabled" value="Y"/>
+        <set field="newUserLogin.hasLoggedOut" value="N"/>
+        <set field="newUserLogin.partyId" from-field="customerPartyId"/>
+        <set field="newUserLogin.userLogin" from-field="systemUserLogin"/>
+        <set-service-fields service-name="createUserLogin"  map="newUserLogin" to-map="userLoginCtx"/>
+        <log level="info" message="=============userLoginCtx===============${userLoginCtx}"/>
+        call the service with the system account to get around security constraints for this special create
+        <call-service service-name="createUserLogin" in-map-name="userLoginCtx"/>
+        <entity-one entity-name="UserLogin" value-field="userLogin">
+            <field-map field-name="userLoginId" from-field="userLoginCtx.userLoginId"/>
+        </entity-one>
+        <log level="info" message="=============userLoginId===============${userLogin.userLoginId}"/>
+        
+        <set field="emailContext.emailAddress" from-field="parameters.emailAddress"/>
+        <set field="emailContext.partyId" from-field="customerPartyId"/>
+        <set field="emailContext.contactMechPurposeTypeId" value="PRIMARY_EMAIL"/>
+        <set field="emailContext.userLogin" from-field="systemUserLogin"/>
+        <log level="info" message="=============emailContext===============${emailContext}"/>
+        <call-service service-name="createPartyEmailAddress" in-map-name="emailContext">
+            <result-to-field result-name="contactMechId" field="emailPurposeContext.contactMechId"/>
+        </call-service>
+        
+        <call-class-method method-name="getWebSiteId" class-name="org.ofbiz.webapp.website.WebSiteWorker" ret-field="webSiteId">
+            <field field="request" type="javax.servlet.ServletRequest"/>
+        </call-class-method>
+        <log level="info" message="=============webSiteId===============${webSiteId}"/>
+        Create Domain
+        sub domain name option
+        <set field="subDomainNameOption.configItemId" value="SHOPMAX_SDOMAIN"/>
+        <set field="subDomainNameOption.sequenceNum" value="10" type="Long"/>
+        <set field="subDomainNameOption.configOptionId" value="SDOMAIN000"/>
+        <set field="subDomainNameOption.comments" from-field="parameters.subDomain"/>
+        <field-to-list list="configOptions" field="subDomainNameOption"/>
+        
+        <set field="createShopMaxSellerInMap.webSiteId" from-field="webSiteId"/>
+        <set field="createShopMaxSellerInMap.productStoreId" from-field="parameters.emailProductStoreId"/>
+        <set field="createShopMaxSellerInMap.prodCatalogId" value="SHOPMAX_CATALOG"/>
+        <set field="createShopMaxSellerInMap.productId" value="SHOPMAXSELLER-BASE"/>
+        <set field="createShopMaxSellerInMap.currentPassword" from-field="parameters.currentPassword"/>
+        <set field="createShopMaxSellerInMap.userLogin" from-field="userLogin"/>
+        <set field="createShopMaxSellerInMap.configOptions" from-field="configOptions"/>
+        <log level="info" message="=============createShopMaxSellerInMap===============${createShopMaxSellerInMap}"/>
+        <call-service service-name="createShopMaxSeller" in-map-name="createShopMaxSellerInMap">
+             <result-to-field result-name="orderId"/>
+        </call-service>
+    </simple-method> -->
+    
     <simple-method method-name="createCustomer" short-description="Create Customer" login-required="false">
+        <entity-one entity-name="UserLogin" value-field="systemUserLogin">
+                <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        
         <call-class-method class-name="org.ofbiz.product.store.ProductStoreWorker" method-name="getProductStore" ret-field="productStore">
             <field field="request" type="javax.servlet.ServletRequest"/>
         </call-class-method>
@@ -172,6 +247,8 @@ under the License.
         <set-current-user-login value-field="createdUserLogin"/>
         
         <!-- create all necessary role -->
+        <set from-field="systemUserLogin" field="partyRoleContext.userLogin"/>
+        <set from-field="tempMap.partyId" field="partyRoleContext.partyId"/>
         <call-service service-name="createPartyRole" in-map-name="partyRoleContext" include-user-login="true"/>
         
         <!-- email address -->
@@ -198,10 +275,7 @@ under the License.
         </if-compare>
         
         <!-- Associated to Product Store -->
-        <entity-one entity-name="UserLogin" value-field="userLogin">
-            <field-map field-name="userLoginId" value="system"/>
-        </entity-one>
-        <set field="createProductStoreRoleMap.userLogin" from-field="userLogin"/>
+        <set field="createProductStoreRoleMap.userLogin" from-field="systemUserLogin"/>
         <set field="createProductStoreRoleMap.partyId" from-field="tempMap.partyId"/>
         <set field="createProductStoreRoleMap.roleTypeId" from-field="parameters.roleTypeId"/>
         <set field="createProductStoreRoleMap.productStoreId" from-field="parameters.emailProductStoreId"/>
@@ -231,7 +305,7 @@ under the License.
         <!-- security for manage profile  -->
         <set field="securityParams.userLoginId" from-field="createdUserLogin.userLoginId"/>
         <set field="securityParams.groupId" value="ECOMMERCE_CUSTOMER"/>
-        <set field="securityParams.userLogin" from-field="userLogin"/>
+        <set field="securityParams.userLogin" from-field="systemUserLogin"/>
         <call-service service-name="addUserLoginToSecurityGroup" in-map-name="securityParams"/>
         
         <!-- tell the control servlet that we just logged in the user... -->
@@ -239,19 +313,18 @@ under the License.
         <field-to-request field="_LOGIN_PASSED_"/>
         
         <if-compare field="businessUser" operator="equals" value="Y">
-            <entity-one entity-name="UserLogin" value-field="systemUserLogin">
-                <field-map field-name="userLoginId" value="system"/>
-            </entity-one>
-            
+            <set field="createSellerRoleCtx.userLogin" from-field="systemUserLogin"/>
             <set field="createSellerRoleCtx.partyId" from-field="tempMap.partyId"/>
             <set field="createSellerRoleCtx.roleTypeId" value="BUYER"/>
             <call-service service-name="createPartyRole" in-map-name="createSellerRoleCtx" include-user-login="true"/>
             
+            <set field="createEmployeeRoleCtx.userLogin" from-field="systemUserLogin"/>
             <set field="createEmployeeRoleCtx.partyId" from-field="tempMap.partyId"/>
             <set field="createEmployeeRoleCtx.roleTypeId" value="EMPLOYEE"/>
             <call-service service-name="createPartyRole" in-map-name="createEmployeeRoleCtx" include-user-login="true"/>
             
             <!-- Create party group -->
+            <set field="partyGroupCtx.userLogin" from-field="systemUserLogin"/>
             <set field="partyGroupCtx.groupName" from-field="parameters.officialBusinessName"/>
             <set field="partyGroupCtx.groupNameLocal" from-field="parameters.officialTradingName"/>
             <set field="partyGroupCtx.partyTypeId" value="PARTY_GROUP"/>
@@ -377,6 +450,7 @@ under the License.
             </else>
             </if-empty>
          <else>
+            <set field="createBuyerRoleCtx.userLogin" from-field="systemUserLogin"/>
             <set field="createBuyerRoleCtx.partyId" from-field="tempMap.partyId"/>
             <set field="createBuyerRoleCtx.roleTypeId" value="BUYER"/>
             <call-service service-name="createPartyRole" in-map-name="createBuyerRoleCtx" include-user-login="true"/>

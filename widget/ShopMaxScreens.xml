@@ -44,6 +44,7 @@ under the License.
                 <set field="titleProperty" value="PageTitleRegistration"/>
                 <set field="headerItem" value="registration"/>
                 <set field="breadCrumTitle" value="Registration"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/Registration.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">

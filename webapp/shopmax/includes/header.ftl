@@ -30,16 +30,18 @@ under the License.
             <div class="block-left">
                 <div class="box">
                     <ul>
-                        <li>
-                            <label class="label-1">Email address</label>
-                            <input type="text" class="input-1">
-                        </li>
-                        <li>
-                            <label class="label-1">Password</label>
-                            <input type="password" class="input-2">
-                            <input type="submit" name="" value="Login" class="log_btn">
-                            <a href="#" class="forgot">Forgotten password?</a>
-                        </li>
+                        <form name="login" id="login" action="<@ofbizUrl>login</@ofbizUrl>" method="post">
+                            <li>
+                                <label class="label-1">Email address</label>
+                                <input type="text" class="input-1" name="USERNAME">
+                            </li>
+                            <li>
+                                <label class="label-1">Password</label>
+                                <input type="password" class="input-2" name="PASSWORD">
+                                <input type="submit" name="" value="Login" class="log_btn">
+                                <a href="#" class="forgot">Forgotten password?</a>
+                            </li>
+                        </form>
                         <li>
                             <p>Don't have an account yet?</p>
                             <a href="<@ofbizUrl>registration</@ofbizUrl>"><input type="submit" name="" value="Register" class="sub_reg"></a>
@@ -120,14 +122,21 @@ under the License.
             <!-- PERSONAL GREETING & LINKS -->
             <div id="personal" class="pull-left nav-collapse collapse">
                 <#if userLogin?has_content>
-                    <h4>Hi <span>James</span></h4>
+                    <h4>Hi <span>
+                        <#if sessionAttributes.autoName?has_content && userLogin?has_content>
+                            <#assign partyName = delegator.findByPrimaryKey("PartyNameView", {"partyId" : userLogin.partyId?if_exists})?if_exists/>
+                            <#if partyName?has_content>
+                                ${partyName.firstName?if_exists}
+                            </#if>
+                        </#if>
+                    </span></h4>
                     <form class="rounded-form">
                         <select id="accountOptions" class="chosen actionable" name="accountOptions">
                             <option value="<@ofbizUrl>account</@ofbizUrl>">My Account</option>
                             <option value="selling.html">Selling</option>
                             <option value="buying.html">Buying</option>
                             <option value="<@ofbizUrl>profile</@ofbizUrl>">Profile</option>
-                            <option value="log-out.html">Log Out</option>
+                            <option value="<@ofbizUrl>logout</@ofbizUrl>">Log Out</option>
                         </select>
                     </form>
                 <#else>
