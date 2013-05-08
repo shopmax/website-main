@@ -120,34 +120,6 @@ under the License.
         <!-- Create the PartyRole -->
         <set from-field="parameters.roleTypeId" field="partyRoleContext.roleTypeId"/>
         
-        <!-- Create the Contact Phone Number -->
-        <if-not-empty field="parameters.CUSTOMER_HOME_CONTACT">
-            <call-map-processor in-map-name="parameters" out-map-name="homePhoneContext">
-                <simple-map-processor name="newTelecomNumber">
-                    <process field="roleTypeId"><copy/></process>
-                    <process field="CUSTOMER_HOME_COUNTRY"><copy to-field="countryCode"/></process>
-                    <process field="CUSTOMER_HOME_AREA"><copy to-field="areaCode"/></process>
-                    <process field="CUSTOMER_HOME_CONTACT"><copy to-field="contactNumber"/></process>
-                    <process field="CUSTOMER_HOME_EXT"><copy to-field="extension"/></process>
-                    <process field="CUSTOMER_HOME_ALLOW_SOL"><copy to-field="allowSolicitation"/></process>
-                </simple-map-processor>
-            </call-map-processor>
-        </if-not-empty>
-        
-        <!-- Create the Mobile Phone -->
-        <if-not-empty field="parameters.CUSTOMER_MOBILE_CONTACT">
-            <call-map-processor in-map-name="parameters" out-map-name="mobilePhoneContext">
-                <simple-map-processor name="newTelecomNumber">
-                    <process field="roleTypeId"><copy/></process>
-                    <process field="CUSTOMER_MOBILE_COUNTRY"><copy to-field="countryCode"/></process>
-                    <process field="CUSTOMER_MOBILE_AREA"><copy to-field="areaCode"/></process>
-                    <process field="CUSTOMER_MOBILE_CONTACT"><copy to-field="contactNumber"/></process>
-                    <process field="CUSTOMER_MOBILE_EXT"><copy to-field="extension"/></process>
-                    <process field="CUSTOMER_MOBILE_ALLOW_SOL"><copy to-field="allowSolicitation"/></process>
-                </simple-map-processor>
-            </call-map-processor>
-        </if-not-empty>
-        
         <!-- Create the email address -->
         
         <!-- Check for required E-Mail -->
@@ -320,7 +292,7 @@ under the License.
                 <call-service service-name="createPartyContactMechPurpose" in-map-name="homePhonePurposeContext"/>
             </if-not-empty>
             
-            <!-- Create the Mobile Phone -->
+            <!-- Create the mobile phone -->
             <if-not-empty field="parameters.CUSTOMER_MOBILE_CONTACT">
                 <call-service service-name="createPartyTelecomNumber" in-map-name="mobilePhoneContext">
                     <result-to-field result-name="contactMechId" field="mobilePhonePurposeContext.contactMechId"/>
@@ -349,6 +321,27 @@ under the License.
             <set field="createEftAccountMap.routingNumber" from-field="parameters.routingNumber"/>
             <set field="createEftAccountMap.accountType" from-field="parameters.billingType"/>
             <call-service service-name="createEftAccount" in-map-name="createEftAccountMap"/>
+            
+            <!-- Create physical stores -->
+            <set field="locationContext.address1" from-field="parameters.location"/>
+            <call-service service-name="createPartyPostalAddress" in-map-name="locationContext">
+                <result-to-field result-name="contactMechId" field="addressPurposeContext.contactMechId"/>
+            </call-service>
+            <set from-field="tempMap.partyId" field="addressPurposeContext.partyId"/>
+            <set value="PHYS_STORE_LOCATION" field="addressPurposeContext.contactMechPurposeTypeId"/>
+            <call-service service-name="createPartyContactMechPurpose" in-map-name="addressPurposeContext"/>
+            
+            <set field="createStorePhoneNumberMap.contactMechId" from-field="addressPurposeContext.contactMechId"/>
+            <set field="createStorePhoneNumberMap.attrName" value="STORE_PHONE_NUMBER"/>
+            <set field="createStorePhoneNumberMap.attrValue" from-field="parameters.storePhoneNumber"/>
+            <set field="createStorePhoneNumberMap.userLogin" from-field="systemUserLogin"/>
+            <call-service service-name="createContactMechAttribute" in-map-name="createStorePhoneNumberMap"/>
+            
+            <set field="createMonOpeningHoursMap.contactMechId" from-field="addressPurposeContext.contactMechId"/>
+            <set field="createMonOpeningHoursMap.attrName" value="MON_OPENING_HOURS"/>
+            <set field="createMonOpeningHoursMap.attrValue" from-field="parameters.monOpeningHours"/>
+            <set field="createMonOpeningHoursMap.userLogin" from-field="systemUserLogin"/>
+            <call-service service-name="createContactMechAttribute" in-map-name="createMonOpeningHoursMap"/>
             
             <!-- Upload driver license -->
             <if-not-empty field="parameters._uploadedFile_fileName">

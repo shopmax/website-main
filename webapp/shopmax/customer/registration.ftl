@@ -274,7 +274,7 @@ under the License.
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label control-label-small" for="inputPromotionDescription">Store Phone number</label>
+                                <label class="control-label control-label-small" for="inputPromotionDescription">Store phone number</label>
                                 <div class="pull-left">
                                     <select id="phoneNumber4" class="chosen phoneNumber" name="phoneNumber4">
                                         <option selected="selected">09</option>
@@ -285,7 +285,7 @@ under the License.
                                     </select>
                                     <input type="text" class="input-phone-number" id="inputPassword">
                                 </div>
-                                <label class="control-label control-label-small" for="inputPromotionDescription">Store Phone number</label>
+                                <label class="control-label control-label-small" for="inputPromotionDescription">Store phone number</label>
                                 <div class="pull-left">
                                     <select id="phoneNumber5" class="chosen phoneNumber" name="phoneNumber5">
                                         <option selected="selected">09</option>
