@@ -1,0 +1,51 @@
+Index: applications/product/script/org/ofbiz/product/category/CategoryServices.xml
+===================================================================
+--- applications/product/script/org/ofbiz/product/category/CategoryServices.xml	(revision 1470483)
++++ applications/product/script/org/ofbiz/product/category/CategoryServices.xml	(working copy)
+@@ -277,6 +277,9 @@
+         </if-empty>
+ 
+         <create-value value-field="newEntity"/>
++        <field-to-result field="newEntity.productCategoryId" result-name="productCategoryId"/>
++        <field-to-result field="newEntity.parentProductCategoryId" result-name="parentProductCategoryId"/>
++        <field-to-result field="newEntity.fromDate" result-name="fromDate"/>
+     </simple-method>
+     <simple-method method-name="addProductCategoryToCategories" short-description="Add ProductCategory to Categories">
+         <if-instance-of field="parameters.categories" class="java.util.List">
+@@ -334,6 +337,8 @@
+         <set-nonpk-fields map="parameters" value-field="lookedUpValue"/>
+         <store-value value-field="lookedUpValue"/>
+         <field-to-result field="parameters.productCategoryId" result-name="productCategoryId"/>
++        <field-to-result field="parameters.parentProductCategoryId" result-name="parentProductCategoryId"/>
++        <field-to-result field="parameters.fromDate" result-name="fromDate"/>
+     </simple-method>
+     <simple-method method-name="removeProductCategoryFromCategory" short-description="Remove ProductCategory From Category">
+         <set value="removeProductCategoryFromCategory" field="callingMethodName"/>
+Index: applications/product/servicedef/services.xml
+===================================================================
+--- applications/product/servicedef/services.xml	(revision 1470483)
++++ applications/product/servicedef/services.xml	(working copy)
+@@ -840,9 +840,9 @@
+     <service name="safeAddProductCategoryToCategory" engine="simple"
+                 location="component://product/script/org/ofbiz/product/category/CategoryServices.xml" invoke="addProductCategoryToCategory" auth="true">
+         <description>Safe Add ProductCategory To Category (requires fromDate)</description>
+-        <attribute name="productCategoryId" type="String" mode="IN" optional="false"/>
+-        <attribute name="parentProductCategoryId" type="String" mode="IN" optional="false"/>
+-        <attribute name="fromDate" type="Timestamp" mode="IN" optional="false"/>
++        <attribute name="productCategoryId" type="String" mode="INOUT" optional="false"/>
++        <attribute name="parentProductCategoryId" type="String" mode="INOUT" optional="false"/>
++        <attribute name="fromDate" type="Timestamp" mode="INOUT" optional="false"/>
+         <attribute name="thruDate" type="Timestamp" mode="IN" optional="true"/>
+         <attribute name="sequenceNum" type="Long" mode="IN" optional="true"/>
+     </service>
+@@ -869,8 +869,8 @@
+                 location="component://product/script/org/ofbiz/product/category/CategoryServices.xml" invoke="updateProductCategoryToCategory" auth="true">
+         <description>Update ProductCategory To Category</description>
+         <attribute name="productCategoryId" type="String" mode="INOUT" optional="false"/>
+-        <attribute name="parentProductCategoryId" type="String" mode="IN" optional="false"/>
+-        <attribute name="fromDate" type="Timestamp" mode="IN" optional="false"/>
++        <attribute name="parentProductCategoryId" type="String" mode="INOUT" optional="false"/>
++        <attribute name="fromDate" type="Timestamp" mode="INOUT" optional="false"/>
+         <attribute name="thruDate" type="Timestamp" mode="IN" optional="true"/>
+         <attribute name="sequenceNum" type="Long" mode="IN" optional="true"/>
+     </service>

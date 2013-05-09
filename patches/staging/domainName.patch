@@ -1,11 +1,11 @@
 Index: hot-deploy/shopmax/data/ShopMaxData.xml
 ===================================================================
---- hot-deploy/shopmax/data/ShopMaxData.xml	(revision 45)
+--- hot-deploy/shopmax/data/ShopMaxData.xml	(revision 123)
 +++ hot-deploy/shopmax/data/ShopMaxData.xml	(working copy)
 @@ -20,8 +20,8 @@
  
  <entity-engine-xml>
-     <WebSite webSiteId="SHOPMAX" siteName="ShopMax Web Site"
+     <WebSite webSiteId="SHOPMAX" siteName="ShopMax Web Site" productStoreId="ShopMaxStore"
 -        httpHost="shopmax.localhost" httpPort="8080"
 -        httpsHost="shopmax.localhost" httpsPort="8443"
 -        standardContentPrefix="http://shopmaxbackend.localhost:8080"
