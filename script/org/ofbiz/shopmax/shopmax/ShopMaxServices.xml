@@ -180,4 +180,92 @@ under the License.
             </iterate>
         </if-compare>
     </simple-method>
+    
+    <simple-method method-name="uploadProductSeller" short-description="Upload Product Seller">
+        <entity-one value-field="systemUserLogin" entity-name="UserLogin">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        <now-timestamp field="nowTimestamp"/>
+        
+        <!-- Create product -->
+        <set field="createProductMap.userLogin" from-field="systemUserLogin"/>
+        <set field="createProductMap.productTypeId" value="FINISHED_GOOD"/>
+        <set field="createProductMap.internalName" from-field="parameters.productName"/>
+        <set field="createProductMap.productName" from-field="parameters.productName"/>
+        <set field="createProductMap.description" from-field="parameters.description"/>
+        <call-service service-name="createProduct" in-map-name="createProductMap">
+            <result-to-field result-name="productId" field="parameters.productId"/>
+        </call-service>
+        <field-to-result field="parameters.productId" result-name="productId"/>
+        
+        <entity-one value-field="product" entity-name="Product">
+            <field-map field-name="productId" from-field="parameters.productId"/>
+        </entity-one>
+        <set field="product.createdByUserLogin" from-field="userLogin.userLoginId"/>
+        <store-value value-field="product"/>
+        
+        <!-- Create images of product -->
+        <if-not-empty field="parameters._additionalImageOne_fileName">
+            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
+            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
+            <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/>
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.additionalImageOne"/>
+            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._additionalImageOne_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._additionalImageOne_contentType"/>
+            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
+            <clear-field field="addAdditionalViewForProductMap"/>
+        </if-not-empty>
+        <if-not-empty field="parameters._additionalImageTwo_fileName">
+            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
+            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
+            <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/>
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.additionalImageTwo"/>
+            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._additionalImageTwo_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._additionalImageTwo_contentType"/>
+            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
+            <clear-field field="addAdditionalViewForProductMap"/>
+        </if-not-empty>
+        <if-not-empty field="parameters._additionalImageThree_fileName">
+            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
+            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
+            <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/>
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.additionalImageThree"/>
+            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._additionalImageThree_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._additionalImageThree_contentType"/>
+            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
+            <clear-field field="addAdditionalViewForProductMap"/>
+        </if-not-empty>
+        <if-not-empty field="parameters._additionalImageFour_fileName">
+            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
+            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
+            <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/>
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.additionalImageFour"/>
+            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._additionalImageFour_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._additionalImageFour_contentType"/>
+            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
+            <clear-field field="addAdditionalViewForProductMap"/>
+        </if-not-empty>
+        
+        <!-- Create product price -->
+        <set field="createProductPriceMap.productId" from-field="parameters.productId"/>
+        <set field="createProductPriceMap.currencyUomId" value="NZD"/>
+        <set field="createProductPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
+        <set field="createProductPriceMap.productStoreGroupId" value="_NA_"/>
+        <set field="createProductPriceMap.productPricePurposeId" value="PURCHASE"/>
+        <set field="createProductPriceMap.productPriceTypeId" value="DEFAULT_PRICE"/>
+        <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
+        
+        <set field="createProductPriceMap.productPriceTypeId" value="LIST_PRICE"/>
+        <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
+        
+        <set field="createProductPriceMap.price" from-field="parameters.promoPrice" type="BigDecimal"/>
+        <set field="createProductPriceMap.productPriceTypeId" value="PROMO_PRICE"/>
+        <set field="createProductPriceMap.fromDate" from-field="parameters.promoPriceFromDate"/>
+        <set field="createProductPriceMap.thruDate" from-field="parameters.promoPriceThruDate"/>
+        <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
+    </simple-method>
 </simple-methods>
