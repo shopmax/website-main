@@ -30,4 +30,19 @@ under the License.
         <condition field-name="productCategoryId" operator="is-not-empty"/>
         <action service="updateProductCategoryToSeller" mode="sync"/>
     </eca>
+    
+    <eca service="safeAddProductCategoryToCategory" event="commit">
+        <condition field-name="productCategoryId" operator="is-not-empty"/>
+        <action service="createCategoryRollUpToSeller" mode="sync"/>
+    </eca>
+    
+    <eca service="updateProductCategoryToCategory" event="commit">
+        <condition field-name="productCategoryId" operator="is-not-empty"/>
+        <action service="updateCategoryRollUpToSeller" mode="sync"/>
+    </eca>
+    
+    <eca service="removeProductCategoryFromCategory" event="commit">
+        <condition field-name="productCategoryId" operator="is-not-empty"/>
+        <action service="deleteCategoryRollUpToSeller" mode="sync"/>
+    </eca>
 </service-eca>

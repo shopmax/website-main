@@ -40,4 +40,28 @@ under the License.
         <description>Update Product Category To Seller</description>
         <attribute name="productCategoryId" mode="IN" type="String" optional="false"/>
     </service>
+    
+    <service name="createCategoryRollUpToSeller" engine="simple" 
+            location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="createCategoryRollUpToSeller" auth="true">
+        <description>Create Product Category To Seller</description>
+        <attribute name="productCategoryId" mode="IN" type="String" optional="false"/>
+        <attribute name="parentProductCategoryId" mode="IN" type="String" optional="false"/>
+        <attribute name="fromDate" mode="IN" type="Timestamp" optional="false"/>
+    </service>
+    
+    <service name="updateCategoryRollUpToSeller" engine="simple" 
+            location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="updateCategoryRollUpToSeller" auth="true">
+        <description>Update Product Category To Seller</description>
+        <attribute name="productCategoryId" mode="IN" type="String" optional="false"/>
+        <attribute name="parentProductCategoryId" mode="IN" type="String" optional="false"/>
+        <attribute name="fromDate" mode="IN" type="Timestamp" optional="false"/>
+    </service>
+    
+    <service name="deleteCategoryRollUpToSeller" engine="simple" 
+            location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="deleteCategoryRollUpToSeller" auth="true">
+        <description>Delete Product Category To Seller</description>
+        <attribute name="productCategoryId" mode="IN" type="String" optional="false"/>
+        <attribute name="parentProductCategoryId" mode="IN" type="String" optional="false"/>
+        <attribute name="fromDate" mode="IN" type="Timestamp" optional="false"/>
+    </service>
 </services>
