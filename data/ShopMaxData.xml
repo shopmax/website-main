@@ -19,7 +19,7 @@ under the License.
 -->
 
 <entity-engine-xml>
-    <WebSite webSiteId="SHOPMAX" siteName="ShopMax Web Site" productStoreId="ShopMaxStore"
+    <WebSite webSiteId="SHOPMAX" siteName="ShopMax Web Site"
         httpHost="shopmax.localhost" httpPort="8080"
         httpsHost="shopmax.localhost" httpsPort="8443"
         standardContentPrefix="http://shopmaxbackend.localhost:8080"

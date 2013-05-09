@@ -55,4 +55,6 @@ under the License.
         authErrorMessage="Problem connecting to payment processor; we will continue to retry and notify you by email."
         storeCreditValidDays="90" storeCreditAccountEnumId="FIN_ACCOUNT" splitPayPrefPerShpGrp="N" enableProductGroupOrder="Y"
         visualThemeId="SHOPMAX_THEME" prodSearchExcludeVariants="Y" autoApproveInvoice="Y" shipIfCaptureFails="Y" autoApproveOrder="Y" showOutOfStockProducts="N" usePrimaryEmailUsername="Y" autoApproveReviews="Y"/>
+    
+    <WebSite webSiteId="SHOPMAX" siteName="ShopMax Web Site" productStoreId="ShopMaxStore"/>
 </entity-engine-xml>
