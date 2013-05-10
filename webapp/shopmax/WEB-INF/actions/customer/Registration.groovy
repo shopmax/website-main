@@ -8,4 +8,3 @@ import org.ofbiz.product.store.ProductStoreWorker;
 def productStore = ProductStoreWorker.getProductStore(request);
 context.productStoreId = productStore.productStoreId;
 context.productStore = productStore;
-println"================context============="+context.productStoreId;

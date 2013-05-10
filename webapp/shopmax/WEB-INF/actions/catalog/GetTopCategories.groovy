@@ -37,8 +37,7 @@ if (tenantId == "default") {
 	topCategoryList = [];
 	if (categoryList) {
 		for (category in categoryList) {
-			productCategoryMembers = EntityUtil.filterByDate(delegator.findByAndCache("ProductCategoryMember", [productCategoryId: category.productCategoryId], null, false)));
-			
+			productCategoryMembers = EntityUtil.filterByDate(delegator.findByAndCache("ProductCategoryMember", [productCategoryId: category.productCategoryId], null, false));
 		}
 	}
 }

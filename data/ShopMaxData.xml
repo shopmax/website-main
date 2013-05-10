@@ -24,4 +24,6 @@ under the License.
         httpsHost="shopmax.localhost" httpsPort="8443"
         standardContentPrefix="http://shopmaxbackend.localhost:8080"
         secureContentPrefix="https://shopmaxbackend.localhost:8443"/>
+        
+        <Party partyId="_NA_" partyTypeId="PERSON"/>
 </entity-engine-xml>

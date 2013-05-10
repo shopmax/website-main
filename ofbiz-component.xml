@@ -58,7 +58,7 @@ under the License.
         app-bar-display="false"
         server="default-server"
         location="webapp/shopmax"
-        base-permission="OFBTOOLS,SHOPMAX"
+        base-permission="" 
         mount-point="/">
         <virtual-host host-name="shopmax.localhost"/>
         <virtual-host host-name="shopmax.ofbizdemo.com"/>

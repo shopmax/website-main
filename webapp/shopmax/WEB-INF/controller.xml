@@ -24,6 +24,7 @@ under the License.
          can be found in the following xml file. A component can override the
          elements found in the common-controller.xml file. -->
     <include location="component://common/webcommon/WEB-INF/common-controller.xml"/>
+    <include location="component://ecommerce/webapp/ecommerce/WEB-INF/controller.xml"/>
 
     <description>ShopMax Component Site Configuration File</description>
 
@@ -58,6 +59,28 @@ under the License.
     <request-map uri="helpcenter">
         <security https="false" auth="false"/>
         <response name="success" type="view" value="helpcenter"/>
+    </request-map>
+    
+    <!-- Security Mappings -->
+    <request-map uri="checkLogin" edit="false">
+        <description>Verify a user is logged in.</description>
+        <security https="true" auth="false"/>
+        <event type="java" path="org.ofbiz.webapp.control.LoginWorker" invoke="checkLogin"/>
+        <response name="success" type="view" value="main"/>
+        <response name="error" type="view" value="main"/>
+    </request-map>
+    <request-map uri="login">
+        <security https="true" auth="false"/>
+        <event type="java" path="org.ofbiz.webapp.control.LoginWorker" invoke="login"/>
+        <response name="success" type="view" value="main"/>
+        <response name="requirePasswordChange" type="view" value="requirePasswordChange"/>
+        <response name="error" type="view" value="main"/>
+    </request-map>
+    <request-map uri="logout">
+        <security https="true" auth="true"/>
+        <event type="java" path="org.ofbiz.webapp.control.LoginWorker" invoke="logout"/>
+        <response name="success" type="request-redirect" value="main"/>
+        <response name="error" type="view" value="main"/>
     </request-map>
     
     <!-- Catalog Requests -->
@@ -212,11 +235,18 @@ under the License.
         <response name="error" type="view" value="account"/>
     </request-map>
     
-    <request-map uri="createCustomer">
-        <security https="true" auth="true"/>
-        <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/shopmax/CustomerEvents.xml" invoke="createCustomer"/>
-        <response name="success" type="view" value="main"/>
+    <request-map uri="createcustomer">
+        <security https="true" auth="false"/>
+        <!-- <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/customer/CustomerEvents.xml" invoke="createCustomer"/> -->
+        <event type="service" invoke="createCustomerAndUploadImages"/>
+        <response name="success" type="request" value="autoLogin"/>
         <response name="error" type="view" value="registration"/>
+    </request-map>
+    
+    <request-map uri="autoLogin">
+        <event type="java" path="org.ofbiz.webapp.control.LoginWorker" invoke="login"/>
+        <response name="success" type="view" value="main"/>
+        <response name="error" type="view" value="main"/>
     </request-map>
     
     <!-- Promotion Requests -->

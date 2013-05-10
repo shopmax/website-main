@@ -64,4 +64,46 @@ under the License.
         <attribute name="parentProductCategoryId" mode="IN" type="String" optional="false"/>
         <attribute name="fromDate" mode="IN" type="Timestamp" optional="false"/>
     </service>
+    
+    <service name="createCustomerAndUploadImages" engine="simple" location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml"
+        invoke="createCustomerAndUploadImages" auth="false">
+        <description>Create Customer And Upload Images</description>
+        <attribute name="productStoreId" mode="IN" type="String" optional="false"/>
+        <attribute name="PASSWORD" mode="INOUT" type="String" optional="false"/>
+        <attribute name="CONFIRM_PASSWORD" mode="IN" type="String" optional="false"/>
+        <attribute name="CUSTOMER_EMAIL" mode="IN" type="String" optional="false"/>
+        <attribute name="USERNAME" mode="OUT" type="String" optional="false"/>
+        <attribute name="USER_FIRST_NAME" mode="IN" type="String" optional="false"/>
+        <attribute name="USER_MIDDLE_NAME" mode="IN" type="String" optional="true"/>
+        <attribute name="USER_LAST_NAME" mode="IN" type="String" optional="true"/>
+        <attribute name="USER_TITLE" mode="IN" type="String" optional="true"/>
+        <attribute name="USER_SUFFIX" mode="IN" type="String" optional="true"/>
+        <attribute name="USER_BIRTHDATE" mode="IN" type="String" optional="true"/>
+        <attribute name="USER_GENDER" mode="IN" type="String" optional="true"/>
+        <attribute name="businessUser" mode="IN" type="String" optional="false"/>
+        <attribute name="officialBusinessName" mode="IN" type="String" optional="false"/>
+        <attribute name="officialTradingName" mode="IN" type="String" optional="false"/>
+        <attribute name="domainName" mode="IN" type="String" optional="true"/>
+        <attribute name="contactPhoneNumber" mode="IN" type="String" optional="true"/>
+        <attribute name="notificationPhoneNumber" mode="IN" type="String" optional="true"/>
+         <attribute name="uploadedFile" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile_fileName" type="String" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile_contentType" type="String" mode="IN" optional="true"/>
+        <attribute name="uploadedFile1" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile1_fileName" type="String" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile1_contentType" type="String" mode="IN" optional="true"/>
+        <attribute name="bankName" type="String" mode="IN" optional="true"/>
+        <attribute name="nameOnAccount" type="String" mode="IN" optional="true"/>
+        <attribute name="accountNumber" type="String" mode="IN" optional="true"/>
+        <attribute name="routingNumber" type="String" mode="IN" optional="true"/>
+        <attribute name="accountType" type="String" mode="IN" optional="true"/>
+        <attribute name="firstNameOnCard" type="String" mode="IN" optional="true"/>
+        <attribute name="lastNameOnCard" type="String" mode="IN" optional="true"/>
+        <attribute name="cardNumber" type="String" mode="IN" optional="true"/>
+        <attribute name="expireDate" type="String" mode="IN" optional="true"/>
+        <attribute name="cvc" type="String" mode="IN" optional="true"/>
+        <attribute name="uploadedFile2" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile2_fileName" type="String" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile2_contentType" type="String" mode="IN" optional="true"/>
+    </service>
 </services>
