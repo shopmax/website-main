@@ -26,13 +26,44 @@ under the License.
     
     <ProductStoreCatalog productStoreId="ShopMaxStore" prodCatalogId="SHOPMAX_CATALOG" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
     
-    <ProductCategory productCategoryId="SHOPMAX_BROWSE_ROOT" productCategoryTypeId="CATALOG_CATEGORY" categoryName="ShopMax Browse Root" longDescription="ShopMax Catalog Primary Browse Root Category"/>
+    <ProductCategory productCategoryId="SHOPMAX_BROWSE_ROOT" productCategoryTypeId="CATALOG_CATEGORY" categoryName="ShopMax Browse Root" description="ShopMax Catalog Primary Browse Root Category"/>
     
     <ProdCatalogCategory prodCatalogId="SHOPMAX_CATALOG" productCategoryId="SHOPMAX_BROWSE_ROOT" fromDate="2013-04-01 00:00:00" sequenceNum="1" prodCatalogCategoryTypeId="PCCT_BROWSE_ROOT"/>
     
-    <ProductCategory productCategoryId="DEMO_CATEGORY1" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="SHOPMAX_BROWSE_ROOT" categoryName="Demo Category 1" longDescription="Demo Category 1"/>
-    <ProductCategory productCategoryId="DEMO_CATEGORY2" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="SHOPMAX_BROWSE_ROOT" categoryName="Demo Category 2" longDescription="Demo Category 2"/>
+    <!-- Create Category Level 1 -->
+    <ProductCategory productCategoryId="DEMO_CATLV1_001" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category LV_1 001" description="Demo Category LV_1 001"/>
+    <ProductCategory productCategoryId="DEMO_CATLV1_002" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category LV_1 002" description="Demo Category LV_1 002"/>
+    <!-- Create Parent Category Level 1 -->
+    <ProductCategoryRollup productCategoryId="DEMO_CATLV1_001" parentProductCategoryId="SHOPMAX_BROWSE_ROOT" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    <ProductCategoryRollup productCategoryId="DEMO_CATLV1_002" parentProductCategoryId="SHOPMAX_BROWSE_ROOT" fromDate="2013-04-01 00:00:00" sequenceNum="2"/>
     
-    <ProductCategoryRollup productCategoryId="DEMO_CATEGORY1" parentProductCategoryId="SHOPMAX_BROWSE_ROOT" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
-    <ProductCategoryRollup productCategoryId="DEMO_CATEGORY2" parentProductCategoryId="SHOPMAX_BROWSE_ROOT" fromDate="2013-04-01 00:00:00" sequenceNum="2"/>
+    <!-- Create Category Level 2 of DEMO_CATLV1_001-->
+    <ProductCategory productCategoryId="DEMO_CATLV2_001" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category LV_2 001" description="Demo Category LV_2 001"/>
+    <!-- Create Parent Category Level 2 of DEMO_CATLV1_001 -->
+    <ProductCategoryRollup productCategoryId="DEMO_CATLV2_001" parentProductCategoryId="DEMO_CATLV1_001" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    
+    <!-- Create Category Level 2 of DEMO_CATLV1_002-->
+    <ProductCategory productCategoryId="DEMO_CATLV2_002" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category LV_2 002" description="Demo Category LV_2 002"/>
+    <!-- Create Parent Category Level 2 of DEMO_CATLV1_002 -->
+    <ProductCategoryRollup productCategoryId="DEMO_CATLV2_002" parentProductCategoryId="DEMO_CATLV1_002" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    
+    <!-- Create Category Level 3 of DEMO_CATLV2_001-->
+    <ProductCategory productCategoryId="DEMO_CATLV3_001" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category LV_3 001" description="Demo Category LV_3 001"/>
+    <!-- Create Parent Category Level 3 of DEMO_CATLV2_001 -->
+    <ProductCategoryRollup productCategoryId="DEMO_CATLV3_001" parentProductCategoryId="DEMO_CATLV2_001" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    
+    <!-- Create Category Level 3 of DEMO_CATLV2_002-->
+    <ProductCategory productCategoryId="DEMO_CATLV3_002" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category LV_3 002" description="Demo Category LV_3 002"/>
+    <!-- Create Parent Category Level 3 of DEMO_CATLV2_002 -->
+    <ProductCategoryRollup productCategoryId="DEMO_CATLV3_002" parentProductCategoryId="DEMO_CATLV2_002" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    
+    <!-- Create Category Level 4 of DEMO_CATLV3_001-->
+    <ProductCategory productCategoryId="DEMO_CATLV4_001" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category LV_4 001" description="Demo Category LV_4 001"/>
+    <!-- Create Parent Category Level 4 of DEMO_CATLV3_001 -->
+    <ProductCategoryRollup productCategoryId="DEMO_CATLV4_001" parentProductCategoryId="DEMO_CATLV3_001" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    
+    <!-- Create Category Level 4 of DEMO_CATLV3_002-->
+    <ProductCategory productCategoryId="DEMO_CATLV4_002" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category LV_4 002" description="Demo Category LV_4 002"/>
+    <!-- Create Parent Category Level 4 of DEMO_CATLV3_002 -->
+    <ProductCategoryRollup productCategoryId="DEMO_CATLV4_002" parentProductCategoryId="DEMO_CATLV3_002" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
 </entity-engine-xml>
