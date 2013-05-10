@@ -41,4 +41,3 @@ if (tenantId == "default") {
 		}
 	}
 }
-println("=======================categoryList======================= : "+categoryList);

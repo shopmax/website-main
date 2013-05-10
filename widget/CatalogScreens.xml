@@ -140,6 +140,7 @@ under the License.
                 <set field="titleProperty" value="PageTitleUploadProduct"/>
                 <set field="headerItem" value="uploadproduct"/>
                 <set field="breadCrumTitle" value="Upload Product"/>
+                <script location="component:///shopmax/webapp/shopmax/WEB-INF/actions/catalog/UploadProduct.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -147,6 +148,20 @@ under the License.
                         <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/uploadproduct.ftl"/></html></platform-specific>
                     </decorator-section>
                 </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="UploadProductAjax">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleUploadProduct"/>
+                <set field="headerItem" value="uploadproduct"/>
+                <set field="breadCrumTitle" value="Upload Product"/>
+                <script location="component:///shopmax/webapp/shopmax/WEB-INF/actions/catalog/UploadProduct.groovy"/>
+            </actions>
+            <widgets>
+                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/uploadproductajax.ftl"/></html></platform-specific>
             </widgets>
         </section>
     </screen>

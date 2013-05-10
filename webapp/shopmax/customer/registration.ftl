@@ -52,6 +52,20 @@ under the License.
         $('.expireDate').change(function(e){
             $('#expireDate').val($('#expMonth').val()+"/"+$('#expYear').val());
         });
+        $('.optionsRadios').click(function(){
+            if(this.id == 'optionsRadios'){
+                $('#checkDomain').val('Y');
+            }
+            else if(this.id == 'optionsRadios1'){
+                $('#checkDomain').val('N');
+            }
+            else if(this.id == 'optionsRadios2'){
+                $('#checkCreditCard').val('Y');
+            }
+            else{
+                $('#checkCreditCard').val('N');
+            }
+        });
     });
     function getFile(inputIndex){
        document.getElementById("upfile"+inputIndex).click();
@@ -181,16 +195,20 @@ under the License.
                                     <label class="control-label control-label-text2" for="inputPromotionDescription">(We will send TXT notification to this phone number when order arrives)</label>
                                     <input type="hidden" name="notificationPhoneNumber" id="phoneNumber_1" value="">
                                 </div>
-                                <div class="form-inline">
-                                    <label class="radio">
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                                    Use your own domain name
-                                    </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://&nbsp;&nbsp;&nbsp;<input type="text" class="input-url" id="domianName" name="domianName"/> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" /><div class="sc-or"><strong>OR</strong></div><label class="radio">
-                                    <div class="control-group">
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                <div class="control-group">
+                                    <div class="form-inline">
+                                        <label class="radio">
+                                        <input type="radio" name="optionsRadios" id="optionsRadios" class="optionsRadios" checked>
+                                        Use your own domain name
+                                        </label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://&nbsp;&nbsp;&nbsp;
+                                        <input type="text" class="input-url" id="domianName" name="ownDomainName"/><img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" /><div class="sc-or"><strong>OR</strong></div><label class="radio">
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" class="optionsRadios">
                                         Create a free domain with shopmax
-                                        </label>&nbsp;&nbsp;&nbsp;&nbsp;http://&nbsp;&nbsp;
-                                        <input type="text" class="input-newurl" id="subDomain" name="subDomain">
+                                        </label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;http://&nbsp;&nbsp;
+                                        <input type="text" class="input-newurl" id="subDomain" name="freeDomainName">
+                                        <input type="hidden" name="checkDomain" id="checkDomain" value="Y">
                                         .shopmax.co.nz <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
                                     </div>
                                 </div>
@@ -455,7 +473,7 @@ under the License.
                                 <div class="control-group">
                                     <div class="control-group-bank">
                                         <label class="radio pull-left control-label-cc">
-                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Credit Card
+                                            <input type="radio" name="optionsRadios1" id="optionsRadios2" class="optionsRadios" checked> Credit Card
                                         </label>
                                         <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Card Holder Name</label>
                                         <input type="text" class="input-large pull-left" id="cardHolderName"><img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
@@ -499,7 +517,7 @@ under the License.
                                 <br/>
                                 <div class="form-inline">
                                     <label class="radio pull-left control-label-dc">
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> Debit Card
+                                        <input type="radio" name="optionsRadios1" id="optionsRadios3" class="optionsRadios"> Debit Card
                                     </label>
                                     <label class="control-label control-label-dc-inner pull-left" for="inputPromotionDescription"><a href="#">Download a direct debit form</a></label>
                                     <div class="clearfix"></div>
@@ -511,6 +529,7 @@ under the License.
                                         <div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile2" type="file" onchange="sub(this,2)" name="uploadedFile2"/></div>
                                     </div>
                                 </div>
+                                <input type="hidden" name="checkCreditCard" id="checkCreditCard" value="Y">
                                 <div class="clearfix"></div>
                             </td>
                         </tr>
