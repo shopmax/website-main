@@ -31,8 +31,159 @@ under the License.
         </if-compare> -->
     </simple-method>
     
-    <simple-method method-name="createCustomerAndUploadImages" short-description="Create Customer And Upload Images" login-required="false">
-        
+    
+    
+    <simple-method method-name="createProductCategoryToSeller" short-description="Create Product Category To Seller">
+        <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+        <if-compare field="tenantId" operator="equals" value="default">
+            <entity-one entity-name="ProductCategory" value-field="productCategory">
+                <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
+            </entity-one>
+            <if-not-empty field="productCategory">
+                <entity-one entity-name="UserLogin" value-field="sysUserLogin">
+                    <field-map field-name="userLoginId" value="system"/>
+                </entity-one>
+                <set field="createProductCategoryMap" value="${groovy: import org.ofbiz.entity.util.EntityUtil;
+                Map productCategoryMap = productCategory.getAllFields();
+                productCategoryMap.remove('createdStamp');
+                productCategoryMap.remove('createdTxStamp');
+                productCategoryMap.remove('lastUpdatedStamp');
+                productCategoryMap.remove('lastUpdatedTxStamp');
+                if (productCategoryMap) return productCategoryMap;}" type="Map"/>
+                <set field="createProductCategoryMap.userLogin" from-field="sysUserLogin"/>
+                <entity-and entity-name="PartyRole" list="partyRoles">
+                    <field-map field-name="roleTypeId" value="SELLER"/>
+                </entity-and>
+                <iterate entry="partyRole" list="partyRoles">
+                    <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
+                    <set field="runTenantServiceInMap.serviceName" value="createProductCategory"/>
+                    <set field="runTenantServiceInMap.serviceParameters" from-field="createProductCategoryMap"/>
+                    <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+                </iterate>
+            </if-not-empty>
+        </if-compare>
+    </simple-method>
+    
+    <simple-method method-name="updateProductCategoryToSeller" short-description="Update Product Category To Seller">
+        <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+        <if-compare field="tenantId" operator="equals" value="default">
+            <entity-one entity-name="ProductCategory" value-field="productCategory">
+                <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
+            </entity-one>
+            <if-not-empty field="productCategory">
+                <entity-one entity-name="UserLogin" value-field="sysUserLogin">
+                    <field-map field-name="userLoginId" value="system"/>
+                </entity-one>
+                <set field="updateProductCategoryMap" value="${groovy: import org.ofbiz.entity.util.EntityUtil;
+                Map productCategoryMap = productCategory.getAllFields();
+                productCategoryMap.remove('createdStamp');
+                productCategoryMap.remove('createdTxStamp');
+                productCategoryMap.remove('lastUpdatedStamp');
+                productCategoryMap.remove('lastUpdatedTxStamp');
+                if (productCategoryMap) return productCategoryMap;}" type="Map"/>
+                <set field="updateProductCategoryMap.userLogin" from-field="sysUserLogin"/>
+                <entity-and entity-name="PartyRole" list="partyRoles">
+                    <field-map field-name="roleTypeId" value="SELLER"/>
+                </entity-and>
+                <iterate entry="partyRole" list="partyRoles">
+                    <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
+                    <set field="runTenantServiceInMap.serviceName" value="updateProductCategory"/>
+                    <set field="runTenantServiceInMap.serviceParameters" from-field="updateProductCategoryMap"/>
+                    <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+                </iterate>
+            </if-not-empty>
+        </if-compare>
+    </simple-method>
+    
+    <simple-method method-name="createCategoryRollUpToSeller" short-description="Create Parent and Child Category in RollUp To Seller">
+        <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+        <if-compare field="tenantId" operator="equals" value="default">
+            <entity-one entity-name="ProductCategoryRollup" value-field="productCategoryRollup">
+                <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
+                <field-map field-name="parentProductCategoryId" from-field="parameters.parentProductCategoryId"/>
+                <field-map field-name="fromDate" from-field="parameters.fromDate"/>
+            </entity-one>
+            <if-not-empty field="productCategoryRollup">
+                <entity-one entity-name="UserLogin" value-field="sysUserLogin">
+                    <field-map field-name="userLoginId" value="system"/>
+                </entity-one>
+                <set field="createProductCategoryRollUpMap" value="${groovy: import org.ofbiz.entity.util.EntityUtil;
+                Map productCategoryRollUpMap = productCategoryRollup.getAllFields();
+                productCategoryRollUpMap.remove('createdStamp');
+                productCategoryRollUpMap.remove('createdTxStamp');
+                productCategoryRollUpMap.remove('lastUpdatedStamp');
+                productCategoryRollUpMap.remove('lastUpdatedTxStamp');
+                if (productCategoryRollUpMap) return productCategoryRollUpMap;}" type="Map"/>
+                <set field="createProductCategoryRollUpMap.userLogin" from-field="sysUserLogin"/>
+                <entity-and entity-name="PartyRole" list="partyRoles">
+                    <field-map field-name="roleTypeId" value="SELLER"/>
+                </entity-and>
+                <iterate entry="partyRole" list="partyRoles">
+                    <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
+                    <set field="runTenantServiceInMap.serviceName" value="safeAddProductCategoryToCategory"/>
+                    <set field="runTenantServiceInMap.serviceParameters" from-field="createProductCategoryRollUpMap"/>
+                    <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+                </iterate>
+            </if-not-empty>
+        </if-compare>
+    </simple-method>
+    
+   <simple-method method-name="updateCategoryRollUpToSeller" short-description="Update Parent and Child Category in RollUp To Seller">
+        <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+        <if-compare field="tenantId" operator="equals" value="default">
+            <entity-one entity-name="ProductCategoryRollup" value-field="productCategoryRollup">
+                <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
+                <field-map field-name="parentProductCategoryId" from-field="parameters.parentProductCategoryId"/>
+                <field-map field-name="fromDate" from-field="parameters.fromDate"/>
+            </entity-one>
+            <if-not-empty field="productCategoryRollup">
+                <entity-one entity-name="UserLogin" value-field="sysUserLogin">
+                    <field-map field-name="userLoginId" value="system"/>
+                </entity-one>
+                <set field="updateProductCategoryRollUpMap" value="${groovy: import org.ofbiz.entity.util.EntityUtil;
+                Map productCategoryRollUpMap = productCategoryRollup.getAllFields();
+                productCategoryRollUpMap.remove('createdStamp');
+                productCategoryRollUpMap.remove('createdTxStamp');
+                productCategoryRollUpMap.remove('lastUpdatedStamp');
+                productCategoryRollUpMap.remove('lastUpdatedTxStamp');
+                if (productCategoryRollUpMap) return productCategoryRollUpMap;}" type="Map"/>
+                <set field="updateProductCategoryRollUpMap.userLogin" from-field="sysUserLogin"/>
+                <entity-and entity-name="PartyRole" list="partyRoles">
+                    <field-map field-name="roleTypeId" value="SELLER"/>
+                </entity-and>
+                <iterate entry="partyRole" list="partyRoles">
+                    <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
+                    <set field="runTenantServiceInMap.serviceName" value="updateProductCategoryToCategory"/>
+                    <set field="runTenantServiceInMap.serviceParameters" from-field="updateProductCategoryRollUpMap"/>
+                    <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+                </iterate>
+            </if-not-empty>
+        </if-compare>
+    </simple-method>
+    
+    <simple-method method-name="deleteCategoryRollUpToSeller" short-description="Delete Parent and Child Category in RollUp To Seller">
+       <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+        <if-compare field="tenantId" operator="equals" value="default">
+            <entity-one entity-name="UserLogin" value-field="sysUserLogin">
+                <field-map field-name="userLoginId" value="system"/>
+            </entity-one>
+            <set field="deleteProductCategoryRollUpMap.productCategoryId" from-field="parameters.productCategoryId"/>
+            <set field="deleteProductCategoryRollUpMap.parentProductCategoryId" from-field="parameters.parentProductCategoryId"/>
+            <set field="deleteProductCategoryRollUpMap.fromDate" from-field="parameters.fromDate"/>
+            <set field="deleteProductCategoryRollUpMap.userLogin" from-field="sysUserLogin"/>
+            <entity-and entity-name="PartyRole" list="partyRoles">
+                <field-map field-name="roleTypeId" value="SELLER"/>
+            </entity-and>
+            <iterate entry="partyRole" list="partyRoles">
+                <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
+                <set field="runTenantServiceInMap.serviceName" value="removeProductCategoryFromCategory"/>
+                <set field="runTenantServiceInMap.serviceParameters" from-field="deleteProductCategoryRollUpMap"/>
+                <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+            </iterate>
+        </if-compare>
+    </simple-method>
+    
+    <simple-method method-name="createShopmaxCustomer" short-description="Create Shopmax Customer" login-required="false">
         <entity-one entity-name="UserLogin" value-field="systemUserLogin">
             <field-map field-name="userLoginId" value="system"/>
         </entity-one>
@@ -191,6 +342,11 @@ under the License.
         <set from-field="tempMap.partyId" field="partyRoleContext.partyId"/>
         <call-service service-name="createPartyRole" in-map-name="partyRoleContext" include-user-login="true"/>
         
+        <set field="createBuyerRoleCtx.userLogin" from-field="systemUserLogin"/>
+        <set field="createBuyerRoleCtx.partyId" from-field="tempMap.partyId"/>
+        <set field="createBuyerRoleCtx.roleTypeId" value="BUYER"/>
+        <call-service service-name="createPartyRole" in-map-name="createBuyerRoleCtx" include-user-login="true"/>
+        
         <!-- email address -->
         <if-not-empty field="emailContext.emailAddress">
             <call-service service-name="createPartyEmailAddress" in-map-name="emailContext">
@@ -245,7 +401,7 @@ under the License.
         <if-compare field="parameters.businessUser" operator="equals" value="Y">
             <set field="createSellerRoleCtx.userLogin" from-field="systemUserLogin"/>
             <set field="createSellerRoleCtx.partyId" from-field="tempMap.partyId"/>
-            <set field="createSellerRoleCtx.roleTypeId" value="BUYER"/>
+            <set field="createSellerRoleCtx.roleTypeId" value="SELLER"/>
             <call-service service-name="createPartyRole" in-map-name="createSellerRoleCtx" include-user-login="true"/>
             
             <set field="createEmployeeRoleCtx.userLogin" from-field="systemUserLogin"/>
@@ -278,10 +434,12 @@ under the License.
             <call-service service-name="createPartyRelationship" in-map-name="partyRelationshipCtx"/>
             
             <!-- Set domain name -->
-            <if-empty field="parameters.createCreditCard">
+            <if-empty field="parameters.ownDomainName">
                 <set field="parameters.domainName" value="http://${parameters.ownDomainName}"/>
+                <set field="parameters.domainNameBackend" value="http://backend.${parameters.ownDomainName}"/>
             <else>
                 <set field="parameters.domainName" value="http://${parameters.freeDomainName}.shopmax.co.nz"/>
+                <set field="parameters.domainNameBackend" value="http://backend.${parameters.freeDomainName}.shopmax.co.nz"/>
             </else>
             </if-empty>
             
@@ -319,12 +477,12 @@ under the License.
                 <set field="uploadLogoMap._uploadedFile_contentType" from-field="parameters._uploadedFile_contentType"/>
                 <set field="uploadLogoMap.partyContentTypeId" value="LGOIMGURL"/>
                 <set field="uploadLogoMap.isPublic" value="Y"/>
-            <call-service service-name="uploadPartyContentFile" in-map-name="uploadLogoMap" break-on-error="false" />
+                <call-service service-name="uploadPartyContentFile" in-map-name="uploadLogoMap" break-on-error="false" />
             </if-not-empty>
             
             <!-- Create bank account -->
             <set field="createEftAccountMap.userLogin" from-field="systemUserLogin"/>
-            <set field="createEftAccountMap.partyId" from-field="partyGroupPartyId"/>
+            <set field="createEftAccountMap.partyId" from-field="tempMap.partyId"/>
             <set field="createEftAccountMap.bankName" from-field="parameters.bankName"/>
             <set field="createEftAccountMap.nameOnAccount" from-field="parameters.nameOnAccount"/>
             <set field="createEftAccountMap.accountNumber" from-field="parameters.accountNumber"/>
@@ -352,7 +510,7 @@ under the License.
             <set field="createMonOpeningHoursMap.attrValue" from-field="parameters.monOpeningHours"/>
             <set field="createMonOpeningHoursMap.userLogin" from-field="systemUserLogin"/>
             <call-service service-name="createContactMechAttribute" in-map-name="createMonOpeningHoursMap"/> -->
-
+            
             <!-- Upload driver license -->
             <if-not-empty field="parameters._uploadedFile1_fileName">
                 <set-service-fields service-name="uploadPartyContentFile"
@@ -369,7 +527,7 @@ under the License.
             <!-- Create credit card or debit card -->
             <if-not-empty field="parameters.cardNumber">
                 <set field="createCreditCardMap.userLogin" from-field="systemUserLogin"/>
-                <set field="createCreditCardMap.partyId" from-field="partyGroupPartyId"/>
+                <set field="createCreditCardMap.partyId" from-field="tempMap.partyId"/>
                 <set field="createCreditCardMap.firstNameOnCard" from-field="parameters.firstNameOnCard"/>
                 <set field="createCreditCardMap.lastNameOnCard" from-field="parameters.lastNameOnCard"/>
                 <set field="createCreditCardMap.cardType" value="visa"/>
@@ -377,176 +535,53 @@ under the License.
                 <set field="createCreditCardMap.expireDate" from-field="parameters.expireDate"/>
                 <!-- <set field="createCreditCardMap.cvc" from-field="parameters.cvc"/> -->
                 <call-service service-name="createCreditCard" in-map-name="createCreditCardMap"/>
-            <else>
-                <if-not-empty field="parameters._uploadedFile2_fileName">
-                    <set-service-fields service-name="uploadPartyContentFile" map="parameters" to-map="uploadDebitFormMap"/>
-                    <set field="uploadDebitFormMap.userLogin" from-field="systemUserLogin"/>
-                    <set field="uploadDebitFormMap._uploadedFile_fileName" from-field="parameters._uploadedFile2_fileName"/>
-                    <set field="uploadDebitFormMap.uploadedFile" from-field="parameters.uploadedFile2"/>
-                    <set field="uploadDebitFormMap._uploadedFile_contentType" from-field="parameters._uploadedFile2_contentType"/>
-                    <set field="uploadDebitFormMap.partyContentTypeId" value="INTERNAL"/>
-                    <set field="uploadDebitFormMap.isPublic" value="Y"/>
-                    <call-service service-name="uploadPartyContentFile" in-map-name="uploadDebitFormMap" break-on-error="false" />
-                </if-not-empty>
-            </else>
+                <else>
+                    <if-not-empty field="parameters._uploadedFile2_fileName">
+                        <set-service-fields service-name="uploadPartyContentFile" map="parameters" to-map="uploadDebitFormMap"/>
+                        <set field="uploadDebitFormMap.userLogin" from-field="systemUserLogin"/>
+                        <set field="uploadDebitFormMap._uploadedFile_fileName" from-field="parameters._uploadedFile2_fileName"/>
+                        <set field="uploadDebitFormMap.uploadedFile" from-field="parameters.uploadedFile2"/>
+                        <set field="uploadDebitFormMap._uploadedFile_contentType" from-field="parameters._uploadedFile2_contentType"/>
+                        <set field="uploadDebitFormMap.partyContentTypeId" value="INTERNAL"/>
+                        <set field="uploadDebitFormMap.isPublic" value="Y"/>
+                        <call-service service-name="uploadPartyContentFile" in-map-name="uploadDebitFormMap" break-on-error="false" />
+                    </if-not-empty>
+                </else>
             </if-not-empty>
-         <else>
-            <set field="createBuyerRoleCtx.userLogin" from-field="systemUserLogin"/>
-            <set field="createBuyerRoleCtx.partyId" from-field="tempMap.partyId"/>
-            <set field="createBuyerRoleCtx.roleTypeId" value="BUYER"/>
-            <call-service service-name="createPartyRole" in-map-name="createBuyerRoleCtx" include-user-login="true"/>
-         </else>
+            
+            <!-- Create Tenant -->
+            <make-value value-field="tenant" entity-name="Tenant"/>
+            <set field="tenant.tenantId" from-field="tempMap.partyId"/>
+            <set field="tenant.tenantName" from-field="tempMap.partyId"/>
+            <create-value value-field="tenant"/>
+            
+            <!-- Create Tenant Domain Name -->
+            <make-value value-field="tenantDomainName" entity-name="TenantDomainName"/>
+            <set field="tenantDomainName.tenantId" from-field="tempMap.partyId"/>
+            <set field="tenantDomainName.domainName" from-field="parameters.domainName"/>
+            <create-value value-field="tenantDomainName"/>
+            
+            <!-- Create Tenant Backend Domain Name -->
+            <make-value value-field="tenantBackendDomainName" entity-name="TenantDomainName"/>
+            <set field="tenantBackendDomainName.tenantId" from-field="tempMap.partyId"/>
+            <set field="tenantBackendDomainName.domainName" from-field="parameters.domainNameBackend"/>
+            <set field="tenantBackendDomainName.initialPath" value="/catalog"/>
+            <create-value value-field="tenantBackendDomainName"/>
+            
+            <!-- Create Tenant Component Shopmax -->
+            <make-value value-field="tenantComponentShopmax" entity-name="TenantComponent"/>
+            <set field="tenantComponentShopmax.tenantId" from-field="tempMap.partyId"/>
+            <set field="tenantComponentShopmax.componentName" value="shopmax"/>
+            <set field="tenantComponentShopmax.sequenceNum" value="01" type="Long"/>
+            <create-value value-field="tenantComponentShopmax"/>
+            
+            <!-- Create Tenant Component Shopmax Seller -->
+            <make-value value-field="tenantComponentShopmaxSeller" entity-name="TenantComponent"/>
+            <set field="tenantComponentShopmaxSeller.tenantId" from-field="tempMap.partyId"/>
+            <set field="tenantComponentShopmaxSeller.componentName" value="shopmaxseller"/>
+            <set field="tenantComponentShopmaxSeller.sequenceNum" from-field="02" type="Long"/>
+            <create-value value-field="tenantComponentShopmaxSeller"/>
          </if-compare>
-    </simple-method>
-    
-    <simple-method method-name="createProductCategoryToSeller" short-description="Create Product Category To Seller">
-        <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
-        <if-compare field="tenantId" operator="equals" value="default">
-            <entity-one entity-name="ProductCategory" value-field="productCategory">
-                <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
-            </entity-one>
-            <if-not-empty field="productCategory">
-                <entity-one entity-name="UserLogin" value-field="sysUserLogin">
-                    <field-map field-name="userLoginId" value="system"/>
-                </entity-one>
-                <set field="createProductCategoryMap" value="${groovy: import org.ofbiz.entity.util.EntityUtil;
-                Map productCategoryMap = productCategory.getAllFields();
-                productCategoryMap.remove('createdStamp');
-                productCategoryMap.remove('createdTxStamp');
-                productCategoryMap.remove('lastUpdatedStamp');
-                productCategoryMap.remove('lastUpdatedTxStamp');
-                if (productCategoryMap) return productCategoryMap;}" type="Map"/>
-                <set field="createProductCategoryMap.userLogin" from-field="sysUserLogin"/>
-                <entity-and entity-name="PartyRole" list="partyRoles">
-                    <field-map field-name="roleTypeId" value="SELLER"/>
-                </entity-and>
-                <iterate entry="partyRole" list="partyRoles">
-                    <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
-                    <set field="runTenantServiceInMap.serviceName" value="createProductCategory"/>
-                    <set field="runTenantServiceInMap.serviceParameters" from-field="createProductCategoryMap"/>
-                    <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-                </iterate>
-            </if-not-empty>
-        </if-compare>
-    </simple-method>
-    
-    <simple-method method-name="updateProductCategoryToSeller" short-description="Update Product Category To Seller">
-        <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
-        <if-compare field="tenantId" operator="equals" value="default">
-            <entity-one entity-name="ProductCategory" value-field="productCategory">
-                <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
-            </entity-one>
-            <if-not-empty field="productCategory">
-                <entity-one entity-name="UserLogin" value-field="sysUserLogin">
-                    <field-map field-name="userLoginId" value="system"/>
-                </entity-one>
-                <set field="updateProductCategoryMap" value="${groovy: import org.ofbiz.entity.util.EntityUtil;
-                Map productCategoryMap = productCategory.getAllFields();
-                productCategoryMap.remove('createdStamp');
-                productCategoryMap.remove('createdTxStamp');
-                productCategoryMap.remove('lastUpdatedStamp');
-                productCategoryMap.remove('lastUpdatedTxStamp');
-                if (productCategoryMap) return productCategoryMap;}" type="Map"/>
-                <set field="updateProductCategoryMap.userLogin" from-field="sysUserLogin"/>
-                <entity-and entity-name="PartyRole" list="partyRoles">
-                    <field-map field-name="roleTypeId" value="SELLER"/>
-                </entity-and>
-                <iterate entry="partyRole" list="partyRoles">
-                    <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
-                    <set field="runTenantServiceInMap.serviceName" value="updateProductCategory"/>
-                    <set field="runTenantServiceInMap.serviceParameters" from-field="updateProductCategoryMap"/>
-                    <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-                </iterate>
-            </if-not-empty>
-        </if-compare>
-    </simple-method>
-    
-    <simple-method method-name="createCategoryRollUpToSeller" short-description="Create Parent and Child Category in RollUp To Seller">
-        <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
-        <if-compare field="tenantId" operator="equals" value="default">
-            <entity-one entity-name="ProductCategoryRollup" value-field="productCategoryRollup">
-                <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
-                <field-map field-name="parentProductCategoryId" from-field="parameters.parentProductCategoryId"/>
-                <field-map field-name="fromDate" from-field="parameters.fromDate"/>
-            </entity-one>
-            <if-not-empty field="productCategoryRollup">
-                <entity-one entity-name="UserLogin" value-field="sysUserLogin">
-                    <field-map field-name="userLoginId" value="system"/>
-                </entity-one>
-                <set field="createProductCategoryRollUpMap" value="${groovy: import org.ofbiz.entity.util.EntityUtil;
-                Map productCategoryRollUpMap = productCategoryRollup.getAllFields();
-                productCategoryRollUpMap.remove('createdStamp');
-                productCategoryRollUpMap.remove('createdTxStamp');
-                productCategoryRollUpMap.remove('lastUpdatedStamp');
-                productCategoryRollUpMap.remove('lastUpdatedTxStamp');
-                if (productCategoryRollUpMap) return productCategoryRollUpMap;}" type="Map"/>
-                <set field="createProductCategoryRollUpMap.userLogin" from-field="sysUserLogin"/>
-                <entity-and entity-name="PartyRole" list="partyRoles">
-                    <field-map field-name="roleTypeId" value="SELLER"/>
-                </entity-and>
-                <iterate entry="partyRole" list="partyRoles">
-                    <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
-                    <set field="runTenantServiceInMap.serviceName" value="safeAddProductCategoryToCategory"/>
-                    <set field="runTenantServiceInMap.serviceParameters" from-field="createProductCategoryRollUpMap"/>
-                    <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-                </iterate>
-            </if-not-empty>
-        </if-compare>
-    </simple-method>
-    
-   <simple-method method-name="updateCategoryRollUpToSeller" short-description="Update Parent and Child Category in RollUp To Seller">
-        <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
-        <if-compare field="tenantId" operator="equals" value="default">
-            <entity-one entity-name="ProductCategoryRollup" value-field="productCategoryRollup">
-                <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
-                <field-map field-name="parentProductCategoryId" from-field="parameters.parentProductCategoryId"/>
-                <field-map field-name="fromDate" from-field="parameters.fromDate"/>
-            </entity-one>
-            <if-not-empty field="productCategoryRollup">
-                <entity-one entity-name="UserLogin" value-field="sysUserLogin">
-                    <field-map field-name="userLoginId" value="system"/>
-                </entity-one>
-                <set field="updateProductCategoryRollUpMap" value="${groovy: import org.ofbiz.entity.util.EntityUtil;
-                Map productCategoryRollUpMap = productCategoryRollup.getAllFields();
-                productCategoryRollUpMap.remove('createdStamp');
-                productCategoryRollUpMap.remove('createdTxStamp');
-                productCategoryRollUpMap.remove('lastUpdatedStamp');
-                productCategoryRollUpMap.remove('lastUpdatedTxStamp');
-                if (productCategoryRollUpMap) return productCategoryRollUpMap;}" type="Map"/>
-                <set field="updateProductCategoryRollUpMap.userLogin" from-field="sysUserLogin"/>
-                <entity-and entity-name="PartyRole" list="partyRoles">
-                    <field-map field-name="roleTypeId" value="SELLER"/>
-                </entity-and>
-                <iterate entry="partyRole" list="partyRoles">
-                    <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
-                    <set field="runTenantServiceInMap.serviceName" value="updateProductCategoryToCategory"/>
-                    <set field="runTenantServiceInMap.serviceParameters" from-field="updateProductCategoryRollUpMap"/>
-                    <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-                </iterate>
-            </if-not-empty>
-        </if-compare>
-    </simple-method>
-    
-    <simple-method method-name="deleteCategoryRollUpToSeller" short-description="Delete Parent and Child Category in RollUp To Seller">
-       <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
-        <if-compare field="tenantId" operator="equals" value="default">
-            <entity-one entity-name="UserLogin" value-field="sysUserLogin">
-                <field-map field-name="userLoginId" value="system"/>
-            </entity-one>
-            <set field="deleteProductCategoryRollUpMap.productCategoryId" from-field="parameters.productCategoryId"/>
-            <set field="deleteProductCategoryRollUpMap.parentProductCategoryId" from-field="parameters.parentProductCategoryId"/>
-            <set field="deleteProductCategoryRollUpMap.fromDate" from-field="parameters.fromDate"/>
-            <set field="deleteProductCategoryRollUpMap.userLogin" from-field="sysUserLogin"/>
-            <entity-and entity-name="PartyRole" list="partyRoles">
-                <field-map field-name="roleTypeId" value="SELLER"/>
-            </entity-and>
-            <iterate entry="partyRole" list="partyRoles">
-                <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
-                <set field="runTenantServiceInMap.serviceName" value="removeProductCategoryFromCategory"/>
-                <set field="runTenantServiceInMap.serviceParameters" from-field="deleteProductCategoryRollUpMap"/>
-                <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-            </iterate>
-        </if-compare>
     </simple-method>
     
     <simple-method method-name="uploadProductSeller" short-description="Upload Product Seller">
@@ -635,5 +670,75 @@ under the License.
         <set field="createProductPriceMap.fromDate" from-field="parameters.promoPriceFromDate"/>
         <set field="createProductPriceMap.thruDate" from-field="parameters.promoPriceThruDate"/>
         <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
+    </simple-method>
+    
+    <simple-method method-name="createTenantForSeller" short-description="Upload Product Seller">
+        <!-- Create Tenant Data Sources -->
+        <property-to-field resource="tenant" property="jdbcUriPrefix" field="jdbcUriPrefix"/>
+        <property-to-field resource="tenant" property="jdbcUriSuffix" field="jdbcUriSuffix"/>
+        <property-to-field resource="tenant" property="jdbcPassword" field="jdbcPassword"/>
+        
+        <if-compare field="isDemo" operator="equals" value="Y">
+            <set field="databaseNamePrefix" value="demo"/>
+            <else>
+                <set field="databaseNamePrefix" value="prod"/>
+            </else>
+        </if-compare>
+         
+        <!-- org.ofbiz -->
+        <set field="ofbizEntityGroupName" value="org.ofbiz"/>
+        
+        <!-- remove if exists -->
+        <entity-one value-field="existOfbizDataSource" entity-name="TenantDataSource">
+            <field-map field-name="tenantId" from-field="tempMap.partyId"/>
+            <field-map field-name="entityGroupName" from-field="ofbizEntityGroupName"/>
+        </entity-one>
+        <if-not-empty field="existOfbizDataSource">
+            <remove-value value-field="existOfbizDataSource"/>
+        </if-not-empty>
+        
+        <make-value value-field="tenantDataSource" entity-name="TenantDataSource"/>
+        <set field="tenantDataSource.tenantId" from-field="tempMap.partyId"/>
+        <set field="tenantDataSource.entityGroupName" from-field="ofbizEntityGroupName"/>
+        <set field="tenantDataSource.jdbcUri" value="${jdbcUriPrefix}${databaseNamePrefix}${tempMap.partyId}ofbiz${jdbcUriSuffix}"/>
+        <if-compare operator="equals" value="Y" field="isDemo">
+            <property-to-field resource="tenantDemo" property="jdbcUsername" field="demoJdbcUsername"/>
+            <property-to-field resource="tenantDemo" property="jdbcPassword" field="demoJdbcPassword"/>
+            <set field="tenantDataSource.jdbcUsername" from-field="demoJdbcUsername"/>
+            <set field="tenantDataSource.jdbcPassword" from-field="demoJdbcPassword"/>
+            <else>
+                <set field="tenantDataSource.jdbcUsername" value="T${tempMap.partyId}N"/>
+                <set field="tenantDataSource.jdbcPassword" from-field="jdbcPassword"/>
+            </else>
+        </if-compare>
+        <create-value value-field="tenantDataSource"/>
+        
+        <!-- org.ofbiz.olap -->
+        <set field="olapEntityGroupName" value="org.ofbiz.olap"/>
+        
+        <!-- remove if exists -->
+        <entity-one value-field="existOlapDataSource" entity-name="TenantDataSource">
+            <field-map field-name="tenantId" from-field="tempMap.partyId"/>
+            <field-map field-name="entityGroupName" from-field="olapEntityGroupName"/>
+        </entity-one>
+        <if-not-empty field="existOlapDataSource">
+            <remove-value value-field="existOlapDataSource"/>
+        </if-not-empty>
+        
+        <make-value value-field="tenantDataSourceOlap" entity-name="TenantDataSource"/>
+        <set field="tenantDataSourceOlap.tenantId" from-field="tempMap.partyId"/>
+        <set field="tenantDataSourceOlap.entityGroupName" from-field="olapEntityGroupName"/>
+        <set field="tenantDataSourceOlap.jdbcUri" value="${jdbcUriPrefix}${databaseNamePrefix}${tempMap.partyId}olap${jdbcUriSuffix}"/>
+        <if-compare operator="equals" value="Y" field="isDemo">
+        <property-to-field resource="tenantDemo" property="jdbcUsername" field="demoJdbcUsername"/>
+        <property-to-field resource="tenantDemo" property="jdbcPassword" field="demoJdbcPassword"/>
+        <set field="tenantDataSourceOlap.jdbcUsername" from-field="demoJdbcUsername"/>
+        <set field="tenantDataSourceOlap.jdbcPassword" from-field="demoJdbcPassword"/>
+        <else>
+            <set field="tenantDataSourceOlap.jdbcUsername" value="T${tempMap.partyId}N"/>
+            <set field="tenantDataSourceOlap.jdbcPassword" from-field="jdbcPassword"/>
+        </else>
+        </if-compare>
+        <create-value value-field="tenantDataSourceOlap"/>
     </simple-method>
 </simple-methods>

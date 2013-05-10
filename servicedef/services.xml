@@ -65,8 +65,8 @@ under the License.
         <attribute name="fromDate" mode="IN" type="Timestamp" optional="false"/>
     </service>
     
-    <service name="createCustomerAndUploadImages" engine="simple" location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml"
-        invoke="createCustomerAndUploadImages" auth="false">
+    <service name="createShopmaxCustomer" engine="simple" 
+            location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="createShopmaxCustomer" auth="false">
         <description>Create Customer And Upload Images</description>
         <attribute name="productStoreId" mode="IN" type="String" optional="false"/>
         <attribute name="PASSWORD" mode="INOUT" type="String" optional="false"/>
