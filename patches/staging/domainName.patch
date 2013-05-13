@@ -1,8 +1,8 @@
 Index: hot-deploy/shopmax/data/ShopMaxData.xml
 ===================================================================
---- hot-deploy/shopmax/data/ShopMaxData.xml	(revision 45)
+--- hot-deploy/shopmax/data/ShopMaxData.xml	(revision 131)
 +++ hot-deploy/shopmax/data/ShopMaxData.xml	(working copy)
-@@ -20,8 +20,8 @@
+@@ -20,10 +20,10 @@
  
  <entity-engine-xml>
      <WebSite webSiteId="SHOPMAX" siteName="ShopMax Web Site"
@@ -14,4 +14,6 @@ Index: hot-deploy/shopmax/data/ShopMaxData.xml
 +        httpsHost="shopmax.ofbizdemo.com" httpsPort="443"
 +        standardContentPrefix="http://shopmaxbackend.ofbizdemo.com"
 +        secureContentPrefix="https://shopmaxbackend.ofbizdemo.com"/>
+         
+         <Party partyId="_NA_" partyTypeId="PERSON"/>
  </entity-engine-xml>

@@ -1,0 +1,19 @@
+Index: applications/content/servicedef/secas.xml
+===================================================================
+--- applications/content/servicedef/secas.xml	(revision 1470483)
++++ applications/content/servicedef/secas.xml	(working copy)
+@@ -123,14 +123,6 @@
+         <set field-name="roleTypeId" value="OWNER"/>
+         <action service="createContentRole" mode="sync" run-as-user="system"/>
+     </eca>
+-    <eca service="createContent" event="commit">
+-        <condition field-name="partyId" operator="is-empty"/>
+-        <condition field-name="roleTypeId" operator="is-empty"/>
+-        <condition field-name="userLogin" operator="is-not-empty"/>
+-        <set field-name="partyId" env-name="${userLogin.partyId}"/>
+-        <set field-name="roleTypeId" value="OWNER"/>
+-        <action service="createContentRole" mode="sync" run-as-user="system"/>
+-    </eca>
+ 
+     <eca service="createContent" event="commit">
+         <condition field-name="contentAssocTypeId" operator="is-not-empty"/>
