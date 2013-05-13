@@ -154,7 +154,7 @@ under the License.
                 <set field="titleProperty" value="Shop Name"/>
                 <set field="headerItem" value="shophome"/>
                 <set field="breadCrumTitle" value="Shop Name"/>
-                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopValidCategories.groovy"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopCategories.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">

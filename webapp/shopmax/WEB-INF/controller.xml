@@ -192,14 +192,14 @@ under the License.
         <response name="error" type="view" value="confirmation"/>
     </request-map>
     
-    <request-map uri="orderdetails">
-        <security https="true" auth="false"/>
-        <response name="success" type="view" value="orderdetails"/>
-        <response name="error" type="view" value="orderdetails"/>
+    <request-map uri="orderdetail">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="orderdetail"/>
+        <response name="error" type="view" value="orderdetail"/>
     </request-map>
     
     <request-map uri="orderlist">
-        <security https="true" auth="false"/>
+        <security https="true" auth="true"/>
         <response name="success" type="view" value="orderlist"/>
         <response name="error" type="view" value="orderlist`"/>
     </request-map>
@@ -350,7 +350,7 @@ under the License.
     <view-map name="shoppingcart" type="screen" page="component://shopmax/widget/CartScreens.xml#ShoppingCart"/>
     <view-map name="checkout" type="screen" page="component://shopmax/widget/OrderScreens.xml#Checkout"/>
     <view-map name="confirmation" type="screen" page="component://shopmax/widget/OrderScreens.xml#Confirmation"/>
-    <view-map name="orderdetails" type="screen" page="component://shopmax/widget/OrderScreens.xml#OrderDetails"/>
+    <view-map name="orderdetail" type="screen" page="component://shopmax/widget/OrderScreens.xml#OrderDetail"/>
     <view-map name="orderlist" type="screen" page="component://shopmax/widget/OrderScreens.xml#OrderList"/>
     <view-map name="paymentoption" type="screen" page="component://shopmax/widget/OrderScreens.xml#PaymentOption"/>
     <view-map name="transactionhistory" type="screen" page="component://shopmax/widget/OrderScreens.xml#TransactionHistory"/>

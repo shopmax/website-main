@@ -29,17 +29,11 @@ import org.ofbiz.entity.*;
 
 tenantId = delegator.getDelegatorTenantId();
 
-CategoryWorker.getRelatedCategories(request, "topLevelList", CatalogWorker.getCatalogTopCategoryId(request, CatalogWorker.getCurrentCatalogId(request)), true, true);
-categoryList = request.getAttribute("topLevelList");
-
 if (tenantId == "default" || tenantId == null) {
-	context.categoryList = categoryList;
+    CategoryWorker.getRelatedCategories(request, "topLevelList", CatalogWorker.getCatalogTopCategoryId(request, CatalogWorker.getCurrentCatalogId(request)), true, true);
+    categoryList = request.getAttribute("topLevelList");
+    context.categoryList = categoryList;
 } else {
-	productStore = ProductStoreWorker.getProductStore(request);
-	topCategoryList = [];
-	if (categoryList) {
-		for (category in categoryList) {
-			productCategoryMembers = EntityUtil.filterByDate(delegator.findByAnd("ProductCategoryMember", [productCategoryId: category.productCategoryId], null, true));
-		}
-	}
+    categoryList = org.ofbiz.shopmax.product.category.CategoryWorker.getRelatedValidCategoriesRet(delegator, "topLevelList", CatalogWorker.getCatalogTopCategoryId(request, CatalogWorker.getCurrentCatalogId(request)), true, true, false);
+    context.categoryList = categoryList;
 }

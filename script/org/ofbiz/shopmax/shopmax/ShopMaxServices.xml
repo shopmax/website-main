@@ -433,6 +433,11 @@ under the License.
             <set field="partyRelationshipCtx.partyRelationshipTypeId" value="EMPLOYMENT"/>
             <call-service service-name="createPartyRelationship" in-map-name="partyRelationshipCtx"/>
             
+            <set field="createSupplierRoleCtx.userLogin" from-field="systemUserLogin"/>
+            <set field="createSupplierRoleCtx.partyId" from-field="partyGroupPartyId"/>
+            <set field="createSupplierRoleCtx.roleTypeId" value="SUPPLIER"/>
+            <call-service service-name="createPartyRole" in-map-name="createSupplierRoleCtx" include-user-login="true"/>
+            
             <!-- Set domain name -->
             <if-compare field="parameters.checkDomain" operator="equals" value="Y">
                 <set field="parameters.domainName" value="http://${parameters.ownDomainName}"/>

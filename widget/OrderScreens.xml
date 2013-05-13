@@ -68,17 +68,18 @@ under the License.
         </section>
     </screen>
     
-    <screen name="OrderDetails">
+    <screen name="OrderDetail">
         <section>
             <actions>
-                <set field="titleProperty" value="PageTitleOrderDetails"/>
-                <set field="headerItem" value="orderdetails"/>
-                <set field="breadCrumTitle" value="Order Details"/>
+                <set field="titleProperty" value="PageTitleOrderDetail"/>
+                <set field="headerItem" value="orderdetail"/>
+                <set field="breadCrumTitle" value="Order Detail"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/order/OrderDetail.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/orderdetails.ftl"></html-template></html></platform-specific>
+                        <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/orderdetail.ftl"></html-template></html></platform-specific>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
@@ -91,6 +92,7 @@ under the License.
                 <set field="titleProperty" value="PageTitleOrderList"/>
                 <set field="headerItem" value="orderlist"/>
                 <set field="breadCrumTitle" value="Order List"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/order/OrderList.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">

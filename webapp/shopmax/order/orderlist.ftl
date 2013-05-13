@@ -142,32 +142,129 @@ under the License.
                                             <th>Time</th>
                                             <th>Order number</th>
                                             <th>Order value</th>
-                                            <th>customer</th>
+                                            <th>Customer</th>
                                             <th>Shipping status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>28/09/2012 - 10:12</td>
-                                            <td>000987</td>
-                                            <td>$299.00</td>
-                                            <td>James</td>
-                                            <td>Pickup in store</td>
-                                        </tr>
+                                        <#if recentOrderList?has_content>
+                                            <#list recentOrderList as recentOrder>
+                                                <tr>
+                                                    <td>${Static["org.ofbiz.base.util.UtilFormatOut"].formatDateTime(recentOrder.orderDate, "", locale, timeZone)!?if_exists}</td>
+                                                    <td><a href="<@ofbizUrl>orderdetail?orderId=${recentOrder.orderId}</@ofbizUrl>">${recentOrder.orderId?if_exists}</a></td>
+                                                    <td><@ofbizCurrency amount=recentOrder.grandTotal isoCode=currencyUomId/></td>
+                                                    <td>${recentOrder.customerName?if_exists}</td>
+                                                    <td>Pickup in store</td>
+                                                </tr>
+                                            </#list>
+                                        </#if>
                                     </tbody>
                                 </table>
                             </div>
                             <div id="Pending" class="tab-pane fade">
-                                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Time</th>
+                                            <th>Order number</th>
+                                            <th>Order value</th>
+                                            <th>Customer</th>
+                                            <th>Shipping status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <#if pendingOrderList?has_content>
+                                            <#list pendingOrderList as pendingOrder>
+                                                <tr>
+                                                    <td>${Static["org.ofbiz.base.util.UtilFormatOut"].formatDateTime(pendingOrder.orderDate, "", locale, timeZone)!?if_exists}</td>
+                                                    <td><a href="<@ofbizUrl>orderdetail?orderId=${pendingOrder.orderId}</@ofbizUrl>">${pendingOrder.orderId?if_exists}</a></td>
+                                                    <td><@ofbizCurrency amount=pendingOrder.grandTotal isoCode=currencyUomId/></td>
+                                                    <td>${pendingOrder.customerName?if_exists}</td>
+                                                    <td>Pickup in store</td>
+                                                </tr>
+                                            </#list>
+                                        </#if>
+                                    </tbody>
+                                </table>
                             </div>
                             <div id="Processing" class="tab-pane fade">
-                                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Time</th>
+                                            <th>Order number</th>
+                                            <th>Order value</th>
+                                            <th>Customer</th>
+                                            <th>Shipping status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <#if processingOrderList?has_content>
+                                            <#list processingOrderList as processingOrder>
+                                                <tr>
+                                                    <td>${Static["org.ofbiz.base.util.UtilFormatOut"].formatDateTime(processingOrder.orderDate, "", locale, timeZone)!?if_exists}</td>
+                                                    <td><a href="<@ofbizUrl>orderdetail?orderId=${recentOrder.orderId}</@ofbizUrl>">${recentOrder.orderId?if_exists}</a></td>
+                                                    <td><@ofbizCurrency amount=processingOrder.grandTotal isoCode=currencyUomId/></td>
+                                                    <td>${processingOrder.customerName?if_exists}</td>
+                                                    <td>Pickup in store</td>
+                                                </tr>
+                                            </#list>
+                                        </#if>
+                                    </tbody>
+                                </table>
                             </div>
                             <div id="Completed" class="tab-pane fade">
-                                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Time</th>
+                                            <th>Order number</th>
+                                            <th>Order value</th>
+                                            <th>Customer</th>
+                                            <th>Shipping status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <#if completedOrderList?has_content>
+                                            <#list completedOrderList as completedOrder>
+                                                <tr>
+                                                    <td>${Static["org.ofbiz.base.util.UtilFormatOut"].formatDateTime(completedOrder.orderDate, "", locale, timeZone)!?if_exists}</td>
+                                                    <td><a href="<@ofbizUrl>orderdetail?orderId=${completedOrder.orderId}</@ofbizUrl>">${completedOrder.orderId?if_exists}</a></td>
+                                                    <td><@ofbizCurrency amount=completedOrder.grandTotal isoCode=currencyUomId/></td>
+                                                    <td>${completedOrder.customerName?if_exists}</td>
+                                                    <td>Pickup in store</td>
+                                                </tr>
+                                            </#list>
+                                        </#if>
+                                    </tbody>
+                                </table>
                             </div>
                             <div id="Returned" class="tab-pane fade">
-                                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Time</th>
+                                            <th>Order number</th>
+                                            <th>Return value</th>
+                                            <th>Customer</th>
+                                            <th>Return status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <#if returnedOrderList?has_content>
+                                            <#list returnedOrderList as returnedOrder>
+                                                <tr>
+                                                    <td>${Static["org.ofbiz.base.util.UtilFormatOut"].formatDateTime(returnedOrder.entryDate, "", locale, timeZone)!?if_exists}</td>
+                                                    <td><a href="<@ofbizUrl>orderdetail?orderId=${returnedOrder.orderId}</@ofbizUrl>">${returnedOrder.orderId?if_exists}</a></td>
+                                                    <td><@ofbizCurrency amount=returnedOrder.returnTotal isoCode=currencyUomId/></td>
+                                                    <td>${returnedOrder.customerName?if_exists}</td>
+                                                    <#assign returnStatus = delegator.findOne("StatusItem", Static["org.ofbiz.base.util.UtilMisc"].toMap("statusId", returnedOrder.statusId), true)>
+                                                    <td>${returnStatus.get("description",locale)}</td>
+                                                </tr>
+                                            </#list>
+                                        </#if>
+                                    </tbody>
+                                </table>
                             </div>
                             <div id="SearchResult" class="tab-pane fade">
                                 <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>

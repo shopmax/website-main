@@ -19,8 +19,48 @@ under the License.
 -->
 
 <entity-engine-xml>
-    <Party partyId="shopmaxseller" partyTypeId="PERSON"/>
+    <Party partyId="shopmaxseller" partyTypeId="PARTY_GROUP"/>
+    <PartyGroup partyId="shopmaxseller" groupName="Demo Supplier"/>
     <PartyRole partyId="shopmaxseller" roleTypeId="SELLER"/>
+    <PartyRole partyId="shopmaxseller" roleTypeId="SUPPLIER"/>
+    <ContactMech contactMechId="9001" contactMechTypeId="POSTAL_ADDRESS"/>
+    <PartyContactMech partyId="shopmaxseller" contactMechId="9001" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PostalAddress contactMechId="9001" toName="Shopmax Seller Company" address1="2004 Factory Blvd" city="City of Industry" postalCode="90000" countryGeoId="USA" stateProvinceGeoId="CA"/>
+    <PartyContactMechPurpose partyId="shopmaxseller" contactMechId="9001" contactMechPurposeTypeId="BILLING_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <PartyContactMechPurpose partyId="shopmaxseller" contactMechId="9001" contactMechPurposeTypeId="GENERAL_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <PartyContactMechPurpose partyId="shopmaxseller" contactMechId="9001" contactMechPurposeTypeId="PAYMENT_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <UserLogin userLoginId="shopmaxseller" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" partyId="shopmaxseller"/>
+    
+    <!-- DemoCustomer -->
+    <Party partyId="DemoCustomer" partyTypeId="PERSON"/>
+    <Person partyId="DemoCustomer" firstName="Demo" lastName="Customer"/>
+    <UserLogin partyId="DemoCustomer" userLoginId="DemoCustomer"/>
+    <PartyRole partyId="DemoCustomer" roleTypeId="CUSTOMER"/>
+    <PartyRole partyId="DemoCustomer" roleTypeId="CONTACT"/>
+    <PartyRole partyId="DemoCustomer" roleTypeId="BILL_TO_CUSTOMER"/>
+    
+    <ContactMech contactMechId="9015" contactMechTypeId="POSTAL_ADDRESS"/>
+    <PostalAddress contactMechId="9015" toName="Demo Customer" address1="2004 Factory Blvd" city="Orem" stateProvinceGeoId="UT" postalCode="84057" countryGeoId="USA" geoPointId="9000"/>
+    <PartyContactMech partyId="DemoCustomer" contactMechId="9015" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PartyContactMechPurpose partyId="DemoCustomer" contactMechId="9015" contactMechPurposeTypeId="BILLING_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <PartyContactMechPurpose partyId="DemoCustomer" contactMechId="9015" contactMechPurposeTypeId="SHIPPING_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <PartyContactMechPurpose partyId="DemoCustomer" contactMechId="9015" contactMechPurposeTypeId="GENERAL_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <ContactMech contactMechId="9025" contactMechTypeId="TELECOM_NUMBER"/>
+    <ContactMech contactMechId="9027" contactMechTypeId="TELECOM_NUMBER"/>
+    <TelecomNumber contactMechId="9025" countryCode="1" areaCode="801" contactNumber="555-5555"/>
+    <TelecomNumber contactMechId="9027" countryCode="1" areaCode="801" contactNumber="444-4444"/>
+    <PartyContactMech partyId="DemoCustomer" contactMechId="9025" fromDate="2013-04-01 00:00:00" allowSolicitation="Y" extension="222"/>
+    <PartyContactMech partyId="DemoCustomer" contactMechId="9027" fromDate="2013-04-01 00:00:00" allowSolicitation="Y" extension="212"/>
+    <PartyContactMechPurpose partyId="DemoCustomer" contactMechId="9025" contactMechPurposeTypeId="PHONE_HOME" fromDate="2013-04-01 00:00:00"/>
+    <PartyContactMechPurpose partyId="DemoCustomer" contactMechId="9025" contactMechPurposeTypeId="PHONE_SHIPPING" fromDate="2013-04-01 00:00:00"/>
+    <PartyContactMechPurpose partyId="DemoCustomer" contactMechId="9027" contactMechPurposeTypeId="PHONE_BILLING" fromDate="2013-04-01 00:00:00"/>
+    <ContactMech contactMechId="9026" contactMechTypeId="EMAIL_ADDRESS" infoString="ofbiztest@example.com"/>
+    <PartyContactMech partyId="DemoCustomer" contactMechId="9026" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PartyContactMechPurpose partyId="DemoCustomer" contactMechId="9026" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2013-04-01 00:00:00"/>
+    
+    <PaymentMethod paymentMethodId="9015" paymentMethodTypeId="CREDIT_CARD" partyId="DemoCustomer" fromDate="2013-04-01 00:00:00"/>
+    <CreditCard paymentMethodId="9015" cardType="Visa" cardNumber="4111111111111111" expireDate="02/2021" companyNameOnCard=""
+        titleOnCard="" firstNameOnCard="DEMO" middleNameOnCard="" lastNameOnCard="CUSTOMER" suffixOnCard="" contactMechId="9015"/>
     
     <ProdCatalog prodCatalogId="SHOPMAX_CATALOG" catalogName="ShopMax Catalog" useQuickAdd="Y"/>
     
@@ -67,6 +107,14 @@ under the License.
     <!-- Create Parent Category Level 4 of DEMO_CATLV3_02 -->
     <ProductCategoryRollup productCategoryId="DEMO_CATLV4_02" parentProductCategoryId="DEMO_CATLV3_02" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
     
-    <Product productId="DEMO_PRODUCT_1" />
-    <ProductCategoryMember productCategoryId="DEMO_CATLV4_02" productId="DEMO_PRODUCT_1" fromDate="2013-04-01 00:00:00" />
+    <!-- Drop ship products -->
+    <Product productId="dropShip1" productTypeId="FINISHED_GOOD" internalName="DropShip from Shopmax Seller" productName="DropShip from Shopmax Seller" smallImageUrl="/images/products/dropShip1/small.jpg" mediumImageUrl="/images/products/dropShip1/medium.jpg" largeImageUrl="/images/products/dropShip1/large.jpg" isVirtual="N" isVariant="N" requirementMethodEnumId="PRODRQM_DS"/>
+    <ProductCategoryMember productCategoryId="DEMO_CATLV1_01" productId="dropShip1" sequenceNum="1" fromDate="2013-04-01 00:00:00"/>
+    <ProductPrice productId="dropShip1" productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" currencyUomId="USD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" price="15.00"/>
+    <SupplierProduct productId="dropShip1" partyId="shopmaxseller" availableFromDate="2013-04-01 00:00:00" minimumOrderQuantity="0.0" lastPrice="10.0" currencyUomId="USD" supplierProductName="Drop ship product from Shopmax Seller" supplierProductId="dropShip1-DS" canDropShip="Y"/>
+    
+    <Product productId="dropShip2" productTypeId="FINISHED_GOOD" internalName="DropShip from Shopmax Seller" productName="DropShip from Shopmax Seller" smallImageUrl="/images/products/dropShip2/small.jpg" mediumImageUrl="/images/products/dropShip2/medium.jpg" largeImageUrl="/images/products/dropShip2/large.jpg" isVirtual="N" isVariant="N" requirementMethodEnumId="PRODRQM_DS"/>
+    <ProductCategoryMember productCategoryId="DEMO_CATLV1_02" productId="dropShip2" sequenceNum="1" fromDate="2013-04-01 00:00:00"/>
+    <ProductPrice productId="dropShip2" productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" currencyUomId="USD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" price="20.00"/>
+    <SupplierProduct productId="dropShip2" partyId="shopmaxseller" availableFromDate="2013-04-01 00:00:00" minimumOrderQuantity="0.0" lastPrice="12.0" currencyUomId="USD" supplierProductName="Drop ship product from Shopmax Seller" supplierProductId="dropShip2-DS" canDropShip="Y"/>
 </entity-engine-xml>

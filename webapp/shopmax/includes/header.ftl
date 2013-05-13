@@ -88,7 +88,7 @@ under the License.
                             <li><a href="#">One more separated link</a></li>
                         </ul>
                     </li>-->
-                    <li><a href="manage-orders.html">Manage Orders</a></li>
+                    <li><a href="orderlist">Manage Orders</a></li>
                     <li><a href="shopping-list.html">Shopping List</a></li>
                     <li class="last"><a href="buying-orders.html">Buying Orders</a></li>
                 </ul>

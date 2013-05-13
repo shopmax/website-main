@@ -106,9 +106,9 @@ jQuery(document).ready(function() {
                 <div class="category-list nested-list">
                      <#if categoryList?has_content>
                         <ul>
-                        <#list categoryList as productCategory>
-                            <li><a href="<@ofbizUrl>categorygridview?productCategoryId=${productCategory.productCategoryId}</@ofbizUrl>">${productCategory.categoryName}</li>
-                        </#list>
+	                        <#list categoryList as productCategory>
+	                            <li><a href="<@ofbizUrl>shopcategorygridview?productCategoryId=${productCategory.productCategoryId}</@ofbizUrl>">${productCategory.categoryName}</li>
+	                        </#list>
                         </ul>
                     </#if>
                 </div><!-- /#product-tab -->
