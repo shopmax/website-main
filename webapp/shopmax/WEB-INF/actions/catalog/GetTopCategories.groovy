@@ -29,7 +29,7 @@ import org.ofbiz.entity.*;
 
 tenantId = delegator.getDelegatorTenantId();
 
-if (tenantId == "default" || tenantId == null) {
+if (tenantId == "default" || tenantId == "shopmax" || tenantId == null) {
     CategoryWorker.getRelatedCategories(request, "topLevelList", CatalogWorker.getCatalogTopCategoryId(request, CatalogWorker.getCurrentCatalogId(request)), true, true);
     categoryList = request.getAttribute("topLevelList");
     context.categoryList = categoryList;
