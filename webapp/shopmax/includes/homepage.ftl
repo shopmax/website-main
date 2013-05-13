@@ -122,15 +122,13 @@ under the License.
                         </ul>
                     </div><!-- /.tabs-->
                     <div id="product-tab" class="tabcontent">
+                    <#if categoryList?has_content>
                         <ul>
-                            <li><a href="/">Electronics &amp; Office</a></li>
-                            <li><a href="#">Movies, Music &amp; Books</a></li>
-                            <li><a href="#">Home, Furniture &amp; Patio</a></li>
-                            <li><a href="#">Apparel, Shoes &amp; Jewellery</a></li>
-                            <li><a href="#">Baby &amp; Kids</a></li>
-                            <li><a href="#">Toys &amp; Video Games</a></li>
-                            <li><a href="#">Sports, Fitness &amp; Outdoors</a></li>
+                        <#list categoryList as productCategory>
+                            <li><a href="<@ofbizUrl>categorygridview?productCategoryId=${productCategory.productCategoryId}</@ofbizUrl>">${productCategory.categoryName}</li>
+                        </#list>
                         </ul>
+                    </#if>
                     </div><!-- /#product-tab -->
                     <div id="services-tab" class="tabcontent">
                         <ul>

@@ -66,4 +66,7 @@ under the License.
     <ProductCategory productCategoryId="DEMO_CATLV4_02" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 2.4" description="Demo Category 2.4"/>
     <!-- Create Parent Category Level 4 of DEMO_CATLV3_02 -->
     <ProductCategoryRollup productCategoryId="DEMO_CATLV4_02" parentProductCategoryId="DEMO_CATLV3_02" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    
+    <Product productId="DEMO_PRODUCT_1" />
+    <ProductCategoryMember productCategoryId="DEMO_CATLV4_02" productId="DEMO_PRODUCT_1" fromDate="2013-04-01 00:00:00" />
 </entity-engine-xml>
