@@ -107,7 +107,7 @@ under the License.
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label for="inputDescription" class="control-label">Product Description</label>
+                                <label for="inputDescription" class="control-label">Product description</label>
                                 <div class="controls">
                                     <textarea class="input-xlarge" rows="3" name="description"></textarea>
                                 </div>
@@ -187,11 +187,11 @@ under the License.
                             </div>  
                             <div class="form-inline">
                                 <label>Shipping size</label>
-                                <a class="btn-dark-grey-small shippingSize" id="size-1">Xtra small</a>
-                                <a class="btn-dark-grey-small shippingSize" id="size-2">Small</a>
-                                <a class="btn-dark-grey-small shippingSize" id="size-3">Normal</a>
-                                <a class="btn-dark-grey-small shippingSize" id="size-4">Large</a>
-                                <a class="btn-dark-grey-small shippingSize" id="size-5">Xtra Large</a>
+                                <a class="btn-dark-grey-small shippingSize" id="XTRA_SMALL">Xtra Small</a>
+                                <a class="btn-dark-grey-small shippingSize" id="SMALL">Small</a>
+                                <a class="btn-dark-grey-small shippingSize" id="NORMAL">Normal</a>
+                                <a class="btn-dark-grey-small shippingSize" id="LARGE">Large</a>
+                                <a class="btn-dark-grey-small shippingSize" id="XTRA_LARGE">Xtra Large</a>
                             </div>
                             <input type="hidden" id="shippingSize" name="shippingSize" value="">
                         </form>

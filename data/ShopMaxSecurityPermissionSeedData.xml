@@ -25,5 +25,11 @@ under the License.
     <SecurityPermission description="Delete operations in the ShopMax Component." permissionId="SHOPMAX_DELETE"/>
     <SecurityPermission description="ALL operations in the ShopMax Component." permissionId="SHOPMAX_ADMIN"/>
     
+    <SecurityPermission description="Seller operations in the ShopMax Component." permissionId="SHOPMAX_SELLER"/>
+    
+    <SecurityGroup description="Shopmax seller group, has all seller permissions." groupId="SHOPMAX_SELLER"/>
+    
+    <SecurityGroupPermission groupId="SHOPMAX_SELLER" permissionId="SHOPMAX_SELLER"/>
+    
     <SecurityGroupPermission groupId="SUPER" permissionId="SHOPMAX_ADMIN"/>
 </entity-engine-xml>

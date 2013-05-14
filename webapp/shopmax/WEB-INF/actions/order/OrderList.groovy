@@ -117,9 +117,25 @@ if (userLogin) {
         }
     }
     
+    /*if (searchOrderId) {
+        orderHeader = delegator.findOne("OrderHeader", [orderId : searchOrderId], false);
+        orderInfoMap = [:];
+        orderReadHelper = new OrderReadHelper(orderHeader);
+        orderInfoMap.orderDate = orderHeader.orderDate;
+        orderInfoMap.orderId = orderHeader.orderId;
+        orderInfoMap.grandTotal = orderHeader.grandTotal;
+        billingParty = orderReadHelper.getBillToParty();
+        orderInfoMap.customerName = PartyHelper.getPartyName(billingParty);
+        orderInfoMap.statusId = orderHeader.statusId;
+        searchResultList.add(orderInfoMap);
+    } else {
+        
+    }*/
+    
     context.recentOrderList = recentList;
     context.pendingOrderList = pendingList;
     context.processingOrderList = processingList;
     context.completedOrderList = completedList;
     context.returnedOrderList = returnedList;
+    context.searchResultOrderList = searchResultList;
 }

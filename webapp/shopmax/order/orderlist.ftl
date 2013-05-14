@@ -267,7 +267,30 @@ under the License.
                                 </table>
                             </div>
                             <div id="SearchResult" class="tab-pane fade">
-                                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Time</th>
+                                            <th>Order number</th>
+                                            <th>Order value</th>
+                                            <th>Customer</th>
+                                            <th>Shipping status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <#if searchResultOrderList?has_content>
+                                            <#list searchResultOrderList as searchResultOrder>
+                                                <tr>
+                                                    <td>${Static["org.ofbiz.base.util.UtilFormatOut"].formatDateTime(searchResultOrder.orderDate, "", locale, timeZone)!?if_exists}</td>
+                                                    <td><a href="<@ofbizUrl>orderdetail?orderId=${searchResultOrder.orderId}</@ofbizUrl>">${searchResultOrder.orderId?if_exists}</a></td>
+                                                    <td><@ofbizCurrency amount=searchResultOrder.grandTotal isoCode=currencyUomId/></td>
+                                                    <td>${searchResultOrder.customerName?if_exists}</td>
+                                                    <td>Pickup in store</td>
+                                                </tr>
+                                            </#list>
+                                        </#if>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </td>

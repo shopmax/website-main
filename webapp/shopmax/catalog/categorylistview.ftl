@@ -16,6 +16,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
 <div class="container content">
     <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
     
