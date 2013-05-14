@@ -102,9 +102,6 @@ $(function(){
         $(".selected-products").append(newRow);
         e.preventDefault();
     });
-    $('#yourBtn').focusin(function(){
-        alert($('#yourBtn').val());
-    });
     
     $("#datepicker1").datepicker();
     $("#datepickerimage1").click(function() { 
@@ -136,7 +133,6 @@ $(function(){
 });
 function checkHasValue(categoryId){
     var tempCategory = $('#listCategory').val();
-    alert(tempCategory)
     if(tempCategory == ","){
         tempCategory = "";
     }
@@ -182,7 +178,6 @@ function removeCategory(categoryId){
     $('#tr-'+categoryId).remove();
     var listCategory = $('#listCategory').val().split(',');
     var tempCategory = '';
-    alert(listCategory.length);
     for(var i=0;i<listCategory.length-1;i++){
         if(listCategory[i]==categoryId){
             var index = listCategory.indexOf(categoryId);
