@@ -80,28 +80,24 @@ $(function(){
         }
         var newRow;
         if(categoryFirstId && categorySecondId && categoryThirdId && categoryFourthId){
-            newRow = $("<tr><td>"+categoryFirstId+" &gt; "+categorySecondId+" &gt; "+categoryThirdId+" &gt; "+categoryFourthId+"</td><td><a>Remove</a></td></tr>");
-            var tempCategory = $('#listCategory').val();
-            tempCategory = categoryFourthId+','+tempCategory;
-            $('#listCategory').val(tempCategory)
+            if(checkHasValue(categoryFourthId)){
+                newRow = $("<tr id='tr-"+categoryFourthId+"'><td>"+categoryFirstId+" &gt; "+categorySecondId+" &gt; "+categoryThirdId+" &gt; "+categoryFourthId+"</td><td><a id='remove-"+categoryFourthId+"' onclick='removeCategory(&quot;"+categoryFourthId+"&quot;)'>Remove</a></td></tr>");
+            }
         }
         if(categoryFirstId && categorySecondId && categoryThirdId && !categoryFourthId){
-            newRow = $("<tr><td>"+categoryFirstId+" &gt; "+categorySecondId+" &gt; "+categoryThirdId+"</td><td><a>Remove</a></td></tr>");
-            var tempCategory = $('#listCategory').val();
-            tempCategory = categoryThirdId+','+tempCategory;
-            $('#listCategory').val(tempCategory)
+            if(checkHasValue(categoryThirdId)){
+                newRow = $("<tr id='tr-"+categoryThirdId+"'><td>"+categoryFirstId+" &gt; "+categorySecondId+" &gt; "+categoryThirdId+"</td><td><a id='remove-"+categoryThirdId+"' onclick='removeCategory(&quot;"+categoryThirdId+"&quot;)'>Remove</a></td></tr>");
+            }
         }
         if(categoryFirstId && categorySecondId && !categoryThirdId && !categoryFourthId){
-            newRow = $("<tr><td>"+categoryFirstId+" &gt; "+categorySecondId+"</td><td><a>Remove</a></td></tr>");
-            var tempCategory = $('#listCategory').val();
-            tempCategory = categorySecondId+','+tempCategory;
-            $('#listCategory').val(tempCategory)
+            if(checkHasValue(categorySecondId)){
+                newRow = $("<tr id='tr-"+categorySecondId+"'><td>"+categoryFirstId+" &gt; "+categorySecondId+"</td><td><a id='remove-"+categorySecondId+"' onclick='removeCategory(&quot;"+categorySecondId+"&quot;)'>Remove</a></td></tr>");
+            }
         }
         if(categoryFirstId && !categorySecondId && !categoryThirdId && !categoryFourthId){
-            newRow = $("<tr><td>"+categoryFirstId+"</td><td><a>Remove</a></td></tr>");
-            var tempCategory = $('#listCategory').val();
-            tempCategory = categoryFirstId+','+tempCategory;
-            $('#listCategory').val(tempCategory)
+            if(checkHasValue(categoryFirstId)){
+                newRow = $("<tr id='tr-"+categoryFirstId+"'><td>"+categoryFirstId+"</td><td><a id='remove-"+categoryFirstId+"' onclick='removeCategory(&quot;"+categoryFirstId+"&quot;)'>Remove</a></td></tr>");
+            }
         }
         $(".selected-products").append(newRow);
         e.preventDefault();
@@ -120,9 +116,9 @@ $(function(){
     });
     
     $('.shippingSize').click(function(){
-    	$('.shippingSize').css({'color':'#FFFFFF'});
+        $('.shippingSize').css({'color':'#FFFFFF'});
         $('#'+this.id).css({'color':'#358BDB'});
-    	$('#shippingSize').val(this.id);
+        $('#shippingSize').val(this.id);
     });
     
     $('#submit_uploadProductSeller').click(function(){
@@ -130,15 +126,40 @@ $(function(){
     });
     
     $('#datepicker1').change(function(){
-    	var dateFormat = $('#datepicker1').val().split('/');
-    	$('#promoPriceFromDate').val(dateFormat[0]+"-"+dateFormat[1]+"-"+dateFormat[2]+" 00:00:00.000");
+        var dateFormat = $('#datepicker1').val().split('/');
+        $('#promoPriceFromDate').val(dateFormat[0]+"-"+dateFormat[1]+"-"+dateFormat[2]+" 00:00:00.000");
     });
     $('#datepicker2').change(function(){
-    	var dateFormat = $('#datepicker2').val().split('/');
-    	$('#promoPriceThruDate').val(dateFormat[0]+"-"+dateFormat[1]+"-"+dateFormat[2]+" 00:00:00.000");
+        var dateFormat = $('#datepicker2').val().split('/');
+        $('#promoPriceThruDate').val(dateFormat[0]+"-"+dateFormat[1]+"-"+dateFormat[2]+" 00:00:00.000");
     });
 });
-
+function checkHasValue(categoryId){
+    var tempCategory = $('#listCategory').val();
+    alert(tempCategory)
+    if(tempCategory == ","){
+        tempCategory = "";
+    }
+    if(!tempCategory && categoryId){
+        tempCategory = categoryId;
+        $('#listCategory').val(tempCategory);
+        return true;
+    }
+    else{
+        var listCategory = tempCategory.split(',');
+        for(var i=0;i<listCategory.length;i++){
+            if(listCategory[i]==categoryId){
+                break;
+                return false;
+            }
+            else{
+                tempCategory = categoryId+','+tempCategory;
+                $('#listCategory').val(tempCategory);
+                return true;
+            }
+        }
+    }
+}
 function getUrlVars() {
     var vars = {};
     var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -156,4 +177,18 @@ function sub(obj,inputIndex){
     }
     $('#yourBtn'+inputIndex).val(file);
     $('#li-'+inputIndex).addClass('uploaded');
+}
+function removeCategory(categoryId){
+    $('#tr-'+categoryId).remove();
+    var listCategory = $('#listCategory').val().split(',');
+    var tempCategory = '';
+    alert(listCategory.length);
+    for(var i=0;i<listCategory.length-1;i++){
+        if(listCategory[i]==categoryId){
+            var index = listCategory.indexOf(categoryId);
+            listCategory.splice(index, 1);
+        }
+        tempCategory = listCategory[i]+','+tempCategory;
+    }
+    $('#listCategory').val(tempCategory);
 }
