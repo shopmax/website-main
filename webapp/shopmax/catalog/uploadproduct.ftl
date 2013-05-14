@@ -98,7 +98,7 @@ under the License.
                                 <tbody>
                             </tbody></table>
                         </div>
-                        <form class="form-horizontal pull-left media-edit" action="uploadproductseller" id="uploadProductSeller" name="uploadProductSeller" method="post" enctype="multipart/form-data">
+                        <form class="form-horizontal pull-left media-edit" action="uploadProductToSeller" id="uploadProductToSeller" name="uploadProductToSeller" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="listCategory" value="" id="listCategory">
                             <div class="control-group">
                                 <label for="inputProductName" class="control-label">Product name</label>
@@ -279,7 +279,7 @@ under the License.
             </table>
             <div class="sc-table-promotion footer-button">
                 <a href="#" class="btn-green-small" style="width:80px;">Preview</a>&nbsp;&nbsp;
-                <a class="btn-general-small" id="submit_uploadProductSeller">Submit</a>&nbsp;&nbsp;
+                <a class="btn-general-small" id="submit_uploadProductToSeller">Submit</a>&nbsp;&nbsp;
                 <a class="btn-grey-small" href="#">Cancel</a>
             </div>
         </div><!-- /.span9 -->

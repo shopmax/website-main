@@ -149,9 +149,9 @@ under the License.
         <response name="success" type="view" value="uploadproductajax"/>
     </request-map>
     
-    <request-map uri="uploadproductseller">
+    <request-map uri="uploadProductToSeller">
         <security https="true" auth="false"/>
-        <event type="service" invoke="uploadProductSeller"/>
+        <event type="service" invoke="uploadProductToSeller"/>
         <response name="success" type="view" value="uploadproduct"/>
         <response name="error" type="view" value="uploadproduct"/>
     </request-map>

@@ -19,17 +19,36 @@ under the License.
 -->
 
 <entity-engine-xml>
-    <Party partyId="shopmaxseller" partyTypeId="PARTY_GROUP"/>
-    <PartyGroup partyId="shopmaxseller" groupName="Demo Supplier"/>
-    <PartyRole partyId="shopmaxseller" roleTypeId="SELLER"/>
-    <PartyRole partyId="shopmaxseller" roleTypeId="SUPPLIER"/>
-    <ContactMech contactMechId="9001" contactMechTypeId="POSTAL_ADDRESS"/>
-    <PartyContactMech partyId="shopmaxseller" contactMechId="9001" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
-    <PostalAddress contactMechId="9001" toName="Shopmax Seller Company" address1="2004 Factory Blvd" city="City of Industry" postalCode="90000" countryGeoId="USA" stateProvinceGeoId="CA"/>
-    <PartyContactMechPurpose partyId="shopmaxseller" contactMechId="9001" contactMechPurposeTypeId="BILLING_LOCATION" fromDate="2013-04-01 00:00:00"/>
-    <PartyContactMechPurpose partyId="shopmaxseller" contactMechId="9001" contactMechPurposeTypeId="GENERAL_LOCATION" fromDate="2013-04-01 00:00:00"/>
-    <PartyContactMechPurpose partyId="shopmaxseller" contactMechId="9001" contactMechPurposeTypeId="PAYMENT_LOCATION" fromDate="2013-04-01 00:00:00"/>
-    <UserLogin userLoginId="shopmaxseller" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" partyId="shopmaxseller"/>
+    <Party partyId="SHOPMAX_SELLER" partyTypeId="PARTY_GROUP"/>
+    <PartyGroup partyId="SHOPMAX_SELLER" groupName="Demo Shop 1" logoImageUrl="/shopmax-default/img/logo_imp.png"/>
+    <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="BILL_FROM_VENDOR"/>
+    <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="BILL_TO_CUSTOMER"/>
+    <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="INTERNAL_ORGANIZATIO"/>
+    <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="CARRIER"/>
+    <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="ACCOUNT"/>
+    <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="SELLER"/>
+    <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="SUPPLIER"/>
+    <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="_NA_"/>
+    <ContactMech contactMechId="SELLER_EMAIL" contactMechTypeId="EMAIL_ADDRESS" infoString="ofbiztest@example.com"/>
+    <PartyContactMech partyId="SHOPMAX_SELLER" contactMechId="SELLER_EMAIL" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PartyContactMechPurpose partyId="SHOPMAX_SELLER" contactMechId="SELLER_EMAIL" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2013-04-01 00:00:00"/>
+    <ContactMech contactMechId="SELLER_ADDRESS" contactMechTypeId="POSTAL_ADDRESS"/>
+    <PartyContactMech partyId="SHOPMAX_SELLER" contactMechId="SELLER_ADDRESS" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PostalAddress contactMechId="SELLER_ADDRESS" toName="Shopmax Seller Company" address1="777 Factory Blvd" city="City of Seller" postalCode="90000" countryGeoId="USA" stateProvinceGeoId="CA"/>
+    <PartyContactMechPurpose partyId="SHOPMAX_SELLER" contactMechId="SELLER_ADDRESS" contactMechPurposeTypeId="BILLING_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <PartyContactMechPurpose partyId="SHOPMAX_SELLER" contactMechId="SELLER_ADDRESS" contactMechPurposeTypeId="GENERAL_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <PartyContactMechPurpose partyId="SHOPMAX_SELLER" contactMechId="SELLER_ADDRESS" contactMechPurposeTypeId="PAYMENT_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    
+    <Party partyId="DemoSeller" partyTypeId="PERSON"/>
+    <Person partyId="DemoSeller" firstName="Demo" lastName="Seller"/>
+    <UserLogin partyId="DemoSeller" userLoginId="DemoSeller" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a"/>
+    <PartyRole partyId="DemoSeller" roleTypeId="CUSTOMER"/>
+    <PartyRole partyId="DemoSeller" roleTypeId="SELLER"/>
+    <PartyRole partyId="DemoSeller" roleTypeId="BUYER"/>
+    <PartyRole partyId="DemoSeller" roleTypeId="EMPLOYEE"/>
+    <UserLoginSecurityGroup groupId="SHOPMAX_SELLER" userLoginId="DemoSeller" fromDate="2013-04-01 00:00:00"/>
+    
+    <PartyRelationship partyIdFrom="SHOPMAX_SELLER" partyIdTo="DemoSeller" partyRelationshipTypeId="EMPLOYMENT" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="EMPLOYEE" fromDate="2013-04-01 00:00:00"/>
     
     <!-- DemoCustomer -->
     <Party partyId="DemoCustomer" partyTypeId="PERSON"/>
@@ -38,6 +57,7 @@ under the License.
     <PartyRole partyId="DemoCustomer" roleTypeId="CUSTOMER"/>
     <PartyRole partyId="DemoCustomer" roleTypeId="CONTACT"/>
     <PartyRole partyId="DemoCustomer" roleTypeId="BILL_TO_CUSTOMER"/>
+    <PartyRole partyId="DemoCustomer" roleTypeId="BUYER"/>
     
     <ContactMech contactMechId="9015" contactMechTypeId="POSTAL_ADDRESS"/>
     <PostalAddress contactMechId="9015" toName="Demo Customer" address1="2004 Factory Blvd" city="Orem" stateProvinceGeoId="UT" postalCode="84057" countryGeoId="USA" geoPointId="9000"/>
