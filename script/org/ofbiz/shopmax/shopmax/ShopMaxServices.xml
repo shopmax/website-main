@@ -613,52 +613,53 @@ under the License.
         <store-value value-field="product"/>
         
         <!-- Create images of product -->
-        <if-not-empty field="parameters._additionalImageOne_fileName">
+        <if-not-empty field="parameters._uploadedFile_fileName">
             <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
             <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
-            <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/>
-            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.additionalImageOne"/>
+            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile"/>
             <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
-            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._additionalImageOne_fileName"/>
-            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._additionalImageOne_contentType"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile_contentType"/>
             <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>
-        <if-not-empty field="parameters._additionalImageTwo_fileName">
+        <if-not-empty field="parameters._uploadedFile1_fileName">
             <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
             <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
-            <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/>
-            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.additionalImageTwo"/>
+            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile1"/>
             <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
-            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._additionalImageTwo_fileName"/>
-            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._additionalImageTwo_contentType"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile1_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile1_contentType"/>
             <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>
-        <if-not-empty field="parameters._additionalImageThree_fileName">
+        <if-not-empty field="parameters._uploadedFile2_fileName">
             <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
             <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
-            <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/>
-            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.additionalImageThree"/>
+            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile2"/>
             <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
-            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._additionalImageThree_fileName"/>
-            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._additionalImageThree_contentType"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile2_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile2_contentType"/>
             <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>
-        <if-not-empty field="parameters._additionalImageFour_fileName">
+        <if-not-empty field="parameters._uploadedFile3_fileName">
             <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
             <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
-            <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/>
-            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.additionalImageFour"/>
+            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile3"/>
             <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
-            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._additionalImageFour_fileName"/>
-            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._additionalImageFour_contentType"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile3_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile3_contentType"/>
             <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>
         
         <!-- Create product price -->
+        <set field="createProductPriceMap.userLogin" from-field="systemUserLogin"/>
         <set field="createProductPriceMap.productId" from-field="parameters.productId"/>
         <set field="createProductPriceMap.currencyUomId" value="NZD"/>
         <set field="createProductPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
@@ -670,11 +671,23 @@ under the License.
         <set field="createProductPriceMap.productPriceTypeId" value="LIST_PRICE"/>
         <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
         
+        <set field="createProductPriceMap.userLogin" from-field="systemUserLogin"/>
         <set field="createProductPriceMap.price" from-field="parameters.promoPrice" type="BigDecimal"/>
         <set field="createProductPriceMap.productPriceTypeId" value="PROMO_PRICE"/>
-        <set field="createProductPriceMap.fromDate" from-field="parameters.promoPriceFromDate"/>
-        <set field="createProductPriceMap.thruDate" from-field="parameters.promoPriceThruDate"/>
+        <set field="createProductPriceMap.fromDate" from-field="parameters.promoPriceFromDate" type="Timestamp"/>
+        <set field="createProductPriceMap.thruDate" from-field="parameters.promoPriceThruDate" type="Timestamp"/>
         <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
+        
+        <!-- Create product to product category -->
+        <set field="categoryLists" from-field="parameters.listCategory"/>
+        <set field="categoryList" value="${groovy: categoryList = categoryLists.split(&quot;,&quot;); return categoryList.toList();}" type="List"/>
+        <iterate entry="productCategoryId" list="categoryList" >
+            <set field="createProductToCategoryMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createProductToCategoryMap.productCategoryId" from-field="productCategoryId"/>
+            <set field="createProductToCategoryMap.productId" from-field="parameters.productId"/>
+            <set field="createProductToCategoryMap.fromDate" from-field="nowTimestamp"/>
+            <call-service service-name="safeAddProductToCategory" in-map-name="createProductToCategoryMap"/>
+        </iterate>
     </simple-method>
     
     <simple-method method-name="createTenantForSeller" short-description="Upload Product Seller">

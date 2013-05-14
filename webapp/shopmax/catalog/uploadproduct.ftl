@@ -17,6 +17,8 @@ specific language governing permissions and limitations
 under the License.
 -->
 <script src="<@ofbizContentUrl>/shopmax-default/js/uploadproduct.js</@ofbizContentUrl>" type="text/javascript"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <div class="container content promotion">
     <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
     <div class="row">
@@ -32,18 +34,18 @@ under the License.
         </div><!-- /.span3.sidebar -->
         <!-- MAIN CONTENT -->
         <!-- sliderdiv -->
-        <div id="ajax-container">
-            <div class="span9 main-content">
-                <table class="table table-condensed sc-table sc-table-promotion">
-                  <thead>
-                    <tr class="sc-table-header">
-                      <th class="col1">Basic Information</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                        <td class="col1 product-upload">
-                            <label>&nbsp;&nbsp;&nbsp;Select your category</label>
+        <div class="span9 main-content">
+            <table class="table table-condensed sc-table sc-table-promotion">
+              <thead>
+                <tr class="sc-table-header">
+                  <th class="col1">Basic Information</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td class="col1 product-upload">
+                        <label>&nbsp;&nbsp;&nbsp;Select your category</label>
+                        <div id="ajax-container">
                             <div class="controls controls-row select-category pull-left">
                                 <div class="span3">
                                     <select size=9 id="category_1">
@@ -88,183 +90,198 @@ under the License.
                             </div>
                             <div class="assign-category">
                                 &nbsp;&nbsp; * You can assign a product to more than one category
-                                <a href="#" class="btn-general pull-right">Assign</a>
+                                <a id="assign-category" class="btn-general pull-right">Assign</a>
                             </div>
-                            <div class="select-products-wrapper">
-                                <table class="selected-products">
-                                    <tbody><tr><td>Electronics &gt; Mobiles &gt; Smartphones</td><td><a href="#">Remove</a></td></tr>
-                                    <tr><td>Electronics &gt; Mobiles &gt; Smartphones</td><td><a href="#">Remove</a></td></tr><tr><td>Electronics &gt; Mobiles &gt; Smartphones</td><td><a href="#">Remove</a></td></tr><tr><td>Electronics &gt; Mobiles &gt; Smartphones</td><td><a href="#">Remove</a></td></tr>      
-                                </tbody></table>
+                        </div>
+                        <div class="select-products-wrapper">
+                            <table class="selected-products">
+                                <tbody>
+                            </tbody></table>
+                        </div>
+                        <form class="form-horizontal pull-left media-edit" action="uploadproductseller" id="uploadProductSeller" name="uploadProductSeller" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="listCategory" value="" id="listCategory">
+                            <div class="control-group">
+                                <label for="inputProductName" class="control-label">Product name</label>
+                                <div class="controls">
+                                    <input type="text" id="inputProductName" class="input-xlarge" name="productName">
+                                </div>
                             </div>
-                            <form class="form-horizontal pull-left media-edit">
-                                <div class="control-group">
-                                    <label for="inputProductName" class="control-label">Product name</label>
-                                    <div class="controls">
-                                        <input type="text" id="inputProductName" class="input-xlarge">
-                                    </div>
+                            <div class="control-group">
+                                <label for="inputDescription" class="control-label">Product Description</label>
+                                <div class="controls">
+                                    <textarea class="input-xlarge" rows="3" name="description"></textarea>
                                 </div>
-                                <div class="control-group">
-                                    <label for="inputDescription" class="control-label">Description</label>
-                                    <div class="controls">
-                                        <textarea class="input-xlarge" rows="3"></textarea>
-                                    </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="inputDescription" class="control-label">Picture upload (4 Max)</label>
+                                <div class="controls">
+                                    <ul class="uploading">
+                                        <li id="li-0">
+                                            <div class="uploaded-image" onclick="getFile('')">
+                                                <label id="main-photo">Main Photo</label>
+                                                <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
+                                            </div>
+                                            <a onclick="getFile('')">Add Photo</a>
+                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input id="upfile" type="file" onchange="sub(this,'')" name="uploadedFile"/></div>
+                                        </li>
+                                        <li id="li-1">
+                                            <div class="uploaded-image" onclick="getFile(1)">
+                                                <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
+                                            </div>
+                                            <a onclick="getFile(1)">Add Photo</a>
+                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input id="upfile1" type="file" onchange="sub(this,1)" name="uploadedFile1"/></div>
+                                        </li>
+                                        <li id="li-2">
+                                            <div class="uploaded-image" onclick="getFile(2)">
+                                                <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
+                                            </div>
+                                            <a onclick="getFile(2)">Add Photo</a>
+                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input id="upfile2" type="file" onchange="sub(this,2)" name="uploadedFile2"/></div>
+                                        </li>
+                                        <li id="li-3">
+                                            <div class="uploaded-image" onclick="getFile(3)">
+                                                <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
+                                            </div>
+                                            <a onclick="getFile(3)">Add Photo</a>
+                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input id="upfile3" type="file" onchange="sub(this,3)" name="uploadedFile3"/></div>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div class="control-group">
-                                    <label for="inputDescription" class="control-label">Picture upload (4 Max)</label>
-                                    <div class="controls">
-                                        <ul class="uploading">
-                                            <li class="uploaded">
-                                                <div>
-                                                    <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
-                                                </div>
-                                                <a href="#">Remove</a>
-                                            </li>
-                                            <li>
-                                                <div class="uploaded-image">
-                                                    <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
-                                                </div>
-                                                <a href="#">Add Photo</a>
-                                            </li>
-                                            <li>
-                                                <div class="uploaded-image">
-                                                    <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
-                                                </div>
-                                                <a href="#">Add Photo</a>
-                                            </li>
-                                            <li>
-                                                <div class="uploaded-image">
-                                                    <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
-                                                </div>
-                                                <a href="#">Add Photo</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="form-inline input-price-stock">
-                                    <label>
-                                        Listing price
-                                        <input type="number" class="input-medium">
-                                    </label>
-                                    <label>
-                                        Available stock
-                                        <input type="number" class="input-medium">
-                                    </label>
-                                </div>
-                                <!-- Promotion price -->
-                                <div class="form-inline input-promotion">
-                                    <input type="checkbox">
-                                    <label>
-                                        &nbsp;Promotion price&nbsp;
-                                        <input type="number" class="input-mini">
-                                    </label>
-                                    <label>
-                                        &nbsp;&nbsp;Valid from&nbsp;
-                                        <input type="number" class="input-small">
-                                    </label>
-                                    <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />
-                                    <label>
-                                        &nbsp;&nbsp;To&nbsp;
-                                        <input type="number" class="input-small">
-                                    </label>
-                                    <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />
-                                </div>  
-                                <div class="form-inline">
-                                    <label>Shipping size</label><br>
-                                    <a class="btn-dark-grey-small" href="#">Xtra small</a>
-                                    <a class="btn-dark-grey-small" href="#">Small</a>
-                                    <a class="btn-dark-grey-small" href="#">Normal</a>
-                                    <a class="btn-dark-grey-small" href="#">Large</a>
-                                    <a class="btn-dark-grey-small" href="#">Xtra Large</a>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <table class="table table-condensed sc-table sc-table-promotion">
-                  <thead>
-                    <tr class="sc-table-header">
-                      <th class="col1 collapsing">Advanced Options</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                        <td class="col1 advanced-option product-upload">
-                            <form>
-                                <label class="checkbox">
-                                    <input type="checkbox"> Always show Advanced Option
-                                </label><br />
+                            </div>
+                            <div class="form-inline input-price-stock">
                                 <label>
-                                    Brand&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="input-large" />
+                                    Listing price
+                                    <input type="number" class="input-medium" name="listingPrice">
                                 </label>
-                                <table class="size-color">
-                                    <tr>
-                                        <td class="col1">Variations:</td><td class="col2">Size</td><td class="col3">
-                                            <ul class="list-size"><li><a href="#">6</a>
-                                            </li><li><a href="#">8</a>
-                                            </li><li><a href="#">10</a>
-                                            </li><li><a href="#">12</a>
-                                            </li><li class="selected"><a href="#">14</a>
-                                            </li><li><a href="#">16</a>
-                                            </li><li><a href="#">18</a>
-                                            </li></ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col1">&nbsp;</td><td class="col2">Colour</td>
-                                        <td class="col3">
-                                        <ul class="list-color">
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-black.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-grey.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-white.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-dark-organ.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-red.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li class="selected">
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-pink.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-organ.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-yellow.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-green.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-light-blue.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-purple.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-dark-yellow.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                        </ul>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </form>
-                        </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="sc-table-promotion footer-button">
-                    <a href="#" class="btn-green-small" style="width:80px;">Preview</a>&nbsp;&nbsp;
-                    <a class="btn-general-small" href="#">Submit</a>&nbsp;&nbsp;
-                    <a class="btn-grey-small" href="#">Cancel</a>
-                </div>
-            </div><!-- /.span9 -->
-        </div>
+                                <label>
+                                    Stock
+                                    <input type="number" class="input-medium" name="stock">
+                                </label>
+                            </div>
+                            <!-- Promotion price -->
+                            <div class="form-inline input-promotion">
+                                <input type="checkbox">
+                                <label>
+                                    &nbsp;Promotion price&nbsp;
+                                    <input type="number" class="input-mini">
+                                </label>
+                                <#-- <label>
+                                    &nbsp;&nbsp;Valid from&nbsp;
+                                    <input type="number" class="input-small">
+                                </label>
+                                <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />
+                                <label>
+                                    &nbsp;&nbsp;To&nbsp;
+                                    <input type="number" class="input-small">
+                                </label>
+                                <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />-->
+                                <label>&nbsp;&nbsp;Valid from&nbsp;
+                                <input id="datepicker1" type="number" class="input-small"/></label>
+                                <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" id="datepickerimage1"  />
+                                <label>&nbsp;&nbsp;To&nbsp;
+                                <input type="number" class="input-small" id="datepicker2" />
+                                </label>
+                                <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" id="datepickerimage2" />
+                                <input type="hidden" name="promoPriceFromDate" id="promoPriceFromDate" value=""/>
+                                <input type="hidden" name="promoPriceThruDate" id="promoPriceThruDate" value=""/>
+                            </div>  
+                            <div class="form-inline">
+                                <label>Shipping size</label>
+                                <a class="btn-dark-grey-small shippingSize" id="size-1">Xtra small</a>
+                                <a class="btn-dark-grey-small shippingSize" id="size-2">Small</a>
+                                <a class="btn-dark-grey-small shippingSize" id="size-3">Normal</a>
+                                <a class="btn-dark-grey-small shippingSize" id="size-4">Large</a>
+                                <a class="btn-dark-grey-small shippingSize" id="size-5">Xtra Large</a>
+                            </div>
+                            <input type="hidden" id="shippingSize" name="shippingSize" value="">
+                        </form>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="table table-condensed sc-table sc-table-promotion">
+              <thead>
+                <tr class="sc-table-header">
+                  <th class="col1 collapsing">Advanced Options</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td class="col1 advanced-option product-upload">
+                        <form>
+                            <label class="checkbox">
+                                <input type="checkbox"> Always show Advanced Option
+                            </label><br />
+                            <label>
+                                Brand&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="input-large" />
+                            </label>
+                            <table class="size-color">
+                                <tr>
+                                    <td class="col1">Variations:</td><td class="col2">Size</td><td class="col3">
+                                        <ul class="list-size"><li><a href="#">6</a>
+                                        </li><li><a href="#">8</a>
+                                        </li><li><a href="#">10</a>
+                                        </li><li><a href="#">12</a>
+                                        </li><li class="selected"><a href="#">14</a>
+                                        </li><li><a href="#">16</a>
+                                        </li><li><a href="#">18</a>
+                                        </li></ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col1">&nbsp;</td><td class="col2">Colour</td>
+                                    <td class="col3">
+                                    <ul class="list-color">
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-black.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-grey.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-white.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-dark-organ.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-red.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li class="selected">
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-pink.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-organ.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-yellow.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-green.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-light-blue.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-purple.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-dark-yellow.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                    </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="sc-table-promotion footer-button">
+                <a href="#" class="btn-green-small" style="width:80px;">Preview</a>&nbsp;&nbsp;
+                <a class="btn-general-small" id="submit_uploadProductSeller">Submit</a>&nbsp;&nbsp;
+                <a class="btn-grey-small" href="#">Cancel</a>
+            </div>
+        </div><!-- /.span9 -->
     </div><!-- /.row -->
 </div> <!-- /container -->
