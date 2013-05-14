@@ -28,18 +28,41 @@ under the License.
                 <set field="headerItem" value="shops"/>
                 <set field="productDetailType" value="productnormal"/>
                 <set field="breadCrumTitle" value="Shop Name"/>
+                <script location="component://order/webapp/ordermgr/WEB-INF/actions/entry/catalog/Product.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <platform-specific>
-                            <html><html-template location="component://shopmax/webapp/shopmax/catalog/productdetail.ftl"/></html>
-                        </platform-specific>
+                        <section>
+                            <condition>
+                                <not><if-empty field="product"/></not>
+                            </condition>
+                            <widgets>
+                                <include-screen name="${detailScreen}"/>
+                            </widgets>
+                            <fail-widgets>
+                                <label style="head2">${uiLabelMap.ProductProductNotFound} ${productId}!</label>
+                            </fail-widgets>
+                        </section>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
         </section>
     </screen>
+    
+    <screen name="productdetail">
+        <section>
+            <actions>
+                <script location="component://order/webapp/ordermgr/WEB-INF/actions/entry/catalog/ProductDetail.groovy"/>
+            </actions>
+            <widgets>
+                <platform-specific>
+                    <html><html-template location="component://shopmax/webapp/shopmax/catalog/productdetail.ftl"/></html>
+                </platform-specific>
+            </widgets>
+        </section>
+    </screen>
+    
     
     <screen name="CategoryGridView">
         <section>

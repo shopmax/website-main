@@ -108,11 +108,22 @@ under the License.
     <ProductCategoryRollup productCategoryId="DEMO_CATLV4_02" parentProductCategoryId="DEMO_CATLV3_02" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
     
     <!-- Drop ship products -->
-    <Product productId="dropShip1" productTypeId="FINISHED_GOOD" internalName="DropShip 1" productName="DropShip 1" smallImageUrl="/images/products/dropShip1/small.jpg" mediumImageUrl="/images/products/dropShip1/medium.jpg" largeImageUrl="/images/products/dropShip1/large.jpg" isVirtual="N" isVariant="N" requirementMethodEnumId="PRODRQM_DS"/>
+    <Product productId="dropShip1" productTypeId="FINISHED_GOOD" internalName="DropShip 1" productName="DropShip 1" smallImageUrl="/images/products/dropShip1/small.jpg" mediumImageUrl="/images/products/dropShip1/medium.jpg" largeImageUrl="/shopmax-default/img/product-generic-472x472.jpg" isVirtual="N" isVariant="N" requirementMethodEnumId="PRODRQM_DS"/>
     <ProductCategoryMember productCategoryId="DEMO_CATLV1_01" productId="dropShip1" sequenceNum="1" fromDate="2013-04-01 00:00:00"/>
     <ProductPrice productId="dropShip1" productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" currencyUomId="USD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" price="15.00"/>
+    <ProductPrice productId="dropShip1" productPricePurposeId="PURCHASE" productPriceTypeId="COMPETITIVE_PRICE" currencyUomId="USD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" price="50.00"/>
     <SupplierProduct productId="dropShip1" partyId="shopmaxseller" availableFromDate="2013-04-01 00:00:00" minimumOrderQuantity="0.0" lastPrice="10.0" currencyUomId="USD" supplierProductName="Drop ship product from Shopmax Seller" supplierProductId="dropShip1-DS" canDropShip="Y"/>
-    
+    <ProductReview productId="dropShip1" productRating="4.000000" productReview="Good" productReviewId="dropShip1_1" productStoreId="ShopMaxStore" statusId="PRR_PENDING" userLoginId="DemoCustomer"/>
+    <ProductReview productId="dropShip1" productRating="5.000000" productReview="It's useful." productReviewId="dropShip1_2" productStoreId="ShopMaxStore" statusId="PRR_APPROVED" userLoginId="DemoCustomer"/>
+    <DataResource dataResourceTypeId="ELECTRONIC_TEXT" dataResourceId="dropShip1_desc" localeString="en"/>
+    <ElectronicText dataResourceId="dropShip1_desc">
+        <textData><![CDATA[
+            Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui
+        ]]></textData>
+    </ElectronicText>
+    <Content contentId="dropShip1_desc" contentTypeId="DOCUMENT" dataResourceId="dropShip1_desc" mimeTypeId="text/plain" contentName="dropShip1 Description"/>
+    <ProductContent productId="dropShip1" contentId="dropShip1_desc" productContentTypeId="DESCRIPTION" fromDate="2001-05-13 12:00:00.0"/>
+
     <Product productId="dropShip2" productTypeId="FINISHED_GOOD" internalName="DropShip 2" productName="DropShip 2" smallImageUrl="/images/products/dropShip2/small.jpg" mediumImageUrl="/images/products/dropShip2/medium.jpg" largeImageUrl="/images/products/dropShip2/large.jpg" isVirtual="N" isVariant="N" requirementMethodEnumId="PRODRQM_DS"/>
     <ProductCategoryMember productCategoryId="DEMO_CATLV1_02" productId="dropShip2" sequenceNum="1" fromDate="2013-04-01 00:00:00"/>
     <ProductPrice productId="dropShip2" productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" currencyUomId="USD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" price="20.00"/>

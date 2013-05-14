@@ -17,6 +17,10 @@ specific language governing permissions and limitations
 under the License.
 -->
 
+<#-- variable setup -->
+<#assign price = priceMap?if_exists />
+<#-- end variable setup -->
+
 <div class="container content">
     <!-- include breadcrum -->
     <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />

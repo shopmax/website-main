@@ -25,10 +25,25 @@ under the License.
         </ul>
         <div class="tab-content" id="myTabContent">
           <div id="prdDesc" class="tab-pane fade active in">
-            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+            <p>${productContentWrapper.get("DESCRIPTION")?if_exists}</p>
           </div>
           <div id="prdReviews" class="tab-pane fade">
-            <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+              <#if productReviews?has_content>
+                  <#list productReviews as productReview>
+                      <#assign postedUserLogin = productReview.getRelatedOne("UserLogin", false) />
+                      <#assign postedPerson = postedUserLogin.getRelatedOne("Person", false)?if_exists />
+                      <p>
+                          <#--
+                          <div><strong>${uiLabelMap.CommonBy}: </strong><#if productReview.postedAnonymous?default("N") == "Y"> ${uiLabelMap.OrderAnonymous}<#else> ${postedPerson.firstName} ${postedPerson.lastName}&nbsp;</#if></div>
+                          <div><strong>${uiLabelMap.CommonAt}: </strong>${productReview.postedDateTime?if_exists}&nbsp;</div>
+                          <div><strong>${uiLabelMap.OrderRanking}: </strong>${productReview.productRating?if_exists?string}</div>
+                          <div>&nbsp;</div>
+                          -->
+                          <div>${productReview.productReview?if_exists}</div>
+                          <hr />
+                      </p>
+                  </#list>
+              </#if>
           </div>
         </div>
     </div>

@@ -22,92 +22,109 @@ under the License.
         <div class="product-wrapper">
             <div class="product-inner">
                 <!-- <img src="http://placehold.it/472x472">  -->
-                <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-472x472.jpg</@ofbizContentUrl>" />
+                <img src="<@ofbizContentUrl>${productContentWrapper.get("LARGE_IMAGE_URL")?default("/images/defaultImage.jpg")}</@ofbizContentUrl>" />
             </div>
         </div>
         
         <ul class="product-thumbs">
-            <li>
-                <div class="product-thumb-wrapper">
-                    <div class="product-thumb-inner">
-                        <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-145x145.jpg</@ofbizContentUrl>" /></a>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="product-thumb-wrapper">
-                    <div class="product-thumb-inner">
-                        <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-145x145.jpg</@ofbizContentUrl>" /></a>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="product-thumb-wrapper">
-                    <div class="product-thumb-inner">
-                        <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-145x145.jpg</@ofbizContentUrl>" /></a>
-                    </div>
-                </div>
-            </li>
+            <#if productImageList?has_content>
+                <#list productImageList as productImage>
+                    <li>
+                        <div class="product-thumb-wrapper">
+                            <div class="product-thumb-inner">
+                                <a href="#"><img src="<@ofbizContentUrl>${productImage.productImageThumb?default("/images/defaultImage.jpg")}</@ofbizContentUrl>" /></a>
+                            </div>
+                        </div>
+                    </li>
+                </#list>
+            </#if>
         </ul>
     </div>
     <div class="span6">
         <div class="product-detail">
-            <h5>Product name</h5>
+            <h5>${productContentWrapper.get("PRODUCT_NAME")?if_exists}</h5>
             <div class="raty" data-rating="3"></div>
-            <h5 class="review-number">(768 reviews)</h5>
+            <h5 class="review-number">(${productReviews.size()} reviews)</h5>
             <br /><br />
-            <h5 class="old">$118</h5>
-            <h1>$59</h1>
+            <#if price.competitivePrice?exists>
+                <h5 class="old"><@ofbizCurrency amount=price.competitivePrice isoCode=price.currencyUsed /></h5>
+            </#if>
+            <h1><@ofbizCurrency amount=price.defaultPrice isoCode=price.currencyUsed /></h1>
+            <#--
+            <#if price.competitivePrice?exists && price.price?exists && price.price &lt; price.competitivePrice>
+                <div>${uiLabelMap.ProductCompareAtPrice}: <span class="basePrice"><@ofbizCurrency amount=price.competitivePrice isoCode=price.currencyUsed /></span></div>
+            </#if>
+            <#if price.listPrice?exists && price.price?exists && price.price &lt; price.listPrice>
+                <div>${uiLabelMap.ProductListPrice}: <span class="basePrice"><@ofbizCurrency amount=price.listPrice isoCode=price.currencyUsed /></span></div>
+            </#if>
+            <#if price.listPrice?exists && price.defaultPrice?exists && price.price?exists && price.price &lt; price.defaultPrice && price.defaultPrice &lt; price.listPrice>
+                <div>${uiLabelMap.ProductRegularPrice}: <span class="basePrice"><@ofbizCurrency amount=price.defaultPrice isoCode=price.currencyUsed /></span></div>
+            </#if>
+            <#if price.specialPromoPrice?exists>
+                <div>${uiLabelMap.ProductSpecialPromoPrice}: <span class="basePrice"><@ofbizCurrency amount=price.specialPromoPrice isoCode=price.currencyUsed /></span></div>
+            </#if>
+            -->
             
-            <div class="row selectSize" >
-                <div class="span1">Size</div>
-                <div class="span3">
-                    <select name="productSize" class="drop-select chosen combo" data-search-bar="true">
-                            <option value="" selected="selected">Select</option>
-                            <option value="1">Small</option>
-                            <option value="2">Medium</option>
-                            <option value="3">Large</option>
-                    </select>
+            <#if "Y" = product.isVirtual?if_exists>
+                <div class="row selectSize" >
+                    <div class="span1">Size</div>
+                    <div class="span3">
+                        <select name="productSize" class="drop-select chosen combo" data-search-bar="true">
+                                <option value="" selected="selected">Select</option>
+                                <option value="1">Small</option>
+                                <option value="2">Medium</option>
+                                <option value="3">Large</option>
+                        </select>
+                    </div>
+                    <div class="span2">
+                        <a href="#">Size info</a>
+                    </div>
                 </div>
-                <div class="span2">
-                    <a href="#">Size info</a>
+                
+                <div class="selectColor">
+                    Colour: <strong>326-540 - Ox Red/Royal Blue</strong>
+                    <ul>
+                        <li>
+                            <a href=#><img src="<@ofbizContentUrl>/shopmax-default/img/color-black.png</@ofbizContentUrl>" /></a>
+                        </li>
+                        <li>
+                            <a href=#><img src="<@ofbizContentUrl>/shopmax-default/img/color-grey.png</@ofbizContentUrl>" /></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-white.png</@ofbizContentUrl>" /></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-green.png</@ofbizContentUrl>" /></a>
+                        </li>
+                        <li>
+                            <a href=#><img src="<@ofbizContentUrl>/shopmax-default/img/color-blue.png</@ofbizContentUrl>" /></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-purple.png</@ofbizContentUrl>" /></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-organ.png</@ofbizContentUrl>" /></a>
+                        </li>
+                    </ul>
                 </div>
+            </#if>
+            
+            Quantity: <strong>${availableInventory?default(0)} in stock</strong> <br /> <br />
+            
+    
+            <div id="addItemForm">
+                <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" name="addform"  style="margin: 0;">
+                    <fieldset>
+                        <input type="hidden" name="add_product_id" value="${product.productId}" />
+                        <input type="hidden" name="quantity" value="1" />
+                        <button class="btn-large blue cart" type="submit">ADD TO CART</button>
+                        <ul class="selectAction">
+                            <li><a href="#">Add to shopping list</a></li>
+                            <li><a href="#">Share with a friend</a></li>
+                        </ul>
+                    </fieldset>
+                </form>
             </div>
-            
-            <div class="selectColor">
-                Colour: <strong>326-540 - Ox Red/Royal Blue</strong>
-                <ul>
-                    <li>
-                        <a href=#><img src="<@ofbizContentUrl>/shopmax-default/img/color-black.png</@ofbizContentUrl>" /></a>
-                    </li>
-                    <li>
-                        <a href=#><img src="<@ofbizContentUrl>/shopmax-default/img/color-grey.png</@ofbizContentUrl>" /></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-white.png</@ofbizContentUrl>" /></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-green.png</@ofbizContentUrl>" /></a>
-                    </li>
-                    <li>
-                        <a href=#><img src="<@ofbizContentUrl>/shopmax-default/img/color-blue.png</@ofbizContentUrl>" /></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-purple.png</@ofbizContentUrl>" /></a>
-                    </li>
-                    <li>
-                        <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-organ.png</@ofbizContentUrl>" /></a>
-                    </li>
-                </ul>
-            </div>
-            
-            Quantity: <strong>178 in stock</strong> <br /> <br />
-            
-            <button class="btn-large blue cart" type="submit">ADD TO CART</button>
-            <ul class="selectAction">
-                <li><a href="#">Add to shopping list</a></li>
-                <li><a href="#">Share with a friend</a></li>
-            </ul>
         </div>
     </div>
 </div>
