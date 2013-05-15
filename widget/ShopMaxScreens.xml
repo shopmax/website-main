@@ -58,6 +58,20 @@ under the License.
             </widgets>
         </section>
     </screen>
+    <screen name="RegistrationAjax">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleRegistration"/>
+                <set field="headerItem" value="registration"/>
+                <set field="breadCrumTitle" value="Registration"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/customer/Registration.groovy"/>
+                <set field="layoutSettings.javaScripts[]" value="/images/prototypejs/prototype.js" global="true"/>
+            </actions>
+            <widgets>
+                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/customer/registrationajax.ftl"/></html></platform-specific>
+            </widgets>
+        </section>
+    </screen>
     
     <screen name="HelpCenter">
         <section>

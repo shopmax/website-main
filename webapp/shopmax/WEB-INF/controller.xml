@@ -235,6 +235,11 @@ under the License.
         <response name="success" type="view" value="registration"/>
     </request-map>
     
+    <request-map uri="registrationajax">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="registrationajax"/>
+    </request-map>
+    
     <request-map uri="profile">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="profile"/>
@@ -327,6 +332,7 @@ under the License.
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>
     <view-map name="registration" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#Registration"/>
+    <view-map name="registrationajax" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#RegistrationAjax"/>
     <view-map name="helpcenter" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#HelpCenter"/>
     <view-map name="groupbang" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#GroupBang"/>
     <view-map name="rushhour" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#RushHour"/>

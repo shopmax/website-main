@@ -16,70 +16,59 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-
+<script src="<@ofbizContentUrl>/shopmax-default/js/registration.js</@ofbizContentUrl>" type="text/javascript"></script>
 <script>
-    $(function(){
-        $('.container.content').addClass('promotion');
-        
-        $('#submit-createcustomer').click(function(){
-            $('#createcustomer').submit();
-        });
-        $('.chk_regis').click(function(){
-            if($('.chk_regis').is(':checked')){
-                $('.business-registered').removeClass('hidden');
-                $('#businessUser').val("Y");
-            }
-            else{
-                $('.business-registered').addClass('hidden');
-            }
-        });
-        $('.phoneNumberText').change(function(){
-            var currentPhoneSelect = this.id.split("_");
-            var prefix = $('#phoneNumber_select_'+currentPhoneSelect[2]+'_chzn').find('span').text();
-            $('#phoneNumber_'+currentPhoneSelect[2]).val(prefix+$('#'+this.id).val());
-        });
-        $('#cardHolderName').change(function(){
-            var cardHolderName = $('#cardHolderName').val().split(" ");
-            $('#firstNameOnCard').val(cardHolderName[0]);
-            $('#lastNameOnCard').val(cardHolderName[1]);
-        });
-        $('.accountNumber').change(function(){
-            $('#accountNumber').val($('#accountNumber-0').val()+$('#accountNumber-1').val()+$('#accountNumber-2').val()+$('#accountNumber-3').val());
-        });
-        $('.cardNumber').change(function(){
-            $('#cardNumber').val($('#cardNumber-0').val()+$('#cardNumber-1').val()+$('#cardNumber-2').val()+$('#cardNumber-3').val());
-        });
-        $('.expireDate').change(function(e){
-            $('#expireDate').val($('#expMonth').val()+"/"+$('#expYear').val());
-        });
-        $('.optionsRadios').click(function(){
-            if(this.id == 'optionsRadios'){
-                $('#checkDomain').val('Y');
-            }
-            else if(this.id == 'optionsRadios1'){
-                $('#checkDomain').val('N');
-            }
-            else if(this.id == 'optionsRadios2'){
-                $('#checkCreditCard').val('Y');
-            }
-            else{
-                $('#checkCreditCard').val('N');
-            }
-        });
-    });
     function getFile(inputIndex){
-       document.getElementById("upfile"+inputIndex).click();
+        document.getElementById("upfile"+inputIndex).click();
     }
     function sub(obj,inputIndex){
-        var file = obj.value;
-        $('#yourBtn'+inputIndex).val(file);
+         var file = obj.value;
+         $('#yourBtn'+inputIndex).val(file);
+    }
+    $(function($, window, document, undefined){
+         var defaults = {
+             bounds: true,
+             country: null,
+             map: false,
+             details: false,
+             detailsAttribute: "name",
+             location: false,
+         }
+    });
+    function inputLocation(index){
+         var options = {
+           // types: ['(cities)'],
+            componentRestrictions: {country: 'nz'}//NewZealand only
+        };
+        var input = document.getElementById("inputLocation_"+index);
+        //var autocomplete = new google.maps.places.Autocomplete($("#address")[0], {country:'tr'});
+        var autocomplete = new google.maps.places.Autocomplete(input,options);
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+            var place = autocomplete.getPlace();
+            console.log(place.address_components);
+        });
+    }
+    function loadjscssfile(filename, filetype){
+     if (filetype=="js"){ //if filename is a external JavaScript file
+      var fileref=document.createElement('script')
+      fileref.setAttribute("type","text/javascript")
+      fileref.setAttribute("src", filename)
+     }
+     else if (filetype=="css"){ //if filename is an external CSS file
+      var fileref=document.createElement("link")
+      fileref.setAttribute("rel", "stylesheet")
+      fileref.setAttribute("type", "text/css")
+      fileref.setAttribute("href", filename)
+     }
+     if (typeof fileref!="undefined")
+      document.getElementsByTagName("head")[0].appendChild(fileref)
     }
 </script>
-
 <div class="container content">
     <!-- include breadcrum -->
+    <div id="load-script"></div>
     <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
-    
+    <div id="load-javascript"></div>
     <div class="row">
         <div class="span3 sidebar" id="side-menu">
             <div class="categories innerbox">
@@ -263,81 +252,87 @@ under the License.
                     </table>
                     
                     <table class="table table-condensed sc-table sc-table-promotion">
-                      <thead>
-                        <tr class="sc-table-header">
-                          <th class="col1">PHYSICAL STORES DETAIL</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                            <td class="col1 form-horizontal" id="physical">
-                                <div class="control-group">
-                                <label class="control-label control-label-xsmall" for="inputPromotionDescription">Location</label>
-                                    <div class="pull-left">
-                                        <input type="text" class="input-xxlarge inputLocation" id="inputLocation_0">
+                        <thead>
+                            <tr class="sc-table-header">
+                              <th class="col1">PHYSICAL STORES DETAIL</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tr-physical-stores">
+                            <tr class="index-tr-physical-stores">
+                                <td class="col1 form-horizontal" id="physical">
+                                    <div class="control-group">
+                                        <label class="control-label control-label-xsmall" for="inputPromotionDescription">Branch Name</label>
+                                        <div class="pull-left">
+                                            <input type="text" class="input-xxlarge" id="branchName_0" name="branchName">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label control-label-small" for="inputPromotionDescription">Store Phone number</label>
-                                    <div class="pull-left">
-                                        <select id="phoneNumber2" class="chosen phoneNumber" name="phoneNumber2">
-                                            <option selected="selected">09</option>
-                                            <option value="selling.html">08</option>
-                                            <option value="buying.html">07</option>
-                                            <option value="profile.html">06</option>
-                                            <option value="log-out.html">05</option>
-                                        </select>
-                                        <input type="text" class="input-phone-number" id="inputPassword">
+                                    <div class="control-group">
+                                        <label class="control-label control-label-xsmall" for="inputPromotionDescription">Location</label>
+                                        <div class="pull-left">
+                                            <input type="text" class="input-xxlarge inputLocation" id="inputLocation_0" onclick="inputLocation('0')">
+                                        </div>
                                     </div>
-                                    <label class="control-label control-label-small" for="inputPromotionDescription">Store Phone number</label>
-                                    <div class="pull-left">
-                                        <select id="phoneNumber3" class="chosen phoneNumber" name="phoneNumber3">
-                                            <option selected="selected">09</option>
-                                            <option value="selling.html">08</option>
-                                            <option value="buying.html">07</option>
-                                            <option value="profile.html">06</option>
-                                            <option value="log-out.html">05</option>
-                                        </select>
-                                        <input type="text" class="input-phone-number" id="inputPassword">
+                                    <div class="control-group">
+                                        <label class="control-label control-label-small" for="inputPromotionDescription">Store Phone Number</label>
+                                        <div class="pull-left">
+                                            <select id="phoneNumber2" class="chosen phoneNumber" name="phoneNumber2">
+                                                <option selected="selected">09</option>
+                                                <option value="selling.html">08</option>
+                                                <option value="buying.html">07</option>
+                                                <option value="profile.html">06</option>
+                                                <option value="log-out.html">05</option>
+                                            </select>
+                                            <input type="text" class="input-phone-number" id="inputPassword">
+                                        </div>
+                                        <label class="control-label control-label-small" for="inputPromotionDescription">Fax Number</label>
+                                        <div class="pull-left">
+                                            <select id="phoneNumber3" class="chosen phoneNumber" name="phoneNumber3">
+                                                <option selected="selected">09</option>
+                                                <option value="selling.html">08</option>
+                                                <option value="buying.html">07</option>
+                                                <option value="profile.html">06</option>
+                                                <option value="log-out.html">05</option>
+                                            </select>
+                                            <input type="text" class="input-phone-number" id="inputPassword">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label control-label-xlarge" for="inputOpeningHours">Opening Hours (24 hour format)</label>
-                                    <div class="clearfix"></div>
-                                    
-                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Mon </label>
-                                    <div clas="pull-left">
+                                    <div class="control-group">
+                                        <label class="control-label control-label-xlarge" for="inputOpeningHours">Opening Hours (24 hour format)</label>
+                                        <div class="clearfix"></div>
+                                        
+                                        <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Mon </label>
+                                        <div clas="pull-left">
+                                            <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                        </div>
+                                        <label class="control-label control-label-xxsmall pull-left" for="inputTuesday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Tue </label>
+                                        <div clas="pull-left">
+                                            <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                        </div> 
+                                        <label class="control-label control-label-xxsmall pull-left" for="inputWednesday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Wed </label>
+                                        <div clas="pull-left">
+                                            <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                        </div> 
+                                        <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Thu </label>
+                                        <div clas="pull-left">  
+                                            <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                        </div>      
+                                        <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Fri </label>
+                                        <div clas="pull-left">
                                         <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                    </div>
-                                    <label class="control-label control-label-xxsmall pull-left" for="inputTuesday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Tue </label>
-                                    <div clas="pull-left">
+                                        </div>
+                                        <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Sat </label>
+                                        <div clas="pull-left">
                                         <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                    </div> 
-                                    <label class="control-label control-label-xxsmall pull-left" for="inputWednesday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Wed </label>
-                                    <div clas="pull-left">
-                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                    </div> 
-                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Thu </label>
-                                    <div clas="pull-left">  
-                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                    </div>      
-                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Fri </label>
-                                    <div clas="pull-left">
-                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                    </div>
-                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Sat </label>
-                                    <div clas="pull-left">
-                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                    </div>
-                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Sun</label>
-                                    <div clas="pull-left">
-                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                    </div>
-                                </div>  
-                                <a class="btn-grey-small btn_remove" href="#">Remove Branch</a>
-                            </td>
-                        </tr>
-                        <tr>
+                                        </div>
+                                        <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Sun</label>
+                                        <div clas="pull-left">
+                                            <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                        </div>
+                                    </div>  
+                                    <a class="btn-grey-small btn_remove" href="#">Remove Branch</a>
+                                </td>
+                            </tr>
+                        <#-- <tr>
                             <td class="col1 form-horizontal">
                                 <div class="control-group">
                                     <label class="control-label control-label-xsmall" for="inputPromotionDescription">Location</label>
@@ -404,37 +399,11 @@ under the License.
                                 </div>
                                 <a class="btn-grey-small btn_remove" href="#">Remove Branch</a>
                             </td>
-                        </tr>
+                        </tr>-->
+                        </tbody>
                         <tr>
-                            <td class="new-branch-area"><a href="#" class="btn-general">Add Another Branch</a></td>
+                            <td class="new-branch-area"><a class="btn-general" id="add-another-branch" onclick="addBranch();">Add Another Branch</a></td>
                         </tr>
-                      </tbody>
-                      <script type="text/javascript">
-                            $(function($, window, document, undefined){
-                                var defaults = {
-                                    bounds: true,
-                                    country: null,
-                                    map: false,
-                                    details: false,
-                                    detailsAttribute: "name",
-                                    location: false,
-                                }
-                            });
-                            var options = {
-                              // types: ['(cities)'],
-                               componentRestrictions: {country: 'nz'}//NewZealand only
-                               
-                            };
-                            $('.inputLocation').click(function(){
-                                var input = document.getElementById(this.id);
-                                //var autocomplete = new google.maps.places.Autocomplete($("#address")[0], {country:'tr'});
-                                var autocomplete = new google.maps.places.Autocomplete(input,options);
-                                google.maps.event.addListener(autocomplete, 'place_changed', function() {
-                                    var place = autocomplete.getPlace();
-                                    console.log(place.address_components);
-                                });
-                            });
-                        </script>
                     </table>
                     
                     <table class="table table-condensed sc-table sc-table-promotion">
