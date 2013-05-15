@@ -132,7 +132,7 @@ under the License.
     <ProductCategoryMember productCategoryId="DEMO_CATLV1_01" productId="dropShip1" sequenceNum="1" fromDate="2013-04-01 00:00:00"/>
     <ProductPrice productId="dropShip1" productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" currencyUomId="USD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" price="15.00"/>
     <ProductPrice productId="dropShip1" productPricePurposeId="PURCHASE" productPriceTypeId="COMPETITIVE_PRICE" currencyUomId="USD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" price="50.00"/>
-    <SupplierProduct productId="dropShip1" partyId="shopmaxseller" availableFromDate="2013-04-01 00:00:00" minimumOrderQuantity="0.0" lastPrice="10.0" currencyUomId="USD" supplierProductName="Drop ship product from Shopmax Seller" supplierProductId="dropShip1-DS" canDropShip="Y"/>
+    <SupplierProduct productId="dropShip1" partyId="SHOPMAX_SELLER" availableFromDate="2013-04-01 00:00:00" minimumOrderQuantity="0.0" lastPrice="10.0" currencyUomId="USD" supplierProductName="Drop ship product from Shopmax Seller" supplierProductId="dropShip1-DS" canDropShip="Y"/>
     <ProductReview productId="dropShip1" productRating="4.000000" productReview="Good" productReviewId="dropShip1_1" productStoreId="ShopMaxStore" statusId="PRR_PENDING" userLoginId="DemoCustomer"/>
     <ProductReview productId="dropShip1" productRating="5.000000" productReview="It's useful." productReviewId="dropShip1_2" productStoreId="ShopMaxStore" statusId="PRR_APPROVED" userLoginId="DemoCustomer"/>
     <DataResource dataResourceTypeId="ELECTRONIC_TEXT" dataResourceId="dropShip1_desc" localeString="en"/>
@@ -147,5 +147,5 @@ under the License.
     <Product productId="dropShip2" productTypeId="FINISHED_GOOD" internalName="DropShip 2" productName="DropShip 2" smallImageUrl="/images/products/dropShip2/small.jpg" mediumImageUrl="/images/products/dropShip2/medium.jpg" largeImageUrl="/images/products/dropShip2/large.jpg" isVirtual="N" isVariant="N" requirementMethodEnumId="PRODRQM_DS"/>
     <ProductCategoryMember productCategoryId="DEMO_CATLV1_02" productId="dropShip2" sequenceNum="1" fromDate="2013-04-01 00:00:00"/>
     <ProductPrice productId="dropShip2" productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" currencyUomId="USD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" price="20.00"/>
-    <SupplierProduct productId="dropShip2" partyId="shopmaxseller" availableFromDate="2013-04-01 00:00:00" minimumOrderQuantity="0.0" lastPrice="12.0" currencyUomId="USD" supplierProductName="Drop ship product from Shopmax Seller" supplierProductId="dropShip2-DS" canDropShip="Y"/>
+    <SupplierProduct productId="dropShip2" partyId="SHOPMAX_SELLER" availableFromDate="2013-04-01 00:00:00" minimumOrderQuantity="0.0" lastPrice="12.0" currencyUomId="USD" supplierProductName="Drop ship product from Shopmax Seller" supplierProductId="dropShip2-DS" canDropShip="Y"/>
 </entity-engine-xml>
