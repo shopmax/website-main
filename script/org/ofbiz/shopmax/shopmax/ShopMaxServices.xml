@@ -692,6 +692,7 @@ under the License.
         <set field="createProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
         <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
         
+        <set field="receiveCtx.userLogin" from-field="systemUserLogin"/>
         <set field="receiveCtx.productId" from-field="parameters.productId"/>
         <set field="receiveCtx.facilityId" value="SellerWarehouse"/>
         <set field="receiveCtx.quantityAccepted" from-field="parameters.stock"/>

@@ -118,8 +118,8 @@ $(function(){
         $('#shippingSize').val(this.id);
     });
     
-    $('#submit_uploadProductSeller').click(function(){
-        $('#uploadProductSeller').submit();
+    $('#submit_uploadProductToSeller').click(function(){
+        $('#uploadProductToSeller').submit();
     });
     
     $('#datepicker1').change(function(){

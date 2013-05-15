@@ -160,6 +160,7 @@ under the License.
         <attribute name="promoPriceThruDate" type="Timestamp" mode="IN" optional="true"/>
         <attribute name="listCategory" mode="IN" type="String" optional="true"/>
         <attribute name="shippingSize" mode="IN" type="String" optional="true"/>
+        <attribute name="partyId" type="String" mode="IN" optional="true"/>
     </service>
     
     <service name="createTenantForSeller" engine="simple" 
