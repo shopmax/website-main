@@ -161,4 +161,10 @@ under the License.
         <attribute name="listCategory" mode="IN" type="String" optional="true"/>
         <attribute name="shippingSize" mode="IN" type="String" optional="true"/>
     </service>
+    
+    <service name="createTenantForSeller" engine="simple" 
+            location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="createTenantForSeller" auth="true">
+        <description>Create Tenant For Seller</description>
+        <attribute name="partyId" mode="IN" type="String" optional="false"/>
+    </service>
 </services>

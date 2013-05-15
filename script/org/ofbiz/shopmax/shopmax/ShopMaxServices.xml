@@ -22,13 +22,13 @@ under the License.
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/simple-methods-v2.xsd">
 
     <simple-method method-name="checkPermissionCreateProduct" short-description="Check Permission to Create Product" login-required="false">
-        <!-- <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+        <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
         <if-compare operator="equals" value="default" field="tenantId">
             <add-error>
                 <fail-message message="Can't create Product"/>
             </add-error>
             <check-errors/>
-        </if-compare> -->
+        </if-compare>
     </simple-method>
     
     <simple-method method-name="createProductCategoryToSeller" short-description="Create Product Category To Seller">
@@ -397,6 +397,12 @@ under the License.
         <field-to-result field="parameters.PASSWORD" result-name="PASSWORD"/>
         
         <if-compare field="parameters.businessUser" operator="equals" value="Y">
+            <entity-one value-field="party" entity-name="Party">
+                <field-map field-name="partyId" from-field="tempMap.partyId"/>
+            </entity-one>
+            <set field="party.isUnread" value="Y"/>
+            <store-value value-field="party"/>
+            
             <set field="createSellerRoleCtx.userLogin" from-field="systemUserLogin"/>
             <set field="createSellerRoleCtx.partyId" from-field="tempMap.partyId"/>
             <set field="createSellerRoleCtx.roleTypeId" value="SELLER"/>
@@ -438,11 +444,13 @@ under the License.
             
             <!-- Set domain name -->
             <if-compare field="parameters.checkDomain" operator="equals" value="Y">
-                <set field="parameters.domainName" value="http://${parameters.ownDomainName}"/>
-                <set field="parameters.domainNameBackend" value="http://backend.${parameters.ownDomainName}"/>
+                <set field="parameters.domainName" value="${parameters.ownDomainName}"/>
+                <set field="parameters.domainNameBackend" value="backend.${parameters.ownDomainName}"/>
+                <call-object-method obj-field="parameters.ownDomainName" method-name="toUpperCase" ret-field="tenantId"/>
             <else>
-                <set field="parameters.domainName" value="http://${parameters.freeDomainName}.shopmax.co.nz"/>
-                <set field="parameters.domainNameBackend" value="http://backend.${parameters.freeDomainName}.shopmax.co.nz"/>
+                <set field="parameters.domainName" value="${parameters.freeDomainName}.localhost"/>
+                <set field="parameters.domainNameBackend" value="backend.${parameters.freeDomainName}.localhost"/>
+                <call-object-method obj-field="parameters.freeDomainName" method-name="toUpperCase" ret-field="tenantId"/>
             </else>
             </if-compare>
             
@@ -552,43 +560,44 @@ under the License.
                 </else>
             </if-compare>
             
-            <set field="addSellerSecurityGroupMap.userLogin" from-field="systemUserLogin"/>
-            <set field="addSellerSecurityGroupMap.userLoginId" from-field="createdUserLogin.userLoginId"/>
-            <set field="addSellerSecurityGroupMap.groupId" value="SHOPMAX_SELLER"/>
-            <call-service service-name="addUserLoginToSecurityGroup" in-map-name="addSellerSecurityGroupMap"/>
-            
             <!-- Create Tenant -->
             <make-value value-field="tenant" entity-name="Tenant"/>
-            <set field="tenant.tenantId" from-field="tempMap.partyId"/>
-            <set field="tenant.tenantName" from-field="tempMap.partyId"/>
+            <set field="tenant.tenantId" from-field="tenantId"/>
+            <set field="tenant.tenantName" from-field="parameters.officialBusinessName"/>
             <create-value value-field="tenant"/>
             
             <!-- Create Tenant Domain Name -->
             <make-value value-field="tenantDomainName" entity-name="TenantDomainName"/>
-            <set field="tenantDomainName.tenantId" from-field="tempMap.partyId"/>
+            <set field="tenantDomainName.tenantId" from-field="tenantId"/>
             <set field="tenantDomainName.domainName" from-field="parameters.domainName"/>
             <create-value value-field="tenantDomainName"/>
             
             <!-- Create Tenant Backend Domain Name -->
             <make-value value-field="tenantBackendDomainName" entity-name="TenantDomainName"/>
-            <set field="tenantBackendDomainName.tenantId" from-field="tempMap.partyId"/>
+            <set field="tenantBackendDomainName.tenantId" from-field="tenantId"/>
             <set field="tenantBackendDomainName.domainName" from-field="parameters.domainNameBackend"/>
             <set field="tenantBackendDomainName.initialPath" value="/catalog"/>
             <create-value value-field="tenantBackendDomainName"/>
             
             <!-- Create Tenant Component Shopmax -->
             <make-value value-field="tenantComponentShopmax" entity-name="TenantComponent"/>
-            <set field="tenantComponentShopmax.tenantId" from-field="tempMap.partyId"/>
+            <set field="tenantComponentShopmax.tenantId" from-field="tenantId"/>
             <set field="tenantComponentShopmax.componentName" value="shopmax"/>
             <set field="tenantComponentShopmax.sequenceNum" value="01" type="Long"/>
             <create-value value-field="tenantComponentShopmax"/>
             
             <!-- Create Tenant Component Shopmax Seller -->
             <make-value value-field="tenantComponentShopmaxSeller" entity-name="TenantComponent"/>
-            <set field="tenantComponentShopmaxSeller.tenantId" from-field="tempMap.partyId"/>
+            <set field="tenantComponentShopmaxSeller.tenantId" from-field="tenantId"/>
             <set field="tenantComponentShopmaxSeller.componentName" value="shopmaxseller"/>
             <set field="tenantComponentShopmaxSeller.sequenceNum" from-field="02" type="Long"/>
             <create-value value-field="tenantComponentShopmaxSeller"/>
+            
+            <set field="createPartyAttributeMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createPartyAttributeMap.partyId" from-field="tempMap.partyId"/>
+            <set field="createPartyAttributeMap.attrName" value="TENANT_ID"/>
+            <set field="createPartyAttributeMap.attrValue" from-field="tenantId"/>
+            <call-service service-name="createPartyAttribute" in-map-name="createPartyAttributeMap"/>
          </if-compare>
     </simple-method>
     
@@ -838,10 +847,24 @@ under the License.
     </simple-method>
     
     <simple-method method-name="createTenantForSeller" short-description="Upload Product Seller">
+        <entity-one value-field="systemUserLogin" entity-name="UserLogin">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        
+        <entity-one value-field="partyAttribute" entity-name="PartyAttribute">
+            <field-map field-name="partyId" from-field="parameters.partyId"/>
+            <field-map field-name="attrName" value="TENANT_ID"/>
+        </entity-one>
+        <set field="partyId" from-field="partyAttribute.partyId"/>
+        <set field="tenantId" from-field="partyAttribute.attrValue"/>
+        
         <!-- Create Tenant Data Sources -->
         <property-to-field resource="tenant" property="jdbcUriPrefix" field="jdbcUriPrefix"/>
         <property-to-field resource="tenant" property="jdbcUriSuffix" field="jdbcUriSuffix"/>
         <property-to-field resource="tenant" property="jdbcPassword" field="jdbcPassword"/>
+        <property-to-field resource="tenant" property="isDemo" field="isDemo"/>
+        
+        <call-object-method obj-field="tenantId" method-name="toLowerCase" ret-field="jdbcUsername"/>
         
         <if-compare field="isDemo" operator="equals" value="Y">
             <set field="databaseNamePrefix" value="demo"/>
@@ -855,7 +878,7 @@ under the License.
         
         <!-- remove if exists -->
         <entity-one value-field="existOfbizDataSource" entity-name="TenantDataSource">
-            <field-map field-name="tenantId" from-field="tempMap.partyId"/>
+            <field-map field-name="tenantId" from-field="tenantId"/>
             <field-map field-name="entityGroupName" from-field="ofbizEntityGroupName"/>
         </entity-one>
         <if-not-empty field="existOfbizDataSource">
@@ -863,16 +886,16 @@ under the License.
         </if-not-empty>
         
         <make-value value-field="tenantDataSource" entity-name="TenantDataSource"/>
-        <set field="tenantDataSource.tenantId" from-field="tempMap.partyId"/>
+        <set field="tenantDataSource.tenantId" from-field="tenantId"/>
         <set field="tenantDataSource.entityGroupName" from-field="ofbizEntityGroupName"/>
-        <set field="tenantDataSource.jdbcUri" value="${jdbcUriPrefix}${databaseNamePrefix}${tempMap.partyId}ofbiz${jdbcUriSuffix}"/>
+        <set field="tenantDataSource.jdbcUri" value="${jdbcUriPrefix}${databaseNamePrefix}${tenantId}ofbiz${jdbcUriSuffix}"/>
         <if-compare operator="equals" value="Y" field="isDemo">
             <property-to-field resource="tenantDemo" property="jdbcUsername" field="demoJdbcUsername"/>
             <property-to-field resource="tenantDemo" property="jdbcPassword" field="demoJdbcPassword"/>
             <set field="tenantDataSource.jdbcUsername" from-field="demoJdbcUsername"/>
             <set field="tenantDataSource.jdbcPassword" from-field="demoJdbcPassword"/>
             <else>
-                <set field="tenantDataSource.jdbcUsername" value="T${tempMap.partyId}N"/>
+                <set field="tenantDataSource.jdbcUsername" from-field="jdbcUsername"/>
                 <set field="tenantDataSource.jdbcPassword" from-field="jdbcPassword"/>
             </else>
         </if-compare>
@@ -883,7 +906,7 @@ under the License.
         
         <!-- remove if exists -->
         <entity-one value-field="existOlapDataSource" entity-name="TenantDataSource">
-            <field-map field-name="tenantId" from-field="tempMap.partyId"/>
+            <field-map field-name="tenantId" from-field="tenantId"/>
             <field-map field-name="entityGroupName" from-field="olapEntityGroupName"/>
         </entity-one>
         <if-not-empty field="existOlapDataSource">
@@ -891,19 +914,35 @@ under the License.
         </if-not-empty>
         
         <make-value value-field="tenantDataSourceOlap" entity-name="TenantDataSource"/>
-        <set field="tenantDataSourceOlap.tenantId" from-field="tempMap.partyId"/>
+        <set field="tenantDataSourceOlap.tenantId" from-field="tenantId"/>
         <set field="tenantDataSourceOlap.entityGroupName" from-field="olapEntityGroupName"/>
-        <set field="tenantDataSourceOlap.jdbcUri" value="${jdbcUriPrefix}${databaseNamePrefix}${tempMap.partyId}olap${jdbcUriSuffix}"/>
+        <set field="tenantDataSourceOlap.jdbcUri" value="${jdbcUriPrefix}${databaseNamePrefix}${tenantId}olap${jdbcUriSuffix}"/>
         <if-compare operator="equals" value="Y" field="isDemo">
         <property-to-field resource="tenantDemo" property="jdbcUsername" field="demoJdbcUsername"/>
         <property-to-field resource="tenantDemo" property="jdbcPassword" field="demoJdbcPassword"/>
         <set field="tenantDataSourceOlap.jdbcUsername" from-field="demoJdbcUsername"/>
         <set field="tenantDataSourceOlap.jdbcPassword" from-field="demoJdbcPassword"/>
         <else>
-            <set field="tenantDataSourceOlap.jdbcUsername" value="T${tempMap.partyId}N"/>
+            <set field="tenantDataSourceOlap.jdbcUsername" from-field="jdbcUsername"/>
             <set field="tenantDataSourceOlap.jdbcPassword" from-field="jdbcPassword"/>
         </else>
         </if-compare>
         <create-value value-field="tenantDataSourceOlap"/>
+        
+        <entity-and list="userLoginSelllerList" entity-name="UserLogin">
+            <field-map field-name="partyId" from-field="partyId"/>
+        </entity-and>
+        <iterate entry="userLoginSelller" list="userLoginSelllerList">
+            <set field="addSellerSecurityGroupMap.userLogin" from-field="systemUserLogin"/>
+            <set field="addSellerSecurityGroupMap.userLoginId" from-field="userLoginSelller.userLoginId"/>
+            <set field="addSellerSecurityGroupMap.groupId" value="SHOPMAX_SELLER"/>
+            <call-service service-name="addUserLoginToSecurityGroup" in-map-name="addSellerSecurityGroupMap"/>
+        </iterate>
+        
+        <entity-one value-field="party" entity-name="Party">
+            <field-map field-name="partyId" from-field="partyId"/>
+        </entity-one>
+        <set field="party.isUnread" value="N"/>
+        <store-value value-field="party"/>
     </simple-method>
 </simple-methods>

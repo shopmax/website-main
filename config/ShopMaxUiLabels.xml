@@ -22,6 +22,9 @@ under the License.
     <property key="PageTitleAccount">
         <value xml:lang="en">Account</value>
     </property>
+    <property key="PageTitleApprovalSeller">
+        <value xml:lang="en">Approval Seller</value>
+    </property>
     <property key="PageTitleCategory">
         <value xml:lang="en">Category</value>
     </property>

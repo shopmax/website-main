@@ -21,4 +21,33 @@ under the License.
 <forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-form.xsd">
 
+    <form name="ApprovalSeller" type="list" list-name="sellerList" default-entity-name=""
+        odd-row-style="alternate-row" default-table-style="basic-table hover-bar" target="createTenantForSeller">
+        <row-actions>
+            <entity-and list="partyRelationships" entity-name="PartyRelationship" filter-by-date="true">
+                <field-map field-name="partyIdTo" from-field="partyId"/>
+                <field-map field-name="roleTypeIdFrom" value="ORGANIZATION_ROLE"/>
+                <field-map field-name="partyRelationshipTypeId" value="EMPLOYMENT"/>
+                <field-map field-name="roleTypeIdTo" value="EMPLOYEE"/>
+            </entity-and>
+            <entity-and entity-name="PartyAndContactMech" list="emailAddresses" filter-by-date="true">
+                <field-map field-name="partyId"/>
+                <field-map field-name="contactMechTypeId" value="EMAIL_ADDRESS"/>
+            </entity-and>
+            <entity-one entity-name="PartyGroup" value-field="sellerCompany">
+                <field-map field-name="partyId" from-field="partyRelationships[0].partyIdFrom"/>
+            </entity-one>
+        </row-actions>
+        <field name="partyId" title="">
+            <hyperlink target="/partymgr/control/viewprofile" description="${partyId}" target-type="inter-app">
+                <parameter param-name="partyId"/>
+            </hyperlink>
+        </field>
+        <field name="customerName" title=""><display description="${firstName} ${lastName}"/></field>
+        <field name="emailAddress" title=""><display description="${emailAddresses[0].infoString}"/></field>
+        <field name="officialBusinessName" title=""><display description="${sellerCompany.groupName}"/></field>
+        <field name="officialTradingName" title=""><display description="${sellerCompany.groupNameLocal}"/></field>
+        <field name="createdDate" title=""><display/></field>
+        <field name="submitButton" title="Approve" widget-style="smallSubmit"><submit button-type="button"/></field>
+    </form>
 </forms>

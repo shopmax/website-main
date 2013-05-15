@@ -49,3 +49,45 @@ Index: applications/product/servicedef/services.xml
          <attribute name="thruDate" type="Timestamp" mode="IN" optional="true"/>
          <attribute name="sequenceNum" type="Long" mode="IN" optional="true"/>
      </service>
+Index: applications/party/widget/partymgr/PartyMenus.xml
+===================================================================
+--- applications/party/widget/partymgr/PartyMenus.xml	(revision 1470483)
++++ applications/party/widget/partymgr/PartyMenus.xml	(working copy)
+@@ -35,6 +35,7 @@
+         </menu-item>
+         <menu-item name="addrmap" title="${uiLabelMap.PageTitleAddressMatchMap}"><link target="addressMatchMap"/></menu-item>
+         <menu-item name="partyinv" title="${uiLabelMap.PartyInvitation}"><link target="partyInvitation"/></menu-item>
++        <menu-item name="approvalseller" title="Approval Seller"><link target="approvalseller"/></menu-item>
+     </menu>
+ 
+     <menu name="ProfileTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml"
+Index: applications/party/webapp/partymgr/WEB-INF/controller.xml
+===================================================================
+--- applications/party/webapp/partymgr/WEB-INF/controller.xml	(revision 1470483)
++++ applications/party/webapp/partymgr/WEB-INF/controller.xml	(working copy)
+@@ -1246,6 +1246,17 @@
+         <security https="true" auth="true"/>
+         <response name="success" type="view" value="ProfileEditUserLoginSecurityGroups"/>
+     </request-map>
++    
++    <request-map uri="approvalseller">
++        <security https="true" auth="true"/>
++        <response name="success" type="view" value="approvalseller"/>
++    </request-map>
++    <request-map uri="createTenantForSeller">
++        <security https="true" auth="true"/>
++        <event type="service" path="" invoke="createTenantForSeller"/>
++        <response name="success" type="view" value="approvalseller"/>
++        <response name="error" type="view" value="approvalseller"/>
++    </request-map>
+ 
+     <!-- end of request mappings -->
+ 
+@@ -1376,5 +1387,7 @@
+     <!-- GeoLocation-->
+     <view-map name="addGeoLocation" type="screen" page="component://party/widget/partymgr/PartyScreens.xml#EditGeoLocation"/>
+ 
++    <view-map name="approvalseller" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#ApprovalSeller"/>
++
+     <!-- end of view mappings -->
+ </site-conf>
