@@ -146,7 +146,7 @@ under the License.
             </div>
             <!-- CART INFORMATION -->
             <div id="cart-info" class="nav-collapse collapse">
-                <h3>3 Items</h3>
+                <h3>${shoppingCartSize} Items</h3>
                 <p><a href="<@ofbizUrl>shoppingcart</@ofbizUrl>" class="btn-flat round">View Cart</a></p>
                 <p><a href="<@ofbizUrl>checkout</@ofbizUrl>" class="btn-flat checkout">Check Out</a></p>
             </div>

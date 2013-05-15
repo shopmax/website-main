@@ -33,6 +33,7 @@ under the License.
                 </service>
                 <set field="layoutSettings" from-field="themeResources" default-value="${layoutSettings}" global="true" />
                 <set field="isDemo" value="${groovy:org.ofbiz.base.component.ComponentConfig.componentExists(&quot;ofbizdemo&quot;)}" type="Boolean"/>
+                <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/cart/ShowCart.groovy"/>
             </actions>
             <widgets>
                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/headerhead.ftl"/></html></platform-specific>
