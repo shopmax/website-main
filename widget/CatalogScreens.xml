@@ -150,7 +150,17 @@ under the License.
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/manageproduct.ftl"/></html></platform-specific>
+                    <section>
+                        <condition>
+                            <if-has-permission permission="SHOPMAX" action="_SELLER"/>
+                        </condition>
+                        <widgets>
+                            <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/manageproduct.ftl"/></html></platform-specific>
+                        </widgets>
+                        <fail-widgets>
+                            <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/error.ftl"/></html></platform-specific>
+                        </fail-widgets>
+                    </section>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
@@ -168,7 +178,17 @@ under the License.
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/uploadproduct.ftl"/></html></platform-specific>
+                    <section>
+                            <condition>
+                                <if-has-permission permission="SHOPMAX" action="_SELLER"/>
+                            </condition>
+                            <widgets>
+                                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/uploadproduct.ftl"/></html></platform-specific>
+                            </widgets>
+                            <fail-widgets>
+                                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/error.ftl"/></html></platform-specific>
+                            </fail-widgets>
+                        </section>
                     </decorator-section>
                 </decorator-screen>
             </widgets>
