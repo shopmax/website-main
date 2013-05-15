@@ -449,7 +449,7 @@ under the License.
                 <call-object-method obj-field="parameters.ownDomainName" method-name="toUpperCase" ret-field="tenantId"/>
             <else>
                 <set field="parameters.domainName" value="${parameters.freeDomainName}.localhost"/>
-                <set field="parameters.domainNameBackend" value="backend.${parameters.freeDomainName}.localhost"/>
+                <set field="parameters.domainNameBackend" value="backend.${parameters.freeDomainName}.shopmax.localhost"/>
                 <call-object-method obj-field="parameters.freeDomainName" method-name="toUpperCase" ret-field="tenantId"/>
             </else>
             </if-compare>
