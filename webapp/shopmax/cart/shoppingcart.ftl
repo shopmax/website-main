@@ -25,7 +25,7 @@ under the License.
                 <div class="category-list">
                     <table class="table table-condensed cart-summary">
                         <tbody>
-                            <tr><td class="col1">Sub Total</td><td class="cart-value">$195.00</td></tr>
+                            <tr><td class="col1">Sub Total</td><td class="cart-value"><@ofbizCurrency amount=shoppingCart.getDisplayGrandTotal() isoCode=shoppingCart.getCurrency()/></td></tr>
                             <tr><td class="col1">Shipping</td><td class="cart-value">$10.00</td></tr>
                             <tr><td class="col1">Discount</td><td class="cart-value">$0.00</td></tr>
                             <tr><td class="col1">Sales Tax</td><td class="cart-value" style="padding-bottom:10px;">$15.23</td></tr>
@@ -54,7 +54,7 @@ under the License.
                 <table class="table sc-table product-table">
                   <thead>
                     <tr class="sc-table-header georgia">
-                      <th colspan="5">${partyId}</th>
+                      <th colspan="5">${cartContext.getSupplierName(partyId)}</th>
                     </tr>
                     <tr class="sc-table-product-header">
                       <th class="col1">Product</th>
@@ -65,16 +65,30 @@ under the License.
                     </tr>
                   </thead>
                   <tbody>
-                      <#list shoppingCartItems as shoppingCartItem>
-                          <tr>
-                            <td class="col1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
-                            <td class="col2"><strong>Product name 1</strong><br />Colour - yellow</td>
-                            <td class="col3"><strong>$25.00</strong></td>
-                            <td class="col4"><input type="text" class="input-mini" /><br />
-                              <a href="#">Delete item</a>
-                            </td>
-                            <td class="col5"><strong>$25.00</strong></td>
-                          </tr>
+                      <#list shoppingCartItems as cartLine>
+                          <#assign cartLineIndex = shoppingCart.getItemIndex(cartLine) />
+                          <#assign lineOptionalFeatures = cartLine.getOptionalProductFeatures() />
+                          
+                          <#if cartLine.getProductId()?exists>
+                            <#-- product item -->
+                            <#-- start code to display a small image of the product -->
+                            <#if cartLine.getParentProductId()?exists>
+                              <#assign parentProductId = cartLine.getParentProductId() />
+                            <#else>
+                              <#assign parentProductId = cartLine.getProductId() />
+                            </#if>
+                            <#assign smallImageUrl = Static["org.ofbiz.product.product.ProductContentWrapper"].getProductContentAsText(cartLine.getProduct(), "SMALL_IMAGE_URL", locale, dispatcher)?if_exists />
+                            <#if !smallImageUrl?string?has_content><#assign smallImageUrl = "/images/defaultImage.jpg" /></#if>
+                              <tr>
+                                <td class="col1"><img src="<@ofbizContentUrl>${requestAttributes.contentPathPrefix?if_exists}${smallImageUrl}</@ofbizContentUrl>" width="100px" height="100px"/></td>
+                                <td class="col2"><strong>${cartLine.getName()?if_exists}</strong><br />Colour - yellow</td>
+                                <td class="col3"><strong><@ofbizCurrency amount=cartLine.getDisplayPrice() isoCode=shoppingCart.getCurrency()/></strong></td>
+                                <td class="col4"><input type="text" class="input-mini" value="${cartLine.getQuantity()?string.number}"/><br />
+                                  <a href="#">Delete item</a>
+                                </td>
+                                <td class="col5"><strong><@ofbizCurrency amount=cartLine.getDisplayItemSubTotal() isoCode=shoppingCart.getCurrency()/></strong></td>
+                              </tr>
+                          </#if>
                       </#list>
                       <tr class="row-grey">
                           <td colspan="5" class="col1">

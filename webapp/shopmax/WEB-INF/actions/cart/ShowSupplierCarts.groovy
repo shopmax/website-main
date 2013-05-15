@@ -23,6 +23,13 @@ import org.ofbiz.order.shoppingcart.ShoppingCartEvents;
 
 def supplierCartItemsMap = [:];
 
+def getSupplierName(partyId) {
+    def getPartyNameForDateInMap = ["partyId": partyId, "userLogin": delegator.findOne("UserLogin", ["userLoginId": "system"], false)];
+    def results = dispatcher.runSync("getPartyNameForDate", getPartyNameForDateInMap);
+    def fullName = results.fullName;
+    return fullName;
+}
+
 def getSupplierCartItems(partyId, supplierCartItemsMap) {
     def supplierCartItems = null;
     if (supplierCartItemsMap.containsKey(partyId)) {
@@ -58,3 +65,4 @@ if(shoppingCartItems) {
 }
 
 context.supplierCartItemsMap = supplierCartItemsMap;
+context.cartContext = this;

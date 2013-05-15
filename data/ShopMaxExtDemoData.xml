@@ -128,7 +128,7 @@ under the License.
     <ProductCategoryRollup productCategoryId="DEMO_CATLV4_02" parentProductCategoryId="DEMO_CATLV3_02" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
     
     <!-- Drop ship products -->
-    <Product productId="dropShip1" productTypeId="FINISHED_GOOD" internalName="DropShip 1" productName="DropShip 1" smallImageUrl="/images/products/dropShip1/small.jpg" mediumImageUrl="/images/products/dropShip1/medium.jpg" largeImageUrl="/shopmax-default/img/product-generic-472x472.jpg" isVirtual="N" isVariant="N" requirementMethodEnumId="PRODRQM_DS">
+    <Product productId="dropShip1" productTypeId="FINISHED_GOOD" internalName="DropShip 1" productName="DropShip 1" smallImageUrl="/shopmax-default/img/product-generic-472x472.jpg" mediumImageUrl="/shopmax-default/img/product-generic-472x472.jpg" largeImageUrl="/shopmax-default/img/product-generic-472x472.jpg" isVirtual="N" isVariant="N" requirementMethodEnumId="PRODRQM_DS">
         <description><![CDATA[
             Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.
         ]]></description>
