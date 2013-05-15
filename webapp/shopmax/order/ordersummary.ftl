@@ -31,7 +31,12 @@ under the License.
                 </tbody>
                 <tfoot>
                     <tr class="row-grey"><td colspan="2"><br />
-                    <a href="#" class="btn-general">Place Order</a><br/><br />
+                        <form id="orderSubmitForm" action="<@ofbizUrl>onePageProcessOrder</@ofbizUrl>" method="post">
+                            <fieldset>
+                                <input type="button" id="processOrderButton" name="processOrderButton" class="btn-general" value="Place Order" />
+                                <input type="button" style="display: none;" id="processingOrderButton" name="processingOrderButton" value="${uiLabelMap.OrderSubmittingOrder}" />
+                            </fieldset>
+                        </form>
                     </td></tr>
                 </tfoot>
             </table>

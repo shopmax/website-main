@@ -28,6 +28,7 @@ under the License.
                 <set field="titleProperty" value="PageTitleCheckout"/>
                 <set field="headerItem" value="checkout"/>
                 <set field="breadCrumTitle" value="Shopping Cart"/>
+                <set field="layoutSettings.javaScripts[]" value="/shopmax-default/js/checkoutProcess.js" global="true"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">

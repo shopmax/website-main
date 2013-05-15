@@ -37,6 +37,17 @@ under the License.
                 <link rel="stylesheet" href="<@ofbizContentUrl>${StringUtil.wrapString(styleSheet)}</@ofbizContentUrl>" type="text/css"/>
             </#list>
         </#if>
+        <#if layoutSettings.javaScripts?has_content>
+            <#--layoutSettings.javaScripts is a list of java scripts. -->
+            <#-- use a Set to make sure each javascript is declared only once, but iterate the list to maintain the correct order -->
+            <#assign javaScriptsSet = Static["org.ofbiz.base.util.UtilMisc"].toSet(layoutSettings.javaScripts)/>
+            <#list layoutSettings.javaScripts as javaScript>
+              <#if javaScriptsSet.contains(javaScript)>
+                <#assign nothing = javaScriptsSet.remove(javaScript)/>
+                <script type="text/javascript" src="<@ofbizContentUrl>${StringUtil.wrapString(javaScript)}</@ofbizContentUrl>"></script>
+              </#if>
+            </#list>
+        </#if>
         <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/product_details.css</@ofbizContentUrl>">
         <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/new_style.css</@ofbizContentUrl>">
         <link rel="stylesheet" type="text/css" href="<@ofbizContentUrl>/shopmax-default/css/jquery.fancybox-1.3.4.css</@ofbizContentUrl>" media="screen" />
