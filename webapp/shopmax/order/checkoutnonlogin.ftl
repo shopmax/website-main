@@ -17,6 +17,15 @@ specific language governing permissions and limitations
 under the License.
 -->
 
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#cartLoginButton").fancybox({
+            'titlePosition'     : 'inside',
+            'transitionIn'      : 'none',
+            'transitionOut'     : 'none'
+        });
+    });
+</script>
 <div class="container content shopping-cart">
     <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
     <div class="row">
@@ -32,7 +41,7 @@ under the License.
                 <div class="message-inner">
                     <a href="#">
                     <div class="message-box georgia">
-                        Do you already have an account?&nbsp;&nbsp;<img src="<@ofbizContentUrl>/shopmax-default/img/icon-hand-right.gif</@ofbizContentUrl>" />&nbsp;&nbsp;Login now !
+                        Do you already have an account?&nbsp;&nbsp;<img src="<@ofbizContentUrl>/shopmax-default/img/icon-hand-right.gif</@ofbizContentUrl>" />&nbsp;&nbsp;<a id="cartLoginButton" href="#inline1">Login now !</a>
                     </div>
                     </a>
                 </div>
