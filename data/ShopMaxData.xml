@@ -20,6 +20,7 @@ under the License.
 
 <entity-engine-xml>
     <SystemProperty systemResourceId="general" systemPropertyId="currency.uom.id.default" systemPropertyValue="NZD"/>
+    <SystemProperty systemResourceId="general" systemPropertyId="country.geo.id.default" systemPropertyValue="NZL"/>
     
     <WebSite webSiteId="SHOPMAX" siteName="ShopMax Web Site"
         httpHost="shopmax.localhost" httpPort="8080"

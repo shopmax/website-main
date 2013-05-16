@@ -84,12 +84,12 @@ under the License.
                         <td class="col1">
                             <h5 class="heading">Shipping Address</h5>
                             <div class="form-inline">
-                                <input type="text" class="input-xxxlarge required" placeholder="Street Address" />
-                                <input type="text" class="input-xxlarge" placeholder="Zip/ Postal Code" />
+                                <input type="text" class="input-xxxlarge required" name="shipToAddress1" placeholder="Street Address" />
+                                <input type="text" class="input-xxlarge" name="shipToPostalCode" placeholder="Zip/ Postal Code" />
                             </div>
                             <div class="form-inline">
                                 <input type="text" class="input-xxxlarge" placeholder="Additional Address Info (optional)" />
-                                <select name="scZip" class="drop-select chosen combo" data-search-bar="true">
+                                <select name="shipToCity" class="drop-select chosen combo" data-search-bar="true">
                                     <option value="" selected="selected">Zip Return City, State</option>
                                     <option value="1">Option 1</option>
                                     <option value="2">Option 2</option>
@@ -115,7 +115,7 @@ under the License.
                             <h5 class="heading">Shipping Contact</h5>
                             
                             <div class="form-inline">
-                                <input type="text" class="input-xxlarge required" placeholder="First Name" />
+                                <input type="text" class="input-xxlarge required" name="billToName" placeholder="First Name" />
                                 <input type="text" class="input-xxlarge required" placeholder="Last Name" />
                             </div>
                             <div class="form-inline">
@@ -130,12 +130,12 @@ under the License.
                             <h5 class="heading">Shipping Address</h5>
                             
                             <div class="form-inline">
-                                <input type="text" class="input-xxxlarge required" placeholder="Street Address" />
-                                <input type="text" class="input-xxlarge" placeholder="Zip/ Postal Code" />
+                                <input type="text" class="input-xxxlarge required" name="billToAddress1" placeholder="Street Address" />
+                                <input type="text" class="input-xxlarge" name="billToPostalCode" placeholder="Zip/ Postal Code" />
                             </div>
                             <div class="form-inline">
                                 <input type="text" class="input-xxxlarge" placeholder="Additional Address Info (optional)" />
-                                <select name="scZip" class="drop-select chosen combo" data-search-bar="true">
+                                <select name="scZip" class="drop-select chosen combo" name="billToCity" data-search-bar="true">
                                     <option value="" selected="selected">Zip Return City, State</option>
                                     <option value="1">Option 1</option>
                                     <option value="2">Option 2</option>
