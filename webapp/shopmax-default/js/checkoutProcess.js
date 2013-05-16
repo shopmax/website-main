@@ -21,8 +21,15 @@ jQuery(document).ready(function() {
     jQuery('#processOrderButton').click(function(){
         processOrder();
     });
+    jQuery('#processOrderSummaryButton').click(function(){
+        processOrderSummary();
+    });
 });
 
 function processOrder() {
     jQuery('#orderSubmitForm').submit();
+}
+
+function processOrderSummary() {
+    jQuery('#orderSummarySubmitForm').submit();
 }

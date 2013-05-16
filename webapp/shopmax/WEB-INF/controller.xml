@@ -192,6 +192,18 @@ under the License.
         <response name="success" type="view" value="checkout"/>
         <response name="error" type="view" value="checkout"/>
     </request-map>
+    <request-map uri="onePageProcess">
+        <security https="true" auth="false"/>
+        <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/shoppingcart/CheckOutEvents.xml" invoke="checkLogin"/>
+        <response name="success" type="request" value="onePageProcessOrder"/>
+        <response name="error" type="request" value="onePageProcessAccount"/>
+    </request-map>
+    <request-map uri="onePageProcessAccount">
+        <security https="true" auth="false"/>
+        <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/shoppingcart/CheckOutEvents.xml" invoke="createAccount"/>
+        <response name="success" type="request" value="onePageProcessOrder"/>
+        <response name="error" type="view" value="checkout"/>
+    </request-map>
     <request-map uri="onePageProcessOrder">
         <security https="true" auth="false"/>
         <event type="java" path="org.ofbiz.order.shoppingcart.CheckOutEvents" invoke="createOrder"/>

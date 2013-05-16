@@ -94,7 +94,12 @@ under the License.
                     <#include "component://shopmax/webapp/shopmax/order/ordersummarydetail.ftl" />
                 </div>
             </div>
-            <a href="#" class="btn-general pull-right">Place Order</a>
+            <form id="orderSummarySubmitForm" action="<@ofbizUrl>onePageProcess</@ofbizUrl>" method="post">
+                <fieldset>
+                    <input type="button" id="processOrderSummaryButton" name="processOrderSummaryButton" class="btn-general pull-right" value="Place Order" />
+                    <input type="button" style="display: none;" id="processingOrderSummaryButton" name="processingOrderSummaryButton" value="${uiLabelMap.OrderSubmittingOrder}" />
+                </fieldset>
+            </form>
         </div><!-- /.span9 -->
     </div><!-- /.row -->
 </div> <!-- /container -->
