@@ -26,6 +26,12 @@ under the License.
             <actions>
                 <property-map resource="ShopMaxUiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="AccountingUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="PartyUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="OrderUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="EcommerceUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="ContentUiLabels" map-name="uiLabelMap" global="true"/>
                 
                 <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/plugins/datetimepicker/jquery-ui-timepicker-addon-1.0.5.js" global="true"/>
                 <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/ui/js/jquery-ui-1.9.0.custom.min.js" global="true"/>
