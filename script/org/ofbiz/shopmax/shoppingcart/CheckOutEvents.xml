@@ -28,6 +28,36 @@ under the License.
         </if-not-empty>
     </simple-method>
     <simple-method method-name="createAccount" short-description="Create account to cart" login-required="false">
+        <call-class-method method-name="getCartObject" class-name="org.ofbiz.order.shoppingcart.ShoppingCartEvents" ret-field="shoppingCart">
+            <field field="request" type="javax.servlet.http.HttpServletRequest"/>
+        </call-class-method>
+        <call-object-method method-name="getProductStoreId" obj-field="shoppingCart" ret-field="productStoreId"/>
+        <script>groovy:
+            context.currentPassword = org.apache.commons.lang.RandomStringUtils.randomAlphanumeric(8);
+        </script>
+    
+        <set field="createShopmaxCustomerInMap.USER_FIRST_NAME" from-field="parameters.USER_FIRST_NAME"/>
+        <set field="createShopmaxCustomerInMap.USER_LAST_NAME" from-field="parameters.USER_LAST_NAME"/>
+        <set field="createShopmaxCustomerInMap.CUSTOMER_EMAIL" from-field="parameters.CUSTOMER_EMAIL"/>
+        <set field="createShopmaxCustomerInMap.PASSWORD" from-field="currentPassword"/>
+        <set field="createShopmaxCustomerInMap.CONFIRM_PASSWORD" from-field="currentPassword"/>
+        <set field="createShopmaxCustomerInMap.businessUser" value="N"/>
+        <set field="createShopmaxCustomerInMap.productStoreId" from-field="productStoreId"/>
+        <call-service service-name="createShopmaxCustomer" in-map-name="createShopmaxCustomerInMap">
+            <result-to-field result-name="USERNAME" field="userLoginId"/>
+        </call-service>
         
+        <entity-one value-field="createdUserLogin" entity-name="UserLogin">
+            <field-map field-name="userLoginId"/>
+        </entity-one>
+        <script>groovy:
+            org.ofbiz.webapp.control.LoginWorker.doBasicLogin(createdUserLogin, request);
+            org.ofbiz.webapp.control.LoginWorker.autoLoginSet(request, response);
+            session = request.getSession();
+            cart = session.getAttribute("shoppingCart");
+            if (cart != null) {
+                cart.setOrderPartyId(createdUserLogin.partyId);
+            }
+        </script>
     </simple-method>
 </simple-methods>

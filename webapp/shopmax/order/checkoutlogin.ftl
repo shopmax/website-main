@@ -21,84 +21,82 @@ under the License.
     <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
     <div class="row">
         <#include "component://shopmax/webapp/shopmax/order/ordersummary.ftl" />
-        <div class="span9 main-content">
-            <ul class="sc-step">
-                <li><span class="badge badge-inactive">1</span>&nbsp;&nbsp;Shopping Cart</li>
-                <li class="step-active"><span class="badge badge-active">2</span>&nbsp;&nbsp;Billing & Delivery</li>
-                <li><span class="badge badge-inactive">3</span>&nbsp;&nbsp;Complete</li>
-            </ul>
-            <br />
-            <div class="billing_de">
-                <div class="shipp_info">
-                    <div class="tital_1">Shipping Information</div>
-                    <div class="row">
-                        <div class="span5">
-                            <div class="column_1">
-                                <select class="span3">
-                                    <option>Contact Name Street Address</option>
-                                </select>
-                                <h5>ship to</h5>
-                                <ul>
-                                    <li>Contact Name</li>
-                                    <li>Street Address Line one </li>
-                                    <li>Street Address Line two</li>
-                                    <li>State</li>
-                                    <li>Phone number xxx xxx xxx</li>
-                                </ul>
+        <form id="orderSummarySubmitForm" action="<@ofbizUrl>onePageProcess</@ofbizUrl>" method="post">
+            <div class="span9 main-content">
+                <ul class="sc-step">
+                    <li><span class="badge badge-inactive">1</span>&nbsp;&nbsp;Shopping Cart</li>
+                    <li class="step-active"><span class="badge badge-active">2</span>&nbsp;&nbsp;Billing & Delivery</li>
+                    <li><span class="badge badge-inactive">3</span>&nbsp;&nbsp;Complete</li>
+                </ul>
+                <br />
+                <div class="billing_de">
+                    <div class="shipp_info">
+                        <div class="tital_1">Shipping Information</div>
+                        <div class="row">
+                            <div class="span5">
+                                <div class="column_1">
+                                    <select class="span3">
+                                        <option>Contact Name Street Address</option>
+                                    </select>
+                                    <h5>ship to</h5>
+                                    <ul>
+                                        <li>Contact Name</li>
+                                        <li>Street Address Line one </li>
+                                        <li>Street Address Line two</li>
+                                        <li>State</li>
+                                        <li>Phone number xxx xxx xxx</li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="span4">
-                            <div class="column_2"><a href="#" class="pull-right">Edit Shipping Address</a></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="shipp_info">
-                    <div class="tital_1">Billing Information</div>
-                    <div class="row">
-                        <div class="span5">
-                            <div class="column_1">
-                                <select class="span4">
-                                    <option>Visa ••••••••••••1234 Exp: 03/03/2013</option>
-                                </select>
-                                <h5>bill to</h5>
-                                <ul>
-                                    <li>Contact Name</li>
-                                    <li>Street Address Line one </li>
-                                    <li>Street Address Line two</li>
-                                    <li>State</li>
-                                    <li>Phone number xxx xxx xxx</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="span4">
-                            <div class="column_2">
-                                <a href="#" class="pull-right clearfix">Edit Billing information</a>
-                                <div class="clearfix"></div>
-                                <h5>Payment Information</h5>
-                                <ul>
-                                    <li>VISA</li>
-                                    <li>••••••••••••1234 </li>
-                                    <li>Exp: 03/03/2013</li>
-                                    <li class="lastbox">
-                                        <input type="text" class="span1 textb">
-                                        <div class="card"><img src="img/icon-card.gif" alt=""></div>
-                                        <a href="#" class="what">What is this ?</a>
-                                    </li>
-                                </ul>
+                            <div class="span4">
+                                <div class="column_2"><a href="#" class="pull-right">Edit Shipping Address</a></div>
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="shipp_info">
+                        <div class="tital_1">Billing Information</div>
+                        <div class="row">
+                            <div class="span5">
+                                <div class="column_1">
+                                    <select class="span4">
+                                        <option>Visa ••••••••••••1234 Exp: 03/03/2013</option>
+                                    </select>
+                                    <h5>bill to</h5>
+                                    <ul>
+                                        <li>Contact Name</li>
+                                        <li>Street Address Line one </li>
+                                        <li>Street Address Line two</li>
+                                        <li>State</li>
+                                        <li>Phone number xxx xxx xxx</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="span4">
+                                <div class="column_2">
+                                    <a href="#" class="pull-right clearfix">Edit Billing information</a>
+                                    <div class="clearfix"></div>
+                                    <h5>Payment Information</h5>
+                                    <ul>
+                                        <li>VISA</li>
+                                        <li>••••••••••••1234 </li>
+                                        <li>Exp: 03/03/2013</li>
+                                        <li class="lastbox">
+                                            <input type="text" class="span1 textb">
+                                            <div class="card"><img src="img/icon-card.gif" alt=""></div>
+                                            <a href="#" class="what">What is this ?</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shipp_info">
+                        <#include "component://shopmax/webapp/shopmax/order/ordersummarydetail.ftl" />
+                    </div>
                 </div>
-                <div class="shipp_info">
-                    <#include "component://shopmax/webapp/shopmax/order/ordersummarydetail.ftl" />
-                </div>
-            </div>
-            <form id="orderSummarySubmitForm" action="<@ofbizUrl>onePageProcess</@ofbizUrl>" method="post">
-                <fieldset>
-                    <input type="button" id="processOrderSummaryButton" name="processOrderSummaryButton" class="btn-general pull-right" value="Place Order" />
-                    <input type="button" style="display: none;" id="processingOrderSummaryButton" name="processingOrderSummaryButton" value="${uiLabelMap.OrderSubmittingOrder}" />
-                </fieldset>
+                <input type="button" id="processOrderSummaryButton" name="processOrderSummaryButton" class="btn-general pull-right" value="Place Order" />
+                <input type="button" style="display: none;" id="processingOrderSummaryButton" name="processingOrderSummaryButton" value="${uiLabelMap.OrderSubmittingOrder}" />
             </form>
         </div><!-- /.span9 -->
     </div><!-- /.row -->
