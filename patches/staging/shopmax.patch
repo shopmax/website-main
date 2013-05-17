@@ -1,6 +1,6 @@
 Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
 ===================================================================
---- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 177)
+--- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 178)
 +++ hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(working copy)
 @@ -23,7 +23,7 @@
  
@@ -56,6 +56,17 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              <entity-one entity-name="UserLogin" value-field="sysUserLogin">
                  <field-map field-name="userLoginId" value="system"/>
              </entity-one>
+@@ -443,8 +443,8 @@
+                 <set field="parameters.domainName" value="${parameters.ownDomainName}"/>
+                 <set field="parameters.domainNameBackend" value="backend.${parameters.ownDomainName}"/>
+             <else>
+-                <set field="parameters.domainName" value="${parameters.freeDomainName}.localhost"/>
+-                <set field="parameters.domainNameBackend" value="backend.${parameters.freeDomainName}.shopmax.localhost"/>
++                <set field="parameters.domainName" value="${parameters.freeDomainName}.ofbizdemo.com"/>
++                <set field="parameters.domainNameBackend" value="backend.${parameters.freeDomainName}.ofbizdemo.com"/>
+             </else>
+             </if-compare>
+             
 @@ -701,7 +701,7 @@
          </iterate>
          
@@ -67,7 +78,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
          <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
 Index: hot-deploy/shopmax/ofbiz-component.xml
 ===================================================================
---- hot-deploy/shopmax/ofbiz-component.xml	(revision 177)
+--- hot-deploy/shopmax/ofbiz-component.xml	(revision 178)
 +++ hot-deploy/shopmax/ofbiz-component.xml	(working copy)
 @@ -44,7 +44,7 @@
      <entity-resource type="data" reader-name="ext-demo" loader="main" location="data/ShopMaxExtDemoData.xml"/>
