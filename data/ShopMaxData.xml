@@ -22,11 +22,5 @@ under the License.
     <SystemProperty systemResourceId="general" systemPropertyId="currency.uom.id.default" systemPropertyValue="NZD"/>
     <SystemProperty systemResourceId="general" systemPropertyId="country.geo.id.default" systemPropertyValue="NZL"/>
     
-    <WebSite webSiteId="SHOPMAX" siteName="ShopMax Web Site"
-        httpHost="shopmax.localhost" httpPort="8080"
-        httpsHost="shopmax.localhost" httpsPort="8443"
-        standardContentPrefix="http://shopmaxbackend.localhost:8080"
-        secureContentPrefix="https://shopmaxbackend.localhost:8443"/>
-        
-        <Party partyId="_NA_" partyTypeId="PERSON"/>
+    <Party partyId="_NA_" partyTypeId="PERSON"/>
 </entity-engine-xml>

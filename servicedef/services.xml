@@ -163,9 +163,27 @@ under the License.
         <attribute name="partyId" type="String" mode="IN" optional="true"/>
     </service>
     
+    <service name="approveShopmaxSeller" engine="simple" 
+            location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="approveShopmaxSeller" auth="true">
+        <description>Approve Shopmax Seller</description>
+        <attribute name="partyId" mode="INOUT" type="String" optional="false"/>
+    </service>
+    
     <service name="createTenantForSeller" engine="simple" 
             location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="createTenantForSeller" auth="true">
         <description>Create Tenant For Seller</description>
+        <attribute name="partyId" mode="INOUT" type="String" optional="false"/>
+    </service>
+    
+    <service name="updateWebsiteForSeller" engine="simple" 
+            location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="updateWebsiteForSeller" auth="true">
+        <description>Update Website For Seller</description>
+        <attribute name="partyId" mode="INOUT" type="String" optional="false"/>
+    </service>
+    
+    <service name="createPersonAndCompanyToSeller" engine="simple" 
+            location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="createPersonAndCompanyToSeller" auth="true">
+        <description>Create Person And Company To Seller</description>
         <attribute name="partyId" mode="IN" type="String" optional="false"/>
     </service>
 </services>

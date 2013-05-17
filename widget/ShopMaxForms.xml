@@ -22,7 +22,7 @@ under the License.
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-form.xsd">
 
     <form name="ApprovalSeller" type="list" list-name="sellerList" default-entity-name=""
-        odd-row-style="alternate-row" default-table-style="basic-table hover-bar" target="createTenantForSeller">
+        odd-row-style="alternate-row" default-table-style="basic-table hover-bar" target="approveShopmaxSeller">
         <row-actions>
             <entity-and list="partyRelationships" entity-name="PartyRelationship" filter-by-date="true">
                 <field-map field-name="partyIdTo" from-field="partyId"/>

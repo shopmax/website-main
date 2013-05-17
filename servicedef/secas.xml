@@ -45,4 +45,19 @@ under the License.
         <condition field-name="productCategoryId" operator="is-not-empty"/>
         <action service="deleteCategoryRollUpToSeller" mode="sync"/>
     </eca>
+    
+    <eca service="approveShopmaxSeller" event="commit">
+        <condition field-name="partyId" operator="is-not-empty"/>
+        <action service="createTenantForSeller" mode="sync"/>
+    </eca>
+    
+    <eca service="createTenantForSeller" event="commit">
+        <condition field-name="partyId" operator="is-not-empty"/>
+        <action service="updateWebsiteForSeller" mode="sync"/>
+    </eca>
+    
+    <eca service="createTenantForSeller" event="commit">
+        <condition field-name="partyId" operator="is-not-empty"/>
+        <action service="createPersonAndCompanyToSeller" mode="sync"/>
+    </eca>
 </service-eca>

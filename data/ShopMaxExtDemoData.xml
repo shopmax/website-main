@@ -55,8 +55,6 @@ under the License.
     <Person partyId="DemoCustomer" firstName="Demo" lastName="Customer"/>
     <UserLogin partyId="DemoCustomer" userLoginId="DemoCustomer" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" />
     <PartyRole partyId="DemoCustomer" roleTypeId="CUSTOMER"/>
-    <PartyRole partyId="DemoCustomer" roleTypeId="CONTACT"/>
-    <PartyRole partyId="DemoCustomer" roleTypeId="BILL_TO_CUSTOMER"/>
     <PartyRole partyId="DemoCustomer" roleTypeId="BUYER"/>
     
     <ContactMech contactMechId="9015" contactMechTypeId="POSTAL_ADDRESS"/>

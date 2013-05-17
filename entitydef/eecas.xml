@@ -21,7 +21,7 @@ under the License.
 <entity-eca xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/entity-eca.xsd">
 
-    <eca entity="Product" operation="create-store-remove" event="return">
+    <!-- <eca entity="Product" operation="create-store-remove" event="return">
         <action service="checkPermissionCreateProduct" mode="sync"/>
-    </eca>
+    </eca> -->
 </entity-eca>

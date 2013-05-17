@@ -146,17 +146,17 @@ under the License.
                         <tr>
                             <td class="col1 form-horizontal">
                                 <div class="control-group">
-                                    <label class="control-label control-label-big" for="inputPromotionDescription">Official business name</label>
+                                    <label class="control-label control-label-big" for="inputPromotionDescription">Official Business Name</label>
                                     <div class="pull-left">
                                         <input type="text" class="input-large" id="businessName" name="officialBusinessName">
                                     </div>
-                                    <label class="control-label control-label-big" for="inputPromotionDescription">Official trading name</label>
+                                    <label class="control-label control-label-big" for="inputPromotionDescription">Official Trading Name</label>
                                     <div class="pull-left">
                                         <input type="text" class="input-large" id="tradingName" name="officialTradingName">
                                     </div>
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label control-label-big" for="inputPromotionDescription">Contact phone number</label>
+                                    <label class="control-label control-label-big" for="inputPromotionDescription">Contact Phone Number</label>
                                     <select id="phoneNumber_select_0" class="chosen phoneNumber">
                                         <option selected="selected">09</option>
                                         <option value="selling.html">08</option>
@@ -170,7 +170,7 @@ under the License.
                                     <input type="hidden" name="contactPhoneNumber" id="phoneNumber_0" value="">
                                 </div>
                                 <div class="control-group">
-                                    <label class="control-label control-label-text" for="inputPromotionDescription">TXT Notification phone number</label>
+                                    <label class="control-label control-label-text" for="inputPromotionDescription">TXT Notification Phone Number</label>
                                     <select id="phoneNumber_select_1" class="chosen phoneNumber">
                                         <option selected="selected">09</option>
                                         <option value="selling.html">08</option>
@@ -207,7 +207,7 @@ under the License.
                                     <input type="hidden" name="accountType" value="null"/>
                                     <input type="hidden" name="bankName" value="null"/>
                                     <div class="control-group-bank">
-                                    <label class="control-label control-label-big pull-left" for="inputPromotionDescription">Bank account detail</label>
+                                    <label class="control-label control-label-big pull-left" for="inputPromotionDescription">Bank Account Detail</label>
                                     <label class="control-label control-label-bank pull-left" for="inputPromotionDescription">Account Name</label>
                                     <input type="text" class="input-large pull-left" id="inputAccountName" name="nameOnAccount"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
                                     </div>
@@ -284,7 +284,7 @@ under the License.
                                             </select>
                                             <input type="text" class="input-phone-number" id="inputPassword">
                                         </div>
-                                        <label class="control-label control-label-small" for="inputPromotionDescription">Fax Number</label>
+                                        <label class="control-label control-label-small" for="inputPromotionDescription">Store Fax Number</label>
                                         <div class="pull-left">
                                             <select id="phoneNumber3" class="chosen phoneNumber" name="phoneNumber3">
                                                 <option selected="selected">09</option>

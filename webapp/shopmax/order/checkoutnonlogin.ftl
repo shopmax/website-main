@@ -57,7 +57,7 @@ under the License.
                         </a>
                     </div>
                 </div>
-    
+                
                 <table class="table table-condensed sc-table sc-table-shipping">
                   <thead>
                     <tr class="sc-table-product-header">

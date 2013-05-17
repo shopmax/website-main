@@ -26,10 +26,10 @@ under the License.
                     <table class="table table-condensed cart-summary">
                         <tbody>
                             <tr><td class="col1">Sub Total</td><td class="cart-value"><@ofbizCurrency amount=shoppingCart.getDisplayGrandTotal() isoCode=shoppingCart.getCurrency()/></td></tr>
-                            <tr><td class="col1">Shipping</td><td class="cart-value">$10.00</td></tr>
-                            <tr><td class="col1">Discount</td><td class="cart-value">$0.00</td></tr>
-                            <tr><td class="col1">Sales Tax</td><td class="cart-value" style="padding-bottom:10px;">$15.23</td></tr>
-                            <tr><td colspan="2" class="col1"><div class="cart-total">Total <div class="blue pull-right">$220.23</div></div></td></tr>
+                            <tr><td class="col1">Shipping</td><td class="cart-value">NZ$0.00</td></tr>
+                            <tr><td class="col1">Discount</td><td class="cart-value">NZ$0.00</td></tr>
+                            <tr><td class="col1">Sales Tax</td><td class="cart-value" style="padding-bottom:10px;">NZ$0.00</td></tr>
+                            <tr><td colspan="2" class="col1"><div class="cart-total">Total <div class="blue pull-right"><@ofbizCurrency amount=shoppingCart.getDisplayGrandTotal() isoCode=shoppingCart.getCurrency()/></div></div></td></tr>
                         </tbody>
                         <tfoot>
                             <tr class="row-grey"><td colspan="2"><br>
@@ -138,13 +138,13 @@ under the License.
                   <td class="sc-table-estimate-shipping">
                       <table class="table table-condensed">
                         <tbody>
-	                        <tr><td class="col1">Sub Total</td><td class="col2">$195.00</td></tr>
-	                        <tr><td class="col1">Shipping</td><td class="col2">$195.00</td></tr>
-	                        <tr><td class="col1">Discount</td><td class="col2">$195.00</td></tr>
-	                        <tr><td class="col1">Sales Tax</td><td class="col2" style="padding-bottom:14px;">$195.00</td></tr>
+	                        <tr><td class="col1">Sub Total</td><td class="col2"><@ofbizCurrency amount=shoppingCart.getDisplayGrandTotal() isoCode=shoppingCart.getCurrency()/></td></tr>
+	                        <tr><td class="col1">Shipping</td><td class="col2">NZ$0.00</td></tr>
+	                        <tr><td class="col1">Discount</td><td class="col2">NZ$0.00</td></tr>
+	                        <tr><td class="col1">Sales Tax</td><td class="col2" style="padding-bottom:14px;">NZ$0.00</td></tr>
                         </tbody>
                         <tfoot>
-                        	<tr><td class="col1">Total</td><td class="col2">$195.00</td></tr>
+                        	<tr><td class="col1">Total</td><td class="col2"><@ofbizCurrency amount=shoppingCart.getDisplayGrandTotal() isoCode=shoppingCart.getCurrency()/></td></tr>
                         </tfoot>
                     </table>
                   </td>
