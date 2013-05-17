@@ -75,8 +75,8 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              <else>
 -                <set field="parameters.domainName" value="${parameters.freeDomainName}.shopmax.localhost"/>
 -                <set field="parameters.domainNameBackend" value="backend.${parameters.freeDomainName}.shopmax.localhost"/>
-+                <set field="parameters.domainName" value="${parameters.freeDomainName}.ofbizdemo.com"/>
-+                <set field="parameters.domainNameBackend" value="backend.${parameters.freeDomainName}.ofbizdemo.com"/>
++                <set field="parameters.domainName" value="${parameters.freeDomainName}.shopmax.ofbizdemo.com"/>
++                <set field="parameters.domainNameBackend" value="backend.${parameters.freeDomainName}.shopmax.ofbizdemo.com"/>
              </else>
              </if-compare>
              
