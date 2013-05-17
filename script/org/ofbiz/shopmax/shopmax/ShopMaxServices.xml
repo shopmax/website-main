@@ -443,7 +443,7 @@ under the License.
                 <set field="parameters.domainName" value="${parameters.ownDomainName}"/>
                 <set field="parameters.domainNameBackend" value="backend.${parameters.ownDomainName}"/>
             <else>
-                <set field="parameters.domainName" value="${parameters.freeDomainName}.localhost"/>
+                <set field="parameters.domainName" value="${parameters.freeDomainName}.shopmax.localhost"/>
                 <set field="parameters.domainNameBackend" value="backend.${parameters.freeDomainName}.shopmax.localhost"/>
             </else>
             </if-compare>
