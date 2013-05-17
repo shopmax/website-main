@@ -67,7 +67,12 @@ under the License.
         <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.mousewheel-3.0.4.pack.js</@ofbizContentUrl>" type="text/javascript"></script>
         <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.fancybox-1.3.4.js</@ofbizContentUrl>" type="text/javascript"></script>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places&language=en-AU"></script>
-        
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.accordion.js</@ofbizContentUrl>"></script>
+        <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.accordion.source.js</@ofbizContentUrl>"></script>
+        <script src="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.js</@ofbizContentUrl>"></script>
+
         <script type="text/javascript">
         $(document).ready(function() {
             $("#various1").fancybox({
@@ -75,7 +80,25 @@ under the License.
                 'transitionIn'      : 'none',
                 'transitionOut'     : 'none'
             });
+            
+            makeAccordion($("#category-menu"));
         });
+        
+        function makeAccordion($ul) {
+            var $accordion = $($ul).accordion();
+            $.each($accordion.find('a'), function(index, value) {
+                $(this).click(function(e){
+                    var productCategoryId = $(this).attr("href").substring(1);
+                    var $div = $(this).next("div")[0];
+                    $.ajax({
+                        url: "subcategoriesaccordionview?parentProductCategoryId=" + productCategoryId
+                    }).done(function (data) {
+                        $($div).html(data);
+                        makeAccordion($($div).find("ul")[0]);
+                    });
+                });
+            });
+        }
         </script>
     </head>
     <body class="home">

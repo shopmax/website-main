@@ -17,20 +17,14 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-
-<div class="categories innerbox georgia">
-    <h2>Category list</h2>
-    <div class="category-list nested-list">
-         <ul id="category-menu">
-           <#if categoryList?has_content>
-                <#list categoryList as productCategory>
-                    <li>
-                        <a href="#${productCategory.productCategoryId}"><span>${productCategory.categoryName}</span></a>
-                        <div>
-                        </div>
-                    </li>
-                </#list>
-            </#if>
-        </ul>
-    </div>
-</div><!-- /.categories .innerbox -->
+<ul>
+    <#if categoryList?has_content>
+        <#list categoryList as productCategory>
+            <li>
+                <a href="#${productCategory.productCategoryId}"><span>${productCategory.categoryName}</span></a>
+                <div>
+                </div>
+            </li>
+        </#list>
+    </#if>
+</ul>

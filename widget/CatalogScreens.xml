@@ -70,6 +70,7 @@ under the License.
                 <set field="titleProperty" value="PageTitleCategory"/>
                 <set field="headerItem" value="categorygridview"/>
                 <set field="breadCrumTitle" value="Category"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopCategories.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -314,6 +315,7 @@ under the License.
                 <set field="titleProperty" value="Shop Name"/>
                 <set field="headerItem" value="shopcategorygridview"/>
                 <set field="breadCrumTitle" value="Shop Name"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopCategories.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -323,6 +325,22 @@ under the License.
                         </platform-specific>
                     </decorator-section>
                 </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="SubCategoriesAccordionView">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleCategory"/>
+                <set field="headerItem" value="subcategoriesaccordionview"/>
+                <set field="breadCrumTitle" value="Category"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetCategoriesList.groovy"/>
+            </actions>
+            <widgets>
+                <platform-specific>
+                    <html><html-template location="component://shopmax/webapp/shopmax/catalog/subcategoriesaccordionview.ftl"/></html>
+                </platform-specific>
             </widgets>
         </section>
     </screen>

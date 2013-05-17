@@ -1823,3 +1823,15 @@ float:left;
     font-size: 13px;
     margin: 30px 0 0 7px;
 }
+.sidebar .category-list li > a > span{
+    padding-left:15px;
+    background: url('../img/collapsed.gif') no-repeat center left;
+}
+
+.sidebar .category-list li.active > a > span{
+    padding-left:15px;
+    background: url('../img/expanded.gif') no-repeat center left;
+}
+li li li li > a > span{
+	background: none !important;
+}

@@ -132,6 +132,12 @@ under the License.
         <response name="error" type="view" value="shopcategorygridview"/>
     </request-map>
     
+    <request-map uri="subcategoriesaccordionview">
+        <security https="false" auth="false"/>
+        <response name="success" type="view" value="subcategoriesaccordionview"/>
+        <response name="error" type="view" value="subcategoriesaccordionview"/>
+    </request-map>
+    
     <request-map uri="manageproduct">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="manageproduct"/>
@@ -413,6 +419,7 @@ under the License.
     <view-map name="searchlistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#SearchListView"/>
     <view-map name="shopcategorylistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ShopCategoryListView"/>
     <view-map name="shopcategorygridview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ShopCategoryGridView"/>
+    <view-map name="subcategoriesaccordionview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#SubCategoriesAccordionView"/>
     <view-map name="uploadproduct" type="screen" page="component://shopmax/widget/CatalogScreens.xml#UploadProduct"/>
     <view-map name="uploadproductajax" type="screen" page="component://shopmax/widget/CatalogScreens.xml#UploadProductAjax"/>
     
