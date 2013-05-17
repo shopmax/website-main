@@ -90,6 +90,7 @@ under the License.
                 <set field="titleProperty" value="PageTitleCategory"/>
                 <set field="headerItem" value="categorylistview"/>
                 <set field="breadCrumTitle" value="Category"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopCategories.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -296,6 +297,7 @@ under the License.
                 <set field="titleProperty" value="Shop Name"/>
                 <set field="headerItem" value="shopcategorylistview"/>
                 <set field="breadCrumTitle" value="Shop Name"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopCategories.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -335,7 +337,7 @@ under the License.
                 <set field="titleProperty" value="PageTitleCategory"/>
                 <set field="headerItem" value="subcategoriesaccordionview"/>
                 <set field="breadCrumTitle" value="Category"/>
-                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetCategoriesList.groovy"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetCategoryList.groovy"/>
             </actions>
             <widgets>
                 <platform-specific>
