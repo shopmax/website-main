@@ -158,11 +158,19 @@ under the License.
                                 <div class="control-group">
                                     <label class="control-label control-label-big" for="inputPromotionDescription">Contact Phone Number</label>
                                     <select id="phoneNumber_select_0" class="chosen phoneNumber">
-                                        <option selected="selected">09</option>
-                                        <option value="selling.html">08</option>
-                                        <option value="buying.html">07</option>
-                                        <option value="profile.html">06</option>
-                                        <option value="log-out.html">05</option>
+                                        <option selected="selected">03</option>
+                                        <option>04</option>
+                                        <option>06</option>
+                                        <option>07</option>
+                                        <option>09</option>
+                                        <option>020</option>
+                                        <option>021</option>
+                                        <option>022</option>
+                                        <option>027</option>
+                                        <option>028</option>
+                                        <option>029</option>
+                                        <option>0508</option>
+                                        <option>0800</option>
                                     </select>
                                     <div class="pull-left">
                                         <input type="text" class="input-large phoneNumberText" id="phoneNumber_text_0">
@@ -172,11 +180,12 @@ under the License.
                                 <div class="control-group">
                                     <label class="control-label control-label-text" for="inputPromotionDescription">TXT Notification Phone Number</label>
                                     <select id="phoneNumber_select_1" class="chosen phoneNumber">
-                                        <option selected="selected">09</option>
-                                        <option value="selling.html">08</option>
-                                        <option value="buying.html">07</option>
-                                        <option value="profile.html">06</option>
-                                        <option value="log-out.html">05</option>
+                                        <option selected="selected">020</option>
+                                        <option>021</option>
+                                        <option>022</option>
+                                        <option>027</option>
+                                        <option>028</option>
+                                        <option>029</option>
                                     </select>
                                     <div class="pull-left">
                                         <input type="text" class="input-large phoneNumberText" id="phoneNumber_text_1">
@@ -276,22 +285,32 @@ under the License.
                                         <label class="control-label control-label-small" for="inputPromotionDescription">Store Phone Number</label>
                                         <div class="pull-left">
                                             <select id="phoneNumber2" class="chosen phoneNumber" name="phoneNumber2">
-                                                <option selected="selected">09</option>
-                                                <option value="selling.html">08</option>
-                                                <option value="buying.html">07</option>
-                                                <option value="profile.html">06</option>
-                                                <option value="log-out.html">05</option>
+                                                <option selected="selected">03</option>
+                                                <option>04</option>
+                                                <option>06</option>
+                                                <option>07</option>
+                                                <option>09</option>
+                                                <option>020</option>
+                                                <option>021</option>
+                                                <option>022</option>
+                                                <option>027</option>
+                                                <option>028</option>
+                                                <option>029</option>
+                                                <option>0508</option>
+                                                <option>0800</option>
                                             </select>
                                             <input type="text" class="input-phone-number" id="inputPassword">
                                         </div>
                                         <label class="control-label control-label-small" for="inputPromotionDescription">Store Fax Number</label>
                                         <div class="pull-left">
                                             <select id="phoneNumber3" class="chosen phoneNumber" name="phoneNumber3">
-                                                <option selected="selected">09</option>
-                                                <option value="selling.html">08</option>
-                                                <option value="buying.html">07</option>
-                                                <option value="profile.html">06</option>
-                                                <option value="log-out.html">05</option>
+                                                <option selected="selected">03</option>
+                                                <option>04</option>
+                                                <option>06</option>
+                                                <option>07</option>
+                                                <option>09</option>
+                                                <option>0508</option>
+                                                <option>0800</option>
                                             </select>
                                             <input type="text" class="input-phone-number" id="inputPassword">
                                         </div>
