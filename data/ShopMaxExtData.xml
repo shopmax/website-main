@@ -42,7 +42,7 @@ under the License.
     <PartyContactMechPurpose partyId="SHOPMAX_COMPANY" contactMechId="SHOPMAX_ADDRESS" contactMechPurposeTypeId="GENERAL_LOCATION" fromDate="2013-04-01 00:00:00"/>
     <PartyContactMechPurpose partyId="SHOPMAX_COMPANY" contactMechId="SHOPMAX_ADDRESS" contactMechPurposeTypeId="PAYMENT_LOCATION" fromDate="2013-04-01 00:00:00"/>
     
-    <Facility facilityId="ShopMaxWarehouse" facilityTypeId="WAREHOUSE" facilityName="ShopMax" description="Warehouse exclusively for the Web Store " ownerPartyId="SHOPMAX_COMPANY" defaultInventoryItemTypeId="NON_SERIAL_INV_ITEM" defaultWeightUomId="WT_lb" defaultDaysToShip="25"/>
+    <Facility facilityId="ShopMaxWarehouse" facilityTypeId="WAREHOUSE" facilityName="ShopMax" description="Warehouse exclusively for the Web Store" ownerPartyId="SHOPMAX_COMPANY" defaultInventoryItemTypeId="NON_SERIAL_INV_ITEM"/>
     
     <ProductStore productStoreId="ShopMaxStore" storeName="ShopMax Store" companyName="ShopMax" title="ShopMax"
         subtitle="Part of the Open For Business Family of Open Source Software" payToPartyId="SHOPMAX_COMPANY" daysToCancelNonPay="30" prorateShipping="Y" prorateTaxes="Y"

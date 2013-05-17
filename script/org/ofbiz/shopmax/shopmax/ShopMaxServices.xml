@@ -946,7 +946,7 @@ under the License.
         <script>groovy:
             import org.ofbiz.entity.DelegatorFactory;
             def tenantDelegator = DelegatorFactory.getDelegator(delegator.getDelegatorBaseName() + "#" + tenantId);
-            def tenantDomainNames = tenantDelegator.findByAnd("TenantDomainName", ["tenantId": tenantId], null, false);
+            def tenantDomainNames = tenantDelegator.findByAnd("TenantDomainName", ["tenantId" : tenantId], null, false);
             tenantDomainNames.each { tenantDomainName ->
                 if ("/shop".equals(tenantDomainName.initialPath)) {
                     frontendDomainName = tenantDomainName.domainName;
@@ -954,7 +954,7 @@ under the License.
                     backendDomainName = tenantDomainName.domainName;
                 }
             }
-            def tenantSellerWebSite = tenantDelegator.findOne("WebSite", ["webSiteId": "SHOPMAX_SELLER"], false);
+            def tenantSellerWebSite = tenantDelegator.findOne("WebSite", ["webSiteId" : "SHOPMAX_SELLER"], false);
             tenantSellerWebSite.httpHost = frontendDomainName;
             tenantSellerWebSite.httpsHost = frontendDomainName;
             tenantSellerWebSite.standardContentPrefix = "http://" + backendDomainName + ":" + tenantSellerWebSite.httpPort;
@@ -1052,9 +1052,13 @@ under the License.
                 tenantPartyGroup = partyGroup;
                 tenantDelegator.create(tenantPartyGroup);
                 
-                def tenantProductStore = tenantDelegator.findOne("ProductStore", ["productStoreId": "ShopMaxSellerStore"], false);
+                def tenantProductStore = tenantDelegator.findOne("ProductStore", ["productStoreId" : "ShopMaxSellerStore"], false);
                 tenantProductStore.payToPartyId = partyGroupPartyId;
                 tenantDelegator.store(tenantProductStore);
+                
+                def tenantFacility = tenantDelegator.findOne("Facility", ["facilityId" : "SellerWarehouse"], false);
+                tenantFacility.ownerPartyId = partyGroupPartyId;
+                tenantDelegator.store(tenantFacility);
             </script>
             
             <!-- Create organization role -->
