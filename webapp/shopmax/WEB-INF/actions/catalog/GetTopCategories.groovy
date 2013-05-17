@@ -28,12 +28,16 @@ import javolution.util.FastList.*;
 import org.ofbiz.entity.*;
 
 tenantId = delegator.getDelegatorTenantId();
+if (tenantId == null) {
+    partyRole = EntityUtil.getFirst(delegator.findByAnd("PartyRole", ["roleTypeId" : "SELLER"], null, false));
+    tenantId = partyRole.partyId;
+}
 
-if (tenantId == "default" || tenantId == "shopmax" || tenantId == null) {
-    CategoryWorker.getRelatedCategories(request, "topLevelList", CatalogWorker.getCatalogTopCategoryId(request, CatalogWorker.getCurrentCatalogId(request)), true, true);
+if (tenantId == "default" || tenantId == "shopmax") {
+    CategoryWorker.getRelatedCategories(request, "topLevelList", CatalogWorker.getCatalogTopCategoryId(request, "SHOPMAX_CATALOG"), true, true);
     categoryList = request.getAttribute("topLevelList");
     context.categoryList = categoryList;
 } else {
-    categoryList = org.ofbiz.shopmax.product.category.CategoryWorker.getRelatedValidCategoriesRet(delegator, "topLevelList", CatalogWorker.getCatalogTopCategoryId(request, CatalogWorker.getCurrentCatalogId(request)), true, true, false);
+    categoryList = org.ofbiz.shopmax.product.category.CategoryWorker.getRelatedValidCategoriesRet(delegator, "topLevelList", CatalogWorker.getCatalogTopCategoryId(request, "SHOPMAX_CATALOG"), true, true, false);
     context.categoryList = categoryList;
 }

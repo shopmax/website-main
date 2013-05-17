@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.Random;
 import org.ofbiz.base.util.cache.UtilCache;
 
-CategoryWorker.getRelatedCategories(request, "topLevelList", CatalogWorker.getCatalogTopCategoryId(request, CatalogWorker.getCurrentCatalogId(request)), true);
+CategoryWorker.getRelatedCategories(request, "topLevelList", CatalogWorker.getCatalogTopCategoryId(request, "SHOPMAX_CATALOG"), true);
 categoryList = request.getAttribute("topLevelList");
 
 if (categoryList) {
