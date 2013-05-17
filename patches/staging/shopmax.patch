@@ -1,6 +1,19 @@
+Index: hot-deploy/shopmax/ofbiz-component.xml
+===================================================================
+--- hot-deploy/shopmax/ofbiz-component.xml	(revision 178)
++++ hot-deploy/shopmax/ofbiz-component.xml	(working copy)
+@@ -44,7 +44,7 @@
+     <entity-resource type="data" reader-name="ext-demo" loader="main" location="data/ShopMaxExtDemoData.xml"/>
+     <entity-resource type="data" reader-name="demo" loader="main" location="data/ShopMaxSecurityGroupDemoData.xml"/>
+     <entity-resource type="data" reader-name="demo" loader="main" location="data/ShopMaxDemoData.xml"/>
+-    <!-- <entity-resource type="data" reader-name="tenant" loader="main" location="data/TenantData.xml"/> -->
++    <entity-resource type="data" reader-name="tenant" loader="main" location="data/TenantData.xml"/>
+ 
+     <!-- service resources: model(s), eca(s) and group definitions -->
+     <service-resource type="model" loader="main" location="servicedef/services.xml"/>
 Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
 ===================================================================
---- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 178)
+--- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 180)
 +++ hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(working copy)
 @@ -23,7 +23,7 @@
  
@@ -60,7 +73,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
                  <set field="parameters.domainName" value="${parameters.ownDomainName}"/>
                  <set field="parameters.domainNameBackend" value="backend.${parameters.ownDomainName}"/>
              <else>
--                <set field="parameters.domainName" value="${parameters.freeDomainName}.localhost"/>
+-                <set field="parameters.domainName" value="${parameters.freeDomainName}.shopmax.localhost"/>
 -                <set field="parameters.domainNameBackend" value="backend.${parameters.freeDomainName}.shopmax.localhost"/>
 +                <set field="parameters.domainName" value="${parameters.freeDomainName}.ofbizdemo.com"/>
 +                <set field="parameters.domainNameBackend" value="backend.${parameters.freeDomainName}.ofbizdemo.com"/>
@@ -76,16 +89,3 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
          <set field="runTenantServiceInMap.serviceName" value="uploadProductToShopmax"/>
          <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
          <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-Index: hot-deploy/shopmax/ofbiz-component.xml
-===================================================================
---- hot-deploy/shopmax/ofbiz-component.xml	(revision 178)
-+++ hot-deploy/shopmax/ofbiz-component.xml	(working copy)
-@@ -44,7 +44,7 @@
-     <entity-resource type="data" reader-name="ext-demo" loader="main" location="data/ShopMaxExtDemoData.xml"/>
-     <entity-resource type="data" reader-name="demo" loader="main" location="data/ShopMaxSecurityGroupDemoData.xml"/>
-     <entity-resource type="data" reader-name="demo" loader="main" location="data/ShopMaxDemoData.xml"/>
--    <!-- <entity-resource type="data" reader-name="tenant" loader="main" location="data/TenantData.xml"/> -->
-+    <entity-resource type="data" reader-name="tenant" loader="main" location="data/TenantData.xml"/>
- 
-     <!-- service resources: model(s), eca(s) and group definitions -->
-     <service-resource type="model" loader="main" location="servicedef/services.xml"/>
