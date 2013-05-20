@@ -47,25 +47,11 @@ under the License.
             <h5 class="review-number">(${productReviews.size()} reviews)</h5>
             <br /><br />
             <#if price.promoPrice?exists>
-                <h5 class="old"><@ofbizCurrency amount=price.defaultPrice isoCode=price.currencyUsed /></h5>
-                <h1><@ofbizCurrency amount=price.promoPrice isoCode=price.currencyUsed /></h1>
+                <h5 class="old"><@ofbizCurrency amount=price.defaultPrice/> NZD</h5>
+                <h1><@ofbizCurrency amount=price.promoPrice/> NZD</h1>
             <#else>
-                <h1><@ofbizCurrency amount=price.defaultPrice isoCode=price.currencyUsed /></h1>
+                <h1><@ofbizCurrency amount=price.defaultPrice/> NZD</h1>
             </#if>
-            <#--
-            <#if price.competitivePrice?exists && price.price?exists && price.price &lt; price.competitivePrice>
-                <div>${uiLabelMap.ProductCompareAtPrice}: <span class="basePrice"><@ofbizCurrency amount=price.competitivePrice isoCode=price.currencyUsed /></span></div>
-            </#if>
-            <#if price.listPrice?exists && price.price?exists && price.price &lt; price.listPrice>
-                <div>${uiLabelMap.ProductListPrice}: <span class="basePrice"><@ofbizCurrency amount=price.listPrice isoCode=price.currencyUsed /></span></div>
-            </#if>
-            <#if price.listPrice?exists && price.defaultPrice?exists && price.price?exists && price.price &lt; price.defaultPrice && price.defaultPrice &lt; price.listPrice>
-                <div>${uiLabelMap.ProductRegularPrice}: <span class="basePrice"><@ofbizCurrency amount=price.defaultPrice isoCode=price.currencyUsed /></span></div>
-            </#if>
-            <#if price.specialPromoPrice?exists>
-                <div>${uiLabelMap.ProductSpecialPromoPrice}: <span class="basePrice"><@ofbizCurrency amount=price.specialPromoPrice isoCode=price.currencyUsed /></span></div>
-            </#if>
-            -->
             
             <#if "Y" = product.isVirtual?if_exists>
                 <div class="row selectSize" >
@@ -87,10 +73,10 @@ under the License.
                     Colour: <strong>326-540 - Ox Red/Royal Blue</strong>
                     <ul>
                         <li>
-                            <a href=#><img src="<@ofbizContentUrl>/shopmax-default/img/color-black.png</@ofbizContentUrl>" /></a>
+                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-black.png</@ofbizContentUrl>" /></a>
                         </li>
                         <li>
-                            <a href=#><img src="<@ofbizContentUrl>/shopmax-default/img/color-grey.png</@ofbizContentUrl>" /></a>
+                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-grey.png</@ofbizContentUrl>" /></a>
                         </li>
                         <li>
                             <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-white.png</@ofbizContentUrl>" /></a>
@@ -99,7 +85,7 @@ under the License.
                             <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-green.png</@ofbizContentUrl>" /></a>
                         </li>
                         <li>
-                            <a href=#><img src="<@ofbizContentUrl>/shopmax-default/img/color-blue.png</@ofbizContentUrl>" /></a>
+                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-blue.png</@ofbizContentUrl>" /></a>
                         </li>
                         <li>
                             <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-purple.png</@ofbizContentUrl>" /></a>
@@ -113,7 +99,6 @@ under the License.
             
             Quantity: <strong>${availableInventory?default(0)} in stock</strong> <br /> <br />
             
-    
             <div id="addItemForm">
                 <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" name="addform"  style="margin: 0;">
                     <fieldset>

@@ -151,6 +151,7 @@ under the License.
                 <set field="titleProperty" value="PageTitleManageProduct"/>
                 <set field="headerItem" value="manageproduct"/>
                 <set field="breadcrumbTitle" value="Manage Product"/>
+                <set field="productCategoryId" from-field="parameters.productCategoryId"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopCategories.groovy"/>
                 <script location="component:///shopmax/webapp/shopmax/WEB-INF/actions/catalog/ManageProduct.groovy"/>
             </actions>

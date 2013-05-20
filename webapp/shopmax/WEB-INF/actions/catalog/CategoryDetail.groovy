@@ -17,11 +17,6 @@
  * under the License.
  */
 
-/*
- * NOTE: This script is also referenced by the webpos and ecommerce's screens and
- * should not contain order component's specific code.
- */
-
 import org.ofbiz.base.util.*;
 import org.ofbiz.entity.*;
 import org.ofbiz.entity.condition.*;

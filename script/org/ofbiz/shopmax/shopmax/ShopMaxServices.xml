@@ -690,7 +690,7 @@ under the License.
             <set field="receiveCtx.facilityId" value="SellerWarehouse"/>
             <set field="receiveCtx.quantityAccepted" from-field="parameters.stock"/>
             <set field="receiveCtx.quantityRejected" value="0" type="BigDecimal"/>
-            <set field="receiveCtx.inventoryItemTypeId" value="SERIALIZED_INV_ITEM"/>
+            <set field="receiveCtx.inventoryItemTypeId" value="NON_SERIAL_INV_ITEM"/>
             <call-service service-name="receiveInventoryProduct" in-map-name="receiveCtx"/>
         </if-not-empty>
         
@@ -1349,16 +1349,39 @@ under the License.
                 <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
             <else>
                 <first-from-list entry="productPromoPrice" list="productPromoPriceList"/>
-                <set field="updateProductPriceMap.userLogin" from-field="systemUserLogin"/>
-                <set field="updateProductPriceMap.productId" from-field="productPromoPrice.productId"/>
-                <set field="updateProductPriceMap.productPriceTypeId" from-field="productPromoPrice.productPriceTypeId"/>
-                <set field="updateProductPriceMap.productPricePurposeId" from-field="productPromoPrice.productPricePurposeId"/>
-                <set field="updateProductPriceMap.currencyUomId" from-field="productPromoPrice.currencyUomId"/>
-                <set field="updateProductPriceMap.productStoreGroupId" from-field="productPromoPrice.productStoreGroupId"/>
-                <set field="updateProductPriceMap.price" from-field="parameters.promoPrice" type="BigDecimal"/>
-                <set field="updateProductPriceMap.fromDate" from-field="parameters.promoPriceFromDate" type="Timestamp"/>
-                <set field="updateProductPriceMap.thruDate" from-field="parameters.promoPriceThruDate" type="Timestamp"/>
-                <call-service service-name="updateProductPrice" in-map-name="updateProductPriceMap"/>
+                <if-compare-field to-field="productPromoPrice.fromDate" operator="equals" field="parameters.promoPriceFromDate" type="Timestamp">
+                    <set field="updateProductPriceMap.userLogin" from-field="systemUserLogin"/>
+                    <set field="updateProductPriceMap.productId" from-field="productPromoPrice.productId"/>
+                    <set field="updateProductPriceMap.productPriceTypeId" from-field="productPromoPrice.productPriceTypeId"/>
+                    <set field="updateProductPriceMap.productPricePurposeId" from-field="productPromoPrice.productPricePurposeId"/>
+                    <set field="updateProductPriceMap.currencyUomId" from-field="productPromoPrice.currencyUomId"/>
+                    <set field="updateProductPriceMap.productStoreGroupId" from-field="productPromoPrice.productStoreGroupId"/>
+                    <set field="updateProductPriceMap.price" from-field="parameters.promoPrice" type="BigDecimal"/>
+                    <set field="updateProductPriceMap.fromDate" from-field="productPromoPrice.fromDate" type="Timestamp"/>
+                    <set field="updateProductPriceMap.thruDate" from-field="parameters.promoPriceThruDate" type="Timestamp"/>
+                    <call-service service-name="updateProductPrice" in-map-name="updateProductPriceMap"/>
+                <else>
+                    <set field="deleteProductPriceMap.userLogin" from-field="systemUserLogin"/>
+                    <set field="deleteProductPriceMap.productId" from-field="productPromoPrice.productId"/>
+                    <set field="deleteProductPriceMap.productPriceTypeId" from-field="productPromoPrice.productPriceTypeId"/>
+                    <set field="deleteProductPriceMap.productPricePurposeId" from-field="productPromoPrice.productPricePurposeId"/>
+                    <set field="deleteProductPriceMap.currencyUomId" from-field="productPromoPrice.currencyUomId"/>
+                    <set field="deleteProductPriceMap.productStoreGroupId" from-field="productPromoPrice.productStoreGroupId"/>
+                    <set field="deleteProductPriceMap.fromDate" from-field="productPromoPrice.fromDate" type="Timestamp"/>
+                    <call-service service-name="deleteProductPrice" in-map-name="deleteProductPriceMap"/>
+                    
+                    <set field="createProductPriceMap.userLogin" from-field="systemUserLogin"/>
+                    <set field="createProductPriceMap.productId" from-field="parameters.productId"/>
+                    <set field="createProductPriceMap.productPriceTypeId" value="PROMO_PRICE"/>
+                    <set field="createProductPriceMap.productPricePurposeId" value="PURCHASE"/>
+                    <set field="createProductPriceMap.currencyUomId" value="NZD"/>
+                    <set field="createProductPriceMap.productStoreGroupId" value="_NA_"/>
+                    <set field="createProductPriceMap.price" from-field="parameters.promoPrice" type="BigDecimal"/>
+                    <set field="createProductPriceMap.fromDate" from-field="parameters.promoPriceFromDate" type="Timestamp"/>
+                    <set field="createProductPriceMap.thruDate" from-field="parameters.promoPriceThruDate" type="Timestamp"/>
+                    <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
+                </else>
+                </if-compare-field>
             </else>
             </if-empty>
         </if-not-empty>
@@ -1498,16 +1521,39 @@ under the License.
                 <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
             <else>
                 <first-from-list entry="productPromoPrice" list="productPromoPriceList"/>
-                <set field="updateProductPriceMap.userLogin" from-field="systemUserLogin"/>
-                <set field="updateProductPriceMap.productId" from-field="productPromoPrice.productId"/>
-                <set field="updateProductPriceMap.productPriceTypeId" from-field="productPromoPrice.productPriceTypeId"/>
-                <set field="updateProductPriceMap.productPricePurposeId" from-field="productPromoPrice.productPricePurposeId"/>
-                <set field="updateProductPriceMap.currencyUomId" from-field="productPromoPrice.currencyUomId"/>
-                <set field="updateProductPriceMap.productStoreGroupId" from-field="productPromoPrice.productStoreGroupId"/>
-                <set field="updateProductPriceMap.price" from-field="parameters.promoPrice" type="BigDecimal"/>
-                <set field="updateProductPriceMap.fromDate" from-field="parameters.promoPriceFromDate" type="Timestamp"/>
-                <set field="updateProductPriceMap.thruDate" from-field="parameters.promoPriceThruDate" type="Timestamp"/>
-                <call-service service-name="updateProductPrice" in-map-name="updateProductPriceMap"/>
+                <if-compare-field to-field="productPromoPrice.fromDate" operator="equals" field="parameters.promoPriceFromDate" type="Timestamp">
+                    <set field="updateProductPriceMap.userLogin" from-field="systemUserLogin"/>
+                    <set field="updateProductPriceMap.productId" from-field="productPromoPrice.productId"/>
+                    <set field="updateProductPriceMap.productPriceTypeId" from-field="productPromoPrice.productPriceTypeId"/>
+                    <set field="updateProductPriceMap.productPricePurposeId" from-field="productPromoPrice.productPricePurposeId"/>
+                    <set field="updateProductPriceMap.currencyUomId" from-field="productPromoPrice.currencyUomId"/>
+                    <set field="updateProductPriceMap.productStoreGroupId" from-field="productPromoPrice.productStoreGroupId"/>
+                    <set field="updateProductPriceMap.price" from-field="parameters.promoPrice" type="BigDecimal"/>
+                    <set field="updateProductPriceMap.fromDate" from-field="productPromoPrice.fromDate" type="Timestamp"/>
+                    <set field="updateProductPriceMap.thruDate" from-field="parameters.promoPriceThruDate" type="Timestamp"/>
+                    <call-service service-name="updateProductPrice" in-map-name="updateProductPriceMap"/>
+                <else>
+                    <set field="deleteProductPriceMap.userLogin" from-field="systemUserLogin"/>
+                    <set field="deleteProductPriceMap.productId" from-field="productPromoPrice.productId"/>
+                    <set field="deleteProductPriceMap.productPriceTypeId" from-field="productPromoPrice.productPriceTypeId"/>
+                    <set field="deleteProductPriceMap.productPricePurposeId" from-field="productPromoPrice.productPricePurposeId"/>
+                    <set field="deleteProductPriceMap.currencyUomId" from-field="productPromoPrice.currencyUomId"/>
+                    <set field="deleteProductPriceMap.productStoreGroupId" from-field="productPromoPrice.productStoreGroupId"/>
+                    <set field="deleteProductPriceMap.fromDate" from-field="productPromoPrice.fromDate" type="Timestamp"/>
+                    <call-service service-name="deleteProductPrice" in-map-name="deleteProductPriceMap"/>
+                    
+                    <set field="createProductPriceMap.userLogin" from-field="systemUserLogin"/>
+                    <set field="createProductPriceMap.productId" from-field="parameters.productId"/>
+                    <set field="createProductPriceMap.productPriceTypeId" value="PROMO_PRICE"/>
+                    <set field="createProductPriceMap.productPricePurposeId" value="PURCHASE"/>
+                    <set field="createProductPriceMap.currencyUomId" value="NZD"/>
+                    <set field="createProductPriceMap.productStoreGroupId" value="_NA_"/>
+                    <set field="createProductPriceMap.price" from-field="parameters.promoPrice" type="BigDecimal"/>
+                    <set field="createProductPriceMap.fromDate" from-field="parameters.promoPriceFromDate" type="Timestamp"/>
+                    <set field="createProductPriceMap.thruDate" from-field="parameters.promoPriceThruDate" type="Timestamp"/>
+                    <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
+                </else>
+                </if-compare-field>
             </else>
             </if-empty>
         </if-not-empty>

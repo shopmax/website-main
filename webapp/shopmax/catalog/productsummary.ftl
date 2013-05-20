@@ -28,9 +28,9 @@ under the License.
             </#if>
             <div class="mdic">${product.productName?if_exists}</div>
             <#if price.promoPrice?exists>
-                <div class="price"><span><@ofbizCurrency amount=price.price isoCode=price.currencyUsed /></span><@ofbizCurrency amount=price.promoPrice isoCode=price.currencyUsed /></div>
+                <div class="price"><span><@ofbizCurrency amount=price.price/> NZD</span><@ofbizCurrency amount=price.promoPrice/> NZD</div>
             <#else>
-                <div class="price"><@ofbizCurrency amount=price.price isoCode=price.currencyUsed /></div>
+                <div class="price"><@ofbizCurrency amount=price.price/> NZD</div>
             </#if>
             <div class="stars">
                 <div class="raty" data-rating="${averageRating?if_exists}"></div>
@@ -43,7 +43,6 @@ under the License.
                         <input type="hidden" name="add_product_id" value="${product.productId}" />
                         <input type="hidden" name="quantity" value="1" />
                         <button class="btn-general" type="submit">ADD TO CART</button>
-                        <a href="#" class="addtolist">Add to shopping List</a>
                     </fieldset>
                 </form>
             </div>
@@ -51,14 +50,18 @@ under the License.
         </div>
     <#elseif headerItem?if_exists == "categorylistview" || headerItem?if_exists == "shopcategorylistview">
         <div class="block_1">
-            <#-- <div class="image"><img src="<@ofbizContentUrl>/shopmax-default/img/img_1.png</@ofbizContentUrl>" alt=""></div> -->
-            <div class="image"><img src="<@ofbizContentUrl>/shopmax-default/img/img_1.png</@ofbizContentUrl>" alt=""></div>
+            <#if productImage?exists>
+                <#-- <div class="image"><@ofbizContentUrl>${contentPathPrefix?if_exists}${productImage?if_exists}</@ofbizContentUrl>" alt=""></div> -->
+                <div class="image"><img src="<@ofbizContentUrl>/shopmax-default/img/img_1.png</@ofbizContentUrl>" alt=""></div>
+            <#else>
+                <div class="image"><img src="<@ofbizContentUrl>/shopmax-default/img/img_1.png</@ofbizContentUrl>" alt=""></div>
+            </#if>
             <div class="mdic">${product.productName?if_exists}</div>
             <div class="pricestar">
                 <#if price.promoPrice?exists>
-                    <div class="price"><span>$${price.price?if_exists} NZD</span>$${price.promoPrice?if_exists} NZD</div>
+                    <div class="price"><span><@ofbizCurrency amount=price.price/> NZD</span><@ofbizCurrency amount=price.promoPrice/> NZD</div>
                 <#else>
-                    <div class="price">$${price.price?if_exists} NZD</div>
+                    <div class="price"><@ofbizCurrency amount=price.price/> NZD</div>
                 </#if>
                 <div class="stars">
                     <div class="raty" data-rating="${averageRating?if_exists}"></div>
