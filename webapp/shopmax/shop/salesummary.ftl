@@ -18,8 +18,8 @@ under the License.
 -->
 
 <div class="container content">
-    <!-- include breadcrum -->
-    <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
+    <!-- include breadcrumb -->
+    ${screens.render("component://shopmax/widget/ShopMaxScreens.xml#Breadcrumbs")}
     <div id="summary" class="clearfix">
         <div class="title_grn clearfix"><h6>sale summary graphic</h6></div>
         <div class="title clearfix">

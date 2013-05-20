@@ -17,6 +17,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
 <simple-methods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/simple-methods-v2.xsd">
     <simple-method method-name="checkLogin" short-description="Check user login" login-required="false">
         <session-to-field field="userLogin"/>
@@ -35,7 +36,7 @@ under the License.
         <script>groovy:
             context.currentPassword = org.apache.commons.lang.RandomStringUtils.randomAlphanumeric(8);
         </script>
-    
+        
         <!-- Create customer -->
         <set field="createShopmaxCustomerInMap.USER_FIRST_NAME" from-field="parameters.USER_FIRST_NAME"/>
         <set field="createShopmaxCustomerInMap.USER_LAST_NAME" from-field="parameters.USER_LAST_NAME"/>

@@ -22,10 +22,7 @@ under the License.
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/test-suite.xsd" delegator-name="default#default">
     
-    <test-case case-name="create-product">
-        <simple-method-test location="component://shopmax/script/org/ofbiz/shopmax/test/ShopMaxTests.xml" name="createProduct"/>
-    </test-case>
-    <test-case case-name="copy-product-information">
-        <simple-method-test location="component://shopmax/script/ShopMaxTests.xmll" name="copyProductInformation"/>
+    <test-case case-name="upload-product">
+        <simple-method-test location="component://shopmax/script/org/ofbiz/shopmax/test/ShopMaxTests.xml" name="uploadProductSeller"/>
     </test-case>
 </test-suite>

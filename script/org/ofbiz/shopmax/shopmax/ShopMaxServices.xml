@@ -421,14 +421,14 @@ under the License.
             <!-- Create organization role -->
             <set field="createOrganizationRoleCtx.userLogin" from-field="systemUserLogin"/>
             <set field="createOrganizationRoleCtx.partyId" from-field="partyGroupPartyId"/>
-            <set field="createOrganizationRoleCtx.roleTypeId" value="ORGANIZATION_ROLE"/>
+            <set field="createOrganizationRoleCtx.roleTypeId" value="INTERNAL_ORGANIZATIO"/>
             <call-service service-name="createPartyRole" in-map-name="createOrganizationRoleCtx"/>
             
             <!-- Create party relationship company and person -->
             <set field="partyRelationshipCtx.userLogin" from-field="systemUserLogin"/>
             <set field="partyRelationshipCtx.partyIdFrom" from-field="partyGroupPartyId"/>
             <set field="partyRelationshipCtx.partyIdTo" from-field="tempMap.partyId"/>
-            <set field="partyRelationshipCtx.roleTypeIdFrom" value="ORGANIZATION_ROLE"/>
+            <set field="partyRelationshipCtx.roleTypeIdFrom" value="INTERNAL_ORGANIZATIO"/>
             <set field="partyRelationshipCtx.roleTypeIdTo" value="EMPLOYEE"/>
             <set field="partyRelationshipCtx.partyRelationshipTypeId" value="EMPLOYMENT"/>
             <call-service service-name="createPartyRelationship" in-map-name="partyRelationshipCtx"/>
@@ -656,20 +656,22 @@ under the License.
         <!-- Create product price -->
         <set field="createProductPriceMap.userLogin" from-field="systemUserLogin"/>
         <set field="createProductPriceMap.productId" from-field="parameters.productId"/>
-        <set field="createProductPriceMap.currencyUomId" value="NZD"/>
-        <set field="createProductPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
-        <set field="createProductPriceMap.productStoreGroupId" value="_NA_"/>
-        <set field="createProductPriceMap.productPricePurposeId" value="PURCHASE"/>
         <set field="createProductPriceMap.productPriceTypeId" value="DEFAULT_PRICE"/>
+        <set field="createProductPriceMap.productPricePurposeId" value="PURCHASE"/>
+        <set field="createProductPriceMap.currencyUomId" value="NZD"/>
+        <set field="createProductPriceMap.productStoreGroupId" value="_NA_"/>
+        <set field="createProductPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
         <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
         
-        <set field="createProductPriceMap.productPriceTypeId" value="LIST_PRICE"/>
-        <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
-        
+        <log message="====================parameters.promoPrice1==================== : ${parameters.promoPrice}" level="info"/>
         <if-not-empty field="parameters.promoPrice">
             <set field="createProductPriceMap.userLogin" from-field="systemUserLogin"/>
-            <set field="createProductPriceMap.price" from-field="parameters.promoPrice" type="BigDecimal"/>
+            <set field="createProductPriceMap.productId" from-field="parameters.productId"/>
             <set field="createProductPriceMap.productPriceTypeId" value="PROMO_PRICE"/>
+            <set field="createProductPriceMap.productPricePurposeId" value="PURCHASE"/>
+            <set field="createProductPriceMap.currencyUomId" value="NZD"/>
+            <set field="createProductPriceMap.productStoreGroupId" value="_NA_"/>
+            <set field="createProductPriceMap.price" from-field="parameters.promoPrice" type="BigDecimal"/>
             <set field="createProductPriceMap.fromDate" from-field="parameters.promoPriceFromDate" type="Timestamp"/>
             <set field="createProductPriceMap.thruDate" from-field="parameters.promoPriceThruDate" type="Timestamp"/>
             <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
@@ -689,7 +691,7 @@ under the License.
         <set field="receiveCtx.inventoryItemTypeId" value="SERIALIZED_INV_ITEM"/>
         <call-service service-name="receiveInventoryProduct" in-map-name="receiveCtx"/>
         
-        <!-- Create product to product category -->
+        <!-- Create product to category -->
         <set field="categoryLists" from-field="parameters.listCategory"/>
         <set field="categoryList" value="${groovy: categoryList = categoryLists.split(&quot;,&quot;); return categoryList.toList();}" type="List"/>
         <iterate entry="productCategoryId" list="categoryList" >
@@ -698,6 +700,9 @@ under the License.
             <set field="createProductToCategoryMap.productId" from-field="parameters.productId"/>
             <set field="createProductToCategoryMap.fromDate" from-field="nowTimestamp"/>
             <call-service service-name="safeAddProductToCategory" in-map-name="createProductToCategoryMap"/>
+            
+            <set field="setCategoryHasProductMap.productCategoryId" from-field="productCategoryId"/>
+            <call-service service-name="setCategoryHasProduct" in-map-name="setCategoryHasProductMap"/>
         </iterate>
         
         <set field="parameters.partyId" from-field="userLogin.partyId"/>
@@ -772,20 +777,22 @@ under the License.
         <!-- Create product price -->
         <set field="createProductPriceMap.userLogin" from-field="systemUserLogin"/>
         <set field="createProductPriceMap.productId" from-field="parameters.productId"/>
-        <set field="createProductPriceMap.currencyUomId" value="NZD"/>
-        <set field="createProductPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
-        <set field="createProductPriceMap.productStoreGroupId" value="_NA_"/>
-        <set field="createProductPriceMap.productPricePurposeId" value="PURCHASE"/>
         <set field="createProductPriceMap.productPriceTypeId" value="DEFAULT_PRICE"/>
+        <set field="createProductPriceMap.productPricePurposeId" value="PURCHASE"/>
+        <set field="createProductPriceMap.currencyUomId" value="NZD"/>
+        <set field="createProductPriceMap.productStoreGroupId" value="_NA_"/>
+        <set field="createProductPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
         <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
         
-        <set field="createProductPriceMap.productPriceTypeId" value="LIST_PRICE"/>
-        <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
-        
+        <log message="====================parameters.promoPrice2==================== : ${parameters.promoPrice}" level="info"/>
         <if-not-empty field="parameters.promoPrice">
             <set field="createProductPriceMap.userLogin" from-field="systemUserLogin"/>
-            <set field="createProductPriceMap.price" from-field="parameters.promoPrice" type="BigDecimal"/>
+            <set field="createProductPriceMap.productId" from-field="parameters.productId"/>
             <set field="createProductPriceMap.productPriceTypeId" value="PROMO_PRICE"/>
+            <set field="createProductPriceMap.productPricePurposeId" value="PURCHASE"/>
+            <set field="createProductPriceMap.currencyUomId" value="NZD"/>
+            <set field="createProductPriceMap.productStoreGroupId" value="_NA_"/>
+            <set field="createProductPriceMap.price" from-field="parameters.promoPrice" type="BigDecimal"/>
             <set field="createProductPriceMap.fromDate" from-field="parameters.promoPriceFromDate" type="Timestamp"/>
             <set field="createProductPriceMap.thruDate" from-field="parameters.promoPriceThruDate" type="Timestamp"/>
             <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
@@ -799,9 +806,9 @@ under the License.
         
         <entity-and list="partyRelationships" entity-name="PartyRelationship" filter-by-date="true">
             <field-map field-name="partyIdTo" from-field="parameters.partyId"/>
-            <field-map field-name="roleTypeIdFrom" value="ORGANIZATION_ROLE"/>
-            <field-map field-name="partyRelationshipTypeId" value="EMPLOYMENT"/>
+            <field-map field-name="roleTypeIdFrom" value="INTERNAL_ORGANIZATIO"/>
             <field-map field-name="roleTypeIdTo" value="EMPLOYEE"/>
+            <field-map field-name="partyRelationshipTypeId" value="EMPLOYMENT"/>
         </entity-and>
         <if-not-empty field="partyRelationships">
             <first-from-list entry="partyRelationship" list="partyRelationships"/>
@@ -824,7 +831,7 @@ under the License.
             <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
         </if-not-empty>
         
-        <!-- Create product to product category -->
+        <!-- Create product to category -->
         <set field="categoryLists" from-field="parameters.listCategory"/>
         <set field="categoryList" value="${groovy: categoryList = categoryLists.split(&quot;,&quot;); return categoryList.toList();}" type="List"/>
         <iterate entry="productCategoryId" list="categoryList" >
@@ -833,6 +840,9 @@ under the License.
             <set field="createProductToCategoryMap.productId" from-field="parameters.productId"/>
             <set field="createProductToCategoryMap.fromDate" from-field="nowTimestamp"/>
             <call-service service-name="safeAddProductToCategory" in-map-name="createProductToCategoryMap"/>
+            
+            <set field="setCategoryHasProductMap.productCategoryId" from-field="productCategoryId"/>
+            <call-service service-name="setCategoryHasProduct" in-map-name="setCategoryHasProductMap"/>
         </iterate>
     </simple-method>
     
@@ -1002,9 +1012,9 @@ under the License.
         
         <entity-and list="partyRelationships" entity-name="PartyRelationship" filter-by-date="true">
             <field-map field-name="partyIdTo" from-field="parameters.partyId"/>
-            <field-map field-name="roleTypeIdFrom" value="ORGANIZATION_ROLE"/>
-            <field-map field-name="partyRelationshipTypeId" value="EMPLOYMENT"/>
+            <field-map field-name="roleTypeIdFrom" value="INTERNAL_ORGANIZATIO"/>
             <field-map field-name="roleTypeIdTo" value="EMPLOYEE"/>
+            <field-map field-name="partyRelationshipTypeId" value="EMPLOYMENT"/>
         </entity-and>
         <if-not-empty field="partyRelationships">
             <first-from-list entry="partyRelationship" list="partyRelationships"/>
@@ -1064,7 +1074,7 @@ under the License.
             <!-- Create organization role -->
             <set field="createOrganizationRoleCtx.userLogin" from-field="systemUserLogin"/>
             <set field="createOrganizationRoleCtx.partyId" from-field="partyGroupPartyId"/>
-            <set field="createOrganizationRoleCtx.roleTypeId" value="ORGANIZATION_ROLE"/>
+            <set field="createOrganizationRoleCtx.roleTypeId" value="INTERNAL_ORGANIZATIO"/>
             <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
             <set field="runTenantServiceInMap.serviceName" value="createPartyRole"/>
             <set field="runTenantServiceInMap.serviceParameters" from-field="createOrganizationRoleCtx"/>
@@ -1074,7 +1084,7 @@ under the License.
             <set field="partyRelationshipCtx.userLogin" from-field="systemUserLogin"/>
             <set field="partyRelationshipCtx.partyIdFrom" from-field="partyGroupPartyId"/>
             <set field="partyRelationshipCtx.partyIdTo" from-field="parameters.partyId"/>
-            <set field="partyRelationshipCtx.roleTypeIdFrom" value="ORGANIZATION_ROLE"/>
+            <set field="partyRelationshipCtx.roleTypeIdFrom" value="INTERNAL_ORGANIZATIO"/>
             <set field="partyRelationshipCtx.roleTypeIdTo" value="EMPLOYEE"/>
             <set field="partyRelationshipCtx.partyRelationshipTypeId" value="EMPLOYMENT"/>
             <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
@@ -1207,5 +1217,312 @@ under the License.
                 <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
             </if-not-empty>
         </if-not-empty>
+    </simple-method>
+    
+    <simple-method method-name="setCategoryHasProduct" short-description="Set Category Has Product">
+        <entity-one value-field="productCategory" entity-name="ProductCategory">
+            <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
+        </entity-one>
+        <set field="productCategory.showInSelect" value="Y"/>
+        <store-value value-field="productCategory"/>
+        <entity-and list="productCategoryRollups" entity-name="ProductCategoryRollup">
+            <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
+        </entity-and>
+        <iterate entry="productCategoryRollup" list="productCategoryRollups">
+            <set field="setCategoryHasProductMap.productCategoryId" from-field="productCategoryRollup.parentProductCategoryId"/>
+            <call-service service-name="setCategoryHasProduct" in-map-name="setCategoryHasProductMap"/>
+        </iterate>
+    </simple-method>
+    
+    <simple-method method-name="editProductToSeller" short-description="Edit Product To Seller">
+        <entity-one value-field="systemUserLogin" entity-name="UserLogin">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        <now-timestamp field="nowTimestamp"/>
+        
+        <set field="updateProductMap.userLogin" from-field="systemUserLogin"/>
+        <set field="updateProductMap.productId" from-field="parameters.productId"/>
+        <set field="updateProductMap.internalName" from-field="parameters.productName"/>
+        <set field="updateProductMap.productName" from-field="parameters.productName"/>
+        <set field="updateProductMap.description" from-field="parameters.description"/>
+        <call-service service-name="updateProduct" in-map-name="updateProductMap"/>
+        
+        <if-not-empty field="parameters._uploadedFile_fileName">
+            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
+            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
+            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile"/>
+            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile_contentType"/>
+            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
+            <clear-field field="addAdditionalViewForProductMap"/>
+        </if-not-empty>
+        <if-not-empty field="parameters._uploadedFile1_fileName">
+            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
+            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
+            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile1"/>
+            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile1_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile1_contentType"/>
+            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
+            <clear-field field="addAdditionalViewForProductMap"/>
+        </if-not-empty>
+        <if-not-empty field="parameters._uploadedFile2_fileName">
+            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
+            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
+            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile2"/>
+            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile2_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile2_contentType"/>
+            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
+            <clear-field field="addAdditionalViewForProductMap"/>
+        </if-not-empty>
+        <if-not-empty field="parameters._uploadedFile3_fileName">
+            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
+            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
+            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile3"/>
+            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile3_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile3_contentType"/>
+            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
+            <clear-field field="addAdditionalViewForProductMap"/>
+        </if-not-empty>
+        
+        <entity-and list="productDefaultPriceList" entity-name="ProductPrice">
+            <field-map field-name="productId" from-field="parameters.productId"/>
+            <field-map field-name="productPriceTypeId" value="DEFAULT_PRICE"/>
+            <field-map field-name="productPricePurposeId" from-field="PURCHASE"/>
+            <field-map field-name="currencyUomId" value="NZD"/>
+            <field-map field-name="productStoreGroupId" value="_NA_"/>
+        </entity-and>
+        <if-empty field="productDefaultPriceList">
+            <set field="createProductPriceMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createProductPriceMap.productId" from-field="parameters.productId"/>
+            <set field="createProductPriceMap.currencyUomId" value="NZD"/>
+            <set field="createProductPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
+            <set field="createProductPriceMap.productStoreGroupId" value="_NA_"/>
+            <set field="createProductPriceMap.productPricePurposeId" value="PURCHASE"/>
+            <set field="createProductPriceMap.productPriceTypeId" value="DEFAULT_PRICE"/>
+            <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
+        <else>
+            <first-from-list entry="productDefaultPrice" list="productDefaultPriceList"/>
+            <set field="updateProductPriceMap.userLogin" from-field="systemUserLogin"/>
+            <set field="updateProductPriceMap.productId" from-field="productDefaultPrice.productId"/>
+            <set field="updateProductPriceMap.productPriceTypeId" from-field="productDefaultPrice.productPriceTypeId"/>
+            <set field="updateProductPriceMap.productPricePurposeId" from-field="productDefaultPrice.productPricePurposeId"/>
+            <set field="updateProductPriceMap.currencyUomId" from-field="productDefaultPrice.currencyUomId"/>
+            <set field="updateProductPriceMap.productStoreGroupId" from-field="productDefaultPrice.productStoreGroupId"/>
+            <set field="updateProductPriceMap.fromDate" from-field="productDefaultPrice.fromDate"/>
+            <set field="updateProductPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
+            <call-service service-name="updateProductPrice" in-map-name="updateProductPriceMap"/>
+        </else>
+        </if-empty>
+        
+        <if-not-empty field="parameters.promoPrice">
+            <entity-and list="productPromoPriceList" entity-name="ProductPrice">
+                <field-map field-name="productId" from-field="parameters.productId"/>
+                <field-map field-name="productPriceTypeId" value="PROMO_PRICE"/>
+                <field-map field-name="productPricePurposeId" from-field="PURCHASE"/>
+                <field-map field-name="currencyUomId" value="NZD"/>
+                <field-map field-name="productStoreGroupId" value="_NA_"/>
+            </entity-and>
+            <if-empty field="productPromoPriceList">
+                <set field="createProductPriceMap.userLogin" from-field="systemUserLogin"/>
+                <set field="createProductPriceMap.productId" from-field="parameters.productId"/>
+                <set field="createProductPriceMap.productPriceTypeId" value="PROMO_PRICE"/>
+                <set field="createProductPriceMap.productPricePurposeId" value="PURCHASE"/>
+                <set field="createProductPriceMap.currencyUomId" value="NZD"/>
+                <set field="createProductPriceMap.productStoreGroupId" value="_NA_"/>
+                <set field="createProductPriceMap.price" from-field="parameters.promoPrice" type="BigDecimal"/>
+                <set field="createProductPriceMap.fromDate" from-field="parameters.promoPriceFromDate" type="Timestamp"/>
+                <set field="createProductPriceMap.thruDate" from-field="parameters.promoPriceThruDate" type="Timestamp"/>
+                <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
+            <else>
+                <first-from-list entry="productPromoPrice" list="productPromoPriceList"/>
+                <set field="updateProductPriceMap.userLogin" from-field="systemUserLogin"/>
+                <set field="updateProductPriceMap.productId" from-field="productPromoPrice.productId"/>
+                <set field="updateProductPriceMap.productPriceTypeId" from-field="productPromoPrice.productPriceTypeId"/>
+                <set field="updateProductPriceMap.productPricePurposeId" from-field="productPromoPrice.productPricePurposeId"/>
+                <set field="updateProductPriceMap.currencyUomId" from-field="productPromoPrice.currencyUomId"/>
+                <set field="updateProductPriceMap.productStoreGroupId" from-field="productPromoPrice.productStoreGroupId"/>
+                <set field="updateProductPriceMap.price" from-field="parameters.promoPrice" type="BigDecimal"/>
+                <set field="updateProductPriceMap.fromDate" from-field="parameters.promoPriceFromDate" type="Timestamp"/>
+                <set field="updateProductPriceMap.thruDate" from-field="parameters.promoPriceThruDate" type="Timestamp"/>
+                <call-service service-name="updateProductPrice" in-map-name="updateProductPriceMap"/>
+            </else>
+            </if-empty>
+        </if-not-empty>
+        
+        <entity-one value-field="productAttribute" entity-name="ProductAttribute">
+            <field-map field-name="productId" from-field="parameters.productId"/>
+            <field-map field-name="attrName" value="SHIPPING_SIZE"/>
+        </entity-one>
+        <if-empty field="productAttribute">
+            <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
+            <set field="createProductAttributeMap.attrName" value="SHIPPING_SIZE"/>
+            <set field="createProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
+            <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
+        <else>
+            <set field="updateProductAttribute.userLogin" from-field="systemUserLogin"/>
+            <set field="updateProductAttribute.productId" from-field="productAttribute.productId"/>
+            <set field="updateProductAttribute.attrName" from-field="productAttribute.attrName"/>
+            <set field="updateProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
+            <call-service service-name="updateProductAttribute" in-map-name="updateProductAttributeMap"/>
+        </else>
+        </if-empty>
+        
+        <set field="parameters.partyId" from-field="userLogin.partyId"/>
+        <set field="runTenantServiceInMap.tenantId" value="default"/>
+        <set field="runTenantServiceInMap.serviceName" value="editProductToShopmax"/>
+        <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
+        <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+    </simple-method>
+    
+    <simple-method method-name="editProductToShomax" short-description="Edit Product To Shopmax">
+        <entity-one value-field="systemUserLogin" entity-name="UserLogin">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        <now-timestamp field="nowTimestamp"/>
+        
+        <set field="updateProductMap.userLogin" from-field="systemUserLogin"/>
+        <set field="updateProductMap.productId" from-field="parameters.productId"/>
+        <set field="updateProductMap.internalName" from-field="parameters.productName"/>
+        <set field="updateProductMap.productName" from-field="parameters.productName"/>
+        <set field="updateProductMap.description" from-field="parameters.description"/>
+        <call-service service-name="updateProduct" in-map-name="updateProductMap"/>
+        
+        <if-not-empty field="parameters._uploadedFile_fileName">
+            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
+            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
+            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile"/>
+            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile_contentType"/>
+            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
+            <clear-field field="addAdditionalViewForProductMap"/>
+        </if-not-empty>
+        <if-not-empty field="parameters._uploadedFile1_fileName">
+            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
+            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
+            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile1"/>
+            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile1_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile1_contentType"/>
+            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
+            <clear-field field="addAdditionalViewForProductMap"/>
+        </if-not-empty>
+        <if-not-empty field="parameters._uploadedFile2_fileName">
+            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
+            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
+            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile2"/>
+            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile2_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile2_contentType"/>
+            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
+            <clear-field field="addAdditionalViewForProductMap"/>
+        </if-not-empty>
+        <if-not-empty field="parameters._uploadedFile3_fileName">
+            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
+            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
+            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile3"/>
+            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile3_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile3_contentType"/>
+            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
+            <clear-field field="addAdditionalViewForProductMap"/>
+        </if-not-empty>
+        
+        <entity-and list="productDefaultPriceList" entity-name="ProductPrice">
+            <field-map field-name="productId" from-field="parameters.productId"/>
+            <field-map field-name="productPriceTypeId" value="DEFAULT_PRICE"/>
+            <field-map field-name="productPricePurposeId" from-field="PURCHASE"/>
+            <field-map field-name="currencyUomId" value="NZD"/>
+            <field-map field-name="productStoreGroupId" value="_NA_"/>
+        </entity-and>
+        <if-empty field="productDefaultPriceList">
+            <set field="createProductPriceMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createProductPriceMap.productId" from-field="parameters.productId"/>
+            <set field="createProductPriceMap.currencyUomId" value="NZD"/>
+            <set field="createProductPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
+            <set field="createProductPriceMap.productStoreGroupId" value="_NA_"/>
+            <set field="createProductPriceMap.productPricePurposeId" value="PURCHASE"/>
+            <set field="createProductPriceMap.productPriceTypeId" value="DEFAULT_PRICE"/>
+            <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
+        <else>
+            <first-from-list entry="productDefaultPrice" list="productDefaultPriceList"/>
+            <set field="updateProductPriceMap.userLogin" from-field="systemUserLogin"/>
+            <set field="updateProductPriceMap.productId" from-field="productDefaultPrice.productId"/>
+            <set field="updateProductPriceMap.productPriceTypeId" from-field="productDefaultPrice.productPriceTypeId"/>
+            <set field="updateProductPriceMap.productPricePurposeId" from-field="productDefaultPrice.productPricePurposeId"/>
+            <set field="updateProductPriceMap.currencyUomId" from-field="productDefaultPrice.currencyUomId"/>
+            <set field="updateProductPriceMap.productStoreGroupId" from-field="productDefaultPrice.productStoreGroupId"/>
+            <set field="updateProductPriceMap.fromDate" from-field="productDefaultPrice.fromDate"/>
+            <set field="updateProductPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
+            <call-service service-name="updateProductPrice" in-map-name="updateProductPriceMap"/>
+        </else>
+        </if-empty>
+        
+        <if-not-empty field="parameters.promoPrice">
+            <entity-and list="productPromoPriceList" entity-name="ProductPrice">
+                <field-map field-name="productId" from-field="parameters.productId"/>
+                <field-map field-name="productPriceTypeId" value="PROMO_PRICE"/>
+                <field-map field-name="productPricePurposeId" from-field="PURCHASE"/>
+                <field-map field-name="currencyUomId" value="NZD"/>
+                <field-map field-name="productStoreGroupId" value="_NA_"/>
+            </entity-and>
+            <if-empty field="productPromoPriceList">
+                <set field="createProductPriceMap.userLogin" from-field="systemUserLogin"/>
+                <set field="createProductPriceMap.productId" from-field="parameters.productId"/>
+                <set field="createProductPriceMap.productPriceTypeId" value="PROMO_PRICE"/>
+                <set field="createProductPriceMap.productPricePurposeId" value="PURCHASE"/>
+                <set field="createProductPriceMap.currencyUomId" value="NZD"/>
+                <set field="createProductPriceMap.productStoreGroupId" value="_NA_"/>
+                <set field="createProductPriceMap.price" from-field="parameters.promoPrice" type="BigDecimal"/>
+                <set field="createProductPriceMap.fromDate" from-field="parameters.promoPriceFromDate" type="Timestamp"/>
+                <set field="createProductPriceMap.thruDate" from-field="parameters.promoPriceThruDate" type="Timestamp"/>
+                <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
+            <else>
+                <first-from-list entry="productPromoPrice" list="productPromoPriceList"/>
+                <set field="updateProductPriceMap.userLogin" from-field="systemUserLogin"/>
+                <set field="updateProductPriceMap.productId" from-field="productPromoPrice.productId"/>
+                <set field="updateProductPriceMap.productPriceTypeId" from-field="productPromoPrice.productPriceTypeId"/>
+                <set field="updateProductPriceMap.productPricePurposeId" from-field="productPromoPrice.productPricePurposeId"/>
+                <set field="updateProductPriceMap.currencyUomId" from-field="productPromoPrice.currencyUomId"/>
+                <set field="updateProductPriceMap.productStoreGroupId" from-field="productPromoPrice.productStoreGroupId"/>
+                <set field="updateProductPriceMap.price" from-field="parameters.promoPrice" type="BigDecimal"/>
+                <set field="updateProductPriceMap.fromDate" from-field="parameters.promoPriceFromDate" type="Timestamp"/>
+                <set field="updateProductPriceMap.thruDate" from-field="parameters.promoPriceThruDate" type="Timestamp"/>
+                <call-service service-name="updateProductPrice" in-map-name="updateProductPriceMap"/>
+            </else>
+            </if-empty>
+        </if-not-empty>
+        
+        <entity-one value-field="productAttribute" entity-name="ProductAttribute">
+            <field-map field-name="productId" from-field="parameters.productId"/>
+            <field-map field-name="attrName" value="SHIPPING_SIZE"/>
+        </entity-one>
+        <if-empty field="productAttribute">
+            <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
+            <set field="createProductAttributeMap.attrName" value="SHIPPING_SIZE"/>
+            <set field="createProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
+            <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
+        <else>
+            <set field="updateProductAttribute.userLogin" from-field="systemUserLogin"/>
+            <set field="updateProductAttribute.productId" from-field="productAttribute.productId"/>
+            <set field="updateProductAttribute.attrName" from-field="productAttribute.attrName"/>
+            <set field="updateProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
+            <call-service service-name="updateProductAttribute" in-map-name="updateProductAttributeMap"/>
+        </else>
+        </if-empty>
     </simple-method>
 </simple-methods>

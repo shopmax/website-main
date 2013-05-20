@@ -18,18 +18,30 @@ under the License.
 -->
 
 <div class="container content">
-    <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
+    <!-- include breadcrumb -->
+    ${screens.render("component://shopmax/widget/ShopMaxScreens.xml#Breadcrumbs")}
+    
+    <div class="row content-left">
+        <!-- include shop header -->
+        <#include "component://shopmax/webapp/shopmax/shop/shopheader.ftl" />
+    </div>
     
     <div class="row">
-        <div class="row">
-        <!-- MAIN CONTENT -->
+    <!-- MAIN CONTENT -->
         <!-- sliderdiv -->
-        <div class="span9 main-content manage-product cat_grid_view cat_list_view">
-            <#include "component://shopmax/webapp/shopmax/catalog/productlistview.ftl" />
-        </div><!-- /.span9 -->
+        <#if headerItem?if_exists == "shopcategorygridview">
+            <div class="span9 main-content manage-product cat_grid_view">
+                <#include "component://shopmax/webapp/shopmax/catalog/categorydetail.ftl" />
+            </div><!-- /.span9 -->
+        <#elseif headerItem?if_exists == "shopcategorylistview">
+            <div class="span9 main-content manage-product cat_grid_view cat_list_view">
+                <#include "component://shopmax/webapp/shopmax/catalog/categorydetail.ftl" />
+            </div><!-- /.span9 -->
+        </#if>
+        
         <div class="span3 sidebar" id="side-menu">
             <#include "component://shopmax/webapp/shopmax/catalog/categorylist.ftl" />
             <#include "component://shopmax/webapp/shopmax/catalog/categoryrefineby.ftl" />
         </div><!-- /.span3.sidebar -->
     </div><!-- /.row -->
-</div> <!-- /container -->
+</div>

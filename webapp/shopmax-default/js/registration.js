@@ -40,9 +40,6 @@ $(function(){
     $('.cardNumber').change(function(){
         $('#cardNumber').val($('#cardNumber-0').val()+$('#cardNumber-1').val()+$('#cardNumber-2').val()+$('#cardNumber-3').val());
     });
-    $('.expireDate').change(function(e){
-        $('#expireDate').val($('#expMonth').val()+"/"+$('#expYear').val());
-    });
     $('.optionsRadios').click(function(){
         if(this.id == 'optionsRadios'){
             $('#checkDomain').val('Y');
@@ -56,5 +53,8 @@ $(function(){
         else{
             $('#checkCreditCard').val('N');
         }
+    });
+    $('.chzn-container').click(function(){
+        $('#expireDate').val($('#expMonth_chzn').find('span').text()+"/"+$('#expYear_chzn').find('span').text());
     });
 });

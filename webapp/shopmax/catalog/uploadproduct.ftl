@@ -21,7 +21,8 @@ under the License.
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <div class="container content promotion">
-    <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
+    <!-- include breadcrumb -->
+    ${screens.render("component://shopmax/widget/ShopMaxScreens.xml#Breadcrumbs")}
     <div class="row">
         <div class="span3 sidebar" id="side-menu">
             <div class="categories innerbox">

@@ -18,9 +18,8 @@ under the License.
 -->
 
 <div class="container content shopping-cart">
-    <div>
-        <ul class="breadcrum"><li><a href="/">Home</a></li><li>Shopping Cart</li></ul>
-    </div> 
+    <!-- include breadcrumb -->
+    ${screens.render("component://shopmax/widget/ShopMaxScreens.xml#Breadcrumbs")}
     <div class="row">
         <div class="span3 sidebar" id="side-menu">
             <!-- /.categories .innerbox -->

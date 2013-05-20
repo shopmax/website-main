@@ -27,7 +27,7 @@ under the License.
                 <property-map resource="ShopMaxUiLabels" map-name="uiLabelMap" global="true"/>
                 <set field="titleProperty" value="PageTitleCheckout"/>
                 <set field="headerItem" value="checkout"/>
-                <set field="breadCrumTitle" value="Shopping Cart"/>
+                <set field="breadcrumbTitle" value="Shopping Cart"/>
                 <set field="layoutSettings.javaScripts[]" value="/shopmax-default/js/checkoutProcess.js" global="true"/>
             </actions>
             <widgets>
@@ -57,7 +57,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleOrderConfirmation"/>
                 <set field="headerItem" value="confirmation"/>
-                <set field="breadCrumTitle" value="Shopping Cart"/>
+                <set field="breadcrumbTitle" value="Confirmation"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -74,7 +74,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleOrderDetail"/>
                 <set field="headerItem" value="orderdetail"/>
-                <set field="breadCrumTitle" value="Order Detail"/>
+                <set field="breadcrumbTitle" value="Order Detail"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/order/OrderDetail.groovy"/>
             </actions>
             <widgets>
@@ -92,7 +92,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleOrderList"/>
                 <set field="headerItem" value="orderlist"/>
-                <set field="breadCrumTitle" value="Order List"/>
+                <set field="breadcrumbTitle" value="Order List"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/order/OrderList.groovy"/>
             </actions>
             <widgets>
@@ -110,7 +110,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitlePaymentOption"/>
                 <set field="headerItem" value="paymentoption"/>
-                <set field="breadCrumTitle" value="Payment Option"/>
+                <set field="breadcrumbTitle" value="Payment Option"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -127,7 +127,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleTransactionHistory"/>
                 <set field="headerItem" value="transactionhistory"/>
-                <set field="breadCrumTitle" value="Transaction History"/>
+                <set field="breadcrumbTitle" value="Transaction History"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -144,7 +144,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleShippingMethod"/>
                 <set field="headerItem" value="shippingmethod"/>
-                <set field="breadCrumTitle" value="Shipping Method"/>
+                <set field="breadcrumbTitle" value="Shipping Method"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">

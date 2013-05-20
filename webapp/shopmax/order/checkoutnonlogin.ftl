@@ -27,7 +27,8 @@ under the License.
     });
 </script>
 <div class="container content shopping-cart">
-    <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
+    <!-- include breadcrumb -->
+    ${screens.render("component://shopmax/widget/ShopMaxScreens.xml#Breadcrumbs")}
     <div class="row">
         <#include "component://shopmax/webapp/shopmax/order/ordersummary.ftl" />
         <form id="orderSummarySubmitForm" action="<@ofbizUrl>onePageProcess</@ofbizUrl>" method="post">

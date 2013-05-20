@@ -17,22 +17,22 @@
 * under the License.
 */
 
-import java.io.ObjectOutputStream.DebugTraceInfoStack;
-import java.security.Policy.Parameters;
+import org.ofbiz.base.util.*;
+import org.ofbiz.entity.util.*;
 import org.ofbiz.product.catalog.*;
 import org.ofbiz.product.category.*;
+import org.ofbiz.product.store.*;
+import javolution.util.FastMap;
+import javolution.util.FastList;
+import javolution.util.FastList.*;
+import org.ofbiz.entity.*;
 
-tenantId = delegator.getDelegatorTenantId();
-
-if (tenantId == "default" || tenantId == "shopmax" || tenantId == null) {
-    CategoryWorker.getRelatedCategories(request, "subLevelList", parameters.parentProductCategoryId, true, false);
-    categoryList = request.getAttribute("subLevelList");
-    context.categoryList = categoryList;
+categoryList = [];
+CategoryWorker.getRelatedCategories(request, "subLevelList", parameters.parentProductCategoryId, true, false);
+subLevelList = request.getAttribute("subLevelList");
+subLevelList.each { subLeve ->
+    if (subLeve.showInSelect == "Y") {
+        categoryList.add(subLeve);
+    }
 }
-else {
-    CategoryWorker.getRelatedCategories(request, "subLevelList", parameters.parentProductCategoryId, true, false);
-    categoryList = request.getAttribute("subLevelList");
-    context.categoryList = categoryList;
-    //categoryList = org.ofbiz.shopmax.product.category.CategoryWorker.getRelatedValidCategoriesRet(delegator, "subLevelList", CatalogWorker.getCatalogTopCategoryId(request, CatalogWorker.getCurrentCatalogId(request)), true, true, false);
-    //context.categoryList = categoryList;
-}
+context.categoryList = categoryList;

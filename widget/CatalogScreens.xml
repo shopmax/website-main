@@ -25,9 +25,9 @@ under the License.
         <section>
             <actions>
                 <set field="titleProperty" value="Shop Name"/>
-                <set field="headerItem" value="shops"/>
+                <set field="headerItem" value="shop"/>
                 <set field="productDetailType" value="productnormal"/>
-                <set field="breadCrumTitle" value="Shop Name"/>
+                <set field="breadcrumbTitle" value="Shop Name"/>
                 <script location="component://order/webapp/ordermgr/WEB-INF/actions/entry/catalog/Product.groovy"/>
             </actions>
             <widgets>
@@ -50,7 +50,7 @@ under the License.
         </section>
     </screen>
     
-    <screen name="productdetail">
+    <screen name="ProductDetail">
         <section>
             <actions>
                 <script location="component://order/webapp/ordermgr/WEB-INF/actions/entry/catalog/ProductDetail.groovy"/>
@@ -63,20 +63,21 @@ under the License.
         </section>
     </screen>
     
-    
     <screen name="CategoryGridView">
         <section>
             <actions>
                 <set field="titleProperty" value="PageTitleCategory"/>
                 <set field="headerItem" value="categorygridview"/>
-                <set field="breadCrumTitle" value="Category"/>
+                <!-- <set field="breadcrumbTitle" value="Category"/> -->
+                <set field="productCategoryId" from-field="parameters.productCategoryId"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopCategories.groovy"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/CategoryDetail.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <platform-specific>
-                            <html><html-template location="component://shopmax/webapp/shopmax/catalog/categorygridview.ftl"/></html>
+                            <html><html-template location="component://shopmax/webapp/shopmax/catalog/category.ftl"/></html>
                         </platform-specific>
                     </decorator-section>
                 </decorator-screen>
@@ -89,14 +90,16 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleCategory"/>
                 <set field="headerItem" value="categorylistview"/>
-                <set field="breadCrumTitle" value="Category"/>
+                <!-- <set field="breadcrumbTitle" value="Category"/> -->
+                <set field="productCategoryId" from-field="parameters.productCategoryId"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopCategories.groovy"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/CategoryDetail.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <platform-specific>
-                            <html><html-template location="component://shopmax/webapp/shopmax/catalog/categorylistview.ftl"/></html>
+                            <html><html-template location="component://shopmax/webapp/shopmax/catalog/category.ftl"/></html>
                         </platform-specific>
                     </decorator-section>
                 </decorator-screen>
@@ -109,7 +112,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleCategory"/>
                 <set field="headerItem" value="categorygridview"/>
-                <set field="breadCrumTitle" value="Category"/>
+                <set field="breadcrumbTitle" value="Category"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -128,7 +131,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleCategory"/>
                 <set field="headerItem" value="categorylistview"/>
-                <set field="breadCrumTitle" value="Category"/>
+                <set field="breadcrumbTitle" value="Category"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -147,7 +150,8 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleManageProduct"/>
                 <set field="headerItem" value="manageproduct"/>
-                <set field="breadCrumTitle" value="Manage Product"/>
+                <set field="breadcrumbTitle" value="Manage Product"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopCategories.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -174,7 +178,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleUploadProduct"/>
                 <set field="headerItem" value="uploadproduct"/>
-                <set field="breadCrumTitle" value="Upload Product"/>
+                <set field="breadcrumbTitle" value="Upload Product"/>
                 <script location="component:///shopmax/webapp/shopmax/WEB-INF/actions/catalog/UploadProduct.groovy"/>
             </actions>
             <widgets>
@@ -202,7 +206,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleUploadProduct"/>
                 <set field="headerItem" value="uploadproduct"/>
-                <set field="breadCrumTitle" value="Upload Product"/>
+                <set field="breadcrumbTitle" value="Upload Product"/>
                 <script location="component:///shopmax/webapp/shopmax/WEB-INF/actions/catalog/UploadProduct.groovy"/>
             </actions>
             <widgets>
@@ -217,7 +221,7 @@ under the License.
                 <set field="titleProperty" value="Shop Name"/>
                 <set field="headerItem" value="productdetail"/>
                 <set field="productDetailType" value="productnormal"/>
-                <set field="breadCrumTitle" value="Shop Name"/>
+                <set field="breadcrumbTitle" value="Shop Name"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -237,7 +241,7 @@ under the License.
                 <set field="titleProperty" value="Shop Name"/>
                 <set field="headerItem" value="productdetail"/>
                 <set field="productDetailType" value="productgroupbang"/>
-                <set field="breadCrumTitle" value="Shop Name"/>
+                <set field="breadcrumbTitle" value="Shop Name"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -257,7 +261,7 @@ under the License.
                 <set field="titleProperty" value="Shop Name"/>
                 <set field="headerItem" value="productdetail"/>
                 <set field="productDetailType" value="productmultibuy"/>
-                <set field="breadCrumTitle" value="Shop Name"/>
+                <set field="breadcrumbTitle" value="Shop Name"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -277,7 +281,7 @@ under the License.
                 <set field="titleProperty" value="Shop Name"/>
                 <set field="headerItem" value="productdetail"/>
                 <set field="productDetailType" value="productrushhour"/>
-                <set field="breadCrumTitle" value="Shop Name"/>
+                <set field="breadcrumbTitle" value="Shop Name"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -291,19 +295,21 @@ under the License.
         </section>
     </screen>
     
-    <screen name="ShopCategoryListView">
+    <screen name="ShopCategoryGridView">
         <section>
             <actions>
                 <set field="titleProperty" value="Shop Name"/>
-                <set field="headerItem" value="shopcategorylistview"/>
-                <set field="breadCrumTitle" value="Shop Name"/>
+                <set field="headerItem" value="shopcategorygridview"/>
+                <!-- <set field="breadcrumbTitle" value="Category"/> -->
+                <set field="productCategoryId" from-field="parameters.productCategoryId"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopCategories.groovy"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/CategoryDetail.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <platform-specific>
-                            <html><html-template location="component://shopmax/webapp/shopmax/catalog/shopcategorylistview.ftl"/></html>
+                            <html><html-template location="component://shopmax/webapp/shopmax/catalog/shopcategory.ftl"/></html>
                         </platform-specific>
                     </decorator-section>
                 </decorator-screen>
@@ -311,19 +317,21 @@ under the License.
         </section>
     </screen>
     
-    <screen name="ShopCategoryGridView">
+    <screen name="ShopCategoryListView">
         <section>
             <actions>
                 <set field="titleProperty" value="Shop Name"/>
-                <set field="headerItem" value="shopcategorygridview"/>
-                <set field="breadCrumTitle" value="Shop Name"/>
+                <set field="headerItem" value="shopcategorylistview"/>
+                <!-- <set field="breadcrumbTitle" value="Category"/> -->
+                <set field="productCategoryId" from-field="parameters.productCategoryId"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopCategories.groovy"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/CategoryDetail.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
                         <platform-specific>
-                            <html><html-template location="component://shopmax/webapp/shopmax/catalog/shopcategorygridview.ftl"/></html>
+                            <html><html-template location="component://shopmax/webapp/shopmax/catalog/shopcategory.ftl"/></html>
                         </platform-specific>
                     </decorator-section>
                 </decorator-screen>
@@ -336,13 +344,27 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleCategory"/>
                 <set field="headerItem" value="subcategoriesaccordionview"/>
-                <set field="breadCrumTitle" value="Category"/>
+                <set field="breadcrumbTitle" value="Category"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetCategoryList.groovy"/>
             </actions>
             <widgets>
                 <platform-specific>
                     <html><html-template location="component://shopmax/webapp/shopmax/catalog/subcategoriesaccordionview.ftl"/></html>
                 </platform-specific>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="ProductSummary">
+        <section>
+            <actions>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="EcommerceUiLabels" map-name="uiLabelMap" global="true"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/ProductSummary.groovy"/>
+            </actions>
+            <widgets>
+                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/productsummary.ftl"/></html></platform-specific>
             </widgets>
         </section>
     </screen>

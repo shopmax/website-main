@@ -37,7 +37,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleHelpCenter"/>
                 <set field="headerItem" value="helpcenter"/>
-                <set field="breadCrumTitle" value="Help"/>
+                <set field="breadcrumbTitle" value="Help"/>
             </actions>
             <widgets>
             <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/website/actiondecorator.ftl"/></html></platform-specific>
@@ -63,7 +63,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleCategory"/>
                 <set field="headerItem" value="categorygridview" global="true"/>
-                <set field="breadCrumTitle" value="Category"/>
+                <set field="breadcrumbTitle" value="Category"/>
             </actions>
             <widgets>
                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/website/actiondecorator.ftl"/></html></platform-specific>

@@ -26,7 +26,7 @@ under the License.
         <row-actions>
             <entity-and list="partyRelationships" entity-name="PartyRelationship" filter-by-date="true">
                 <field-map field-name="partyIdTo" from-field="partyId"/>
-                <field-map field-name="roleTypeIdFrom" value="ORGANIZATION_ROLE"/>
+                <field-map field-name="roleTypeIdFrom" value="INTERNAL_ORGANIZATIO"/>
                 <field-map field-name="partyRelationshipTypeId" value="EMPLOYMENT"/>
                 <field-map field-name="roleTypeIdTo" value="EMPLOYEE"/>
             </entity-and>

@@ -26,7 +26,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleProfile"/>
                 <set field="headerItem" value="profile"/>
-                <set field="breadCrumTitle" value="Profile"/>
+                <set field="breadcrumbTitle" value="Profile"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -45,7 +45,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleAccount"/>
                 <set field="headerItem" value="account"/>
-                <set field="breadCrumTitle" value="My Account"/>
+                <set field="breadcrumbTitle" value="My Account"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">

@@ -18,7 +18,8 @@ under the License.
 -->
 
 <div class="container content">
-    <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
+    <!-- include breadcrumb -->
+    ${screens.render("component://shopmax/widget/ShopMaxScreens.xml#Breadcrumbs")}
     
     <div class="row">
     <!-- MAIN CONTENT -->

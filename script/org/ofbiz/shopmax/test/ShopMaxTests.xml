@@ -20,22 +20,29 @@ under the License.
 
 <simple-methods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/simple-methods.xsd">
-        <simple-method method-name="createProduct" short-description="Create Product" login-required="false">
-            
-            <entity-one entity-name="UserLogin" value-field="userLogin">
-                <field-map field-name="userLoginId" value="system"/>
-            </entity-one>
-             
-            <set field="createProduct.userLogin" from-field="userLogin"/>
-            <set field="createProduct.internalName" value="Product Test"/>
-            <set field="createProduct.productTypeId" value="FINISHED_GOOD"/>
-            <call-service service-name="createProduct" in-map-name="createProduct"/>
-            
-            <entity-and list="product" entity-name="Product">
-                <field-map field-name="internalName" value="Product Test"/>
-            </entity-and>
-            <assert>
-                <if-empty field="product"></if-empty>
-            </assert>
-        </simple-method>
+    <simple-method method-name="uploadProductSeller" short-description="Create Product" login-required="false">
+        <entity-one value-field="systemUserLogin" entity-name="UserLogin">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        <now-timestamp field="nowTimestamp"/>
+         
+        <set field="uploadProductToSellerMap.userLogin" from-field="systemUserLogin"/>
+        <set field="uploadProductToSellerMap.productName" value="Product Test"/>
+        <set field="uploadProductToSellerMap.description" value="Product Test"/>
+        <set field="uploadProductToSellerMap.listingPrice" value="20" type="BigDecimal"/>
+        <set field="uploadProductToSellerMap.stock" value="10" type="BigDecimal"/>
+        <set field="uploadProductToSellerMap.promoPrice" value="10" type="BigDecimal"/>
+        <set field="uploadProductToSellerMap.promoPriceFromDate" from-field="nowTimestamp" type="Timestamp"/>
+        <set field="uploadProductToSellerMap.promoPriceThruDate" from-field="nowTimestamp" type="Timestamp"/>
+        <set field="uploadProductToSellerMap.listCategory" value="DEMO_CAT1_LV1,DEMO_CAT2_LV1"/>
+        <set field="uploadProductToSellerMap.shippingSize" value="NORMAL"/>
+        <call-service service-name="uploadProductToSeller" in-map-name="uploadProductToSellerMap"/>
+        
+        <entity-and list="product" entity-name="Product">
+            <field-map field-name="internalName" value="Product Test"/>
+        </entity-and>
+        <assert>
+            <if-empty field="product"></if-empty>
+        </assert>
+    </simple-method>
 </simple-methods>

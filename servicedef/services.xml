@@ -112,12 +112,13 @@ under the License.
     
     <service name="uploadProductToSeller" engine="simple"
         location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="uploadProductToSeller" auth="true">
+        <description>Upload Product To Seller</description>
         <attribute name="productId" type="String" mode="OUT" optional="false"/>
         <attribute name="productName" mode="IN" type="String" optional="false"/>
         <attribute name="description" mode="IN" type="String" optional="false"/>
-        <attribute name="uploadedFile" type="java.nio.ByteBuffer" mode="IN" optional="false"/>
-        <attribute name="_uploadedFile_fileName" type="String" mode="IN" optional="false"/>
-        <attribute name="_uploadedFile_contentType" type="String" mode="IN" optional="false"/>
+        <attribute name="uploadedFile" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile_fileName" type="String" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile_contentType" type="String" mode="IN" optional="true"/>
         <attribute name="uploadedFile1" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
         <attribute name="_uploadedFile1_fileName" type="String" mode="IN" optional="true"/>
         <attribute name="_uploadedFile1_contentType" type="String" mode="IN" optional="true"/>
@@ -138,12 +139,13 @@ under the License.
     
     <service name="uploadProductToShopmax" engine="simple"
         location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="uploadProductToShopmax" auth="false">
+        <description>Upload Product To Shopmax</description>
         <attribute name="productId" type="String" mode="IN" optional="false"/>
         <attribute name="productName" mode="IN" type="String" optional="false"/>
         <attribute name="description" mode="IN" type="String" optional="false"/>
-        <attribute name="uploadedFile" type="java.nio.ByteBuffer" mode="IN" optional="false"/>
-        <attribute name="_uploadedFile_fileName" type="String" mode="IN" optional="false"/>
-        <attribute name="_uploadedFile_contentType" type="String" mode="IN" optional="false"/>
+        <attribute name="uploadedFile" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile_fileName" type="String" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile_contentType" type="String" mode="IN" optional="true"/>
         <attribute name="uploadedFile1" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
         <attribute name="_uploadedFile1_fileName" type="String" mode="IN" optional="true"/>
         <attribute name="_uploadedFile1_contentType" type="String" mode="IN" optional="true"/>
@@ -185,5 +187,66 @@ under the License.
             location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="createPersonAndCompanyToSeller" auth="true">
         <description>Create Person And Company To Seller</description>
         <attribute name="partyId" mode="IN" type="String" optional="false"/>
+    </service>
+    
+    <service name="setCategoryHasProduct" engine="simple" 
+            location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="setCategoryHasProduct" auth="false">
+        <description>Set Category Has Product</description>
+        <attribute name="productCategoryId" mode="IN" type="String" optional="false"/>
+    </service>
+    
+    <service name="editProductToSeller" engine="simple"
+        location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="editProductToSeller" auth="true">
+        <description>Edit Product To Seller</description>
+        <attribute name="productId" type="String" mode="IN" optional="false"/>
+        <attribute name="productName" mode="IN" type="String" optional="false"/>
+        <attribute name="description" mode="IN" type="String" optional="false"/>
+        <attribute name="uploadedFile" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile_fileName" type="String" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile_contentType" type="String" mode="IN" optional="true"/>
+        <attribute name="uploadedFile1" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile1_fileName" type="String" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile1_contentType" type="String" mode="IN" optional="true"/>
+        <attribute name="uploadedFile2" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile2_fileName" type="String" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile2_contentType" type="String" mode="IN" optional="true"/>
+        <attribute name="uploadedFile3" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile3_fileName" type="String" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile3_contentType" type="String" mode="IN" optional="true"/>
+        <attribute name="listingPrice" type="BigDecimal" mode="IN" optional="false"/>
+        <attribute name="stock" type="BigDecimal" mode="IN" optional="false"/>
+        <attribute name="promoPrice" type="BigDecimal" mode="IN" optional="true"/>
+        <attribute name="promoPriceFromDate" type="Timestamp" mode="IN" optional="true"/>
+        <attribute name="promoPriceThruDate" type="Timestamp" mode="IN" optional="true"/>
+        <attribute name="listCategory" mode="IN" type="String" optional="true"/>
+        <attribute name="shippingSize" mode="IN" type="String" optional="false"/>
+    </service>
+    
+    <service name="editProductToShopmax" engine="simple"
+        location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="editProductToShopmax" auth="true">
+        <description>Edit Product To Shopmax</description>
+        <attribute name="productId" type="String" mode="IN" optional="false"/>
+        <attribute name="productName" mode="IN" type="String" optional="false"/>
+        <attribute name="description" mode="IN" type="String" optional="false"/>
+        <attribute name="uploadedFile" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile_fileName" type="String" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile_contentType" type="String" mode="IN" optional="true"/>
+        <attribute name="uploadedFile1" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile1_fileName" type="String" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile1_contentType" type="String" mode="IN" optional="true"/>
+        <attribute name="uploadedFile2" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile2_fileName" type="String" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile2_contentType" type="String" mode="IN" optional="true"/>
+        <attribute name="uploadedFile3" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile3_fileName" type="String" mode="IN" optional="true"/>
+        <attribute name="_uploadedFile3_contentType" type="String" mode="IN" optional="true"/>
+        <attribute name="listingPrice" type="BigDecimal" mode="IN" optional="false"/>
+        <attribute name="stock" type="BigDecimal" mode="IN" optional="false"/>
+        <attribute name="promoPrice" type="BigDecimal" mode="IN" optional="true"/>
+        <attribute name="promoPriceFromDate" type="Timestamp" mode="IN" optional="true"/>
+        <attribute name="promoPriceThruDate" type="Timestamp" mode="IN" optional="true"/>
+        <attribute name="listCategory" mode="IN" type="String" optional="true"/>
+        <attribute name="shippingSize" mode="IN" type="String" optional="false"/>
+        <attribute name="partyId" type="String" mode="IN" optional="false"/>
     </service>
 </services>

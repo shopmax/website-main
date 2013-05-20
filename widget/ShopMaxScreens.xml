@@ -44,7 +44,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleRegistration"/>
                 <set field="headerItem" value="registration"/>
-                <set field="breadCrumTitle" value="Registration"/>
+                <set field="breadcrumbTitle" value="Registration"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/customer/Registration.groovy"/>
             </actions>
             <widgets>
@@ -63,7 +63,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleRegistration"/>
                 <set field="headerItem" value="registration"/>
-                <set field="breadCrumTitle" value="Registration"/>
+                <set field="breadcrumbTitle" value="Registration"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/customer/Registration.groovy"/>
                 <set field="layoutSettings.javaScripts[]" value="/images/prototypejs/prototype.js" global="true"/>
             </actions>
@@ -78,7 +78,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleHelpCenter"/>
                 <set field="headerItem" value="helpcenter"/>
-                <set field="breadCrumTitle" value="Help"/>
+                <set field="breadcrumbTitle" value="Help"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -110,7 +110,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleRushHour"/>
                 <set field="headerItem" value="rushhour"/>
-                <set field="breadCrumTitle" value="Rush Hour"/>
+                <set field="breadcrumbTitle" value="Rush Hour"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -129,7 +129,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleGroupBang"/>
                 <set field="headerItem" value="groupbang"/>
-                <set field="breadCrumTitle" value="Group Bang"/>
+                <set field="breadcrumbTitle" value="Group Bang"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -148,7 +148,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleMultiBuy"/>
                 <set field="headerItem" value="multibuy"/>
-                <set field="breadCrumTitle" value="Multi Buy"/>
+                <set field="breadcrumbTitle" value="Multi Buy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -167,7 +167,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="Shop Name"/>
                 <set field="headerItem" value="shophome"/>
-                <set field="breadCrumTitle" value="Shop Name"/>
+                <set field="breadcrumbTitle" value="Shop Name"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopCategories.groovy"/>
             </actions>
             <widgets>
@@ -186,8 +186,8 @@ under the License.
         <section>
             <actions>
                 <set field="titleProperty" value="Shop Name"/>
-                <set field="headerItem" value="shops"/>
-                <set field="breadCrumTitle" value="Shop Name"/>
+                <set field="headerItem" value="shop"/>
+                <set field="breadcrumbTitle" value="Shop Name"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -205,8 +205,8 @@ under the License.
         <section>
             <actions>
                 <set field="titleProperty" value="Shop Name"/>
-                <set field="headerItem" value="shops"/>
-                <set field="breadCrumTitle" value="Shop Name"/>
+                <set field="headerItem" value="shop"/>
+                <set field="breadcrumbTitle" value="Shop Name"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -224,8 +224,8 @@ under the License.
         <section>
             <actions>
                 <set field="titleProperty" value="Shop Name"/>
-                <set field="headerItem" value="shops"/>
-                <set field="breadCrumTitle" value="Sale Summary"/>
+                <set field="headerItem" value="shop"/>
+                <set field="breadcrumbTitle" value="Sale Summary"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -257,6 +257,18 @@ under the License.
                         </screenlet>
                     </decorator-section>
                 </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="Breadcrumbs">
+        <section>
+            <actions>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/shopmax/Breadcrumbs.groovy"/>
+            </actions>
+            <widgets>
+                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/breadcrumbs.ftl"/></html></platform-specific>
             </widgets>
         </section>
     </screen>

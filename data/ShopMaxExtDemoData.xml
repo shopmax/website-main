@@ -26,7 +26,6 @@ under the License.
     <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="INTERNAL_ORGANIZATIO"/>
     <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="CARRIER"/>
     <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="ACCOUNT"/>
-    <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="SELLER"/>
     <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="SUPPLIER"/>
     <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="_NA_"/>
     <ContactMech contactMechId="SELLER_EMAIL" contactMechTypeId="EMAIL_ADDRESS" infoString="ofbiztest@example.com"/>
@@ -39,16 +38,16 @@ under the License.
     <PartyContactMechPurpose partyId="SHOPMAX_SELLER" contactMechId="SELLER_ADDRESS" contactMechPurposeTypeId="GENERAL_LOCATION" fromDate="2013-04-01 00:00:00"/>
     <PartyContactMechPurpose partyId="SHOPMAX_SELLER" contactMechId="SELLER_ADDRESS" contactMechPurposeTypeId="PAYMENT_LOCATION" fromDate="2013-04-01 00:00:00"/>
     
-    <Party partyId="DemoSeller" partyTypeId="PERSON"/>
-    <Person partyId="DemoSeller" firstName="Demo" lastName="Seller"/>
-    <UserLogin partyId="DemoSeller" userLoginId="DemoSeller" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a"/>
-    <PartyRole partyId="DemoSeller" roleTypeId="CUSTOMER"/>
-    <PartyRole partyId="DemoSeller" roleTypeId="SELLER"/>
-    <PartyRole partyId="DemoSeller" roleTypeId="BUYER"/>
-    <PartyRole partyId="DemoSeller" roleTypeId="EMPLOYEE"/>
+    <Party partyId="shopmaxseller" partyTypeId="PERSON"/>
+    <Person partyId="shopmaxseller" firstName="Demo" lastName="Seller"/>
+    <UserLogin partyId="shopmaxseller" userLoginId="DemoSeller" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a"/>
+    <PartyRole partyId="shopmaxseller" roleTypeId="CUSTOMER"/>
+    <PartyRole partyId="shopmaxseller" roleTypeId="SELLER"/>
+    <PartyRole partyId="shopmaxseller" roleTypeId="BUYER"/>
+    <PartyRole partyId="shopmaxseller" roleTypeId="EMPLOYEE"/>
     <UserLoginSecurityGroup groupId="SHOPMAX_SELLER" userLoginId="DemoSeller" fromDate="2013-04-01 00:00:00"/>
     
-    <PartyRelationship partyIdFrom="SHOPMAX_SELLER" partyIdTo="DemoSeller" partyRelationshipTypeId="EMPLOYMENT" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="EMPLOYEE" fromDate="2013-04-01 00:00:00"/>
+    <PartyRelationship partyIdFrom="SHOPMAX_SELLER" partyIdTo="shopmaxseller" partyRelationshipTypeId="EMPLOYMENT" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="EMPLOYEE" fromDate="2013-04-01 00:00:00"/>
     
     <!-- DemoCustomer -->
     <Party partyId="DemoCustomer" partyTypeId="PERSON"/>
@@ -89,57 +88,76 @@ under the License.
     <ProdCatalogCategory prodCatalogId="SHOPMAX_CATALOG" productCategoryId="SHOPMAX_BROWSE_ROOT" fromDate="2013-04-01 00:00:00" sequenceNum="1" prodCatalogCategoryTypeId="PCCT_BROWSE_ROOT"/>
     
     <!-- Create Category Level 1 -->
-    <ProductCategory productCategoryId="DEMO_CATLV1_01" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 1.1" description="Demo Category 1.1"/>
-    <ProductCategory productCategoryId="DEMO_CATLV1_02" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 2.1" description="Demo Category 2.1"/>
+    <ProductCategory productCategoryId="DEMO_CAT1_LV1" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 1.1" description="Demo Category 1.1" showInSelect="Y"/>
+    <ProductCategory productCategoryId="DEMO_CAT2_LV1" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 2.1" description="Demo Category 2.1" showInSelect="Y"/>
     <!-- Create Parent Category Level 1 -->
-    <ProductCategoryRollup productCategoryId="DEMO_CATLV1_01" parentProductCategoryId="SHOPMAX_BROWSE_ROOT" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
-    <ProductCategoryRollup productCategoryId="DEMO_CATLV1_02" parentProductCategoryId="SHOPMAX_BROWSE_ROOT" fromDate="2013-04-01 00:00:00" sequenceNum="2"/>
+    <ProductCategoryRollup productCategoryId="DEMO_CAT1_LV1" parentProductCategoryId="SHOPMAX_BROWSE_ROOT" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    <ProductCategoryRollup productCategoryId="DEMO_CAT2_LV1" parentProductCategoryId="SHOPMAX_BROWSE_ROOT" fromDate="2013-04-01 00:00:00" sequenceNum="2"/>
     
-    <!-- Create Category Level 2 of DEMO_CATLV1_01-->
-    <ProductCategory productCategoryId="DEMO_CATLV2_01" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 1.2" description="Demo Category 1.2"/>
-    <!-- Create Parent Category Level 2 of DEMO_CATLV1_01 -->
-    <ProductCategoryRollup productCategoryId="DEMO_CATLV2_01" parentProductCategoryId="DEMO_CATLV1_01" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    <!-- Create Category Level 2 -->
+    <ProductCategory productCategoryId="DEMO_CAT1_LV2" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 1.2" description="Demo Category 1.2" showInSelect="Y"/>
+    <ProductCategory productCategoryId="DEMO_CAT2_LV2" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 2.2" description="Demo Category 2.2" showInSelect="Y"/>
     
-    <!-- Create Category Level 2 of DEMO_CATLV1_02-->
-    <ProductCategory productCategoryId="DEMO_CATLV2_02" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 2.2" description="Demo Category 2.2"/>
-    <!-- Create Parent Category Level 2 of DEMO_CATLV1_02 -->
-    <ProductCategoryRollup productCategoryId="DEMO_CATLV2_02" parentProductCategoryId="DEMO_CATLV1_02" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    <!-- Create Parent Category Level 2 -->
+    <ProductCategoryRollup productCategoryId="DEMO_CAT1_LV2" parentProductCategoryId="DEMO_CAT1_LV1" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    <ProductCategoryRollup productCategoryId="DEMO_CAT2_LV2" parentProductCategoryId="DEMO_CAT2_LV1" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
     
-    <!-- Create Category Level 3 of DEMO_CATLV2_01-->
-    <ProductCategory productCategoryId="DEMO_CATLV3_01" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 1.3" description="Demo Category 1.3"/>
-    <!-- Create Parent Category Level 3 of DEMO_CATLV2_01 -->
-    <ProductCategoryRollup productCategoryId="DEMO_CATLV3_01" parentProductCategoryId="DEMO_CATLV2_01" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    <!-- Create Category Level 3-->
+    <ProductCategory productCategoryId="DEMO_CAT1_LV3" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 1.3" description="Demo Category 1.3" showInSelect="Y"/>
+    <ProductCategory productCategoryId="DEMO_CAT2_LV3" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 2.3" description="Demo Category 2.3"/>
+    <ProductCategory productCategoryId="DEMO_CAT3_LV3" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 3.3" description="Demo Category 3.3"/>
+    <ProductCategory productCategoryId="DEMO_CAT4_LV3" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 4.3" description="Demo Category 4.3" showInSelect="Y"/>
     
-    <!-- Create Category Level 3 of DEMO_CATLV2_02-->
-    <ProductCategory productCategoryId="DEMO_CATLV3_02" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 2.3" description="Demo Category 2.3"/>
-    <!-- Create Parent Category Level 3 of DEMO_CATLV2_02 -->
-    <ProductCategoryRollup productCategoryId="DEMO_CATLV3_02" parentProductCategoryId="DEMO_CATLV2_02" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    <!-- Create Parent Category Level 3 -->
+    <ProductCategoryRollup productCategoryId="DEMO_CAT1_LV3" parentProductCategoryId="DEMO_CAT1_LV2" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    <ProductCategoryRollup productCategoryId="DEMO_CAT2_LV3" parentProductCategoryId="DEMO_CAT1_LV2" fromDate="2013-04-01 00:00:00" sequenceNum="2"/>
+    <ProductCategoryRollup productCategoryId="DEMO_CAT3_LV3" parentProductCategoryId="DEMO_CAT2_LV2" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    <ProductCategoryRollup productCategoryId="DEMO_CAT4_LV3" parentProductCategoryId="DEMO_CAT2_LV2" fromDate="2013-04-01 00:00:00" sequenceNum="2"/>
     
-    <!-- Create Category Level 4 of DEMO_CATLV3_01-->
-    <ProductCategory productCategoryId="DEMO_CATLV4_01" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 1.4" description="Demo Category 1.4"/>
-    <!-- Create Parent Category Level 4 of DEMO_CATLV3_01 -->
-    <ProductCategoryRollup productCategoryId="DEMO_CATLV4_01" parentProductCategoryId="DEMO_CATLV3_01" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    <!-- Create Category Level 4 -->
+    <ProductCategory productCategoryId="DEMO_CAT1_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 1.4" description="Demo Category 1.4" showInSelect="Y"/>
+    <ProductCategory productCategoryId="DEMO_CAT2_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 2.4" description="Demo Category 2.4"/>
+    <ProductCategory productCategoryId="DEMO_CAT3_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 3.4" description="Demo Category 3.4"/>
+    <ProductCategory productCategoryId="DEMO_CAT4_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 4.4" description="Demo Category 4.4"/>
+    <ProductCategory productCategoryId="DEMO_CAT5_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 5.4" description="Demo Category 5.4"/>
+    <ProductCategory productCategoryId="DEMO_CAT6_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 6.4" description="Demo Category 6.4"/>
+    <ProductCategory productCategoryId="DEMO_CAT7_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 7.4" description="Demo Category 7.4"/>
+    <ProductCategory productCategoryId="DEMO_CAT8_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 8.4" description="Demo Category 8.4" showInSelect="Y"/>
     
-    <!-- Create Category Level 4 of DEMO_CATLV3_02-->
-    <ProductCategory productCategoryId="DEMO_CATLV4_02" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 2.4" description="Demo Category 2.4"/>
-    <!-- Create Parent Category Level 4 of DEMO_CATLV3_02 -->
-    <ProductCategoryRollup productCategoryId="DEMO_CATLV4_02" parentProductCategoryId="DEMO_CATLV3_02" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    <!-- Create Parent Category Level 4 -->
+    <ProductCategoryRollup productCategoryId="DEMO_CAT1_LV4" parentProductCategoryId="DEMO_CAT1_LV3" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    <ProductCategoryRollup productCategoryId="DEMO_CAT2_LV4" parentProductCategoryId="DEMO_CAT1_LV3" fromDate="2013-04-01 00:00:00" sequenceNum="2"/>
+    <ProductCategoryRollup productCategoryId="DEMO_CAT3_LV4" parentProductCategoryId="DEMO_CAT2_LV3" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    <ProductCategoryRollup productCategoryId="DEMO_CAT4_LV4" parentProductCategoryId="DEMO_CAT2_LV3" fromDate="2013-04-01 00:00:00" sequenceNum="2"/>
+    <ProductCategoryRollup productCategoryId="DEMO_CAT5_LV4" parentProductCategoryId="DEMO_CAT3_LV3" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    <ProductCategoryRollup productCategoryId="DEMO_CAT6_LV4" parentProductCategoryId="DEMO_CAT3_LV3" fromDate="2013-04-01 00:00:00" sequenceNum="2"/>
+    <ProductCategoryRollup productCategoryId="DEMO_CAT7_LV4" parentProductCategoryId="DEMO_CAT4_LV3" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
+    <ProductCategoryRollup productCategoryId="DEMO_CAT8_LV4" parentProductCategoryId="DEMO_CAT4_LV3" fromDate="2013-04-01 00:00:00" sequenceNum="2"/>
     
     <!-- Drop ship products -->
-    <Product productId="dropShip1" productTypeId="FINISHED_GOOD" internalName="DropShip 1" productName="DropShip 1" smallImageUrl="/shopmax-default/img/product-generic-472x472.jpg" mediumImageUrl="/shopmax-default/img/product-generic-472x472.jpg" largeImageUrl="/shopmax-default/img/product-generic-472x472.jpg" isVirtual="N" isVariant="N" requirementMethodEnumId="PRODRQM_DS">
-        <description><![CDATA[
-            Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.
-        ]]></description>
-    </Product>
-    <ProductCategoryMember productCategoryId="DEMO_CATLV1_01" productId="dropShip1" sequenceNum="1" fromDate="2013-04-01 00:00:00"/>
+    <Product productId="dropShip1" productTypeId="FINISHED_GOOD" internalName="DropShip 1" productName="DropShip 1" description="Description of DropShip 1" smallImageUrl="/shopmax-default/img/product-generic-472x472.jpg" mediumImageUrl="/shopmax-default/img/product-generic-472x472.jpg" largeImageUrl="/shopmax-default/img/product-generic-472x472.jpg" isVirtual="N" isVariant="N" requirementMethodEnumId="PRODRQM_DS"/>
+    <ProductCategoryMember productCategoryId="DEMO_CAT1_LV1" productId="dropShip1" sequenceNum="1" fromDate="2013-04-01 00:00:00"/>
     <ProductPrice productId="dropShip1" productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" currencyUomId="NZD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" price="15.00"/>
-    <ProductPrice productId="dropShip1" productPricePurposeId="PURCHASE" productPriceTypeId="COMPETITIVE_PRICE" currencyUomId="NZD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" price="50.00"/>
+    <ProductPrice productId="dropShip1" productPricePurposeId="PURCHASE" productPriceTypeId="PROMO_PRICE" currencyUomId="NZD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" thruDate="2013-12-31 00:00:00" price="10.00"/>
     <SupplierProduct productId="dropShip1" partyId="SHOPMAX_SELLER" availableFromDate="2013-04-01 00:00:00" minimumOrderQuantity="0.0" lastPrice="10.0" currencyUomId="NZD" supplierProductName="Drop ship product from Shopmax Seller" supplierProductId="dropShip1-DS" canDropShip="Y"/>
     <ProductReview productId="dropShip1" productRating="4.000000" productReview="Good" productReviewId="dropShip1_1" productStoreId="ShopMaxStore" statusId="PRR_APPROVED" userLoginId="DemoCustomer"/>
     <ProductReview productId="dropShip1" productRating="5.000000" productReview="It's useful." productReviewId="dropShip1_2" productStoreId="ShopMaxStore" statusId="PRR_APPROVED" userLoginId="DemoCustomer"/>
-
-    <Product productId="dropShip2" productTypeId="FINISHED_GOOD" internalName="DropShip 2" productName="DropShip 2" smallImageUrl="/images/products/dropShip2/small.jpg" mediumImageUrl="/images/products/dropShip2/medium.jpg" largeImageUrl="/images/products/dropShip2/large.jpg" isVirtual="N" isVariant="N" requirementMethodEnumId="PRODRQM_DS"/>
-    <ProductCategoryMember productCategoryId="DEMO_CATLV1_02" productId="dropShip2" sequenceNum="1" fromDate="2013-04-01 00:00:00"/>
+    
+    <Product productId="dropShip2" productTypeId="FINISHED_GOOD" internalName="DropShip 2" productName="DropShip 2" description="Description of DropShip 2" smallImageUrl="/shopmax-default/img/product-generic-472x472.jpgg" mediumImageUrl="/shopmax-default/img/product-generic-472x472.jpg" largeImageUrl="/shopmax-default/img/product-generic-472x472.jpg" isVirtual="N" isVariant="N" requirementMethodEnumId="PRODRQM_DS"/>
+    <ProductCategoryMember productCategoryId="DEMO_CAT2_LV1" productId="dropShip2" sequenceNum="1" fromDate="2013-04-01 00:00:00"/>
     <ProductPrice productId="dropShip2" productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" currencyUomId="NZD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" price="20.00"/>
+    <ProductPrice productId="dropShip2" productPricePurposeId="PURCHASE" productPriceTypeId="PROMO_PRICE" currencyUomId="NZD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" thruDate="2013-12-31 00:00:00" price="10.00"/>
     <SupplierProduct productId="dropShip2" partyId="SHOPMAX_SELLER" availableFromDate="2013-04-01 00:00:00" minimumOrderQuantity="0.0" lastPrice="12.0" currencyUomId="NZD" supplierProductName="Drop ship product from Shopmax Seller" supplierProductId="dropShip2-DS" canDropShip="Y"/>
+    
+    <Product productId="dropShip3" productTypeId="FINISHED_GOOD" internalName="DropShip 3" productName="DropShip 3" description="Description of DropShip 3" smallImageUrl="/shopmax-default/img/product-generic-472x472.jpg" mediumImageUrl="/shopmax-default/img/product-generic-472x472.jpg" largeImageUrl="/shopmax-default/img/product-generic-472x472.jpg" isVirtual="N" isVariant="N" requirementMethodEnumId="PRODRQM_DS"/>
+    <ProductCategoryMember productCategoryId="DEMO_CAT1_LV4" productId="dropShip3" sequenceNum="1" fromDate="2013-04-01 00:00:00"/>
+    <ProductPrice productId="dropShip3" productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" currencyUomId="NZD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" price="30.00"/>
+    <ProductPrice productId="dropShip3" productPricePurposeId="PURCHASE" productPriceTypeId="PROMO_PRICE" currencyUomId="NZD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" thruDate="2013-12-31 00:00:00" price="10.00"/>
+    <SupplierProduct productId="dropShip3" partyId="SHOPMAX_SELLER" availableFromDate="2013-04-01 00:00:00" minimumOrderQuantity="0.0" lastPrice="14.0" currencyUomId="NZD" supplierProductName="Drop ship product from Shopmax Seller" supplierProductId="dropShip3-DS" canDropShip="Y"/>
+    
+    <Product productId="dropShip4" productTypeId="FINISHED_GOOD" internalName="DropShip 4" productName="DropShip 4" description="Description of DropShip 4" smallImageUrl="/shopmax-default/img/product-generic-472x472.jpg" mediumImageUrl="/shopmax-default/img/product-generic-472x472.jpg" largeImageUrl="/shopmax-default/img/product-generic-472x472.jpg" isVirtual="N" isVariant="N" requirementMethodEnumId="PRODRQM_DS"/>
+    <ProductCategoryMember productCategoryId="DEMO_CAT8_LV4" productId="dropShip4" sequenceNum="1" fromDate="2013-04-01 00:00:00"/>
+    <ProductPrice productId="dropShip4" productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" currencyUomId="NZD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" price="40.00"/>
+    <ProductPrice productId="dropShip4" productPricePurposeId="PURCHASE" productPriceTypeId="PROMO_PRICE" currencyUomId="NZD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" thruDate="2013-12-31 00:00:00" price="10.00"/>
+    <SupplierProduct productId="dropShip4" partyId="SHOPMAX_SELLER" availableFromDate="2013-04-01 00:00:00" minimumOrderQuantity="0.0" lastPrice="16.0" currencyUomId="NZD" supplierProductName="Drop ship product from Shopmax Seller" supplierProductId="dropShip4-DS" canDropShip="Y"/>
 </entity-engine-xml>

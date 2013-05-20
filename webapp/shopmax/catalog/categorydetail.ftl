@@ -17,14 +17,19 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<div>
-    <ul class="breadcrum">
-        <#if headerItem?has_content>
-            <li><a href="<@ofbizUrl>main</@ofbizUrl>">Home</a></li>
-            <#if headerItem?if_exists == "shops">
-                    <li><a href="<@ofbizUrl>#</@ofbizUrl>">Shops</a></li>
-            </#if>
-            <li>${breadCrumTitle?if_exists}</li>
-        </#if>
-    </ul>
+<#include "component://shopmax/webapp/shopmax/catalog/categorypaginate.ftl" />
+
+<div class="cat_viewing">
+    <#if productCategoryMembers?has_content>
+        <#list productCategoryMembers as productCategoryMember>
+            ${setRequestAttribute("optProductId", productCategoryMember.productId)}
+            ${setRequestAttribute("productCategoryMember", productCategoryMember)}
+            ${setRequestAttribute("listIndex", productCategoryMember_index)}
+            ${screens.render("component://shopmax/widget/CatalogScreens.xml#ProductSummary")}
+        </#list>
+    <#else>
+        <div>${uiLabelMap.ProductNoProductsInThisCategory}</div>
+    </#if>
 </div>
+
+<#include "component://shopmax/webapp/shopmax/catalog/categorypaginate.ftl" />

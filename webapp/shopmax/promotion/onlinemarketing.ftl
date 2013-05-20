@@ -18,7 +18,8 @@ under the License.
 -->
 
 <div class="container content promotion">
-    <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
+    <!-- include breadcrumb -->
+    ${screens.render("component://shopmax/widget/ShopMaxScreens.xml#Breadcrumbs")}
     <div class="row">
         <div class="span3 sidebar" id="side-menu">
             <div class="categories innerbox">

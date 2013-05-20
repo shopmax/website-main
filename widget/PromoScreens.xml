@@ -26,7 +26,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleCreatePromotion"/>
                 <set field="headerItem" value="createpromotion"/>
-                <set field="breadCrumTitle" value="Promotion"/>
+                <set field="breadcrumbTitle" value="Promotion"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -43,7 +43,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleOnlineMarketing"/>
                 <set field="headerItem" value="onlinemarketing"/>
-                <set field="breadCrumTitle" value="Online Marketing"/>
+                <set field="breadcrumbTitle" value="Online Marketing"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -60,7 +60,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleCreateCampaign"/>
                 <set field="headerItem" value="createcampaign"/>
-                <set field="breadCrumTitle" value="Online Marketing"/>
+                <set field="breadcrumbTitle" value="Online Marketing"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">

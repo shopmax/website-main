@@ -26,7 +26,7 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleShoppingCart"/>
                 <set field="headerItem" value="shoppingcart"/>
-                <set field="breadCrumTitle" value="Shopping Cart"/>
+                <set field="breadcrumbTitle" value="Shopping Cart"/>
                 <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/cart/ShowCart.groovy"/>
                 <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/cart/ShowPromoText.groovy"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/cart/ShowSupplierCarts.groovy"/>

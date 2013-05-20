@@ -59,20 +59,20 @@ under the License.
         <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/chosen.jquery.min.js</@ofbizContentUrl>" type="text/javascript"></script>
         <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.anythingslider.min.js</@ofbizContentUrl>" type="text/javascript"></script>
         <script src="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.pack.js</@ofbizContentUrl>" type="text/javascript"></script>
-        <#-- <script src="<@ofbizContentUrl>/shopmax-default/js/main.js</@ofbizContentUrl>"></script>-->
+        <#-- <script src="<@ofbizContentUrl>/shopmax-default/js/main.js</@ofbizContentUrl>"></script> -->
         <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.countdown.min.js</@ofbizContentUrl>" type="text/javascript"></script>
         <#include "component://shopmax/webapp/shopmax/includes/mainjavascript.ftl" />
         <#include "component://shopmax/webapp/shopmax/includes/ratyjavascript.ftl" />
-        <#-- <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.raty.min.js</@ofbizContentUrl>"></script>-->
+        <#-- <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.raty.min.js</@ofbizContentUrl>"></script> -->
         <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.mousewheel-3.0.4.pack.js</@ofbizContentUrl>" type="text/javascript"></script>
         <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.fancybox-1.3.4.js</@ofbizContentUrl>" type="text/javascript"></script>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places&language=en-AU"></script>
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <#-- <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> -->
         <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.accordion.js</@ofbizContentUrl>"></script>
         <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.accordion.source.js</@ofbizContentUrl>"></script>
-        <script src="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.js</@ofbizContentUrl>"></script>
-
+        <#-- <script src="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.js</@ofbizContentUrl>"></script> -->
+        
         <script type="text/javascript">
         $(document).ready(function() {
             $("#various1").fancybox({

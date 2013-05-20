@@ -65,9 +65,9 @@ under the License.
     }
 </script>
 <div class="container content">
-    <!-- include breadcrum -->
     <div id="load-script"></div>
-    <#include "component://shopmax/webapp/shopmax/includes/breadcrum.ftl" />
+    <!-- include breadcrumb -->
+    ${screens.render("component://shopmax/widget/ShopMaxScreens.xml#Breadcrumbs")}
     <div id="load-javascript"></div>
     <div class="row">
         <div class="span3 sidebar" id="side-menu">
