@@ -102,6 +102,12 @@ under the License.
         <response name="error" type="view" value="categorygridview"/>
     </request-map>
     
+    <request-map uri="categorygridviewdetail">
+        <security https="false" auth="false"/>
+        <response name="success" type="view" value="categorygridviewdetail"/>
+        <response name="error" type="view" value="categorygridviewdetail"/>
+    </request-map>
+    
     <request-map uri="categorylistview">
         <security https="false" auth="false"/>
         <response name="success" type="view" value="categorylistview"/>
@@ -130,6 +136,12 @@ under the License.
         <security https="true" auth="false"/>
         <response name="success" type="view" value="shopcategorygridview"/>
         <response name="error" type="view" value="shopcategorygridview"/>
+    </request-map>
+    
+    <request-map uri="shopcategorygridviewdetail">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="shopcategorygridviewdetail"/>
+        <response name="error" type="view" value="shopcategorygridviewdetail"/>
     </request-map>
     
 <!-- <request-map uri="manageproductlogin">
@@ -432,12 +444,14 @@ under the License.
     <view-map name="productrushhour" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ProductRushHour"/>
     <view-map name="category" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryGridView"/>
     <view-map name="categorygridview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryGridView"/>
+    <view-map name="categorygridviewdetail" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryGridViewDetail"/>
     <view-map name="categorylistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryListView"/>
     <view-map name="manageproduct" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ManageProduct"/>
     <view-map name="searchgridview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#SearchGridView"/>
     <view-map name="searchlistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#SearchListView"/>
     <view-map name="shopcategorylistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ShopCategoryListView"/>
     <view-map name="shopcategorygridview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ShopCategoryGridView"/>
+    <view-map name="shopcategorygridviewdetail" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ShopCategoryGridViewDetail"/>
     <view-map name="subcategoriesaccordionview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#SubCategoriesAccordionView"/>
     <view-map name="uploadproduct" type="screen" page="component://shopmax/widget/CatalogScreens.xml#UploadProduct"/>
     <view-map name="uploadproductajax" type="screen" page="component://shopmax/widget/CatalogScreens.xml#UploadProductAjax"/>
