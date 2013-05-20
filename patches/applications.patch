@@ -91,3 +91,19 @@ Index: applications/party/webapp/partymgr/WEB-INF/controller.xml
 +
      <!-- end of view mappings -->
  </site-conf>
+Index: applications/product/script/org/ofbiz/product/product/ProductServices.xml
+===================================================================
+--- applications/product/script/org/ofbiz/product/product/ProductServices.xml	(revision 1470483)
++++ applications/product/script/org/ofbiz/product/product/ProductServices.xml	(working copy)
+@@ -33,6 +33,11 @@
+         <set from-field="parameters.productId" field="newEntity.productId"/>
+         <if-empty field="newEntity.productId">
+             <sequenced-id sequence-name="Product" field="newEntity.productId"/>
++            <entity-and entity-name="PartyRole" list="partyRoles">
++                <field-map field-name="roleTypeId" value="SELLER"/>
++            </entity-and>
++            <first-from-list entry="partyRole" list="partyRoles"/>
++            <set field="newEntity.productId" value="${partyRole.partyId}-${newEntity.productId}"/>
+         <else>
+             <check-id field="newEntity.productId"/>
+             <check-errors />

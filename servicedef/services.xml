@@ -214,12 +214,12 @@ under the License.
         <attribute name="_uploadedFile3_fileName" type="String" mode="IN" optional="true"/>
         <attribute name="_uploadedFile3_contentType" type="String" mode="IN" optional="true"/>
         <attribute name="listingPrice" type="BigDecimal" mode="IN" optional="false"/>
-        <attribute name="stock" type="BigDecimal" mode="IN" optional="false"/>
+        <attribute name="stock" type="BigDecimal" mode="IN" optional="true"/>
         <attribute name="promoPrice" type="BigDecimal" mode="IN" optional="true"/>
         <attribute name="promoPriceFromDate" type="Timestamp" mode="IN" optional="true"/>
         <attribute name="promoPriceThruDate" type="Timestamp" mode="IN" optional="true"/>
+        <attribute name="shippingSize" mode="IN" type="String" optional="true"/>
         <attribute name="listCategory" mode="IN" type="String" optional="true"/>
-        <attribute name="shippingSize" mode="IN" type="String" optional="false"/>
     </service>
     
     <service name="editProductToShopmax" engine="simple"
@@ -241,12 +241,12 @@ under the License.
         <attribute name="_uploadedFile3_fileName" type="String" mode="IN" optional="true"/>
         <attribute name="_uploadedFile3_contentType" type="String" mode="IN" optional="true"/>
         <attribute name="listingPrice" type="BigDecimal" mode="IN" optional="false"/>
-        <attribute name="stock" type="BigDecimal" mode="IN" optional="false"/>
+        <attribute name="stock" type="BigDecimal" mode="IN" optional="true"/>
         <attribute name="promoPrice" type="BigDecimal" mode="IN" optional="true"/>
         <attribute name="promoPriceFromDate" type="Timestamp" mode="IN" optional="true"/>
         <attribute name="promoPriceThruDate" type="Timestamp" mode="IN" optional="true"/>
+        <attribute name="shippingSize" mode="IN" type="String" optional="true"/>
         <attribute name="listCategory" mode="IN" type="String" optional="true"/>
-        <attribute name="shippingSize" mode="IN" type="String" optional="false"/>
         <attribute name="partyId" type="String" mode="IN" optional="false"/>
     </service>
 </services>
