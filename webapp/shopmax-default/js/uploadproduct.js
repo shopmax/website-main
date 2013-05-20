@@ -68,35 +68,43 @@ $(function(){
     $('#assign-category').click(function(e){
         if(typeof getUrlVars()["categoryFirstId"] != "undefined"){
             var categoryFirstId = getUrlVars()["categoryFirstId"];
+            var categoryName = ($('#'+categoryFirstId).val()).split("-");
+            var categoryFirstName = categoryName[1];
         }
         if(typeof getUrlVars()["categorySecondId"] != "undefined"){
             var categorySecondId = getUrlVars()["categorySecondId"];
+            var categoryName = ($('#'+categorySecondId).val()).split("-");
+            var categorySecondName = categoryName[1];
         }
         if(typeof getUrlVars()["categoryThirdId"] != "undefined"){
             var categoryThirdId = getUrlVars()["categoryThirdId"];
+            var categoryName = ($('#'+categoryThirdId).val()).split("-");
+            var categoryThirdName = categoryName[1];
         }
         if(typeof getUrlVars()["categoryFourthId"] != "undefined"){
             var categoryFourthId = getUrlVars()["categoryFourthId"];
+            var categoryName = ($('#'+categoryFourthId).val()).split("-");
+            var categoryFourthName = categoryName[1];
         }
         var newRow;
         if(categoryFirstId && categorySecondId && categoryThirdId && categoryFourthId){
             if(checkHasValue(categoryFourthId)){
-                newRow = $("<tr id='tr-"+categoryFourthId+"'><td>"+categoryFirstId+" &gt; "+categorySecondId+" &gt; "+categoryThirdId+" &gt; "+categoryFourthId+"</td><td><a id='remove-"+categoryFourthId+"' onclick='removeCategory(&quot;"+categoryFourthId+"&quot;)'>Remove</a></td></tr>");
+                newRow = $("<tr id='tr-"+categoryFourthId+"'><td>"+categoryFirstName+" &gt; "+categorySecondName+" &gt; "+categoryThirdName+" &gt; "+categoryFourthName+"</td><td><a id='remove-"+categoryFourthId+"' onclick='removeCategory(&quot;"+categoryFourthId+"&quot;)'>Remove</a></td></tr>");
             }
         }
         if(categoryFirstId && categorySecondId && categoryThirdId && !categoryFourthId){
             if(checkHasValue(categoryThirdId)){
-                newRow = $("<tr id='tr-"+categoryThirdId+"'><td>"+categoryFirstId+" &gt; "+categorySecondId+" &gt; "+categoryThirdId+"</td><td><a id='remove-"+categoryThirdId+"' onclick='removeCategory(&quot;"+categoryThirdId+"&quot;)'>Remove</a></td></tr>");
+                newRow = $("<tr id='tr-"+categoryThirdId+"'><td>"+categoryFirstName+" &gt; "+categorySecondName+" &gt; "+categoryThirdName+"</td><td><a id='remove-"+categoryThirdId+"' onclick='removeCategory(&quot;"+categoryThirdId+"&quot;)'>Remove</a></td></tr>");
             }
         }
         if(categoryFirstId && categorySecondId && !categoryThirdId && !categoryFourthId){
             if(checkHasValue(categorySecondId)){
-                newRow = $("<tr id='tr-"+categorySecondId+"'><td>"+categoryFirstId+" &gt; "+categorySecondId+"</td><td><a id='remove-"+categorySecondId+"' onclick='removeCategory(&quot;"+categorySecondId+"&quot;)'>Remove</a></td></tr>");
+                newRow = $("<tr id='tr-"+categorySecondId+"'><td>"+categoryFirstName+" &gt; "+categorySecondName+"</td><td><a id='remove-"+categorySecondId+"' onclick='removeCategory(&quot;"+categorySecondId+"&quot;)'>Remove</a></td></tr>");
             }
         }
         if(categoryFirstId && !categorySecondId && !categoryThirdId && !categoryFourthId){
             if(checkHasValue(categoryFirstId)){
-                newRow = $("<tr id='tr-"+categoryFirstId+"'><td>"+categoryFirstId+"</td><td><a id='remove-"+categoryFirstId+"' onclick='removeCategory(&quot;"+categoryFirstId+"&quot;)'>Remove</a></td></tr>");
+                newRow = $("<tr id='tr-"+categoryFirstId+"'><td>"+categoryFirstName+"</td><td><a id='remove-"+categoryFirstId+"' onclick='removeCategory(&quot;"+categoryFirstId+"&quot;)'>Remove</a></td></tr>");
             }
         }
         $(".selected-products").append(newRow);

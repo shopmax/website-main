@@ -23,7 +23,7 @@ under the License.
             <#if categoryList?has_content>
                 <#list categoryList as category>
                     <#assign productCatelogId = category.productCategoryId/>
-                    <option value="${productCatelogId}" id="${productCatelogId}" class="category_1" <#if parameters.categoryFirstId?has_content><#if parameters.categoryFirstId == productCatelogId>selected="selected"</#if></#if>>${category.categoryName?if_exists}</option>
+                    <option value="${productCatelogId}-${category.categoryName}" id="${productCatelogId}" class="category_1" <#if parameters.categoryFirstId?has_content><#if parameters.categoryFirstId == productCatelogId>selected="selected"</#if></#if>>${category.categoryName?if_exists}</option>
                 </#list>
             </#if>
         </select>
@@ -33,7 +33,7 @@ under the License.
             <#if categorySecondList?has_content>
                 <#list categorySecondList as category>
                     <#assign productCatelogId = category.productCategoryId/>
-                    <option value="${productCatelogId}" id="${productCatelogId}" class="category_2" <#if parameters.categorySecondId?has_content><#if parameters.categorySecondId == productCatelogId>selected="selected"</#if></#if>>${category.categoryName?if_exists}</option>
+                    <option value="${productCatelogId}-${category.categoryName}" id="${productCatelogId}" class="category_2" <#if parameters.categorySecondId?has_content><#if parameters.categorySecondId == productCatelogId>selected="selected"</#if></#if>>${category.categoryName?if_exists}</option>
                 </#list>
             </#if>
         </select>
@@ -43,7 +43,7 @@ under the License.
             <#if categoryThirdList?has_content>
                 <#list categoryThirdList as category>
                     <#assign productCatelogId = category.productCategoryId/>
-                    <option value="${productCatelogId}" id="${productCatelogId}" class="category_3" <#if parameters.categoryThirdId?has_content><#if parameters.categoryThirdId == productCatelogId>selected="selected"</#if></#if>>${category.categoryName?if_exists}</option>
+                    <option value="${productCatelogId}-${category.categoryName}" id="${productCatelogId}" class="category_3" <#if parameters.categoryThirdId?has_content><#if parameters.categoryThirdId == productCatelogId>selected="selected"</#if></#if>>${category.categoryName?if_exists}</option>
                 </#list>
             </#if>
         </select>
@@ -53,7 +53,7 @@ under the License.
             <#if categoryFourthList?has_content>
                 <#list categoryFourthList as category>
                     <#assign productCatelogId = category.productCategoryId/>
-                    <option value="${productCatelogId}" id="${productCatelogId}" class="category_4" <#if parameters.categoryFourthId?has_content><#if parameters.categoryFourthId == productCatelogId>selected="selected"</#if></#if>>${category.categoryName?if_exists}</option>
+                    <option value="${productCatelogId}-${category.categoryName}" id="${productCatelogId}" class="category_4" <#if parameters.categoryFourthId?has_content><#if parameters.categoryFourthId == productCatelogId>selected="selected"</#if></#if>>${category.categoryName?if_exists}</option>
                 </#list>
             </#if>
         </select>

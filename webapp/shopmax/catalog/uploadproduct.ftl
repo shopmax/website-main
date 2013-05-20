@@ -16,7 +16,6 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-
 <script src="<@ofbizContentUrl>/shopmax-default/js/uploadproduct.js</@ofbizContentUrl>" type="text/javascript"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
@@ -54,7 +53,7 @@ under the License.
                                         <#if categoryList?has_content>
                                             <#list categoryList as category>
                                                 <#assign productCatelogId = category.productCategoryId/>
-                                                <option value="${productCatelogId}" id="${productCatelogId}" class="category_1" <#if parameters.categoryFirstId?has_content><#if parameters.categoryFirstId == productCatelogId>selected="selected"</#if></#if>>${category.categoryName?if_exists}</option>
+                                                <option value="${productCatelogId}-${category.categoryName}" id="${productCatelogId}" class="category_1" <#if parameters.categoryFirstId?has_content><#if parameters.categoryFirstId == productCatelogId>selected="selected"</#if></#if>>${category.categoryName?if_exists}</option>
                                             </#list>
                                         </#if>
                                     </select>
@@ -64,7 +63,7 @@ under the License.
                                         <#if categorySecondList?has_content>
                                             <#list categorySecondList as category>
                                                 <#assign productCatelogId = category.productCategoryId/>
-                                                <option value="${productCatelogId}" id="${productCatelogId}" class="category_2" <#if parameters.categorySecondId?has_content><#if parameters.categorySecondId == productCatelogId>selected="selected"</#if></#if>>${category.categoryName?if_exists}</option>
+                                                <option value="${productCatelogId}-${category.categoryName}" id="${productCatelogId}" class="category_2" <#if parameters.categorySecondId?has_content><#if parameters.categorySecondId == productCatelogId>selected="selected"</#if></#if>>${category.categoryName?if_exists}</option>
                                             </#list>
                                         </#if>
                                     </select>
@@ -74,7 +73,7 @@ under the License.
                                         <#if categoryThirdList?has_content>
                                             <#list categoryThirdList as category>
                                                 <#assign productCatelogId = category.productCategoryId/>
-                                                <option value="${productCatelogId}" id="${productCatelogId}" class="category_3" <#if parameters.categoryThirdId?has_content><#if parameters.categoryThirdId == productCatelogId>selected="selected"</#if></#if>>${category.categoryName?if_exists}</option>
+                                                <option value="${productCatelogId}-${category.categoryName}" id="${productCatelogId}" class="category_3" <#if parameters.categoryThirdId?has_content><#if parameters.categoryThirdId == productCatelogId>selected="selected"</#if></#if>>${category.categoryName?if_exists}</option>
                                             </#list>
                                         </#if>
                                     </select>
@@ -84,7 +83,7 @@ under the License.
                                         <#if categoryFourthList?has_content>
                                             <#list categoryFourthList as category>
                                                 <#assign productCatelogId = category.productCategoryId/>
-                                                <option value="${productCatelogId}" id="${productCatelogId}" class="category_4" <#if parameters.categoryFourthId?has_content><#if parameters.categoryFourthId == productCatelogId>selected="selected"</#if></#if>>${category.categoryName?if_exists}</option>
+                                                <option value="${productCatelogId}-${category.categoryName}" id="${productCatelogId}" class="category_4" <#if parameters.categoryFourthId?has_content><#if parameters.categoryFourthId == productCatelogId>selected="selected"</#if></#if>>${category.categoryName?if_exists}</option>
                                             </#list>
                                         </#if>
                                     </select>
@@ -165,7 +164,7 @@ under the License.
                                 <input type="checkbox">
                                 <label>
                                     &nbsp;Promotion price&nbsp;
-                                    <input type="number" class="input-mini">
+                                    <input type="number" class="input-mini" name="promoPrice">
                                 </label>
                                 <#-- <label>
                                     &nbsp;&nbsp;Valid from&nbsp;
