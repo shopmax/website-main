@@ -24,9 +24,9 @@ under the License.
          <ul id="category-menu">
            <#if categoryList?has_content>
                 <#list categoryList as productCategory>
-                    <li>
-                        <a href="#${productCategory.productCategoryId}"><span>${productCategory.categoryName}</span></a>
-                        <div>
+                    <li class="">
+                        <a class="" href="#${productCategory.productCategoryId}"><span>${productCategory.categoryName}</span></a>
+                        <div class="">
                         </div>
                     </li>
                 </#list>

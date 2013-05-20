@@ -17,21 +17,10 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-
-<script>
-$(function(){
-    $('.edit').click(function(){
-        var currentView = this.id.split("-");
-        var index = currentView[2];
-        if ($('#view-edit-product-'+index).is(":hidden")) {
-            $('#view-edit-product-'+index).slideDown("slow");
-        } else {
-            $('#view-edit-product-'+index).slideUp("slow");
-        }
-    });
-});
-</script>
-
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script src="<@ofbizContentUrl>/shopmax-default/js/manageproduct.js</@ofbizContentUrl>" type="text/javascript"></script>
+<script src="<@ofbizContentUrl>/shopmax-default/js/jquery.accordion.source.js</@ofbizContentUrl>" type="text/javascript"></script>
 <div class="container content">
     <!-- include breadcrumb -->
     ${screens.render("component://shopmax/widget/ShopMaxScreens.xml#Breadcrumbs")}
@@ -166,24 +155,26 @@ $(function(){
                                             </label>
                                             <label>
                                                 &nbsp;&nbsp;Valid from&nbsp;
-                                                <input type="number" class="input-small">
+                                                <input type="number" class="input-small dateText" id="datePickerFrom${product_index}" value="">
                                             </label>
-                                            <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />
+                                            <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" id="From${product_index}" class="datepicker"/>
                                             <label>
                                                 &nbsp;&nbsp;To&nbsp;
-                                                <input type="number" class="input-small">
+                                                <input type="number" class="input-small dateText" id="datePickerThru${product_index}" value="">
                                             </label>
-                                            <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />
+                                            <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" id="Thru${product_index}" class="datepicker"/>
                                         </div>
-                                        
+                                        <input type="hidden" name="promoPriceFromDate" id="promo-datePickerFrom${product_index}" value="${product.productPricePromo.fromDate?if_exists}"/>
+                                        <input type="hidden" name="promoPriceThruDate" id="promo-datePickerThru${product_index}" value="${product.productPricePromo.thruDate?if_exists}"/>
                                         <div class="form-inline">
                                             <label>Shipping size</label><br />
-                                            <a href="#" class="btn-dark-grey-small">Xtra small</a>
-                                            <a href="#" class="btn-dark-grey-small">Small</a>
-                                            <a href="#" class="btn-dark-grey-small">Normal</a>
-                                            <a href="#" class="btn-dark-grey-small">Large</a>
-                                            <a href="#" class="btn-dark-grey-small">Xtra Large</a>
+                                            <a class="btn-dark-grey-small shippingSize" id="XTRA_SMALL-shippingSize${product_index}" <#if product.shippingSize?if_exists == 'XTRA_SMALL'>style="color: rgb(53, 139, 219);"</#if>>Xtra Small</a>
+                                            <a class="btn-dark-grey-small shippingSize" id="SMALL-shippingSize${product_index}" <#if product.shippingSize?if_exists == 'SMALL'>style="color: rgb(53, 139, 219);"</#if>>Small</a>
+                                            <a class="btn-dark-grey-small shippingSize" id="NORMAL-shippingSize${product_index}" <#if product.shippingSize?if_exists == 'NORMAL'>style="color: rgb(53, 139, 219);"</#if>>Normal</a>
+                                            <a class="btn-dark-grey-small shippingSize" id="LARGE-shippingSize${product_index}" <#if product.shippingSize?if_exists == 'LARGE'>style="color: rgb(53, 139, 219);"</#if>>Large</a>
+                                            <a class="btn-dark-grey-small shippingSize" id="XTRA_LARGE-shippingSize${product_index}" <#if product.shippingSize?if_exists == 'XTRA_LARGE'>style="color: rgb(53, 139, 219);"</#if>>Xtra Large</a>
                                         </div>
+                                        <input type="hidden" id="shippingSize${product_index}" name="shippingSize" value="${product.shippingSize?if_exists}">
                                         <div class="input-save">
                                             <a href="#" class="btn-general">Save</a><br /><br />
                                             <a href="#" class="edit-full-mode">Switch to full edit mode</a>

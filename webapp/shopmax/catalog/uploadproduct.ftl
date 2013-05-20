@@ -178,11 +178,11 @@ under the License.
                                 <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />-->
                                 <label>&nbsp;&nbsp;Valid from&nbsp;
                                 <input id="datepicker1" type="number" class="input-small"/></label>
-                                <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" id="datepickerimage1"  />
+                                <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" id="datepickerimage1"/>
                                 <label>&nbsp;&nbsp;To&nbsp;
                                 <input type="number" class="input-small" id="datepicker2" />
                                 </label>
-                                <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" id="datepickerimage2" />
+                                <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" id="datepickerimage2"/>
                                 <input type="hidden" name="promoPriceFromDate" id="promoPriceFromDate" value=""/>
                                 <input type="hidden" name="promoPriceThruDate" id="promoPriceThruDate" value=""/>
                             </div>  

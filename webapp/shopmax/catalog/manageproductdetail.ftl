@@ -1,3 +1,24 @@
+<#--
+Licensed to the Apache
+ Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<script src="<@ofbizContentUrl>/shopmax-default/js/manageproduct.js</@ofbizContentUrl>" type="text/javascript"></script>
 <ul class="media-list edit-product-list manage_pro">
     <#if productList?has_content>
         <#list productList as product>
@@ -27,7 +48,7 @@
                             <div class="price"><@ofbizCurrency amount=product.defaultPrice/> NZD</div>
                         </#if>
                     </ul>
-                    <p>Stocks : 99</p>   
+                    <p>Stocks : ${product.stock?if_exists}</p>
                     <a class="btn-general edit" id="edit-product-${product_index}">Edit</a>
                     <a class="btn-green-small" href="#">Promote</a>
                     <a class="btn-grey-small" href="#">Remove</a>
@@ -95,7 +116,7 @@
                             </label>
                             <label style="border:1px solid #E0E0E0;">
                                 Available stock
-                                <input type="number" class="input-medium">
+                                <input type="number" class="input-medium" value="${product.stock?if_exists}">
                             </label>
                         </div>
                         
@@ -107,24 +128,26 @@
                             </label>
                             <label>
                                 &nbsp;&nbsp;Valid from&nbsp;
-                                <input type="number" class="input-small">
+                                <input type="number" class="input-small dateText" id="datePickerFrom${product_index}" value="">
                             </label>
-                            <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />
+                            <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" id="From${product_index}" class="datepicker"/>
                             <label>
                                 &nbsp;&nbsp;To&nbsp;
-                                <input type="number" class="input-small">
+                                <input type="number" class="input-small dateText" id="datePickerThru${product_index}" value="">
                             </label>
-                            <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />
+                            <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" id="Thru${product_index}" class="datepicker"/>
                         </div>
-                        
+                        <input type="hidden" name="promoPriceFromDate" id="promo-datePickerFrom${product_index}" value="${product.productPricePromo.fromDate?if_exists}"/>
+                        <input type="hidden" name="promoPriceThruDate" id="promo-datePickerThru${product_index}" value="${product.productPricePromo.thruDate?if_exists}"/>
                         <div class="form-inline">
                             <label>Shipping size</label><br />
-                            <a href="#" class="btn-dark-grey-small">Xtra small</a>
-                            <a href="#" class="btn-dark-grey-small">Small</a>
-                            <a href="#" class="btn-dark-grey-small">Normal</a>
-                            <a href="#" class="btn-dark-grey-small">Large</a>
-                            <a href="#" class="btn-dark-grey-small">Xtra Large</a>
+                            <a class="btn-dark-grey-small shippingSize" id="XTRA_SMALL-shippingSize${product_index}" <#if product.shippingSize?if_exists == 'XTRA_SMALL'>style="color: rgb(53, 139, 219);"</#if>>Xtra Small</a>
+                            <a class="btn-dark-grey-small shippingSize" id="SMALL-shippingSize${product_index}" <#if product.shippingSize?if_exists == 'SMALL'>style="color: rgb(53, 139, 219);"</#if>>Small</a>
+                            <a class="btn-dark-grey-small shippingSize" id="NORMAL-shippingSize${product_index}" <#if product.shippingSize?if_exists == 'NORMAL'>style="color: rgb(53, 139, 219);"</#if>>Normal</a>
+                            <a class="btn-dark-grey-small shippingSize" id="LARGE-shippingSize${product_index}" <#if product.shippingSize?if_exists == 'LARGE'>style="color: rgb(53, 139, 219);"</#if>>Large</a>
+                            <a class="btn-dark-grey-small shippingSize" id="XTRA_LARGE-shippingSize${product_index}" <#if product.shippingSize?if_exists == 'XTRA_LARGE'>style="color: rgb(53, 139, 219);"</#if>>Xtra Large</a>
                         </div>
+                        <input type="hidden" id="shippingSize${product_index}" name="shippingSize" value="${product.shippingSize?if_exists}">
                         <div class="input-save">
                             <a href="#" class="btn-general">Save</a><br /><br />
                             <a href="#" class="edit-full-mode">Switch to full edit mode</a>
