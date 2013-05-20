@@ -20,12 +20,14 @@ under the License.
 <#if product?exists>
     <#if headerItem?if_exists == "categorygridview" || headerItem?if_exists == "shopcategorygridview">
         <div class="block_1">
-            <#if productImage?exists>
-                <#-- <div class="image"><@ofbizContentUrl>${contentPathPrefix?if_exists}${productImage?if_exists}</@ofbizContentUrl>" alt=""></div> -->
-                <div class="image"><img src="<@ofbizContentUrl>/shopmax-default/img/img_1.png</@ofbizContentUrl>" alt=""></div>
-            <#else>
-                <div class="image"><img src="<@ofbizContentUrl>/shopmax-default/img/img_1.png</@ofbizContentUrl>" alt=""></div>
-            </#if>
+            <a href="<@ofbizUrl>product?product_id=${product.productId}</@ofbizUrl>">
+                <#if productImage?exists>
+                    <#-- <div class="image"><@ofbizContentUrl>${contentPathPrefix?if_exists}${productImage?if_exists}</@ofbizContentUrl>" alt=""></div> -->
+                    <div class="image"><img src="<@ofbizContentUrl>/shopmax-default/img/img_1.png</@ofbizContentUrl>" alt=""></div>
+                <#else>
+                    <div class="image"><img src="<@ofbizContentUrl>/shopmax-default/img/img_1.png</@ofbizContentUrl>" alt=""></div>
+                </#if>
+            </a>
             <div class="mdic">${product.productName?if_exists}</div>
             <#if price.promoPrice?exists>
                 <div class="price"><span><@ofbizCurrency amount=price.price/> NZD</span><@ofbizCurrency amount=price.promoPrice/> NZD</div>
@@ -50,12 +52,14 @@ under the License.
         </div>
     <#elseif headerItem?if_exists == "categorylistview" || headerItem?if_exists == "shopcategorylistview">
         <div class="block_1">
-            <#if productImage?exists>
-                <#-- <div class="image"><@ofbizContentUrl>${contentPathPrefix?if_exists}${productImage?if_exists}</@ofbizContentUrl>" alt=""></div> -->
-                <div class="image"><img src="<@ofbizContentUrl>/shopmax-default/img/img_1.png</@ofbizContentUrl>" alt=""></div>
-            <#else>
-                <div class="image"><img src="<@ofbizContentUrl>/shopmax-default/img/img_1.png</@ofbizContentUrl>" alt=""></div>
-            </#if>
+            <a href="<@ofbizUrl>product?product_id=${product.productId}</@ofbizUrl>">
+                <#if productImage?exists>
+                    <#-- <div class="image"><@ofbizContentUrl>${contentPathPrefix?if_exists}${productImage?if_exists}</@ofbizContentUrl>" alt=""></div> -->
+                    <div class="image"><img src="<@ofbizContentUrl>/shopmax-default/img/img_1.png</@ofbizContentUrl>" alt=""></div>
+                <#else>
+                    <div class="image"><img src="<@ofbizContentUrl>/shopmax-default/img/img_1.png</@ofbizContentUrl>" alt=""></div>
+                </#if>
+            </a>
             <div class="mdic">${product.productName?if_exists}</div>
             <div class="pricestar">
                 <#if price.promoPrice?exists>
