@@ -188,6 +188,11 @@ under the License.
         <response name="success" type="view" value="manageproduct"/>
     </request-map>
     
+    <request-map uri="manageproductdetail">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="manageproductajax"/>
+    </request-map>
+    
     <request-map uri="uploadproduct">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="uploadproduct"/>
@@ -361,8 +366,8 @@ under the License.
         <security https="true" auth="false"/>
         <!-- <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/customer/CustomerEvents.xml" invoke="createCustomer"/> -->
         <event type="service" invoke="createShopmaxCustomer"/>
-        <response name="success" type="request" value="autoLogin"/>
-<!--         <response name="success" type="view" value="registration"/> -->
+<!--         <response name="success" type="request" value="autoLogin"/> -->
+        <response name="success" type="view" value="registration"/>
         <response name="error" type="view" value="registration"/>
     </request-map>
     
@@ -460,6 +465,7 @@ under the License.
     <view-map name="categorylistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryListView"/>
     <view-map name="categorylistviewdetail" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryListViewDetail"/>
     <view-map name="manageproduct" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ManageProduct"/>
+    <view-map name="manageproductajax" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ManageProductAjax"/>
     <view-map name="searchgridview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#SearchGridView"/>
     <view-map name="searchlistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#SearchListView"/>
     <view-map name="shopcategorylistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ShopCategoryListView"/>

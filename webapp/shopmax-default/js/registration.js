@@ -37,7 +37,8 @@ $(function(){
     $('#submit-createcustomer').click(function(){
         if($('.business-registered').is(":visible")){
             var physicalNumber = $('.index-tr-physical-stores').length;
-            var tempBranchName = "";var tempLocation = "";var tempPhoneNumber = "";
+            var tempBranchName = "";var tempLocation = "";var tempPhoneType = "";var tempPhoneNumber = "";var tempStorePhoneNumber = "";
+            var phoneType = ""; var faxType = "";
             var tempPhoneText = $('#phy_phone_text_'+i).val();
             var tempFaxText = $('#phy_fax_text_'+i).val();
             var phoneNumber = "";var faxNumber = "";var phonePrefix = "";var faxPrefix = "";var tempPhoneText = "";var tempFaxText = "";var tempDataTime = "";
@@ -56,12 +57,21 @@ $(function(){
                 friO = 'FRI_OPENING_HOURS-'+$('#fri_o_0_'+i).val()+':'+$('#fri_o_1_'+i).val();friC = 'FRI_CLOSING_HOURS-'+$('#fri_c_0_'+i).val()+':'+$('#fri_c_1_'+i).val();
                 satO = 'SAT_OPENING_HOURS-'+$('#sat_o_0_'+i).val()+':'+$('#sat_o_1_'+i).val();satC = 'SAT_CLOSING_HOURS-'+$('#sat_c_0_'+i).val()+':'+$('#sat_c_1_'+i).val();
                 sunO = 'SUN_OPENING_HOURS-'+$('#sun_o_0_'+i).val()+':'+$('#sun_o_1_'+i).val();sunC = 'SUN_CLOSING_HOURS-'+$('#sun_c_0_'+i).val()+':'+$('#sun_c_1_'+i).val();
-                if(tempPhoneText){
+                /*if(tempPhoneText){
                     phoneNumber = "STORE_PHONE_NUMBER-"+phonePrefix+tempPhoneText;
                 }
                 if(tempFaxText){
                     faxNumber = "STORE_FAX_NUMBER-"+faxPrefix+tempFaxText;
+                }*/
+                if(tempPhoneText){
+                    phoneNumber = phonePrefix+tempPhoneText;
+                    phoneType = "STORE_PHONE_NUMBER";
                 }
+                if(tempFaxText){
+                    faxNumber = faxPrefix+tempFaxText;
+                    faxType = "STORE_FAX_NUMBER";
+                }
+                
                 if(!tempBranchName){
                     tempBranchName = $('#branchName_'+i).val();
                 }
@@ -74,20 +84,35 @@ $(function(){
                 else{
                     tempLocation = tempLocation+'/'+$('#inputLocation_'+i).val();
                 }
-                if(!tempPhoneNumber){
+                
+                if(faxNumber && faxType){
+                    faxNumber = ','+faxNumber;
+                    faxType = ','+faxType;
+                }
+                if(!tempStorePhoneNumber){
+                    tempStorePhoneNumber = phoneNumber+faxNumber;
+                    tempPhoneType = phoneType+faxType;
+                }
+                else{
+                    tempStorePhoneNumber = tempStorePhoneNumber+'/'+phoneNumber+faxNumber;
+                    tempPhoneType = tempPhoneType+'/'+phoneType+faxType;
+                }
+                /*if(!tempPhoneNumber){
                      tempPhoneNumber = phoneNumber+','+faxNumber;
                 }
                 else{
                     tempPhoneNumber = tempPhoneNumber+'/'+phoneNumber+','+faxNumber;
                     //tempDataTime = tempDataTime+'/'+monO+','+monC+','+tueO+','+tueC+','+wenO+','+wenC+','+thuO+','+thuC+','+','+friO+','+friC+','+satO+','+satC+','+sunO+','+sunC;
-                }
+                }*/
                 phoneNumber = "";faxNumber = "";
+                phoneType = "";faxType = "";
                 monO = "";monC = "";tueO = "";tueC = "";wenO = "";wenC = "";thuO = "";
                 thuC = "";friO = "";friC = "";satO = "";satC = "";sunO = "";sunC = "";
             }
             $('#physicalBranchName').val(tempBranchName);
             $('#physicalLocation').val(tempLocation);
-            $('#physicalPhone').val(tempPhoneNumber);
+            $('#physicalPhoneType').val(tempPhoneType)
+            $('#physicalPhone').val(tempStorePhoneNumber);
             $('#physicalTime').val(tempDataTime);
             $('#createcustomer').submit();
         }

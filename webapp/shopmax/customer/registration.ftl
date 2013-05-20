@@ -308,6 +308,7 @@ under the License.
                             <input type="hidden" name="physicalNum" id="physicalNum"/>
                             <input type="hidden" name="physicalBranchName" id="physicalBranchName"/>
                             <input type="hidden" name="physicalLocation" id="physicalLocation"/>
+                            <input type="hidden" name="physicalPhoneType" id="physicalPhoneType"/>
                             <input type="hidden" name="physicalPhone" id="physicalPhone"/>
                             <input type="hidden" name="physicalTime" id="physicalTime"/>
                         </tr>

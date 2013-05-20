@@ -108,10 +108,11 @@ under the License.
         <attribute name="uploadedFile2" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
         <attribute name="_uploadedFile2_fileName" type="String" mode="IN" optional="true"/>
         <attribute name="_uploadedFile2_contentType" type="String" mode="IN" optional="true"/>
-        <attribute name="physicalNumber" mode="IN" type="Integer" optional="true"/>
+        <attribute name="physicalNum" mode="IN" type="Integer" optional="true"/>
         <attribute name="physicalBranchName" mode="IN" type="String" optional="true"/>
         <attribute name="physicalLocation" mode="IN" type="String" optional="true"/>
         <attribute name="physicalPhone" mode="IN" type="String" optional="true"/>
+        <attribute name="physicalPhoneType" mode="IN" type="String" optional="true"/>
         <attribute name="physicalTime" mode="IN" type="String" optional="true"/>
     </service>
     
