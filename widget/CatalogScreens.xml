@@ -38,7 +38,7 @@ under the License.
                                 <not><if-empty field="product"/></not>
                             </condition>
                             <widgets>
-                                <include-screen name="${detailScreen}"/>
+                                <include-screen name="ProductDetail"/>
                             </widgets>
                             <fail-widgets>
                                 <label style="head2">${uiLabelMap.ProductProductNotFound} ${productId}!</label>

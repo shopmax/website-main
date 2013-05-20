@@ -46,10 +46,12 @@ under the License.
             <div class="raty" data-rating="3"></div>
             <h5 class="review-number">(${productReviews.size()} reviews)</h5>
             <br /><br />
-            <#if price.competitivePrice?exists>
-                <h5 class="old"><@ofbizCurrency amount=price.competitivePrice isoCode=price.currencyUsed /></h5>
+            <#if price.promoPrice?exists>
+                <h5 class="old"><@ofbizCurrency amount=price.defaultPrice isoCode=price.currencyUsed /></h5>
+                <h1><@ofbizCurrency amount=price.promoPrice isoCode=price.currencyUsed /></h1>
+            <#else>
+                <h1><@ofbizCurrency amount=price.defaultPrice isoCode=price.currencyUsed /></h1>
             </#if>
-            <h1><@ofbizCurrency amount=price.defaultPrice isoCode=price.currencyUsed /></h1>
             <#--
             <#if price.competitivePrice?exists && price.price?exists && price.price &lt; price.competitivePrice>
                 <div>${uiLabelMap.ProductCompareAtPrice}: <span class="basePrice"><@ofbizCurrency amount=price.competitivePrice isoCode=price.currencyUsed /></span></div>
