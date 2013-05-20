@@ -17,53 +17,6 @@ specific language governing permissions and limitations
 under the License.
 -->
 <script src="<@ofbizContentUrl>/shopmax-default/js/registration.js</@ofbizContentUrl>" type="text/javascript"></script>
-<script>
-    function getFile(inputIndex){
-        document.getElementById("upfile"+inputIndex).click();
-    }
-    function sub(obj,inputIndex){
-         var file = obj.value;
-         $('#yourBtn'+inputIndex).val(file);
-    }
-    $(function($, window, document, undefined){
-         var defaults = {
-             bounds: true,
-             country: null,
-             map: false,
-             details: false,
-             detailsAttribute: "name",
-             location: false,
-         }
-    });
-    function inputLocation(index){
-         var options = {
-           // types: ['(cities)'],
-            componentRestrictions: {country: 'nz'}//NewZealand only
-        };
-        var input = document.getElementById("inputLocation_"+index);
-        //var autocomplete = new google.maps.places.Autocomplete($("#address")[0], {country:'tr'});
-        var autocomplete = new google.maps.places.Autocomplete(input,options);
-        google.maps.event.addListener(autocomplete, 'place_changed', function() {
-            var place = autocomplete.getPlace();
-            console.log(place.address_components);
-        });
-    }
-    function loadjscssfile(filename, filetype){
-     if (filetype=="js"){ //if filename is a external JavaScript file
-      var fileref=document.createElement('script')
-      fileref.setAttribute("type","text/javascript")
-      fileref.setAttribute("src", filename)
-     }
-     else if (filetype=="css"){ //if filename is an external CSS file
-      var fileref=document.createElement("link")
-      fileref.setAttribute("rel", "stylesheet")
-      fileref.setAttribute("type", "text/css")
-      fileref.setAttribute("href", filename)
-     }
-     if (typeof fileref!="undefined")
-      document.getElementsByTagName("head")[0].appendChild(fileref)
-    }
-</script>
 <div class="container content">
     <div id="load-script"></div>
     <!-- include breadcrumb -->
@@ -267,12 +220,12 @@ under the License.
                             </tr>
                         </thead>
                         <tbody id="tr-physical-stores">
-                            <tr class="index-tr-physical-stores">
+                            <tr class="index-tr-physical-stores" id="tr-physical-0">
                                 <td class="col1 form-horizontal" id="physical">
                                     <div class="control-group">
                                         <label class="control-label control-label-xsmall" for="inputPromotionDescription">Branch Name</label>
                                         <div class="pull-left">
-                                            <input type="text" class="input-xxlarge" id="branchName_0" name="branchName">
+                                            <input type="text" class="input-xxlarge branchName" id="branchName_0" name="branchName">
                                         </div>
                                     </div>
                                     <div class="control-group">
@@ -284,7 +237,7 @@ under the License.
                                     <div class="control-group">
                                         <label class="control-label control-label-small" for="inputPromotionDescription">Store Phone Number</label>
                                         <div class="pull-left">
-                                            <select id="phoneNumber2" class="chosen phoneNumber" name="phoneNumber2">
+                                            <select id="phy_phone_select_0" class="chosen">
                                                 <option selected="selected">03</option>
                                                 <option>04</option>
                                                 <option>06</option>
@@ -299,11 +252,11 @@ under the License.
                                                 <option>0508</option>
                                                 <option>0800</option>
                                             </select>
-                                            <input type="text" class="input-phone-number" id="inputPassword">
+                                            <input type="text" class="input-phone-number" id="phy_phone_text_0">
                                         </div>
                                         <label class="control-label control-label-small" for="inputPromotionDescription">Store Fax Number</label>
                                         <div class="pull-left">
-                                            <select id="phoneNumber3" class="chosen phoneNumber" name="phoneNumber3">
+                                            <select id="phy_fax_select_0" class="chosen">
                                                 <option selected="selected">03</option>
                                                 <option>04</option>
                                                 <option>06</option>
@@ -312,116 +265,51 @@ under the License.
                                                 <option>0508</option>
                                                 <option>0800</option>
                                             </select>
-                                            <input type="text" class="input-phone-number" id="inputPassword">
+                                            <input type="text" class="input-phone-number" id="phy_fax_text_0">
                                         </div>
                                     </div>
-                                    <div class="control-group">
-                                        <label class="control-label control-label-xlarge" for="inputOpeningHours">Opening Hours (24 hour format)</label>
-                                        <div class="clearfix"></div>
-                                        
-                                        <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Mon </label>
-                                        <div clas="pull-left">
-                                            <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                    <div class='control-group'>
+                                        <label class='control-label control-label-xlarge' for='inputOpeningHours'>Opening Hours (24 hour format)</label>
+                                        <div class='clearfix'></div>
+                                        <label class='control-label control-label-xxsmall pull-left' for='inputMonday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Mon </label>
+                                        <div clas='pull-left'>
+                                            <input type='text' class='input-xsmall input-time' id='mon_o_0_0'> : <input type='text' class='input-xsmall input-time' id='mon_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='mon_c_0_0'> : <input type='text' class='input-xsmall input-time' id='mon_c_1_0'>
                                         </div>
-                                        <label class="control-label control-label-xxsmall pull-left" for="inputTuesday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Tue </label>
-                                        <div clas="pull-left">
-                                            <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                        </div> 
-                                        <label class="control-label control-label-xxsmall pull-left" for="inputWednesday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Wed </label>
-                                        <div clas="pull-left">
-                                            <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                        </div> 
-                                        <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Thu </label>
-                                        <div clas="pull-left">  
-                                            <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                        </div>      
-                                        <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Fri </label>
-                                        <div clas="pull-left">
-                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                        <label class='control-label control-label-xxsmall pull-left' for='inputTuesday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Tue </label>
+                                        <div clas='pull-left'>
+                                            <input type='text' class='input-xsmall input-time' id='tue_o_0_0'> : <input type='text' class='input-xsmall input-time' id='tue_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='tue_c_0_0'> : <input type='text' class='input-xsmall input-time' id='tue_c_1_0'>
                                         </div>
-                                        <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Sat </label>
-                                        <div clas="pull-left">
-                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                        <label class='control-label control-label-xxsmall pull-left' for='inputWednesday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Wed </label>
+                                        <div clas='pull-left'>
+                                            <input type='text' class='input-xsmall input-time' id='wed_o_0_0'> : <input type='text' class='input-xsmall input-time' id='wed_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='wed_c_0_0'> : <input type='text' class='input-xsmall input-time' id='wed_c_1_0'>
                                         </div>
-                                        <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Sun</label>
-                                        <div clas="pull-left">
-                                            <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
+                                        <label class='control-label control-label-xxsmall pull-left' for='inputThursday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Thu </label>
+                                        <div clas='pull-left'>
+                                            <input type='text' class='input-xsmall input-time' id='thu_o_0_0'> : <input type='text' class='input-xsmall input-time' id='thu_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='thu_c_0_0'> : <input type='text' class='input-xsmall input-time' id='thu_c_1_0'>
                                         </div>
-                                    </div>  
-                                    <a class="btn-grey-small btn_remove" href="#">Remove Branch</a>
+                                        <label class='control-label control-label-xxsmall pull-left' for='inputFriday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Fri </label>
+                                        <div clas='pull-left'>
+                                        <input type='text' class='input-xsmall input-time' id='fri_o_0_0'> : <input type='text' class='input-xsmall input-time' id='fri_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='fri_c_0_0'> : <input type='text' class='input-xsmall input-time' id='fri_c_1_0'>
+                                        </div>
+                                        <label class='control-label control-label-xxsmall pull-left' for='inputSaterday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Sat </label>
+                                        <div clas='pull-left'>
+                                        <input type='text' class='input-xsmall input-time' id='sat_o_0_0'> : <input type='text' class='input-xsmall input-time' id='sat_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='sat_c_0_0'> : <input type='text' class='input-xsmall input-time' id='sat_c_1_0'>
+                                        </div>
+                                        <label class='control-label control-label-xxsmall pull-left' for='inputSunday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Sun</label>
+                                        <div clas='pull-left'>
+                                            <input type='text' class='input-xsmall input-time' id='sun_o_0_0'> : <input type='text' class='input-xsmall input-time' id='sun_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='sun_c_0_0'> : <input type='text' class='input-xsmall input-time' id='sun_c_1_0'>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
-                        <#-- <tr>
-                            <td class="col1 form-horizontal">
-                                <div class="control-group">
-                                    <label class="control-label control-label-xsmall" for="inputPromotionDescription">Location</label>
-                                    <div class="pull-left">
-                                        <input type="text" class="input-xxlarge inputLocation" id="inputLocation_2">
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label control-label-small" for="inputPromotionDescription">Store phone number</label>
-                                    <div class="pull-left">
-                                        <select id="phoneNumber4" class="chosen phoneNumber" name="phoneNumber4">
-                                            <option selected="selected">09</option>
-                                            <option value="selling.html">08</option>
-                                            <option value="buying.html">07</option>
-                                            <option value="profile.html">06</option>
-                                            <option value="log-out.html">05</option>
-                                        </select>
-                                        <input type="text" class="input-phone-number" id="inputPassword">
-                                    </div>
-                                    <label class="control-label control-label-small" for="inputPromotionDescription">Store phone number</label>
-                                    <div class="pull-left">
-                                        <select id="phoneNumber5" class="chosen phoneNumber" name="phoneNumber5">
-                                            <option selected="selected">09</option>
-                                            <option value="selling.html">08</option>
-                                            <option value="buying.html">07</option>
-                                            <option value="profile.html">06</option>
-                                            <option value="log-out.html">05</option>
-                                        </select>
-                                        <input type="text" class="input-phone-number" id="inputPassword">
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label control-label-xlarge" for="inputOpeningHours">Opening Hours (24 hour format)</label>
-                                    <div class="clearfix"></div>
-                                    
-                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Mon </label>
-                                    <div clas="pull-left">
-                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                    </div>
-                                    <label class="control-label control-label-xxsmall pull-left" for="inputTuesday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Tue </label>
-                                    <div clas="pull-left">
-                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                    </div> 
-                                    <label class="control-label control-label-xxsmall pull-left" for="inputWednesday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Wed </label>
-                                    <div clas="pull-left">
-                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                    </div> 
-                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Thu </label>
-                                    <div clas="pull-left">  
-                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                    </div>      
-                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Fri </label>
-                                    <div clas="pull-left">
-                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                    </div>
-                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Sat </label>
-                                    <div clas="pull-left">
-                                    <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                    </div>
-                                    <label class="control-label control-label-xxsmall pull-left" for="inputMonday"><input type="checkbox" name="optionsRadios" id="optionsRadios1" > Sun</label>
-                                    <div clas="pull-left">
-                                        <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut"> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type="text" class="input-xsmall" id="inputMonTimeIn"> : <input type="text" class="input-xsmall" id="inputMonTimeOut">
-                                    </div>
-                                </div>
-                                <a class="btn-grey-small btn_remove" href="#">Remove Branch</a>
-                            </td>
-                        </tr>-->
                         </tbody>
                         <tr>
-                            <td class="new-branch-area"><a class="btn-general" id="add-another-branch" onclick="addBranch();">Add Another Branch</a></td>
+                            <td class="new-branch-area"><a class="btn-general" id="add-another-branch">Add Another Branch</a></td>
+                            <input type="hidden" name="physicalNum" id="physicalNum"/>
+                            <input type="hidden" name="physicalBranchName" id="physicalBranchName"/>
+                            <input type="hidden" name="physicalLocation" id="physicalLocation"/>
+                            <input type="hidden" name="physicalPhone" id="physicalPhone"/>
+                            <input type="hidden" name="physicalTime" id="physicalTime"/>
                         </tr>
                     </table>
                     
