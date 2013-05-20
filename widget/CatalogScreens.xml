@@ -115,7 +115,6 @@ under the License.
         <section>
             <actions>
                 <set field="titleProperty" value="PageTitleCategory"/>
-                <set field="headerItem" value="categorylistview"/>
                 <!-- <set field="breadcrumbTitle" value="Category"/> -->
                 <set field="productCategoryId" from-field="parameters.productCategoryId"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopCategories.groovy"/>
@@ -124,11 +123,39 @@ under the License.
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <platform-specific>
-                            <html><html-template location="component://shopmax/webapp/shopmax/catalog/category.ftl"/></html>
-                        </platform-specific>
+                        <container style="container content">
+                            <include-screen name="Breadcrumbs" location="component://shopmax/widget/ShopMaxScreens.xml"/>
+                            <container style="row">
+                                <include-screen name="CategoryListViewDetail"/>
+                                <container style="span3 sidebar" id="side-menu">
+                                    <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/categorylist.ftl"/></html></platform-specific>
+                                    <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/categoryrefineby.ftl"/></html></platform-specific>
+                                </container>
+                            </container>
+                        </container>
                     </decorator-section>
                 </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="CategoryListViewDetail">
+        <section>
+            <actions>
+                <property-map resource="ShopMaxUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                
+                <set field="headerItem" value="categorylistview"/>
+                <set field="productCategoryId" from-field="parameters.productCategoryId"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/CategoryDetail.groovy"/>
+            </actions>
+            <widgets>
+                <container id="category-container">
+                    <platform-specific>
+                        <html><html-template location="component://shopmax/webapp/shopmax/catalog/category.ftl"/></html>
+                    </platform-specific>
+                </container>
             </widgets>
         </section>
     </screen>
@@ -396,11 +423,42 @@ under the License.
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                        <platform-specific>
-                            <html><html-template location="component://shopmax/webapp/shopmax/catalog/shopcategory.ftl"/></html>
-                        </platform-specific>
+                        <container style="container content">
+                            <include-screen name="Breadcrumbs" location="component://shopmax/widget/ShopMaxScreens.xml"/>
+                            <container style="row content-left">
+                                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/shop/shopheader.ftl" /></html></platform-specific>
+                            </container>
+                            <container style="row">
+                                <include-screen name="ShopCategoryGridViewDetail"/>
+                                <container style="span3 sidebar" id="side-menu">
+                                    <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/categorylist.ftl"/></html></platform-specific>
+                                    <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/categoryrefineby.ftl"/></html></platform-specific>
+                                </container>
+                            </container>
+                        </container>
                     </decorator-section>
                 </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="ShopCategoryListViewDetail">
+        <section>
+            <actions>
+                <property-map resource="ShopMaxUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <property-map resource="ProductUiLabels" map-name="uiLabelMap" global="true"/>
+                
+                <set field="headerItem" value="shopcategorylistview"/>
+                <set field="productCategoryId" from-field="parameters.productCategoryId"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/CategoryDetail.groovy"/>
+            </actions>
+            <widgets>
+                <container id="category-container">
+                    <platform-specific>
+                        <html><html-template location="component://shopmax/webapp/shopmax/catalog/shopcategory.ftl"/></html>
+                    </platform-specific>
+                </container>
             </widgets>
         </section>
     </screen>

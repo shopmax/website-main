@@ -75,7 +75,6 @@ under the License.
             var $accordion = $($ul).accordion();
             $.each($accordion.find('a'), function(index, value) {
                 $(this).click(function(e){
-                    var categoryDetailUri = "<#if webSiteId="SHOPMAX">categorygridviewdetail<#else>shopcategorygridviewdetail</#if>";
                     var productCategoryId = $(this).attr("href").substring(1);
                     var $div = $(this).next("div")[0];
                     $.ajax({
@@ -83,11 +82,22 @@ under the License.
                     }).done(function (data) {
                         $($div).html(data);
                         makeAccordion($($div).find("ul")[0]);
-                        window.history.pushState("", "", 'categorygridview?productCategoryId='+productCategoryId);
+                        window.history.pushState("", "", '?productCategoryId='+productCategoryId);
                     });
                     
                     // load category screen
-                    $("#category-container").load(categoryDetailUri + "?productCategoryId=" + productCategoryId);
+                    var currentPathName = (window.location.pathname).split(';');
+                    var currentPath = currentPathName[0].split('/');
+                    var pathName = "";
+                    if(currentPath.length == 4){
+                        pathName = currentPath[3];
+                        pathName = pathName+"detail";
+                    }
+                    else{
+                        pathName = currentPath[2];
+                        pathName = pathName+"detail";
+                    }
+                    $("#category-container").load(pathName + "?productCategoryId=" + productCategoryId);
                 });
             });
         }
