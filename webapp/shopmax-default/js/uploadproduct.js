@@ -132,11 +132,11 @@ $(function(){
     
     $('#datepicker1').change(function(){
         var dateFormat = $('#datepicker1').val().split('/');
-        $('#promoPriceFromDate').val(dateFormat[0]+"-"+dateFormat[1]+"-"+dateFormat[2]+" 00:00:00.000");
+        $('#promoPriceFromDate').val(dateFormat[2]+"-"+dateFormat[0]+"-"+dateFormat[1]+" 00:00:00.000");
     });
     $('#datepicker2').change(function(){
         var dateFormat = $('#datepicker2').val().split('/');
-        $('#promoPriceThruDate').val(dateFormat[0]+"-"+dateFormat[1]+"-"+dateFormat[2]+" 00:00:00.000");
+        $('#promoPriceThruDate').val(dateFormat[2]+"-"+dateFormat[0]+"-"+dateFormat[1]+" 00:00:00.000");
     });
 });
 function checkHasValue(categoryId){
