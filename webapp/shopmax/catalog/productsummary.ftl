@@ -28,16 +28,25 @@ under the License.
             </#if>
             <div class="mdic">${product.productName?if_exists}</div>
             <#if price.promoPrice?exists>
-                <div class="price"><span>$${price.price?if_exists} NZD</span>$${price.promoPrice?if_exists} NZD</div>
+                <div class="price"><span><@ofbizCurrency amount=price.price isoCode=price.currencyUsed /></span><@ofbizCurrency amount=price.promoPrice isoCode=price.currencyUsed /></div>
             <#else>
-                <div class="price">$${price.price?if_exists} NZD</div>
+                <div class="price"><@ofbizCurrency amount=price.price isoCode=price.currencyUsed /></div>
             </#if>
             <div class="stars">
                 <div class="raty" data-rating="${averageRating?if_exists}"></div>
             </div>
             <p>${product.description?if_exists}</p>
             <p>Shop: <strong>${shopName?if_exists}</strong><br>Destance: <strong>About 1km</strong></p>
-            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a></div>
+            <div class="buttonbox">
+                <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" name="addform"  style="margin: 0;">
+                    <fieldset>
+                        <input type="hidden" name="add_product_id" value="${product.productId}" />
+                        <input type="hidden" name="quantity" value="1" />
+                        <button class="btn-general" type="submit">ADD TO CART</button>
+                        <a href="#" class="addtolist">Add to shopping List</a>
+                    </fieldset>
+                </form>
+            </div>
             <div class="buttonbox"><a href="#" class="addtolist">Add to shopping List</a></div>
         </div>
     <#elseif headerItem?if_exists == "categorylistview" || headerItem?if_exists == "shopcategorylistview">
@@ -57,7 +66,16 @@ under the License.
             </div>
             <p>${product.description?if_exists}</p>
             <div class="distancebox"><p>Shop: <strong>${shopName?if_exists}</strong><span></span>Destance: <strong>About 1km</strong></p></div>
-            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a><a href="#" class="addtolist">Add to shopping List</a></div>
+            <div class="buttonbox">
+                <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" name="addform"  style="margin: 0;">
+                    <fieldset>
+                        <input type="hidden" name="add_product_id" value="${product.productId}" />
+                        <input type="hidden" name="quantity" value="1" />
+                        <button class="btn-general" type="submit">ADD TO CART</button>
+                        <a href="#" class="addtolist">Add to shopping List</a>
+                    </fieldset>
+                </form>
+            </div>
         </div>
     </#if>
 </#if>
