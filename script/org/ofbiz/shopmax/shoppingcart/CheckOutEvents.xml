@@ -58,14 +58,10 @@ under the License.
         <set field="parameters.billToCountryGeoId" from-field="defaultCountryGeoId"/>
         
         <!-- Create shipping address -->
-        <set field="shipToAddressCtx.toName" from-field="parameters.USER_FIRST_NAME"/>
-        <set field="shipToAddressCtx.attnName" from-field="parameters.USER_FIRST_NAME"/>
-        <set field="shipToAddressCtx.address1" from-field="parameters.shipToAddress1"/>
-        <set field="shipToAddressCtx.address2" from-field="parameters.shipToAddress2"/>
-        <set field="shipToAddressCtx.city" from-field="parameters.shipToCity"/>
-        <set field="shipToAddressCtx.stateProvinceGeoId" from-field="parameters.shipToStateProvinceGeoId"/>
-        <set field="shipToAddressCtx.postalCode" from-field="parameters.shipToPostalCode"/>
-        <set field="shipToAddressCtx.countryGeoId" from-field="parameters.shipToCountryGeoId"/>
+        <set field="parameters.shipToName" from-field="parameters.USER_FIRST_NAME"/>
+        <set field="parameters.shipToAttnName" from-field="parameters.USER_FIRST_NAME"/>
+        <call-map-processor xml-resource="component://order/script/org/ofbiz/order/customer/CheckoutMapProcs.xml"
+            processor-name="shipToAddress" in-map-name="parameters" out-map-name="shipToAddressCtx"/>
         <set field="shipToAddressCtx.partyId" from-field="partyId"/>
         <set field="shipToAddressCtx.userLogin" from-field="createdUserLogin"/>
         <set field="shipToAddressCtx.setShippingPurpose" value="Y"/>

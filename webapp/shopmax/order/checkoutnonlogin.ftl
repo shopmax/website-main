@@ -136,7 +136,7 @@ under the License.
                             </div>
                             <div class="form-inline">
                                 <input type="text" class="input-xxxlarge" placeholder="Additional Address Info (optional)" />
-                                <select name="scZip" class="drop-select chosen combo" name="billToCity" data-search-bar="true">
+                                <select name="billToCity" class="drop-select chosen combo" data-search-bar="true">
                                     <option value="" selected="selected">Zip Return City, State</option>
                                     <option value="1">Option 1</option>
                                     <option value="2">Option 2</option>
