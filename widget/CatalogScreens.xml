@@ -152,6 +152,7 @@ under the License.
                 <set field="headerItem" value="manageproduct"/>
                 <set field="breadcrumbTitle" value="Manage Product"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopCategories.groovy"/>
+                <script location="component:///shopmax/webapp/shopmax/WEB-INF/actions/catalog/ManageProduct.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -179,6 +180,10 @@ under the License.
                 <set field="titleProperty" value="PageTitleUploadProduct"/>
                 <set field="headerItem" value="uploadproduct"/>
                 <set field="breadcrumbTitle" value="Upload Product"/>
+                <entity-one value-field="partyAttribute" entity-name="PartyAttribute">
+                    <field-map field-name="partyId" from-field="userLogin.partyId"/>
+                    <field-map field-name="attrName" value="TENANT_ID"/>
+                </entity-one>
                 <script location="component:///shopmax/webapp/shopmax/WEB-INF/actions/catalog/UploadProduct.groovy"/>
             </actions>
             <widgets>
@@ -207,6 +212,10 @@ under the License.
                 <set field="titleProperty" value="PageTitleUploadProduct"/>
                 <set field="headerItem" value="uploadproduct"/>
                 <set field="breadcrumbTitle" value="Upload Product"/>
+                <entity-one value-field="partyAttribute" entity-name="PartyAttribute">
+                    <field-map field-name="partyId" from-field="userLogin.partyId"/>
+                    <field-map field-name="attrName" value="TENANT_ID"/>
+                </entity-one>
                 <script location="component:///shopmax/webapp/shopmax/WEB-INF/actions/catalog/UploadProduct.groovy"/>
             </actions>
             <widgets>

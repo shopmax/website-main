@@ -38,6 +38,12 @@ under the License.
                 <link rel="stylesheet" href="<@ofbizContentUrl>${StringUtil.wrapString(styleSheet)}</@ofbizContentUrl>" type="text/css"/>
             </#list>
         </#if>
+        <#if layoutSettings.styleSheets?has_content>
+            <#--layoutSettings.styleSheets is a list of style sheets. So, you can have a user-specified "main" style sheet, AND a component style sheet.-->
+            <#list layoutSettings.styleSheets as styleSheet>
+              <link rel="stylesheet" href="<@ofbizContentUrl>${StringUtil.wrapString(styleSheet)}</@ofbizContentUrl>" type="text/css"/>
+            </#list>
+        </#if>
         <#if layoutSettings.javaScripts?has_content>
             <#--layoutSettings.javaScripts is a list of java scripts. -->
             <#-- use a Set to make sure each javascript is declared only once, but iterate the list to maintain the correct order -->
@@ -49,33 +55,14 @@ under the License.
               </#if>
             </#list>
         </#if>
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/product_details.css</@ofbizContentUrl>"/>
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/new_style.css</@ofbizContentUrl>"/>
-        <link rel="stylesheet" type="text/css" href="<@ofbizContentUrl>/shopmax-default/css/jquery.fancybox-1.3.4.css</@ofbizContentUrl>" media="screen" />
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.css</@ofbizContentUrl>"/>
-        <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js</@ofbizContentUrl>" type="text/javascript"></script>
-        <script>window.jQuery || document.write('<script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery-1.8.3.min.js</@ofbizContentUrl>" type="text/javascript"><\/script>')</script>
-        <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/bootstrap.min.js</@ofbizContentUrl>" type="text/javascript"></script>
-        <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/chosen.jquery.min.js</@ofbizContentUrl>" type="text/javascript"></script>
-        <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.anythingslider.min.js</@ofbizContentUrl>" type="text/javascript"></script>
-        <script src="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.pack.js</@ofbizContentUrl>" type="text/javascript"></script>
-        <#-- <script src="<@ofbizContentUrl>/shopmax-default/js/main.js</@ofbizContentUrl>"></script> -->
-        <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.countdown.min.js</@ofbizContentUrl>" type="text/javascript"></script>
+        
         <#include "component://shopmax/webapp/shopmax/includes/mainjavascript.ftl" />
         <#include "component://shopmax/webapp/shopmax/includes/ratyjavascript.ftl" />
-        <#-- <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.raty.min.js</@ofbizContentUrl>"></script> -->
-        <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.mousewheel-3.0.4.pack.js</@ofbizContentUrl>" type="text/javascript"></script>
-        <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.fancybox-1.3.4.js</@ofbizContentUrl>" type="text/javascript"></script>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places&language=en-AU"></script>
-        <#-- <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> -->
-        <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.accordion.js</@ofbizContentUrl>"></script>
-        <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.accordion.source.js</@ofbizContentUrl>"></script>
-        <#-- <script src="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.js</@ofbizContentUrl>"></script> -->
         
         <script type="text/javascript">
         $(document).ready(function() {
-            $("#various1").fancybox({
+            $(".various").fancybox({
                 'titlePosition'     : 'inside',
                 'transitionIn'      : 'none',
                 'transitionOut'     : 'none'

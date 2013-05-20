@@ -21,4 +21,34 @@ under the License.
 <simple-methods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/simple-methods.xsd">
 
+    
+    <simple-method method-name="sellerDoBasicLogin" short-description="Seller Do Basic Login" login-required="false">
+        <request-to-field field="partyId" request-name="parameters.partyId"/>
+        <if-not-empty field="parameters.partyId">
+            <entity-and list="userLoginPartyList" entity-name="UserLoginAndPartyDetails">
+                <field-map field-name="partyId" from-field="parameters.partyId"/>
+            </entity-and>
+            <first-from-list entry="userLoginPartyMap" list="userLoginPartyList"/>
+            <entity-one value-field="userLoginCtx" entity-name="UserLogin">
+                <field-map field-name="userLoginId" from-field="userLoginPartyMap.userLoginId"/>
+            </entity-one>
+            <!-- now finished, log in the user and set the cart's partyId to that of the newly created customer ... -->
+            <call-bsh><![CDATA[
+                org.ofbiz.webapp.control.LoginWorker.doBasicLogin(userLoginCtx, request);
+                org.ofbiz.webapp.control.LoginWorker.autoLoginSet(request, response);
+                session = request.getSession();
+                cart = session.getAttribute("shoppingCart");
+                if (cart != null) {
+                    cart.setOrderPartyId(userLoginCtx.get("partyId"));
+                }
+            ]]></call-bsh>
+            <!-- tell the control servlet that we just logged in the user... -->
+            <set value="TRUE" field="_LOGIN_PASSED_"/>
+            <field-to-request field="_LOGIN_PASSED_"/>
+            <else>
+                <add-error><fail-message message="The partyId is empty."/></add-error>
+                <check-errors/>
+            </else>
+        </if-not-empty>
+    </simple-method>
 </simple-methods>

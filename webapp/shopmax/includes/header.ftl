@@ -22,7 +22,18 @@ under the License.
         ${screens.render("component://ofbizdemo/widget/CommonScreens.xml#demoAnnounceMessage")}
     </div>
 </#if>
-
+<script>
+    function clickMenuSeller(pathRequest){
+        <!--var tenantId = '${tenantIdLogin?if_exists}' || 'shopmax';-->
+        <!--var tenantId = 'shopmaxseller';-->
+        <#--if(tenantId == 'shopmax'){
+            alert("You do not have permission to view this page.");
+        }
+        else{
+            window.location.href = "https://"+tenantId+".localhost:8443/shop/control/"+pathRequest+"?partyId=${userLoginPartyId?if_exists}";
+        }-->
+    }
+</script>
 <div style="display: none;">
     <div id="inline1" style="overflow:auto;">
         <div class="login_popup">
@@ -74,8 +85,10 @@ under the License.
             <!--<div class="nav-collapse collapse"> to make it collapse -->
             <div class="header-search">
                 <ul class="nav">
-                    <li><a href="<@ofbizUrl>uploadproduct</@ofbizUrl>">Upload Product</a></li>
-                    <li><a href="<@ofbizUrl>manageproduct</@ofbizUrl>">Manage Product</a></li>
+                    <!--onclick="clickMenuSeller('uploadproductlogin');"-->
+                    <li><a <#if userLogin?has_content>href="<@ofbizUrl>uploadproduct</@ofbizUrl>"<#else>class="various" href="#inline1"</#if>>Upload Product</a></li>
+                    <!--onclick="clickMenuSeller('manageproductlogin');"-->
+                    <li><a <#if userLogin?has_content>href="<@ofbizUrl>manageproduct</@ofbizUrl>"<#else>class="various" href="#inline1"</#if>>Manage Product</a></li>
                     <!--<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -88,7 +101,8 @@ under the License.
                             <li><a href="#">One more separated link</a></li>
                         </ul>
                     </li>-->
-                    <li><a href="orderlist">Manage Orders</a></li>
+                    <!--onclick="clickMenuSeller('orderlistlogin');-->
+                    <li><a <#if userLogin?has_content>href="<@ofbizUrl>orderlist</@ofbizUrl>"<#else>class="various" href="#inline1"</#if>>Manage Orders</a></li>
                     <li><a href="shopping-list.html">Shopping List</a></li>
                     <li class="last"><a href="buying-orders.html">Buying Orders</a></li>
                 </ul>
@@ -141,7 +155,7 @@ under the License.
                     </form>
                 <#else>
                     <h2>Hello</h2>
-                    <p><a id="various1" href="#inline1">Login</a> / <a href="<@ofbizUrl>registration</@ofbizUrl>">Register</a></p>
+                    <p><a class="various" href="#inline1">Login</a> / <a href="<@ofbizUrl>registration</@ofbizUrl>">Register</a></p>
                 </#if>
             </div>
             <!-- CART INFORMATION -->

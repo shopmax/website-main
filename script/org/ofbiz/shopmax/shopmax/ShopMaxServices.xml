@@ -663,8 +663,6 @@ under the License.
         <set field="createProductPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
         <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
         
-        <log message="====================parameters.promoPrice1==================== : ${parameters.promoPrice}" level="info"/>
-        <log message="====================parameters.promoPriceFromDate1==================== : ${parameters.promoPriceFromDate}" level="info"/>
         <if-not-empty field="parameters.promoPrice">
             <set field="createProductPriceMap.userLogin" from-field="systemUserLogin"/>
             <set field="createProductPriceMap.productId" from-field="parameters.productId"/>
@@ -789,8 +787,6 @@ under the License.
         <set field="createProductPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
         <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
         
-        <log message="====================parameters.promoPrice2==================== : ${parameters.promoPrice}" level="info"/>
-        <log message="====================parameters.promoPriceFromDate1==================== : ${parameters.promoPriceFromDate}" level="info"/>
         <if-not-empty field="parameters.promoPrice">
             <set field="createProductPriceMap.userLogin" from-field="systemUserLogin"/>
             <set field="createProductPriceMap.productId" from-field="parameters.productId"/>
