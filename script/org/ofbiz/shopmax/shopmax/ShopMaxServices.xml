@@ -664,6 +664,7 @@ under the License.
         <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
         
         <log message="====================parameters.promoPrice1==================== : ${parameters.promoPrice}" level="info"/>
+        <log message="====================parameters.promoPriceFromDate1==================== : ${parameters.promoPriceFromDate}" level="info"/>
         <if-not-empty field="parameters.promoPrice">
             <set field="createProductPriceMap.userLogin" from-field="systemUserLogin"/>
             <set field="createProductPriceMap.productId" from-field="parameters.productId"/>
@@ -677,19 +678,23 @@ under the License.
             <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
         </if-not-empty>
         
-        <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
-        <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
-        <set field="createProductAttributeMap.attrName" value="SHIPPING_SIZE"/>
-        <set field="createProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
-        <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
+        <if-not-empty field="parameters.shippingSize">
+            <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
+            <set field="createProductAttributeMap.attrName" value="SHIPPING_SIZE"/>
+            <set field="createProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
+            <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
+        </if-not-empty>
         
-        <set field="receiveCtx.userLogin" from-field="systemUserLogin"/>
-        <set field="receiveCtx.productId" from-field="parameters.productId"/>
-        <set field="receiveCtx.facilityId" value="SellerWarehouse"/>
-        <set field="receiveCtx.quantityAccepted" from-field="parameters.stock"/>
-        <set field="receiveCtx.quantityRejected" value="0" type="BigDecimal"/>
-        <set field="receiveCtx.inventoryItemTypeId" value="SERIALIZED_INV_ITEM"/>
-        <call-service service-name="receiveInventoryProduct" in-map-name="receiveCtx"/>
+        <if-not-empty field="parameters.stock">
+            <set field="receiveCtx.userLogin" from-field="systemUserLogin"/>
+            <set field="receiveCtx.productId" from-field="parameters.productId"/>
+            <set field="receiveCtx.facilityId" value="SellerWarehouse"/>
+            <set field="receiveCtx.quantityAccepted" from-field="parameters.stock"/>
+            <set field="receiveCtx.quantityRejected" value="0" type="BigDecimal"/>
+            <set field="receiveCtx.inventoryItemTypeId" value="SERIALIZED_INV_ITEM"/>
+            <call-service service-name="receiveInventoryProduct" in-map-name="receiveCtx"/>
+        </if-not-empty>
         
         <!-- Create product to category -->
         <set field="categoryLists" from-field="parameters.listCategory"/>
@@ -785,6 +790,7 @@ under the License.
         <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
         
         <log message="====================parameters.promoPrice2==================== : ${parameters.promoPrice}" level="info"/>
+        <log message="====================parameters.promoPriceFromDate1==================== : ${parameters.promoPriceFromDate}" level="info"/>
         <if-not-empty field="parameters.promoPrice">
             <set field="createProductPriceMap.userLogin" from-field="systemUserLogin"/>
             <set field="createProductPriceMap.productId" from-field="parameters.productId"/>
@@ -798,11 +804,13 @@ under the License.
             <call-service service-name="createProductPrice" in-map-name="createProductPriceMap"/>
         </if-not-empty>
         
-        <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
-        <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
-        <set field="createProductAttributeMap.attrName" value="SHIPPING_SIZE"/>
-        <set field="createProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
-        <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
+        <if-not-empty field="parameters.shippingSize">
+            <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
+            <set field="createProductAttributeMap.attrName" value="SHIPPING_SIZE"/>
+            <set field="createProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
+            <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
+        </if-not-empty>
         
         <entity-and list="partyRelationships" entity-name="PartyRelationship" filter-by-date="true">
             <field-map field-name="partyIdTo" from-field="parameters.partyId"/>
@@ -824,11 +832,13 @@ under the License.
             <set field="createSupplierProductMap.canDropShip" value="Y"/>
             <call-service service-name="createSupplierProduct" in-map-name="createSupplierProductMap"/>
             
-            <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
-            <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
-            <set field="createProductAttributeMap.attrName" value="STOCK"/>
-            <set field="createProductAttributeMap.attrValue" from-field="parameters.stock"/>
-            <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
+            <if-not-empty field="parameters.stock">
+                <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+                <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
+                <set field="createProductAttributeMap.attrName" value="STOCK"/>
+                <set field="createProductAttributeMap.attrValue" from-field="parameters.stock"/>
+                <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
+            </if-not-empty>
         </if-not-empty>
         
         <!-- Create product to category -->
