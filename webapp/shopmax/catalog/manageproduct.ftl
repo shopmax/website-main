@@ -86,7 +86,7 @@ $(function(){
                                         <div class="price"><@ofbizCurrency amount=product.defaultPrice/> NZD</div>
                                     </#if>
                                 </ul>
-                                <p>Stocks : 99</p>   
+                                <p>Stocks : ${product.stock?if_exists}</p>
                                 <a class="btn-general edit" id="edit-product-${product_index}">Edit</a>
                                 <a class="btn-green-small" href="#">Promote</a>
                                 <a class="btn-grey-small" href="#">Remove</a>
@@ -154,7 +154,7 @@ $(function(){
                                         </label>
                                         <label style="border:1px solid #E0E0E0;">
                                             Available stock
-                                            <input type="number" class="input-medium">
+                                            <input type="number" class="input-medium" value="${product.stock?if_exists}">
                                         </label>
                                     </div>
                                     
@@ -192,6 +192,8 @@ $(function(){
                             </div>
                         </li>
                     </#list>
+                <#else>
+                    <div>${uiLabelMap.ProductNoProductsInThisCategory}</div>
                 </#if>
             </ul>
             

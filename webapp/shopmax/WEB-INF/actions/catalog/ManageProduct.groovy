@@ -115,6 +115,9 @@ if (productCategoryId) {
             }
         }*/
         
+        inventorySummary = dispatcher.runSync("getInventoryAvailableByFacility", UtilMisc.toMap("productId", product.productId, "facilityId", "SellerWarehouse"));
+        productMap.stock = inventorySummary.availableToPromiseTotal;
+        
         productAttribute = delegator.findOne("ProductAttribute", [productId : product.productId, attrName : "SHIPPING_SIZE"], true);
         if (productAttribute) {
             productMap.shippingSize = productAttribute.attrValue;
