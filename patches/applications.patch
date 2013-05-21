@@ -69,34 +69,18 @@ Index: applications/product/servicedef/services.xml
          <attribute name="thruDate" type="Timestamp" mode="IN" optional="true"/>
          <attribute name="sequenceNum" type="Long" mode="IN" optional="true"/>
      </service>
-Index: applications/product/servicedef/services.xml
+Index: applications/party/widget/partymgr/PartyMenus.xml
 ===================================================================
---- applications/product/servicedef/services.xml	(revision 1470483)
-+++ applications/product/servicedef/services.xml	(working copy)
-@@ -840,9 +840,9 @@
-     <service name="safeAddProductCategoryToCategory" engine="simple"
-                 location="component://product/script/org/ofbiz/product/category/CategoryServices.xml" invoke="addProductCategoryToCategory" auth="true">
-         <description>Safe Add ProductCategory To Category (requires fromDate)</description>
--        <attribute name="productCategoryId" type="String" mode="IN" optional="false"/>
--        <attribute name="parentProductCategoryId" type="String" mode="IN" optional="false"/>
--        <attribute name="fromDate" type="Timestamp" mode="IN" optional="false"/>
-+        <attribute name="productCategoryId" type="String" mode="INOUT" optional="false"/>
-+        <attribute name="parentProductCategoryId" type="String" mode="INOUT" optional="false"/>
-+        <attribute name="fromDate" type="Timestamp" mode="INOUT" optional="false"/>
-         <attribute name="thruDate" type="Timestamp" mode="IN" optional="true"/>
-         <attribute name="sequenceNum" type="Long" mode="IN" optional="true"/>
-     </service>
-@@ -869,8 +869,8 @@
-                 location="component://product/script/org/ofbiz/product/category/CategoryServices.xml" invoke="updateProductCategoryToCategory" auth="true">
-         <description>Update ProductCategory To Category</description>
-         <attribute name="productCategoryId" type="String" mode="INOUT" optional="false"/>
--        <attribute name="parentProductCategoryId" type="String" mode="IN" optional="false"/>
--        <attribute name="fromDate" type="Timestamp" mode="IN" optional="false"/>
-+        <attribute name="parentProductCategoryId" type="String" mode="INOUT" optional="false"/>
-+        <attribute name="fromDate" type="Timestamp" mode="INOUT" optional="false"/>
-         <attribute name="thruDate" type="Timestamp" mode="IN" optional="true"/>
-         <attribute name="sequenceNum" type="Long" mode="IN" optional="true"/>
-     </service>
+--- applications/party/widget/partymgr/PartyMenus.xml	(revision 1470483)
++++ applications/party/widget/partymgr/PartyMenus.xml	(working copy)
+@@ -35,6 +35,7 @@
+         </menu-item>
+         <menu-item name="addrmap" title="${uiLabelMap.PageTitleAddressMatchMap}"><link target="addressMatchMap"/></menu-item>
+         <menu-item name="partyinv" title="${uiLabelMap.PartyInvitation}"><link target="partyInvitation"/></menu-item>
++        <menu-item name="approvalseller" title="Approval Seller"><link target="approvalseller"/></menu-item>
+     </menu>
+ 
+     <menu name="ProfileTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml"
 Index: applications/party/webapp/partymgr/WEB-INF/controller.xml
 ===================================================================
 --- applications/party/webapp/partymgr/WEB-INF/controller.xml	(revision 1470483)
