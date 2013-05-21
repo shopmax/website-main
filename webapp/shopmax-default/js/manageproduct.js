@@ -2,6 +2,7 @@ $(function(){
     $('.edit').click(function(){
         var currentView = this.id.split("-");
         var index = currentView[2];
+        $('.media-edit').slideUp("slow");
         if ($('#view-edit-product-'+index).is(":hidden")) {
             var getFromDate = $('#promo-datePickerFrom'+index).val().split(" ");
             var fromDateFormat = getFromDate[0].split("-");
@@ -14,6 +15,7 @@ $(function(){
             $("#datePickerFrom"+index).datepicker();
             $("#datePickerThru"+index).datepicker();
             $('#view-edit-product-'+index).slideDown("slow");
+            $('.productCategoryId').val(getUrlVars()["productCategoryId"]);
         } else {
             $('#view-edit-product-'+index).slideUp("slow");
         }

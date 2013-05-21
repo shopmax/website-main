@@ -89,12 +89,11 @@ under the License.
                     var pathName = "";
                     if(currentPath.length == 4){
                         pathName = currentPath[3];
-                        pathName = pathName+"detail";
                     }
                     else{
                         pathName = currentPath[2];
-                        pathName = pathName+"detail";
                     }
+                    pathName = pathName+"detail";
                     $("#category-container").load(pathName + "?productCategoryId=" + productCategoryId);
                 });
             });

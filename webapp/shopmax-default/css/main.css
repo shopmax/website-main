@@ -1384,3 +1384,11 @@ left:4px;
 #content-messages{
 	margin: 50px 0 -50px;
 }
+.loadimage{
+    position: absolute;
+    top: 45%;
+    left: 45%;
+}
+.media-edit-load{
+    opacity: 0.5;
+}

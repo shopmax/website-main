@@ -193,6 +193,13 @@ under the License.
         <response name="success" type="view" value="manageproductajax"/>
     </request-map>
     
+    <request-map uri="updateproduct">
+        <event type="service" invoke="editProductToSeller"/>
+        <response name="success" type="request" value="manageproductdetail">
+            <redirect-parameter name="productCategoryId"/>
+        </response>
+    </request-map>
+    
     <request-map uri="uploadproduct">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="uploadproduct"/>

@@ -1327,7 +1327,7 @@ under the License.
         <entity-and list="productDefaultPriceList" entity-name="ProductPrice">
             <field-map field-name="productId" from-field="parameters.productId"/>
             <field-map field-name="productPriceTypeId" value="DEFAULT_PRICE"/>
-            <field-map field-name="productPricePurposeId" from-field="PURCHASE"/>
+            <field-map field-name="productPricePurposeId" value="PURCHASE"/>
             <field-map field-name="currencyUomId" value="NZD"/>
             <field-map field-name="productStoreGroupId" value="_NA_"/>
         </entity-and>
@@ -1358,7 +1358,7 @@ under the License.
             <entity-and list="productPromoPriceList" entity-name="ProductPrice">
                 <field-map field-name="productId" from-field="parameters.productId"/>
                 <field-map field-name="productPriceTypeId" value="PROMO_PRICE"/>
-                <field-map field-name="productPricePurposeId" from-field="PURCHASE"/>
+                <field-map field-name="productPricePurposeId" value="PURCHASE"/>
                 <field-map field-name="currencyUomId" value="NZD"/>
                 <field-map field-name="productStoreGroupId" value="_NA_"/>
             </entity-and>
@@ -1423,9 +1423,9 @@ under the License.
             <set field="createProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
             <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
         <else>
-            <set field="updateProductAttribute.userLogin" from-field="systemUserLogin"/>
-            <set field="updateProductAttribute.productId" from-field="productAttribute.productId"/>
-            <set field="updateProductAttribute.attrName" from-field="productAttribute.attrName"/>
+            <set field="updateProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+            <set field="updateProductAttributeMap.productId" from-field="productAttribute.productId"/>
+            <set field="updateProductAttributeMap.attrName" from-field="productAttribute.attrName"/>
             <set field="updateProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
             <call-service service-name="updateProductAttribute" in-map-name="updateProductAttributeMap"/>
         </else>
@@ -1438,7 +1438,7 @@ under the License.
         <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
     </simple-method>
     
-    <simple-method method-name="editProductToShomax" short-description="Edit Product To Shopmax">
+    <simple-method method-name="editProductToShopmax" short-description="Edit Product To Shopmax">
         <entity-one value-field="systemUserLogin" entity-name="UserLogin">
             <field-map field-name="userLoginId" value="system"/>
         </entity-one>
@@ -1499,7 +1499,7 @@ under the License.
         <entity-and list="productDefaultPriceList" entity-name="ProductPrice">
             <field-map field-name="productId" from-field="parameters.productId"/>
             <field-map field-name="productPriceTypeId" value="DEFAULT_PRICE"/>
-            <field-map field-name="productPricePurposeId" from-field="PURCHASE"/>
+            <field-map field-name="productPricePurposeId" value="PURCHASE"/>
             <field-map field-name="currencyUomId" value="NZD"/>
             <field-map field-name="productStoreGroupId" value="_NA_"/>
         </entity-and>
@@ -1530,7 +1530,7 @@ under the License.
             <entity-and list="productPromoPriceList" entity-name="ProductPrice">
                 <field-map field-name="productId" from-field="parameters.productId"/>
                 <field-map field-name="productPriceTypeId" value="PROMO_PRICE"/>
-                <field-map field-name="productPricePurposeId" from-field="PURCHASE"/>
+                <field-map field-name="productPricePurposeId" value="PURCHASE"/>
                 <field-map field-name="currencyUomId" value="NZD"/>
                 <field-map field-name="productStoreGroupId" value="_NA_"/>
             </entity-and>
@@ -1595,12 +1595,14 @@ under the License.
             <set field="createProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
             <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
         <else>
-            <set field="updateProductAttribute.userLogin" from-field="systemUserLogin"/>
-            <set field="updateProductAttribute.productId" from-field="productAttribute.productId"/>
-            <set field="updateProductAttribute.attrName" from-field="productAttribute.attrName"/>
+            <set field="updateProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+            <set field="updateProductAttributeMap.productId" from-field="productAttribute.productId"/>
+            <set field="updateProductAttributeMap.attrName" from-field="productAttribute.attrName"/>
             <set field="updateProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
             <call-service service-name="updateProductAttribute" in-map-name="updateProductAttributeMap"/>
         </else>
         </if-empty>
+        
+        <field-to-result field="parameters.productCategoryId" result-name="productCategoryId"/>
     </simple-method>
 </simple-methods>

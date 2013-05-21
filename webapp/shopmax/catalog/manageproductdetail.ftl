@@ -55,21 +55,24 @@ under the License.
                 </div>
             </li>
             <li class="media media-edit" style="display: none;" id="view-edit-product-${product_index}">
+                <div id="load-${product_index}" class="loadimage"></div>
                 <a class="pull-left" href="#">
                 <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-170x170.jpg</@ofbizContentUrl>" />
                 </a>
                 <div class="media-body">
-                    <form class="form-horizontal pull-left">
+                    <form class="form-horizontal pull-left" id="updateproduct-${product_index}">
+                        <input type="hidden" name="productCategoryId" class="productCategoryId"/>
+                        <input type="hidden" name="productId" value="${product.productId?if_exists}"/>
                         <div class="control-group">
                             <label class="control-label" for="inputProductName">Product name</label>
                             <div class="controls">
-                                <input type="text" class="input-xlarge" id="inputProductName" value="${product.productName?if_exists}">
+                                <input type="text" class="input-xlarge" id="inputProductName" name="productName" value="${product.productName?if_exists}">
                             </div>
                         </div>
                         <div class="control-group">
                             <label class="control-label" for="inputDescription">Description</label>
                             <div class="controls">
-                                <textarea rows="3" class="input-xlarge">${product.description?if_exists}</textarea>
+                                <textarea rows="3" class="input-xlarge" name="description">${product.description?if_exists}</textarea>
                             </div>
                         </div>
                         <div class="control-group">
@@ -112,11 +115,11 @@ under the License.
                         <div class="form-inline input-price-stock">
                             <label>
                                 Listing price
-                                <input type="number" class="input-medium" value="${product.defaultPrice?if_exists}">
+                                <input type="number" class="input-medium" name="listingPrice" value="${product.defaultPrice?if_exists}">
                             </label>
                             <label style="border:1px solid #E0E0E0;">
                                 Available stock
-                                <input type="number" class="input-medium" value="${product.stock?if_exists}">
+                                <input type="number" class="input-medium" name="stock" value="${product.stock?if_exists}">
                             </label>
                         </div>
                         
@@ -124,7 +127,7 @@ under the License.
                             <input type="checkbox">
                             <label>
                                 &nbsp;Promotion price&nbsp;
-                                <input type="number" class="input-mini" value="${product.promoPrice?if_exists}">
+                                <input type="number" class="input-mini" name="promoPrice" value="${product.promoPrice?if_exists}">
                             </label>
                             <label>
                                 &nbsp;&nbsp;Valid from&nbsp;
@@ -148,11 +151,11 @@ under the License.
                             <a class="btn-dark-grey-small shippingSize" id="XTRA_LARGE-shippingSize${product_index}" <#if product.shippingSize?if_exists == 'XTRA_LARGE'>style="color: rgb(53, 139, 219);"</#if>>Xtra Large</a>
                         </div>
                         <input type="hidden" id="shippingSize${product_index}" name="shippingSize" value="${product.shippingSize?if_exists}">
-                        <div class="input-save">
-                            <a href="#" class="btn-general">Save</a><br /><br />
-                            <a href="#" class="edit-full-mode">Switch to full edit mode</a>
-                        </div>
                     </form>
+                    <div class="input-save">
+                        <a class="btn-general" onclick="sumbiteditproduct('${product_index}')">Save</a><br /><br />
+                        <a href="#" class="edit-full-mode">Switch to full edit mode</a>
+                    </div>
                 </div>
             </li>
         </#list>

@@ -445,7 +445,7 @@ under the License.
                                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/shop/shopheader.ftl" /></html></platform-specific>
                             </container>
                             <container style="row">
-                                <include-screen name="ShopCategoryGridViewDetail"/>
+                                <include-screen name="ShopCategoryListViewDetail"/>
                                 <container style="span3 sidebar" id="side-menu">
                                     <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/categorylist.ftl"/></html></platform-specific>
                                     <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/categoryrefineby.ftl"/></html></platform-specific>
