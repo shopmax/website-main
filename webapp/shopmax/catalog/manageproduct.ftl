@@ -127,35 +127,38 @@ under the License.
                                             <label class="control-label" for="inputDescription">Picture upload (4 Max)</label>
                                             <div class="controls">
                                                 <ul class="uploading">
-                                                    <li class="uploaded">
-                                                        <div>
-                                                            <#if productImage?exists>
-                                                                <#-- <img src="<@ofbizContentUrl>${contentPathPrefix?if_exists}${productImage?if_exists}</@ofbizContentUrl>" /> -->
-                                                                <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>" />
-                                                            <#else>
-                                                                <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>" />
-                                                            </#if>
-                                                        </div>
-                                                        <a href="#">Remove</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="uploaded-image">
-                                                            <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>" />
-                                                        </div>
-                                                        <a href="#">Add Photo</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="uploaded-image">
-                                                            <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>" />
-                                                        </div>
-                                                        <a href="#">Add Photo</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="uploaded-image">
-                                                            <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>" />
-                                                        </div>
-                                                        <a href="#">Add Photo</a>
-                                                    </li>
+                                                    <#assign imageCount = 0>
+                                                    <#if product.productImageList?has_content>
+                                                        <#list product.productImageList as productImage>
+                                                            <li>
+                                                                <div class="uploaded-image">
+                                                                    <img src="<@ofbizContentUrl>${productImage.productImageThumb}</@ofbizContentUrl>" />
+                                                                </div>
+                                                                <a href="#">Remove</a>
+                                                            </li>
+                                                            <#assign imageCount = imageCount+1>
+                                                        </#list>
+                                                        <#assign imageEmpty = 4-imageCount>
+                                                        <#if imageEmpty != 0>
+                                                            <#list 1..imageEmpty as i>
+                                                                <li>
+                                                                    <div class="uploaded-image">
+                                                                        <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>" />
+                                                                    </div>
+                                                                    <a href="#">Add Photo</a>
+                                                                </li>
+                                                            </#list>
+                                                        </#if>
+                                                    <#else>
+                                                        <#list 1..4 as i>
+                                                            <li>
+                                                                <div class="uploaded-image">
+                                                                    <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>" />
+                                                                </div>
+                                                                <a href="#">Add Photo</a>
+                                                            </li>
+                                                        </#list>
+                                                    </#if>
                                                 </ul>
                                             </div>
                                         </div>

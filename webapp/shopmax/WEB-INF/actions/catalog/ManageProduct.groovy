@@ -85,7 +85,7 @@ if (productCategoryId) {
             productMap.productPricePromo = productPricePromo;
         }
         
-        productContentAndInfoDefault= EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductContentAndInfo", ["productId": product.productId, productContentTypeId : "DEFAULT_IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"])));
+        /*productContentAndInfoDefault= EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductContentAndInfo", ["productId": product.productId, productContentTypeId : "DEFAULT_IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"])));
         if (UtilValidate.isNotEmpty(productContentAndInfoDefault)) {
             productMap.productImage = productContentAndInfoDefault.drObjectInfo;
             contentAssocThumb = EntityUtil.getFirst(delegator.findByAnd("ContentAssocDataResourceViewTo", [contentIdStart : productContentAndInfoDefault.contentId, caContentAssocTypeId : "IMAGE_THUMBNAIL"]));
@@ -101,19 +101,23 @@ if (productCategoryId) {
                     productMap.productImageThumb = contentAssocThumb.drObjectInfo;
                 }
             }
-        }
+        }*/
         
-        /*productImageList = [];
+        productImageList = [];
         productContentAndInfoImageManamentList = delegator.findByAnd("ProductContentAndInfo", ["productId": product.productId, productContentTypeId : "IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"], ["sequenceNum"]);
         if (productContentAndInfoImageManamentList) {
             productContentAndInfoImageManamentList.each { productContentAndInfoImageManament ->
+                productImageMap = [:];
                 contentAssocThumb = EntityUtil.getFirst(delegator.findByAnd("ContentAssocDataResourceViewTo", [contentIdStart : productContentAndInfoImageManament.contentId, caContentAssocTypeId : "IMAGE_THUMBNAIL"]));
                 if (contentAssocThumb) {
-                    productMap.productImage = productContentAndInfoImageManament.drObjectInfo;
-                    productMap.productImageThumb = contentAssocThumb.drObjectInfo;
+                    productImageMap.productImage = productContentAndInfoImageManament.drObjectInfo;
+                    productImageMap.productImageThumb = contentAssocThumb.drObjectInfo;
+                    productImageMap.sequenceNum = productContentAndInfoImageManament.sequenceNum;
                 }
+                productImageList.add(productImageMap);
             }
-        }*/
+        }
+        productMap.productImageList = productImageList;
         
         inventorySummary = dispatcher.runSync("getInventoryAvailableByFacility", UtilMisc.toMap("productId", product.productId, "facilityId", "SellerWarehouse"));
         productMap.stock = inventorySummary.availableToPromiseTotal;
