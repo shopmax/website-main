@@ -917,12 +917,7 @@ under the License.
         
         <call-object-method obj-field="tenantId" method-name="toLowerCase" ret-field="jdbcUsername"/>
         
-        <if-compare field="isDemo" operator="equals" value="Y">
-            <set field="databaseNamePrefix" value="demo"/>
-            <else>
-                <set field="databaseNamePrefix" value="prod"/>
-            </else>
-        </if-compare>
+        <set field="databaseNamePrefix" value="shopmax"/>
          
         <!-- org.ofbiz -->
         <set field="ofbizEntityGroupName" value="org.ofbiz"/>

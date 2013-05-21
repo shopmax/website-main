@@ -204,7 +204,7 @@ under the License.
                                             <#list processingOrderList as processingOrder>
                                                 <tr>
                                                     <td>${Static["org.ofbiz.base.util.UtilFormatOut"].formatDateTime(processingOrder.orderDate, "", locale, timeZone)!?if_exists}</td>
-                                                    <td><a href="<@ofbizUrl>orderdetail?orderId=${recentOrder.orderId}</@ofbizUrl>">${recentOrder.orderId?if_exists}</a></td>
+                                                    <td><a href="<@ofbizUrl>orderdetail?orderId=${processingOrder.orderId}</@ofbizUrl>">${processingOrder.orderId?if_exists}</a></td>
                                                     <td><@ofbizCurrency amount=processingOrder.grandTotal isoCode=currencyUomId/></td>
                                                     <td>${processingOrder.customerName?if_exists}</td>
                                                     <td>Pickup in store</td>

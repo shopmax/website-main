@@ -364,10 +364,9 @@ under the License.
     
     <request-map uri="createcustomer">
         <security https="true" auth="false"/>
-        <!-- <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/customer/CustomerEvents.xml" invoke="createCustomer"/> -->
         <event type="service" invoke="createShopmaxCustomer"/>
-<!--         <response name="success" type="request" value="autoLogin"/> -->
-        <response name="success" type="view" value="registration"/>
+        <response name="success" type="request" value="autoLogin"/>
+        <!-- <response name="success" type="view" value="registration"/> -->
         <response name="error" type="view" value="registration"/>
     </request-map>
     
