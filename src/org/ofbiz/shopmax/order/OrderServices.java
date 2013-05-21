@@ -52,6 +52,7 @@ import org.ofbiz.base.util.UtilProperties;
 import org.ofbiz.base.util.UtilValidate;
 import org.ofbiz.common.DataModelConstants;
 import org.ofbiz.entity.Delegator;
+import org.ofbiz.entity.DelegatorFactory;
 import org.ofbiz.entity.GenericEntity;
 import org.ofbiz.entity.GenericEntityException;
 import org.ofbiz.entity.GenericValue;
@@ -171,9 +172,9 @@ public class OrderServices {
                                         ShoppingCart.CartShipInfo cartShipInfo = cart.getShipGroups().get(0);
                                         cartShipInfo.setAssociatedShipGroupSeqId(shipGroup.getString("shipGroupSeqId"));
                                         // create the order
-                                        Delegator tenantDelegator = DelegatorFactory.getDelegator(delegator.getDelegatorBaseName() + "#" + tenantId);
-                                        CheckOutHelper coh = new CheckOutHelper(dispatcher, tenantDelegator, cart);
-                                        coh.createOrder(userLogin);
+                                        //Delegator tenantDelegator = DelegatorFactory.getDelegator(delegator.getDelegatorBaseName() + "#" + tenantId);
+                                        //CheckOutHelper coh = new CheckOutHelper(dispatcher, tenantDelegator, cart);
+                                        //coh.createOrder(userLogin);
                                     } else {
                                         // if there are no items to drop ship, then clear out the supplier partyId
                                         Debug.logWarning("No drop ship items found for order [" + shipGroup.getString("orderId") + "] and ship group [" + shipGroup.getString("shipGroupSeqId") + "] and supplier party [" + shipGroup.getString("supplierPartyId") + "].  Supplier party information will be cleared for this ship group", module);
