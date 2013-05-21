@@ -56,6 +56,7 @@ under the License.
         <property-to-field resource="general" property="country.geo.id.default" field="defaultCountryGeoId"/>
         <set field="parameters.shipToCountryGeoId" from-field="defaultCountryGeoId"/>
         <set field="parameters.billToCountryGeoId" from-field="defaultCountryGeoId"/>
+        <set field="parameters.billToStateProvinceGeoId" value="_NA_"/>
         
         <!-- Create shipping address -->
         <set field="parameters.shipToName" from-field="parameters.USER_FIRST_NAME"/>
@@ -101,5 +102,15 @@ under the License.
                 cart.setOrderPartyId(createdUserLogin.partyId);
             }
         </script>
+    </simple-method>
+    <simple-method method-name="createUpdateBillingAndPayment" short-description="Create update billing and payment" login-required="false">
+        <call-class-method method-name="getCartObject" class-name="org.ofbiz.order.shoppingcart.ShoppingCartEvents" ret-field="parameters.shoppingCart">
+            <field field="request" type="javax.servlet.http.HttpServletRequest"/>
+        </call-class-method>
+        <set field="parameters.firstNameOnCard" from-field="parameters.billToName"/>
+        <set field="parameters.lastNameOnCard" from-field="parameters.billToLastName"/>
+        <set-service-fields service-name="createUpdateBillingAddressAndPaymentMethod" to-map="createUpdateBillingAddressAndPaymentMethodInMap" map="parameters"/>
+        <set field="createUpdateBillingAddressAndPaymentMethodInMap.cardType" from="parameters.cardType"/>
+        <call-service service-name="createUpdateBillingAddressAndPaymentMethod" in-map-name="createUpdateBillingAddressAndPaymentMethodInMap"/>
     </simple-method>
 </simple-methods>

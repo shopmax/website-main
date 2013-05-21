@@ -107,6 +107,12 @@ under the License.
                 <#-- Billing Information -->
                 <input type="hidden" id="paymentMethodId" name="paymentMethodId" value="${paymentMethodId?if_exists}" />
                 <input type="hidden" id="paymentMethodTypeId" name="paymentMethodTypeId" value="${paymentMethodTypeId?default("CREDIT_CARD")}" />
+                <input type="hidden" value="Y" name="keepAddressBook">
+                <input type="hidden" value="Y" name="setDefaultBilling">
+                <input type="hidden" value="1" name="billToCountryCode">
+                <input type="hidden" value="801" name="billToAreaCode">
+                <input type="hidden" value="" name="billToExtension">
+                
                 <table class="table table-condensed sc-table sc-table-shipping">
                   <thead>
                     <tr class="sc-table-product-header">
@@ -123,11 +129,11 @@ under the License.
                             <h5 class="heading">Shipping Contact</h5>
                             
                             <div class="form-inline">
-                                <input type="text" class="input-xxlarge required" name="billToName" placeholder="First Name" />
-                                <input type="text" class="input-xxlarge required" placeholder="Last Name" />
+                                <input type="text" name="billToName" class="input-xxlarge required" placeholder="First Name" />
+                                <input type="text" name="billToLastName" class="input-xxlarge required" placeholder="Last Name" />
                             </div>
                             <div class="form-inline">
-                                <input type="text" class="input-xxlarge required" placeholder="Phone Number" />
+                                <input name="billToContactNumber" type="text" class="input-xxlarge required" placeholder="Phone Number" />
                                 <input type="text" class="input-xxlarge required" placeholder="Email Address" />
                                 <input type="text" class="input-xxlarge" placeholder="Fax Number (optional)" />
                             </div>
@@ -153,30 +159,31 @@ under the License.
                     </tr>
                     
                     <#-- Payment Information -->
+                    
                     <tr>
                         <td class="col1">
                             <h5 class="heading">Payment Information</h5>
                             <div class="form-inline">
-                                <select name="scZip" class="drop-select chosen combo" data-search-bar="true">
+                                <select name="cardType" class="drop-select chosen combo" data-search-bar="true">
                                     <option value="" selected="selected">Select Card Type</option>
-                                    <option value="1">Option 1</option>
+                                    <option value="Visa" selected="selected">Visa</option>
                                     <option value="2">Option 2</option>
                                 </select>
-                                <input type="text" class="input-xxlarge required" placeholder="Card Number" />
+                                <input name="cardNumber" type="text" class="input-xxlarge required" placeholder="Card Number" />
                             </div>
                             <div class="form-inline">
                                 <strong class="grey">Expires</strong>&nbsp;
-                                <select name="scMonth" class="drop-select chosen combo" data-search-bar="true">
+                                <select name="expMonth" class="drop-select chosen combo" data-search-bar="true">
                                     <option value="" selected="selected">Month</option>
                                     <option value="1">Option 1</option>
                                     <option value="2">Option 2</option>
                                 </select>   
-                                <select name="scYear" class="drop-select chosen combo" data-search-bar="true">
+                                <select name="expYear" class="drop-select chosen combo" data-search-bar="true">
                                     <option value="" selected="selected">Year</option>
                                     <option value="1">Option 1</option>
                                     <option value="2">Option 2</option>
                                 </select>
-                                <input type="text" class="input-medium required" placeholder="Security Code" />
+                                <input name="billToCardSecurityCode" type="text" class="input-medium required" placeholder="Security Code" />
                                 <img src="<@ofbizContentUrl>/shopmax-default/img/icon-card.gif</@ofbizContentUrl>" />
                                 <a href="#">What is this?</a>
                             </div>
