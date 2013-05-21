@@ -104,6 +104,9 @@ under the License.
         </script>
     </simple-method>
     <simple-method method-name="createUpdateBillingAndPayment" short-description="Create update billing and payment" login-required="false">
+        <property-to-field resource="general" property="country.geo.id.default" field="defaultCountryGeoId"/>
+        <set field="parameters.billToCountryGeoId" from-field="defaultCountryGeoId"/>
+        <set field="parameters.billToStateProvinceGeoId" value="_NA_"/>
         <call-class-method method-name="getCartObject" class-name="org.ofbiz.order.shoppingcart.ShoppingCartEvents" ret-field="parameters.shoppingCart">
             <field field="request" type="javax.servlet.http.HttpServletRequest"/>
         </call-class-method>
