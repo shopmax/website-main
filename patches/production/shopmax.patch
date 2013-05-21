@@ -17,9 +17,52 @@ Index: applications/content/servicedef/secas.xml
  
      <eca service="createContent" event="commit">
          <condition field-name="contentAssocTypeId" operator="is-not-empty"/>
+Index: hot-deploy/shopmax/data/ShopMaxData.xml
+===================================================================
+--- hot-deploy/shopmax/data/ShopMaxData.xml	(revision 212)
++++ hot-deploy/shopmax/data/ShopMaxData.xml	(working copy)
+@@ -28,4 +28,38 @@
+     <CarrierShipmentMethod partyId="_NA_" roleTypeId="CARRIER" shipmentMethodTypeId="NO_SHIPPING"/>
+     
+     <OrderItemAssocType orderItemAssocTypeId="SELLER_ORDER" hasTable="Y" description="Seller Order"/>
++    
++    <Party partyId="admin" partyTypeId="PERSON"/>
++    <Person firstName="THE" lastName="ADMINISTRATOR" middleName="PRIVILEGED" partyId="admin" personalTitle="Mr."/>
++    <UserLogin  userLoginId="admin" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a" enabled="Y" hasLoggedOut="Y" partyId="admin" requirePasswordChange="N"/>
++    <UserLoginSecurityGroup groupId="SUPER" userLoginId="admin" fromDate="2013-04-01 00:00:00"/>
++    
++    <Party partyId="SHOPMAX_COMPANY" partyTypeId="PARTY_GROUP"/>
++    <PartyGroup partyId="SHOPMAX_COMPANY" groupName="ShopMax" logoImageUrl="/shopmax-default/img/logo-2.png"/>
++    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="BILL_FROM_VENDOR"/>
++    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="BILL_TO_CUSTOMER"/>
++    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="INTERNAL_ORGANIZATIO"/>
++    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="CARRIER"/>
++    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="ACCOUNT"/>
++    <PartyRole partyId="SHOPMAX_COMPANY" roleTypeId="_NA_"/>
++    
++    <Facility facilityId="ShopMaxWarehouse" facilityTypeId="WAREHOUSE" facilityName="ShopMax" description="Warehouse exclusively for the Web Store" ownerPartyId="SHOPMAX_COMPANY" defaultInventoryItemTypeId="NON_SERIAL_INV_ITEM"/>
++    
++    <ProductStore productStoreId="ShopMaxStore" storeName="ShopMax Store" companyName="ShopMax" title="ShopMax"
++        subtitle="Part of the Open For Business Family of Open Source Software" payToPartyId="SHOPMAX_COMPANY" daysToCancelNonPay="30" prorateShipping="Y" prorateTaxes="Y"
++        inventoryFacilityId="ShopMaxWarehouse" oneInventoryFacility="Y" checkInventory="Y" reserveInventory="Y" balanceResOnOrderCreation="Y" reserveOrderEnumId="INVRO_FIFO_REC" requireInventory="N"
++        defaultLocaleString="en_US" defaultCurrencyUomId="NZD" defaultSalesChannelEnumId="WEB_SALES_CHANNEL" allowPassword="Y" explodeOrderItems="N" retryFailedAuths="Y" reqReturnInventoryReceive="N"
++        headerApprovedStatus="ORDER_APPROVED" itemApprovedStatus="ITEM_APPROVED" digitalItemApprovedStatus="ITEM_APPROVED" headerDeclinedStatus="ORDER_REJECTED"
++        itemDeclinedStatus="ITEM_REJECTED" headerCancelStatus="ORDER_CANCELLED" itemCancelStatus="ITEM_CANCELLED" orderNumberPrefix="SM"
++        authDeclinedMessage="There has been a problem with your method of payment. Please try a different method or call customer service."
++        authFraudMessage="Your order has been rejected and your account has been disabled due to fraud."
++        authErrorMessage="Problem connecting to payment processor; we will continue to retry and notify you by email."
++        storeCreditValidDays="90" storeCreditAccountEnumId="FIN_ACCOUNT" splitPayPrefPerShpGrp="N" enableProductGroupOrder="Y"
++        visualThemeId="SHOPMAX_THEME" prodSearchExcludeVariants="Y" autoApproveInvoice="Y" shipIfCaptureFails="Y" autoApproveOrder="Y" showOutOfStockProducts="N" usePrimaryEmailUsername="Y" autoApproveReviews="Y"/>
++    
++    <WebSite webSiteId="SHOPMAX" siteName="ShopMax Web Site" productStoreId="ShopMaxStore"
++        httpHost="shopmax.co.nz" httpPort="80"
++        httpsHost="shopmax.co.nz" httpsPort="443"
++        standardContentPrefix="http://backend.shopmax.co.nz"
++        secureContentPrefix="https://backend.shopmax.co.nz"/>
+ </entity-engine-xml>
 Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
 ===================================================================
---- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 180)
+--- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 211)
 +++ hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(working copy)
 @@ -443,8 +443,8 @@
                  <set field="parameters.domainName" value="${parameters.ownDomainName}"/>
@@ -32,3 +75,99 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              </else>
              </if-compare>
              
+Index: hot-deploy/tenant/config/default-tenant.xml
+===================================================================
+--- hot-deploy/tenant/config/default-tenant.xml	(revision 295)
++++ hot-deploy/tenant/config/default-tenant.xml	(working copy)
+@@ -1,16 +1,10 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <default-tenant>
+-    <component name="growerpbackend"/>
+-    <component name="growerpwebsite"/>
+-    <component name="growerpsaas"/>
++    <component name="shopmax"/>
+     
+     <!-- frontend -->
+-    <domain name="growerpsaas.localhost" initial-path="/"/>
+-    <domain name="growerpsaas.ofbizdemo.com" initial-path="/"/>
+-    <domain name="saas.growerp.com" initial-path="/"/>
++    <domain name="shopmax.co.nz" initial-path="/"/>
+     
+     <!-- backend -->
+-    <domain name="growerpsaasbackend.localhost" initial-path="/backend"/>
+-    <domain name="growerpsaasbackend.ofbizdemo.com" initial-path="/backend"/>
+-    <domain name="saasbackend.growerp.com" initial-path="/backend"/>
++    <domain name="backend.shopmax.co.nz" initial-path="/catalog"/>
+ </default-tenant>
+Index: hot-deploy/tenant/config/tenant.properties
+===================================================================
+--- hot-deploy/tenant/config/tenant.properties	(revision 295)
++++ hot-deploy/tenant/config/tenant.properties	(working copy)
+@@ -20,8 +20,8 @@
+ serverName=localhost
+ 
+ # JDBC
+-jdbcUriPrefix=jdbc:derby:
+-jdbcUriSuffix=;create=true
++jdbcUriPrefix=jdbc:postgresql://127.0.0.1:5432/
++jdbcUriSuffix=
+ superUsername=ofbiz
+ superPassword=ofbiz
+ jdbcPassword=ofbiz
+
+ Index: framework/entity/config/entityengine.xml
+===================================================================
+--- framework/entity/config/entityengine.xml	(revision 1470483)
++++ framework/entity/config/entityengine.xml	(working copy)
+@@ -52,39 +52,39 @@
+     <debug-xa-resources value="false" />  <!-- see https://issues.apache.org/jira/browse/OFBIZ-4282 for more -->
+     
+     <delegator name="default" entity-model-reader="main" entity-group-reader="main" entity-eca-reader="main" distributed-cache-clear-enabled="false">
+-        <group-map group-name="org.ofbiz" datasource-name="localderby"/>
++        <!-- <group-map group-name="org.ofbiz" datasource-name="localderby"/>
+         <group-map group-name="org.ofbiz.olap" datasource-name="localderbyolap"/>
+-        <group-map group-name="org.ofbiz.tenant" datasource-name="localderbytenant"/>
++        <group-map group-name="org.ofbiz.tenant" datasource-name="localderbytenant"/> -->
+         <!-- <group-map group-name="org.ofbiz" datasource-name="localmysql"/>
+         <group-map group-name="org.ofbiz.olap" datasource-name="localmysqlolap"/>
+         <group-map group-name="org.ofbiz.tenant" datasource-name="localmysqltenant"/>  -->
+-        <!-- <group-map group-name="org.ofbiz" datasource-name="localpostnew"/>
++        <group-map group-name="org.ofbiz" datasource-name="localpostnew"/>
+         <group-map group-name="org.ofbiz.olap" datasource-name="localpostolap"/>
+-        <group-map group-name="org.ofbiz.tenant" datasource-name="localposttenant"/> -->
++        <group-map group-name="org.ofbiz.tenant" datasource-name="localposttenant"/>
+     </delegator>
+     <delegator name="default-no-eca" entity-model-reader="main" entity-group-reader="main" entity-eca-reader="main" entity-eca-enabled="false" distributed-cache-clear-enabled="false">
+-        <group-map group-name="org.ofbiz" datasource-name="localderby"/>
++        <!-- <group-map group-name="org.ofbiz" datasource-name="localderby"/>
+         <group-map group-name="org.ofbiz.olap" datasource-name="localderbyolap"/>
+-        <group-map group-name="org.ofbiz.tenant" datasource-name="localderbytenant"/>
++        <group-map group-name="org.ofbiz.tenant" datasource-name="localderbytenant"/>  -->
+         <!-- <group-map group-name="org.ofbiz" datasource-name="localmysql"/>
+         <group-map group-name="org.ofbiz.olap" datasource-name="localmysqlolap"/>
+         <group-map group-name="org.ofbiz.tenant" datasource-name="localmysqltenant"/>  -->
+-        <!-- <group-map group-name="org.ofbiz" datasource-name="localpostnew"/>
++        <group-map group-name="org.ofbiz" datasource-name="localpostnew"/>
+         <group-map group-name="org.ofbiz.olap" datasource-name="localpostolap"/>
+-        <group-map group-name="org.ofbiz.tenant" datasource-name="localposttenant"/>  -->
++        <group-map group-name="org.ofbiz.tenant" datasource-name="localposttenant"/>
+     </delegator>
+ 
+     <!-- be sure that your default delegator (or the one you use) uses the same datasource for test. You must run "ant load-demo" before running "ant run-tests" -->
+     <delegator name="test" entity-model-reader="main" entity-group-reader="main" entity-eca-reader="main">
+-        <group-map group-name="org.ofbiz" datasource-name="localderby"/>
++        <!-- <group-map group-name="org.ofbiz" datasource-name="localderby"/>
+         <group-map group-name="org.ofbiz.olap" datasource-name="localderbyolap"/>
+-        <group-map group-name="org.ofbiz.tenant" datasource-name="localderbytenant"/>
++        <group-map group-name="org.ofbiz.tenant" datasource-name="localderbytenant"/>  -->
+         <!-- <group-map group-name="org.ofbiz" datasource-name="localmysql"/>
+         <group-map group-name="org.ofbiz.olap" datasource-name="localmysqlolap"/>
+         <group-map group-name="org.ofbiz.tenant" datasource-name="localmysqltenant"/>  -->
+-        <!-- <group-map group-name="org.ofbiz" datasource-name="localpostnew"/>
++        <group-map group-name="org.ofbiz" datasource-name="localpostnew"/>
+         <group-map group-name="org.ofbiz.olap" datasource-name="localpostolap"/>
+-        <group-map group-name="org.ofbiz.tenant" datasource-name="localposttenant"/>  -->
++        <group-map group-name="org.ofbiz.tenant" datasource-name="localposttenant"/>
+     </delegator>
+    
+     <!-- need to at least define a name for each component to use -->
