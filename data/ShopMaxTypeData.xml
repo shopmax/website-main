@@ -20,4 +20,6 @@ under the License.
 
 <entity-engine-xml>
     <RoleType roleTypeId="SELLER" hasTable="N" description="Seller"/>
+    
+    <ShipmentMethodType description="No Shipping" shipmentMethodTypeId="NO_SHIPPING"/>
 </entity-engine-xml>

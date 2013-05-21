@@ -59,6 +59,8 @@ under the License.
                     </div>
                 </div>
                 
+                <#-- Shipping Information -->
+                <input type="hidden" name="shipMethod" value="NO_SHIPPING"/>
                 <table class="table table-condensed sc-table sc-table-shipping">
                   <thead>
                     <tr class="sc-table-product-header">
@@ -84,6 +86,7 @@ under the License.
                     <tr>
                         <td class="col1">
                             <h5 class="heading">Shipping Address</h5>
+                            <input type="hidden" name="shipMethod" value="NO_SHIPPING"/>
                             <div class="form-inline">
                                 <input type="text" class="input-xxxlarge required" name="shipToAddress1" placeholder="Street Address" />
                                 <input type="text" class="input-xxlarge" name="shipToPostalCode" placeholder="Zip/ Postal Code" />
@@ -100,6 +103,10 @@ under the License.
                     </tr>
                   </tbody>
                 </table>
+                
+                <#-- Billing Information -->
+                <input type="hidden" id="paymentMethodId" name="paymentMethodId" value="${paymentMethodId?if_exists}" />
+                <input type="hidden" id="paymentMethodTypeId" name="paymentMethodTypeId" value="${paymentMethodTypeId?default("CREDIT_CARD")}" />
                 <table class="table table-condensed sc-table sc-table-shipping">
                   <thead>
                     <tr class="sc-table-product-header">
@@ -144,6 +151,8 @@ under the License.
                             </div>
                         </td>
                     </tr>
+                    
+                    <#-- Payment Information -->
                     <tr>
                         <td class="col1">
                             <h5 class="heading">Payment Information</h5>
@@ -175,6 +184,8 @@ under the License.
                     </tr>
                   </tbody>
                 </table>
+                
+                <#-- Account -->
                 <table class="table table-condensed sc-table sc-table-shipping">
                   <thead>
                     <tr class="sc-table-product-header">

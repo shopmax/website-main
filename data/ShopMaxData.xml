@@ -23,4 +23,8 @@ under the License.
     <SystemProperty systemResourceId="general" systemPropertyId="country.geo.id.default" systemPropertyValue="NZL"/>
     
     <Party partyId="_NA_" partyTypeId="PERSON"/>
+    <Person partyId="_NA_"/>
+    <PartyRole partyId="_NA_" roleTypeId="CARRIER"/>
+    
+    <CarrierShipmentMethod partyId="_NA_" roleTypeId="CARRIER" shipmentMethodTypeId="NO_SHIPPING" sequenceNumber="8"/>
 </entity-engine-xml>
