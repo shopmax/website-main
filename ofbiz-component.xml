@@ -62,8 +62,8 @@ under the License.
         mount-point="/">
         <virtual-host host-name="shopmax.localhost"/>
         <virtual-host host-name="shopmax.ofbizdemo.com"/>
-        <virtual-host host-name="shopmax.com"/>
-        <virtual-host host-name="www.shopmax.com"/>
+        <virtual-host host-name="shopmax.co.nz"/>
+        <virtual-host host-name="www.shopmax.co.nz"/>
     </webapp>
         
     <!-- Default Theme -->

@@ -257,4 +257,10 @@ under the License.
         <attribute name="listCategory" mode="IN" type="String" optional="true"/>
         <attribute name="partyId" type="String" mode="IN" optional="false"/>
     </service>
+    
+    <service name="createSaleOrderToSeller" engine="java"
+            location="org.ofbiz.shopmax.order.OrderServices" invoke="createSaleOrderToSeller" auth="true">
+        <description>If the order is a sales order (drop shipments), create sale orders to sellers</description>
+        <attribute name="orderId" type="String" mode="IN" optional="false"/>
+    </service>
 </services>

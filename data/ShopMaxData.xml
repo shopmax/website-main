@@ -26,4 +26,6 @@ under the License.
     <PartyRole partyId="_NA_" roleTypeId="CARRIER"/>
     <ShipmentMethodType description="No Shipping" shipmentMethodTypeId="NO_SHIPPING"/>
     <CarrierShipmentMethod partyId="_NA_" roleTypeId="CARRIER" shipmentMethodTypeId="NO_SHIPPING"/>
+    
+    <OrderItemAssocType orderItemAssocTypeId="SELLER_ORDER" hasTable="Y" description="Seller Order"/>
 </entity-engine-xml>
