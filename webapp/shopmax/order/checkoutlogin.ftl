@@ -41,11 +41,11 @@ under the License.
                                     </select>
                                     <h5>ship to</h5>
                                     <ul>
-                                        <li>Contact Name</li>
-                                        <li>Street Address Line one </li>
-                                        <li>Street Address Line two</li>
-                                        <li>State</li>
-                                        <li>Phone number xxx xxx xxx</li>
+                                        <li>${shipToName?default("No Contact Name")}</li><#--Contact Name-->
+                                        <li>${shipToAddress1?if_exists}</li><#--Street Address Line one -->
+                                        <li>${shipToAddress2?if_exists}</li><#--Street Address Line two-->
+                                        <li>${shipToStateProvinceGeo?if_exists}</li><#--State-->
+                                        <li>Phone number ${shipToTelecomNumber.countryCode?if_exists} <#if shipToTelecomNumber.areaCode?exists>${shipToTelecomNumber.areaCode}-</#if>${shipToTelecomNumber.contactNumber}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -65,11 +65,11 @@ under the License.
                                     </select>
                                     <h5>bill to</h5>
                                     <ul>
-                                        <li>Contact Name</li>
-                                        <li>Street Address Line one </li>
-                                        <li>Street Address Line two</li>
-                                        <li>State</li>
-                                        <li>Phone number xxx xxx xxx</li>
+                                        <li>${billToName?default("No Contact Name")}</li>
+                                        <li>${billToAddress1?if_exists} </li>
+                                        <li>${billToAddress2?if_exists}</li>
+                                        <li>${billToStateProvinceGeo?if_exists}</li>
+                                        <li>Phone number ${billToTelecomNumber.countryCode?if_exists} <#if billToTelecomNumber.areaCode?exists>${billToTelecomNumber.areaCode}-</#if>${billToTelecomNumber.contactNumber}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -80,7 +80,7 @@ under the License.
                                     <h5>Payment Information</h5>
                                     <ul>
                                         <li>VISA</li>
-                                        <li>••••••••••••1234 </li>
+                                        <li>${creditCard?if_exists}</li><#--••••••••••••1234 -->
                                         <li>Exp: 03/03/2013</li>
                                         <li class="lastbox">
                                             <input type="text" class="span1 textb">
