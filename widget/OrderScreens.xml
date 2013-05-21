@@ -58,6 +58,8 @@ under the License.
                 <set field="titleProperty" value="PageTitleOrderConfirmation"/>
                 <set field="headerItem" value="confirmation"/>
                 <set field="breadcrumbTitle" value="Confirmation"/>
+                <script location="component://order/webapp/ordermgr/WEB-INF/actions/order/OrderView.groovy"/>
+                <script location="component://order/webapp/ordermgr/WEB-INF/actions/order/OrderViewWebSecure.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
@@ -65,6 +67,34 @@ under the License.
                         <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/orderconfirmation.ftl"></html-template></html></platform-specific>
                     </decorator-section>
                 </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="ordershippinginfo">
+        <section>
+            <widgets>
+                <platform-specific>
+                    <html><html-template location="component://shopmax/webapp/shopmax/order/ordershippinginfo.ftl"/></html>
+                </platform-specific>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="orderbillinginfo">
+        <section>
+            <widgets>
+                <platform-specific>
+                    <html><html-template location="component://shopmax/webapp/shopmax/order/orderbillinginfo.ftl"/></html>
+                </platform-specific>
+            </widgets>
+        </section>
+    </screen>
+    <screen name="orderpaymentinfo">
+        <section>
+            <widgets>
+                <platform-specific>
+                    <html><html-template location="component://shopmax/webapp/shopmax/order/orderpaymentinfo.ftl"/></html>
+                </platform-specific>
             </widgets>
         </section>
     </screen>

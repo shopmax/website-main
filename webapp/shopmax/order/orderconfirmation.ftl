@@ -43,20 +43,11 @@ under the License.
                             <div class="right_top"><a href="#" class="btn-general">Print orader confirmation</a></div>
                         </div>
                         <table cellpadding="0" cellspacing="0" border="0" class="table table_1">
-                            <thead>
-                                <tr>
-                                    <th>Shipping information</th>
-                                    <th>Billing information</th>
-                                    <th>Payment Information</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Contact Name<br>Street Address Line one <br>Street Address Line two<br>State<br>Phone number xxx xxx xxx</td>
-                                    <td>Contact Name<br>Street Address Line one <br>Street Address Line two<br>State<br>Phone number xxx xxx xxx</td>
-                                    <td>VISA  <br>••••••••••••1234 <br>Exp: 03/03/2013</td>
-                                </tr>
-                            </tbody>
+                            <tr>
+                                <td>${screens.render("component://shopmax/widget/OrderScreens.xml#ordershippinginfo")}</td>
+                                <td>${screens.render("component://shopmax/widget/OrderScreens.xml#orderbillinginfo")}</td>
+                                <td>${screens.render("component://shopmax/widget/OrderScreens.xml#orderpaymentinfo")}</td>
+                            </tr>
                         </table>
                     </div>
                 </div>
