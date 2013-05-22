@@ -37,9 +37,6 @@ under the License.
         </div><!-- /.span3.sidebar -->
     <!-- MAIN CONTENT -->
         <!-- sliderdiv -->
-        <div class="span9 imp-info">
-            <p>To become a seller on Shopmax, you must be a registered business in New Zealand</p>
-        </div>
         <div class="span9 main-content">
             <form action="<@ofbizUrl>createcustomer</@ofbizUrl>" id="createcustomer" name="createcustomer" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="productStoreId" value="${productStoreId}"/>
@@ -87,7 +84,9 @@ under the License.
                     </tr>
                   </tbody>
                 </table>
-                
+                <div class="business-guide imp-info">
+                    <p>To become a seller on Shopmax, you must be a registered business in New Zealand</p>
+                </div>
                 <div class="business-registered hidden">
                     <table class="table table-condensed sc-table sc-table-promotion">
                       <thead>

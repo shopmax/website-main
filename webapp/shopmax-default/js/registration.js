@@ -122,8 +122,8 @@ $(function(){
     });
     $('.chk_regis').click(function(){
         if($('.chk_regis').is(':checked')){
-            $('.business-registered').removeClass('hidden');
-            $('#businessUser').val("Y");
+        	$('.business-registered').removeClass('hidden');
+        	$('#businessUser').val("Y");
         }
         else{
             $('.business-registered').addClass('hidden');
