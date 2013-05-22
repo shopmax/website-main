@@ -61,13 +61,8 @@ under the License.
         <action service="createPersonAndCompanyToSeller" mode="sync"/>
     </eca>
     
-    <!-- <eca service="storeOrder" event="return">
-        <condition field-name="orderTypeId" operator="equals" value="SALES_ORDER"/>
-        <action service="createSaleOrderToSeller" mode="sync" run-as-user="system"/>
-    </eca> -->
-    
-    <eca service="storeOrder" event="return">
-        <condition field-name="orderTypeId" operator="equals" value="SALES_ORDER"/>
+    <eca service="createSaleOrderToSeller" event="return">
+        <condition field-name="tenantId" operator="is-not-empty"/>
         <action service="sendOrderSMSToSeller" mode="sync"/>
     </eca>
 </service-eca>

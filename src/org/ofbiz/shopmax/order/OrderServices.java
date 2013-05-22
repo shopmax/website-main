@@ -84,6 +84,7 @@ import org.ofbiz.service.DispatchContext;
 import org.ofbiz.service.GenericServiceException;
 import org.ofbiz.service.LocalDispatcher;
 import org.ofbiz.service.ModelService;
+import org.ofbiz.service.ServiceContainer;
 import org.ofbiz.service.ServiceUtil;
 
 import com.ibm.icu.util.Calendar;
@@ -98,7 +99,7 @@ public class OrderServices {
     public static final String resource = "OrderUiLabels";
     public static final String resource_error = "OrderErrorUiLabels";
     public static final String resourceProduct = "ProductUiLabels";
-
+    
     public static Map<String, String> salesAttributeRoleMap = FastMap.newInstance();
     public static Map<String, String> purchaseAttributeRoleMap = FastMap.newInstance();
     static {
@@ -107,7 +108,7 @@ public class OrderServices {
         salesAttributeRoleMap.put("billFromVendorPartyId", "BILL_FROM_VENDOR");
         salesAttributeRoleMap.put("shipToCustomerPartyId", "SHIP_TO_CUSTOMER");
         salesAttributeRoleMap.put("endUserCustomerPartyId", "END_USER_CUSTOMER");
-
+        
         purchaseAttributeRoleMap.put("billToCustomerPartyId", "BILL_TO_CUSTOMER");
         purchaseAttributeRoleMap.put("billFromVendorPartyId", "BILL_FROM_VENDOR");
         purchaseAttributeRoleMap.put("shipFromVendorPartyId", "SHIP_FROM_VENDOR");
@@ -118,8 +119,8 @@ public class OrderServices {
     public static final int orderDecimals = UtilNumber.getBigDecimalScale("order.decimals");
     public static final int orderRounding = UtilNumber.getBigDecimalRoundingMode("order.rounding");
     public static final BigDecimal ZERO = BigDecimal.ZERO.setScale(taxDecimals, taxRounding);
-
-    public static Map<String, Object> createSaleOrderToSeller(DispatchContext ctx, Map<String, ? extends Object> context) {
+    
+    public static Map<String, Object> checkCreateDropShipPurchaseOrders(DispatchContext ctx, Map<String, ? extends Object> context) {
         Delegator delegator = ctx.getDelegator();
         LocalDispatcher dispatcher = ctx.getDispatcher();
         // TODO (use the "system" user)
@@ -127,7 +128,7 @@ public class OrderServices {
         String orderId = (String) context.get("orderId");
         Locale locale = (Locale) context.get("locale");
         OrderReadHelper orh = new OrderReadHelper(delegator, orderId);
-        
+        // TODO: skip this if there is already a purchase order associated with the sales order (ship group)
         try {
             // if sales order
             if ("SALES_ORDER".equals(orh.getOrderTypeId())) {
@@ -136,18 +137,17 @@ public class OrderServices {
                     if (!UtilValidate.isEmpty(shipGroup.getString("supplierPartyId"))) {
                         // This ship group is a drop shipment: we create a purchase order for it
                         String supplierPartyId = shipGroup.getString("supplierPartyId");
+                        // create the cart
+                        ShoppingCart cart = new ShoppingCart(delegator, orh.getProductStoreId(), null, orh.getCurrency());
+                        cart.setOrderType("PURCHASE_ORDER");
+                        cart.setBillToCustomerPartyId(cart.getBillFromVendorPartyId()); //Company
+                        cart.setBillFromVendorPartyId(supplierPartyId);
+                        cart.setOrderPartyId(supplierPartyId);
                         // Get the items associated to it and create po
                         List<GenericValue> items = orh.getValidOrderItems(shipGroup.getString("shipGroupSeqId"));
                         if (!UtilValidate.isEmpty(items)) {
                             for(GenericValue item : items) {
                                 try {
-                                    // create the cart
-                                    ShoppingCart cart = new ShoppingCart(delegator, orh.getProductStoreId(), null, orh.getCurrency());
-                                    cart.setOrderType("SALES_ORDER");
-                                    cart.setBillToCustomerPartyId(cart.getBillToCustomerPartyId()); //Company
-                                    cart.setBillFromVendorPartyId(supplierPartyId);
-                                    cart.setOrderPartyId(supplierPartyId);
-                                    
                                     int itemIndex = cart.addOrIncreaseItem(item.getString("productId"),
                                                                            null, // amount
                                                                            item.getBigDecimal("quantity"),
@@ -160,27 +160,7 @@ public class OrderServices {
                                     ShoppingCartItem sci = cart.findCartItem(itemIndex);
                                     sci.setAssociatedOrderId(orderId);
                                     sci.setAssociatedOrderItemSeqId(item.getString("orderItemSeqId"));
-                                    sci.setOrderItemAssocTypeId("SELLER_ORDER");
-                                    
-                                    // If there are indeed items to drop ship, then create the purchase order
-                                    if (!UtilValidate.isEmpty(cart.items())) {
-                                        // set checkout options
-                                        cart.setDefaultCheckoutOptions(dispatcher);
-                                        // the shipping address is the one of the customer
-                                        cart.setAllShippingContactMechId(shipGroup.getString("contactMechId"));
-                                        // associate ship groups of sales and purchase orders
-                                        ShoppingCart.CartShipInfo cartShipInfo = cart.getShipGroups().get(0);
-                                        cartShipInfo.setAssociatedShipGroupSeqId(shipGroup.getString("shipGroupSeqId"));
-                                        // create the order
-                                        //Delegator tenantDelegator = DelegatorFactory.getDelegator(delegator.getDelegatorBaseName() + "#" + tenantId);
-                                        //CheckOutHelper coh = new CheckOutHelper(dispatcher, tenantDelegator, cart);
-                                        //coh.createOrder(userLogin);
-                                    } else {
-                                        // if there are no items to drop ship, then clear out the supplier partyId
-                                        Debug.logWarning("No drop ship items found for order [" + shipGroup.getString("orderId") + "] and ship group [" + shipGroup.getString("shipGroupSeqId") + "] and supplier party [" + shipGroup.getString("supplierPartyId") + "].  Supplier party information will be cleared for this ship group", module);
-                                        shipGroup.set("supplierPartyId", null);
-                                        shipGroup.store();
-                                    }
+                                    sci.setOrderItemAssocTypeId("DROP_SHIPMENT");
                                 } catch (Exception e) {
                                     return ServiceUtil.returnError(UtilProperties.getMessage(resource, 
                                             "OrderOrderCreatingDropShipmentsError", 
@@ -188,6 +168,127 @@ public class OrderServices {
                                             locale));
                                 }
                             }
+                        }
+                        // If there are indeed items to drop ship, then create the purchase order
+                        if (!UtilValidate.isEmpty(cart.items())) {
+                            // set checkout options
+                            cart.setDefaultCheckoutOptions(dispatcher);
+                            // the shipping address is the one of the customer
+                            cart.setAllShippingContactMechId(shipGroup.getString("contactMechId"));
+                            // associate ship groups of sales and purchase orders
+                            ShoppingCart.CartShipInfo cartShipInfo = cart.getShipGroups().get(0);
+                            cartShipInfo.setAssociatedShipGroupSeqId(shipGroup.getString("shipGroupSeqId"));
+                            // create the order
+                            CheckOutHelper coh = new CheckOutHelper(dispatcher, delegator, cart);
+                            coh.createOrder(userLogin);
+                            dispatcher.runAsync("createSaleOrderToSeller", UtilMisc.toMap("orderId", orderId, "userLogin", userLogin));
+                        } else {
+                            // if there are no items to drop ship, then clear out the supplier partyId
+                            Debug.logWarning("No drop ship items found for order [" + shipGroup.getString("orderId") + "] and ship group [" + shipGroup.getString("shipGroupSeqId") + "] and supplier party [" + shipGroup.getString("supplierPartyId") + "].  Supplier party information will be cleared for this ship group", module);
+                            shipGroup.set("supplierPartyId", null);
+                            shipGroup.store();
+                        }
+                    }
+                }
+            }
+        } catch (Exception exc) {
+            // TODO: imporve error handling
+            return ServiceUtil.returnError(UtilProperties.getMessage(resource, 
+                    "OrderOrderCreatingDropShipmentsError", 
+                    UtilMisc.toMap("orderId", orderId, "errorString", exc.getMessage()),
+                    locale));
+        }
+        return ServiceUtil.returnSuccess();
+    }
+    
+    public static Map<String, Object> createSaleOrderToSeller(DispatchContext ctx, Map<String, ? extends Object> context) {
+        Delegator delegator = ctx.getDelegator();
+        LocalDispatcher dispatcher = ctx.getDispatcher();
+        Map<String, Object> successResult = ServiceUtil.returnSuccess();
+        // TODO (use the "system" user)
+        GenericValue userLogin = (GenericValue) context.get("userLogin");
+        String orderId = (String) context.get("orderId");
+        Locale locale = (Locale) context.get("locale");
+        OrderReadHelper orh = new OrderReadHelper(delegator, orderId);
+        GenericValue billingParty = orh.getBillToParty();
+        String billingPartyId = billingParty.getString("partyId");
+        String tenantId = null;
+        try {
+            // if sales order
+            if ("SALES_ORDER".equals(orh.getOrderTypeId())) {
+                // get the order's ship groups
+                for(GenericValue shipGroup : orh.getOrderItemShipGroups()) {
+                    if (!UtilValidate.isEmpty(shipGroup.getString("supplierPartyId"))) {
+                        String supplierPartyId = shipGroup.getString("supplierPartyId");
+                        GenericValue partyRelationship = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdFrom", supplierPartyId, "roleTypeIdFrom", "INTERNAL_ORGANIZATIO", "roleTypeIdTo", "EMPLOYEE", "partyRelationshipTypeId", "EMPLOYMENT"), null, true), true));
+                        tenantId = partyRelationship.getString("partyIdTo");
+                        // create the cart
+                        ShoppingCart cart = new ShoppingCart(delegator, orh.getProductStoreId(), null, orh.getCurrency());
+                        cart.setOrderType("SALES_ORDER");
+                        cart.setBillToCustomerPartyId(billingPartyId);
+                        cart.setBillFromVendorPartyId(supplierPartyId);
+                        cart.setOrderPartyId(supplierPartyId);
+                        // Get the items associated to it and create order
+                        List<GenericValue> items = orh.getValidOrderItems(shipGroup.getString("shipGroupSeqId"));
+                        if (!UtilValidate.isEmpty(items)) {
+                            for(GenericValue item : items) {
+                                try {
+                                    int itemIndex = cart.addOrIncreaseItem(item.getString("productId"),
+                                                                           null, // amount
+                                                                           item.getBigDecimal("quantity"),
+                                                                           null, null, null, // reserv
+                                                                           item.getTimestamp("shipBeforeDate"),
+                                                                           item.getTimestamp("shipAfterDate"),
+                                                                           null, null, null,
+                                                                           null, null, null,
+                                                                           null, dispatcher);
+                                } catch (Exception e) {
+                                    return ServiceUtil.returnError(UtilProperties.getMessage(resource, 
+                                            "OrderOrderCreatingDropShipmentsError", 
+                                            UtilMisc.toMap("orderId", orderId, "errorString", e.getMessage()),
+                                            locale));
+                                }
+                            }
+                        }
+                        // If there are indeed items to drop ship, then create the purchase order
+                        if (!UtilValidate.isEmpty(cart.items())) {
+                            // set checkout options
+                            cart.setDefaultCheckoutOptions(dispatcher);
+                            // the shipping address is the one of the customer
+                            cart.setAllShippingContactMechId(shipGroup.getString("contactMechId"));
+                            // associate ship groups of sales and purchase orders
+                            ShoppingCart.CartShipInfo cartShipInfo = cart.getShipGroups().get(0);
+                            cartShipInfo.setAssociatedShipGroupSeqId(shipGroup.getString("shipGroupSeqId"));
+                            // create the order
+                            Delegator tenantDelegator = DelegatorFactory.getDelegator(delegator.getDelegatorBaseName() + "#" + tenantId);
+                            LocalDispatcher tenantDispatcher = ServiceContainer.getLocalDispatcher(tenantDelegator.getDelegatorName(), tenantDelegator);
+                            CheckOutHelper coh = new CheckOutHelper(tenantDispatcher, tenantDelegator, cart);
+                            Map<String, Object> createOrder = coh.createOrder(userLogin);
+                            String sellerOrderId = (String) createOrder.get("orderId");
+                            
+                            GenericValue orderAttribute = tenantDelegator.makeValue("OrderAttribute");
+                            orderAttribute.put("orderId", sellerOrderId);
+                            orderAttribute.put("attrName", "SHOPMAX_ORDER");
+                            orderAttribute.put("attrValue", orderId);
+                            tenantDelegator.create(orderAttribute);
+                            
+                            for(GenericValue item : items) {
+                                List<GenericValue> sellerOrderItems = tenantDelegator.findByAnd("OrderItem", UtilMisc.toMap("orderId", sellerOrderId, "productId", item.getString("productId")), null, false);
+                                if (!UtilValidate.isEmpty(sellerOrderItems)) {
+                                    GenericValue sellerOrderItem = EntityUtil.getFirst(sellerOrderItems);
+                                    GenericValue orderItemAttribute = tenantDelegator.makeValue("OrderItemAttribute");
+                                    orderItemAttribute.put("orderId", sellerOrderId);
+                                    orderItemAttribute.put("orderItemSeqId", sellerOrderItem.getString("orderItemSeqId"));
+                                    orderItemAttribute.put("attrName", "SHOPMAX_ORDER");
+                                    orderItemAttribute.put("attrValue", item.getString("orderItemSeqId"));
+                                    tenantDelegator.create(orderItemAttribute);
+                                }
+                            }
+                        } else {
+                            // if there are no items to drop ship, then clear out the supplier partyId
+                            Debug.logWarning("No drop ship items found for order [" + shipGroup.getString("orderId") + "] and ship group [" + shipGroup.getString("shipGroupSeqId") + "] and supplier party [" + shipGroup.getString("supplierPartyId") + "].  Supplier party information will be cleared for this ship group", module);
+                            shipGroup.set("supplierPartyId", null);
+                            shipGroup.store();
                         }
                     }
                 }
@@ -200,6 +301,7 @@ public class OrderServices {
                     locale));
         }
         
-        return ServiceUtil.returnSuccess();
+        successResult.put("tenantId", tenantId);
+        return successResult;
     }
 }

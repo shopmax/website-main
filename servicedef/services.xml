@@ -258,15 +258,22 @@ under the License.
         <attribute name="partyId" type="String" mode="IN" optional="false"/>
     </service>
     
+    <service name="checkCreateDropShipPurchaseOrders" engine="java"
+            location="org.ofbiz.shopmax.order.OrderServices" invoke="checkCreateDropShipPurchaseOrders" auth="true">
+        <description>If the order is a sales order, create purchase orders (drop shipments) for each ship group associated to a supplier</description>
+        <attribute name="orderId" type="String" mode="IN" optional="false"/>
+    </service>
+    
     <service name="createSaleOrderToSeller" engine="java"
             location="org.ofbiz.shopmax.order.OrderServices" invoke="createSaleOrderToSeller" auth="true">
         <description>If the order is a sales order (drop shipments), create sale orders to sellers</description>
         <attribute name="orderId" type="String" mode="IN" optional="false"/>
+        <attribute name="tenantId" type="String" mode="OUT" optional="false"/>
     </service>
     
     <service name="sendOrderSMSToSeller" engine="java"
             location="org.ofbiz.shopmax.shopmax.ShopMaxServices" invoke="sendOrderSMSToSeller">
-        <description>Send SMS After Create Order</description>
-        <attribute name="orderId" type="String" mode="IN" optional="false"/>
+        <description>Send SMS After Order Created</description>
+        <attribute name="tenantId" type="String" mode="IN" optional="false"/>
     </service>
 </services>
