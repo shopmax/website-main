@@ -66,6 +66,7 @@ under the License.
     <ProductStorePaymentSetting productStoreId="ShopMaxStore" paymentMethodTypeId="EXT_OFFLINE" paymentServiceTypeEnumId="PRDS_PAY_EXTERNAL" paymentService="" paymentCustomMethodId=""/>
     
     <ProductStoreEmailSetting productStoreId="ShopMaxStore" emailType="PRDS_CUST_REGISTER" bodyScreenLocation="component://shopmax/widget/ShopMaxEmailScreens.xml#CreatePartyNotification" subject="New Account Created" bccAddress="ofbiztest@example.com" fromAddress="ofbiztest@example.com"/>
+    <ProductStoreEmailSetting productStoreId="ShopMaxStore" emailType="PRDS_ODR_CONFIRM" bodyScreenLocation="component://shopmax/widget/ShopMaxEmailScreens.xml#Confirmation" subject="Confirmation" bccAddress="ofbiztest@example.com" fromAddress="ofbiztest@example.com"/>
     
     <WebSite webSiteId="SHOPMAX" siteName="ShopMax Web Site" productStoreId="ShopMaxStore"
         httpHost="shopmax.localhost" httpPort="8080"

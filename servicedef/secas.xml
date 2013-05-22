@@ -65,4 +65,9 @@ under the License.
         <condition field-name="orderTypeId" operator="equals" value="SALES_ORDER"/>
         <action service="createSaleOrderToSeller" mode="sync" run-as-user="system"/>
     </eca> -->
+    
+    <eca service="storeOrder" event="return">
+        <condition field-name="orderTypeId" operator="equals" value="SALES_ORDER"/>
+        <action service="sendOrderSMSToSeller" mode="sync"/>
+    </eca>
 </service-eca>

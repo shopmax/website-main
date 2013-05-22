@@ -32,4 +32,16 @@ under the License.
             </widgets>
         </section>
     </screen>
+    <screen name="Confirmation">
+        <section>
+            <actions>
+                <property-map resource="PartyUiLabels" map-name="uiLabelMap" global="true"/>
+                <set field="title" value="${uiLabelMap.PartyNotificationMailCreate}"/>
+                <set field="baseEcommerceSecureUrl" value="${baseSecureUrl}/ecommerce/control/"/>
+            </actions>
+            <widgets>
+                <platform-specific><html><html-template location="component://shopmax/templates/email/confirmation.ftl"/></html></platform-specific>
+            </widgets>
+        </section>
+    </screen>
 </screens>

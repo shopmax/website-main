@@ -263,4 +263,10 @@ under the License.
         <description>If the order is a sales order (drop shipments), create sale orders to sellers</description>
         <attribute name="orderId" type="String" mode="IN" optional="false"/>
     </service>
+    
+    <service name="sendOrderSMSToSeller" engine="java"
+            location="org.ofbiz.shopmax.shopmax.ShopMaxServices" invoke="sendOrderSMSToSeller">
+        <description>Send SMS After Create Order</description>
+        <attribute name="orderId" type="String" mode="IN" optional="false"/>
+    </service>
 </services>
