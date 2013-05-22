@@ -90,22 +90,22 @@ $(function(){
         if(categoryFirstId && categorySecondId && categoryThirdId && categoryFourthId){
             if(checkHasValue(categoryFourthId)){
                 newRow = $("<tr id='tr-"+categoryFourthId+"'><td>"+categoryFirstName+" &gt; "+categorySecondName+" &gt; "+categoryThirdName+" &gt; "+categoryFourthName+"</td><td><a id='remove-"+categoryFourthId+"' onclick='removeCategory(&quot;"+categoryFourthId+"&quot;)'>Remove</a></td></tr>");
-            }
+            }else{alert(" This category already assign");}
         }
         if(categoryFirstId && categorySecondId && categoryThirdId && !categoryFourthId){
             if(checkHasValue(categoryThirdId)){
                 newRow = $("<tr id='tr-"+categoryThirdId+"'><td>"+categoryFirstName+" &gt; "+categorySecondName+" &gt; "+categoryThirdName+"</td><td><a id='remove-"+categoryThirdId+"' onclick='removeCategory(&quot;"+categoryThirdId+"&quot;)'>Remove</a></td></tr>");
-            }
+            }else{alert(" This category already assign");}
         }
         if(categoryFirstId && categorySecondId && !categoryThirdId && !categoryFourthId){
             if(checkHasValue(categorySecondId)){
                 newRow = $("<tr id='tr-"+categorySecondId+"'><td>"+categoryFirstName+" &gt; "+categorySecondName+"</td><td><a id='remove-"+categorySecondId+"' onclick='removeCategory(&quot;"+categorySecondId+"&quot;)'>Remove</a></td></tr>");
-            }
+            }else{alert(" This category already assign");}
         }
         if(categoryFirstId && !categorySecondId && !categoryThirdId && !categoryFourthId){
             if(checkHasValue(categoryFirstId)){
                 newRow = $("<tr id='tr-"+categoryFirstId+"'><td>"+categoryFirstName+"</td><td><a id='remove-"+categoryFirstId+"' onclick='removeCategory(&quot;"+categoryFirstId+"&quot;)'>Remove</a></td></tr>");
-            }
+            }else{alert(" This category already assign");}
         }
         $(".selected-products").append(newRow);
         e.preventDefault();
@@ -128,7 +128,7 @@ $(function(){
     
     $('#submit_uploadProductToSeller').click(function(){
         if(typeof getUrlVars()["productId"] != "undefined"){
-            var isClickActivityOccur = confirm("Do you want to update new product?");
+            var isClickActivityOccur = confirm("Do you want to update this product?");
         }
         else{
             var isClickActivityOccur = confirm("Do you want to upload new product?");
@@ -160,12 +160,12 @@ function checkHasValue(categoryId){
     }
     else{
         var listCategory = tempCategory.split(',');
-        for(var i=0;i<listCategory.length;i++){
+        for(var i=0;i<=listCategory.length;i++){
             if(listCategory[i]==categoryId){
                 break;
                 return false;
             }
-            else{
+            if(i==listCategory.length&&listCategory[i]!=categoryId){
                 tempCategory = categoryId+','+tempCategory;
                 $('#listCategory').val(tempCategory);
                 return true;
