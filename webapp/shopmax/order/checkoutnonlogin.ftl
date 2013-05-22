@@ -169,19 +169,24 @@ under the License.
                                     <option value="Visa" selected="selected">Visa</option>
                                     <option value="2">Option 2</option>
                                 </select>
+                                <#-- Example card number: 4111111111111111 -->
                                 <input name="cardNumber" type="text" class="input-xxlarge required" placeholder="Card Number" />
                             </div>
                             <div class="form-inline">
                                 <strong class="grey">Expires</strong>&nbsp;
                                 <select name="expMonth" class="drop-select chosen combo" data-search-bar="true">
                                     <option value="" selected="selected">Month</option>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
+                                    <#if expMonth?has_content>
+                                        <option label="${expMonth?if_exists}" value="${expMonth?if_exists}">${expMonth?if_exists}</option>
+                                    </#if>
+                                    ${screens.render("component://common/widget/CommonScreens.xml#ccmonths")}
                                 </select>   
                                 <select name="expYear" class="drop-select chosen combo" data-search-bar="true">
                                     <option value="" selected="selected">Year</option>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
+                                    <#if expYear?has_content>
+                                        <option value="${expYear?if_exists}">${expYear?if_exists}</option>
+                                    </#if>
+                                    ${screens.render("component://common/widget/CommonScreens.xml#ccyears")}
                                 </select>
                                 <input name="billToCardSecurityCode" type="text" class="input-medium required" placeholder="Security Code" />
                                 <img src="<@ofbizContentUrl>/shopmax-default/img/icon-card.gif</@ofbizContentUrl>" />
