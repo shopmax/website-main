@@ -127,7 +127,16 @@ $(function(){
     });
     
     $('#submit_uploadProductToSeller').click(function(){
-        $('#uploadProductToSeller').submit();
+        if(typeof getUrlVars()["productId"] != "undefined"){
+            var isClickActivityOccur = confirm("Do you want to update new product?");
+        }
+        else{
+            var isClickActivityOccur = confirm("Do you want to upload new product?");
+        }
+        if (isClickActivityOccur==true)
+        {
+            $('#uploadProductToSeller').submit();
+        }
     });
     
     $('#datepicker1').change(function(){

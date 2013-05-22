@@ -23,16 +23,20 @@ under the License.
 <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.accordion.source.js</@ofbizContentUrl>" type="text/javascript"></script>
 <script>
     function sumbiteditproduct(index){
-        $('.media-edit').addClass('media-edit-load');
-        $('#load-'+index).html("<img src='<@ofbizContentUrl>/shopmax-default/img/ajax-loader.gif</@ofbizContentUrl>'>");
-        jQuery.ajax({
-            url: 'updateproduct',
-            type: 'POST',
-            data: $('#updateproduct-'+index).serialize(),
-            success: function(data) {
-                $('#category-container').html(data);
-            }
-        });
+        var isClickActivityOccur=confirm("Do you want to update this product information?");
+        if (isClickActivityOccur==true)
+        {
+            $('.media-edit').addClass('media-edit-load');
+            $('#load-'+index).html("<img src='<@ofbizContentUrl>/shopmax-default/img/ajax-loader.gif</@ofbizContentUrl>'>");
+            jQuery.ajax({
+                url: 'updateproduct',
+                type: 'POST',
+                data: $('#updateproduct-'+index).serialize(),
+                success: function(data) {
+                    $('#category-container').html(data);
+                }
+            });
+        }
     }
     function getUrlVars() {
         var vars = {};
