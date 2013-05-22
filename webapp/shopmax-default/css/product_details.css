@@ -1835,3 +1835,8 @@ float:left;
 li li li li > a > span{
 	background: none !important;
 }
+
+.header-congratulation{
+    text-align:center;
+    font-size: 2em;
+}

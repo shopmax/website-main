@@ -385,8 +385,8 @@ under the License.
     
     <request-map uri="autoLogin">
         <event type="java" path="org.ofbiz.webapp.control.LoginWorker" invoke="login"/>
-        <response name="success" type="view" value="main"/>
-        <response name="error" type="view" value="main"/>
+        <response name="success" type="view" value="registrationsuccess"/>
+        <response name="error" type="view" value="registration"/>
     </request-map>
     
     <!-- Promotion Requests -->
@@ -452,10 +452,16 @@ under the License.
         <response name="error" type="view" value="salesummary"/>
     </request-map>
     
+    <request-map uri="registrationsuccess">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="registrationsuccess"/>
+    </request-map>
+    
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>
     <view-map name="registration" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#Registration"/>
     <view-map name="registrationajax" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#RegistrationAjax"/>
+    <view-map name="registrationsuccess" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#RegistrationSuccess"/>
     <view-map name="helpcenter" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#HelpCenter"/>
     <view-map name="groupbang" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#GroupBang"/>
     <view-map name="rushhour" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#RushHour"/>

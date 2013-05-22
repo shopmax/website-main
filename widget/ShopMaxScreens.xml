@@ -58,6 +58,7 @@ under the License.
             </widgets>
         </section>
     </screen>
+    
     <screen name="RegistrationAjax">
         <section>
             <actions>
@@ -269,6 +270,26 @@ under the License.
             </actions>
             <widgets>
                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/breadcrumbs.ftl"/></html></platform-specific>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="RegistrationSuccess">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleRegistration"/>
+                <set field="headerItem" value="registration"/>
+                <set field="breadcrumbTitle" value="Registration"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/customer/Registration.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html><html-template location="component://shopmax/webapp/shopmax/customer/registrationsuccess.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
             </widgets>
         </section>
     </screen>
