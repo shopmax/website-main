@@ -17,8 +17,8 @@ specific language governing permissions and limitations
 under the License.
 -->
 <script src="<@ofbizContentUrl>/shopmax-default/js/uploadproduct.js</@ofbizContentUrl>" type="text/javascript"></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<link rel='stylesheet' href='<@ofbizContentUrl>/shopmax-default/css/jquery-ui.css</@ofbizContentUrl>' type='text/css'>
+<script src="<@ofbizContentUrl>/shopmax-default/js/jquery-ui.js</@ofbizContentUrl>" type="text/javascript"></script>
 <div class="container content promotion">
     <!-- include breadcrumb -->
     ${screens.render("component://shopmax/widget/ShopMaxScreens.xml#Breadcrumbs")}
@@ -117,16 +117,9 @@ under the License.
                                 <label for="inputDescription" class="control-label">Picture upload (4 Max)</label>
                                 <div class="controls">
                                     <ul class="uploading">
-                                        <li id="li-0">
-                                            <div class="uploaded-image" onclick="getFile('')">
-                                                <label id="main-photo">Main Photo</label>
-                                                <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
-                                            </div>
-                                            <a onclick="getFile('')">Add Photo</a>
-                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input id="upfile" type="file" onchange="sub(this,'')" name="uploadedFile"/></div>
-                                        </li>
                                         <li id="li-1">
                                             <div class="uploaded-image" onclick="getFile(1)">
+                                                <label id="main-photo">Main Photo</label>
                                                 <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
                                             </div>
                                             <a onclick="getFile(1)">Add Photo</a>
@@ -145,6 +138,13 @@ under the License.
                                             </div>
                                             <a onclick="getFile(3)">Add Photo</a>
                                             <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input id="upfile3" type="file" onchange="sub(this,3)" name="uploadedFile3"/></div>
+                                        </li>
+                                        <li id="li-4">
+                                            <div class="uploaded-image" onclick="getFile(4)">
+                                                <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
+                                            </div>
+                                            <a onclick="getFile(4)">Add Photo</a>
+                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input id="upfile4" type="file" onchange="sub(this,4)" name="uploadedFile4"/></div>
                                         </li>
                                     </ul>
                                 </div>
@@ -203,77 +203,77 @@ under the License.
             <table class="table table-condensed sc-table sc-table-promotion">
               <thead>
                 <tr class="sc-table-header">
-                  <th class="col1 collapsing">Advanced Options</th>
+                  <th class="col1 collapsing" id="advanced-option-bar">Advanced Options</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                     <td class="col1 advanced-option product-upload">
-                        <form>
-                            <label class="checkbox">
-                                <input type="checkbox"> Always show Advanced Option
-                            </label><br />
-                            <label>
-                                Brand&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="input-large" />
-                            </label>
-                            <table class="size-color">
-                                <tr>
-                                    <td class="col1">Variations:</td><td class="col2">Size</td><td class="col3">
-                                        <ul class="list-size"><li><a href="#">6</a>
-                                        </li><li><a href="#">8</a>
-                                        </li><li><a href="#">10</a>
-                                        </li><li><a href="#">12</a>
-                                        </li><li class="selected"><a href="#">14</a>
-                                        </li><li><a href="#">16</a>
-                                        </li><li><a href="#">18</a>
-                                        </li></ul>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col1">&nbsp;</td><td class="col2">Colour</td>
-                                    <td class="col3">
-                                    <ul class="list-color">
-                                        <li>
-                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-black.png</@ofbizContentUrl>"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-grey.png</@ofbizContentUrl>"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-white.png</@ofbizContentUrl>"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-dark-organ.png</@ofbizContentUrl>"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-red.png</@ofbizContentUrl>"></a>
-                                        </li>
-                                        <li class="selected">
-                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-pink.png</@ofbizContentUrl>"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-organ.png</@ofbizContentUrl>"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-yellow.png</@ofbizContentUrl>"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-green.png</@ofbizContentUrl>"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-light-blue.png</@ofbizContentUrl>"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-purple.png</@ofbizContentUrl>"></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-dark-yellow.png</@ofbizContentUrl>"></a>
-                                        </li>
-                                    </ul>
-                                    </td>
-                                </tr>
-                            </table>
-                        </form>
+                        <div id="advanced-option-detail">
+                                <label class="checkbox">
+                                    <input type="checkbox"> Always show Advanced Option
+                                </label><br />
+                                <label>
+                                    Brand&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="input-large" />
+                                </label>
+                                <table class="size-color">
+                                    <tr>
+                                        <td class="col1">Variations:</td><td class="col2">Size</td><td class="col3">
+                                            <ul class="list-size"><li><a href="#">6</a>
+                                            </li><li><a href="#">8</a>
+                                            </li><li><a href="#">10</a>
+                                            </li><li><a href="#">12</a>
+                                            </li><li class="selected"><a href="#">14</a>
+                                            </li><li><a href="#">16</a>
+                                            </li><li><a href="#">18</a>
+                                            </li></ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col1">&nbsp;</td><td class="col2">Colour</td>
+                                        <td class="col3">
+                                        <ul class="list-color">
+                                            <li>
+                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-black.png</@ofbizContentUrl>"></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-grey.png</@ofbizContentUrl>"></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-white.png</@ofbizContentUrl>"></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-dark-organ.png</@ofbizContentUrl>"></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-red.png</@ofbizContentUrl>"></a>
+                                            </li>
+                                            <li class="selected">
+                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-pink.png</@ofbizContentUrl>"></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-organ.png</@ofbizContentUrl>"></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-yellow.png</@ofbizContentUrl>"></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-green.png</@ofbizContentUrl>"></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-light-blue.png</@ofbizContentUrl>"></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-purple.png</@ofbizContentUrl>"></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-dark-yellow.png</@ofbizContentUrl>"></a>
+                                            </li>
+                                        </ul>
+                                        </td>
+                                    </tr>
+                                </table>
+                        </div>
                     </td>
                 </tr>
               </tbody>

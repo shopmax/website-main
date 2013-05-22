@@ -200,6 +200,14 @@ under the License.
         </response>
     </request-map>
     
+    <request-map uri="removeProductContentAndImageFile">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="removeProductContentAndImageFile"/>
+        <response name="success" type="request" value="manageproductdetail">
+            <redirect-parameter name="productCategoryId"/>
+        </response>
+    </request-map>
+    
     <request-map uri="uploadproduct">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="uploadproduct"/>

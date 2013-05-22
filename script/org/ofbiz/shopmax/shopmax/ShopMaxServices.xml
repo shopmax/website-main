@@ -639,18 +639,6 @@ under the License.
         <field-to-result field="parameters.productId" result-name="productId"/>
         
         <!-- Create images of product -->
-        <if-not-empty field="parameters._uploadedFile_fileName">
-            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
-            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
-            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
-            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile"/>
-            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
-            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile_fileName"/>
-            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile_contentType"/>
-            <set field="addAdditionalViewForProductMap.sequenceNum" value="01" type="Long"/>
-            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
-            <clear-field field="addAdditionalViewForProductMap"/>
-        </if-not-empty>
         <if-not-empty field="parameters._uploadedFile1_fileName">
             <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
             <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
@@ -659,7 +647,7 @@ under the License.
             <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile1_fileName"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile1_contentType"/>
-            <set field="addAdditionalViewForProductMap.sequenceNum" value="02" type="Long"/>
+            <set field="addAdditionalViewForProductMap.sequenceNum" value="01" type="Long"/>
             <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>
@@ -671,7 +659,7 @@ under the License.
             <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile2_fileName"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile2_contentType"/>
-            <set field="addAdditionalViewForProductMap.sequenceNum" value="03" type="Long"/>
+            <set field="addAdditionalViewForProductMap.sequenceNum" value="02" type="Long"/>
             <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>
@@ -683,6 +671,18 @@ under the License.
             <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile3_fileName"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile3_contentType"/>
+            <set field="addAdditionalViewForProductMap.sequenceNum" value="03" type="Long"/>
+            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
+            <clear-field field="addAdditionalViewForProductMap"/>
+        </if-not-empty>
+        <if-not-empty field="parameters._uploadedFile4_fileName">
+            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
+            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
+            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile4"/>
+            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile4_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile4_contentType"/>
             <set field="addAdditionalViewForProductMap.sequenceNum" value="04" type="Long"/>
             <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
             <clear-field field="addAdditionalViewForProductMap"/>
@@ -767,18 +767,6 @@ under the License.
         <call-service service-name="createProduct" in-map-name="createProductMap"/>
         
         <!-- Create images of product -->
-        <if-not-empty field="parameters._uploadedFile_fileName">
-            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
-            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
-            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
-            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile"/>
-            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
-            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile_fileName"/>
-            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile_contentType"/>
-            <set field="addAdditionalViewForProductMap.sequenceNum" value="01" type="Long"/>
-            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
-            <clear-field field="addAdditionalViewForProductMap"/>
-        </if-not-empty>
         <if-not-empty field="parameters._uploadedFile1_fileName">
             <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
             <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
@@ -787,7 +775,7 @@ under the License.
             <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile1_fileName"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile1_contentType"/>
-            <set field="addAdditionalViewForProductMap.sequenceNum" value="02" type="Long"/>
+            <set field="addAdditionalViewForProductMap.sequenceNum" value="01" type="Long"/>
             <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>
@@ -799,7 +787,7 @@ under the License.
             <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile2_fileName"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile2_contentType"/>
-            <set field="addAdditionalViewForProductMap.sequenceNum" value="03" type="Long"/>
+            <set field="addAdditionalViewForProductMap.sequenceNum" value="02" type="Long"/>
             <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>
@@ -811,6 +799,18 @@ under the License.
             <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile3_fileName"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile3_contentType"/>
+            <set field="addAdditionalViewForProductMap.sequenceNum" value="03" type="Long"/>
+            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
+            <clear-field field="addAdditionalViewForProductMap"/>
+        </if-not-empty>
+        <if-not-empty field="parameters._uploadedFile4_fileName">
+            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
+            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
+            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile4"/>
+            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile4_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile4_contentType"/>
             <set field="addAdditionalViewForProductMap.sequenceNum" value="04" type="Long"/>
             <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
             <clear-field field="addAdditionalViewForProductMap"/>
@@ -1287,17 +1287,7 @@ under the License.
         <set field="updateProductMap.description" from-field="parameters.description"/>
         <call-service service-name="updateProduct" in-map-name="updateProductMap"/>
         
-        <if-not-empty field="parameters._uploadedFile_fileName">
-            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
-            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
-            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
-            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile"/>
-            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
-            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile_fileName"/>
-            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile_contentType"/>
-            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
-            <clear-field field="addAdditionalViewForProductMap"/>
-        </if-not-empty>
+        <!-- Create images of product -->
         <if-not-empty field="parameters._uploadedFile1_fileName">
             <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
             <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
@@ -1306,6 +1296,7 @@ under the License.
             <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile1_fileName"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile1_contentType"/>
+            <set field="addAdditionalViewForProductMap.sequenceNum" value="01" type="Long"/>
             <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>
@@ -1317,6 +1308,7 @@ under the License.
             <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile2_fileName"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile2_contentType"/>
+            <set field="addAdditionalViewForProductMap.sequenceNum" value="02" type="Long"/>
             <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>
@@ -1328,6 +1320,19 @@ under the License.
             <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile3_fileName"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile3_contentType"/>
+            <set field="addAdditionalViewForProductMap.sequenceNum" value="03" type="Long"/>
+            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
+            <clear-field field="addAdditionalViewForProductMap"/>
+        </if-not-empty>
+        <if-not-empty field="parameters._uploadedFile4_fileName">
+            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
+            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
+            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile4"/>
+            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile4_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile4_contentType"/>
+            <set field="addAdditionalViewForProductMap.sequenceNum" value="04" type="Long"/>
             <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>
@@ -1459,17 +1464,7 @@ under the License.
         <set field="updateProductMap.description" from-field="parameters.description"/>
         <call-service service-name="updateProduct" in-map-name="updateProductMap"/>
         
-        <if-not-empty field="parameters._uploadedFile_fileName">
-            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
-            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
-            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
-            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile"/>
-            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
-            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile_fileName"/>
-            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile_contentType"/>
-            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
-            <clear-field field="addAdditionalViewForProductMap"/>
-        </if-not-empty>
+        <!-- Create images of product -->
         <if-not-empty field="parameters._uploadedFile1_fileName">
             <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
             <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
@@ -1478,6 +1473,7 @@ under the License.
             <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile1_fileName"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile1_contentType"/>
+            <set field="addAdditionalViewForProductMap.sequenceNum" value="01" type="Long"/>
             <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>
@@ -1489,6 +1485,7 @@ under the License.
             <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile2_fileName"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile2_contentType"/>
+            <set field="addAdditionalViewForProductMap.sequenceNum" value="02" type="Long"/>
             <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>
@@ -1500,6 +1497,19 @@ under the License.
             <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile3_fileName"/>
             <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile3_contentType"/>
+            <set field="addAdditionalViewForProductMap.sequenceNum" value="03" type="Long"/>
+            <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
+            <clear-field field="addAdditionalViewForProductMap"/>
+        </if-not-empty>
+        <if-not-empty field="parameters._uploadedFile4_fileName">
+            <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
+            <set field="addAdditionalViewForProductMap.productId" from-field="parameters.productId"/>
+            <!-- <set field="addAdditionalViewForProductMap.imageResize" from-field="parameters.imageResize"/> -->
+            <set field="addAdditionalViewForProductMap.uploadedFile" from-field="parameters.uploadedFile4"/>
+            <set field="addAdditionalViewForProductMap.productContentTypeId" value="IMAGE"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_fileName" from-field="parameters._uploadedFile4_fileName"/>
+            <set field="addAdditionalViewForProductMap._uploadedFile_contentType" from-field="parameters._uploadedFile4_contentType"/>
+            <set field="addAdditionalViewForProductMap.sequenceNum" value="04" type="Long"/>
             <call-service service-name="addMultipleuploadForProduct" in-map-name="addAdditionalViewForProductMap"/>
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>

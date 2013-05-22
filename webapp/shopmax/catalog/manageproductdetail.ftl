@@ -17,7 +17,6 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-
 <script src="<@ofbizContentUrl>/shopmax-default/js/manageproduct.js</@ofbizContentUrl>" type="text/javascript"></script>
 <ul class="media-list edit-product-list manage_pro">
     <#if productList?has_content>
@@ -60,7 +59,7 @@ under the License.
                 <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-170x170.jpg</@ofbizContentUrl>" />
                 </a>
                 <div class="media-body">
-                    <form class="form-horizontal pull-left" id="updateproduct-${product_index}">
+                    <form class="form-horizontal pull-left" id="updateproduct-${product_index}"  action="<@ofbizUrl>>updateproduct</@ofbizUrl>" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="productCategoryId" class="productCategoryId"/>
                         <input type="hidden" name="productId" value="${product.productId?if_exists}"/>
                         <div class="control-group">
@@ -79,42 +78,53 @@ under the License.
                             <label class="control-label" for="inputDescription">Picture upload (4 Max)</label>
                             <div class="controls">
                                 <ul class="uploading">
-                                    <#assign imageCount = 0>
-                                    <#if product.productImageList?has_content>
-                                        <#list product.productImageList as productImage>
-                                            <li>
-                                                <div class="uploaded-image">
-                                                    <img src="<@ofbizContentUrl>${productImage.productImageThumb}</@ofbizContentUrl>" />
-                                                </div>
-                                                <a href="#">Remove</a>
-                                            </li>
-                                            <#assign imageCount = imageCount+1>
+                                    <#if product.imageSequenceList?has_content>
+                                        <#list 1..4 as i>
+                                            <#assign check = 1>
+                                            <#if product.productImageList?has_content>
+                                                <#list product.productImageList as productImage>
+                                                    <#if productImage.sequenceNum == i>
+                                                        <li>
+                                                            <div class="uploaded-image">
+                                                                <img src="<@ofbizContentUrl>${productImage.productImageThumb}</@ofbizContentUrl>" />
+                                                            </div>
+                                                            <a onclick="removeProductImage('${productCategory.productCategoryId?if_exists}','${product.productId?if_exists}','${productImage.contentId?if_exists}','${productImage.fromDate?if_exists}','IMAGE','${product_index}')">Remove</a>
+                                                        </li>
+                                                    <#else>
+                                                        <#if product.seqNumNoImage?has_content>
+                                                            <#list product.seqNumNoImage as seqNoImage>
+                                                                <#if seqNoImage == i && check !=0>
+                                                                    <li id="li-${i}">
+                                                                        <div class="uploaded-image" onclick="getFile(${i})">
+                                                                            <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
+                                                                        </div>
+                                                                        <a onclick="getFile(${i})">Add Photo</a>
+                                                                        <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input id="upfile${i}" type="file" onchange="sub(this,${i})" name="uploadedFile${i}"/></div>
+                                                                    </li>
+                                                                    <#assign check = 0>
+                                                                <#elseif seqNoImage == i>
+                                                                    <#assign check = 1>
+                                                                </#if>
+                                                            </#list>
+                                                        </#if>
+                                                    </#if>
+                                                </#list>
+                                            </#if>
                                         </#list>
-                                        <#assign imageEmpty = 4-imageCount>
-                                        <#if imageEmpty != 0>
-                                            <#list 1..imageEmpty as i>
-                                                <li>
-                                                    <div class="uploaded-image">
-                                                        <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>" />
-                                                    </div>
-                                                    <a href="#">Add Photo</a>
-                                                </li>
-                                            </#list>
-                                        </#if>
                                     <#else>
                                         <#list 1..4 as i>
-                                            <li>
-                                                <div class="uploaded-image">
-                                                    <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>" />
+                                            <li id="li-${i}">
+                                                <div class="uploaded-image" onclick="getFile(${i})">
+                                                    <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
                                                 </div>
-                                                <a href="#">Add Photo</a>
+                                                <a onclick="getFile(${i})">Add Photo</a>
+                                                <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input id="upfile${i}" type="file" onchange="sub(this,${i})" name="uploadedFile${i}"/></div>
                                             </li>
                                         </#list>
                                     </#if>
                                 </ul>
                             </div>
                         </div>
-                        
                         <div class="form-inline input-price-stock">
                             <label>
                                 Listing price
@@ -143,8 +153,8 @@ under the License.
                             </label>
                             <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" id="Thru${product_index}" class="datepicker"/>
                         </div>
-                        <input type="hidden" name="promoPriceFromDate" id="promo-datePickerFrom${product_index}" value="${product.productPricePromo.fromDate?if_exists}"/>
-                        <input type="hidden" name="promoPriceThruDate" id="promo-datePickerThru${product_index}" value="${product.productPricePromo.thruDate?if_exists}"/>
+                        <input type="hidden" name="promoPriceFromDate" id="promo-datePickerFrom${product_index}" value="<#if product.productPricePromo?has_content>${product.productPricePromo.fromDate?if_exists}</#if>"/>
+                        <input type="hidden" name="promoPriceThruDate" id="promo-datePickerThru${product_index}" value="<#if product.productPricePromo?has_content>${product.productPricePromo.thruDate?if_exists}</#if>"/>
                         <div class="form-inline">
                             <label>Shipping size</label><br />
                             <a class="btn-dark-grey-small shippingSize" id="XTRA_SMALL-shippingSize${product_index}" <#if product.shippingSize?if_exists == 'XTRA_SMALL'>style="color: rgb(53, 139, 219);"</#if>>Xtra Small</a>

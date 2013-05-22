@@ -102,11 +102,11 @@ $(function(){
                 newRow = $("<tr id='tr-"+categorySecondId+"'><td>"+categoryFirstName+" &gt; "+categorySecondName+"</td><td><a id='remove-"+categorySecondId+"' onclick='removeCategory(&quot;"+categorySecondId+"&quot;)'>Remove</a></td></tr>");
             }else{alert(" This category already assign");}
         }
-        if(categoryFirstId && !categorySecondId && !categoryThirdId && !categoryFourthId){
+        /*if(categoryFirstId && !categorySecondId && !categoryThirdId && !categoryFourthId){
             if(checkHasValue(categoryFirstId)){
                 newRow = $("<tr id='tr-"+categoryFirstId+"'><td>"+categoryFirstName+"</td><td><a id='remove-"+categoryFirstId+"' onclick='removeCategory(&quot;"+categoryFirstId+"&quot;)'>Remove</a></td></tr>");
             }else{alert(" This category already assign");}
-        }
+        }*/
         $(".selected-products").append(newRow);
         e.preventDefault();
     });
@@ -147,12 +147,24 @@ $(function(){
         var dateFormat = $('#datepicker2').val().split('/');
         $('#promoPriceThruDate').val(dateFormat[2]+"-"+dateFormat[0]+"-"+dateFormat[1]+" 00:00:00.000");
     });
+    $('#advanced-option-bar').click(function(){
+        if($('#advanced-option-detail').is(":hidden")){
+            $('.col1.advanced-option.product-upload').css({'padding':'30px'});
+            $('#advanced-option-detail').slideDown(300);
+        }
+        else{
+            $('#advanced-option-detail').slideUp(300, function() {
+            	$('tr').find('.col1.advanced-option.product-upload').css({'padding':'0'});
+            });
+        }
+    });
 });
 function checkHasValue(categoryId){
     var tempCategory = $('#listCategory').val();
     if(tempCategory == ","){
         tempCategory = "";
     }
+    
     if(!tempCategory && categoryId){
         tempCategory = categoryId;
         $('#listCategory').val(tempCategory);
@@ -160,12 +172,12 @@ function checkHasValue(categoryId){
     }
     else{
         var listCategory = tempCategory.split(',');
-        for(var i=0;i<=listCategory.length;i++){
+        for(var i=0;i<listCategory.length;i++){
             if(listCategory[i]==categoryId){
                 break;
                 return false;
             }
-            if(i==listCategory.length&&listCategory[i]!=categoryId){
+            else if(i==listCategory.length-1 && listCategory[i]!=categoryId){
                 tempCategory = categoryId+','+tempCategory;
                 $('#listCategory').val(tempCategory);
                 return true;

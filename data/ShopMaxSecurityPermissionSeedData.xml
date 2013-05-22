@@ -30,6 +30,7 @@ under the License.
     <SecurityGroup description="Shopmax seller group, has all seller permissions." groupId="SHOPMAX_SELLER"/>
     
     <SecurityGroupPermission groupId="SHOPMAX_SELLER" permissionId="SHOPMAX_SELLER"/>
+    <SecurityGroupPermission groupId="SHOPMAX_SELLER" permissionId="CONTENTMGR_ADMIN"/>
     
     <SecurityGroupPermission groupId="SUPER" permissionId="SHOPMAX_ADMIN"/>
 </entity-engine-xml>

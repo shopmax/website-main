@@ -25,6 +25,7 @@ import org.ofbiz.service.*;
 import org.ofbiz.product.catalog.*;
 import org.ofbiz.product.category.CategoryContentWrapper;
 import org.ofbiz.product.store.ProductStoreWorker;
+import java.util.Iterator;
 
 productList = [];
 if (productCategoryId) {
@@ -104,6 +105,8 @@ if (productCategoryId) {
         }*/
         
         productImageList = [];
+        imageSequenceList = [];
+        imageSeqEmpty = [1,2,3,4];
         productContentAndInfoImageManamentList = delegator.findByAnd("ProductContentAndInfo", ["productId": product.productId, productContentTypeId : "IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"], ["sequenceNum"]);
         if (productContentAndInfoImageManamentList) {
             productContentAndInfoImageManamentList.each { productContentAndInfoImageManament ->
@@ -112,11 +115,23 @@ if (productCategoryId) {
                 if (contentAssocThumb) {
                     productImageMap.productImage = productContentAndInfoImageManament.drObjectInfo;
                     productImageMap.productImageThumb = contentAssocThumb.drObjectInfo;
+                    productImageMap.contentId = productContentAndInfoImageManament.contentId;
+                    productImageMap.fromDate = productContentAndInfoImageManament.fromDate;
                     productImageMap.sequenceNum = productContentAndInfoImageManament.sequenceNum;
+                    imageSequenceList.add(productContentAndInfoImageManament.sequenceNum);
+                }
+                i = imageSeqEmpty.iterator()
+                while (i.hasNext()) {
+                    if (i.next() == productContentAndInfoImageManament.sequenceNum) {
+                        i.remove()
+                        break
+                    }
                 }
                 productImageList.add(productImageMap);
             }
         }
+        productMap.imageSequenceList = imageSequenceList;
+        productMap.seqNumNoImage = imageSeqEmpty
         productMap.productImageList = productImageList;
         
         inventorySummary = dispatcher.runSync("getInventoryAvailableByFacility", UtilMisc.toMap("productId", product.productId, "facilityId", "SellerWarehouse"));

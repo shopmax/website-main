@@ -57,7 +57,7 @@ under the License.
         </#if>
         <#include "component://shopmax/webapp/shopmax/includes/mainjavascript.ftl" />
         <#include "component://shopmax/webapp/shopmax/includes/ratyjavascript.ftl" />
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places&language=en-AU"></script>
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&libraries=places&language=en-AU"></script>
         
         <script type="text/javascript">
         $(document).ready(function() {
