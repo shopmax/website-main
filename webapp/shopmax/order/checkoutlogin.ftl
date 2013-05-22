@@ -17,6 +17,23 @@ specific language governing permissions and limitations
 under the License.
 -->
 
+<#macro maskSensitiveNumber cardNumber>
+  <#assign cardNumberDisplay = "">
+  <#if cardNumber?has_content>
+    <#assign size = cardNumber?length - 4>
+    <#if (size > 0)>
+      <#list 0 .. size-1 as foo>
+        <#assign cardNumberDisplay = cardNumberDisplay + "*">
+      </#list>
+      <#assign cardNumberDisplay = cardNumberDisplay + cardNumber[size .. size + 3]>
+    <#else>
+      <#-- but if the card number has less than four digits (ie, it was entered incorrectly), display it in full -->
+      <#assign cardNumberDisplay = cardNumber>
+    </#if>
+  </#if>
+  ${cardNumberDisplay?if_exists}
+</#macro>
+
 <div class="container content shopping-cart">
     <!-- include breadcrumb -->
     ${screens.render("component://shopmax/widget/ShopMaxScreens.xml#Breadcrumbs")}
@@ -36,8 +53,12 @@ under the License.
                         <div class="row">
                             <div class="span5">
                                 <div class="column_1">
-                                    <select class="span3">
-                                        <option>Contact Name Street Address</option>
+                                    <select class="span4">
+                                        <#list contactMechList as contactMech>
+                                            <#assign postalAddress = contactMech.getRelatedOne("PostalAddress", false)?if_exists/>
+                                            <#assign stateProvinceGeo = postalAddress.getRelatedOne("StateProvinceGeo", false)?if_exists>
+                                            <option value="${postalAddress.contactMechId}">${postalAddress.toName?default("No Contact Name")} - ${postalAddress.address1?if_exists} ${stateProvinceGeo.geoName?if_exists} </option>
+                                        </#list>
                                     </select>
                                     <h5>ship to</h5>
                                     <ul>
@@ -60,8 +81,11 @@ under the License.
                         <div class="row">
                             <div class="span5">
                                 <div class="column_1">
-                                    <select class="span4">
-                                        <option>Visa ••••••••••••1234 Exp: 03/03/2013</option>
+                                    <select class="span3">
+                                        <#list billPaymentMethod as paymentMethod>
+                                            <#assign creditCard = paymentMethod.getRelatedOne("CreditCard", false)?if_exists/>
+                                            <option value="${creditCard.paymentMethodId}"><@maskSensitiveNumber cardNumber=cardNumber?if_exists/> Exp: ${(creditCard.expireDate).substring(0, 2)}/${(creditCard.expireDate).substring(3)}</option><#--Visa ••••••••••••1234 Exp: 03/03/2013-->
+                                        </#list>
                                     </select>
                                     <h5>bill to</h5>
                                     <ul>
@@ -79,12 +103,12 @@ under the License.
                                     <div class="clearfix"></div>
                                     <h5>Payment Information</h5>
                                     <ul>
-                                        <li>VISA</li>
-                                        <li>${creditCard?if_exists}</li><#--••••••••••••1234 -->
-                                        <li>Exp: 03/03/2013</li>
+                                        <li>${cardType?if_exists?upper_case}</li>
+                                        <li><@maskSensitiveNumber cardNumber=cardNumber?if_exists/></li><#--••••••••••••1234 -->
+                                        <li>Exp: ${expMonth}/${expYear}</li>
                                         <li class="lastbox">
                                             <input type="text" class="span1 textb">
-                                            <div class="card"><img src="img/icon-card.gif" alt=""></div>
+                                            <div class="card"><img src="<@ofbizContentUrl>img/icon-card.gif</@ofbizContentUrl>" alt=""></div>
                                             <a href="#" class="what">What is this ?</a>
                                         </li>
                                     </ul>
