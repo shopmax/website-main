@@ -84,7 +84,7 @@ under the License.
                     </tr>
                   </tbody>
                 </table>
-                <div class="business-guide imp-info">
+                <div class="business-guide imp-info hidden">
                     <p>To become a seller on Shopmax, you must be a registered business in New Zealand</p>
                 </div>
                 <div class="business-registered hidden">

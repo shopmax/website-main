@@ -122,11 +122,13 @@ $(function(){
     });
     $('.chk_regis').click(function(){
         if($('.chk_regis').is(':checked')){
+        	$('.business-guide').removeClass('hidden');
         	$('.business-registered').removeClass('hidden');
         	$('#businessUser').val("Y");
         }
         else{
             $('.business-registered').addClass('hidden');
+            $('.business-guide').addClass('hidden');
         }
     });
     $('.phoneNumberText').change(function(){
