@@ -35,8 +35,18 @@ searchResultList = [];
 
 if (userLogin) {
     partyId = userLogin.partyId;
+    roleTypeId = "BILL_TO_CUSTOMER"
+    partyRole = delegator.findOne("PartyRole", [partyId : partyId, roleTypeId : "SELLER"], false);
+    if (partyRole) {
+        partyRelationships = delegator.findByAnd("PartyRelationship", [partyIdTo : partyId, roleTypeIdFrom : "INTERNAL_ORGANIZATIO", roleTypeIdTo : "EMPLOYEE", partyRelationshipTypeId : "EMPLOYMENT"], null, true);
+        if (partyRelationships) {
+            partyRelationship = EntityUtil.getFirst(partyRelationships);
+            partyId = partyRelationship.partyIdFrom;
+            roleTypeId = "BILL_FROM_VENDOR"
+        }
+    }
     
-    recentOrderList = delegator.findByAnd("OrderHeaderAndRoles", [roleTypeId : "BILL_TO_CUSTOMER", partyId : partyId, orderTypeId : "SALES_ORDER"], ["-orderDate"], false);
+    recentOrderList = delegator.findByAnd("OrderHeaderAndRoles", [roleTypeId : roleTypeId, partyId : partyId, orderTypeId : "SALES_ORDER"], ["-orderDate"], false);
     if (recentOrderList) {
         recentOrderList.each { recentOrder ->
             orderInfoMap = [:];
@@ -51,7 +61,7 @@ if (userLogin) {
         }
     }
     
-    pendingOrderList = delegator.findByAnd("OrderHeaderAndRoles", [roleTypeId : "BILL_TO_CUSTOMER", partyId : partyId, orderTypeId : "SALES_ORDER", statusId : "ORDER_CREATED"], ["-orderDate"], false);
+    pendingOrderList = delegator.findByAnd("OrderHeaderAndRoles", [roleTypeId : roleTypeId, partyId : partyId, orderTypeId : "SALES_ORDER", statusId : "ORDER_CREATED"], ["-orderDate"], false);
     if (pendingOrderList) {
         pendingOrderList.each { pendingOrder ->
             orderInfoMap = [:];
@@ -66,7 +76,7 @@ if (userLogin) {
         }
     }
     
-    processingOrderList = delegator.findByAnd("OrderHeaderAndRoles", [roleTypeId : "BILL_TO_CUSTOMER", partyId : partyId, orderTypeId : "SALES_ORDER", statusId : "ORDER_APPROVED"], ["-orderDate"], false);
+    processingOrderList = delegator.findByAnd("OrderHeaderAndRoles", [roleTypeId : roleTypeId, partyId : partyId, orderTypeId : "SALES_ORDER", statusId : "ORDER_APPROVED"], ["-orderDate"], false);
     if (processingOrderList) {
         processingOrderList.each { processingOrder ->
             orderInfoMap = [:];
@@ -81,7 +91,7 @@ if (userLogin) {
         }
     }
     
-    completedOrderList = delegator.findByAnd("OrderHeaderAndRoles", [roleTypeId : "BILL_TO_CUSTOMER", partyId : partyId, orderTypeId : "SALES_ORDER", statusId : "ORDER_COMPLETED"], ["-orderDate"], false);
+    completedOrderList = delegator.findByAnd("OrderHeaderAndRoles", [roleTypeId : roleTypeId, partyId : partyId, orderTypeId : "SALES_ORDER", statusId : "ORDER_COMPLETED"], ["-orderDate"], false);
     if (completedOrderList) {
         completedOrderList.each { completedOrder ->
             orderInfoMap = [:];
@@ -96,7 +106,11 @@ if (userLogin) {
         }
     }
     
-    returnHeaders = delegator.findByAnd("ReturnHeader", [fromPartyId : partyId], ["-entryDate"], false);
+    if (roleTypeId == "BILL_TO_CUSTOMER") {
+        returnHeaders = delegator.findByAnd("ReturnHeader", [fromPartyId : partyId], ["-entryDate"], false);
+    } else {
+        returnHeaders = delegator.findByAnd("ReturnHeader", [toPartyId : partyId], ["-entryDate"], false);
+    }
     if (returnHeaders) {
         returnHeaders.each { returnHeader ->
             returnItems = delegator.findByAnd("ReturnItem", [returnId : returnHeader.returnId], null, false);

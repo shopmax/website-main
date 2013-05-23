@@ -48,7 +48,7 @@ if (orderHeader) {
     orderHeaderAdjustments = orderReadHelper.getOrderHeaderAdjustments();
     orderSubTotal = orderReadHelper.getOrderItemsSubTotal();
     orderTerms = orderHeader.getRelated("OrderTerm", null, null, false);
-
+    
     context.orderHeader = orderHeader;
     context.orderReadHelper = orderReadHelper;
     context.orderItems = orderItems;
@@ -61,7 +61,7 @@ if (orderHeader) {
     orderParty = orderReadHelper.getPlacingParty();
     customerName = PartyHelper.getPartyName(orderParty);
     context.customerName = customerName;
-
+    
     billingAddress = orderReadHelper.getBillingAddress();
     context.billingAddress = billingAddress;
     
