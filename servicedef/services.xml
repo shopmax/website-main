@@ -276,4 +276,16 @@ under the License.
         <description>Send SMS After Order Created</description>
         <attribute name="tenantId" type="String" mode="IN" optional="false"/>
     </service>
+    
+    <service name="removeProductFromSeller" engine="simple" 
+            location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="removeProductFromSeller" auth="true">
+        <description>Remove Product From Seller</description>
+        <attribute name="productId" mode="IN" type="String" optional="false"/>
+    </service>
+    
+    <service name="removeProductFromShopmax" engine="simple" 
+            location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="removeProductFromShopmax" auth="true">
+        <description>Remove Product From Shopmax</description>
+        <attribute name="productId" mode="IN" type="String" optional="false"/>
+    </service>
 </services>

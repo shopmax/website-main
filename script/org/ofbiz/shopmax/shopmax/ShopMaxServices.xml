@@ -1623,4 +1623,57 @@ under the License.
         
         <field-to-result field="parameters.productCategoryId" result-name="productCategoryId"/>
     </simple-method>
+    
+    <simple-method method-name="removeProductFromSeller" short-description="Remove Product From Seller">
+        <entity-one value-field="systemUserLogin" entity-name="UserLogin">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        <now-timestamp field="nowTimestamp"/>
+        
+        <set field="updateProductMap.userLogin" from-field="systemUserLogin"/>
+        <set field="updateProductMap.productId" from-field="parameters.productId"/>
+        <set field="updateProductMap.salesDiscontinuationDate" from-field="nowTimestamp"/>
+        <call-service service-name="updateProduct" in-map-name="updateProductMap"/>
+        
+        <entity-and list="productCategoryMembers" entity-name="ProductCategoryMember">
+            <field-map field-name="productId" from-field="parameters.productId"/>
+        </entity-and>
+        <iterate entry="productCategoryMember" list="productCategoryMembers">
+            <set field="updateProductToCategoryMap.userLogin" from-field="systemUserLogin"/>
+            <set field="updateProductToCategoryMap.productCategoryId" from-field="productCategoryMember.productCategoryId"/>
+            <set field="updateProductToCategoryMap.productId" from-field="productCategoryMember.productId"/>
+            <set field="updateProductToCategoryMap.fromDate" from-field="productCategoryMember.fromDate"/>
+            <set field="updateProductToCategoryMap.thruDate" from-field="nowTimestamp"/>
+            <call-service service-name="updateProductToCategory" in-map-name="updateProductToCategoryMap"/>
+        </iterate>
+        
+        <set field="runTenantServiceInMap.tenantId" value="default"/>
+        <set field="runTenantServiceInMap.serviceName" value="removeProductFromShopmax"/>
+        <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
+        <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+    </simple-method>
+    
+    <simple-method method-name="removeProductFromShopmax" short-description="Remove Product From Shopmax">
+        <entity-one value-field="systemUserLogin" entity-name="UserLogin">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        <now-timestamp field="nowTimestamp"/>
+        
+        <set field="updateProductMap.userLogin" from-field="systemUserLogin"/>
+        <set field="updateProductMap.productId" from-field="parameters.productId"/>
+        <set field="updateProductMap.salesDiscontinuationDate" from-field="nowTimestamp"/>
+        <call-service service-name="updateProduct" in-map-name="updateProductMap"/>
+        
+        <entity-and list="productCategoryMembers" entity-name="ProductCategoryMember">
+            <field-map field-name="productId" from-field="parameters.productId"/>
+        </entity-and>
+        <iterate entry="productCategoryMember" list="productCategoryMembers">
+            <set field="updateProductToCategoryMap.userLogin" from-field="systemUserLogin"/>
+            <set field="updateProductToCategoryMap.productCategoryId" from-field="productCategoryMember.productCategoryId"/>
+            <set field="updateProductToCategoryMap.productId" from-field="productCategoryMember.productId"/>
+            <set field="updateProductToCategoryMap.fromDate" from-field="productCategoryMember.fromDate"/>
+            <set field="updateProductToCategoryMap.thruDate" from-field="nowTimestamp"/>
+            <call-service service-name="updateProductToCategory" in-map-name="updateProductToCategoryMap"/>
+        </iterate>
+    </simple-method>
 </simple-methods>
