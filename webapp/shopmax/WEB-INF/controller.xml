@@ -270,7 +270,7 @@ under the License.
     <request-map uri="onePageProcessAccount">
         <security https="true" auth="false"/>
         <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/shoppingcart/CheckOutEvents.xml" invoke="createAccount"/>
-        <response name="success" type="request" value="createUpdateBillingAndPayment"/>
+        <response name="success" type="request" value="createUpdateShippingAddress"/>
         <response name="error" type="view" value="checkout"/>
     </request-map>
     <request-map uri="createUpdateShippingAddress">
