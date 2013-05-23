@@ -24,11 +24,14 @@ under the License.
         <if-not-empty field="userLogin">
             <return response-code="success"/>
             <else>
-                <return response-code="error"/>
+                <return response-code="empty"/>
             </else>
         </if-not-empty>
     </simple-method>
     <simple-method method-name="createAccount" short-description="Create account to cart" login-required="false">
+        <entity-one value-field="sysUserLogin" entity-name="UserLogin">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
         <call-class-method method-name="getCartObject" class-name="org.ofbiz.order.shoppingcart.ShoppingCartEvents" ret-field="shoppingCart">
             <field field="request" type="javax.servlet.http.HttpServletRequest"/>
         </call-class-method>
@@ -107,13 +110,43 @@ under the License.
         <property-to-field resource="general" property="country.geo.id.default" field="defaultCountryGeoId"/>
         <set field="parameters.billToCountryGeoId" from-field="defaultCountryGeoId"/>
         <set field="parameters.billToStateProvinceGeoId" value="_NA_"/>
+        <set field="parameters.firstNameOnCard" from-field="parameters.billToName"/>
+        <set field="parameters.lastNameOnCard" from-field="parameters.billToLastName"/>
         <call-class-method method-name="getCartObject" class-name="org.ofbiz.order.shoppingcart.ShoppingCartEvents" ret-field="parameters.shoppingCart">
             <field field="request" type="javax.servlet.http.HttpServletRequest"/>
         </call-class-method>
-        <set field="parameters.firstNameOnCard" from-field="parameters.billToName"/>
-        <set field="parameters.lastNameOnCard" from-field="parameters.billToLastName"/>
         <set-service-fields service-name="createUpdateBillingAddressAndPaymentMethod" to-map="createUpdateBillingAddressAndPaymentMethodInMap" map="parameters"/>
         <set field="createUpdateBillingAddressAndPaymentMethodInMap.cardType" from="parameters.cardType"/>
         <call-service service-name="createUpdateBillingAddressAndPaymentMethod" in-map-name="createUpdateBillingAddressAndPaymentMethodInMap"/>
+    </simple-method>
+    <simple-method method-name="createUpdateShippingAddress" short-description="Create update shipping address" login-required="false">
+        <property-to-field resource="general" property="country.geo.id.default" field="defaultCountryGeoId"/>
+        <set field="parameters.shipToCountryGeoId" from-field="defaultCountryGeoId"/>
+        <set field="parameters.shipToStateProvinceGeoId" value="_NA_"/>
+        <set field="parameters.firstName" from-field="parameters.USER_FIRST_NAME"/>
+        <set field="parameters.lastName" from-field="parameters.USER_LAST_NAME"/>
+        <set field="parameters.emailAddress" from-field="parameters.CUSTOMER_EMAIL"/>
+        <call-class-method method-name="getCartObject" class-name="org.ofbiz.order.shoppingcart.ShoppingCartEvents" ret-field="parameters.shoppingCart">
+            <field field="request" type="javax.servlet.http.HttpServletRequest"/>
+        </call-class-method>
+        <set-service-fields service-name="createUpdateCustomerAndShippingAddress" to-map="createUpdateCustomerAndShippingAddressInMap" map="parameters"/>
+        <call-service service-name="createUpdateCustomerAndShippingAddress" in-map-name="createUpdateCustomerAndShippingAddressInMap"/>
+    </simple-method>
+    <simple-method method-name="createOrder" short-description="Create order">
+        <entity-one value-field="sysUserLogin" entity-name="UserLogin">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        <call-class-method method-name="getCartObject" class-name="org.ofbiz.order.shoppingcart.ShoppingCartEvents" ret-field="shoppingCart">
+            <field field="request" type="javax.servlet.http.HttpServletRequest"/>
+        </call-class-method>
+        <call-object-method method-name="setUserLogin" obj-field="shoppingCart">
+            <field field="sysUserLogin" type="org.ofbiz.entity.GenericValue"/>
+            <field field="dispatcher" type="org.ofbiz.service.LocalDispatcher"/>
+        </call-object-method>
+        
+        <call-class-method method-name="createOrder" class-name="org.ofbiz.order.shoppingcart.CheckOutEvents">
+            <field field="request" type="javax.servlet.http.HttpServletRequest"/>
+            <field field="response" type="javax.servlet.http.HttpServletResponse"/>
+        </call-class-method>
     </simple-method>
 </simple-methods>

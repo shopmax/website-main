@@ -32,7 +32,9 @@ under the License.
                 <tr><td>${shippingPostalAddress.address1?if_exists}</td></tr><#-- Street Address Line one -->
                 <tr><td>${shippingPostalAddress.address2?if_exists}</td></tr><#-- Street Address Line two -->
                 <tr><td>${stateProvinceGeo.geoName?if_exists}</td></tr><#-- State -->
-                <#--<tr><td>${stateProvinceGeo.geoNmae}</td></tr>--><#-- Phone number xxx xxx xxx -->
+                <#if shipToTelecomNumber?exists>
+                    <tr><td>Phone number: ${shipToTelecomNumber.countryCode?if_exists} <#if shipToTelecomNumber.areaCode?exists>${shipToTelecomNumber.areaCode}-</#if>${shipToTelecomNumber.contactNumber}</td></tr>
+                </#if>
             </#list>
         </#if>
     </tbody>

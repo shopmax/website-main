@@ -90,7 +90,7 @@ under the License.
                     </table>
                     
                     <div class="shop_address clearfix">
-                        <p>You have selected to pick this item up from the store listed below. Your <strong>Order Number: XJF1234</strong>. You Must present this to the shop in order to pick up your purchase.</p>
+                        <p>You have selected to pick this item up from the store listed below. Your <strong>Order Number: ${orderId}</strong>. You Must present this to the shop in order to pick up your purchase.</p>
                         <div class="row">
                             <div class="span5">
                                 <div class="column_1">

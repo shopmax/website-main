@@ -71,11 +71,19 @@ under the License.
                 <set field="headerItem" value="confirmation"/>
                 <set field="breadcrumbTitle" value="Confirmation"/>
                 <script location="component://order/webapp/ordermgr/WEB-INF/actions/order/OrderView.groovy"/>
-                <script location="component://order/webapp/ordermgr/WEB-INF/actions/order/OrderViewWebSecure.groovy"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/order/OrderConfirmation.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
+                        <section>
+                            <condition><not><if-empty field="userLogin"/></not></condition>
+                            <actions>
+                                <script location="component://order/webapp/ordermgr/WEB-INF/actions/order/OrderViewWebSecure.groovy"/>
+                            </actions>
+                            <widgets/>
+                            <fail-widgets/>
+                        </section>
                         <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/orderconfirmation.ftl"></html-template></html></platform-specific>
                     </decorator-section>
                 </decorator-screen>

@@ -17,6 +17,23 @@ specific language governing permissions and limitations
 under the License.
 -->
 
+<#macro maskSensitiveNumber cardNumber>
+  <#assign cardNumberDisplay = "">
+  <#if cardNumber?has_content>
+    <#assign size = cardNumber?length - 4>
+    <#if (size > 0)>
+      <#list 0 .. size-1 as foo>
+        <#assign cardNumberDisplay = cardNumberDisplay + "*">
+      </#list>
+      <#assign cardNumberDisplay = cardNumberDisplay + cardNumber[size .. size + 3]>
+    <#else>
+      <#-- but if the card number has less than four digits (ie, it was entered incorrectly), display it in full -->
+      <#assign cardNumberDisplay = cardNumber>
+    </#if>
+  </#if>
+  ${cardNumberDisplay?if_exists}
+</#macro>
+
 <table cellpadding="0" cellspacing="0" border="0" class="table table_1">
     <thead>
         <tr>
@@ -25,14 +42,22 @@ under the License.
     </thead>
     <tbody>
         <#list orderPaymentPreferences as orderPaymentPreference>
-            <#assign payments = orderPaymentPreference.getRelated("Payment", null, null, false)>
-            <#list payments as payment>
-                <#assign statusItem = payment.getRelatedOne("StatusItem", false)>
-                <#assign partyName = delegator.findOne("PartyNameView", {"partyId" : payment.partyIdTo}, true)>
-                <tr><td>${partyName.groupName?if_exists}${partyName.lastName?if_exists} ${partyName.firstName?if_exists} ${partyName.middleName?if_exists}</td></tr>
-                <tr><td><@ofbizCurrency amount=payment.amount?if_exists/></td></tr>
-                <tr><td>Status: ${statusItem.description}</td></tr>
-            </#list>
+            <tr>
+                <td>
+                    <#assign paymentMethod = orderPaymentPreference.getRelatedOne("PaymentMethod", false)?if_exists>
+                    <#if paymentMethod.paymentMethodTypeId?if_exists == "CREDIT_CARD">
+                        <#assign gatewayResponses = orderPaymentPreference.getRelated("PaymentGatewayResponse", null, null, false)>
+                        <#assign creditCard = paymentMethod.getRelatedOne("CreditCard", false)?if_exists>
+                        <#if creditCard?has_content>
+                            <#assign pmBillingAddress = creditCard.getRelatedOne("PostalAddress", false)?if_exists>
+                        </#if>
+                        <#if creditCard?has_content>
+                            ${creditCard.cardType} <@maskSensitiveNumber cardNumber=creditCard.cardNumber?if_exists/><br/>
+                            Exp: ${creditCard.expireDate}
+                        </#if>
+                    </#if>
+                <td>
+            </tr>
         </#list>
     </tbody>
 </table>

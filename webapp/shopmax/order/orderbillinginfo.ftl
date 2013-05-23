@@ -25,12 +25,14 @@ under the License.
     </thead>
     <tbody>
         <#if billingAddress?has_content>
-            <#assign stateProvinceGeo = billingPostalAddress.getRelatedOne("StateProvinceGeo", false)?if_exists>
+            <#assign stateProvinceGeo = billingAddress.getRelatedOne("StateProvinceGeo", false)?if_exists>
             <tr><td>${billingAddress.toName?default("No Contact Name")}</td></tr><#-- Contact Name -->
             <tr><td>${billingAddress.address1?if_exists}</td></tr><#-- Street Address Line one -->
             <tr><td>${billingAddress.address2?if_exists}</td></tr><#-- Street Address Line two -->
             <tr><td>${stateProvinceGeo.geoName?if_exists}</td></tr><#-- State -->
-            <#--<tr><td>${stateProvinceGeo.geoNmae}</td></tr>--><#-- Phone number xxx xxx xxx -->
+            <#if billToTelecomNumber?exists>
+                <tr><td>Phone number: ${billToTelecomNumber.countryCode?if_exists} <#if billToTelecomNumber.areaCode?exists>${billToTelecomNumber.areaCode}-</#if>${billToTelecomNumber.contactNumber}</td></tr>
+            </#if>
         </#if>
     </tbody>
 </table>

@@ -61,6 +61,10 @@ under the License.
                 
                 <#-- Shipping Information -->
                 <input type="hidden" name="shipMethod" value="NO_SHIPPING"/>
+                <input type="hidden" value="1" name="shipToCountryCode">
+                <input type="hidden" value="801" name="shipToAreaCode">
+                <input type="hidden" value="" name="shipToExtension">
+                
                 <table class="table table-condensed sc-table sc-table-shipping">
                   <thead>
                     <tr class="sc-table-product-header">
@@ -77,8 +81,8 @@ under the License.
                                 <input type="text" class="input-xxlarge required" name="USER_LAST_NAME" placeholder="Last Name" />
                             </div>
                             <div class="form-inline">
-                                <input type="text" class="input-xxlarge required" placeholder="Phone Number" />
-                                <input type="text" class="input-xxlarge required" name="CUSTOMER_EMAIL" placeholder="Email Address" />
+                                <input name="shipToContactNumber" type="text" class="input-xxlarge required" placeholder="Phone Number" />
+                                <input name="CUSTOMER_EMAIL" type="text" class="input-xxlarge required" placeholder="Email Address" />
                                 <input type="text" class="input-xxlarge" placeholder="Fax Number (optional)" />
                             </div>
                         </td>
