@@ -140,21 +140,4 @@ under the License.
         <set-service-fields service-name="createUpdateCustomerAndShippingAddress" to-map="createUpdateCustomerAndShippingAddressInMap" map="parameters"/>
         <call-service service-name="createUpdateCustomerAndShippingAddress" in-map-name="createUpdateCustomerAndShippingAddressInMap"/>
     </simple-method>
-    <simple-method method-name="createOrder" short-description="Create order">
-        <entity-one value-field="sysUserLogin" entity-name="UserLogin">
-            <field-map field-name="userLoginId" value="system"/>
-        </entity-one>
-        <call-class-method method-name="getCartObject" class-name="org.ofbiz.order.shoppingcart.ShoppingCartEvents" ret-field="shoppingCart">
-            <field field="request" type="javax.servlet.http.HttpServletRequest"/>
-        </call-class-method>
-        <call-object-method method-name="setUserLogin" obj-field="shoppingCart">
-            <field field="sysUserLogin" type="org.ofbiz.entity.GenericValue"/>
-            <field field="dispatcher" type="org.ofbiz.service.LocalDispatcher"/>
-        </call-object-method>
-        
-        <call-class-method method-name="createOrder" class-name="org.ofbiz.order.shoppingcart.CheckOutEvents">
-            <field field="request" type="javax.servlet.http.HttpServletRequest"/>
-            <field field="response" type="javax.servlet.http.HttpServletResponse"/>
-        </call-class-method>
-    </simple-method>
 </simple-methods>
