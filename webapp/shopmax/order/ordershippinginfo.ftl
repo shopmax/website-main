@@ -24,18 +24,12 @@ under the License.
         </tr>
     </thead>
     <tbody>
-        <#if shippingContactMechList?has_content>
-            <#list shippingContactMechList as shippingContactMech>
-                <#assign orderContactMechs = shippingContactMech.getRelated("OrderContactMech", Static["org.ofbiz.base.util.UtilMisc"].toMap("orderId", orderId), null, false)/>
-                <#if orderContactMechs?has_content>
-                    <#assign shippingPostalAddress = shippingContactMech.getRelatedOne("PostalAddress", false)?if_exists>
-                    <#assign stateProvinceGeo = shippingPostalAddress.getRelatedOne("StateProvinceGeo", false)?if_exists>
-                    <tr><td>${shippingPostalAddress.toName?default("No Contact Name")}</td></tr><#-- Contact Name -->
-                    <tr><td>${shippingPostalAddress.address1?if_exists}</td></tr><#-- Street Address Line one -->
-                    <tr><td>${shippingPostalAddress.address2?if_exists}</td></tr><#-- Street Address Line two -->
-                    <tr><td>${stateProvinceGeo.geoName?if_exists}</td></tr><#-- State -->
-                </#if>
-            </#list>
+        <#if shippingAddress?has_content>
+            <#assign stateProvinceGeo = shippingAddress.getRelatedOne("StateProvinceGeo", false)?if_exists>
+            <tr><td>${shippingAddress.toName?default("No Contact Name")}</td></tr><#-- Contact Name -->
+            <tr><td>${shippingAddress.address1?if_exists}</td></tr><#-- Street Address Line one -->
+            <tr><td>${shippingAddress.address2?if_exists}</td></tr><#-- Street Address Line two -->
+            <tr><td>${stateProvinceGeo.geoName?if_exists}</td></tr><#-- State -->
         </#if>
         <#if shipToTelecomNumber?exists>
             <tr><td>Phone number: ${shipToTelecomNumber.countryCode?if_exists} <#if shipToTelecomNumber.areaCode?exists>${shipToTelecomNumber.areaCode}-</#if>${shipToTelecomNumber.contactNumber}</td></tr>
