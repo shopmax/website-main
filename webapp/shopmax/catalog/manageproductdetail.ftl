@@ -137,10 +137,10 @@ under the License.
                         </div>
                         
                         <div class="form-inline input-promotion">
-                            <input type="checkbox">
+                            <input type="checkbox" id="checkBoxManage${product_index}">
                             <label>
                                 &nbsp;Promotion price&nbsp;
-                                <input type="number" class="input-mini" name="promoPrice" value="${product.promoPrice?if_exists}">
+                                <input type="number" class="input-mini" name="promoPrice" value="${product.promoPrice?if_exists}"  id="promoPrice${product_index}">
                             </label>
                             <label>
                                 &nbsp;&nbsp;Valid from&nbsp;

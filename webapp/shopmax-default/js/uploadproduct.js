@@ -66,6 +66,8 @@ $(function(){
         e.preventDefault();
     });
     $('#assign-category').click(function(e){
+    	var formUpload = document.getElementById('uploadProductToSeller');
+    	formUpload.getElementsByTagName('input').checked=true;
         if(typeof getUrlVars()["categoryFirstId"] != "undefined"){
             var categoryFirstId = getUrlVars()["categoryFirstId"];
             var categoryName = ($('#'+categoryFirstId).val()).split("-");
@@ -156,6 +158,15 @@ $(function(){
             $('#advanced-option-detail').slideUp(300, function() {
             	$('tr').find('.col1.advanced-option.product-upload').css({'padding':'0'});
             });
+        }
+    });
+    
+    $('#promoPrice').change(function(){
+        if($('#promoPrice').val()){
+            document.getElementById("checkboxUpload").checked=true;
+        }
+        else{
+            document.getElementById("checkboxUpload").checked=false;
         }
     });
 });

@@ -19,6 +19,15 @@ $(function(){
             $("#datePickerThru"+index).datepicker();
             $('#view-edit-product-'+index).slideDown("slow");
             $('.productCategoryId').val(getUrlVars()["productCategoryId"]);
+            
+            $('#promoPrice'+index).change(function(){
+                if($('#promoPrice'+index).val()){
+                    document.getElementById("checkBoxManage"+index).checked=true;
+                }
+                else{
+                    document.getElementById("checkBoxManage"+index).checked=false;
+                }
+            });
         } else {
             $('#view-edit-product-'+index).slideUp("slow");
         }
