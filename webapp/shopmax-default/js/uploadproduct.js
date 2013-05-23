@@ -128,19 +128,6 @@ $(function(){
         $('#shippingSize').val(this.id);
     });
     
-    $('#submit_uploadProductToSeller').click(function(){
-        if(typeof getUrlVars()["productId"] != "undefined"){
-            var isClickActivityOccur = confirm("Do you want to update this product?");
-        }
-        else{
-            var isClickActivityOccur = confirm("Do you want to upload new product?");
-        }
-        if (isClickActivityOccur==true)
-        {
-            $('#uploadProductToSeller').submit();
-        }
-    });
-    
     $('#datepicker1').change(function(){
         var dateFormat = $('#datepicker1').val().split('/');
         $('#promoPriceFromDate').val(dateFormat[2]+"-"+dateFormat[0]+"-"+dateFormat[1]+" 00:00:00.000");

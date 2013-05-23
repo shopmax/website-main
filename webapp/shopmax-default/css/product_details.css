@@ -19,7 +19,7 @@
 .blue{
     color:#469BEB;
 }
-
+    
 .small-text{
     font-size: 0.9em;
 }
@@ -834,15 +834,16 @@ width:85px;
     color:#358BD8;
 }
 
-.media-edit .uploading li div {    
+.media-edit .uploading li div {
+    background-color:#EAE8AD;
     border:1px solid #358bd8;
 }
 
-.media-edit .uploading li.uploaded div {    
+.media-edit .uploading li.uploaded div {
     border:1px solid #9abd5c;
 }
 
-.media-edit .uploading li.uploaded a{    
+.media-edit .uploading li.uploaded a{
     background: none;
     padding-left:0px;
 }

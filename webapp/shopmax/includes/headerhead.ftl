@@ -67,6 +67,7 @@ under the License.
                 'transitionOut'     : 'none'
             });
             makeAccordion($("#category-menu"));
+            $('.file').preimage();
         });
         
         function makeAccordion($ul) {

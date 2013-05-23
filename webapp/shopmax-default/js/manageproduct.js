@@ -45,4 +45,6 @@ $(function(){
         $('#'+this.id).css({'color':'#358BDB'});
         $('#'+shippingSize[1]).val(shippingSize[0]);
     });
+    
+    $('.file').preimage();
 });

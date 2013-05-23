@@ -184,42 +184,47 @@ under the License.
     </request-map>
     
     <request-map uri="manageproduct">
-        <security https="true" auth="false"/>
+        <security https="true" auth="true"/>
         <response name="success" type="view" value="manageproduct"/>
     </request-map>
     
     <request-map uri="manageproductdetail">
-        <security https="true" auth="false"/>
+        <security https="true" auth="true"/>
         <response name="success" type="view" value="manageproductajax"/>
     </request-map>
     
     <request-map uri="updateproduct">
+        <security https="true" auth="true"/>
         <event type="service" invoke="editProductToSeller"/>
-        <response name="success" type="request" value="manageproductdetail">
+        <response name="success" type="request" value="manageproduct">
             <redirect-parameter name="productCategoryId"/>
         </response>
+    </request-map>
+    
+    <request-map uri="removeproductfromseller">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="removeProductFromSeller"/>
+        <response name="success" type="view" value="manageproductajax"/>
     </request-map>
     
     <request-map uri="removeProductContentAndImageFile">
         <security https="true" auth="true"/>
         <event type="service" invoke="removeProductContentAndImageFile"/>
-        <response name="success" type="request" value="manageproductdetail">
-            <redirect-parameter name="productCategoryId"/>
-        </response>
+        <response name="success" type="view" value="manageproductajax"/>
     </request-map>
     
     <request-map uri="uploadproduct">
-        <security https="true" auth="false"/>
+        <security https="true" auth="true"/>
         <response name="success" type="view" value="uploadproduct"/>
     </request-map>
     
     <request-map uri="uploadproductajax">
-        <security https="true" auth="false"/>
+        <security https="true" auth="true"/>
         <response name="success" type="view" value="uploadproductajax"/>
     </request-map>
     
     <request-map uri="uploadProductToSeller">
-        <security https="true" auth="false"/>
+        <security https="true" auth="true"/>
         <event type="service" invoke="uploadProductToSeller"/>
         <response name="success" type="view" value="uploadproduct"/>
         <response name="error" type="view" value="uploadproduct"/>

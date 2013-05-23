@@ -1384,10 +1384,15 @@ left:4px;
 #content-messages{
 	margin: 50px 0 -50px;
 }
-.loadimage{
+ul li div.loadimage{
     position: absolute;
-    top: 45%;
-    left: 45%;
+    padding-top: 50px;
+    padding-left: 200px;
+}
+.loadremoveimage{
+	position: absolute;
+    top:45%;
+    left:45%;
 }
 .media-edit-load{
     opacity: 0.5;

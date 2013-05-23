@@ -19,6 +19,33 @@ under the License.
 <script src="<@ofbizContentUrl>/shopmax-default/js/uploadproduct.js</@ofbizContentUrl>" type="text/javascript"></script>
 <link rel='stylesheet' href='<@ofbizContentUrl>/shopmax-default/css/jquery-ui.css</@ofbizContentUrl>' type='text/css'>
 <script src="<@ofbizContentUrl>/shopmax-default/js/jquery-ui.js</@ofbizContentUrl>" type="text/javascript"></script>
+<script>
+    $(function(){
+        $('#submit_uploadProductToSeller').click(function(e){
+            if(typeof getUrlVars()["productId"] != "undefined"){
+                var isClickActivityOccur = confirm("Do you want to update this product?");
+            }
+            else{
+                var isClickActivityOccur = confirm("Do you want to upload new product?");
+            }
+            if (isClickActivityOccur==true)
+            {
+                $('#uploadProductToSeller').submit();
+            }
+            e.preventDefault();
+        });
+    });
+</script>
+<style>
+    .prev_container{
+        width: 82px;
+        height: 82px;
+    }
+    .prev_thumb{
+        height: 82px;
+        width: 82px;
+    }
+</style>
 <div class="container content promotion">
     <!-- include breadcrumb -->
     ${screens.render("component://shopmax/widget/ShopMaxScreens.xml#Breadcrumbs")}
@@ -118,33 +145,36 @@ under the License.
                                 <div class="controls">
                                     <ul class="uploading">
                                         <li id="li-1">
-                                            <div class="uploaded-image" onclick="getFile(1)">
+                                            <div id="prev_upfile1" class="uploaded-image" onclick="getFile(1)">
                                                 <label id="main-photo">Main Photo</label>
                                                 <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
                                             </div>
                                             <a onclick="getFile(1)">Add Photo</a>
-                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input id="upfile1" type="file" onchange="sub(this,1)" name="uploadedFile1"/></div>
+                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile1" type="file" onchange="sub(this,1)" name="uploadedFile1"/></div>
                                         </li>
                                         <li id="li-2">
-                                            <div class="uploaded-image" onclick="getFile(2)">
+                                            <div id="prev_upfile2" class="uploaded-image" onclick="getFile(2)">
+                                                <label id="main-photo">Main Photo</label>
                                                 <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
                                             </div>
                                             <a onclick="getFile(2)">Add Photo</a>
-                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input id="upfile2" type="file" onchange="sub(this,2)" name="uploadedFile2"/></div>
+                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile2" type="file" onchange="sub(this,2)" name="uploadedFile2"/></div>
                                         </li>
                                         <li id="li-3">
-                                            <div class="uploaded-image" onclick="getFile(3)">
+                                            <div id="prev_upfile3" class="uploaded-image" onclick="getFile(3)">
+                                                <label id="main-photo">Main Photo</label>
                                                 <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
                                             </div>
                                             <a onclick="getFile(3)">Add Photo</a>
-                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input id="upfile3" type="file" onchange="sub(this,3)" name="uploadedFile3"/></div>
+                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile3" type="file" onchange="sub(this,3)" name="uploadedFile3"/></div>
                                         </li>
                                         <li id="li-4">
-                                            <div class="uploaded-image" onclick="getFile(4)">
+                                            <div id="prev_upfile4" class="uploaded-image" onclick="getFile(4)">
+                                                <label id="main-photo">Main Photo</label>
                                                 <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
                                             </div>
                                             <a onclick="getFile(4)">Add Photo</a>
-                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input id="upfile4" type="file" onchange="sub(this,4)" name="uploadedFile4"/></div>
+                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile4" type="file" onchange="sub(this,4)" name="uploadedFile4"/></div>
                                         </li>
                                     </ul>
                                 </div>

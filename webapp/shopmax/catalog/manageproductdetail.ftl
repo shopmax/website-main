@@ -18,10 +18,21 @@ specific language governing permissions and limitations
 under the License.
 -->
 <script src="<@ofbizContentUrl>/shopmax-default/js/manageproduct.js</@ofbizContentUrl>" type="text/javascript"></script>
+<style>
+    .prev_container{
+        width: 82px;
+        height: 82px;
+    }
+    .prev_thumb{
+        height: 82px;
+        width: 82px;
+    }
+</style>
 <ul class="media-list edit-product-list manage_pro">
     <#if productList?has_content>
         <#list productList as product>
-            <li class="media">
+            <li class="media" id="media-${product_index}">
+                <div id="load-${product_index}" class="loadimage"></div>
                 <a class="pull-left" href="#">
                     <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-2.jpg</@ofbizContentUrl>" />
                 </a>
@@ -50,16 +61,16 @@ under the License.
                     <p>Stocks : ${product.stock?if_exists}</p>
                     <a class="btn-general edit" id="edit-product-${product_index}">Edit</a>
                     <a class="btn-green-small" href="#">Promote</a>
-                    <a class="btn-grey-small" href="#">Remove</a>
+                    <a class="btn-grey-small" onclick="removeProduct('${productCategory.productCategoryId?if_exists}','${product.productId?if_exists}',${product_index})">Remove</a>
                 </div>
             </li>
             <li class="media media-edit" style="display: none;" id="view-edit-product-${product_index}">
-                <div id="load-${product_index}" class="loadimage"></div>
+                <div id="load-remove-${product_index}" class="loadremoveimage"></div>
                 <a class="pull-left" href="#">
                 <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-170x170.jpg</@ofbizContentUrl>" />
                 </a>
                 <div class="media-body">
-                    <form class="form-horizontal pull-left" id="updateproduct-${product_index}"  action="<@ofbizUrl>>updateproduct</@ofbizUrl>" method="post" enctype="multipart/form-data">
+                    <form class="form-horizontal pull-left" id="updateproduct-${product_index}" name="updateproduct-${product_index}" action="<@ofbizUrl>updateproduct</@ofbizUrl>" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="productCategoryId" class="productCategoryId"/>
                         <input type="hidden" name="productId" value="${product.productId?if_exists}"/>
                         <div class="control-group">
@@ -94,16 +105,14 @@ under the License.
                                                         <#if product.seqNumNoImage?has_content>
                                                             <#list product.seqNumNoImage as seqNoImage>
                                                                 <#if seqNoImage == i && check !=0>
-                                                                    <li id="li-${i}">
-                                                                        <div class="uploaded-image" onclick="getFile(${i})">
-                                                                            <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
+                                                                    <li id="li-${product_index}_${i}">
+                                                                        <div id="prev_upfile_${product_index}_${i}" class="uploaded-image" onclick="getFile('${product_index}_${i}')">
+                                                                            <label id="main-photo">Main Photo</label>
                                                                         </div>
-                                                                        <a onclick="getFile(${i})">Add Photo</a>
-                                                                        <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input id="upfile${i}" type="file" onchange="sub(this,${i})" name="uploadedFile${i}"/></div>
+                                                                        <a onclick="getFile('${product_index}_${i}')">Add Photo</a>
+                                                                        <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${product_index}_${i}" type="file" onchange="sub(this,'${product_index}_${i}')" name="uploadedFile${i}"/></div>
                                                                     </li>
                                                                     <#assign check = 0>
-                                                                <#elseif seqNoImage == i>
-                                                                    <#assign check = 1>
                                                                 </#if>
                                                             </#list>
                                                         </#if>
@@ -113,12 +122,12 @@ under the License.
                                         </#list>
                                     <#else>
                                         <#list 1..4 as i>
-                                            <li id="li-${i}">
-                                                <div class="uploaded-image" onclick="getFile(${i})">
-                                                    <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
+                                            <li id="li-${product_index}_${i}">
+                                                <div id="prev_upfile_${product_index}_${i}" class="uploaded-image" onclick="getFile('${product_index}_${i}')">
+                                                    <label id="main-photo">Main Photo</label>
                                                 </div>
-                                                <a onclick="getFile(${i})">Add Photo</a>
-                                                <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input id="upfile${i}" type="file" onchange="sub(this,${i})" name="uploadedFile${i}"/></div>
+                                                <a onclick="getFile('${product_index}_${i}')">Add Photo</a>
+                                                <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${product_index}_${i}" type="file" onchange="sub(this,'${product_index}_${i}')" name="uploadedFile${i}"/></div>
                                             </li>
                                         </#list>
                                     </#if>
@@ -128,11 +137,11 @@ under the License.
                         <div class="form-inline input-price-stock">
                             <label>
                                 Listing price
-                                <input type="number" class="input-medium" name="listingPrice" value="${product.defaultPrice?if_exists}">
+                                <input type="text" class="input-medium" name="listingPrice" value="${product.defaultPrice?if_exists}">
                             </label>
                             <label style="border:1px solid #E0E0E0;">
                                 Available stock
-                                <input type="number" class="input-medium" name="stock" value="${product.stock?if_exists}">
+                                <input type="text" class="input-medium" name="stock" value="${product.stock?if_exists}">
                             </label>
                         </div>
                         
@@ -144,12 +153,12 @@ under the License.
                             </label>
                             <label>
                                 &nbsp;&nbsp;Valid from&nbsp;
-                                <input type="number" class="input-small dateText" id="datePickerFrom${product_index}" value="">
+                                <input type="text" class="input-small dateText" id="datePickerFrom${product_index}" value="">
                             </label>
                             <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" id="From${product_index}" class="datepicker"/>
                             <label>
                                 &nbsp;&nbsp;To&nbsp;
-                                <input type="number" class="input-small dateText" id="datePickerThru${product_index}" value="">
+                                <input type="text" class="input-small dateText" id="datePickerThru${product_index}" value="">
                             </label>
                             <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" id="Thru${product_index}" class="datepicker"/>
                         </div>
