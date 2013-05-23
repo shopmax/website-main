@@ -124,6 +124,7 @@ under the License.
         <property-to-field resource="general" property="country.geo.id.default" field="defaultCountryGeoId"/>
         <set field="parameters.shipToCountryGeoId" from-field="defaultCountryGeoId"/>
         <set field="parameters.shipToStateProvinceGeoId" value="_NA_"/>
+        <set field="parameters.shipToName" from-field="parameters.USER_FIRST_NAME"/>
         <set field="parameters.partyId" from-field="userLogin.partyId"/>
         <set field="parameters.firstName" from-field="parameters.USER_FIRST_NAME"/>
         <set field="parameters.lastName" from-field="parameters.USER_LAST_NAME"/>

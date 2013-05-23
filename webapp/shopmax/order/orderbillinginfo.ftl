@@ -30,9 +30,9 @@ under the License.
             <tr><td>${billingAddress.address1?if_exists}</td></tr><#-- Street Address Line one -->
             <tr><td>${billingAddress.address2?if_exists}</td></tr><#-- Street Address Line two -->
             <tr><td>${stateProvinceGeo.geoName?if_exists}</td></tr><#-- State -->
-            <#if billToTelecomNumber?exists>
-                <tr><td>Phone number: ${billToTelecomNumber.countryCode?if_exists} <#if billToTelecomNumber.areaCode?exists>${billToTelecomNumber.areaCode}-</#if>${billToTelecomNumber.contactNumber}</td></tr>
-            </#if>
+        </#if>
+        <#if billToTelecomNumber?exists>
+            <tr><td>Phone number: ${billToTelecomNumber.countryCode?if_exists} <#if billToTelecomNumber.areaCode?exists>${billToTelecomNumber.areaCode}-</#if>${billToTelecomNumber.contactNumber}</td></tr>
         </#if>
     </tbody>
 </table>

@@ -37,7 +37,7 @@ under the License.
 <table cellpadding="0" cellspacing="0" border="0" class="table table_1">
     <thead>
         <tr>
-            <th>Payment information</th>
+            <th>Payment Information</th>
         </tr>
     </thead>
     <tbody>
