@@ -33,6 +33,8 @@ under the License.
                 <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/customer/EditBillingAddress.groovy"/>
                 <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/customer/EditEmailAndTelecomNumber.groovy"/>
                 <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/customer/OnePageCheckoutOptions.groovy"/>
+                <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/cart/ShowCart.groovy"/>
+                
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">

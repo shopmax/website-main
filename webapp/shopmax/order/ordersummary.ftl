@@ -23,11 +23,16 @@ under the License.
         <div class="category-list">
             <table class="table table-condensed cart-summary">
                 <tbody>
-                    <tr><td class="col1">Sub Total</td><td class="cart-value">$195.00</td></tr>
-                    <tr><td class="col1">Shipping</td><td class="cart-value">$10.00</td></tr>
-                    <tr><td class="col1">Discount</td><td class="cart-value">$0.00</td></tr>
-                    <tr><td class="col1">Sales Tax</td><td class="cart-value">$15.23</td></tr>
-                    <tr><td colspan="2" class="col1"><div class="cart-total">Total <div class="blue pull-right">$220.23</div></div></td></tr>
+                    <tr><td class="col1">Sub Total</td><td class="cart-value"><@ofbizCurrency amount=shoppingCart.getSubTotal() /></td></tr><#--$195.00-->
+                    <tr><td class="col1">Shipping</td><td class="cart-value"><@ofbizCurrency amount=shoppingCart.getTotalShipping() /></td></tr><#--$10.00-->
+                    <tr><td class="col1">Discount</td><td class="cart-value">
+                    <#assign orderAdjustmentsTotal = 0  />
+                    <#list shoppingCart.getAdjustments() as cartAdjustment>
+                      <#assign orderAdjustmentsTotal = orderAdjustmentsTotal + Static["org.ofbiz.order.order.OrderReadHelper"].calcOrderAdjustment(cartAdjustment, shoppingCart.getSubTotal()) />
+                    </#list>
+                    <@ofbizCurrency amount=orderAdjustmentsTotal /></td></tr><#--$0.00-->
+                    <tr><td class="col1">Sales Tax</td><td class="cart-value"><@ofbizCurrency amount=shoppingCart.getTotalSalesTax() /></td></tr><#--$15.23-->
+                    <tr><td colspan="2" class="col1"><div class="cart-total">Total <div class="blue pull-right"><@ofbizCurrency amount=shoppingCart.getDisplayGrandTotal() /></div></div></td></tr><#--$220.23-->
                 </tbody>
                 <tfoot>
                     <tr class="row-grey"><td colspan="2"><br />
