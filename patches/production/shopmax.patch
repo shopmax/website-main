@@ -19,7 +19,7 @@ Index: applications/content/servicedef/secas.xml
          <condition field-name="contentAssocTypeId" operator="is-not-empty"/>
 Index: hot-deploy/shopmax/data/ShopMaxData.xml
 ===================================================================
---- hot-deploy/shopmax/data/ShopMaxData.xml	(revision 212)
+--- hot-deploy/shopmax/data/ShopMaxData.xml	(revision 228)
 +++ hot-deploy/shopmax/data/ShopMaxData.xml	(working copy)
 @@ -28,4 +28,38 @@
      <CarrierShipmentMethod partyId="_NA_" roleTypeId="CARRIER" shipmentMethodTypeId="NO_SHIPPING"/>
@@ -62,7 +62,7 @@ Index: hot-deploy/shopmax/data/ShopMaxData.xml
  </entity-engine-xml>
 Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
 ===================================================================
---- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 211)
+--- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 228)
 +++ hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(working copy)
 @@ -443,8 +443,8 @@
                  <set field="parameters.domainName" value="${parameters.ownDomainName}"/>
@@ -99,23 +99,7 @@ Index: hot-deploy/tenant/config/default-tenant.xml
 -    <domain name="saasbackend.growerp.com" initial-path="/backend"/>
 +    <domain name="backend.shopmax.co.nz" initial-path="/catalog"/>
  </default-tenant>
-Index: hot-deploy/tenant/config/tenant.properties
-===================================================================
---- hot-deploy/tenant/config/tenant.properties	(revision 295)
-+++ hot-deploy/tenant/config/tenant.properties	(working copy)
-@@ -20,8 +20,8 @@
- serverName=localhost
- 
- # JDBC
--jdbcUriPrefix=jdbc:derby:
--jdbcUriSuffix=;create=true
-+jdbcUriPrefix=jdbc:postgresql://127.0.0.1:5432/
-+jdbcUriSuffix=
- superUsername=ofbiz
- superPassword=ofbiz
- jdbcPassword=ofbiz
-
- Index: framework/entity/config/entityengine.xml
+Index: framework/entity/config/entityengine.xml
 ===================================================================
 --- framework/entity/config/entityengine.xml	(revision 1470483)
 +++ framework/entity/config/entityengine.xml	(working copy)
@@ -171,3 +155,21 @@ Index: hot-deploy/tenant/config/tenant.properties
      </delegator>
     
      <!-- need to at least define a name for each component to use -->
+Index: framework/webapp/config/url.properties
+===================================================================
+--- framework/webapp/config/url.properties	(revision 1470483)
++++ framework/webapp/config/url.properties	(working copy)
+@@ -22,11 +22,11 @@
+ 
+ # HTTPS Port (Secure port)
+ port.https.enabled=Y
+-port.https=8443
++port.https=443
+ force.https.host=
+ 
+ # HTTP Port (Not Secure port)
+-port.http=8080
++port.http=80
+ force.http.host=
+ 
+ # Static Content URLs to make it easy to move the serving load for static content to other machines

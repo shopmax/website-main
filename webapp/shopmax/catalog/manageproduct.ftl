@@ -153,9 +153,9 @@ under the License.
                                             <label class="control-label" for="inputDescription">Picture upload (4 Max)</label>
                                             <div class="controls">
                                                 <ul class="uploading">
-                                                    <#assign check = 1>
                                                     <#if product.imageSequenceList?has_content>
                                                         <#list 1..4 as i>
+                                                            <#assign check = 1>
                                                             <#if product.productImageList?has_content>
                                                                 <#list product.productImageList as productImage>
                                                                     <#if productImage.sequenceNum == i>
