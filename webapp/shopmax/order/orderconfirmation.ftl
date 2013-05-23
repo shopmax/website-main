@@ -52,8 +52,11 @@ under the License.
                     </div>
                 </div>
                 
+                <#list supplierOrderItemsMap.entrySet() as entry>
+                    <#assign partyId = entry.getKey()/>
+                    <#assign supplierOrderItems = entry.getValue()/>
                 <div class="shipp_info">
-                    <div class="tital_1 tital_green">Shop name</div>
+                    <div class="tital_1 tital_green">${orderContext.getSupplierName(partyId)}</div>
                     <table class="table bl-table sc-table-shipping ">
                         <thead>
                             <tr class="bl-table-header-blue bl-table-header-grey">
@@ -65,28 +68,19 @@ under the License.
                             </tr>
                         </thead>
                         <tbody>
+                      <#list supplierOrderItems as orderItem>
+                          <#assign product = orderItem.getRelatedOne("Product", false)/>
+                          <#assign smallImageUrl = Static["org.ofbiz.product.product.ProductContentWrapper"].getProductContentAsText(product, "SMALL_IMAGE_URL", locale, dispatcher)?if_exists />
+                          <#if !smallImageUrl?string?has_content><#assign smallImageUrl = "/images/defaultImage.jpg" /></#if>
                             <tr>
-                                <td class="col1 col_1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
-                                <td class="col2 col_2"><strong>Product name 1</strong><br />Colour - yellow</td>
-                                <td class="col3 col_3 alighright"><strong>$25.00</strong></td>
-                                <td class="col4 col_4 alighcenter">1</td>
-                                <td class="col5"><strong>$25.00</strong></td>
+                                <td class="col1 col_1"><img src="<@ofbizContentUrl>${requestAttributes.contentPathPrefix?if_exists}${smallImageUrl}</@ofbizContentUrl>" width="100px" height="100px" /></td>
+                                <td class="col2 col_2"><strong>${product.productName?if_exists}</strong><br />Colour - yellow</td>
+                                <td class="col3 col_3 alighright"><strong><@ofbizCurrency amount=orderItem.unitPrice /></strong></td>
+                                <td class="col4 col_4 alighcenter">${orderItem.quantity?string.number}</td>
+                                <td class="col5"><strong><@ofbizCurrency amount=Static["org.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments)/></strong></td>
                             </tr>
-                            <tr>
-                                <td class="col1 col_1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
-                                <td class="col2 col_2"><strong>Product name 1</strong><br />Colour - yellow</td>
-                                <td class="col3 col_3"><div class="old">$30.00</div><strong>$25.00</strong></td>
-                                <td class="alighcenter col4 col_4">1</td>
-                                <td class="col5"><strong>$25.00</strong></td>
-                            </tr>
-                            <tr>
-                                <td class="col1 col_1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
-                                <td class="col2 col_2"><strong>Product name 1</strong><br />Colour - yellow</td>
-                                <td class="col3 col_3">$25.00</td>
-                                <td class="alighcenter col4 col_4">1</td>
-                                <td class="col5"><strong>$25.00</strong></td>
-                            </tr>
-                             </tbody>
+                        </#list>
+                        </tbody>
                     </table>
                     
                     <div class="shop_address clearfix">
@@ -96,11 +90,21 @@ under the License.
                                 <div class="column_1">
                                     <h5>Store address</h5>
                                     <ul>
-                                        <li>Store Name</li>
-                                        <li>Street Address Line one</li>
-                                        <li>Street Address Line two</li>
-                                        <li>State</li>
-                                        <li>Phone number xxx xxx xxx</li>
+                                        <li>${productStore.storeName?if_exists}</li><#--Store Name -->
+                                        <#assign facilityContactMechValueMaps = Static["org.ofbiz.party.contact.ContactMechWorker"].getFacilityContactMechValueMaps(delegator, productStore.inventoryFacilityId, false, "POSTAL_ADDRESS") />
+                                        <#if facilityContactMechValueMaps?has_content>
+                                            <#assign postalAddress = facilityContactMechValueMaps.postalAddress />
+                                            <#assign proviceStateGeo = postalAddress.getRelatedOne("ProvinceStateGeo")/>
+                                            <li>${postalAddress.address1}</li><#--Street Address Line one -->
+                                            <li>${postalAddress.address2}</li><#--Street Address Line two -->
+                                            <li>${proviceStateGeo.geoName}</li><#--State -->
+                                        </#if>
+                                        
+                                        <#assign facilityContactMechValueMaps = Static["org.ofbiz.party.contact.ContactMechWorker"].getFacilityContactMechValueMaps(delegator, productStore.inventoryFacilityId, false, "TELECOM_NUMBER") />
+                                        <#if facilityContactMechValueMaps?has_content>
+                                            <#assign telecomNumber = facilityContactMechValueMaps.telecomNumber />
+                                            <li>Phone number ${telecomNumber.countryCode?if_exists} <#if telecomNumber.areaCode?exists>${telecomNumber.areaCode}-</#if>${telecomNumber.contactNumber}</li>
+                                        </#if>
                                     </ul>
                                 </div>
                             </div>
@@ -117,49 +121,25 @@ under the License.
                         </div>
                     </div>
                 </div>
-                
-                <div class="shipp_info">
-                    <div class="tital_1 tital_green">Shop name</div>
-                    <table class="table bl-table sc-table-shipping ">
-                        <thead>
-                            <tr class="bl-table-header-blue bl-table-header-grey">
-                                <th class="col1 col_1">Product</th>
-                                <th class="col2 col_2"></th>
-                                <th class="col3 col_3">UNIT Price</th>
-                                <th class="col4 col_4">Quantity</th>
-                                <th class="col5">Sub total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="col1 col_1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
-                                <td class="col2 col_2"><strong>Product name 1</strong><br />Colour - yellow</td>
-                                <td class="col3 col_3"><strong>$25.00</strong></td>
-                                <td class="align-right col4 col_4">1</td>
-                                <td class="col5"><strong>$25.00</strong></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                    <div class="shop_address clearfix">
-                        <p>You have selected to ship this item to:</p>
-                        <div class="row">
-                            <div class="span5">
-                                <div class="column_1">
-                                    <ul>
-                                        <li>Store Name</li>
-                                        <li>Street Address Line one</li>
-                                        <li>Street Address Line two</li>
-                                        <li>State</li>
-                                        <li>Phone number xxx xxx xxx</li>
-                                    </ul>
-                                </div>
+                </#list>
+                <#--
+                <div class="shop_address clearfix">
+                    <p>You have selected to ship this item to:</p>
+                    <div class="row">
+                        <div class="span5">
+                            <div class="column_1">
+                                <ul>
+                                    <li>Store Name</li>
+                                    <li>Street Address Line one</li>
+                                    <li>Street Address Line two</li>
+                                    <li>State</li>
+                                    <li>Phone number xxx xxx xxx</li>
+                                </ul>
                             </div>
-                            
                         </div>
-                    </div>
+                   </div>
                 </div>
-                
+                -->
                 <div class="shipp_info">
                     <div class="tital_1">Payment summary</div>
                     <table class="table bl-table sc-table-shipping ">
@@ -169,13 +149,20 @@ under the License.
                                 <td colspan="2" class="bl-table-estimate-shipping">
                                     <table class="table table-condensed">
                                         <tbody>
-                                            <tr><td class="rightalign">Shopping cart Sub total</td><td class="col1 rightalign">$195.00</td></tr>
-                                            <tr><td class="rightalign">Shipping</td><td class="col1 rightalign">$195.00</td></tr>
-                                            <tr><td class="rightalign">Discount</td><td class="col1 rightalign">$195.00</td></tr>
-                                            <tr><td class="rightalign">Sales Tax</td><td class="col1 rightalign">$195.00</td></tr>
+                                            <tr><td class="rightalign">Shopping cart Sub total</td><td class="col1 rightalign"><@ofbizCurrency amount=orderSubTotal/></td></tr>
+                                            <tr><td class="rightalign">Shipping</td><td class="col1 rightalign"><@ofbizCurrency amount=shippingAmount /></td></tr>
+                                            <tr><td class="rightalign">Discount</td><td class="col1 rightalign">
+                                                    <#assign orderAdjustmentsTotal = 0  />
+                                                    <#list shoppingCart.getAdjustments() as cartAdjustment>
+                                                      <#assign orderAdjustmentsTotal = orderAdjustmentsTotal + Static["org.ofbiz.order.order.OrderReadHelper"].calcOrderAdjustment(cartAdjustment, shoppingCart.getSubTotal()) />
+                                                    </#list>
+                                                    <@ofbizCurrency amount=orderAdjustmentsTotal />
+                                                </td>
+                                            </tr>
+                                            <tr><td class="rightalign">Sales Tax</td><td class="col1 rightalign"><@ofbizCurrency amount=taxAmount /></td></tr>
                                         </tbody>
                                         <tfoot>
-                                            <tr><td class="rightalign">Total</td><td class="blue rightalign">$195.00</td></tr>
+                                            <tr><td class="rightalign">Total</td><td class="blue rightalign"><@ofbizCurrency amount=grandTotal /></td></tr>
                                         </tfoot>
                                     </table>
                                 </td>
