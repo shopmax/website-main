@@ -26,30 +26,34 @@ under the License.
         </tr>
     </thead>
     <tbody>
+        <#list shoppingCart.items() as cartLine>
         <tr>
-          <td class="col1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
-          <td class="col2"><strong class="green">Shop Name</strong><br />
-              <strong>Product name 1</strong><br />
+          <td class="col1">
+          <#if cartLine.getProductId()?exists>
+            <#if cartLine.getParentProductId()?exists>
+              <#assign parentProductId = cartLine.getParentProductId() />
+            <#else>
+              <#assign parentProductId = cartLine.getProductId() />
+            </#if>
+            <#assign smallImageUrl = Static["org.ofbiz.product.product.ProductContentWrapper"].getProductContentAsText(cartLine.getProduct(), "SMALL_IMAGE_URL", locale, dispatcher)?if_exists />
+              <#if !smallImageUrl?string?has_content><#assign smallImageUrl = "/images/defaultImage.jpg" /></#if>
+              <img src="<@ofbizContentUrl>${requestAttributes.contentPathPrefix?if_exists}${smallImageUrl}</@ofbizContentUrl>" width="100px" height="100px" />
+          <td class="col2">
+            <strong class="green">
+                <#list supplierCartItemsMap.entrySet() as entry>
+                <#assign partyId = entry.getKey()/>
+                <#assign shoppingCartItems = entry.getValue()/>
+                ${cartContext.getSupplierName(partyId)}
+                </#list>
+            </strong><br />
+            <strong>${cartLine.getName()?if_exists}</strong><br />
               Colour - yellow</td>
-          <td class="col3"><strong>$25.00</strong></td>
-          <td class="col4">1</td>
-          <td class="col5"><strong>$25.00</strong></td>
+          <td class="col3"><strong><@ofbizCurrency amount=cartLine.getDisplayPrice()/></strong></td>
+          <td class="col4">${cartLine.getQuantity()?string.number}</td>
+          <td class="col5"><strong><@ofbizCurrency amount=cartLine.getDisplayItemSubTotal() /></strong></td>
         </tr>
-        <tr>
-          <td class="col1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
-          <td class="col2"><strong class="green">Shop Name</strong><br /><strong>Product name 1</strong><br />Colour - yellow</td>
-          <td class="col3"><div class="old">$30.00</div><strong>$25.00</strong></td>
-          <td class="col4">1</td>
-          <td class="col5"><strong>$25.00</strong></td>
-        </tr>
-        <tr>
-          <td class="col1"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" /></td>
-          <td class="col2"><strong class="green">Shop Name</strong><br /><strong>Product name 1</strong><br />Colour - yellow</td>
-          <td class="col3">$25.00</td>
-          <td class="col4">1</td>
-          <td class="col5"><strong>$25.00</strong></td>
-        </tr>
-
+        </#if>
+        </#list>
         <tr>
           <td colspan="3" style="width:400px;">
             &nbsp;
@@ -57,13 +61,21 @@ under the License.
           <td colspan="2" class="sc-table-estimate-shipping">
             <table class="table table-condensed sc-table-order-total">
                 <tbody>
-                <tr><td class="col1">Sub Total</td><td class="col2">$195.00</td></tr>
-                <tr><td class="col1">Shipping</td><td class="col2">$195.00</td></tr>
-                <tr><td class="col1">Discount</td><td class="col2">$195.00</td></tr>
-                <tr><td class="col1">Sales Tax</td><td class="col2" style="padding-bottom:15px;">$195.00</td></tr>
+                <tr><td class="col1">Sub Total</td><td class="col2"><@ofbizCurrency amount=shoppingCart.getSubTotal() /></td></tr>
+                <tr><td class="col1">Shipping</td><td class="col2"><@ofbizCurrency amount=shoppingCart.getTotalShipping() /></td></tr>
+                <tr><td class="col1">Discount</td>
+                    <td class="col2">
+                        <#assign orderAdjustmentsTotal = 0  />
+                        <#list shoppingCart.getAdjustments() as cartAdjustment>
+                          <#assign orderAdjustmentsTotal = orderAdjustmentsTotal + Static["org.ofbiz.order.order.OrderReadHelper"].calcOrderAdjustment(cartAdjustment, shoppingCart.getSubTotal()) />
+                        </#list>
+                        <@ofbizCurrency amount=orderAdjustmentsTotal />
+                    </td>
+                </tr>
+                <tr><td class="col1">Sales Tax</td><td class="col2" style="padding-bottom:15px;"><@ofbizCurrency amount=shoppingCart.getTotalSalesTax() /></td></tr>
                 </tbody>
                 <tfoot>
-                <tr><td class="col1">Total</td><td class="blue col2">$195.00</td></tr>
+                <tr><td class="col1">Total</td><td class="blue col2"><@ofbizCurrency amount=shoppingCart.getDisplayGrandTotal() /></td></tr>
                 </tfoot>
             </table>
           </td>
