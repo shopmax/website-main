@@ -28,6 +28,10 @@ $(function(){
                     document.getElementById("checkBoxManage"+index).checked=false;
                 }
             });
+            
+            if($('#promoPrice'+index).val()){
+                document.getElementById("checkBoxManage"+index).checked=true;
+            }
         } else {
             $('#view-edit-product-'+index).slideUp("slow");
         }
@@ -45,6 +49,5 @@ $(function(){
         $('#'+this.id).css({'color':'#358BDB'});
         $('#'+shippingSize[1]).val(shippingSize[0]);
     });
-    
     $('.file').preimage();
 });

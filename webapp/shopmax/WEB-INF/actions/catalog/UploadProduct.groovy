@@ -37,3 +37,59 @@ if (parameters.categoryThirdId)
     categoryFourthList = request.getAttribute("subCategoryList");
     context.categoryFourthList = categoryFourthList;
 }
+
+if(parameters.productId){
+    product = delegator.findOne("Product", [productId : parameters.productId], true);
+    context.productId = product.productId;
+    context.productName = product.productName;
+    context.description = product.description;
+    
+    productPriceDefault = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : product.productId, productPricePurposeId : "PURCHASE", productPriceTypeId : "DEFAULT_PRICE"], null, false)));
+    if (productPriceDefault) {
+        context.defaultPrice = productPriceDefault.price;
+    }
+    
+    productPricePromo = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : product.productId, productPricePurposeId : "PURCHASE", productPriceTypeId : "PROMO_PRICE"], null, false)));
+    if (productPricePromo) {
+        context.promoPrice = productPricePromo.price;
+        context.productPricePromo = productPricePromo;
+    }
+    
+    productImageList = [];
+    imageSequenceList = [];
+    imageSeqEmpty = [1,2,3,4];
+    productImageAndContentLists = delegator.findByAnd("ProductContentAndInfo", ["productId": product.productId, productContentTypeId : "IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"], ["sequenceNum"]);
+    if (productImageAndContentLists) {
+        productImageAndContentLists.each { productImageAndContentLists ->
+            productImageMap = [:];
+            contentAssocThumb = EntityUtil.getFirst(delegator.findByAnd("ContentAssocDataResourceViewTo", [contentIdStart : productImageAndContentLists.contentId, caContentAssocTypeId : "IMAGE_THUMBNAIL"]));
+            if (contentAssocThumb) {
+                productImageMap.productImage = productImageAndContentLists.drObjectInfo;
+                productImageMap.productImageThumb = contentAssocThumb.drObjectInfo;
+                productImageMap.contentId = productImageAndContentLists.contentId;
+                productImageMap.fromDate = productImageAndContentLists.fromDate;
+                productImageMap.sequenceNum = productImageAndContentLists.sequenceNum;
+                imageSequenceList.add(productImageAndContentLists.sequenceNum);
+            }
+            i = imageSeqEmpty.iterator()
+            while (i.hasNext()) {
+                if (i.next() == productImageAndContentLists.sequenceNum) {
+                    i.remove()
+                    break
+                }
+            }
+            productImageList.add(productImageMap);
+        }
+    }
+    context.imageSequenceList = imageSequenceList;
+    context.seqNumNoImage = imageSeqEmpty
+    context.productImageList = productImageList;
+    
+    inventorySummary = dispatcher.runSync("getInventoryAvailableByFacility", UtilMisc.toMap("productId", product.productId, "facilityId", "SellerWarehouse"));
+    context.stock = inventorySummary.availableToPromiseTotal;
+    
+    productAttribute = delegator.findOne("ProductAttribute", [productId : product.productId, attrName : "SHIPPING_SIZE"], true);
+    if (productAttribute) {
+        context.shippingSize = productAttribute.attrValue;
+    }
+}

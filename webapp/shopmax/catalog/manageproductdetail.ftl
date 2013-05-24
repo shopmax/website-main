@@ -107,7 +107,6 @@ under the License.
                                                                 <#if seqNoImage == i && check !=0>
                                                                     <li id="li-${product_index}_${i}">
                                                                         <div id="prev_upfile_${product_index}_${i}" class="uploaded-image" onclick="getFile('${product_index}_${i}')">
-                                                                            <label id="main-photo">Main Photo</label>
                                                                         </div>
                                                                         <a onclick="getFile('${product_index}_${i}')">Add Photo</a>
                                                                         <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${product_index}_${i}" type="file" onchange="sub(this,'${product_index}_${i}')" name="uploadedFile${i}"/></div>
@@ -124,7 +123,6 @@ under the License.
                                         <#list 1..4 as i>
                                             <li id="li-${product_index}_${i}">
                                                 <div id="prev_upfile_${product_index}_${i}" class="uploaded-image" onclick="getFile('${product_index}_${i}')">
-                                                    <label id="main-photo">Main Photo</label>
                                                 </div>
                                                 <a onclick="getFile('${product_index}_${i}')">Add Photo</a>
                                                 <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${product_index}_${i}" type="file" onchange="sub(this,'${product_index}_${i}')" name="uploadedFile${i}"/></div>
@@ -176,7 +174,7 @@ under the License.
                     </form>
                     <div class="input-save">
                         <a class="btn-general" onclick="sumbiteditproduct('${product_index}')">Save</a><br /><br />
-                        <a href="#" class="edit-full-mode">Switch to full edit mode</a>
+                        <a href="<@ofbizUrl>uploadproduct?productId=${product.productId?if_exists}</@ofbizUrl>" class="edit-full-mode">Switch to full edit mode</a>
                     </div>
                 </div>
             </li>

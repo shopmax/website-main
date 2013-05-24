@@ -840,6 +840,7 @@ width:85px;
 }
 
 .media-edit .uploading li.uploaded div {
+	background-color: #FFFFFF;
     border:1px solid #9abd5c;
 }
 

@@ -66,8 +66,8 @@ $(function(){
         e.preventDefault();
     });
     $('#assign-category').click(function(e){
-    	var formUpload = document.getElementById('uploadProductToSeller');
-    	formUpload.getElementsByTagName('input').checked=true;
+        var formUpload = document.getElementById('uploadProductToSeller');
+        formUpload.getElementsByTagName('input').checked=true;
         if(typeof getUrlVars()["categoryFirstId"] != "undefined"){
             var categoryFirstId = getUrlVars()["categoryFirstId"];
             var categoryName = ($('#'+categoryFirstId).val()).split("-");
@@ -143,7 +143,7 @@ $(function(){
         }
         else{
             $('#advanced-option-detail').slideUp(300, function() {
-            	$('tr').find('.col1.advanced-option.product-upload').css({'padding':'0'});
+                $('tr').find('.col1.advanced-option.product-upload').css({'padding':'0'});
             });
         }
     });
@@ -157,6 +157,7 @@ $(function(){
         }
     });
 });
+
 function checkHasValue(categoryId){
     var tempCategory = $('#listCategory').val();
     if(tempCategory == ","){
@@ -191,7 +192,7 @@ function getUrlVars() {
     return vars;
 }
 function getFile(inputIndex){
-    document.getElementById("upfile"+inputIndex).click();
+    document.getElementById("upfile_"+inputIndex).click();
 }
 function sub(obj,inputIndex){
     var file = obj.value;

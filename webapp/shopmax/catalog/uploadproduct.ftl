@@ -131,62 +131,70 @@ under the License.
                             <div class="control-group">
                                 <label for="inputProductName" class="control-label">Product name</label>
                                 <div class="controls">
-                                    <input type="text" id="inputProductName" class="input-xlarge" name="productName">
+                                    <input type="text" id="inputProductName" class="input-xlarge" name="productName" value="${productName?if_exists}">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label for="inputDescription" class="control-label">Product description</label>
                                 <div class="controls">
-                                    <textarea class="input-xlarge" rows="3" name="description"></textarea>
+                                    <textarea class="input-xlarge" rows="3" name="description">${description?if_exists}</textarea>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label for="inputDescription" class="control-label">Picture upload (4 Max)</label>
                                 <div class="controls">
                                     <ul class="uploading">
-                                        <li id="li-1">
-                                            <div id="prev_upfile1" class="uploaded-image" onclick="getFile(1)">
-                                                <label id="main-photo">Main Photo</label>
-                                                <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
-                                            </div>
-                                            <a onclick="getFile(1)">Add Photo</a>
-                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile1" type="file" onchange="sub(this,1)" name="uploadedFile1"/></div>
-                                        </li>
-                                        <li id="li-2">
-                                            <div id="prev_upfile2" class="uploaded-image" onclick="getFile(2)">
-                                                <label id="main-photo">Main Photo</label>
-                                                <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
-                                            </div>
-                                            <a onclick="getFile(2)">Add Photo</a>
-                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile2" type="file" onchange="sub(this,2)" name="uploadedFile2"/></div>
-                                        </li>
-                                        <li id="li-3">
-                                            <div id="prev_upfile3" class="uploaded-image" onclick="getFile(3)">
-                                                <label id="main-photo">Main Photo</label>
-                                                <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
-                                            </div>
-                                            <a onclick="getFile(3)">Add Photo</a>
-                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile3" type="file" onchange="sub(this,3)" name="uploadedFile3"/></div>
-                                        </li>
-                                        <li id="li-4">
-                                            <div id="prev_upfile4" class="uploaded-image" onclick="getFile(4)">
-                                                <label id="main-photo">Main Photo</label>
-                                                <img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>">
-                                            </div>
-                                            <a onclick="getFile(4)">Add Photo</a>
-                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile4" type="file" onchange="sub(this,4)" name="uploadedFile4"/></div>
-                                        </li>
+                                        <#if imageSequenceList?has_content>
+                                            <#list 1..4 as i>
+                                                <#assign check = 1>
+                                                <#if productImageList?has_content>
+                                                    <#list productImageList as productImage>
+                                                        <#if productImage.sequenceNum == i>
+                                                            <li>
+                                                                <div class="uploaded-image">
+                                                                    <img src="<@ofbizContentUrl>${productImage.productImageThumb}</@ofbizContentUrl>" />
+                                                                </div>
+                                                                <a onclick="removeProductImage('${productId?if_exists}','${productImage.contentId?if_exists}','${productImage.fromDate?if_exists}','IMAGE','${i}')">Remove</a>
+                                                            </li>
+                                                        <#else>
+                                                            <#if seqNumNoImage?has_content>
+                                                                <#list seqNumNoImage as seqNoImage>
+                                                                    <#if seqNoImage == i && check !=0>
+                                                                        <li id="li-${i}">
+                                                                            <div id="prev_upfile_${i}" class="uploaded-image" onclick="getFile('${i}')">
+                                                                            </div>
+                                                                            <a onclick="getFile('${i}')">Add Photo</a>
+                                                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${i}" type="file" onchange="sub(this,'${i}')" name="uploadedFile${i}"/></div>
+                                                                        </li>
+                                                                        <#assign check = 0>
+                                                                    </#if>
+                                                                </#list>
+                                                            </#if>
+                                                        </#if>
+                                                    </#list>
+                                                </#if>
+                                            </#list>
+                                        <#else>
+                                            <#list 1..4 as i>
+                                                <li id="li-${i}">
+                                                    <div id="prev_upfile_${i}" class="uploaded-image" onclick="getFile('${i}')">
+                                                    </div>
+                                                    <a onclick="getFile('${i}')">Add Photo</a>
+                                                    <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${i}" type="file" onchange="sub(this,'${i}')" name="uploadedFile${i}"/></div>
+                                                </li>
+                                            </#list>
+                                        </#if>
                                     </ul>
                                 </div>
                             </div>
                             <div class="form-inline input-price-stock">
                                 <label>
                                     Listing price
-                                    <input type="number" class="input-medium" name="listingPrice">
+                                    <input type="text" class="input-medium" name="listingPrice" value="${defaultPrice?if_exists}">
                                 </label>
                                 <label>
                                     Stock
-                                    <input type="number" class="input-medium" name="stock">
+                                    <input type="text" class="input-medium" name="stock" value="${stock?if_exists}">
                                 </label>
                             </div>
                             <!-- Promotion price -->
@@ -194,35 +202,42 @@ under the License.
                                 <input type="checkbox" id="checkboxUpload">
                                 <label>
                                     &nbsp;Promotion price&nbsp;
-                                    <input type="number" class="input-mini" name="promoPrice" id="promoPrice">
+                                    <input type="number" class="input-mini" name="promoPrice" id="promoPrice" value="${promoPrice?if_exists}">
                                 </label>
-                                <#-- <label>
-                                    &nbsp;&nbsp;Valid from&nbsp;
-                                    <input type="number" class="input-small">
-                                </label>
-                                <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />
-                                <label>
-                                    &nbsp;&nbsp;To&nbsp;
-                                    <input type="number" class="input-small">
-                                </label>
-                                <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" />-->
                                 <label>&nbsp;&nbsp;Valid from&nbsp;
-                                <input id="datepicker1" type="number" class="input-small"/></label>
+                                <input id="datepicker1" type="text" class="input-small"/></label>
                                 <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" id="datepickerimage1"/>
                                 <label>&nbsp;&nbsp;To&nbsp;
-                                <input type="number" class="input-small" id="datepicker2" />
+                                <input type="text" class="input-small" id="datepicker2"/>
                                 </label>
                                 <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" id="datepickerimage2"/>
-                                <input type="hidden" name="promoPriceFromDate" id="promoPriceFromDate" value=""/>
-                                <input type="hidden" name="promoPriceThruDate" id="promoPriceThruDate" value=""/>
-                            </div>  
+                                <input type="hidden" name="promoPriceFromDate" id="promoPriceFromDate" value="<#if productPricePromo?has_content>${productPricePromo.fromDate?if_exists}</#if>"/>
+                                <input type="hidden" name="promoPriceThruDate" id="promoPriceThruDate" value="<#if productPricePromo?has_content>${productPricePromo.thruDate?if_exists}</#if>"/>
+                            </div>
+                            <script>
+                                $(document).ready(function() {
+                                    if($('#promoPrice').val()){
+                                        document.getElementById("checkboxUpload").checked = true;
+                                    }
+                                    if($('#promoPriceFromDate').val()){
+                                        var getFromDate = $('#promoPriceFromDate').val().split(" ");
+                                        var fromDateFormat = getFromDate[0].split("-");
+                                        $('#datepicker1').val(fromDateFormat[1]+'/'+fromDateFormat[2]+'/'+fromDateFormat[0]);
+                                    }
+                                    if($('#promoPriceThruDate').val()){
+                                        var getThruDate = $('#promoPriceThruDate').val().split(" ");
+                                        var thruDateFormat = getThruDate[0].split("-");
+                                        $('#datepicker2').val(thruDateFormat[1]+'/'+thruDateFormat[2]+'/'+thruDateFormat[0]);
+                                    }
+                                });
+                            </script>
                             <div class="form-inline">
                                 <label>Shipping size</label>
-                                <a class="btn-dark-grey-small shippingSize" id="XTRA_SMALL">Xtra Small</a>
-                                <a class="btn-dark-grey-small shippingSize" id="SMALL">Small</a>
-                                <a class="btn-dark-grey-small shippingSize" id="NORMAL">Normal</a>
-                                <a class="btn-dark-grey-small shippingSize" id="LARGE">Large</a>
-                                <a class="btn-dark-grey-small shippingSize" id="XTRA_LARGE">Xtra Large</a>
+                                <a class="btn-dark-grey-small shippingSize" id="XTRA_SMALL" <#if shippingSize?if_exists == 'XTRA_SMALL'>style="color: rgb(53, 139, 219);"</#if>>Xtra Small</a>
+                                <a class="btn-dark-grey-small shippingSize" id="SMALL" <#if shippingSize?if_exists == 'SMALL'>style="color: rgb(53, 139, 219);"</#if>>Small</a>
+                                <a class="btn-dark-grey-small shippingSize" id="NORMAL" <#if shippingSize?if_exists == 'NORMAL'>style="color: rgb(53, 139, 219);"</#if>>Normal</a>
+                                <a class="btn-dark-grey-small shippingSize" id="LARGE" <#if shippingSize?if_exists == 'LARGE'>style="color: rgb(53, 139, 219);"</#if>>Large</a>
+                                <a class="btn-dark-grey-small shippingSize" id="XTRA_LARGE" <#if shippingSize?if_exists == 'XTRA_LARGE'>style="color: rgb(53, 139, 219);"</#if>>Xtra Large</a>
                             </div>
                             <input type="hidden" id="shippingSize" name="shippingSize" value="">
                         </form>
