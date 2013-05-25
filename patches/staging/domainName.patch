@@ -1,17 +1,17 @@
 Index: hot-deploy/shopmax/data/ShopMaxExtData.xml
 ===================================================================
---- hot-deploy/shopmax/data/ShopMaxExtData.xml	(revision 170)
+--- hot-deploy/shopmax/data/ShopMaxExtData.xml	(revision 247)
 +++ hot-deploy/shopmax/data/ShopMaxExtData.xml	(working copy)
-@@ -68,8 +68,8 @@
-     <ProductStoreEmailSetting productStoreId="ShopMaxStore" emailType="PRDS_CUST_REGISTER" bodyScreenLocation="component://shopmax/widget/ShopMaxEmailScreens.xml#CreatePartyNotification" subject="New Account Created" bccAddress="ofbiztest@example.com" fromAddress="ofbiztest@example.com"/>
+@@ -69,8 +69,8 @@
+     <ProductStoreEmailSetting productStoreId="ShopMaxStore" emailType="PRDS_ODR_CONFIRM" bodyScreenLocation="component://shopmax/widget/ShopMaxEmailScreens.xml#Confirmation" subject="Confirmation" bccAddress="ofbiztest@example.com" fromAddress="ofbiztest@example.com"/>
      
      <WebSite webSiteId="SHOPMAX" siteName="ShopMax Web Site" productStoreId="ShopMaxStore"
 -        httpHost="shopmax.localhost" httpPort="8080"
 -        httpsHost="shopmax.localhost" httpsPort="8443"
--        standardContentPrefix="http://shopmaxbackend.localhost:8080"
--        secureContentPrefix="https://shopmaxbackend.localhost:8443"/>
+-        standardContentPrefix="http://backend.shopmax.localhost:8080"
+-        secureContentPrefix="https://backend.shopmax.localhost:8443"/>
 +        httpHost="shopmax.ofbizdemo.com" httpPort="80"
 +        httpsHost="shopmax.ofbizdemo.com" httpsPort="443"
-+        standardContentPrefix="http://shopmaxbackend.ofbizdemo.com"
-+        secureContentPrefix="https://shopmaxbackend.ofbizdemo.com"/>
++        standardContentPrefix="http://backend.shopmax.ofbizdemo.com"
++        secureContentPrefix="https://backend.shopmax.ofbizdemo.com"/>
  </entity-engine-xml>
