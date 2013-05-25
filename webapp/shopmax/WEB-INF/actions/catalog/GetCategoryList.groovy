@@ -30,9 +30,9 @@ import org.ofbiz.entity.*;
 categoryList = [];
 CategoryWorker.getRelatedCategories(request, "subLevelList", parameters.parentProductCategoryId, true, false);
 subLevelList = request.getAttribute("subLevelList");
-subLevelList.each { subLeve ->
-    if (subLeve.showInSelect == "Y") {
-        categoryList.add(subLeve);
+subLevelList.each { subLevel ->
+    if (subLevel.showInSelect == "Y") {
+        categoryList.add(subLevel);
     }
 }
 context.categoryList = categoryList;

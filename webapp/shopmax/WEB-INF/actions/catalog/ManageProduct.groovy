@@ -27,151 +27,246 @@ import org.ofbiz.product.category.CategoryContentWrapper;
 import org.ofbiz.product.store.ProductStoreWorker;
 import java.util.Iterator;
 
-productList = [];
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+import java.util.List;
+
+import org.ofbiz.base.util.*;
+import org.ofbiz.base.util.cache.UtilCache;
+import org.ofbiz.entity.*;
+import org.ofbiz.entity.condition.*;
+import org.ofbiz.entity.util.*;
+import org.ofbiz.service.*;
+import org.ofbiz.product.catalog.*;
+import org.ofbiz.product.category.*;
+import org.ofbiz.product.store.ProductStoreWorker;
+
 if (productCategoryId) {
     context.productCategoryId = productCategoryId;
     
-    viewSize = parameters.VIEW_SIZE;
-    viewIndex = parameters.VIEW_INDEX;
-    currentCatalogId = CatalogWorker.getCurrentCatalogId(request);
+    // Cache
+    productListCache = UtilCache.findCache("productListCache");
+    if (productListCache == null) {
+        productListCache = UtilCache.createUtilCache("productListCache");
+    }
     
-    // set the default view size
-    defaultViewSize = request.getAttribute("defaultViewSize") ?: 20;
-    context.defaultViewSize = defaultViewSize;
+    defaultLimit = 0;
+    limit = 40;
+    if (parameters.limit) {
+        limit = Integer.valueOf(parameters.limit);
+    }
+    if (parameters.productLength) {
+        defaultLimit = Integer.valueOf(parameters.productLength);
+    }
     
-    // set the limit view
-    limitView = request.getAttribute("limitView") ?: true;
-    context.limitView = limitView;
+    productMemberList = [];
+    productCategoryMembers = [];
+    productMemberSize = 0;
     
-    // get the product category & members
-    andMap = [productCategoryId : productCategoryId,
-            viewIndexString : viewIndex,
-            viewSizeString : viewSize,
-            defaultViewSize : defaultViewSize,
-            limitView : limitView];
-    andMap.put("prodCatalogId", currentCatalogId);
-    andMap.put("checkViewAllow", true);
-    if (context.orderByFields) {
-        andMap.put("orderByFields", context.orderByFields);
+    productMemberListCache = productListCache.get("productListCache_" + productCategoryId);
+    if (productMemberListCache != null) {
+        productMemberList = productMemberListCache;
+    }
+    
+    if (productMemberList.size() == 0) {
+        productCategoryMembers = EntityUtil.filterByDate(delegator.findByAndCache("ProductCategoryMember", [productCategoryId : productCategoryId], null));
+        if (!productCategoryMembers) {
+            CategoryWorker.getRelatedCategories(request, "subLevelList", productCategoryId, true, false);
+            subLevelList = request.getAttribute("subLevelList");
+            if (subLevelList) {
+                getProductMember(subLevelList);
+            }
+        }
     } else {
-        andMap.put("orderByFields", ["sequenceNum", "productId"]);
-    }
-    catResult = dispatcher.runSync("getProductCategoryAndLimitedMembers", andMap);
-    
-    productCategory = catResult.productCategory;
-    productCategoryMembers = catResult.productCategoryMembers;
-    productCategoryMembers.each { productCategoryMember ->
-        productMap = [:];
-        categoryMemberList = delegator.findByAnd("ProductCategoryMember" , [productId : productCategoryMember.productId], null, false);
-        categoryMemberNameList = [];
-        for (categoryMember in categoryMemberList) {
-            categoryMemberName = delegator.findByAnd("ProductCategory", [productCategoryId : categoryMember.productCategoryId], null, false);
-            categoryMemberNameList.add(categoryMemberName[0].description);
-        }
-        productMap.categoryMember = categoryMemberNameList;
-        
-        product = delegator.findOne("Product", [productId : productCategoryMember.productId], true);
-        productMap.productId = product.productId;
-        productMap.productName = product.productName;
-        productMap.description = product.description;
-        
-        productPriceDefault = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : product.productId, productPricePurposeId : "PURCHASE", productPriceTypeId : "DEFAULT_PRICE"], null, false)));
-        if (productPriceDefault) {
-            productMap.defaultPrice = productPriceDefault.price;
-        }
-        
-        productPricePromo = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : product.productId, productPricePurposeId : "PURCHASE", productPriceTypeId : "PROMO_PRICE"], null, false)));
-        if (productPricePromo) {
-            productMap.promoPrice = productPricePromo.price;
-            productMap.productPricePromo = productPricePromo;
-        }
-        
-        /*productContentAndInfoDefault= EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductContentAndInfo", ["productId": product.productId, productContentTypeId : "DEFAULT_IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"])));
-        if (UtilValidate.isNotEmpty(productContentAndInfoDefault)) {
-            productMap.productImage = productContentAndInfoDefault.drObjectInfo;
-            contentAssocThumb = EntityUtil.getFirst(delegator.findByAnd("ContentAssocDataResourceViewTo", [contentIdStart : productContentAndInfoDefault.contentId, caContentAssocTypeId : "IMAGE_THUMBNAIL"]));
-            if (contentAssocThumb) {
-                productMap.productImageThumb = contentAssocThumb.drObjectInfo;
-            }
-        } else {
-            productContentAndInfoImage = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductContentAndInfo", ["productId": product.productId, productContentTypeId : "IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"], ["sequenceNum"])));
-            if (productContentAndInfoImage) {
-                productMap.productImage = productContentAndInfoImage.drObjectInfo;
-                contentAssocThumb = EntityUtil.getFirst(delegator.findByAnd("ContentAssocDataResourceViewTo", [contentIdStart : productContentAndInfoImage.contentId, caContentAssocTypeId : "IMAGE_THUMBNAIL"]));
-                if (contentAssocThumb) {
-                    productMap.productImageThumb = contentAssocThumb.drObjectInfo;
-                }
-            }
-        }*/
-        
-        productImageList = [];
-        imageSequenceList = [];
-        imageSeqEmpty = [1,2,3,4];
-        productContentAndInfoImageManamentList = delegator.findByAnd("ProductContentAndInfo", ["productId": product.productId, productContentTypeId : "IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"], ["sequenceNum"]);
-        if (productContentAndInfoImageManamentList) {
-            productContentAndInfoImageManamentList.each { productContentAndInfoImageManament ->
-                productImageMap = [:];
-                contentAssocThumb = EntityUtil.getFirst(delegator.findByAnd("ContentAssocDataResourceViewTo", [contentIdStart : productContentAndInfoImageManament.contentId, caContentAssocTypeId : "IMAGE_THUMBNAIL"]));
-                if (contentAssocThumb) {
-                    productImageMap.productImage = productContentAndInfoImageManament.drObjectInfo;
-                    productImageMap.productImageThumb = contentAssocThumb.drObjectInfo;
-                    productImageMap.contentId = productContentAndInfoImageManament.contentId;
-                    productImageMap.fromDate = productContentAndInfoImageManament.fromDate;
-                    productImageMap.sequenceNum = productContentAndInfoImageManament.sequenceNum;
-                    imageSequenceList.add(productContentAndInfoImageManament.sequenceNum);
-                }
-                i = imageSeqEmpty.iterator()
-                while (i.hasNext()) {
-                    if (i.next() == productContentAndInfoImageManament.sequenceNum) {
-                        i.remove()
-                        break
-                    }
-                }
-                productImageList.add(productImageMap);
-            }
-        }
-        productMap.imageSequenceList = imageSequenceList;
-        productMap.seqNumNoImage = imageSeqEmpty
-        productMap.productImageList = productImageList;
-        
-        inventorySummary = dispatcher.runSync("getInventoryAvailableByFacility", UtilMisc.toMap("productId", product.productId, "facilityId", "SellerWarehouse"));
-        productMap.stock = inventorySummary.availableToPromiseTotal;
-        
-        productAttribute = delegator.findOne("ProductAttribute", [productId : product.productId, attrName : "SHIPPING_SIZE"], true);
-        if (productAttribute) {
-            productMap.shippingSize = productAttribute.attrValue;
-        }
-        
-        productList.add(productMap);
+        productCategoryMembers = productMemberList;
     }
     
-    context.productCategory = productCategory;
+    if (productMemberListCache == null) {
+        productIds = [];
+        if (productCategoryMembers) {
+            for (productCategoryMember in productCategoryMembers) {
+                productIds.add(productCategoryMember.productId);
+            }
+            if (productIds.size > 0) {
+                productIds = getUniques(productIds);
+                productCategoryMembers = getProductDetail(productIds);
+            }
+        }
+        productListCache.put("productListCache_" + productCategoryId, productCategoryMembers);
+    }
+    
+    if (productCategoryMembers.size() < limit) {
+        limit = productCategoryMembers.size();
+    }
+    
+    if (UtilValidate.isNotEmpty(parameters.sortBy)) {
+        def sortBy = parameters.sortBy;
+        if (sortBy.equals("price")) {
+            productCategoryMembers = UtilMisc.sortMaps(productCategoryMembers, UtilMisc.toList("price"));
+        } else if (sortBy.equals("name")) {
+            productCategoryMembers = UtilMisc.sortMaps(productCategoryMembers, UtilMisc.toList("productName"));
+        } else if (sortBy.equals("stock")) {
+            productCategoryMembers = UtilMisc.sortMaps(productCategoryMembers, UtilMisc.toList("stock"));
+        }
+    }
+    productCategoryMembers = productCategoryMembers.subList(defaultLimit, limit);
+    context.defaultLimit = defaultLimit+1;
     context.productCategoryMembers = productCategoryMembers;
-    context.productList = productList;
-    context.viewIndex = catResult.viewIndex;
-    context.viewSize = catResult.viewSize;
-    context.lowIndex = catResult.lowIndex;
-    context.highIndex = catResult.highIndex;
-    context.listSize = catResult.listSize;
+    context.productMemberSize = productCategoryMembers.size();
     
-    // set this as a last viewed
-    // DEJ20070220: WHY is this done this way? why not use the existing CategoryWorker stuff?
-    LAST_VIEWED_TO_KEEP = 10; // modify this to change the number of last viewed to keep
-    lastViewedCategories = session.getAttribute("lastViewedCategories");
-    if (!lastViewedCategories) {
-        lastViewedCategories = [];
-        session.setAttribute("lastViewedCategories", lastViewedCategories);
+    productList = [];
+    if (productCategoryMembers) {
+        productCategoryMembers.each { productCategoryMember ->
+            productMap = [:];
+            categoryMemberList = EntityUtil.filterByDate(delegator.findByAnd("ProductCategoryMember" , [productId : productCategoryMember.productId], null, false));
+            categoryMemberNameList = [];
+            for (categoryMember in categoryMemberList) {
+                categoryMemberName = delegator.findByAnd("ProductCategory", [productCategoryId : categoryMember.productCategoryId], null, false);
+                categoryMemberNameList.add(categoryMemberName[0].categoryName);
+            }
+            productMap.categoryMember = categoryMemberNameList;
+            
+            product = delegator.findOne("Product", [productId : productCategoryMember.productId], true);
+            productMap.productId = product.productId;
+            productMap.productName = product.productName;
+            productMap.description = product.description;
+            
+            productPriceDefault = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : product.productId, productPricePurposeId : "PURCHASE", productPriceTypeId : "DEFAULT_PRICE"], null, false)));
+            if (productPriceDefault) {
+                productMap.defaultPrice = productPriceDefault.price;
+            }
+            
+            productPricePromo = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : product.productId, productPricePurposeId : "PURCHASE", productPriceTypeId : "PROMO_PRICE"], null, false)));
+            if (productPricePromo) {
+                productMap.promoPrice = productPricePromo.price;
+                productMap.productPricePromo = productPricePromo;
+            }
+            
+            productImageList = [];
+            imageSequenceList = [];
+            imageSeqEmpty = [1,2,3,4];
+            productContentAndInfoImageManamentList = delegator.findByAnd("ProductContentAndInfo", ["productId": product.productId, productContentTypeId : "IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"], ["sequenceNum"]);
+            if (productContentAndInfoImageManamentList) {
+                productContentAndInfoImageManamentList.each { productContentAndInfoImageManament ->
+                    productImageMap = [:];
+                    contentAssocThumb = EntityUtil.getFirst(delegator.findByAnd("ContentAssocDataResourceViewTo", [contentIdStart : productContentAndInfoImageManament.contentId, caContentAssocTypeId : "IMAGE_THUMBNAIL"]));
+                    if (contentAssocThumb) {
+                        productImageMap.productImage = productContentAndInfoImageManament.drObjectInfo;
+                        productImageMap.productImageThumb = contentAssocThumb.drObjectInfo;
+                        productImageMap.contentId = productContentAndInfoImageManament.contentId;
+                        productImageMap.fromDate = productContentAndInfoImageManament.fromDate;
+                        productImageMap.sequenceNum = productContentAndInfoImageManament.sequenceNum;
+                        imageSequenceList.add(productContentAndInfoImageManament.sequenceNum);
+                    }
+                    i = imageSeqEmpty.iterator()
+                    while (i.hasNext()) {
+                        if (i.next() == productContentAndInfoImageManament.sequenceNum) {
+                            i.remove()
+                            break
+                        }
+                    }
+                    productImageList.add(productImageMap);
+                }
+            }
+            productMap.imageSequenceList = imageSequenceList;
+            productMap.seqNumNoImage = imageSeqEmpty
+            productMap.productImageList = productImageList;
+            
+            inventorySummary = dispatcher.runSync("getInventoryAvailableByFacility", UtilMisc.toMap("productId", product.productId, "facilityId", "SellerWarehouse"));
+            productMap.stock = inventorySummary.availableToPromiseTotal;
+            
+            productAttribute = delegator.findOne("ProductAttribute", [productId : product.productId, attrName : "SHIPPING_SIZE"], true);
+            if (productAttribute) {
+                productMap.shippingSize = productAttribute.attrValue;
+            }
+            
+            productList.add(productMap);
+        }
+        context.productList = productList;
     }
-    lastViewedCategories.remove(productCategoryId);
-    lastViewedCategories.add(0, productCategoryId);
-    while (lastViewedCategories.size() > LAST_VIEWED_TO_KEEP) {
-        lastViewedCategories.remove(lastViewedCategories.size() - 1);
+}
+
+def getProductMember(categories) {
+    if (categories != null) {
+        categoryList = [];
+        categories.each { subLevel ->
+            if (subLevel.showInSelect == "Y") {
+                categoryList.add(subLevel);
+            }
+        }
+        for (category in categoryList) {
+            productCategoryMembers.addAll(EntityUtil.filterByDate(delegator.findByAndCache("ProductCategoryMember", [productCategoryId : category.productCategoryId], null)));
+            subCategories = CategoryWorker.getRelatedCategoriesRet(request, "subLevelList", category.productCategoryId, true, false, true);
+            if (subCategories) {
+                getProductMember(subCategories);
+            }
+        }
     }
-    
-    // set the content path prefix
-    contentPathPrefix = CatalogWorker.getContentPathPrefix(request);
-    context.put("contentPathPrefix", contentPathPrefix);
-    
-    CategoryContentWrapper categoryContentWrapper = new CategoryContentWrapper(productCategory, request);
-    context.put("categoryContentWrapper", categoryContentWrapper);
+}
+
+def getProductDetail(productIds) {
+    def result = null;
+    resultMap = [];
+    if (productIds != null) {
+        productIds.each { productId ->
+            productMap = [:];
+            product = delegator.findOne("Product", [productId : productId], true);
+            productMap.productId = product.productId;
+            productMap.internalName = product.internalName;
+            productMap.productName = product.productName;
+            productMap.description = product.description;
+            productMap.isVirtual = product.isVirtual;
+            
+            defaultPrice = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : productId, productPriceTypeId : "DEFAULT_PRICE"])));
+            if (defaultPrice) {
+                productMap.defaultPrice = defaultPrice.price;
+            }
+            promoPrice = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : productId, productPriceTypeId : "PROMO_PRICE"])));
+            if (promoPrice) {
+                productMap.promoPrice = promoPrice.price;
+            }
+            
+            productAttribute = delegator.findOne("ProductAttribute", [productId : productId, attrName : "STOCK"], true);
+            if (productAttribute) {
+                productMap.stock = productAttribute.attrValue;
+            } else {
+                inventorySummary = dispatcher.runSync("getInventoryAvailableByFacility", UtilMisc.toMap("productId", productId, "facilityId", "SellerWarehouse"));
+                productMap.stock = inventorySummary.availableToPromiseTotal;
+            }
+            
+            resultMap.add(productMap);
+        }
+        result = resultMap;
+    }
+    return result;
+}
+
+//Function check uniques list
+def <T extends Object> List<T> getUniques(List<T> list) {
+    List<T> uniques = new ArrayList<T>();
+    HashMap<T,T> hm = new HashMap<T,T>();
+    for (T t : list) {
+        if (hm.get(t) == null) {
+            hm.put(t,t);
+            uniques.add(t);
+        }
+    }
+    return uniques;
 }

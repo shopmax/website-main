@@ -218,8 +218,10 @@ if (shopProducts) {
     shopPartId = shopProduct.partyId;
 } else {
     partyRoles = delegator.findByAnd("PartyRole", [roleTypeId : "INTERNAL_ORGANIZATIO"], null, true);
-    partyRole = EntityUtil.getFirst(partyRoles);
-    shopPartId = partyRole.partyId;
+    if (partyRoles) {
+        partyRole = EntityUtil.getFirst(partyRoles);
+        shopPartId = partyRole.partyId;
+    }
 }
 if (shopPartId) {
     getPartyNameForDateInMap = ["partyId": shopPartId, "userLogin": delegator.findOne("UserLogin", ["userLoginId": "system"], false)];
