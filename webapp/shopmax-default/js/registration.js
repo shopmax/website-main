@@ -38,25 +38,31 @@ $(function(){
         if($('.business-registered').is(":visible")){
             var physicalNumber = $('.index-tr-physical-stores').length;
             var tempBranchName = "";var tempLocation = "";var tempPhoneType = "";var tempPhoneNumber = "";var tempStorePhoneNumber = "";
-            var phoneType = ""; var faxType = "";
             var tempPhoneText = $('#phy_phone_text_'+i).val();
             var tempFaxText = $('#phy_fax_text_'+i).val();
             var phoneNumber = "";var faxNumber = "";var phonePrefix = "";var faxPrefix = "";var tempPhoneText = "";var tempFaxText = "";var tempDataTime = "";
-            var monO = "";var monC = "";var tueO = "";var tueC = "";var wenO = "";var wenC = "";var thuO = "";
-            var thuC = "";var friO = "";var friC = "";var satO = "";var satC = "";var sunO = "";var sunC = "";
+            var mon = ""; var tue = ""; var wed = ""; var thu = ""; var fri = ""; var sat = ""; var sun = "";
             $('#physicalNum').val(physicalNumber);
             for(var i=0;i<physicalNumber;i++){
                 phonePrefix = $('#phy_phone_select_'+i+'_chzn').find('span').text();
                 faxPrefix = $('#phy_fax_select_'+i+'_chzn').find('span').text();
                 tempPhoneText = $('#phy_phone_text_'+i).val();
                 tempFaxText = $('#phy_fax_text_'+i).val();
-                monO = 'MON_OPENING_HOURS-'+$('#mon_o_0_'+i).val()+':'+$('#mon_o_1_'+i).val();monC = 'MON_CLOSING_HOURS-'+$('#mon_c_0_'+i).val()+':'+$('#mon_c_1_'+i).val();
-                tueO = 'TUE_OPENING_HOURS-'+$('#tue_o_0_'+i).val()+':'+$('#tue_o_1_'+i).val();tueC = 'TUE_CLOSING_HOURS-'+$('#tue_c_0_'+i).val()+':'+$('#tue_c_1_'+i).val();
-                wenO = 'WEN_OPENING_HOURS-'+$('#wed_o_0_'+i).val()+':'+$('#wed_o_1_'+i).val();wenC = 'WEN_CLOSING_HOURS-'+$('#wed_c_0_'+i).val()+':'+$('#wed_c_1_'+i).val();
-                thuO = 'THU_OPENING_HOURS-'+$('#thu_o_0_'+i).val()+':'+$('#thu_o_1_'+i).val();thuC = 'THU_CLOSING_HOURS-'+$('#tue_c_0_'+i).val()+':'+$('#tue_c_1_'+i).val();
-                friO = 'FRI_OPENING_HOURS-'+$('#fri_o_0_'+i).val()+':'+$('#fri_o_1_'+i).val();friC = 'FRI_CLOSING_HOURS-'+$('#fri_c_0_'+i).val()+':'+$('#fri_c_1_'+i).val();
-                satO = 'SAT_OPENING_HOURS-'+$('#sat_o_0_'+i).val()+':'+$('#sat_o_1_'+i).val();satC = 'SAT_CLOSING_HOURS-'+$('#sat_c_0_'+i).val()+':'+$('#sat_c_1_'+i).val();
-                sunO = 'SUN_OPENING_HOURS-'+$('#sun_o_0_'+i).val()+':'+$('#sun_o_1_'+i).val();sunC = 'SUN_CLOSING_HOURS-'+$('#sun_c_0_'+i).val()+':'+$('#sun_c_1_'+i).val();
+                if($('#mon_check_'+i).is(":checked")){
+                	mon = 'MON-'+$('#mon_o_0_'+i).val()+'-'+$('#mon_o_1_'+i).val()+'-'+$('#mon_c_0_'+i).val()+'-'+$('#mon_c_1_'+i).val();}
+                if($('#tue_check_'+i).is(":checked")){
+                	tue = 'TUE-'+$('#tue_o_0_'+i).val()+'-'+$('#tue_o_1_'+i).val()+'-'+$('#tue_c_0_'+i).val()+'-'+$('#tue_c_1_'+i).val();}
+                if($('#wed_check_'+i).is(":checked")){
+                	wed = 'WED-'+$('#wed_o_0_'+i).val()+'-'+$('#wed_o_1_'+i).val()+'-'+$('#wed_c_0_'+i).val()+'-'+$('#wed_c_1_'+i).val();}
+                if($('#thu_check_'+i).is(":checked")){
+                	thu = 'THU-'+$('#thu_o_0_'+i).val()+'-'+$('#thu_o_1_'+i).val()+'-'+$('#thu_c_0_'+i).val()+'-'+$('#thu_c_1_'+i).val();}
+                if($('#fri_check_'+i).is(":checked")){
+                	fri = 'FRI-'+$('#fri_o_0_'+i).val()+'-'+$('#fri_o_1_'+i).val()+'-'+$('#fri_c_0_'+i).val()+'-'+$('#fri_c_1_'+i).val();}
+                if($('#sat_check_'+i).is(":checked")){
+                	sat = 'SAT-'+$('#sat_o_0_'+i).val()+'-'+$('#sat_o_1_'+i).val()+'-'+$('#sat_c_0_'+i).val()+'-'+$('#sat_c_1_'+i).val();}
+                if($('#sun_check_'+i).is(":checked")){
+                	sun = 'SUN-'+$('#sun_o_0_'+i).val()+'-'+$('#sun_o_1_'+i).val()+'-'+$('#sun_c_0_'+i).val()+'-'+$('#sun_c_1_'+i).val();}
+                
                 /*if(tempPhoneText){
                     phoneNumber = "STORE_PHONE_NUMBER-"+phonePrefix+tempPhoneText;
                 }
@@ -64,12 +70,12 @@ $(function(){
                     faxNumber = "STORE_FAX_NUMBER-"+faxPrefix+tempFaxText;
                 }*/
                 if(tempPhoneText){
-                    phoneNumber = phonePrefix+tempPhoneText;
-                    phoneType = "STORE_PHONE_NUMBER";
+                    phoneNumber = "STORE_PHONE_NUMBER-"+phonePrefix+tempPhoneText;
+                    //phoneType = "STORE_PHONE_NUMBER";
                 }
                 if(tempFaxText){
-                    faxNumber = faxPrefix+tempFaxText;
-                    faxType = "STORE_FAX_NUMBER";
+                    faxNumber = "STORE_FAX_NUMBER-"+faxPrefix+tempFaxText;
+                    //faxType = "STORE_FAX_NUMBER";
                 }
                 
                 if(!tempBranchName){
@@ -85,33 +91,31 @@ $(function(){
                     tempLocation = tempLocation+'/'+$('#inputLocation_'+i).val();
                 }
                 
-                if(faxNumber && faxType){
+                if(phoneNumber && faxNumber){
                     faxNumber = ','+faxNumber;
-                    faxType = ','+faxType;
+                    //faxType = ','+faxType;
                 }
                 if(!tempStorePhoneNumber){
                     tempStorePhoneNumber = phoneNumber+faxNumber;
-                    tempPhoneType = phoneType+faxType;
+                    //tempPhoneType = phoneType+faxType;
                 }
                 else{
                     tempStorePhoneNumber = tempStorePhoneNumber+'/'+phoneNumber+faxNumber;
-                    tempPhoneType = tempPhoneType+'/'+phoneType+faxType;
+                    //tempPhoneType = tempPhoneType+'/'+phoneType+faxType;
                 }
-                /*if(!tempPhoneNumber){
-                     tempPhoneNumber = phoneNumber+','+faxNumber;
+                if(!tempDataTime){
+                     tempDataTime = mon+','+tue+','+wed+','+thu+','+fri+','+sat+','+sun;
                 }
                 else{
-                    tempPhoneNumber = tempPhoneNumber+'/'+phoneNumber+','+faxNumber;
-                    //tempDataTime = tempDataTime+'/'+monO+','+monC+','+tueO+','+tueC+','+wenO+','+wenC+','+thuO+','+thuC+','+','+friO+','+friC+','+satO+','+satC+','+sunO+','+sunC;
-                }*/
-                phoneNumber = "";faxNumber = "";
-                phoneType = "";faxType = "";
-                monO = "";monC = "";tueO = "";tueC = "";wenO = "";wenC = "";thuO = "";
-                thuC = "";friO = "";friC = "";satO = "";satC = "";sunO = "";sunC = "";
+                     tempDataTime = tempDataTime+'/'+mon+','+tue+','+wed+','+thu+','+fri+','+sat+','+sun;
+                }
+                phoneNumber = "";
+                faxNumber = "";
+                mon = "";tue = "";wed = "";thu = "";fri = "";sat = "";sun = "";
             }
             $('#physicalBranchName').val(tempBranchName);
             $('#physicalLocation').val(tempLocation);
-            $('#physicalPhoneType').val(tempPhoneType)
+            //$('#physicalPhoneType').val(tempPhoneType)
             $('#physicalPhone').val(tempStorePhoneNumber);
             $('#physicalTime').val(tempDataTime);
             $('#createcustomer').submit();
@@ -122,9 +126,9 @@ $(function(){
     });
     $('.chk_regis').click(function(){
         if($('.chk_regis').is(':checked')){
-        	$('.business-guide').removeClass('hidden');
-        	$('.business-registered').removeClass('hidden');
-        	$('#businessUser').val("Y");
+             $('.business-guide').removeClass('hidden');
+             $('.business-registered').removeClass('hidden');
+             $('#businessUser').val("Y");
         }
         else{
             $('.business-registered').addClass('hidden');
@@ -220,31 +224,31 @@ $(function(){
         "<div class='control-group'>"+
             "<label class='control-label control-label-xlarge' for='inputOpeningHours'>Opening Hours (24 hour format)</label>"+
             "<div class='clearfix'></div>"+
-            "<label class='control-label control-label-xxsmall pull-left' for='inputMonday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Mon </label>"+
+            "<label class='control-label control-label-xxsmall pull-left' for='inputMonday'><input type='checkbox' name='optionsRadios' id='mon_check_"+index+"' > Mon </label>"+
             "<div clas='pull-left'>"+
                 "<input type='text' class='input-xsmall input-time' id='mon_o_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='mon_o_1_"+index+"'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='mon_c_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='mon_c_1_"+index+"'>"+
             "</div>"+
-            "<label class='control-label control-label-xxsmall pull-left' for='inputTuesday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Tue </label>"+
+            "<label class='control-label control-label-xxsmall pull-left' for='inputTuesday'><input type='checkbox' name='optionsRadios' id='tue_check_"+index+"' > Tue </label>"+
             "<div clas='pull-left'>"+
-                "<input type='text' class='input-xsmall input-time' id='tue_o_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='tue_o_1_"+index+"'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='tue_c_1_"+index+"'> : <input type='text' class='input-xsmall input-time' id='tue_c_1_"+index+"'>"+
+                "<input type='text' class='input-xsmall input-time' id='tue_o_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='tue_o_1_"+index+"'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='tue_c_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='tue_c_1_"+index+"'>"+
             "</div>"+
-            "<label class='control-label control-label-xxsmall pull-left' for='inputWednesday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Wed </label>"+
+            "<label class='control-label control-label-xxsmall pull-left' for='inputWednesday'><input type='checkbox' name='optionsRadios' id='wed_check_"+index+"' > Wed </label>"+
             "<div clas='pull-left'>"+
                 "<input type='text' class='input-xsmall input-time' id='wed_o_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='wed_o_1_"+index+"'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='wed_c_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='wed_c_1_"+index+"'>"+
             "</div>"+
-            "<label class='control-label control-label-xxsmall pull-left' for='inputThursday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Thu </label>"+
+            "<label class='control-label control-label-xxsmall pull-left' for='inputThursday'><input type='checkbox' name='optionsRadios' id='thu_check_"+index+"' > Thu </label>"+
             "<div clas='pull-left'>"+
                 "<input type='text' class='input-xsmall input-time' id='thu_o_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='thu_o_1_"+index+"'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='thu_c_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='thu_c_1_"+index+"'>"+
             "</div>"+
-            "<label class='control-label control-label-xxsmall pull-left' for='inputFriday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Fri </label>"+
+            "<label class='control-label control-label-xxsmall pull-left' for='inputFriday'><input type='checkbox' name='optionsRadios' id='fri_check_"+index+"' > Fri </label>"+
             "<div clas='pull-left'>"+
             "<input type='text' class='input-xsmall input-time' id='fri_o_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='fri_o_1_"+index+"'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='fri_c_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='fri_c_1_"+index+"'>"+
             "</div>"+
-            "<label class='control-label control-label-xxsmall pull-left' for='inputSaterday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Sat </label>"+
+            "<label class='control-label control-label-xxsmall pull-left' for='inputSaterday'><input type='checkbox' name='optionsRadios' id='sat_check_"+index+"' > Sat </label>"+
             "<div clas='pull-left'>"+
             "<input type='text' class='input-xsmall input-time' id='sat_o_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='sat_o_1_"+index+"'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='sat_c_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='sat_o_1_"+index+"'>"+
             "</div>"+
-            "<label class='control-label control-label-xxsmall pull-left' for='inputSunday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Sun</label>"+
+            "<label class='control-label control-label-xxsmall pull-left' for='inputSunday'><input type='checkbox' name='optionsRadios' id='sun_check_"+index+"' > Sun</label>"+
             "<div clas='pull-left'>"+
                 "<input type='text' class='input-xsmall input-time' id='sun_o_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='sun_o_1_"+index+"'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='sun_c_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='sun_c_1_"+index+"'>"+
             "</div>"+

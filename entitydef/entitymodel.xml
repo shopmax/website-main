@@ -27,5 +27,18 @@ under the License.
     <description>None</description>
     <copyright></copyright>
     <version></version>
-
+    
+    <entity entity-name="PhysicalStoreDateTime" package-name="org.ofbiz.entity.shopmax">
+        <field name="contactMechId" type="id-ne"/>
+        <field name="day" type="long-varchar"/>
+        <field name="openHour" type="value"/>
+        <field name="openMin" type="value"/>
+        <field name="closeHour" type="value"/>
+        <field name="closeMin" type="value"/>
+        <prim-key field="contactMechId"/>
+        <prim-key field="day"/>
+        <relation type="one" fk-name="CONTACT_PSY_TIME" rel-entity-name="ContactMech">
+            <key-map field-name="contactMechId"/>
+        </relation>
+    </entity>
 </entitymodel>

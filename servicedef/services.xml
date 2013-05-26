@@ -112,8 +112,9 @@ under the License.
         <attribute name="physicalBranchName" mode="IN" type="String" optional="true"/>
         <attribute name="physicalLocation" mode="IN" type="String" optional="true"/>
         <attribute name="physicalPhone" mode="IN" type="String" optional="true"/>
-        <attribute name="physicalPhoneType" mode="IN" type="String" optional="true"/>
         <attribute name="physicalTime" mode="IN" type="String" optional="true"/>
+        <override name="city" mode="IN" optional="true"/>
+        <override name="postalCode" mode="IN" optional="true"/>
     </service>
     
     <service name="uploadProductToSeller" engine="simple"
@@ -204,7 +205,7 @@ under the License.
     <service name="editProductToSeller" engine="simple"
         location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="editProductToSeller" auth="true">
         <description>Edit Product To Seller</description>
-        <attribute name="productCategoryId" type="String" mode="IN" optional="ture"/>
+        <attribute name="productCategoryId" type="String" mode="IN" optional="true"/>
         <attribute name="productId" type="String" mode="IN" optional="false"/>
         <attribute name="productName" mode="IN" type="String" optional="false"/>
         <attribute name="description" mode="IN" type="String" optional="false"/>
@@ -287,5 +288,23 @@ under the License.
             location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="removeProductFromShopmax" auth="true">
         <description>Remove Product From Shopmax</description>
         <attribute name="productId" mode="IN" type="String" optional="false"/>
+    </service>
+    
+    <service name="createPhysicalDateTime" engine="simple"
+            location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="createPhysicalDateTime" auth="true">
+        <description>Remove Product From Shopmax</description>
+        <attribute name="contactMechId" mode="IN" type="String" optional="false"/>
+        <attribute name="day" mode="IN" type="String" optional="false"/>
+        <attribute name="openHour" mode="IN" type="String" optional="true"/>
+        <attribute name="openMin" mode="IN" type="String" optional="true"/>
+        <attribute name="closeHour" mode="IN" type="String" optional="true"/>
+        <attribute name="closeMin" mode="IN" type="String" optional="true"/>
+    </service>
+    
+    <service name="updatePhysicalDateTime" engine="simple"
+            location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="updatePhysicalDateTime" auth="true">
+        <description>Remove Product From Shopmax</description>
+        <attribute name="contactMechId" mode="IN" type="String" optional="false"/>
+        <attribute name="day" mode="IN" type="String" optional="false"/>
     </service>
 </services>

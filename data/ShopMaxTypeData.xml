@@ -22,4 +22,5 @@ under the License.
     <RoleType roleTypeId="SELLER" hasTable="N" description="Seller"/>
     
     <ShipmentMethodType description="No Shipping" shipmentMethodTypeId="NO_SHIPPING"/>
+    <ContactMechPurposeType contactMechPurposeTypeId="PHYS_STORE_LOCATION" description="Physical Store Location"/>
 </entity-engine-xml>

@@ -270,31 +270,31 @@ under the License.
                                     <div class='control-group'>
                                         <label class='control-label control-label-xlarge' for='inputOpeningHours'>Opening Hours (24 hour format)</label>
                                         <div class='clearfix'></div>
-                                        <label class='control-label control-label-xxsmall pull-left' for='inputMonday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Mon </label>
+                                        <label class='control-label control-label-xxsmall pull-left' for='inputMonday'><input type='checkbox' name='optionsRadios' id='mon_check_0' > Mon </label>
                                         <div clas='pull-left'>
                                             <input type='text' class='input-xsmall input-time' id='mon_o_0_0'> : <input type='text' class='input-xsmall input-time' id='mon_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='mon_c_0_0'> : <input type='text' class='input-xsmall input-time' id='mon_c_1_0'>
                                         </div>
-                                        <label class='control-label control-label-xxsmall pull-left' for='inputTuesday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Tue </label>
+                                        <label class='control-label control-label-xxsmall pull-left' for='inputTuesday'><input type='checkbox' name='optionsRadios' id='tue_check_0' > Tue </label>
                                         <div clas='pull-left'>
                                             <input type='text' class='input-xsmall input-time' id='tue_o_0_0'> : <input type='text' class='input-xsmall input-time' id='tue_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='tue_c_0_0'> : <input type='text' class='input-xsmall input-time' id='tue_c_1_0'>
                                         </div>
-                                        <label class='control-label control-label-xxsmall pull-left' for='inputWednesday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Wed </label>
+                                        <label class='control-label control-label-xxsmall pull-left' for='inputWednesday'><input type='checkbox' name='optionsRadios' id='wed_check_0' > Wed </label>
                                         <div clas='pull-left'>
                                             <input type='text' class='input-xsmall input-time' id='wed_o_0_0'> : <input type='text' class='input-xsmall input-time' id='wed_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='wed_c_0_0'> : <input type='text' class='input-xsmall input-time' id='wed_c_1_0'>
                                         </div>
-                                        <label class='control-label control-label-xxsmall pull-left' for='inputThursday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Thu </label>
+                                        <label class='control-label control-label-xxsmall pull-left' for='inputThursday'><input type='checkbox' name='optionsRadios' id='thu_check_0' > Thu </label>
                                         <div clas='pull-left'>
                                             <input type='text' class='input-xsmall input-time' id='thu_o_0_0'> : <input type='text' class='input-xsmall input-time' id='thu_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='thu_c_0_0'> : <input type='text' class='input-xsmall input-time' id='thu_c_1_0'>
                                         </div>
-                                        <label class='control-label control-label-xxsmall pull-left' for='inputFriday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Fri </label>
+                                        <label class='control-label control-label-xxsmall pull-left' for='inputFriday'><input type='checkbox' name='optionsRadios' id='fri_check_0' > Fri </label>
                                         <div clas='pull-left'>
                                         <input type='text' class='input-xsmall input-time' id='fri_o_0_0'> : <input type='text' class='input-xsmall input-time' id='fri_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='fri_c_0_0'> : <input type='text' class='input-xsmall input-time' id='fri_c_1_0'>
                                         </div>
-                                        <label class='control-label control-label-xxsmall pull-left' for='inputSaterday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Sat </label>
+                                        <label class='control-label control-label-xxsmall pull-left' for='inputSaterday'><input type='checkbox' name='optionsRadios' id='sat_check_0' > Sat </label>
                                         <div clas='pull-left'>
                                         <input type='text' class='input-xsmall input-time' id='sat_o_0_0'> : <input type='text' class='input-xsmall input-time' id='sat_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='sat_c_0_0'> : <input type='text' class='input-xsmall input-time' id='sat_c_1_0'>
                                         </div>
-                                        <label class='control-label control-label-xxsmall pull-left' for='inputSunday'><input type='checkbox' name='optionsRadios' id='optionsRadios1' > Sun</label>
+                                        <label class='control-label control-label-xxsmall pull-left' for='inputSunday'><input type='checkbox' name='optionsRadios' id='sun_check_0' > Sun</label>
                                         <div clas='pull-left'>
                                             <input type='text' class='input-xsmall input-time' id='sun_o_0_0'> : <input type='text' class='input-xsmall input-time' id='sun_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='sun_c_0_0'> : <input type='text' class='input-xsmall input-time' id='sun_c_1_0'>
                                         </div>
@@ -307,7 +307,6 @@ under the License.
                             <input type="hidden" name="physicalNum" id="physicalNum"/>
                             <input type="hidden" name="physicalBranchName" id="physicalBranchName"/>
                             <input type="hidden" name="physicalLocation" id="physicalLocation"/>
-                            <input type="hidden" name="physicalPhoneType" id="physicalPhoneType"/>
                             <input type="hidden" name="physicalPhone" id="physicalPhone"/>
                             <input type="hidden" name="physicalTime" id="physicalTime"/>
                         </tr>

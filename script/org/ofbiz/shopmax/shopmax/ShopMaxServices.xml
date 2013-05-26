@@ -182,7 +182,7 @@ under the License.
     </simple-method>
     
     <simple-method method-name="createShopmaxCustomer" short-description="Create Shopmax Customer" login-required="false">
-        <entity-one entity-name="UserLogin" value-field="systemUserLogin">
+            <entity-one entity-name="UserLogin" value-field="systemUserLogin">
             <field-map field-name="userLoginId" value="system"/>
         </entity-one>
         
@@ -495,57 +495,47 @@ under the License.
             <set field="createEftAccountMap.accountType" from-field="parameters.accountType"/>
             <call-service service-name="createEftAccount" in-map-name="createEftAccountMap"/>
             
-            <!-- Create physical stores -->
-            <!-- <set field="locationContext.address1" from-field="parameters.location"/>
-            <call-service service-name="createPartyPostalAddress" in-map-name="locationContext">
-                <result-to-field result-name="contactMechId" field="addressPurposeContext.contactMechId"/>
-            </call-service>
-            <set from-field="tempMap.partyId" field="addressPurposeContext.partyId"/>
-            <set value="PHYS_STORE_LOCATION" field="addressPurposeContext.contactMechPurposeTypeId"/>
-            <call-service service-name="createPartyContactMechPurpose" in-map-name="addressPurposeContext"/>
-            
-            <set field="createStorePhoneNumberMap.contactMechId" from-field="addressPurposeContext.contactMechId"/>
-            <set field="createStorePhoneNumberMap.attrName" value="STORE_PHONE_NUMBER"/>
-            <set field="createStorePhoneNumberMap.attrValue" from-field="parameters.storePhoneNumber"/>
-            <set field="createStorePhoneNumberMap.userLogin" from-field="systemUserLogin"/>
-            <call-service service-name="createContactMechAttribute" in-map-name="createStorePhoneNumberMap"/>
-            
-            <set field="createMonOpeningHoursMap.contactMechId" from-field="addressPurposeContext.contactMechId"/>
-            <set field="createMonOpeningHoursMap.attrName" value="MON_OPENING_HOURS"/>
-            <set field="createMonOpeningHoursMap.attrValue" from-field="parameters.monOpeningHours"/>
-            <set field="createMonOpeningHoursMap.userLogin" from-field="systemUserLogin"/>
-            <call-service service-name="createContactMechAttribute" in-map-name="createMonOpeningHoursMap"/> -->
-            
-            <!-- <set field="branchNameList" value="${groovy: if(parameters.physicalBranchName){physicalBranchName = parameters.physicalBranchName.split(&quot;/&quot;); return physicalBranchName.toList();}}" type="List"/>
+            <set field="branchNameList" value="${groovy: if(parameters.physicalBranchName){physicalBranchName = parameters.physicalBranchName.split(&quot;/&quot;); return physicalBranchName.toList();}}" type="List"/>
             <set field="locationList" value="${groovy: if(parameters.physicalLocation){physicalLocation = parameters.physicalLocation.split(&quot;/&quot;); return physicalLocation.toList();}}" type="List"/>
-            <set field="physicalPhoneTypes" value="${groovy: if(parameters.physicalPhoneType){physicalPhoneType = parameters.physicalPhoneType.split(&quot;/&quot;); return physicalPhoneType.toList();}}" type="List"/>
             <set field="physicalPhones" value="${groovy: if(parameters.physicalPhone){physicalPhone = parameters.physicalPhone.split(&quot;/&quot;); return physicalPhone.toList();}}" type="List"/>
+            <set field="physicalDateTimeList" value="${groovy: if(parameters.physicalTime){physicalTime = parameters.physicalTime.split(&quot;/&quot;); return physicalTime.toList();}}" type="List"/>
             <loop count="${parameters.physicalNum}" field="i">
-                <log message="============branchNameList===========${branchNameList[i]}" level="info"/>
-                <log message="============locationList===========${locationList[i]}" level="info"/>-->
-                
-                <!--<set field="locationContext.address1" from-field="locationList[i]"/>
+                <set field="locationContext.userLogin" from-field="systemUserLogin"/>
+                <set field="locationContext.address1" from-field="locationList[i]"/>
+                <set field="locationContext.city" value="city"/>
+                <set field="locationContext.postalCode" value="00000"/>
+                <set field="locationContext.toName" from-field="branchNameList[i]"/>
+                <set field="locationContext.partyId" from-field="tempMap.partyId"/>
                 <call-service service-name="createPartyPostalAddress" in-map-name="locationContext">
                     <result-to-field result-name="contactMechId" field="addressPurposeContext.contactMechId"/>
                 </call-service>
-                <set from-field="tempMap.partyId" field="addressPurposeContext.partyId"/>
-                <set value="PHYS_STORE_LOCATION" field="addressPurposeContext.contactMechPurposeTypeId"/>
+                <set field="addressPurposeContext.userLogin" from-field="systemUserLogin"/>
+                <set field="addressPurposeContext.partyId" from-field="tempMap.partyId"/>
+                <set field="addressPurposeContext.contactMechPurposeTypeId" value="PHYS_STORE_LOCATION"/>
                 <call-service service-name="createPartyContactMechPurpose" in-map-name="addressPurposeContext"/>
                 
-                <set field="createStorePhoneNumberMap.contactMechId" from-field="addressPurposeContext.contactMechId"/>
-                <set field="createStorePhoneNumberMap.attrName" value="STORE_PHONE_NUMBER"/>
-                <set field="createStorePhoneNumberMap.attrValue" from-field="parameters.storePhoneNumber"/>
-                <set field="createStorePhoneNumberMap.userLogin" from-field="systemUserLogin"/>
-                <call-service service-name="createContactMechAttribute" in-map-name="createStorePhoneNumberMap"/>-->
-                 
-                <!-- <set field="physicalPhoneType" value="${groovy: if(physicalPhoneTypes[i]){physicalPhoneTypes = physicalPhoneTypes[i].split(&quot;,&quot;); return physicalPhoneTypes.toList();}}" type="List"/>
-                <set field="physicalPhone" value="${groovy: if(physicalPhones[i]){physicalPhones = physicalPhones[i].split(&quot;,&quot;); return physicalPhones.toList();}}" type="List"/>
-                <loop count="2" field="i">
-                    <log message="============physicalPhoneType===========${physicalPhoneType[i]}" level="info"/>
-                    <log message="============physicalPhone===========${physicalPhone[i]}" level="info"/>
-                </loop>
-                <log message="============end===========" level="info"/>
-            </loop>-->
+                <set field="physicalPhoneLists" value="${groovy: if(physicalPhones[i]){physicalPhones = physicalPhones[i].split(&quot;,&quot;); return physicalPhones.toList();}}" type="List"/>
+                <iterate entry="physicalPhoneList" list="physicalPhoneLists">
+                    <set field="physicalPhone" value="${groovy: if(physicalPhoneList){physicalPhoneList = physicalPhoneList.split(&quot;-&quot;); return physicalPhoneList.toList();}}" type="List"/>
+                    <set field="createStorePhoneNumberMap.contactMechId" from-field="addressPurposeContext.contactMechId"/>
+                    <set field="createStorePhoneNumberMap.attrName" from-field="physicalPhone[0]"/>
+                    <set field="createStorePhoneNumberMap.attrValue" from-field="physicalPhone[1]"/>
+                    <set field="createStorePhoneNumberMap.userLogin" from-field="systemUserLogin"/>
+                    <call-service service-name="createContactMechAttribute" in-map-name="createStorePhoneNumberMap"/>
+                </iterate>
+                
+                <set field="physicalDateTimes" value="${groovy: if(physicalDateTimeList[i]){physicalDateTime = physicalDateTimeList[i].split(&quot;,&quot;); return physicalDateTime.toList();}}" type="List"/>
+                <iterate entry="physicalDateTime" list="physicalDateTimes">
+                    <set field="physicalDateTimeGroups" value="${groovy: if(physicalDateTime){physicalDateTime = physicalDateTime.split(&quot;-&quot;); return physicalDateTime.toList();}}" type="List"/>
+                    <set field="createPhysicalDateTimeMap.contactMechId" from-field="addressPurposeContext.contactMechId"/>
+                    <set field="createPhysicalDateTimeMap.day" from-field="physicalDateTimeGroups[0]"/>
+                    <set field="createPhysicalDateTimeMap.openHour" from-field="physicalDateTimeGroups[1]"/>
+                    <set field="createPhysicalDateTimeMap.openMin" from-field="physicalDateTimeGroups[2]"/>
+                    <set field="createPhysicalDateTimeMap.closeHour" from-field="physicalDateTimeGroups[3]"/>
+                    <set field="createPhysicalDateTimeMap.closeMin" from-field="physicalDateTimeGroups[4]"/>
+                    <call-service service-name="createPhysicalDateTime" in-map-name="createPhysicalDateTimeMap"/>
+                </iterate>
+            </loop>
             
             <!-- Upload driver license -->
             <if-not-empty field="parameters._uploadedFile1_fileName">
@@ -602,7 +592,7 @@ under the License.
             <make-value value-field="tenantDomainNameBackend" entity-name="TenantDomainName"/>
             <set field="tenantDomainNameBackend.tenantId" from-field="tenantId"/>
             <set field="tenantDomainNameBackend.domainName" from-field="parameters.domainNameBackend"/>
-            <set field="tenantDomainNameBackend.initialPath" value="/catalog"/>
+            <set field="tenantDomainNameBackend.initialPath" value="/catalog"/> 
             <create-value value-field="tenantDomainNameBackend"/>
             
             <!-- Create Tenant Component Shopmax -->
@@ -1675,5 +1665,46 @@ under the License.
             <set field="updateProductToCategoryMap.thruDate" from-field="nowTimestamp"/>
             <call-service service-name="updateProductToCategory" in-map-name="updateProductToCategoryMap"/>
         </iterate>
+    </simple-method>
+    
+    <simple-method method-name="createPhysicalDateTime" short-description="Create Date and Time To Physical Store">
+        <make-value entity-name="PhysicalStoreDateTime" value-field="newEntity"/>
+        <set field="newEntity.contactMechId" from-field="parameters.contactMechId"/>
+        <set field="newEntity.day" from-field="parameters.day"/>
+        <set field="newEntity.openHour" from-field="parameters.openHour"/>
+        <set field="newEntity.openMin" from-field="parameters.openMin"/>
+        <set field="newEntity.closeHour" from-field="parameters.closeHour"/>
+        <set field="newEntity.closeMin" from-field="parameters.closeMin"/>
+        <create-value value-field="newEntity"/>
+    </simple-method>
+    
+    <simple-method method-name="updatePhysicalDateTime" short-description="Update Date and Time To Physical Store">
+        <entity-one entity-name="PhysicalStoreDateTime" value-field="physicalStoreDateTime">
+            <field-map field-name="contactMechId" from-field="parameters.contactMechId"/>
+            <field-map field-name="day" from-field="parameters.day"/>
+        </entity-one>
+        <if-not-empty field="physicalStoreDateTime">
+            <set-nonpk-fields value-field="physicalStoreDateTime" map="parameters"/>
+            <store-value value-field="physicalStoreDateTime"/>
+        </if-not-empty> 
+    </simple-method>
+    
+    <simple-method method-name="updatePhysicalDateTime" short-description="Update Date and Time To Physical Store">
+        <entity-one entity-name="PhysicalStoreDateTime" value-field="physicalStoreDateTime">
+            <field-map field-name="contactMechId" from-field="parameters.contactMechId"/>
+            <field-map field-name="day" from-field="parameters.day"/>
+        </entity-one>
+        <if-not-empty field="physicalStoreDateTime">
+            <set-nonpk-fields value-field="physicalStoreDateTime" map="parameters"/>
+            <store-value value-field="physicalStoreDateTime"/>
+        </if-not-empty> 
+    </simple-method>
+    
+    <simple-method method-name="deletePhysicalDateTime" short-description="Delete Date and Time To Physical Store">
+        <entity-one entity-name="PhysicalStoreDateTime" value-field="physicalStoreDateTime">
+            <field-map field-name="contactMechId" from-field="parameters.contactMechId"/>
+            <field-map field-name="day" from-field="parameters.day"/>
+        </entity-one>
+        <remove-value value-field="physicalStoreDateTime"/>
     </simple-method>
 </simple-methods>
