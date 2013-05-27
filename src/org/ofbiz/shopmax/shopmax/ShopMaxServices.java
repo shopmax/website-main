@@ -61,7 +61,6 @@ public class ShopMaxServices {
         String contactNumber = null;
         
         Map<String, Object> result = FastMap.newInstance();
-        result.put(ModelService.RESPONSE_MESSAGE, ModelService.RESPOND_SUCCESS);
         
         String sellerSMS = UtilProperties.getPropertyValue("shopmax.properties", "shopmax.seller.sms");
         if (sellerSMS.equals("Y")) {
@@ -72,21 +71,22 @@ public class ShopMaxServices {
                 contactNumber = phoneMobileNumber.getString("contactNumber");
             }
             
-            String confirmationSMSUrl = "http://shopmax.dyndns.biz:9710/http/send-message?username=" + "admin" + "&password=" + "admin" + "&to=%2B" + contactNumber + "&message-type=sms.automatic" + "&message=" + messageSMS;
-            Debug.log("------------------------- SMS URL ------------------------- : " + confirmationSMSUrl);
-            
-            try {
-                HttpClient http = new HttpClient(confirmationSMSUrl);
-                response = http.get();
-                Debug.log("------------------------- Response Data ------------------------- : " + response);
-            } catch (HttpClientException e) {
-                Debug.logError(e, module);
-                //return ServiceUtil.returnError(e.getMessage());
+            if (UtilValidate.isNotEmpty(contactNumber)) {
+                String confirmationSMSUrl = "http://shopmax.dyndns.biz:9710/http/send-message?username=" + "admin" + "&password=" + "admin" + "&to=%2B" + contactNumber + "&message-type=sms.automatic" + "&message=" + messageSMS;
+                Debug.log("------------------------- SMS URL ------------------------- : " + confirmationSMSUrl);
+                
+                try {
+                    HttpClient http = new HttpClient(confirmationSMSUrl);
+                    response = http.get();
+                    Debug.log("------------------------- Response Data ------------------------- : " + response);
+                } catch (HttpClientException e) {
+                    Debug.logError(e, module);
+                }
             }
             
             if (UtilValidate.isNotEmpty(response)) {
                 result.put(ModelService.RESPONSE_MESSAGE, ModelService.RESPOND_SUCCESS);
-             }
+            }
         }
         
         return result;
