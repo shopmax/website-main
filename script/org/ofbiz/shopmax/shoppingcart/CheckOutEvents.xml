@@ -120,6 +120,60 @@ under the License.
         <call-service service-name="createUpdateBillingAddressAndPaymentMethod" in-map-name="createUpdateBillingAddressAndPaymentMethodInMap"/>
     </simple-method>
     <simple-method method-name="createUpdateShippingAddress" short-description="Create update shipping address" login-required="false">
+        <call-class-method method-name="getCartObject" class-name="org.ofbiz.order.shoppingcart.ShoppingCartEvents" ret-field="shoppingCart">
+            <field field="request" type="javax.servlet.http.HttpServletRequest"/>
+        </call-class-method>
+        <call-object-method method-name="getProductStoreId" obj-field="shoppingCart" ret-field="productStoreId"/>
+        
+        <!-- split shipment -->
+        <script>groovy:
+            import org.ofbiz.base.util.*;
+            def supplierPartyIds = new java.util.HashSet();
+            def supplierCarrierMap = [:];
+            def supplierShipmentMethodTypeMap = [:];
+
+            def rowCount = UtilHttp.getMultiFormRowCount(request);
+            for (i = 0; i &lt; rowCount; i++) {
+                def curSuffix = UtilHttp.MULTI_ROW_DELIMITER + i;
+                def parameterNames = request.getParameterNames();
+                while(parameterNames.hasMoreElements()) {
+                    def parameterName = parameterNames.nextElement();
+                    if (parameterName.contains(":")) {
+                        def tokens = StringUtil.split(parameterName, ":");
+                        def paramName = tokens[0];
+                        def paramSuffix = tokens[1];
+                        def partyId = paramSuffix.substring(0, paramSuffix.indexOf(curSuffix));
+                        supplierPartyIds.add(partyId);
+            
+                        if ("shipmentCarrierPartyId".equals(paramName)) {
+                            def carrierPartyId = request.getParameter(parameterName);
+                            supplierCarrierMap.put(partyId, carrierPartyId)
+                        } else if ("shipmentMethodTypeId".equals(paramName)) {
+                            def shipmentMethodTypeId = request.getParameter(parameterName);
+                            supplierShipmentMethodTypeMap.put(partyId, shipmentMethodTypeId);
+                        }
+                    }
+                }
+            }
+            
+            context.supplierPartyIds = supplierPartyIds;
+            context.supplierCarrierMap = supplierCarrierMap;
+            context.supplierShipmentMethodTypeMap = supplierShipmentMethodTypeMap;
+        </script>
+        
+        <iterate entry="supplierPartyId" list="supplierPartyIds">
+            <set field="carrierPartyId" from-field="supplierCarrierMap[supplierPartyId]"/>
+            <set field="shipmentMethodTypeId" from-field="supplierShipmentMethodTypeMap[supplierPartyId]"/>
+            
+            <entity-and list="productStoreShipmentMeths" entity-name="ProductStoreShipmentMeth">
+                <field-map field-name="productStoreId" from-field="productStoreId"/>
+                <field-map field-name="partyId" from-field="carrierPartyId"/>
+                <field-map field-name="shipmentMethodTypeId" from-field="shipmentMethodTypeId"/>
+            </entity-and>
+            <set field="productStoreShipMethId" from-field="productStoreShipmentMeths[0].productStoreShipMethId"/>
+        </iterate>
+        
+        
         <session-to-field session-name="userLogin"/>
         <property-to-field resource="general" property="country.geo.id.default" field="defaultCountryGeoId"/>
         <set field="parameters.shipToCountryGeoId" from-field="defaultCountryGeoId"/>

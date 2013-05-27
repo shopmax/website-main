@@ -269,7 +269,7 @@ under the License.
     <request-map uri="onePageProcess">
         <security https="true" auth="false"/>
         <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/shoppingcart/CheckOutEvents.xml" invoke="checkLogin"/>
-        <response name="success" type="request" value="onePageProcessOrder"/>
+        <response name="success" type="request" value="createUpdateShippingAddress"/>
         <response name="empty" type="request" value="onePageProcessAccount"/>
     </request-map>
     <request-map uri="onePageProcessAccount">

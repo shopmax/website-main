@@ -40,6 +40,20 @@ under the License.
     <div class="row">
         <#include "component://shopmax/webapp/shopmax/order/ordersummary.ftl" />
         <form id="orderSummarySubmitForm" action="<@ofbizUrl>onePageProcess</@ofbizUrl>" method="post">
+            <#-- Shipping Options -->
+            <#assign supplierIndex = -1/>
+            <#list supplierCarrierMap.keySet() as partyId>
+                <#assign supplierIndex = supplierIndex + 1/>
+                <#assign carrierPartyId = supplierCarrierMap.get(partyId)/>
+                <input name="shipmentCarrierPartyId:${partyId}_o_${supplierIndex}" value="${carrierPartyId}" type="hidden"/>
+            </#list>
+            <#assign supplierIndex = -1/>
+            <#list supplierShippingMethodTypeMap.keySet() as partyId>
+                <#assign supplierIndex = supplierIndex + 1/>
+                <#assign shippingMethodTypeId = supplierShippingMethodTypeMap.get(partyId)/>
+                <input name="shipmentMethodTypeId:${partyId}_o_${supplierIndex}" value="${shippingMethodTypeId}" type="hidden"/>
+            </#list>
+            
             <div class="span9 main-content">
                 <ul class="sc-step">
                     <li><span class="badge badge-inactive">1</span>&nbsp;&nbsp;Shopping Cart</li>
