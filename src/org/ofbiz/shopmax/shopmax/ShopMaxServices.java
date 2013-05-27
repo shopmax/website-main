@@ -56,53 +56,37 @@ public class ShopMaxServices {
     public static Map<String, Object> sendOrderSMSToSeller(DispatchContext ctx, Map<String, ? extends Object> context) throws GenericEntityException {
         List<Map<String, Object>> sendSMS = FastList.newInstance();
         Delegator delegator = ctx.getDelegator();
-        //String orderId = (String) context.get("orderId");
         String tenantId = (String) context.get("tenantId");
         String messageSMS = "You&nbsp;have&nbsp;sale&nbsp;order&nbsp;from&nbsp;Shopmax";
-        
-        /*GenericValue orderHeader;
-        try {
-            orderHeader = delegator.findOne("OrderHeader", UtilMisc.toMap("orderId", orderId), false);
-        } catch (GenericEntityException e) {
-            Debug.logError(e, module);
-            return ServiceUtil.returnError(e.getMessage());
-        }
         String contactNumber = null;
-        if (orderHeader != null) {
-            OrderReadHelper orh = new OrderReadHelper(orderHeader);
-            GenericValue sellerCompanyParty = orh.getBillFromParty();
-            String sellerCompanyPartyId = sellerCompanyParty.getString("partyId");
-            GenericValue partyRelationship = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdFrom", sellerCompanyPartyId, "roleTypeIdFrom", "INTERNAL_ORGANIZATIO", "roleTypeIdTo", "EMPLOYEE", "partyRelationshipTypeId", "EMPLOYMENT"), null, true), true));
-            String sellerPartyId = partyRelationship.getString("partyIdTo");
-            GenericValue phoneMobileNumber = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("PartyContactDetailByPurpose", UtilMisc.toMap("partyId", sellerPartyId, "contactMechPurposeTypeId", "PHONE_MOBILE"), null, false)));
-            if (!UtilValidate.isEmpty(phoneMobileNumber)) {
-                contactNumber = phoneMobileNumber.getString("contactNumber");
-            }
-        }*/
-        String contactNumber = null;
-        GenericValue phoneMobileNumber = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("PartyContactDetailByPurpose", UtilMisc.toMap("partyId", tenantId, "contactMechPurposeTypeId", "PHONE_MOBILE"), null, false)));
-        if (!UtilValidate.isEmpty(phoneMobileNumber)) {
-            contactNumber = phoneMobileNumber.getString("contactNumber");
-        }
-        String response = null;
         
         Map<String, Object> result = FastMap.newInstance();
         result.put(ModelService.RESPONSE_MESSAGE, ModelService.RESPOND_SUCCESS);
         
-        String confirmationSMSUrl = "http://shopmax.dyndns.biz:9710/http/send-message?username=" + "admin" + "&password=" + "admin" + "&to=%2B" + contactNumber + "&message-type=sms.automatic" + "&message=" + messageSMS;
-        Debug.log("------------------------- SMS URL ------------------------- : " + confirmationSMSUrl);
-        
-        try {
-            HttpClient http = new HttpClient(confirmationSMSUrl);
-            response = http.get();
-            Debug.log("------------------------- Response Data ------------------------- : " + response);
-        } catch (HttpClientException e) {
-            Debug.logError(e, module);
-            //return ServiceUtil.returnError(e.getMessage());
-        }
-        
-        if (UtilValidate.isNotEmpty(response)) {
-           result.put(ModelService.RESPONSE_MESSAGE, ModelService.RESPOND_SUCCESS);
+        String sellerSMS = UtilProperties.getPropertyValue("shopmax.properties", "shopmax.seller.sms");
+        if (sellerSMS.equals("Y")) {
+            String response = null;
+            
+            GenericValue phoneMobileNumber = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("PartyContactDetailByPurpose", UtilMisc.toMap("partyId", tenantId, "contactMechPurposeTypeId", "PHONE_MOBILE"), null, false)));
+            if (!UtilValidate.isEmpty(phoneMobileNumber)) {
+                contactNumber = phoneMobileNumber.getString("contactNumber");
+            }
+            
+            String confirmationSMSUrl = "http://shopmax.dyndns.biz:9710/http/send-message?username=" + "admin" + "&password=" + "admin" + "&to=%2B" + contactNumber + "&message-type=sms.automatic" + "&message=" + messageSMS;
+            Debug.log("------------------------- SMS URL ------------------------- : " + confirmationSMSUrl);
+            
+            try {
+                HttpClient http = new HttpClient(confirmationSMSUrl);
+                response = http.get();
+                Debug.log("------------------------- Response Data ------------------------- : " + response);
+            } catch (HttpClientException e) {
+                Debug.logError(e, module);
+                //return ServiceUtil.returnError(e.getMessage());
+            }
+            
+            if (UtilValidate.isNotEmpty(response)) {
+                result.put(ModelService.RESPONSE_MESSAGE, ModelService.RESPOND_SUCCESS);
+             }
         }
         
         return result;

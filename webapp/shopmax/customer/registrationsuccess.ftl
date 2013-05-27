@@ -16,6 +16,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
 <script src="<@ofbizContentUrl>/shopmax-default/js/registration.js</@ofbizContentUrl>" type="text/javascript"></script>
 <div class="container content">
     <div id="load-script"></div>
@@ -49,7 +50,11 @@ under the License.
                     <tr>
                         <td class="col1 form-horizontal pull-left">
                             <h1 class="header-congratulation">Congratulation !</h1>
-                            <p class="intro-txt"><strong>Your registration is successful. It will take 2-3 working days to verify your seller account. You could start using your buyer's account now.</strong></p>
+                            <#if partyRole?has_content>
+                                <p class="intro-txt"><strong>1 Your registration is successful. It will take 2-3 working days to verify your seller account. You could start using your buyer's account now.</strong></p>
+                            <#else>
+                                <p class="intro-txt"><strong>2 Your registration is successful. It will take 2-3 working days to verify your seller account. You could start using your buyer's account now.</strong></p>
+                            </#if>
                         </td>
                     </tr>
                   </tbody>

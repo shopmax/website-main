@@ -21,6 +21,65 @@ under the License.
 <screens xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-screen.xsd">
         
+    <screen name="Registration">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleRegistration"/>
+                <set field="headerItem" value="registration"/>
+                <set field="breadcrumbTitle" value="Registration"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/customer/Registration.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html><html-template location="component://shopmax/webapp/shopmax/customer/registration.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="RegistrationAjax">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleRegistration"/>
+                <set field="headerItem" value="registration"/>
+                <set field="breadcrumbTitle" value="Registration"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/customer/Registration.groovy"/>
+                <set field="layoutSettings.javaScripts[]" value="/images/prototypejs/prototype.js" global="true"/>
+            </actions>
+            <widgets>
+                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/customer/registrationajax.ftl"/></html></platform-specific>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="RegistrationSuccess">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleRegistration"/>
+                <set field="headerItem" value="registration"/>
+                <set field="breadcrumbTitle" value="Registration"/>
+                <entity-one entity-name="PartyRole" value-field="partyRole">
+                    <field-map field-name="partyId" from-field="userLogin.partyId"/>
+                    <field-map field-name="roleTypeId" value="SELLER"/>
+                </entity-one>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/customer/Registration.groovy"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html><html-template location="component://shopmax/webapp/shopmax/customer/registrationsuccess.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
+            </widgets>
+        </section>
+    </screen>
+    
     <screen name="Profile">
         <section>
             <actions>

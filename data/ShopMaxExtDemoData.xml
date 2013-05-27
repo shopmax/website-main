@@ -65,7 +65,7 @@ under the License.
     <PartyRole partyId="shopmaxseller" roleTypeId="BUYER"/>
     <PartyRole partyId="shopmaxseller" roleTypeId="EMPLOYEE"/>
     <ContactMech contactMechId="SELLER_PHONE" contactMechTypeId="TELECOM_NUMBER"/>
-    <TelecomNumber contactMechId="SELLER_PHONE" contactNumber="6685775872"/>
+    <TelecomNumber contactMechId="SELLER_PHONE" contactNumber="64279612838"/>
     <PartyContactMech partyId="shopmaxseller" contactMechId="SELLER_PHONE" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
     <PartyContactMechPurpose partyId="shopmaxseller" contactMechId="SELLER_PHONE" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2013-04-01 00:00:00"/>
     <UserLoginSecurityGroup groupId="SHOPMAX_SELLER" userLoginId="DemoSeller" fromDate="2013-04-01 00:00:00"/>

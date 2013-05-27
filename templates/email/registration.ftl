@@ -77,8 +77,13 @@ under the License.
                                                     <td valign="top"  height="16" align="left"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td valign="top"  align="left"><p style="font-family:Arial, Helvetica, sans-serif;line-height:14px; font-size:12px;color:#000;margin:0 0 0 32px;padding:0;">Welcome to Shopmax! You can now use your new Shopmax user ID shopmax123 to be a part of a worldwide community of Shopmax buyers, sellers, and shoppers. 
-                                                Keep an eye out for our emails - they'll be packed with helpful tips to get you started over the next few weeks.</p></td>
+                                                    <#if businessUser?has_content && businessUser == "Y">
+                                                        <td valign="top"  align="left"><p style="font-family:Arial, Helvetica, sans-serif;line-height:14px; font-size:12px;color:#000;margin:0 0 0 32px;padding:0;">Welcome to Shopmax! You can now use your new Shopmax user ID shopmax123 to be a part of a worldwide community of Shopmax buyers, sellers, and shoppers. 
+                                                    Keep an eye out for our emails - they'll be packed with helpful tips to get you started over the next few weeks.</p></td>
+                                                    <#else>
+                                                        <td valign="top"  align="left"><p style="font-family:Arial, Helvetica, sans-serif;line-height:14px; font-size:12px;color:#000;margin:0 0 0 32px;padding:0;">Welcome to Shopmax! You can now use your new Shopmax user ID shopmax123 to be a part of a worldwide community of Shopmax buyers, sellers, and shoppers. 
+                                                    Keep an eye out for our emails - they'll be packed with helpful tips to get you started over the next few weeks.</p></td>
+                                                    </#if>
                                                 </tr>
                                                 <tr>
                                                     <td valign="top"  height="30" align="left"></td>

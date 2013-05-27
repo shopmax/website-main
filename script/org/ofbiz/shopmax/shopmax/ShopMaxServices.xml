@@ -372,6 +372,7 @@ under the License.
                 <set field="bodyParameters.person" from-field="person"/>
                 <set field="bodyParameters.username" from-field="parameters.USERNAME"/>
                 <set field="bodyParameters.password" from-field="parameters.PASSWORD"/>
+                <set field="bodyParameters.businessUser" from-field="parameters.businessUser"/>
                 <set field="emailParams.bodyParameters" from-field="bodyParameters"/>
                 <set field="emailParams.sendTo" from-field="emailContext.emailAddress"/>
                 <set field="emailParams.subject" from-field="storeEmail.subject"/>
@@ -735,6 +736,14 @@ under the License.
             <call-service service-name="setCategoryHasProduct" in-map-name="setCategoryHasProductMap"/>
         </iterate>
         
+        <if-not-empty field="parameters.productSKU">
+            <set field="createGoodIdentificationMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createGoodIdentificationMap.goodIdentificationTypeId" value="SKU"/>
+            <set field="createGoodIdentificationMap.productId" from-field="parameters.productId"/>
+            <set field="createGoodIdentificationMap.idValue" from-field="parameters.productSKU"/>
+            <call-service service-name="createGoodIdentification" in-map-name="createGoodIdentificationMap"/>
+        </if-not-empty>
+        
         <set field="parameters.partyId" from-field="userLogin.partyId"/>
         <set field="runTenantServiceInMap.tenantId" value="default"/>
         <set field="runTenantServiceInMap.serviceName" value="uploadProductToShopmax"/>
@@ -881,6 +890,14 @@ under the License.
             <set field="setCategoryHasProductMap.productCategoryId" from-field="productCategoryId"/>
             <call-service service-name="setCategoryHasProduct" in-map-name="setCategoryHasProductMap"/>
         </iterate>
+        
+        <if-not-empty field="parameters.productSKU">
+            <set field="createGoodIdentificationMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createGoodIdentificationMap.goodIdentificationTypeId" value="SKU"/>
+            <set field="createGoodIdentificationMap.productId" from-field="parameters.productId"/>
+            <set field="createGoodIdentificationMap.idValue" from-field="parameters.productSKU"/>
+            <call-service service-name="createGoodIdentification" in-map-name="createGoodIdentificationMap"/>
+        </if-not-empty>
     </simple-method>
     
     <simple-method method-name="approveShopmaxSeller" short-description="Approve Shopmax Seller">
@@ -1436,6 +1453,27 @@ under the License.
         </else>
         </if-empty>
         
+        <if-not-empty field="parameters.productSKU">
+            <entity-one value-field="goodIdentification" entity-name="GoodIdentification">
+                <field-map field-name="goodIdentificationTypeId" value="SKU"/>
+                <field-map field-name="productId" from-field="parameters.productId"/>
+            </entity-one>
+            <if-empty field="goodIdentification">
+                <set field="createGoodIdentificationMap.userLogin" from-field="systemUserLogin"/>
+                <set field="createGoodIdentificationMap.goodIdentificationTypeId" value="SKU"/>
+                <set field="createGoodIdentificationMap.productId" from-field="parameters.productId"/>
+                <set field="createGoodIdentificationMap.idValue" from-field="parameters.productSKU"/>
+                <call-service service-name="createGoodIdentification" in-map-name="createGoodIdentificationMap"/>
+            <else>
+                <set field="updateGoodIdentificationMap.userLogin" from-field="systemUserLogin"/>
+                <set field="updateGoodIdentificationMap.goodIdentificationTypeId" value="SKU"/>
+                <set field="updateGoodIdentificationMap.productId" from-field="parameters.productId"/>
+                <set field="updateGoodIdentificationMap.idValue" from-field="parameters.productSKU"/>
+                <call-service service-name="updateGoodIdentification" in-map-name="updateGoodIdentificationMap"/>
+            </else>
+            </if-empty>
+        </if-not-empty>
+        
         <set field="parameters.partyId" from-field="userLogin.partyId"/>
         <set field="runTenantServiceInMap.tenantId" value="default"/>
         <set field="runTenantServiceInMap.serviceName" value="editProductToShopmax"/>
@@ -1612,6 +1650,27 @@ under the License.
             <call-service service-name="updateProductAttribute" in-map-name="updateProductAttributeMap"/>
         </else>
         </if-empty>
+        
+        <if-not-empty field="parameters.productSKU">
+            <entity-one value-field="goodIdentification" entity-name="GoodIdentification">
+                <field-map field-name="goodIdentificationTypeId" value="SKU"/>
+                <field-map field-name="productId" from-field="parameters.productId"/>
+            </entity-one>
+            <if-empty field="goodIdentification">
+                <set field="createGoodIdentificationMap.userLogin" from-field="systemUserLogin"/>
+                <set field="createGoodIdentificationMap.goodIdentificationTypeId" value="SKU"/>
+                <set field="createGoodIdentificationMap.productId" from-field="parameters.productId"/>
+                <set field="createGoodIdentificationMap.idValue" from-field="parameters.productSKU"/>
+                <call-service service-name="createGoodIdentification" in-map-name="createGoodIdentificationMap"/>
+            <else>
+                <set field="updateGoodIdentificationMap.userLogin" from-field="systemUserLogin"/>
+                <set field="updateGoodIdentificationMap.goodIdentificationTypeId" value="SKU"/>
+                <set field="updateGoodIdentificationMap.productId" from-field="parameters.productId"/>
+                <set field="updateGoodIdentificationMap.idValue" from-field="parameters.productSKU"/>
+                <call-service service-name="updateGoodIdentification" in-map-name="updateGoodIdentificationMap"/>
+            </else>
+            </if-empty>
+        </if-not-empty>
         
         <field-to-result field="parameters.productCategoryId" result-name="productCategoryId"/>
     </simple-method>

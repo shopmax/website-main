@@ -122,7 +122,6 @@ under the License.
         <description>Upload Product To Seller</description>
         <attribute name="productId" type="String" mode="OUT" optional="false"/>
         <attribute name="productName" type="String" mode="IN" optional="false"/>
-        <attribute name="productSKU" type="String" mode="IN" optional="true"/>
         <attribute name="description" mode="IN" type="String" optional="false"/>
         <attribute name="uploadedFile1" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
         <attribute name="_uploadedFile1_fileName" type="String" mode="IN" optional="true"/>
@@ -143,6 +142,7 @@ under the License.
         <attribute name="promoPriceThruDate" type="Timestamp" mode="IN" optional="true"/>
         <attribute name="shippingSize" mode="IN" type="String" optional="true"/>
         <attribute name="listCategory" mode="IN" type="String" optional="false"/>
+        <attribute name="productSKU" type="String" mode="IN" optional="true"/>
     </service>
     
     <service name="uploadProductToShopmax" engine="simple"
@@ -150,7 +150,6 @@ under the License.
         <description>Upload Product To Shopmax</description>
         <attribute name="productId" type="String" mode="IN" optional="false"/>
         <attribute name="productName" type="String" mode="IN" optional="false"/>
-        <attribute name="productSKU" type="String" mode="IN" optional="true"/>
         <attribute name="description" mode="IN" type="String" optional="false"/>
         <attribute name="uploadedFile1" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
         <attribute name="_uploadedFile1_fileName" type="String" mode="IN" optional="true"/>
@@ -172,6 +171,7 @@ under the License.
         <attribute name="shippingSize" mode="IN" type="String" optional="true"/>
         <attribute name="listCategory" mode="IN" type="String" optional="false"/>
         <attribute name="partyId" type="String" mode="IN" optional="false"/>
+        <attribute name="productSKU" type="String" mode="IN" optional="true"/>
     </service>
     
     <service name="approveShopmaxSeller" engine="simple" 
@@ -210,7 +210,6 @@ under the License.
         <attribute name="productCategoryId" type="String" mode="IN" optional="true"/>
         <attribute name="productId" type="String" mode="IN" optional="false"/>
         <attribute name="productName" type="String" mode="IN" optional="false"/>
-        <attribute name="productSKU" type="String" mode="IN" optional="true"/>
         <attribute name="description" mode="IN" type="String" optional="false"/>
         <attribute name="uploadedFile1" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
         <attribute name="_uploadedFile1_fileName" type="String" mode="IN" optional="true"/>
@@ -231,6 +230,7 @@ under the License.
         <attribute name="promoPriceThruDate" type="Timestamp" mode="IN" optional="true"/>
         <attribute name="shippingSize" mode="IN" type="String" optional="true"/>
         <attribute name="listCategory" mode="IN" type="String" optional="true"/>
+        <attribute name="productSKU" type="String" mode="IN" optional="true"/>
     </service>
     
     <service name="editProductToShopmax" engine="simple"
@@ -239,7 +239,6 @@ under the License.
         <attribute name="productCategoryId" type="String" mode="INOUT" optional="true"/>
         <attribute name="productId" type="String" mode="IN" optional="false"/>
         <attribute name="productName" type="String" mode="IN" optional="false"/>
-        <attribute name="productSKU" type="String" mode="IN" optional="true"/>
         <attribute name="description" mode="IN" type="String" optional="false"/>
         <attribute name="uploadedFile1" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
         <attribute name="_uploadedFile1_fileName" type="String" mode="IN" optional="true"/>
@@ -261,6 +260,7 @@ under the License.
         <attribute name="shippingSize" mode="IN" type="String" optional="true"/>
         <attribute name="listCategory" mode="IN" type="String" optional="true"/>
         <attribute name="partyId" type="String" mode="IN" optional="false"/>
+        <attribute name="productSKU" type="String" mode="IN" optional="true"/>
     </service>
     
     <service name="checkCreateDropShipPurchaseOrders" engine="java"

@@ -60,29 +60,58 @@ import org.ofbiz.product.store.ProductStoreWorker;
 
 if (productCategoryId) {
     context.productCategoryId = productCategoryId;
-    
-    // Cache
-    productListCache = UtilCache.findCache("productListCache");
-    if (productListCache == null) {
-        productListCache = UtilCache.createUtilCache("productListCache");
-    }
-    
-    defaultLimit = 0;
-    limit = 40;
-    if (parameters.limit) {
-        limit = Integer.valueOf(parameters.limit);
-    }
-    if (parameters.productLength) {
-        defaultLimit = Integer.valueOf(parameters.productLength);
-    }
-    
     productMemberList = [];
     productCategoryMembers = [];
-    productMemberSize = 0;
     
-    productMemberListCache = productListCache.get("productListCache_" + productCategoryId);
-    if (productMemberListCache != null) {
-        productMemberList = productMemberListCache;
+    // Cache
+    productMemberListCache = null;
+    useCacheForMembers = UtilProperties.getPropertyValue("shopmax.properties", "shopmax.product.category.cache");
+    if (useCacheForMembers == "Y") {
+        productListCache = UtilCache.findCache("productListCache");
+        if (productListCache == null) {
+            productListCache = UtilCache.createUtilCache("productListCache");
+        }
+        
+        productMemberListCache = productListCache.get("productListCache_" + productCategoryId);
+        if (productMemberListCache != null) {
+            productMemberList = productMemberListCache;
+        }
+    }
+    
+    viewSize = parameters.VIEW_SIZE;
+    viewIndex = parameters.VIEW_INDEX;
+    
+    // set the default view size
+    defaultViewSize = 20;
+    context.defaultViewSize = defaultViewSize;
+    
+    // set the limit view
+    limitView = true;
+    context.limitView = limitView;
+    
+    if (viewIndex) {
+        viewIndex = Integer.valueOf(viewIndex).intValue();
+    } else {
+        viewIndex = 0;
+    }
+    
+    if (viewSize) {
+        viewSize = Integer.valueOf(viewSize).intValue();
+    } else {
+        viewSize = defaultViewSize
+    }
+    
+    listSize = 0;
+    lowIndex = 0;
+    highIndex = 0;
+    
+    if (limitView) {
+        // get the indexes for the partial list
+        lowIndex = ((viewIndex * viewSize) + 1);
+        highIndex = (viewIndex + 1) * viewSize;
+    } else {
+        lowIndex = 0;
+        highIndex = 0;
     }
     
     if (productMemberList.size() == 0) {
@@ -109,11 +138,13 @@ if (productCategoryId) {
                 productCategoryMembers = getProductDetail(productIds);
             }
         }
-        productListCache.put("productListCache_" + productCategoryId, productCategoryMembers);
+        if (useCacheForMembers == "Y") {
+            productListCache.put("productListCache_" + productCategoryId, productCategoryMembers);
+        }
     }
     
-    if (productCategoryMembers.size() < limit) {
-        limit = productCategoryMembers.size();
+    if (productCategoryMembers.size() < defaultViewSize) {
+        defaultViewSize = productCategoryMembers.size();
     }
     
     if (UtilValidate.isNotEmpty(parameters.sortBy)) {
@@ -126,10 +157,29 @@ if (productCategoryId) {
             productCategoryMembers = UtilMisc.sortMaps(productCategoryMembers, UtilMisc.toList("stock"));
         }
     }
-    productCategoryMembers = productCategoryMembers.subList(defaultLimit, limit);
-    context.defaultLimit = defaultLimit+1;
+    
+    // set the index and size
+    listSize = productCategoryMembers.size();
+    if (highIndex > listSize) {
+        highIndex = listSize;
+    }
+    
+    // get only between low and high indexes
+    if (limitView) {
+        if (UtilValidate.isNotEmpty(productCategoryMembers)) {
+            productCategoryMembers = productCategoryMembers.subList(lowIndex-1, highIndex);
+        }
+    } else {
+        lowIndex = 1;
+        highIndex = listSize;
+    }
+    
     context.productCategoryMembers = productCategoryMembers;
-    context.productMemberSize = productCategoryMembers.size();
+    context.viewIndex = Integer.valueOf(viewIndex);
+    context.viewSize = Integer.valueOf(viewSize);
+    context.lowIndex = Integer.valueOf(lowIndex);
+    context.highIndex = Integer.valueOf(highIndex);
+    context.listSize = Integer.valueOf(listSize);
     
     productList = [];
     if (productCategoryMembers) {
@@ -195,6 +245,11 @@ if (productCategoryId) {
             productAttribute = delegator.findOne("ProductAttribute", [productId : product.productId, attrName : "SHIPPING_SIZE"], true);
             if (productAttribute) {
                 productMap.shippingSize = productAttribute.attrValue;
+            }
+            
+            goodIdentification = delegator.findOne("GoodIdentification", [goodIdentificationTypeId : "SKU", productId : product.productId], true);
+            if (goodIdentification) {
+                productMap.productSKU = goodIdentification.idValue;
             }
             
             productList.add(productMap);

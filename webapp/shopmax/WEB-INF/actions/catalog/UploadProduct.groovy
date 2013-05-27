@@ -92,4 +92,9 @@ if(parameters.productId){
     if (productAttribute) {
         context.shippingSize = productAttribute.attrValue;
     }
+    
+    goodIdentification = delegator.findOne("GoodIdentification", [goodIdentificationTypeId : "SKU", productId : parameters.productId], true);
+    if (goodIdentification) {
+        context.productSKU = goodIdentification.idValue;
+    }
 }

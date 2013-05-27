@@ -135,12 +135,6 @@ under the License.
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label for="inputProductSKU" class="control-label">Product SKU</label>
-                                <div class="controls">
-                                    <input type="text" id="inputProductSKU" class="input-xlarge" name="productSKU" value="${productSKU?if_exists}">
-                                </div>
-                            </div>
-                            <div class="control-group">
                                 <label for="inputDescription" class="control-label">Product description</label>
                                 <div class="controls">
                                     <textarea class="input-xlarge" rows="3" name="description">${description?if_exists}</textarea>
@@ -261,69 +255,72 @@ under the License.
                 <tr>
                     <td class="col1 advanced-option product-upload">
                         <div id="advanced-option-detail">
-                                <label class="checkbox">
-                                    <input type="checkbox"> Always show Advanced Option
-                                </label><br />
-                                <label>
-                                    Brand&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="input-large" />
-                                </label>
-                                <table class="size-color">
-                                    <tr>
-                                        <td class="col1">Variations:</td><td class="col2">Size</td><td class="col3">
-                                            <ul class="list-size"><li><a href="#">6</a>
-                                            </li><li><a href="#">8</a>
-                                            </li><li><a href="#">10</a>
-                                            </li><li><a href="#">12</a>
-                                            </li><li class="selected"><a href="#">14</a>
-                                            </li><li><a href="#">16</a>
-                                            </li><li><a href="#">18</a>
-                                            </li></ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col1">&nbsp;</td><td class="col2">Colour</td>
-                                        <td class="col3">
-                                        <ul class="list-color">
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-black.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-grey.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-white.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-dark-organ.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-red.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li class="selected">
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-pink.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-organ.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-yellow.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-green.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-light-blue.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-purple.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-dark-yellow.png</@ofbizContentUrl>"></a>
-                                            </li>
-                                        </ul>
-                                        </td>
-                                    </tr>
-                                </table>
+                            <label class="checkbox">
+                                <input type="checkbox"> Always show Advanced Option
+                            </label><br />
+                            <label>
+                                SKU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="input-large" />
+                            </label>
+                            <label>
+                                Brand&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="input-large" />
+                            </label>
+                            <table class="size-color">
+                                <tr>
+                                    <td class="col1">Variations:</td><td class="col2">Size</td><td class="col3">
+                                        <ul class="list-size"><li><a href="#">6</a>
+                                        </li><li><a href="#">8</a>
+                                        </li><li><a href="#">10</a>
+                                        </li><li><a href="#">12</a>
+                                        </li><li class="selected"><a href="#">14</a>
+                                        </li><li><a href="#">16</a>
+                                        </li><li><a href="#">18</a>
+                                        </li></ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col1">&nbsp;</td><td class="col2">Colour</td>
+                                    <td class="col3">
+                                    <ul class="list-color">
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-black.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-grey.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-white.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-dark-organ.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-red.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li class="selected">
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-pink.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-organ.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-yellow.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-green.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-light-blue.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-purple.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/color-dark-yellow.png</@ofbizContentUrl>"></a>
+                                        </li>
+                                    </ul>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </td>
                 </tr>

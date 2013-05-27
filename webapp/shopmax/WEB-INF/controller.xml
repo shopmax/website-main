@@ -478,9 +478,6 @@ under the License.
     
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>
-    <view-map name="registration" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#Registration"/>
-    <view-map name="registrationajax" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#RegistrationAjax"/>
-    <view-map name="registrationsuccess" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#RegistrationSuccess"/>
     <view-map name="helpcenter" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#HelpCenter"/>
     <view-map name="groupbang" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#GroupBang"/>
     <view-map name="rushhour" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#RushHour"/>
@@ -523,6 +520,9 @@ under the License.
     <view-map name="transactionhistory" type="screen" page="component://shopmax/widget/OrderScreens.xml#TransactionHistory"/>
     <view-map name="shippingmethod" type="screen" page="component://shopmax/widget/OrderScreens.xml#ShippingMethod"/>
     
+    <view-map name="registration" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Registration"/>
+    <view-map name="registrationajax" type="screen" page="component://shopmax/widget/CustomerScreens.xml#RegistrationAjax"/>
+    <view-map name="registrationsuccess" type="screen" page="component://shopmax/widget/CustomerScreens.xml#RegistrationSuccess"/>
     <view-map name="profile" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Profile"/>
     <view-map name="account" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Account"/>
     
