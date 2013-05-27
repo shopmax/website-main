@@ -17,6 +17,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
 <script src="<@ofbizContentUrl>/shopmax-default/js/manageproduct.js</@ofbizContentUrl>" type="text/javascript"></script>
 <style>
     .prev_container{
@@ -34,7 +35,11 @@ under the License.
             <li class="media" id="media-${product_index}">
                 <div id="load-${product_index}" class="loadimage"></div>
                 <a class="pull-left" href="#">
-                    <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-2.jpg</@ofbizContentUrl>" />
+                    <#if product.productImage?exists>
+                        <img class="media-object" src="<@ofbizContentUrl>${product.productImage}</@ofbizContentUrl>" />
+                    <#else>
+                        <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-2.jpg</@ofbizContentUrl>" />
+                    </#if>
                 </a>
                 <div class="media-body">
                     <h5 class="media-category">
@@ -67,7 +72,11 @@ under the License.
             <li class="media media-edit" style="display: none;" id="view-edit-product-${product_index}">
                 <div id="load-remove-${product_index}" class="loadremoveimage"></div>
                 <a class="pull-left" href="#">
-                <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-170x170.jpg</@ofbizContentUrl>" />
+                    <#if product.productImage?exists>
+                        <img class="media-object" src="<@ofbizContentUrl>${product.productImage}</@ofbizContentUrl>" />
+                    <#else>
+                        <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-170x170.jpg</@ofbizContentUrl>" />
+                    </#if>
                 </a>
                 <div class="media-body">
                     <form class="form-horizontal pull-left" id="updateproduct-${product_index}" name="updateproduct-${product_index}" action="<@ofbizUrl>updateproduct</@ofbizUrl>" method="post" enctype="multipart/form-data">

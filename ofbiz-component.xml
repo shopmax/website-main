@@ -73,4 +73,12 @@ under the License.
         server="default-server"
         location="webapp/shopmax-default"
         mount-point="/shopmax-default"/>
+    
+    <!-- Product Image -->
+    <webapp name="shopmax-product"
+        title="Shopmax Product Image"
+        app-bar-display="false"
+        server="default-server"
+        location="webapp/shopmax-product"
+        mount-point="/shopmax-product"/>
 </ofbiz-component>

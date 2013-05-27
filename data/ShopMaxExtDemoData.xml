@@ -106,6 +106,62 @@ under the License.
     
     <ProductStoreCatalog productStoreId="ShopMaxStore" prodCatalogId="SHOPMAX_CATALOG" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
     
+    <Party partyId="USPS" partyTypeId="PARTY_GROUP"/>
+    <Party partyId="UPS" partyTypeId="PARTY_GROUP"/>
+    <Party partyId="DHL" partyTypeId="PARTY_GROUP"/>
+    <Party partyId="FEDEX" partyTypeId="PARTY_GROUP"/>
+    
+    <PartyGroup partyId="USPS" groupName="USPS"/>
+    <PartyGroup partyId="UPS" groupName="UPS"/>
+    <PartyGroup partyId="DHL" groupName="DHL"/>
+    <PartyGroup partyId="FEDEX" groupName="Federal Express"/>
+    
+    <PartyRole partyId="USPS" roleTypeId="CARRIER"/>
+    <PartyRole partyId="UPS" roleTypeId="CARRIER"/>
+    <PartyRole partyId="DHL" roleTypeId="CARRIER"/>
+    <PartyRole partyId="FEDEX" roleTypeId="CARRIER"/>
+    
+    <ShipmentMethodType description="Local Delivery" shipmentMethodTypeId="LOCAL_DELIVERY"/>
+    <ShipmentMethodType description="Ground Home Delivery" shipmentMethodTypeId="GROUND_HOME"/>
+    <ShipmentMethodType description="Ground" shipmentMethodTypeId="GROUND"/>
+    <ShipmentMethodType description="Standard" shipmentMethodTypeId="STANDARD"/>
+    <ShipmentMethodType description="Air" shipmentMethodTypeId="AIR"/>
+    <ShipmentMethodType description="Third Day" shipmentMethodTypeId="THIRD_DAY"/>
+    <ShipmentMethodType description="Second Day" shipmentMethodTypeId="SECOND_DAY"/>
+    <ShipmentMethodType description="Guaranteed Next Day" shipmentMethodTypeId="NEXT_DAY"/>
+    <ShipmentMethodType description="Next Afternoon" shipmentMethodTypeId="NEXT_PM"/>
+    <ShipmentMethodType description="Next Morning" shipmentMethodTypeId="NEXT_AM"/>
+    <ShipmentMethodType description="Express" shipmentMethodTypeId="EXPRESS"/>
+    <ShipmentMethodType description="Standard Overnight" shipmentMethodTypeId="ST_OVERNIGHT"/>
+    <ShipmentMethodType description="Priority Overnight" shipmentMethodTypeId="PR_OVERNIGHT"/>
+    <ShipmentMethodType description="First Overnight" shipmentMethodTypeId="FI_OVERNIGHT"/>
+    <ShipmentMethodType description="Same Day" shipmentMethodTypeId="SAME_DAY"/>
+    <ShipmentMethodType description="International Express" shipmentMethodTypeId="INT_EXPRESS"/>
+    
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="NEXT_DAY" sequenceNumber="1" carrierServiceCode="01"/>
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="SECOND_DAY" sequenceNumber="2" carrierServiceCode="02"/>
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="THIRD_DAY" sequenceNumber="3" carrierServiceCode="THIRDDAY"/>
+    <CarrierShipmentMethod partyId="UPS" roleTypeId="CARRIER" shipmentMethodTypeId="GROUND" sequenceNumber="4" carrierServiceCode="03"/>
+    <CarrierShipmentMethod partyId="_NA_" roleTypeId="CARRIER" shipmentMethodTypeId="STANDARD" sequenceNumber="5"/>
+    <CarrierShipmentMethod partyId="USPS" roleTypeId="CARRIER" shipmentMethodTypeId="EXPRESS" sequenceNumber="6" carrierServiceCode="Express"/>
+    <CarrierShipmentMethod partyId="USPS" roleTypeId="CARRIER" shipmentMethodTypeId="STANDARD" sequenceNumber="7" carrierServiceCode="Parcel"/>
+    <CarrierShipmentMethod partyId="USPS" roleTypeId="CARRIER" shipmentMethodTypeId="INT_EXPRESS" sequenceNumber="8" carrierServiceCode="INTEXPRESS"/>
+    <CarrierShipmentMethod partyId="DHL" roleTypeId="CARRIER" shipmentMethodTypeId="EXPRESS" sequenceNumber="9" carrierServiceCode="E"/>
+    <CarrierShipmentMethod partyId="DHL" roleTypeId="CARRIER" shipmentMethodTypeId="NEXT_PM" sequenceNumber="10" carrierServiceCode="N"/>
+    <CarrierShipmentMethod partyId="DHL" roleTypeId="CARRIER" shipmentMethodTypeId="SECOND_DAY" sequenceNumber="11" carrierServiceCode="S"/>
+    <CarrierShipmentMethod partyId="DHL" roleTypeId="CARRIER" shipmentMethodTypeId="GROUND" sequenceNumber="12" carrierServiceCode="G"/>
+    <CarrierShipmentMethod partyId="FEDEX" roleTypeId="CARRIER" shipmentMethodTypeId="SAME_DAY" sequenceNumber="12" carrierServiceCode="SAMEDAY"/>
+    <CarrierShipmentMethod partyId="FEDEX" roleTypeId="CARRIER" shipmentMethodTypeId="NEXT_AM" sequenceNumber="13" carrierServiceCode="FIRSTOVERNIGHT"/>
+    <CarrierShipmentMethod partyId="FEDEX" roleTypeId="CARRIER" shipmentMethodTypeId="FI_OVERNIGHT" sequenceNumber="13" carrierServiceCode="FIRSTOVERNIGHT"/>
+    <CarrierShipmentMethod partyId="FEDEX" roleTypeId="CARRIER" shipmentMethodTypeId="NEXT_DAY" sequenceNumber="14" carrierServiceCode="PRIORITYOVERNIGHT"/>
+    <CarrierShipmentMethod partyId="FEDEX" roleTypeId="CARRIER" shipmentMethodTypeId="PR_OVERNIGHT" sequenceNumber="14" carrierServiceCode="PRIORITYOVERNIGHT"/>
+    <CarrierShipmentMethod partyId="FEDEX" roleTypeId="CARRIER" shipmentMethodTypeId="NEXT_PM" sequenceNumber="15" carrierServiceCode="STANDARDOVERNIGHT"/>
+    <CarrierShipmentMethod partyId="FEDEX" roleTypeId="CARRIER" shipmentMethodTypeId="ST_OVERNIGHT" sequenceNumber="15" carrierServiceCode="STANDARDOVERNIGHT"/>
+    <CarrierShipmentMethod partyId="FEDEX" roleTypeId="CARRIER" shipmentMethodTypeId="SECOND_DAY" sequenceNumber="16" carrierServiceCode="FEDEX2DAY"/>
+    <CarrierShipmentMethod partyId="FEDEX" roleTypeId="CARRIER" shipmentMethodTypeId="EXPRESS" sequenceNumber="17" carrierServiceCode="FEDEXEXPRESSSAVER"/>
+    <CarrierShipmentMethod partyId="FEDEX" roleTypeId="CARRIER" shipmentMethodTypeId="GROUND" sequenceNumber="18" carrierServiceCode="FEDEXGROUND"/>
+    <CarrierShipmentMethod partyId="FEDEX" roleTypeId="CARRIER" shipmentMethodTypeId="GROUND_HOME" sequenceNumber="19" carrierServiceCode="GROUNDHOMEDELIVERY"/>
+    
     <ProductStoreShipmentMeth productStoreShipMethId="SM0000" productStoreId="ShopMaxStore" partyId="_NA_" includeNoChargeItems="Y" allowUspsAddr="N" requireUspsAddr="N" roleTypeId="CARRIER" shipmentMethodTypeId="NO_SHIPPING" sequenceNumber="6"/>
     <ProductStoreShipmentMeth productStoreShipMethId="SM0001" productStoreId="ShopMaxStore" partyId="UPS" includeNoChargeItems="N" allowUspsAddr="N" requireUspsAddr="N" roleTypeId="CARRIER" shipmentMethodTypeId="GROUND" sequenceNumber="3"/>
     <ProductStoreShipmentMeth productStoreShipMethId="SM0002" productStoreId="ShopMaxStore" partyId="UPS" includeNoChargeItems="N" allowUspsAddr="N" requireUspsAddr="N" roleTypeId="CARRIER" shipmentMethodTypeId="AIR" sequenceNumber="2"/>
