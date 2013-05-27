@@ -44,6 +44,17 @@ if(parameters.productId){
     context.productName = product.productName;
     context.description = product.description;
     
+    categoryMemberNameList = [];
+    categoryMemberList = EntityUtil.filterByDate(delegator.findByAnd("ProductCategoryMember" , [productId : product.productId], null, false));
+    for (categoryMember in categoryMemberList) {
+        categoryMemberMap = [:];
+        categoryMemberName = delegator.findByAnd("ProductCategory", [productCategoryId : categoryMember.productCategoryId], null, false);
+        categoryMemberMap.productCategoryId = categoryMember.productCategoryId;
+        categoryMemberMap.categoryName = categoryMemberName[0].categoryName;
+        categoryMemberNameList.add(categoryMemberMap);
+    }
+    context.categoryMemberNameList = categoryMemberNameList;
+    
     productPriceDefault = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : product.productId, productPricePurposeId : "PURCHASE", productPriceTypeId : "DEFAULT_PRICE"], null, false)));
     if (productPriceDefault) {
         context.defaultPrice = productPriceDefault.price;

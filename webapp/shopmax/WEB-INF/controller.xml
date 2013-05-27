@@ -230,6 +230,14 @@ under the License.
         <response name="error" type="view" value="uploadproduct"/>
     </request-map>
     
+    <request-map uri="updateproductfullmode">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="updateProductToSeller"/>
+        <response name="success" type="request" value="uploadproduct">
+            <redirect-parameter name="productId"/>
+        </response>
+    </request-map>
+    
     <request-map uri="productnormal">
         <security https="false" auth="false"/>
         <response name="success" type="view" value="productnormal"/>

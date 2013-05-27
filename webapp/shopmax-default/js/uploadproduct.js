@@ -66,7 +66,7 @@ $(function(){
         e.preventDefault();
     });
     $('#assign-category').click(function(e){
-        var formUpload = document.getElementById('uploadProductToSeller');
+    	var formUpload = document.getElementById('uploadAndUpdateProduct');
         formUpload.getElementsByTagName('input').checked=true;
         if(typeof getUrlVars()["categoryFirstId"] != "undefined"){
             var categoryFirstId = getUrlVars()["categoryFirstId"];
@@ -136,18 +136,6 @@ $(function(){
         var dateFormat = $('#datepicker2').val().split('/');
         $('#promoPriceThruDate').val(dateFormat[2]+"-"+dateFormat[0]+"-"+dateFormat[1]+" 00:00:00.000");
     });
-    $('#advanced-option-bar').click(function(){
-        if($('#advanced-option-detail').is(":hidden")){
-            $('.col1.advanced-option.product-upload').css({'padding':'30px'});
-            $('#advanced-option-detail').slideDown(300);
-        }
-        else{
-            $('#advanced-option-detail').slideUp(300, function() {
-                $('tr').find('.col1.advanced-option.product-upload').css({'padding':'0'});
-            });
-        }
-    });
-    
     $('#promoPrice').change(function(){
         if($('#promoPrice').val()){
             document.getElementById("checkboxUpload").checked=true;

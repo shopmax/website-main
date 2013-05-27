@@ -30,9 +30,20 @@ under the License.
             }
             if (isClickActivityOccur==true)
             {
-                $('#uploadProductToSeller').submit();
+                $('#uploadAndUpdateProduct').submit();
             }
             e.preventDefault();
+        });
+        $('#advanced-option-bar').click(function(){
+            if($('#advanced-option-detail').is(":hidden")){
+                $('.col1.advanced-option.product-upload').css({'padding':'30px'});
+                $('#advanced-option-detail').slideDown(300);
+            }
+            else{
+                $('#advanced-option-detail').slideUp(300, function() {
+                    $('tr').find('.col1.advanced-option.product-upload').css({'padding':'0'});
+                });
+            }
         });
     });
 </script>
@@ -124,9 +135,21 @@ under the License.
                         <div class="select-products-wrapper">
                             <table class="selected-products">
                                 <tbody>
-                            </tbody></table>
+                                    <#if categoryMemberNameList?has_content>
+                                        <#list categoryMemberNameList as categoryMember>
+                                            <tr id="tr-${categoryMember.productCategoryId?if_exists}">
+                                                <td>${categoryMember.categoryName?if_exists}</td>
+                                                <td>
+                                                    <a id="remove-${categoryMember.productCategoryId?if_exists}" onclick="removeCategory('${categoryMember.productCategoryId?if_exists}')">Remove</a>
+                                                </td>
+                                            </tr>
+                                        </#list>
+                                    </#if>
+                                </tbody>
+                            </table>
                         </div>
-                        <form class="form-horizontal pull-left media-edit" action="uploadProductToSeller" id="uploadProductToSeller" name="uploadProductToSeller" method="post" enctype="multipart/form-data">
+                        <form class="form-horizontal pull-left media-edit" action="<#if parameters.productId?has_content>updateproductfullmode<#else>uploadProductToSeller</#if>" id="uploadAndUpdateProduct" name="uploadAndUpdateProduct" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="productId" value="${parameters.productId?if_exists}"/>
                             <input type="hidden" name="listCategory" value="" id="listCategory">
                             <div class="control-group">
                                 <label for="inputProductName" class="control-label">Product name</label>
