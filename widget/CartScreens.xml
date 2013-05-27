@@ -27,6 +27,7 @@ under the License.
                 <set field="titleProperty" value="PageTitleShoppingCart"/>
                 <set field="headerItem" value="shoppingcart"/>
                 <set field="breadcrumbTitle" value="Shopping Cart"/>
+                <set field="layoutSettings.javaScripts[+0]" value="/shopmax-default/js/shoppingCartProcess.js" global="true"/>
                 <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/cart/ShowCart.groovy"/>
                 <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/cart/ShowPromoText.groovy"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/cart/ShowSupplierCarts.groovy"/>

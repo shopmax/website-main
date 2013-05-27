@@ -32,6 +32,16 @@ under the License.
     <div class="row">
         <#include "component://shopmax/webapp/shopmax/order/ordersummary.ftl" />
         <form id="orderSummarySubmitForm" action="<@ofbizUrl>onePageProcess</@ofbizUrl>" method="post">
+            <#-- Shipping Options -->
+            <#list supplierCarrierMap.keySet() as partyId>
+                <#assign carrierPartyId = supplierCarrierMap.get(partyId)/>
+                <input name="carrierPartyId:${partyId}" value="${carrierPartyId}" type="hidden"/>
+            </#list>
+            <#list supplierShippingMethodTypeMap.keySet() as partyId>
+                <#assign shippingMethodTypeId = supplierShippingMethodTypeMap.get(partyId)/>
+                <input name="shippingMethodTypeId:${partyId}" value="${shippingMethodTypeId}" type="hidden"/>
+            </#list>
+            
             <div class="span9 main-content">
                 <ul class="sc-step">
                     <li><span class="badge badge-inactive">1</span>&nbsp;&nbsp;Shopping Cart</li>
