@@ -370,6 +370,8 @@ under the License.
             <if-not-empty field="storeEmail.bodyScreenLocation">
                 <get-related-one value-field="createdUserLogin" relation-name="Person" to-value-field="person"/>
                 <set field="bodyParameters.person" from-field="person"/>
+                <set field="bodyParameters.username" from-field="parameters.USERNAME"/>
+                <set field="bodyParameters.password" from-field="parameters.PASSWORD"/>
                 <set field="emailParams.bodyParameters" from-field="bodyParameters"/>
                 <set field="emailParams.sendTo" from-field="emailContext.emailAddress"/>
                 <set field="emailParams.subject" from-field="storeEmail.subject"/>
