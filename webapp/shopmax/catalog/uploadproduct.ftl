@@ -135,6 +135,12 @@ under the License.
                                 </div>
                             </div>
                             <div class="control-group">
+                                <label for="inputProductSKU" class="control-label">Product SKU</label>
+                                <div class="controls">
+                                    <input type="text" id="inputProductSKU" class="input-xlarge" name="productSKU" value="${productSKU?if_exists}">
+                                </div>
+                            </div>
+                            <div class="control-group">
                                 <label for="inputDescription" class="control-label">Product description</label>
                                 <div class="controls">
                                     <textarea class="input-xlarge" rows="3" name="description">${description?if_exists}</textarea>

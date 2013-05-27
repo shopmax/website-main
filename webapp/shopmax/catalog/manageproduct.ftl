@@ -140,7 +140,7 @@ under the License.
                                     <p>Stocks : ${product.stock?if_exists}</p>
                                     <a class="btn-general edit" id="edit-product-${product_index}">Edit</a>
                                     <a class="btn-green-small" href="#">Promote</a>
-                                    <a class="btn-grey-small" onclick="removeProduct('${productCategory.productCategoryId?if_exists}','${product.productId?if_exists}',${product_index})">Remove</a>
+                                    <a class="btn-grey-small" onclick="removeProduct('${productCategoryId?if_exists}','${product.productId?if_exists}',${product_index})">Remove</a>
                                 </div>
                             </li>
                             <li class="media media-edit" style="display: none;" id="view-edit-product-${product_index}">
@@ -156,6 +156,12 @@ under the License.
                                             <label class="control-label" for="inputProductName">Product name</label>
                                             <div class="controls">
                                                 <input type="text" class="input-xlarge" id="inputProductName" name="productName" value="${product.productName?if_exists}">
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label for="inputProductSKU" class="control-label">Product SKU</label>
+                                            <div class="controls">
+                                                <input type="text" id="inputProductSKU" class="input-xlarge" name="productSKU" value="${product.productSKU?if_exists}">
                                             </div>
                                         </div>
                                         <div class="control-group">
@@ -178,7 +184,7 @@ under the License.
                                                                             <div class="uploaded-image">
                                                                                 <img src="<@ofbizContentUrl>${productImage.productImageThumb}</@ofbizContentUrl>" />
                                                                             </div>
-                                                                            <a onclick="removeProductImage('${productCategory.productCategoryId?if_exists}','${product.productId?if_exists}','${productImage.contentId?if_exists}','${productImage.fromDate?if_exists}','IMAGE','${product_index}')">Remove</a>
+                                                                            <a onclick="removeProductImage('${productCategoryId?if_exists}','${product.productId?if_exists}','${productImage.contentId?if_exists}','${productImage.fromDate?if_exists}','IMAGE','${product_index}')">Remove</a>
                                                                         </li>
                                                                     <#else>
                                                                         <#if product.seqNumNoImage?has_content>
