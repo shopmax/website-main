@@ -49,19 +49,19 @@ $(function(){
                 tempPhoneText = $('#phy_phone_text_'+i).val();
                 tempFaxText = $('#phy_fax_text_'+i).val();
                 if($('#mon_check_'+i).is(":checked")){
-                	mon = 'MON-'+$('#mon_o_0_'+i).val()+'-'+$('#mon_o_1_'+i).val()+'-'+$('#mon_c_0_'+i).val()+'-'+$('#mon_c_1_'+i).val();}
+                    mon = 'MON-'+$('#mon_o_0_'+i).val()+'-'+$('#mon_o_1_'+i).val()+'-'+$('#mon_c_0_'+i).val()+'-'+$('#mon_c_1_'+i).val();}
                 if($('#tue_check_'+i).is(":checked")){
-                	tue = 'TUE-'+$('#tue_o_0_'+i).val()+'-'+$('#tue_o_1_'+i).val()+'-'+$('#tue_c_0_'+i).val()+'-'+$('#tue_c_1_'+i).val();}
+                    tue = 'TUE-'+$('#tue_o_0_'+i).val()+'-'+$('#tue_o_1_'+i).val()+'-'+$('#tue_c_0_'+i).val()+'-'+$('#tue_c_1_'+i).val();}
                 if($('#wed_check_'+i).is(":checked")){
-                	wed = 'WED-'+$('#wed_o_0_'+i).val()+'-'+$('#wed_o_1_'+i).val()+'-'+$('#wed_c_0_'+i).val()+'-'+$('#wed_c_1_'+i).val();}
+                    wed = 'WED-'+$('#wed_o_0_'+i).val()+'-'+$('#wed_o_1_'+i).val()+'-'+$('#wed_c_0_'+i).val()+'-'+$('#wed_c_1_'+i).val();}
                 if($('#thu_check_'+i).is(":checked")){
-                	thu = 'THU-'+$('#thu_o_0_'+i).val()+'-'+$('#thu_o_1_'+i).val()+'-'+$('#thu_c_0_'+i).val()+'-'+$('#thu_c_1_'+i).val();}
+                    thu = 'THU-'+$('#thu_o_0_'+i).val()+'-'+$('#thu_o_1_'+i).val()+'-'+$('#thu_c_0_'+i).val()+'-'+$('#thu_c_1_'+i).val();}
                 if($('#fri_check_'+i).is(":checked")){
-                	fri = 'FRI-'+$('#fri_o_0_'+i).val()+'-'+$('#fri_o_1_'+i).val()+'-'+$('#fri_c_0_'+i).val()+'-'+$('#fri_c_1_'+i).val();}
+                    fri = 'FRI-'+$('#fri_o_0_'+i).val()+'-'+$('#fri_o_1_'+i).val()+'-'+$('#fri_c_0_'+i).val()+'-'+$('#fri_c_1_'+i).val();}
                 if($('#sat_check_'+i).is(":checked")){
-                	sat = 'SAT-'+$('#sat_o_0_'+i).val()+'-'+$('#sat_o_1_'+i).val()+'-'+$('#sat_c_0_'+i).val()+'-'+$('#sat_c_1_'+i).val();}
+                    sat = 'SAT-'+$('#sat_o_0_'+i).val()+'-'+$('#sat_o_1_'+i).val()+'-'+$('#sat_c_0_'+i).val()+'-'+$('#sat_c_1_'+i).val();}
                 if($('#sun_check_'+i).is(":checked")){
-                	sun = 'SUN-'+$('#sun_o_0_'+i).val()+'-'+$('#sun_o_1_'+i).val()+'-'+$('#sun_c_0_'+i).val()+'-'+$('#sun_c_1_'+i).val();}
+                    sun = 'SUN-'+$('#sun_o_0_'+i).val()+'-'+$('#sun_o_1_'+i).val()+'-'+$('#sun_c_0_'+i).val()+'-'+$('#sun_c_1_'+i).val();}
                 
                 /*if(tempPhoneText){
                     phoneNumber = "STORE_PHONE_NUMBER-"+phonePrefix+tempPhoneText;
@@ -118,17 +118,95 @@ $(function(){
             //$('#physicalPhoneType').val(tempPhoneType)
             $('#physicalPhone').val(tempStorePhoneNumber);
             $('#physicalTime').val(tempDataTime);
-            $('#createcustomer').submit();
+            //$('#createcustomer').submit();
+            $('input.check').each(function(){
+                valid = false;
+                if(!$(this).val().length){
+                    $(this).addClass('required');
+                    valid = false;
+                }
+                else{
+                    $(this).removeClass('required');
+                    if($('.required').length == 0){
+                        valid = true;
+                    }
+                }
+                if(valid){
+                    $('#createcustomer').submit();
+                }
+            });
         }
         else{
-            $('#createcustomer').submit();
+            $('input.check').each(function(){
+                var valid = false;
+                //Test Check Email
+                var x=document.forms["createcustomer"]["CUSTOMER_EMAIL"].value;
+                var atpos=x.indexOf("@");
+                var dotpos=x.lastIndexOf(".");
+                
+                if(!$(this).val().length){
+                    $(this).addClass('required');
+                    valid = false;
+                }
+                else{
+                   $(this).removeClass('required');
+                    if($('.required').length == 1){
+                        valid = true;
+                    }
+                    if(atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length){
+                        $('#emailAddress').addClass('required');
+                        valid = false;
+                    }
+                    if($('#currentPassword').val() != $('#currentPasswordVerify').val()){
+                        $('#currentPassword').addClass('required');
+                        $('#currentPasswordVerify').addClass('required');
+                        valid = false;
+                    }
+                    if ($('#currentPassword').hasClass('required')){
+                        valid = false;
+                    }
+                }
+                if(valid){
+                    $('#createcustomer').submit();
+                }
+            });
         }
     });
+    $('#currentPassword').click(function(){
+        $('#currentPassword').removeClass('required');
+        $('#currentPasswordVerify').removeClass('required');
+    });
+    $('#currentPasswordVerify').click(function(){
+        $('#currentPassword').removeClass('required');
+        $('#currentPasswordVerify').removeClass('required');
+    });
+    $('#emailAddress').click(function(){
+        $('#emailAddress').removeClass('required');
+    });
+    $('#currentPassword').click(function(){
+        $('#currentPassword').removeClass('required');
+    });
+    $('#currentPasswordVerify').click(function(){
+        $('#currentPasswordVerify').removeClass('required');
+    });
+    $('#firstName').click(function(){
+        $('#firstName').removeClass('required');
+    });
+    $('#lastName').click(function(){
+        $('#lastName').removeClass('required');
+    });
+    $('#businessName').click(function(){
+        $('#businessName').removeClass('required');
+    });
+    
     $('.chk_regis').click(function(){
         if($('.chk_regis').is(':checked')){
-             $('.business-guide').removeClass('hidden');
-             $('.business-registered').removeClass('hidden');
-             $('#businessUser').val("Y");
+            $('.business-guide').removeClass('hidden');
+            $('.business-registered').removeClass('hidden');
+            $('#businessUser').val("Y");
+            $('.business-guide').removeClass('hidden');
+            $('.business-registered').removeClass('hidden');
+            $('#businessUser').val("Y");
         }
         else{
             $('.business-registered').addClass('hidden');

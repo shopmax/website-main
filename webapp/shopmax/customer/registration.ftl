@@ -17,6 +17,17 @@ specific language governing permissions and limitations
 under the License.
 -->
 <script src="<@ofbizContentUrl>/shopmax-default/js/registration.js</@ofbizContentUrl>" type="text/javascript"></script>
+
+
+
+
+
+<script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+
+
+
+
+
 <div class="container content">
     <div id="load-script"></div>
     <!-- include breadcrumb -->
@@ -37,7 +48,7 @@ under the License.
         </div><!-- /.span3.sidebar -->
     <!-- MAIN CONTENT -->
         <!-- sliderdiv -->
-        <div class="span9 main-content">
+        <div class="span9 main-content" id="abc">
             <form action="<@ofbizUrl>createcustomer</@ofbizUrl>" id="createcustomer" name="createcustomer" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="productStoreId" value="${productStoreId}"/>
                 <input type="hidden" name="businessUser" id="businessUser" value="N"/>
@@ -57,27 +68,27 @@ under the License.
                             <div class="control-group">
                                 <label class="control-label control-label-small" for="inputEmailAddress">Email Address</label>
                                 <div class="pull-left">
-                                    <input type="text" class="input-xlarge" id="emailAddress" name="CUSTOMER_EMAIL">
+                                    <input type="text" class="input-xlarge check" id="emailAddress" name="CUSTOMER_EMAIL">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label control-label-small" for="inputPromotionDescription">Password</label>
                                 <div class="pull-left">
-                                    <input type="password" class="input-xlarge" id="currentPassword" name="PASSWORD">
+                                    <input type="password" class="input-xlarge check" id="currentPassword" name="PASSWORD">
                                 </div>
                                 <label class="control-label control-label-small" for="inputPromotionDescription">Confirm Password</label>
                                 <div class="pull-left">
-                                    <input type="password" class="input-xlarge" id="currentPasswordVerify" name="CONFIRM_PASSWORD">
+                                    <input type="password" class="input-xlarge check" id="currentPasswordVerify" name="CONFIRM_PASSWORD" onChange="checkPasswordMatch();">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label control-label-small" for="inputPromotionDescription">First Name</label>
                                 <div class="pull-left">
-                                    <input type="text" class="input-xlarge" id="firstName" name="USER_FIRST_NAME">
+                                    <input type="text" class="input-xlarge check" id="firstName" name="USER_FIRST_NAME">
                                 </div>
                                 <label class="control-label control-label-small" for="inputPromotionDescription">Last Name</label>
                                 <div class="pull-left">
-                                    <input type="text" class="input-xlarge" id="lastName" name="USER_LAST_NAME">
+                                    <input type="text" class="input-xlarge check" id="lastName" name="USER_LAST_NAME">
                                 </div>
                             </div>
                         </td>
@@ -100,7 +111,7 @@ under the License.
                                 <div class="control-group">
                                     <label class="control-label control-label-big" for="inputPromotionDescription">Official Business Name</label>
                                     <div class="pull-left">
-                                        <input type="text" class="input-large" id="businessName" name="officialBusinessName">
+                                        <input type="text" class="input-large check" id="businessName" name="officialBusinessName">
                                     </div>
                                     <label class="control-label control-label-big" for="inputPromotionDescription">Official Trading Name</label>
                                     <div class="pull-left">
