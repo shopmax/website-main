@@ -50,13 +50,17 @@ under the License.
                             <td valign="top"  height="23" align="left">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td valign="top"  align="left" height="0" style="padding:0 0 0 15px"><p style="margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;font-size:13px;color:#464646">Hi Name,</p></td>
+                            <td valign="top"  align="left" height="0" style="padding:0 0 0 15px"><p style="margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;font-size:13px;color:#464646">Hi ${orderContext.getSupplierName(partyId)},</p></td>
                         </tr>
                         <tr>
                             <td valign="top"  height="23" align="left">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td valign="top"  align="left" height="0" style="padding:0 0 0 15px"><p style="margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;font-size:13px;line-height:20px; color:#464646">Thanks for shopping at Shop Name! Your order will soon be with you or the recipient of your gift. your order details
+                            <td valign="top"  align="left" height="0" style="padding:0 0 0 15px"><p style="margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;font-size:13px;line-height:20px; color:#464646">
+                            Thanks for shopping at 
+                            <#list supplierOrderItemsMap.entrySet() as entry>
+                            <#assign partyId = entry.getKey()/>
+                            <#assign supplierOrderItems = entry.getValue()/> ${orderContext.getSupplierName(partyId)} </#list>! Your order will soon be with you or the recipient of your gift. your order details
                             are below, please check that these are correct, and if any of it is incorrect, contact us immediately so we can make sure the right product gets to the right place for you.</p></td>
                         </tr>
                         <tr>
@@ -80,9 +84,9 @@ under the License.
                             <td valign="top"  height="23" align="left">&nbsp;
                                 <table width="730"  cellspacing="0" cellpadding="0" style="border-bottom:1px solid #e1e1e1">
                                     <tr>
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> Tax Invoice:</b> 0009439</p></td>
-                                        <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b>  Invoice Date:</b> 09/08/2012</p></td>
-                                        <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> GST Number:</b> 74-343-657</p></td>
+                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> Tax Invoice:</b> </p></td> <#-- 0009439 -->
+                                        <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b>  Invoice Date:</b> </p></td> <#-- 09/08/2012 -->
+                                        <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> GST Number:</b> </p></td> <#-- 74-343-657 -->
                                     </tr>
                                     <tr>
                                         <td valign="top"  height="25" align="left">&nbsp;</td>
@@ -94,42 +98,9 @@ under the License.
                             <td valign="top"  height="23" align="left">&nbsp;
                                 <table width="730"  cellspacing="0" cellpadding="5" >
                                     <tr>
-                                        <td valign="top"  height="15" align="left"></td>
-                                        <td valign="top"  height="15" align="left"></td>
-                                        <td valign="top"  height="15" align="left"></td>
-                                    </tr>
-                                    <tr>
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">SHIPPING INFORMATION</p></td> 
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">BILLING INFORMATION</p></td>  
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">PAYMENT INFORMATION</p></td>        
-                                    </tr>
-                                    <tr>
-                                        <td valign="top"  height="0" align="left"></td>
-                                        <td valign="top"  height="0" align="left"></td>
-                                        <td valign="top"  height="0" align="left"></td>
-                                    </tr>
-                                    <tr>
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Contact Name</p></td> 
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Contact Name</p></td>  
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">VISA</p></td>        
-                                    </tr>
-                                    <tr>
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Street Address Line one </p></td> 
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Street Address Line one </p></td>  
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">••••••••••••1234 </p></td>        
-                                    </tr>
-                                    <tr>
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Street Address Line two</p></td> 
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Street Address Line two</p></td>  
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Exp: 03/03/2013</p></td>        
-                                    </tr>
-                                    <tr>
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">State</p></td> 
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">State</p></td>        
-                                    </tr>
-                                    <tr>
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Phone number xxx xxx xxx</p></td> 
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Phone number xxx xxx xxx</p></td>  
+                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${screens.render("component://shopmax/widget/OrderScreens.xml#ordershippinginfo")}</td> 
+                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${screens.render("component://shopmax/widget/OrderScreens.xml#orderbillinginfo")}</p></td>  
+                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${screens.render("component://shopmax/widget/OrderScreens.xml#orderpaymentinfo")}</td>        
                                     </tr>
                                     <tr>
                                         <td valign="top"  height="34" align="left"></td>
@@ -143,7 +114,10 @@ under the License.
                             <td valign="top"  height="18" align="left"></td>
                         </tr>
                         <tr>
-                            <td  valign="top" align="left" ><p style="margin:0;padding:10px 0 10px 10px;background:#84b234; font-family:Georgia, 'Times New Roman', Times, serif;font-style:italic;font-size:20px;color:#ffffff">Shop name</p>
+                        <#list supplierOrderItemsMap.entrySet() as entry>
+                            <#assign partyId = entry.getKey()/>
+                            <#assign supplierOrderItems = entry.getValue()/>
+                            <td  valign="top" align="left" ><p style="margin:0;padding:10px 0 10px 10px;background:#84b234; font-family:Georgia, 'Times New Roman', Times, serif;font-style:italic;font-size:20px;color:#ffffff">${orderContext.getSupplierName(partyId)}</p>
                                 <table width="732"  cellspacing="0" cellpadding="0" bgcolor="#555555" style="margin:0 0 0 0px;">
                                     <tr>
                                         <td valign="top"  align="left" width="445"><p style="margin:0;padding:14px 0 14px 18px; font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#ffffff">PRODUCT</p></td>
@@ -159,46 +133,21 @@ under the License.
                                                 <tr>
                                                     <td valign="top"  align="left"  height="18"></td>
                                                 </tr>
+                                                <#list supplierOrderItems as orderItem>
+                                                  <#assign product = orderItem.getRelatedOne("Product", false)/>
+                                                  <#assign smallImageUrl = Static["org.ofbiz.product.product.ProductContentWrapper"].getProductContentAsText(product, "SMALL_IMAGE_URL", locale, dispatcher)?if_exists />
+                                                  <#if !smallImageUrl?string?has_content><#assign smallImageUrl = "/images/defaultImage.jpg" /></#if>
                                                 <tr>
-                                                    <td valign="top"  align="left"  width="107" style="padding:0 0 0 20px"><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/image-1.jpg</@ofbizContentUrl>" width="74" height="46" alt="img" border="0" align="left"></a></td>  
-                                                    <td valign="top"  align="left" width="326"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px;line-height:20px; color:#464646"><b>Handheld Portable Stand for iPad2</b><br/>Colour Yellow</p></td>
-                                                    <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b>$25.00</b></p></td>
-                                                    <td valign="top"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> 1</b></p></td>
-                                                    <td valign="top"  align="right"><p style="margin:0;padding:0 29px 0 0px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> $25.00</b></p></td>
+                                                    <td valign="top"  align="left"  width="107" style="padding:0 0 0 20px"><a href="#"><img src="<@ofbizContentUrl>${requestAttributes.contentPathPrefix?if_exists}${smallImageUrl}</@ofbizContentUrl>" width="74" height="46" alt="img" border="0" align="left"></a></td>  
+                                                    <td valign="top"  align="left" width="326"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px;line-height:20px; color:#464646"><b>${product.productName?if_exists}</b></td>
+                                                    <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b><@ofbizCurrency amount=orderItem.unitPrice /></b></p></td>
+                                                    <td valign="top"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> ${orderItem.quantity?string.number}</b></p></td>
+                                                    <td valign="top"  align="right"><p style="margin:0;padding:0 29px 0 0px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> <@ofbizCurrency amount=Static["org.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments)/></b></p></td>
                                                 </tr>
+                                                </#list>
                                                 <tr>
                                                     <td valign="top"  height="25" align="left">&nbsp;</td>
                                                 </tr>
-                                            </table>
-                                            <table width="730"  cellspacing="0" cellpadding="0" style="border-bottom:1px solid #e1e1e1">
-                                                <tr>
-                                                    <td valign="top"  align="left"  height="18"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  align="left"  width="107" style="padding:0 0 0 20px"><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/img2.jpg</@ofbizContentUrl>" width="69" height="55" alt="img" border="0" align="left"></a></td>  
-                                                    <td valign="top"  align="left" width="326"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px;line-height:20px; color:#464646"><b>15" Notebook PC Felted Wool Bag</b><br/>Colour French Grey</p></td>
-                                                    <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px;line-height:20px; color:#464646"><span style="font-size:11px;color:#d7d7d7; text-decoration:line-through;text-align:center;padding:0 0 0 6px;">$49.00</span><br/><b>$39.00</b></p></td>
-                                                    <td valign="top"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> 1</b></p></td>
-                                                    <td valign="top" align="right"><p style="margin:0;padding:0 29px 0 0px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b>$39.00</b></p></td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  height="25" align="left">&nbsp;</td>
-                                                </tr>
-                                            </table>
-                                            <table width="730"  cellspacing="0" cellpadding="0" >
-                                                <tr>
-                                                    <td valign="top"  align="left"  height="18"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  align="left"  width="107" style="padding:0 0 0 20px"><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/product-generic-75x75.jpg</@ofbizContentUrl>" width="75" height="75" alt="img" border="0" align="left"></a></td>  
-                                                    <td valign="top"  align="left" width="326"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px;line-height:20px; color:#464646"><b>Wall Mounted CD Player</b><br/>Colour Blue</p></td>
-                                                    <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b>$81.00</b></p></td>
-                                                    <td valign="top"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> 1</b></p></td>
-                                                    <td valign="top"  align="right"><p style="margin:0;padding:0 29px 0 0px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> $81.00</b></p></td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  height="6" align="left"></td>
-                                                </tr> 
                                             </table>
                                         </td>
                                     </tr>
@@ -208,7 +157,7 @@ under the License.
                                         <td valign="top"  height="16" align="left"></td>
                                     </tr>
                                     <tr>
-                                        <td valign="top"  align="left"><p style="margin:0;padding:0px 0 0px 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646">You have selected to pick this item up from the store listed below. Your <b>Order Number: XJF1234.</b> You Must present this to the shop in order to pick up your purchase.</p></td>
+                                        <td valign="top"  align="left"><p style="margin:0;padding:0px 0 0px 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646">You have selected to pick this item up from the store listed below. Your <b>Order Number: ${orderId}</b> You Must present this to the shop in order to pick up your purchase.</p></td>
                                     </tr>
                                     <tr>
                                         <td valign="top"  height="26" align="left">
@@ -228,28 +177,29 @@ under the License.
                                                     <td valign="top"  height="0" align="left"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Store Name</p></td> 
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Monday - Friday: 9am - 6p</p></td>  
+                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#--Store Name -->
+                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Monday - Friday: 9am - 6p -->
                                                 </tr>
                                                 <tr>
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Street Address Line one </p></td> 
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Saturday: 10am - 4pm </p></td>  
+                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Street Address Line one -->
+                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Saturday: 10am - 4pm -->
                                                 </tr>
                                                 <tr>
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Street Address Line two</p></td> 
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Sunday: Closed</p></td> 
+                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Street Address Line two -->
+                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Sunday: Closed -->
                                                 </tr>
                                                 <tr>
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">State</p></td> 
+                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- State -->
                                                 </tr>
                                                 <tr>
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Phone number xxx xxx xxx</p></td> 
+                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Phone number xxx xxx xxx -->
                                                 </tr>
                                                 <tr>
                                                     <td valign="top"  height="18" align="left"></td>
                                                 </tr>
                                             </table>
                                         </td>
+                                        </#list>
                                     </tr>
                                 </table>
                                 <table width="732" border="0" cellspacing="0" cellpadding="0"  style="border:1px solid #dcdcdc;" >
@@ -278,77 +228,6 @@ under the License.
                             </td>
                         </tr>
                     </table>
-                    <table cellpadding="0" cellspacing="0" border="0">
-                        <tr>
-                            <td valign="top"  height="22" align="left"></td>
-                        </tr>
-                    </table>
-                    <table width="730" border="0" cellspacing="0" cellpadding="0" align="center">
-                        <tr>
-                            <td  valign="top" align="left"><p style="margin:0;padding:10px 0 10px 10px;background:#84b234; font-family:Georgia, 'Times New Roman', Times, serif;font-style:italic;font-size:20px;color:#ffffff">Shop name</p>
-                                <table width="734"  cellspacing="0" cellpadding="0" bgcolor="#555555" style="margin:0 0 0 0px;">
-                                    <tr>
-                                        <td valign="top"  align="left" width="445"><p style="margin:0;padding:14px 0 14px 18px; font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#ffffff">PRODUCT</p></td>
-                                        <td valign="top"  align="left"><p style="margin:0;padding:14px 0 14px 18px;font-family:Arial, Helvetica, sans-serif;font-size:11px; color:#ffffff">UNITPRICE</p></td>
-                                        <td valign="top"  align="left"><p style="margin:0;padding:14px 0 14px 18px;font-family:Arial, Helvetica, sans-serif;font-size:11px; color:#ffffff">QUANTITY</p></td>
-                                        <td valign="top"  align="left"><p style="margin:0;padding:14px 0 14px 18px;font-family:Arial, Helvetica, sans-serif;font-size:11px; color:#ffffff">SUB TOTAL</p></td>
-                                    </tr>
-                                </table>
-                                <table width="729"  cellspacing="0" cellpadding="0" style="border:1px solid #e1e1e1">  
-                                    <tr>
-                                        <td valign="top"  align="left"  height="18">
-                                            <table width="730"  cellspacing="0" cellpadding="0" style="border-bottom:1px solid #e1e1e1">
-                                                <tr>
-                                                    <td valign="top"  align="left"  height="18"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  align="left"  width="107" style="padding:0 0 0 20px"><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/img4.jpg</@ofbizContentUrl>" width="75" height="75" alt="img" border="0" align="left"></a></td>  
-                                                    <td valign="top"  align="left" width="326"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px;line-height:20px; color:#464646"><b>Process Journal: Edition Six</b><br/>Cover - Hand cover</p></td>
-                                                    <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b>$25.00</b></p></td>
-                                                    <td valign="top"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> 2</b></p></td>
-                                                    <td valign="top"  align="right"><p style="margin:0;padding:0 29px 0 0px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> $50.00</b></p></td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  height="10" align="left"></td>
-                                                </tr>
-                                            </table>
-                                            <table width="732"  cellspacing="0" cellpadding="2" style="border:1px solid#e1e1e1;background:#f0f0f0;"> 
-                                                <tr>
-                                                    <td valign="top"  height="16" align="left"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  align="left"><p style="margin:0;padding:0px 0 0px 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646">You have selected to ship this item to:</p></td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  height="8" align="left"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646">Street Address Line one </p></td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646">Street Address Line two</p></td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646">State</p></td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646">Phone number xxx xxx xxx</p></td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  height="22" align="left"></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        <tr>
-                            <td valign="top"  height="22" align="left"></td>
-                        </tr>
-                        <tr>
-                            <td  valign="top" align="left"><p style="margin:0;padding:10px 0 10px 10px;background:#555555;font-family:Arial, Helvetica, sans-serif; font-size:20px;color:#ffffff">PAYMENT SUMMARY</p></td>
-                        </tr>
-                    </table>
                     <table width="732"  align="center" cellspacing="0" cellpadding="2" style= "border:1px solid #e1e1e1;">
                         <tr>
                             <td valign="top"  height="18" align="left">
@@ -359,19 +238,19 @@ under the License.
                                     </tr>
                                     <tr>
                                         <td valign="top"  align="right" ><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">SHOPPING CART SUB TOTAL</p></td> 
-                                        <td valign="top"  align="right" ><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">$195.00</p></td>  
+                                        <td valign="top"  align="right" ><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"><@ofbizCurrency amount=Static["org.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments) isoCode=currencyUomId/></p></td>  
                                     </tr>
                                     <tr>
                                         <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">SHIPPING</p></td> 
-                                        <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">$10.00</p></td>  
+                                        <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"><@ofbizCurrency amount=shippingAmount isoCode=currencyUomId/></p></td>  
                                     </tr>
                                     <tr>
-                                        <td valign="top" align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">DISCOUNT</p></td> 
-                                        <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">$0.00</p></td>  
+                                        <td valign="top" align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">DISCOUNT</p></td>
+                                        <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"><@ofbizCurrency amount=Static["org.ofbiz.order.order.OrderReadHelper"].getOrderItemAdjustmentsTotal(orderItem, orderAdjustments, true, false, false) isoCode=currencyUomId/></p></td>  
                                     </tr>
                                     <tr>
                                         <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">SALES TAX</p></td> 
-                                        <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">$15.23</p></td>  
+                                        <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"><@ofbizCurrency amount=taxAmount isoCode=currencyUomId /></p></td>  
                                     </tr>
                                     <tr>
                                         <td valign="top"  height="5" align="left"></td>
@@ -391,7 +270,7 @@ under the License.
                                     </tr>
                                     <tr>
                                         <td valign="top"  align="right"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#707070">TOTAL</p></td>
-                                        <td valign="top"  align="right"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:13px;font-weight:bold; color:#469beb">$220.23</p></td>         
+                                        <td valign="top"  align="right"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:13px;font-weight:bold; color:#469beb"><@ofbizCurrency amount=grandTotal isoCode=currencyUomId /></p></td>         
                                     </tr>
                                     <tr>
                                         <td valign="top"  height="16" align="left"></td> 
