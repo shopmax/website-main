@@ -30,6 +30,7 @@ under the License.
                 <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/cart/ShowCart.groovy"/>
                 <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/cart/ShowPromoText.groovy"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/cart/ShowSupplierCarts.groovy"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/order/ShoppingCartShippingOptions.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">

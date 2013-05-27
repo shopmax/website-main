@@ -93,15 +93,17 @@ under the License.
                       <tr class="row-grey">
                           <td colspan="5" class="col1">
                               <h5 class="heading">Delivery Options</h5>
-                              <select name="scDelivery" class="drop-select chosen combo" data-search-bar="true">
+                              <select name="shipmentCarrierPartyId_${partyId}" class="drop-select chosen combo" data-search-bar="true">
                                   <option value="" selected="selected">Ship</option>
-                                  <option value="1">Option 1</option>
-                                  <option value="2">Option 2</option>
+                                  <#list shipmentCarriers as shipmentCarrier>
+                                    <option value="${shipmentCarrier.partyId}">${(shipmentCarrier.firstName)!} ${(shipmentCarrier.lastName)!} ${(shipmentCarrier.groupName)!}</option>
+                                  </#list>
                               </select>
-                              <select name="scDeliveryOption" class="drop-select chosen combo" data-search-bar="true">
+                              <select name="shipmentMethodTypeId_${partyId}" class="drop-select chosen combo" data-search-bar="true">
                                   <option value="" selected="selected">Select Shipping Option</option>
-                                  <option value="1">Option 1</option>
-                                  <option value="2">Option 2</option>
+                                  <#list shipmentMethodTypes as shipmentMethodType>
+                                    <option value="${shipmentMethodType.shipmentMethodTypeId}">${shipmentMethodType.description}</option>
+                                  </#list>
                               </select>
                           </td>
                       </tr>
