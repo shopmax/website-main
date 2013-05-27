@@ -63,19 +63,11 @@ $(function(){
                 if($('#sun_check_'+i).is(":checked")){
                     sun = 'SUN-'+$('#sun_o_0_'+i).val()+'-'+$('#sun_o_1_'+i).val()+'-'+$('#sun_c_0_'+i).val()+'-'+$('#sun_c_1_'+i).val();}
                 
-                /*if(tempPhoneText){
-                    phoneNumber = "STORE_PHONE_NUMBER-"+phonePrefix+tempPhoneText;
-                }
-                if(tempFaxText){
-                    faxNumber = "STORE_FAX_NUMBER-"+faxPrefix+tempFaxText;
-                }*/
                 if(tempPhoneText){
                     phoneNumber = "STORE_PHONE_NUMBER-"+phonePrefix+tempPhoneText;
-                    //phoneType = "STORE_PHONE_NUMBER";
                 }
                 if(tempFaxText){
                     faxNumber = "STORE_FAX_NUMBER-"+faxPrefix+tempFaxText;
-                    //faxType = "STORE_FAX_NUMBER";
                 }
                 
                 if(!tempBranchName){
@@ -93,15 +85,12 @@ $(function(){
                 
                 if(phoneNumber && faxNumber){
                     faxNumber = ','+faxNumber;
-                    //faxType = ','+faxType;
                 }
                 if(!tempStorePhoneNumber){
                     tempStorePhoneNumber = phoneNumber+faxNumber;
-                    //tempPhoneType = phoneType+faxType;
                 }
                 else{
                     tempStorePhoneNumber = tempStorePhoneNumber+'/'+phoneNumber+faxNumber;
-                    //tempPhoneType = tempPhoneType+'/'+phoneType+faxType;
                 }
                 if(!tempDataTime){
                      tempDataTime = mon+','+tue+','+wed+','+thu+','+fri+','+sat+','+sun;
@@ -115,12 +104,14 @@ $(function(){
             }
             $('#physicalBranchName').val(tempBranchName);
             $('#physicalLocation').val(tempLocation);
-            //$('#physicalPhoneType').val(tempPhoneType)
             $('#physicalPhone').val(tempStorePhoneNumber);
             $('#physicalTime').val(tempDataTime);
-            //$('#createcustomer').submit();
             $('input.check').each(function(){
-                valid = false;
+                var valid = false;
+                var x=document.forms["createcustomer"]["CUSTOMER_EMAIL"].value;
+                var atpos=x.indexOf("@");
+                var dotpos=x.lastIndexOf(".");
+                
                 if(!$(this).val().length){
                     $(this).addClass('required');
                     valid = false;
@@ -130,6 +121,30 @@ $(function(){
                     if($('.required').length == 0){
                         valid = true;
                     }
+                    if(atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length){
+                        $('#emailAddress').addClass('required');
+                        valid = false;
+                    }
+                    if($('#currentPassword').val() != $('#currentPasswordVerify').val()){
+                        $('#currentPassword').addClass('required');
+                        $('#currentPasswordVerify').addClass('required');
+                        valid = false;
+                    }
+                    if ($('#currentPassword').hasClass('required')){
+                        valid = false;
+                    }
+                }
+                if($('#expMonth_chzn').find('span').text() == 'Month' && $('#paymentMethodOption').val() == 'Y'){
+                    $('#expMonth_chzn').addClass('required');
+                    $('#expMonth_chzn').css({'background-color':'#FEF2EE'});
+                    $('#expMonth_chzn .chzn-single').css({'background-color':'#FEF2EE'});
+                    valid = false;
+                }
+                if($('#expYear_chzn').find('span').text() == 'Year' && $('#paymentMethodOption').val() == 'Y'){
+                    $('#expYear_chzn').addClass('required');
+                    $('#expYear_chzn').css({'background-color':'#FEF2EE'});
+                    $('#expYear_chzn .chzn-single').css({'background-color':'#FEF2EE'});
+                    valid = false;
                 }
                 if(valid){
                     $('#createcustomer').submit();
@@ -137,9 +152,8 @@ $(function(){
             });
         }
         else{
-            $('input.check').each(function(){
+            $('#userinformation').find('input.check').each(function(){
                 var valid = false;
-                //Test Check Email
                 var x=document.forms["createcustomer"]["CUSTOMER_EMAIL"].value;
                 var atpos=x.indexOf("@");
                 var dotpos=x.lastIndexOf(".");
@@ -150,7 +164,7 @@ $(function(){
                 }
                 else{
                    $(this).removeClass('required');
-                    if($('.required').length == 1){
+                    if($('.required').length == 0){
                         valid = true;
                     }
                     if(atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length){
@@ -172,33 +186,27 @@ $(function(){
             });
         }
     });
-    $('#currentPassword').click(function(){
+    $('input.check').focus(function(){
+        $('#'+this.id).removeClass('required');
+    });
+    $('#currentPassword').focus(function(){
         $('#currentPassword').removeClass('required');
         $('#currentPasswordVerify').removeClass('required');
     });
-    $('#currentPasswordVerify').click(function(){
+    $('#currentPasswordVerify').focus(function(){
         $('#currentPassword').removeClass('required');
         $('#currentPasswordVerify').removeClass('required');
     });
-    $('#emailAddress').click(function(){
-        $('#emailAddress').removeClass('required');
+    $('#expMonth_chzn').click(function(){
+        $('#expMonth_chzn').removeClass('required');
+        $('#expMonth_chzn').css({'background-color':'#FFFFFF'});
+        $('.chzn-single').css({'background-color':'#FFFFFF'});
     });
-    $('#currentPassword').click(function(){
-        $('#currentPassword').removeClass('required');
+    $('#expYear_chzn').click(function(){
+        $('#expYear_chzn').removeClass('required');
+        $('#expYear_chzn').css({'background-color':'#FFFFFF'});
+        $('.chzn-single').css({'background-color':'#FFFFFF'});
     });
-    $('#currentPasswordVerify').click(function(){
-        $('#currentPasswordVerify').removeClass('required');
-    });
-    $('#firstName').click(function(){
-        $('#firstName').removeClass('required');
-    });
-    $('#lastName').click(function(){
-        $('#lastName').removeClass('required');
-    });
-    $('#businessName').click(function(){
-        $('#businessName').removeClass('required');
-    });
-    
     $('.chk_regis').click(function(){
         if($('.chk_regis').is(':checked')){
             $('.business-guide').removeClass('hidden');
@@ -230,18 +238,30 @@ $(function(){
         $('#cardNumber').val($('#cardNumber-0').val()+$('#cardNumber-1').val()+$('#cardNumber-2').val()+$('#cardNumber-3').val());
     });
     $('.optionsRadios').click(function(){
-        if(this.id == 'optionsRadios'){
+        if(this.id == 'optionsRadiosYes'){
             $('#checkDomain').val('Y');
+            $('#subDomain').removeClass('check required');
+            $('#domianName').addClass('check');
         }
-        else if(this.id == 'optionsRadios1'){
+        else if(this.id == 'optionsRadiosNo'){
             $('#checkDomain').val('N');
+            $('#domianName').removeClass('check required')
+            $('#subDomain').addClass('check');;
         }
-        else if(this.id == 'optionsRadios2'){
-            $('#checkCreditCard').val('Y');
-        }
-        else{
-            $('#checkCreditCard').val('N');
-        }
+    });
+    $('#domianName').click(function(){
+        document.getElementById('optionsRadiosNo').checked = false;
+        document.getElementById('optionsRadiosYes').checked = true;
+        $('#subDomain').removeClass('check required');
+        $('#domianName').addClass('check');
+        $('#checkDomain').val('Y');
+    });
+    $('#subDomain').click(function(){
+        document.getElementById('optionsRadiosYes').checked = false;
+        document.getElementById('optionsRadiosNo').checked = true;
+        $('#domianName').removeClass('check required');
+        $('#subDomain').addClass('check');
+        $('#checkDomain').val('N');
     });
     $('.chzn-container').click(function(){
         $('#expireDate').val($('#expMonth_chzn').find('span').text()+"/"+$('#expYear_chzn').find('span').text());
@@ -250,6 +270,54 @@ $(function(){
             var prefix = $('#phoneNumber_select_'+currentPhoneSelect[2]+'_chzn').find('span').text();
             $('#phoneNumber_'+currentPhoneSelect[2]).val(prefix+$('#phoneNumber_text_'+currentPhoneSelect[2]).val());
         }
+    });
+    $('.optionsRadios2').click(function(){
+        $('#cardHolderName').addClass('check');
+        $('.cardNumber').addClass('check');
+        $('#expMonth_chzn').addClass('check');
+        $('#expYear_chzn').addClass('check');
+        $('#cvcNumber').addClass('check');
+        $('#yourBtn2').removeClass('check required');
+        $('#paymentMethodOption').val('Y');
+    });
+    $('.optionsRadios3').click(function(){
+        $('#cardHolderName').removeClass('check required');
+        $('.cardNumber').removeClass('check required');
+        $('#expMonth_chzn').removeClass('check required');
+        $('#expMonth_chzn').css({'background-color':'#FFFFFF'});
+        $('#expYear_chzn').removeClass('check required');
+        $('#expYear_chzn').css({'background-color':'#FFFFFF'});
+        $('.chzn-single').css({'background-color':'#FFFFFF'});
+        $('#cvcNumber').removeClass('check required');
+        $('#yourBtn2').addClass('check');
+        $('#yourBtn2').removeClass('required');
+        $('#paymentMethodOption').val('N');
+    });
+    $('#cardHolderName').click(function(){
+        document.getElementById('optionsRadios3').checked = false;
+        document.getElementById('optionsRadios2').checked = true;
+        $('#cardHolderName').addClass('check');
+        $('.cardNumber').addClass('check');
+        $('#expMonth_chzn').addClass('check');
+        $('#expYear_chzn').addClass('check');
+        $('#cvcNumber').addClass('check');
+        $('#yourBtn2').removeClass('check required');
+        $('#paymentMethodOption').val('Y');
+    });
+    $('#yourBtn2').click(function(){
+        document.getElementById('optionsRadios2').checked = false;
+        document.getElementById('optionsRadios3').checked = true;
+        $('#cardHolderName').removeClass('check required');
+        $('.cardNumber').removeClass('check required');
+        $('#expMonth_chzn').removeClass('check required');
+        $('#expMonth_chzn').css({'background-color':'#FFFFFF'});
+        $('#expYear_chzn').removeClass('check required');
+        $('#expYear_chzn').css({'background-color':'#FFFFFF'});
+        $('.chzn-single').css({'background-color':'#FFFFFF'});
+        $('#cvcNumber').removeClass('check required');
+        $('#yourBtn2').addClass('check');
+        $('#yourBtn2').removeClass('required');
+        $('#paymentMethodOption').val('N');
     });
     $(".new-branch-area").click(function() {
         var index = $('.index-tr-physical-stores').length;
@@ -324,7 +392,7 @@ $(function(){
             "</div>"+
             "<label class='control-label control-label-xxsmall pull-left' for='inputSaterday'><input type='checkbox' name='optionsRadios' id='sat_check_"+index+"' > Sat </label>"+
             "<div clas='pull-left'>"+
-            "<input type='text' class='input-xsmall input-time' id='sat_o_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='sat_o_1_"+index+"'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='sat_c_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='sat_o_1_"+index+"'>"+
+            "<input type='text' class='input-xsmall input-time' id='sat_o_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='sat_o_1_"+index+"'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='sat_c_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='sat_c_1_"+index+"'>"+
             "</div>"+
             "<label class='control-label control-label-xxsmall pull-left' for='inputSunday'><input type='checkbox' name='optionsRadios' id='sun_check_"+index+"' > Sun</label>"+
             "<div clas='pull-left'>"+

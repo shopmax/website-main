@@ -17,16 +17,7 @@ specific language governing permissions and limitations
 under the License.
 -->
 <script src="<@ofbizContentUrl>/shopmax-default/js/registration.js</@ofbizContentUrl>" type="text/javascript"></script>
-
-
-
-
-
 <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
-
-
-
-
 
 <div class="container content">
     <div id="load-script"></div>
@@ -52,51 +43,53 @@ under the License.
             <form action="<@ofbizUrl>createcustomer</@ofbizUrl>" id="createcustomer" name="createcustomer" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="productStoreId" value="${productStoreId}"/>
                 <input type="hidden" name="businessUser" id="businessUser" value="N"/>
-                <table class="table table-condensed sc-table sc-table-promotion">
-                  <thead>
-                    <tr class="sc-table-header">
-                      <th class="col1">User Information</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                        <td class="col1 form-horizontal pull-left">
-                            <p class="intro-txt"><strong>Create a new account profile by completing the new registration form. Once you are done and logged in, you can save shopping cart list, track your order history, manage addresses, and speed up the check out process</strong></p>
-                            <div class="control-group">
-                                <label class="control-label control-label-xlarge checkbox"><input type="checkbox" class="chk_regis" name="optionsRadios" id="optionsRadios1" >&nbsp; Registered as business user <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" /></label>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label control-label-small" for="inputEmailAddress">Email Address</label>
-                                <div class="pull-left">
-                                    <input type="text" class="input-xlarge check" id="emailAddress" name="CUSTOMER_EMAIL">
+                <div id="userinformation">
+                    <table class="table table-condensed sc-table sc-table-promotion">
+                      <thead>
+                        <tr class="sc-table-header">
+                          <th class="col1">User Information</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <td class="col1 form-horizontal pull-left">
+                                <p class="intro-txt"><strong>Create a new account profile by completing the new registration form. Once you are done and logged in, you can save shopping cart list, track your order history, manage addresses, and speed up the check out process</strong></p>
+                                <div class="control-group">
+                                    <label class="control-label control-label-xlarge checkbox"><input type="checkbox" class="chk_regis" name="optionsRadios" id="optionsRadios1" >&nbsp; Registered as business user <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" /></label>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label control-label-small" for="inputPromotionDescription">Password</label>
-                                <div class="pull-left">
-                                    <input type="password" class="input-xlarge check" id="currentPassword" name="PASSWORD">
+                                <div class="control-group">
+                                    <label class="control-label control-label-small" for="inputEmailAddress">Email Address</label>
+                                    <div class="pull-left">
+                                        <input type="text" class="input-xlarge check" id="emailAddress" name="CUSTOMER_EMAIL">
+                                    </div>
                                 </div>
-                                <label class="control-label control-label-small" for="inputPromotionDescription">Confirm Password</label>
-                                <div class="pull-left">
-                                    <input type="password" class="input-xlarge check" id="currentPasswordVerify" name="CONFIRM_PASSWORD" onChange="checkPasswordMatch();">
+                                <div class="control-group">
+                                    <label class="control-label control-label-small" for="inputPromotionDescription">Password</label>
+                                    <div class="pull-left">
+                                        <input type="password" class="input-xlarge check" id="currentPassword" name="PASSWORD">
+                                    </div>
+                                    <label class="control-label control-label-small" for="inputPromotionDescription">Confirm Password</label>
+                                    <div class="pull-left">
+                                        <input type="password" class="input-xlarge check" id="currentPasswordVerify" name="CONFIRM_PASSWORD">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label control-label-small" for="inputPromotionDescription">First Name</label>
-                                <div class="pull-left">
-                                    <input type="text" class="input-xlarge check" id="firstName" name="USER_FIRST_NAME">
+                                <div class="control-group">
+                                    <label class="control-label control-label-small" for="inputPromotionDescription">First Name</label>
+                                    <div class="pull-left">
+                                        <input type="text" class="input-xlarge check" id="firstName" name="USER_FIRST_NAME">
+                                    </div>
+                                    <label class="control-label control-label-small" for="inputPromotionDescription">Last Name</label>
+                                    <div class="pull-left">
+                                        <input type="text" class="input-xlarge check" id="lastName" name="USER_LAST_NAME">
+                                    </div>
                                 </div>
-                                <label class="control-label control-label-small" for="inputPromotionDescription">Last Name</label>
-                                <div class="pull-left">
-                                    <input type="text" class="input-xlarge check" id="lastName" name="USER_LAST_NAME">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="business-guide imp-info hidden">
-                    <p>To become a seller on Shopmax, you must be a registered business in New Zealand</p>
+                            </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="business-guide imp-info hidden">
+                        <p>To become a seller on Shopmax, you must be a registered business in New Zealand</p>
+                    </div>
                 </div>
                 <div class="business-registered hidden">
                     <table class="table table-condensed sc-table sc-table-promotion">
@@ -136,7 +129,7 @@ under the License.
                                         <option>0800</option>
                                     </select>
                                     <div class="pull-left">
-                                        <input type="text" class="input-large phoneNumberText" id="phoneNumber_text_0">
+                                        <input type="text" class="input-large phoneNumberText check" id="phoneNumber_text_0">
                                     </div>
                                     <input type="hidden" name="contactPhoneNumber" id="phoneNumber_0" value="">
                                 </div>
@@ -159,12 +152,12 @@ under the License.
                                 <div class="control-group">
                                     <div class="form-inline">
                                         <label class="radio">
-                                        <input type="radio" name="optionsRadios" id="optionsRadios" class="optionsRadios" checked>
+                                        <input type="radio" name="optionsRadios" id="optionsRadiosYes" class="optionsRadios" checked>
                                         Use your own domain name
                                         </label>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://&nbsp;&nbsp;&nbsp;
-                                        <input type="text" class="input-url" id="domianName" name="ownDomainName"/><img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" /><div class="sc-or"><strong>OR</strong></div><label class="radio">
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" class="optionsRadios">
+                                        <input type="text" class="input-url check" id="domianName" name="ownDomainName"/><img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" /><div class="sc-or"><strong>OR</strong></div><label class="radio">
+                                        <input type="radio" name="optionsRadios" id="optionsRadiosNo" class="optionsRadios">
                                         Create a free domain with shopmax
                                         </label>
                                         &nbsp;&nbsp;&nbsp;&nbsp;http://&nbsp;&nbsp;
@@ -181,12 +174,12 @@ under the License.
                                     <div class="control-group-bank">
                                     <label class="control-label control-label-big pull-left" for="inputPromotionDescription">Bank Account Detail</label>
                                     <label class="control-label control-label-bank pull-left" for="inputPromotionDescription">Account Name</label>
-                                    <input type="text" class="input-large pull-left" id="inputAccountName" name="nameOnAccount"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                    <input type="text" class="input-large pull-left check" id="inputAccountName" name="nameOnAccount"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
                                     </div>
                                     <div class="clearfix"></div>
                                     <label class="control-label control-label-big pull-left" for="inputPromotionDescription">&nbsp;</label>
                                     <label class="control-label control-label-bank pull-left" for="inputPromotionDescription">Account Number</label>
-                                    <div class="pull-left"><input type="text" maxlength="2" class="input-cc-xsmall accountNumber" id="accountNumber-0" name="accountNumber-0"> - <input type="text" maxlength="4" class="input-small accountNumber" id="accountNumber-1" name="accountNumber-1"> - <input type="text" maxlength="7" class="input-cc-large accountNumber" id="accountNumber-2" name="accountNumber-2"> - <input type="text" maxlength="2" class="input-cc-xsmall accountNumber" id="accountNumber-3" name="accountNumber-3"></div>
+                                    <div class="pull-left"><input type="text" maxlength="2" class="input-cc-xsmall accountNumber check" id="accountNumber-0" name="accountNumber-0"> - <input type="text" maxlength="4" class="input-small accountNumber check" id="accountNumber-1" name="accountNumber-1"> - <input type="text" maxlength="7" class="input-cc-large accountNumber check" id="accountNumber-2" name="accountNumber-2"> - <input type="text" maxlength="2" class="input-cc-xsmall accountNumber check" id="accountNumber-3" name="accountNumber-3"></div>
                                     <input type="hidden" name="accountNumber" id="accountNumber" value="">
                                 </div>
                                 <div class="control-group">
@@ -362,14 +355,14 @@ under the License.
                                             <input type="radio" name="optionsRadios1" id="optionsRadios2" class="optionsRadios" checked> Credit Card
                                         </label>
                                         <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Card Holder Name</label>
-                                        <input type="text" class="input-large pull-left" id="cardHolderName"><img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                        <input type="text" class="input-large pull-left check" id="cardHolderName"><img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
                                         <input type="hidden" id="firstNameOnCard" name="firstNameOnCard">
                                         <input type="hidden" id="lastNameOnCard" name="lastNameOnCard">
                                     </div>
                                     <div class="control-group-bank">
                                         <label class="control-label control-label-cc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
                                         <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Card Number</label>
-                                        <div class="pull-left"><input type="text" maxlength="4" class="input-small cardNumber" id="cardNumber-0"> - <input type="text" maxlength="4" class="input-small cardNumber" id="cardNumber-1"> - <input type="text" maxlength="4" class="input-small cardNumber" id="cardNumber-2"> - <input type="text" maxlength="4" class="input-small cardNumber" id="cardNumber-3"></div>
+                                        <div class="pull-left"><input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-0"> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-1"> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-2"> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-3"></div>
                                         <input type="hidden" id="cardNumber" name="cardNumber">
                                     </div>
                                     <div class="control-group-bank">
@@ -397,7 +390,7 @@ under the License.
                                     <div class="control-group-bank">
                                         <label class="control-label control-label-cc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
                                         <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Security Code</label>
-                                        <input type="text" class="input-cc-xsmall pull-left" id="cvcNumber" name="cvc" maxlength="3"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                        <input type="text" class="input-cc-xsmall pull-left check" id="cvcNumber" name="cvc" maxlength="3"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
                                     </div>
                                 </div>
                                 <br/>
@@ -415,7 +408,7 @@ under the License.
                                         <div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile2" type="file" onchange="sub(this,2)" name="uploadedFile2"/></div>
                                     </div>
                                 </div>
-                                <input type="hidden" name="checkCreditCard" id="checkCreditCard" value="Y">
+                                <input type="hidden" name="paymentMethodOption" id="paymentMethodOption" value="Y">
                                 <div class="clearfix"></div>
                             </td>
                         </tr>

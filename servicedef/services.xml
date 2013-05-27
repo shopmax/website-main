@@ -75,7 +75,7 @@ under the License.
         <attribute name="USERNAME" mode="OUT" type="String" optional="false"/>
         <attribute name="USER_FIRST_NAME" mode="IN" type="String" optional="false"/>
         <attribute name="USER_MIDDLE_NAME" mode="IN" type="String" optional="true"/>
-        <attribute name="USER_LAST_NAME" mode="IN" type="String" optional="true"/>
+        <attribute name="USER_LAST_NAME" mode="IN" type="String" optional="false"/>
         <attribute name="USER_TITLE" mode="IN" type="String" optional="true"/>
         <attribute name="USER_SUFFIX" mode="IN" type="String" optional="true"/>
         <attribute name="USER_BIRTHDATE" mode="IN" type="String" optional="true"/>
@@ -104,7 +104,7 @@ under the License.
         <attribute name="cardNumber" type="String" mode="IN" optional="true"/>
         <attribute name="expireDate" type="String" mode="IN" optional="true"/>
         <attribute name="cvc" type="String" mode="IN" optional="true"/>
-        <attribute name="checkCreditCard" type="String" mode="IN" optional="true"/>
+        <attribute name="paymentMethodOption" type="String" mode="IN" optional="false"/>
         <attribute name="uploadedFile2" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
         <attribute name="_uploadedFile2_fileName" type="String" mode="IN" optional="true"/>
         <attribute name="_uploadedFile2_contentType" type="String" mode="IN" optional="true"/>

@@ -502,43 +502,45 @@ under the License.
             <set field="locationList" value="${groovy: if(parameters.physicalLocation){physicalLocation = parameters.physicalLocation.split(&quot;/&quot;); return physicalLocation.toList();}}" type="List"/>
             <set field="physicalPhones" value="${groovy: if(parameters.physicalPhone){physicalPhone = parameters.physicalPhone.split(&quot;/&quot;); return physicalPhone.toList();}}" type="List"/>
             <set field="physicalDateTimeList" value="${groovy: if(parameters.physicalTime){physicalTime = parameters.physicalTime.split(&quot;/&quot;); return physicalTime.toList();}}" type="List"/>
-            <loop count="${parameters.physicalNum}" field="i">
-                <set field="locationContext.userLogin" from-field="systemUserLogin"/>
-                <set field="locationContext.address1" from-field="locationList[i]"/>
-                <set field="locationContext.city" value="city"/>
-                <set field="locationContext.postalCode" value="00000"/>
-                <set field="locationContext.toName" from-field="branchNameList[i]"/>
-                <set field="locationContext.partyId" from-field="tempMap.partyId"/>
-                <call-service service-name="createPartyPostalAddress" in-map-name="locationContext">
-                    <result-to-field result-name="contactMechId" field="addressPurposeContext.contactMechId"/>
-                </call-service>
-                <set field="addressPurposeContext.userLogin" from-field="systemUserLogin"/>
-                <set field="addressPurposeContext.partyId" from-field="tempMap.partyId"/>
-                <set field="addressPurposeContext.contactMechPurposeTypeId" value="PHYS_STORE_LOCATION"/>
-                <call-service service-name="createPartyContactMechPurpose" in-map-name="addressPurposeContext"/>
-                
-                <set field="physicalPhoneLists" value="${groovy: if(physicalPhones[i]){physicalPhones = physicalPhones[i].split(&quot;,&quot;); return physicalPhones.toList();}}" type="List"/>
-                <iterate entry="physicalPhoneList" list="physicalPhoneLists">
-                    <set field="physicalPhone" value="${groovy: if(physicalPhoneList){physicalPhoneList = physicalPhoneList.split(&quot;-&quot;); return physicalPhoneList.toList();}}" type="List"/>
-                    <set field="createStorePhoneNumberMap.contactMechId" from-field="addressPurposeContext.contactMechId"/>
-                    <set field="createStorePhoneNumberMap.attrName" from-field="physicalPhone[0]"/>
-                    <set field="createStorePhoneNumberMap.attrValue" from-field="physicalPhone[1]"/>
-                    <set field="createStorePhoneNumberMap.userLogin" from-field="systemUserLogin"/>
-                    <call-service service-name="createContactMechAttribute" in-map-name="createStorePhoneNumberMap"/>
-                </iterate>
-                
-                <set field="physicalDateTimes" value="${groovy: if(physicalDateTimeList[i]){physicalDateTime = physicalDateTimeList[i].split(&quot;,&quot;); return physicalDateTime.toList();}}" type="List"/>
-                <iterate entry="physicalDateTime" list="physicalDateTimes">
-                    <set field="physicalDateTimeGroups" value="${groovy: if(physicalDateTime){physicalDateTime = physicalDateTime.split(&quot;-&quot;); return physicalDateTime.toList();}}" type="List"/>
-                    <set field="createPhysicalDateTimeMap.contactMechId" from-field="addressPurposeContext.contactMechId"/>
-                    <set field="createPhysicalDateTimeMap.day" from-field="physicalDateTimeGroups[0]"/>
-                    <set field="createPhysicalDateTimeMap.openHour" from-field="physicalDateTimeGroups[1]"/>
-                    <set field="createPhysicalDateTimeMap.openMin" from-field="physicalDateTimeGroups[2]"/>
-                    <set field="createPhysicalDateTimeMap.closeHour" from-field="physicalDateTimeGroups[3]"/>
-                    <set field="createPhysicalDateTimeMap.closeMin" from-field="physicalDateTimeGroups[4]"/>
-                    <call-service service-name="createPhysicalDateTime" in-map-name="createPhysicalDateTimeMap"/>
-                </iterate>
-            </loop>
+            <if-not-empty field="branchNameList">
+                <loop count="${parameters.physicalNum}" field="i">
+                    <set field="locationContext.userLogin" from-field="systemUserLogin"/>
+                    <set field="locationContext.address1" from-field="locationList[i]"/>
+                    <set field="locationContext.city" value="city"/>
+                    <set field="locationContext.postalCode" value="00000"/>
+                    <set field="locationContext.toName" from-field="branchNameList[i]"/>
+                    <set field="locationContext.partyId" from-field="tempMap.partyId"/>
+                    <call-service service-name="createPartyPostalAddress" in-map-name="locationContext">
+                        <result-to-field result-name="contactMechId" field="addressPurposeContext.contactMechId"/>
+                    </call-service>
+                    <set field="addressPurposeContext.userLogin" from-field="systemUserLogin"/>
+                    <set field="addressPurposeContext.partyId" from-field="tempMap.partyId"/>
+                    <set field="addressPurposeContext.contactMechPurposeTypeId" value="PHYS_STORE_LOCATION"/>
+                    <call-service service-name="createPartyContactMechPurpose" in-map-name="addressPurposeContext"/>
+                    
+                    <set field="physicalPhoneLists" value="${groovy: if(physicalPhones[i]){physicalPhones = physicalPhones[i].split(&quot;,&quot;); return physicalPhones.toList();}}" type="List"/>
+                    <iterate entry="physicalPhoneList" list="physicalPhoneLists">
+                        <set field="physicalPhone" value="${groovy: if(physicalPhoneList){physicalPhoneList = physicalPhoneList.split(&quot;-&quot;); return physicalPhoneList.toList();}}" type="List"/>
+                        <set field="createStorePhoneNumberMap.contactMechId" from-field="addressPurposeContext.contactMechId"/>
+                        <set field="createStorePhoneNumberMap.attrName" from-field="physicalPhone[0]"/>
+                        <set field="createStorePhoneNumberMap.attrValue" from-field="physicalPhone[1]"/>
+                        <set field="createStorePhoneNumberMap.userLogin" from-field="systemUserLogin"/>
+                        <call-service service-name="createContactMechAttribute" in-map-name="createStorePhoneNumberMap"/>
+                    </iterate>
+                    
+                    <set field="physicalDateTimes" value="${groovy: if(physicalDateTimeList[i]){physicalDateTime = physicalDateTimeList[i].split(&quot;,&quot;); return physicalDateTime.toList();}}" type="List"/>
+                    <iterate entry="physicalDateTime" list="physicalDateTimes">
+                        <set field="physicalDateTimeGroup" value="${groovy: if(physicalDateTime){physicalDateTimeGroups = physicalDateTime.split(&quot;-&quot;); return physicalDateTimeGroups.toList();}}" type="List"/>
+                        <set field="createPhysicalDateTimeMap.contactMechId" from-field="addressPurposeContext.contactMechId"/>
+                        <set field="createPhysicalDateTimeMap.day" from-field="physicalDateTimeGroup[0]"/>
+                        <set field="createPhysicalDateTimeMap.openHour" from-field="physicalDateTimeGroup[1]"/>
+                        <set field="createPhysicalDateTimeMap.openMin" from-field="physicalDateTimeGroup[2]"/>
+                        <set field="createPhysicalDateTimeMap.closeHour" from-field="physicalDateTimeGroup[3]"/>
+                        <set field="createPhysicalDateTimeMap.closeMin" from-field="physicalDateTimeGroup[4]"/>
+                        <call-service service-name="createPhysicalDateTime" in-map-name="createPhysicalDateTimeMap"/>
+                    </iterate>
+                </loop>
+            </if-not-empty>
             
             <!-- Upload driver license -->
             <if-not-empty field="parameters._uploadedFile1_fileName">
@@ -554,7 +556,7 @@ under the License.
             </if-not-empty>
             
             <!-- Create credit card or debit card -->
-            <if-compare operator="equals" value="Y" field="parameters.checkCreditCard">
+            <if-compare operator="equals" value="Y" field="parameters.paymentMethodOption">
                 <set field="createCreditCardMap.userLogin" from-field="systemUserLogin"/>
                 <set field="createCreditCardMap.partyId" from-field="tempMap.partyId"/>
                 <set field="createCreditCardMap.firstNameOnCard" from-field="parameters.firstNameOnCard"/>

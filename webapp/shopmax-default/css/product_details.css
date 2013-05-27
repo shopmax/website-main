@@ -46,8 +46,8 @@
 }
 
 input.required{
-    /*background-color:#fef2ee;*/
-    border-color:red;
+    background-color:#fef2ee;
+/*     border-color:red; */
 }
 
 .btn-green-small {

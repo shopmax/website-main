@@ -68,6 +68,10 @@ under the License.
             });
             makeAccordion($("#category-menu"));
             $('.file').preimage();
+            
+            $('#advanced-option-detail').slideUp(300, function() {
+                $('tr').find('.col1.advanced-option.product-upload').css({'padding':'0'});
+            });
         });
         
         function makeAccordion($ul) {
