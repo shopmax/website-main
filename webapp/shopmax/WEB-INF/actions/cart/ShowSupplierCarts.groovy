@@ -30,39 +30,8 @@ def getSupplierName(partyId) {
     return fullName;
 }
 
-def getSupplierCartItems(partyId, supplierCartItemsMap) {
-    def supplierCartItems = null;
-    if (supplierCartItemsMap.containsKey(partyId)) {
-        supplierCartItems = supplierCartItemsMap[partyId];
-    } else {
-        supplierCartItems = [];
-        supplierCartItemsMap.put(partyId, supplierCartItems);
-    }
-    return supplierCartItems;
-}
+getSupplierShoppingCartItemsMapInMap = ["shoppingCart": ShoppingCartEvents.getCartObject(request)];
+def results = dispatcher.runSync("getSupplierShoppingCartItemsMap", getSupplierShoppingCartItemsMapInMap);
 
-def shoppingCart = ShoppingCartEvents.getCartObject(request);
-
-//Get Cart Items
-shoppingCartItems = shoppingCart.items();
-
-if(shoppingCartItems) {
-    shoppingCartItems.each { shoppingCartItem ->
-        def productId = shoppingCartItem.getProductId();
-        
-        def conds = [];
-        conds.add(EntityCondition.makeCondition("productId", productId))
-        conds.add(EntityCondition.makeCondition("currencyUomId", shoppingCart.getCurrency()))
-        conds.add(EntityUtil.getFilterByDateExpr("availableFromDate", "availableThruDate"))
-        def supplierProducts = delegator.findList("SupplierProduct", EntityCondition.makeCondition(conds), null, null, null, false);
-        if (supplierProducts) {
-            def partyId = supplierProducts[0].partyId;
-            def supplierCartItems = getSupplierCartItems(partyId, supplierCartItemsMap);
-            supplierCartItems.add(shoppingCartItem);
-        }
-        
-    }
-}
-
-context.supplierCartItemsMap = supplierCartItemsMap;
+context.supplierCartItemsMap = results.supplierShoppingCartItemsMap;
 context.cartContext = this;

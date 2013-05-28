@@ -67,7 +67,7 @@ under the License.
                         <div class="row">
                             <div class="span5">
                                 <div class="column_1">
-                                    <select class="span4">
+                                    <select name="shipToContactMechId" class="span4">
                                         <#list contactMechList as contactMech>
                                             <#assign postalAddress = contactMech.getRelatedOne("PostalAddress", false)?if_exists/>
                                             <#assign stateProvinceGeo = postalAddress.getRelatedOne("StateProvinceGeo", false)?if_exists>
@@ -90,12 +90,24 @@ under the License.
                         </div>
                     </div>
                     
+                    <#-- Billing Informatioin -->
+                    <input name="billToContactMechId" value="${billToContactMechId?if_exists}" type="hidden"/>
+                    <input name="billToName" value="${billToName?if_exists}" type="hidden"/>
+                    <input name="billToAttnName" value="${billToAttnName?if_exists}" type="hidden"/>
+                    <input name="billToAddress1" value="${billToAddress1?if_exists}" type="hidden"/>
+                    <input name="billToAddress2" value="${billToAddress2?if_exists}" type="hidden"/>
+                    <input name="billToCity" value="${billToCity?if_exists}" type="hidden"/>
+                    <input name="billToPostalCode" value="${billToPostalCode?if_exists}" type="hidden"/>
+                    <input name="billToStateProvinceGeoId" value="${billToStateProvinceGeoId?if_exists}" type="hidden"/>
+                    <input name="billToContactNumber" value="${billToTelecomNumber.contactNumber?if_exists}" type="hidden"/>
+                    <input name="billToAreaCode" value="${billToTelecomNumber.areaCode?if_exists}" type="hidden"/>
+                    <input name="billToCountryCode" value="${billToTelecomNumber.countryCode?if_exists}" type="hidden"/>
                     <div class="shipp_info">
                         <div class="tital_1">Billing Information</div>
                         <div class="row">
                             <div class="span5">
                                 <div class="column_1">
-                                    <select class="span3">
+                                    <select name="paymentMethodId" class="span3">
                                         <#list billPaymentMethod as paymentMethod>
                                             <#assign creditCard = paymentMethod.getRelatedOne("CreditCard", false)?if_exists/>
                                             <option value="${creditCard.paymentMethodId}"><@maskSensitiveNumber cardNumber=cardNumber?if_exists/> Exp: ${(creditCard.expireDate).substring(0, 2)}/${(creditCard.expireDate).substring(3)}</option><#--Visa ••••••••••••1234 Exp: 03/03/2013-->

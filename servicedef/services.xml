@@ -368,4 +368,11 @@ under the License.
         <attribute name="contactMechId" mode="IN" type="String" optional="false"/>
         <attribute name="day" mode="IN" type="String" optional="false"/>
     </service>
+    
+    <service name="getSupplierShoppingCartItemsMap" engine="java"
+            location="org.ofbiz.shopmax.order.shoppingcart.ShoppingCartServices" invoke="getSupplierShoppingCartItemsMap" auth="false">
+        <description>Get supplier shopping cart items Map</description>
+        <attribute name="shoppingCart" mode="IN" type="org.ofbiz.order.shoppingcart.ShoppingCart" optional="false"/>
+        <attribute name="supplierShoppingCartItemsMap" mode="OUT" type="Map" optional="false"/>
+    </service>
 </services>
