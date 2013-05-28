@@ -64,7 +64,7 @@ under the License.
         $('#media-'+index).addClass('media-edit-load');
         $('#load-'+index).html("<img src='<@ofbizContentUrl>/shopmax-default/img/ajax-loader.gif</@ofbizContentUrl>'>");
         jQuery.ajax({
-            url: 'removeproductfromseller',
+            url: 'removeProductFromSeller',
             type: 'POST',
             data: {productId: productId, productCategoryId: productCategoryId},
             success: function(data) {
@@ -158,7 +158,7 @@ under the License.
                                     </#if>
                                 </a>
                                 <div class="media-body">
-                                    <form class="form-horizontal pull-left" id="updateproduct-${product_index}" name="updateproduct-${product_index}" action="<@ofbizUrl>updateproduct</@ofbizUrl>" method="post" enctype="multipart/form-data">
+                                    <form class="form-horizontal pull-left" id="updateproduct-${product_index}" name="updateproduct-${product_index}" action="<@ofbizUrl>updateProduct</@ofbizUrl>" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="productCategoryId" class="productCategoryId"/>
                                         <input type="hidden" name="productId" value="${product.productId?if_exists}"/>
                                         <div class="control-group">

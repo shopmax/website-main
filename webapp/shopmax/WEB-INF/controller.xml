@@ -193,7 +193,7 @@ under the License.
         <response name="success" type="view" value="manageproductajax"/>
     </request-map>
     
-    <request-map uri="updateproduct">
+    <request-map uri="updateProduct">
         <security https="true" auth="true"/>
         <event type="service" invoke="editProductToSeller"/>
         <response name="success" type="request" value="manageproduct">
@@ -201,7 +201,7 @@ under the License.
         </response>
     </request-map>
     
-    <request-map uri="removeproductfromseller">
+    <request-map uri="removeProductFromSeller">
         <security https="true" auth="true"/>
         <event type="service" invoke="removeProductFromSeller"/>
         <response name="success" type="view" value="manageproductajax"/>
@@ -233,7 +233,7 @@ under the License.
         <response name="error" type="view" value="uploadproduct"/>
     </request-map>
     
-    <request-map uri="updateproductfullmode">
+    <request-map uri="updateProductFullMode">
         <security https="true" auth="true"/>
         <event type="service" invoke="updateProductToSeller"/>
         <response name="success" type="request" value="uploadproduct">
@@ -410,7 +410,7 @@ under the License.
         <response name="error" type="view" value="account"/>
     </request-map>
     
-    <request-map uri="createcustomer">
+    <request-map uri="createCustomer">
         <security https="true" auth="false"/>
         <event type="service" invoke="createShopmaxCustomer"/>
         <response name="success" type="request" value="autoLogin"/>

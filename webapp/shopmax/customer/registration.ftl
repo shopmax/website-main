@@ -40,7 +40,7 @@ under the License.
     <!-- MAIN CONTENT -->
         <!-- sliderdiv -->
         <div class="span9 main-content" id="abc">
-            <form action="<@ofbizUrl>createcustomer</@ofbizUrl>" id="createcustomer" name="createcustomer" method="post" enctype="multipart/form-data">
+            <form action="<@ofbizUrl>createCustomer</@ofbizUrl>" id="createcustomer" name="createcustomer" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="productStoreId" value="${productStoreId}"/>
                 <input type="hidden" name="businessUser" id="businessUser" value="N"/>
                 <div id="userinformation">

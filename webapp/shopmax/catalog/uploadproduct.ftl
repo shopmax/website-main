@@ -152,7 +152,7 @@ under the License.
                                 </tbody>
                             </table>
                         </div>
-                        <form class="form-horizontal pull-left media-edit" action="<#if parameters.productId?has_content>updateproductfullmode<#else>uploadProductToSeller</#if>" id="uploadAndUpdateProduct" name="uploadAndUpdateProduct" method="post" enctype="multipart/form-data">
+                        <form class="form-horizontal pull-left media-edit" action="<#if parameters.productId?has_content>updateProductFullMode<#else>uploadProductToSeller</#if>" id="uploadAndUpdateProduct" name="uploadAndUpdateProduct" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="productId" value="${parameters.productId?if_exists}"/>
                             <input type="hidden" name="listCategory" value="" id="listCategory">
                             <div class="control-group">

@@ -1021,8 +1021,8 @@ under the License.
             def tenantSellerWebSite = tenantDelegator.findOne("WebSite", ["webSiteId" : "SHOPMAX_SELLER"], false);
             tenantSellerWebSite.httpHost = frontendDomainName;
             tenantSellerWebSite.httpsHost = frontendDomainName;
-            tenantSellerWebSite.standardContentPrefix = "http://" + backendDomainName + ":" + tenantSellerWebSite.httpPort;
-            tenantSellerWebSite.secureContentPrefix = "https://" + backendDomainName + ":" + tenantSellerWebSite.httpsPort;
+            //tenantSellerWebSite.standardContentPrefix = "http://" + backendDomainName + ":" + tenantSellerWebSite.httpPort;
+            //tenantSellerWebSite.secureContentPrefix = "https://" + backendDomainName + ":" + tenantSellerWebSite.httpsPort;
             tenantDelegator.store(tenantSellerWebSite);
         </script>
         <field-to-result field="parameters.partyId" result-name="partyId"/>
