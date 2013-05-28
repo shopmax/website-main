@@ -2199,4 +2199,82 @@ under the License.
             </if-empty>
         </if-not-empty>
     </simple-method>
+    
+    <simple-method method-name="removeProductContentAndImageFileSeller" short-description="Remove Product Content and Image File of Seller">
+        <entity-one value-field="systemUserLogin" entity-name="UserLogin">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        
+        <entity-one value-field="productContent" entity-name="ProductContent">
+            <field-map field-name="productId" from-field="parameters.productId"/>
+            <field-map field-name="contentId" from-field="parameters.contentId"/>
+            <field-map field-name="productContentTypeId" from-field="parameters.productContentTypeId"/>
+            <field-map field-name="fromDate" from-field="parameters.fromDate"/>
+        </entity-one>
+        <if-not-empty field="productContent">
+            <entity-and list="contentAssocs" entity-name="ContentAssoc">
+                <field-map field-name="contentId" from-field="parameters.contentId"/>
+                <field-map field-name="contentAssocTypeId" value="IMAGE_THUMBNAIL"/>
+            </entity-and>
+            <if-not-empty field="contentAssocs">
+                <iterate entry="contentAssoc" list="contentAssocs">
+                    <remove-value value-field="contentAssoc"/>
+                    
+                    <set field="removeContent.contentId" from-field="contentAssoc.contentIdTo"/>
+                    <set field="removeContent.productId" from-field="parameters.productId"/>
+                    <call-service service-name="removeProductContentForImageManagement" in-map-name="removeContent"/>
+                </iterate>
+            </if-not-empty>
+            
+            <make-value value-field="lookupPKMap" entity-name="ProductContent"/>
+            <set-pk-fields map="parameters" value-field="lookupPKMap"/>
+            <find-by-primary-key map="lookupPKMap" value-field="lookedUpValue"/>
+            <remove-value value-field="lookedUpValue"/>
+            <set field="removeContent.contentId" from-field="parameters.contentId"/>
+            <set field="removeContent.productId" from-field="parameters.productId"/>
+            <call-service service-name="removeProductContentForImageManagement" in-map-name="removeContent"/>
+            
+            <set field="removeProductImageShopmaxMap.userLogin" from-field="systemUserLogin"/>
+            <set field="removeProductImageShopmaxMap.productId" from-field="lookedUpValue.productId"/>
+            <set field="removeProductImageShopmaxMap.productContentTypeId" from-field="lookedUpValue.productContentTypeId"/>
+            <set field="removeProductImageShopmaxMap.sequenceNum" from-field="lookedUpValue.sequenceNum"/>
+            <set field="runTenantServiceInMap.tenantId" value="default"/>
+            <set field="runTenantServiceInMap.serviceName" value="removeProductContentAndImageFileShopmax"/>
+            <set field="runTenantServiceInMap.serviceParameters" from-field="removeProductImageShopmaxMap"/>
+            <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+        </if-not-empty>
+    </simple-method>
+    
+    <simple-method method-name="removeProductContentAndImageFileShopmax" short-description="Remove Product Content and Image File of Shopmax">
+        <entity-and entity-name="ProductContent" list="productContents">
+            <field-map field-name="productId" from-field="parameters.productId"/>
+            <field-map field-name="productContentTypeId" from-field="parameters.productContentTypeId"/>
+            <field-map field-name="sequenceNum" from-field="parameters.sequenceNum"/>
+        </entity-and>
+        <if-not-empty field="productContents">
+            <iterate entry="productContent" list="productContents">
+                <entity-and list="contentAssocs" entity-name="ContentAssoc">
+                    <field-map field-name="contentId" from-field="productContent.contentId"/>
+                    <field-map field-name="contentAssocTypeId" value="IMAGE_THUMBNAIL"/>
+                </entity-and>
+                <if-not-empty field="contentAssocs">
+                    <iterate entry="contentAssoc" list="contentAssocs">
+                        <remove-value value-field="contentAssoc"/>
+                        
+                        <set field="removeContent.contentId" from-field="contentAssoc.contentIdTo"/>
+                        <set field="removeContent.productId" from-field="parameters.productId"/>
+                        <call-service service-name="removeProductContentForImageManagement" in-map-name="removeContent"/>
+                    </iterate>
+                </if-not-empty>
+                
+                <make-value value-field="lookupPKMap" entity-name="ProductContent"/>
+                <set-pk-fields map="productContent" value-field="lookupPKMap"/>
+                <find-by-primary-key map="lookupPKMap" value-field="lookedUpValue"/>
+                <remove-value value-field="lookedUpValue"/>
+                <set field="removeContent.contentId" from-field="productContent.contentId"/>
+                <set field="removeContent.productId" from-field="parameters.productId"/>
+                <call-service service-name="removeProductContentForImageManagement" in-map-name="removeContent"/>
+            </iterate>
+        </if-not-empty>
+    </simple-method>
 </simple-methods>

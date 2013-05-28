@@ -207,9 +207,9 @@ under the License.
         <response name="success" type="view" value="manageproductajax"/>
     </request-map>
     
-    <request-map uri="removeProductContentAndImageFile">
+    <request-map uri="removeProductContentAndImageFileSeller">
         <security https="true" auth="true"/>
-        <event type="service" invoke="removeProductContentAndImageFile"/>
+        <event type="service" invoke="removeProductContentAndImageFileSeller"/>
         <response name="success" type="view" value="manageproductajax"/>
     </request-map>
     

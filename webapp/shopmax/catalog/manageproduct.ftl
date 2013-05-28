@@ -38,7 +38,7 @@ under the License.
         $('.media-edit').addClass('media-edit-load');
         $('#load-remove-'+index).html("<img src='<@ofbizContentUrl>/shopmax-default/img/ajax-loader.gif</@ofbizContentUrl>'>");
         jQuery.ajax({
-            url: 'removeProductContentAndImageFile',
+            url: 'removeProductContentAndImageFileSeller',
             type: 'POST',
             data: {productCategoryId: productCategoryId, productId: productId, contentId: contentId, fromDate: fromDate, productContentTypeId: productContentTypeId},
             success: function(data) {

@@ -20,7 +20,6 @@ under the License.
 
 <simple-methods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/simple-methods.xsd">
-
     
     <simple-method method-name="sellerDoBasicLogin" short-description="Seller Do Basic Login" login-required="false">
         <request-to-field field="partyId" request-name="parameters.partyId"/>

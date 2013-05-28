@@ -377,6 +377,7 @@ under the License.
         <attribute name="shoppingCart" mode="IN" type="org.ofbiz.order.shoppingcart.ShoppingCart" optional="false"/>
         <attribute name="supplierShoppingCartItemsMap" mode="OUT" type="Map" optional="false"/>
     </service>
+    
     <service name="getSupplierCarrierShippingMethodTypeMap" engine="java"
             location="org.ofbiz.shopmax.order.shoppingcart.ShoppingCartServices" invoke="getSupplierCarrierShippingMethodTypeMap" auth="false">
         <description>Get supplier carrier and shipping method type Maps</description>
@@ -384,5 +385,20 @@ under the License.
         <attribute name="supplierPartyIds" mode="OUT" type="Set" optional="false"/>
         <attribute name="supplierCarrierMap" mode="OUT" type="Map" optional="false"/>
         <attribute name="supplierShipmentMethodTypeMap" mode="OUT" type="Map" optional="false"/>
+    </service>
+    
+    <service name="removeProductContentAndImageFileSeller" default-entity-name="ProductContent" engine="simple"
+        location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="removeProductContentAndImageFileSeller" auth="true">
+        <description>Remove Product Content and File Image of Seller</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    
+    <service name="removeProductContentAndImageFileShopmax" default-entity-name="ProductContent" engine="simple"
+        location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="removeProductContentAndImageFileShopmax" auth="true">
+        <description>Remove Product Content and File Image of Shopmax</description>
+        <attribute name="productId" mode="IN" type="String" optional="false"/>
+        <attribute name="productContentTypeId" mode="IN" type="String" optional="false"/>
+        <attribute name="sequenceNum" mode="IN" type="Long" optional="false"/>
     </service>
 </services>
