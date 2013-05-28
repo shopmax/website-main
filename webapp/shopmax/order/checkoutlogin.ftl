@@ -48,10 +48,10 @@ under the License.
                 <input name="shipmentCarrierPartyId:${partyId}_o_${supplierIndex}" value="${carrierPartyId}" type="hidden"/>
             </#list>
             <#assign supplierIndex = -1/>
-            <#list supplierShippingMethodTypeMap.keySet() as partyId>
+            <#list supplierShipmentMethodTypeMap.keySet() as partyId>
                 <#assign supplierIndex = supplierIndex + 1/>
-                <#assign shippingMethodTypeId = supplierShippingMethodTypeMap.get(partyId)/>
-                <input name="shipmentMethodTypeId:${partyId}_o_${supplierIndex}" value="${shippingMethodTypeId}" type="hidden"/>
+                <#assign shipmentMethodTypeId = supplierShipmentMethodTypeMap.get(partyId)/>
+                <input name="shipmentMethodTypeId:${partyId}_o_${supplierIndex}" value="${shipmentMethodTypeId}" type="hidden"/>
             </#list>
             
             <div class="span9 main-content">

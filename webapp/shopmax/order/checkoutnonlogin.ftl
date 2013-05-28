@@ -37,9 +37,9 @@ under the License.
                 <#assign carrierPartyId = supplierCarrierMap.get(partyId)/>
                 <input name="carrierPartyId:${partyId}" value="${carrierPartyId}" type="hidden"/>
             </#list>
-            <#list supplierShippingMethodTypeMap.keySet() as partyId>
-                <#assign shippingMethodTypeId = supplierShippingMethodTypeMap.get(partyId)/>
-                <input name="shippingMethodTypeId:${partyId}" value="${shippingMethodTypeId}" type="hidden"/>
+            <#list supplierShipmentMethodTypeMap.keySet() as partyId>
+                <#assign shipmentMethodTypeId = supplierShipmentMethodTypeMap.get(partyId)/>
+                <input name="shipmentMethodTypeId:${partyId}" value="${shipmentMethodTypeId}" type="hidden"/>
             </#list>
             
             <div class="span9 main-content">

@@ -18,12 +18,19 @@
  *******************************************************************************/
 package org.ofbiz.shopmax.order.shoppingcart;
 
+import java.util.Enumeration;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.ofbiz.base.util.StringUtil;
 import org.ofbiz.base.util.UtilGenerics;
+import org.ofbiz.base.util.UtilHttp;
 import org.ofbiz.base.util.UtilValidate;
 import org.ofbiz.entity.Delegator;
 import org.ofbiz.entity.GenericValue;
@@ -81,5 +88,42 @@ public class ShoppingCartServices {
         } catch (Exception e) {
             return ServiceUtil.returnError(e.getMessage());
         }
+    }
+
+    public static Map<String, Object> getSupplierCarrierShippingMethodTypeMap(DispatchContext ctx, Map<String, ? extends Object> context) {
+        HttpServletRequest request = UtilGenerics.cast(context.get("request"));
+        
+        Set<String> supplierPartyIds = new HashSet<String>();
+        Map<String, String> supplierCarrierMap = new LinkedHashMap<String, String>();
+        Map<String, String> supplierShipmentMethodTypeMap = new LinkedHashMap<String, String>();
+        
+        int rowCount = UtilHttp.getMultiFormRowCount(request);
+        for (int i = 0; i < rowCount; i++) {
+            Enumeration<String> parameterNames = UtilGenerics.cast(request.getParameterNames());
+            while(parameterNames.hasMoreElements()) {
+                String parameterName = parameterNames.nextElement();
+                if (parameterName.contains(":")) {
+                    List<String> tokens = StringUtil.split(parameterName, ":");
+                    String paramName = tokens.get(0);
+                    String paramSuffix = tokens.get(1);
+                    String partyId = paramSuffix.substring(0, paramSuffix.indexOf(UtilHttp.MULTI_ROW_DELIMITER));
+                    supplierPartyIds.add(partyId);
+                    
+                    if ("shipmentCarrierPartyId".equals(paramName)) {
+                        String carrierPartyId = request.getParameter(parameterName);
+                        supplierCarrierMap.put(partyId, carrierPartyId);
+                    } else if ("shipmentMethodTypeId".equals(paramName)) {
+                        String shipmentMethodTypeId = request.getParameter(parameterName);
+                        supplierShipmentMethodTypeMap.put(partyId, shipmentMethodTypeId);
+                    }
+                }
+            }
+        }
+        
+        Map<String, Object> results = ServiceUtil.returnSuccess();
+        results.put("supplierPartyIds", supplierPartyIds);
+        results.put("supplierCarrierMap", supplierCarrierMap);
+        results.put("supplierShipmentMethodTypeMap", supplierShipmentMethodTypeMap);
+        return results;
     }
 }

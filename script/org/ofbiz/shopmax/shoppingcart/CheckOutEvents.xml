@@ -149,40 +149,12 @@ under the License.
         <set field="parameters.productStoreId" from-field="productStoreId"/>
         
         <!-- split shipment -->
-        <script>groovy:
-            import org.ofbiz.base.util.*;
-            def supplierPartyIds = new java.util.HashSet();
-            def supplierCarrierMap = [:];
-            def supplierShipmentMethodTypeMap = [:];
-
-            def rowCount = UtilHttp.getMultiFormRowCount(request);
-            for (i = 0; i &lt; rowCount; i++) {
-                def curSuffix = UtilHttp.MULTI_ROW_DELIMITER + i;
-                def parameterNames = request.getParameterNames();
-                while(parameterNames.hasMoreElements()) {
-                    def parameterName = parameterNames.nextElement();
-                    if (parameterName.contains(":")) {
-                        def tokens = StringUtil.split(parameterName, ":");
-                        def paramName = tokens[0];
-                        def paramSuffix = tokens[1];
-                        def partyId = paramSuffix.substring(0, paramSuffix.indexOf(curSuffix));
-                        supplierPartyIds.add(partyId);
-            
-                        if ("shipmentCarrierPartyId".equals(paramName)) {
-                            def carrierPartyId = request.getParameter(parameterName);
-                            supplierCarrierMap.put(partyId, carrierPartyId)
-                        } else if ("shipmentMethodTypeId".equals(paramName)) {
-                            def shipmentMethodTypeId = request.getParameter(parameterName);
-                            supplierShipmentMethodTypeMap.put(partyId, shipmentMethodTypeId);
-                        }
-                    }
-                }
-            }
-            
-            context.supplierPartyIds = supplierPartyIds;
-            context.supplierCarrierMap = supplierCarrierMap;
-            context.supplierShipmentMethodTypeMap = supplierShipmentMethodTypeMap;
-        </script>
+        <set field="getSupplierCarrierShippingMethodTypeMapInMap.request" from-field="request"/>
+        <call-service service-name="getSupplierCarrierShippingMethodTypeMap" in-map-name="getSupplierCarrierShippingMethodTypeMapInMap">
+            <result-to-field result-name="supplierPartyIds"/>
+            <result-to-field result-name="supplierCarrierMap"/>
+            <result-to-field result-name="supplierShipmentMethodTypeMap"/>
+        </call-service>
         
         <set field="getSupplierShoppingCartItemsMapInMap.shoppingCart" from-field="shoppingCart"/>
         <call-service service-name="getSupplierShoppingCartItemsMap" in-map-name="getSupplierShoppingCartItemsMapInMap">
@@ -205,7 +177,7 @@ under the License.
                 <!-- set carrier and shipment method -->
                 <script>groovy:
                     shoppingCart.setCarrierPartyId(shoppingCartItemIndex, carrierPartyId);
-                    shoppingCart.setCarrierPartyId(shoppingCartItemIndex, shipmentMethodTypeId);
+                    shoppingCart.setShipmentMethodTypeId(shoppingCartItemIndex, shipmentMethodTypeId);
                 </script>
                 
                 <!-- assign item ship group -->

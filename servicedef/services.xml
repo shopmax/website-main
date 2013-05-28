@@ -375,4 +375,12 @@ under the License.
         <attribute name="shoppingCart" mode="IN" type="org.ofbiz.order.shoppingcart.ShoppingCart" optional="false"/>
         <attribute name="supplierShoppingCartItemsMap" mode="OUT" type="Map" optional="false"/>
     </service>
+    <service name="getSupplierCarrierShippingMethodTypeMap" engine="java"
+            location="org.ofbiz.shopmax.order.shoppingcart.ShoppingCartServices" invoke="getSupplierCarrierShippingMethodTypeMap" auth="false">
+        <description>Get supplier carrier and shipping method type Maps</description>
+        <attribute name="request" mode="IN" type="javax.servlet.http.HttpServletRequest" optional="false"/>
+        <attribute name="supplierPartyIds" mode="OUT" type="Set" optional="false"/>
+        <attribute name="supplierCarrierMap" mode="OUT" type="Map" optional="false"/>
+        <attribute name="supplierShipmentMethodTypeMap" mode="OUT" type="Map" optional="false"/>
+    </service>
 </services>

@@ -17,34 +17,6 @@
  * under the License.
  */
 
-import org.ofbiz.base.util.*;
-
-def supplierCarrierMap = [:];
-def supplierShippingMethodTypeMap = [:];
-
-// find supplier shopping options
-def rowCount = UtilHttp.getMultiFormRowCount(request);
-for (i = 0; i < rowCount; i++) {
-    def curSuffix = UtilHttp.MULTI_ROW_DELIMITER + i;
-    def parameterNames = request.getParameterNames();
-    while(parameterNames.hasMoreElements()) {
-        def parameterName = parameterNames.nextElement();
-        if (parameterName.contains(":")) {
-            def tokens = StringUtil.split(parameterName, ":");
-            def paramName = tokens[0];
-            def paramSuffix = tokens[1];
-            def partyId = paramSuffix.substring(0, paramSuffix.indexOf(curSuffix));
-            
-            if ("shipmentCarrierPartyId".equals(paramName)) {
-                def carrierPartyId = request.getParameter(parameterName);
-                supplierCarrierMap.put(partyId, carrierPartyId)
-            } else if ("shipmentMethodTypeId".equals(paramName)) {
-                def shipmentMethodTypeId = request.getParameter(parameterName);
-                supplierShippingMethodTypeMap.put(partyId, shipmentMethodTypeId);
-            }
-        }
-    }
-}
-
-context.supplierCarrierMap = supplierCarrierMap;
-context.supplierShippingMethodTypeMap = supplierShippingMethodTypeMap;
+def getSupplierCarrierShippingMethodTypeMapResults = dispatcher.runSync("getSupplierCarrierShippingMethodTypeMap", ["request": request]);
+context.supplierCarrierMap = getSupplierCarrierShippingMethodTypeMapResults.supplierCarrierMap;
+context.supplierShipmentMethodTypeMap = getSupplierCarrierShippingMethodTypeMapResults.supplierShipmentMethodTypeMap;
