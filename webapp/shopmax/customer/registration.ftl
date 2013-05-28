@@ -417,7 +417,7 @@ under the License.
                 </div>
             </form>
             <div class="sc-table-promotion footer-button">
-            <a href="#" class="btn-success-small">Save</a>&nbsp;&nbsp;
+            <#-- <a href="#" class="btn-success-small">Save</a>&nbsp;&nbsp; -->
             <a id="submit-createcustomer" class="btn-general-small">Submit</a>&nbsp;&nbsp;
             <a href="<@ofbizUrl>main</@ofbizUrl>" class="btn-grey-small">Cancel</a>
             </div>
