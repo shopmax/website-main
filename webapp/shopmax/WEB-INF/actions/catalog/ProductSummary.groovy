@@ -54,6 +54,10 @@ context.remove("daysToShip");
 context.remove("averageRating");
 context.remove("numRatings");
 context.remove("totalPrice");
+context.remove("price");
+context.remove("shopName");
+context.remove("productImage");
+context.remove("productImageThumb");
 
 // get the product entity
 if (!product && productId) {

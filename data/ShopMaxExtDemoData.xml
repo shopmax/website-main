@@ -102,10 +102,6 @@ under the License.
     <CreditCard paymentMethodId="9015" cardType="Visa" cardNumber="4111111111111111" expireDate="02/2021" companyNameOnCard=""
         titleOnCard="" firstNameOnCard="DEMO" middleNameOnCard="" lastNameOnCard="CUSTOMER" suffixOnCard="" contactMechId="9015"/>
     
-    <ProdCatalog prodCatalogId="SHOPMAX_CATALOG" catalogName="ShopMax Catalog" useQuickAdd="Y"/>
-    
-    <ProductStoreCatalog productStoreId="ShopMaxStore" prodCatalogId="SHOPMAX_CATALOG" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
-    
     <Party partyId="USPS" partyTypeId="PARTY_GROUP"/>
     <Party partyId="UPS" partyTypeId="PARTY_GROUP"/>
     <Party partyId="DHL" partyTypeId="PARTY_GROUP"/>
@@ -179,6 +175,10 @@ under the License.
     <ProductStoreShipmentMeth productStoreShipMethId="SM0014" productStoreId="ShopMaxStore" partyId="FEDEX" includeNoChargeItems="N" allowUspsAddr="N" requireUspsAddr="N" roleTypeId="CARRIER" shipmentMethodTypeId="EXPRESS" sequenceNumber="15"/>
     <ProductStoreShipmentMeth productStoreShipMethId="SM0015" productStoreId="ShopMaxStore" partyId="FEDEX" includeNoChargeItems="N" allowUspsAddr="N" requireUspsAddr="N" roleTypeId="CARRIER" shipmentMethodTypeId="GROUND" sequenceNumber="16"/>
     <ProductStoreShipmentMeth productStoreShipMethId="SM0016" productStoreId="ShopMaxStore" partyId="FEDEX" includeNoChargeItems="N" allowUspsAddr="N" requireUspsAddr="N" roleTypeId="CARRIER" shipmentMethodTypeId="GROUND_HOME" sequenceNumber="17"/>
+    
+    <ProdCatalog prodCatalogId="SHOPMAX_CATALOG" catalogName="ShopMax Catalog" useQuickAdd="Y"/>
+    
+    <ProductStoreCatalog productStoreId="ShopMaxStore" prodCatalogId="SHOPMAX_CATALOG" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
     
     <ProductCategory productCategoryId="SHOPMAX_BROWSE_ROOT" productCategoryTypeId="CATALOG_CATEGORY" categoryName="ShopMax Browse Root" description="ShopMax Catalog Primary Browse Root Category"/>
     

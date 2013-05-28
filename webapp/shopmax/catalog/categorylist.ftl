@@ -19,7 +19,11 @@ under the License.
 
 
 <div class="categories innerbox georgia">
-    <h2>Category list</h2>
+    <#if headerItem?if_exists == "manageproduct">
+        <h2><a href="<@ofbizUrl>manageproduct</@ofbizUrl>">See All Products</a></h2>
+    <#else>
+        <h2>Category list</h2>
+    </#if>
     <div class="category-list nested-list">
          <ul id="category-menu">
            <#if categoryList?has_content>
