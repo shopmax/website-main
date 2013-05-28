@@ -143,6 +143,7 @@ under the License.
         <attribute name="shippingSize" mode="IN" type="String" optional="true"/>
         <attribute name="listCategory" mode="IN" type="String" optional="false"/>
         <attribute name="productSKU" type="String" mode="IN" optional="true"/>
+        <attribute name="uploadsuccess" type="String" mode="OUT" optional="false"/>
     </service>
     
     <service name="uploadProductToShopmax" engine="simple"
@@ -207,7 +208,7 @@ under the License.
     <service name="editProductToSeller" engine="simple"
         location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="editProductToSeller" auth="true">
         <description>Edit Product To Seller</description>
-        <attribute name="productCategoryId" type="String" mode="IN" optional="true"/>
+        <attribute name="productCategoryId" type="String" mode="INOUT" optional="true"/>
         <attribute name="productId" type="String" mode="IN" optional="false"/>
         <attribute name="productName" type="String" mode="IN" optional="false"/>
         <attribute name="description" mode="IN" type="String" optional="false"/>
@@ -236,7 +237,7 @@ under the License.
     <service name="editProductToShopmax" engine="simple"
         location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="editProductToShopmax" auth="true">
         <description>Edit Product To Shopmax</description>
-        <attribute name="productCategoryId" type="String" mode="INOUT" optional="true"/>
+        <attribute name="productCategoryId" type="String" mode="IN" optional="true"/>
         <attribute name="productId" type="String" mode="IN" optional="false"/>
         <attribute name="productName" type="String" mode="IN" optional="false"/>
         <attribute name="description" mode="IN" type="String" optional="false"/>
@@ -289,6 +290,7 @@ under the License.
         <attribute name="shippingSize" mode="IN" type="String" optional="true"/>
         <attribute name="listCategory" mode="IN" type="String" optional="true"/>
         <attribute name="productSKU" type="String" mode="IN" optional="true"/>
+        <attribute name="updatesuccess" type="String" mode="OUT" optional="false"/>
     </service>
     
     <service name="updateProductToShopmax" engine="simple"

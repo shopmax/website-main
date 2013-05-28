@@ -238,4 +238,16 @@ under the License.
             </widgets>
         </section>
     </screen>
+    
+    <screen name="BreadcrumbsAjax">
+        <section>
+            <actions>
+                <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/shopmax/Breadcrumbs.groovy"/>
+            </actions>
+            <widgets>
+                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/breadcrumbsajax.ftl"/></html></platform-specific>
+            </widgets>
+        </section>
+    </screen>
 </screens>

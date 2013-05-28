@@ -36,7 +36,7 @@ under the License.
                 <div id="load-${product_index}" class="loadimage"></div>
                 <a class="pull-left" href="#">
                     <#if product.productImage?exists>
-                        <img class="media-object" src="<@ofbizContentUrl>${product.productImage}</@ofbizContentUrl>" />
+                        <img class="media-object" src="<@ofbizContentUrl>${product.productImage}</@ofbizContentUrl>" width="170" style="height: 170px;"/>
                     <#else>
                         <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-2.jpg</@ofbizContentUrl>" />
                     </#if>
@@ -73,7 +73,7 @@ under the License.
                 <div id="load-remove-${product_index}" class="loadremoveimage"></div>
                 <a class="pull-left" href="#">
                     <#if product.productImage?exists>
-                        <img class="media-object" src="<@ofbizContentUrl>${product.productImage}</@ofbizContentUrl>" />
+                        <img class="media-object" src="<@ofbizContentUrl>${product.productImage}</@ofbizContentUrl>" width="170" style="height: 170px;"/>
                     <#else>
                         <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-170x170.jpg</@ofbizContentUrl>" />
                     </#if>
@@ -106,7 +106,7 @@ under the License.
                                                     <#if productImage.sequenceNum == i>
                                                         <li>
                                                             <div class="uploaded-image">
-                                                                <img src="<@ofbizContentUrl>${productImage.productImageThumb}</@ofbizContentUrl>" />
+                                                                <img src="<@ofbizContentUrl>${productImage.productImageThumb}</@ofbizContentUrl>" width="82" style="height: 82px;"/>
                                                             </div>
                                                             <a onclick="removeProductImage('${productCategoryId?if_exists}','${product.productId?if_exists}','${productImage.contentId?if_exists}','${productImage.fromDate?if_exists}','IMAGE','${product_index}')">Remove</a>
                                                         </li>

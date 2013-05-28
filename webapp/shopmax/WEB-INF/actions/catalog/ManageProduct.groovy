@@ -61,6 +61,17 @@ import org.ofbiz.product.store.ProductStoreWorker;
 productMemberList = [];
 productCategoryMembers = [];
 
+if (breadcrumbTitle) {
+	context.breadcrumbTitle = breadcrumbTitle;
+} else {
+	categoryList = [];
+	if (productCategoryId) {
+		getParentCategory(productCategoryId);
+		context.categoryBreadcrumbList = categoryList;
+	}
+	
+}
+
 // Cache
 productMemberListCache = null;
 useCacheForMembers = UtilProperties.getPropertyValue("shopmax.properties", "shopmax.product.category.cache");
@@ -128,7 +139,10 @@ if (productMemberList.size() == 0) {
             }
         }
     } else {
-        productCategoryMembers = delegator.findByAndCache("Product", null, null);
+        List productConditionList = [];
+        productConditionList.add(EntityCondition.makeCondition("salesDiscontinuationDate", EntityOperator.EQUALS, null));
+        productConditionList.add(EntityCondition.makeCondition("salesDiscontinuationDate", EntityOperator.GREATER_THAN, UtilDateTime.nowTimestamp()));
+        productCategoryMembers = delegator.findList("Product", EntityCondition.makeCondition(productConditionList, EntityOperator.OR), null, null, null, false);
     }
 } else {
     productCategoryMembers = productMemberList;
@@ -353,4 +367,20 @@ def <T extends Object> List<T> getUniques(List<T> list) {
         }
     }
     return uniques;
+}
+
+def getParentCategory(categoryId) {
+	if (categoryId != null) {
+		categoryMap = [:];
+		productCategoryRollup = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAndCache("ProductCategoryRollup", [productCategoryId : categoryId], null)));
+		if (productCategoryRollup) {
+			if (productCategoryRollup.parentProductCategoryId != "SHOPMAX_BROWSE_ROOT") {
+				categoryList.addAll(delegator.findOne("ProductCategory", [productCategoryId : productCategoryRollup.productCategoryId], true));
+				getParentCategory(productCategoryRollup.parentProductCategoryId);
+			}
+			else{
+				categoryList.addAll(delegator.findOne("ProductCategory", [productCategoryId : productCategoryRollup.productCategoryId], true));
+			}
+		}
+	}
 }

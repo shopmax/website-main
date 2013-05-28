@@ -100,6 +100,7 @@ under the License.
                     }
                     pathName = pathName+"detail";
                     $("#category-container").load(pathName + "?productCategoryId=" + productCategoryId);
+                    $("#breadcrum").load("breadcrumbsajax?productCategoryId=" + productCategoryId);
                 });
             });
         }

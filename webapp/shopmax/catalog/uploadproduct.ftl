@@ -21,18 +21,8 @@ under the License.
 <script src="<@ofbizContentUrl>/shopmax-default/js/jquery-ui.js</@ofbizContentUrl>" type="text/javascript"></script>
 <script>
     $(function(){
-        $('#submit_uploadProductToSeller').click(function(e){
-            if(typeof getUrlVars()["productId"] != "undefined"){
-                var isClickActivityOccur = confirm("Do you want to update this product?");
-            }
-            else{
-                var isClickActivityOccur = confirm("Do you want to upload new product?");
-            }
-            if (isClickActivityOccur==true)
-            {
-                $('#uploadAndUpdateProduct').submit();
-            }
-            e.preventDefault();
+        $('#submit_uploadProductToSeller').click(function(){
+            $('#uploadAndUpdateProduct').submit();
         });
         $('#advanced-option-bar').click(function(){
             if($('#advanced-option-detail').is(":hidden")){
@@ -45,6 +35,20 @@ under the License.
                 });
             }
         });
+        var success_upload = '${parameters.uploadsuccess?if_exists}';
+        success_upload = success_upload ? success_upload : false;
+        
+        var success_update = '${parameters.updatesuccess?if_exists}';
+        success_update = success_update ? success_update : false;
+        
+        if(success_upload){
+            alert('Product is uploaded successfully');
+            window.location = "<@ofbizUrl>manageproduct</@ofbizUrl>";
+        }
+        if(success_update){
+            alert('Product is updated successfully');
+            window.location = "<@ofbizUrl>manageproduct</@ofbizUrl>";
+        }
     });
 </script>
 <style>
@@ -175,7 +179,7 @@ under the License.
                                                         <#if productImage.sequenceNum == i>
                                                             <li>
                                                                 <div class="uploaded-image">
-                                                                    <img src="<@ofbizContentUrl>${productImage.productImageThumb}</@ofbizContentUrl>" />
+                                                                    <img src="<@ofbizContentUrl>${productImage.productImageThumb}</@ofbizContentUrl>" width="82" style="height: 82px;"/>
                                                                 </div>
                                                                 <a onclick="removeProductImage('${productId?if_exists}','${productImage.contentId?if_exists}','${productImage.fromDate?if_exists}','IMAGE','${i}')">Remove</a>
                                                             </li>

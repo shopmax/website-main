@@ -49,17 +49,17 @@ $(function(){
                 tempPhoneText = $('#phy_phone_text_'+i).val();
                 tempFaxText = $('#phy_fax_text_'+i).val();
                 if($('#mon_check_'+i).is(":checked")){
-                    mon = 'MON-'+$('#mon_o_0_'+i).val()+'-'+$('#mon_o_1_'+i).val()+'-'+$('#mon_c_0_'+i).val()+'-'+$('#mon_c_1_'+i).val();}
+                    mon = 'MON-'+$('#mon_o_0_'+i).val()+'-'+$('#mon_o_1_'+i).val()+'-'+$('#mon_c_0_'+i).val()+'-'+$('#mon_c_1_'+i).val()+',';}
                 if($('#tue_check_'+i).is(":checked")){
-                    tue = 'TUE-'+$('#tue_o_0_'+i).val()+'-'+$('#tue_o_1_'+i).val()+'-'+$('#tue_c_0_'+i).val()+'-'+$('#tue_c_1_'+i).val();}
+                    tue = 'TUE-'+$('#tue_o_0_'+i).val()+'-'+$('#tue_o_1_'+i).val()+'-'+$('#tue_c_0_'+i).val()+'-'+$('#tue_c_1_'+i).val()+',';}
                 if($('#wed_check_'+i).is(":checked")){
-                    wed = 'WED-'+$('#wed_o_0_'+i).val()+'-'+$('#wed_o_1_'+i).val()+'-'+$('#wed_c_0_'+i).val()+'-'+$('#wed_c_1_'+i).val();}
+                    wed = 'WED-'+$('#wed_o_0_'+i).val()+'-'+$('#wed_o_1_'+i).val()+'-'+$('#wed_c_0_'+i).val()+'-'+$('#wed_c_1_'+i).val()+',';}
                 if($('#thu_check_'+i).is(":checked")){
-                    thu = 'THU-'+$('#thu_o_0_'+i).val()+'-'+$('#thu_o_1_'+i).val()+'-'+$('#thu_c_0_'+i).val()+'-'+$('#thu_c_1_'+i).val();}
+                    thu = 'THU-'+$('#thu_o_0_'+i).val()+'-'+$('#thu_o_1_'+i).val()+'-'+$('#thu_c_0_'+i).val()+'-'+$('#thu_c_1_'+i).val()+',';}
                 if($('#fri_check_'+i).is(":checked")){
-                    fri = 'FRI-'+$('#fri_o_0_'+i).val()+'-'+$('#fri_o_1_'+i).val()+'-'+$('#fri_c_0_'+i).val()+'-'+$('#fri_c_1_'+i).val();}
+                    fri = 'FRI-'+$('#fri_o_0_'+i).val()+'-'+$('#fri_o_1_'+i).val()+'-'+$('#fri_c_0_'+i).val()+'-'+$('#fri_c_1_'+i).val()+',';}
                 if($('#sat_check_'+i).is(":checked")){
-                    sat = 'SAT-'+$('#sat_o_0_'+i).val()+'-'+$('#sat_o_1_'+i).val()+'-'+$('#sat_c_0_'+i).val()+'-'+$('#sat_c_1_'+i).val();}
+                    sat = 'SAT-'+$('#sat_o_0_'+i).val()+'-'+$('#sat_o_1_'+i).val()+'-'+$('#sat_c_0_'+i).val()+'-'+$('#sat_c_1_'+i).val()+',';}
                 if($('#sun_check_'+i).is(":checked")){
                     sun = 'SUN-'+$('#sun_o_0_'+i).val()+'-'+$('#sun_o_1_'+i).val()+'-'+$('#sun_c_0_'+i).val()+'-'+$('#sun_c_1_'+i).val();}
                 
@@ -93,10 +93,10 @@ $(function(){
                     tempStorePhoneNumber = tempStorePhoneNumber+'/'+phoneNumber+faxNumber;
                 }
                 if(!tempDataTime){
-                     tempDataTime = mon+','+tue+','+wed+','+thu+','+fri+','+sat+','+sun;
+                     tempDataTime = mon+tue+wed+thu+fri+sat+sun;
                 }
                 else{
-                     tempDataTime = tempDataTime+'/'+mon+','+tue+','+wed+','+thu+','+fri+','+sat+','+sun;
+                     tempDataTime = tempDataTime+'/'+mon+tue+wed+thu+fri+sat+sun;
                 }
                 phoneNumber = "";
                 faxNumber = "";

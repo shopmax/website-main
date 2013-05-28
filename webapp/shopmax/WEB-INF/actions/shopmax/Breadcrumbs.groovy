@@ -32,8 +32,7 @@ if (breadcrumbTitle) {
     categoryList = [];
     if (productCategoryId) {
         getParentCategory(productCategoryId);
-        println("======================categoryList====================== : "+categoryList);
-        context.categoryList = categoryList;
+        context.categoryBreadcrumbList = categoryList;
     }
     
 }
@@ -44,8 +43,11 @@ def getParentCategory(categoryId) {
         productCategoryRollup = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAndCache("ProductCategoryRollup", [productCategoryId : categoryId], null)));
         if (productCategoryRollup) {
             if (productCategoryRollup.parentProductCategoryId != "SHOPMAX_BROWSE_ROOT") {
-                categoryList.addAll(delegator.findOne("ProductCategory", [productCategoryId : productCategoryRollup.parentProductCategoryId], true));
+                categoryList.addAll(delegator.findOne("ProductCategory", [productCategoryId : productCategoryRollup.productCategoryId], true));
                 getParentCategory(productCategoryRollup.parentProductCategoryId);
+            }
+            else{
+                categoryList.addAll(delegator.findOne("ProductCategory", [productCategoryId : productCategoryRollup.productCategoryId], true));
             }
         }
     }

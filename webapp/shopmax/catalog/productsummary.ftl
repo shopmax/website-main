@@ -23,7 +23,7 @@ under the License.
             <a href="<@ofbizUrl>product?product_id=${product.productId}</@ofbizUrl>">
                 <#if productImage?exists>
                     <#-- <div class="image"><@ofbizContentUrl>${contentPathPrefix?if_exists}${productImage?if_exists}</@ofbizContentUrl>" alt=""></div> -->
-                    <div class="image"><img src="<@ofbizContentUrl>${productImage}</@ofbizContentUrl>" alt=""></div>
+                    <div class="image"><img src="<@ofbizContentUrl>${productImage}</@ofbizContentUrl>" alt="" width="153" style="height: 153px;"/></div>
                 <#else>
                     <div class="image"><img src="<@ofbizContentUrl>/shopmax-default/img/img_1.png</@ofbizContentUrl>" alt=""></div>
                 </#if>
@@ -55,7 +55,7 @@ under the License.
             <a href="<@ofbizUrl>product?product_id=${product.productId}</@ofbizUrl>">
                 <#if productImage?exists>
                     <#-- <div class="image"><@ofbizContentUrl>${contentPathPrefix?if_exists}${productImage?if_exists}</@ofbizContentUrl>" alt=""></div> -->
-                    <div class="image"><img src="<@ofbizContentUrl>/shopmax-default/img/img_1.png</@ofbizContentUrl>" alt=""></div>
+                    <div class="image"><img src="<@ofbizContentUrl>${productImage}</@ofbizContentUrl>" alt="" width="153" style="height: 153px;"/></div>
                 <#else>
                     <div class="image"><img src="<@ofbizContentUrl>/shopmax-default/img/img_1.png</@ofbizContentUrl>" alt=""></div>
                 </#if>

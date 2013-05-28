@@ -528,7 +528,7 @@ under the License.
                         <call-service service-name="createContactMechAttribute" in-map-name="createStorePhoneNumberMap"/>
                     </iterate>
                     
-                    <set field="physicalDateTimes" value="${groovy: if(physicalDateTimeList[i]){physicalDateTime = physicalDateTimeList[i].split(&quot;,&quot;); return physicalDateTime.toList();}}" type="List"/>
+                    <set field="physicalDateTimes" value="${groovy: if(physicalDateTimeList[i]){physicalDateTimes = physicalDateTimeList[i].split(&quot;,&quot;); return physicalDateTimes.toList();}}" type="List"/>
                     <iterate entry="physicalDateTime" list="physicalDateTimes">
                         <set field="physicalDateTimeGroup" value="${groovy: if(physicalDateTime){physicalDateTimeGroups = physicalDateTime.split(&quot;-&quot;); return physicalDateTimeGroups.toList();}}" type="List"/>
                         <set field="createPhysicalDateTimeMap.contactMechId" from-field="addressPurposeContext.contactMechId"/>
@@ -745,6 +745,9 @@ under the License.
             <set field="createGoodIdentificationMap.idValue" from-field="parameters.productSKU"/>
             <call-service service-name="createGoodIdentification" in-map-name="createGoodIdentificationMap"/>
         </if-not-empty>
+        
+        <set field="success" value="true"/>
+        <field-to-result field="success" result-name="uploadsuccess"/>
         
         <set field="parameters.partyId" from-field="userLogin.partyId"/>
         <set field="runTenantServiceInMap.tenantId" value="default"/>
@@ -1298,6 +1301,8 @@ under the License.
         <set field="updateProductMap.description" from-field="parameters.description"/>
         <call-service service-name="updateProduct" in-map-name="updateProductMap"/>
         
+        <field-to-result field="parameters.productCategoryId" result-name="productCategoryId"/>
+        
         <!-- Create images of product -->
         <if-not-empty field="parameters._uploadedFile1_fileName">
             <set field="addAdditionalViewForProductMap.userLogin" from-field="systemUserLogin"/>
@@ -1673,8 +1678,6 @@ under the License.
             </else>
             </if-empty>
         </if-not-empty>
-        
-        <field-to-result field="parameters.productCategoryId" result-name="productCategoryId"/>
     </simple-method>
     
     <simple-method method-name="removeProductFromSeller" short-description="Remove Product From Seller">
@@ -1978,6 +1981,9 @@ under the License.
             </else>
             </if-empty>
         </if-not-empty>
+        
+        <set field="success" value="true"/>
+        <field-to-result field="success" result-name="updatesuccess"/>
         
         <set field="parameters.partyId" from-field="userLogin.partyId"/>
         <set field="runTenantServiceInMap.tenantId" value="default"/>

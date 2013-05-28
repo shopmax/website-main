@@ -226,7 +226,10 @@ under the License.
     <request-map uri="uploadProductToSeller">
         <security https="true" auth="true"/>
         <event type="service" invoke="uploadProductToSeller"/>
-        <response name="success" type="view" value="manageproduct"/>
+        <response name="success" type="request" value="uploadproduct">
+            <redirect-parameter name="productId"/>
+            <redirect-parameter name="success"/>
+        </response>
         <response name="error" type="view" value="uploadproduct"/>
     </request-map>
     
@@ -236,6 +239,11 @@ under the License.
         <response name="success" type="request" value="uploadproduct">
             <redirect-parameter name="productId"/>
         </response>
+    </request-map>
+    
+    <request-map uri="breadcrumbsajax">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="breadcrumbsajax"/>
     </request-map>
     
     <request-map uri="productnormal">
@@ -495,6 +503,7 @@ under the License.
     <view-map name="shopcomments" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#ShopComments"/>
     <view-map name="shopaboutus" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#ShopAboutUs"/>
     <view-map name="salesummary" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#SaleSummary"/>
+    <view-map name="breadcrumbsajax" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#BreadcrumbsAjax"/>
     
     <view-map name="product" type="screen" page="component://shopmax/widget/CatalogScreens.xml#Product"/>
     <view-map name="productnormal" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ProductNormal"/>
@@ -517,7 +526,6 @@ under the License.
     <view-map name="subcategoriesaccordionview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#SubCategoriesAccordionView"/>
     <view-map name="uploadproduct" type="screen" page="component://shopmax/widget/CatalogScreens.xml#UploadProduct"/>
     <view-map name="uploadproductajax" type="screen" page="component://shopmax/widget/CatalogScreens.xml#UploadProductAjax"/>
-    
     
     <view-map name="shoppingcart" type="screen" page="component://shopmax/widget/CartScreens.xml#ShoppingCart"/>
     <view-map name="checkout" type="screen" page="component://shopmax/widget/OrderScreens.xml#Checkout"/>
