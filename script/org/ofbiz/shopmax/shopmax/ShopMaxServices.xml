@@ -1783,6 +1783,7 @@ under the License.
         <set field="updateProductMap.productName" from-field="parameters.productName"/>
         <set field="updateProductMap.description" from-field="parameters.description"/>
         <call-service service-name="updateProduct" in-map-name="updateProductMap"/>
+        <field-to-result field="parameters.productId" result-name="productId"/>
         
         <!-- Create product to category -->
         <set field="categoryLists" from-field="parameters.listCategory"/>
@@ -2191,6 +2192,5 @@ under the License.
             </else>
             </if-empty>
         </if-not-empty>
-        <field-to-result field="parameters.productId" result-name="productId"/>
     </simple-method>
 </simple-methods>

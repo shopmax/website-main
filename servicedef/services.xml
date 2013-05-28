@@ -266,7 +266,7 @@ under the License.
     <service name="updateProductToSeller" engine="simple"
         location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="updateProductToSeller" auth="true">
         <description>Edit Product To Seller</description>
-        <attribute name="productId" type="String" mode="IN" optional="false"/>
+        <attribute name="productId" type="String" mode="INOUT" optional="false"/>
         <attribute name="productName" type="String" mode="IN" optional="false"/>
         <attribute name="description" mode="IN" type="String" optional="false"/>
         <attribute name="uploadedFile1" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
@@ -294,7 +294,7 @@ under the License.
     <service name="updateProductToShopmax" engine="simple"
         location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="updateProductToShopmax" auth="true">
         <description>Edit Product To Shopmax</description>
-        <attribute name="productId" type="String" mode="INOUT" optional="false"/>
+        <attribute name="productId" type="String" mode="IN" optional="false"/>
         <attribute name="productName" type="String" mode="IN" optional="false"/>
         <attribute name="description" mode="IN" type="String" optional="false"/>
         <attribute name="uploadedFile1" type="java.nio.ByteBuffer" mode="IN" optional="true"/>

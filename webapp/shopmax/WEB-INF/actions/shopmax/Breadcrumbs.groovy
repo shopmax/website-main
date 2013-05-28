@@ -18,6 +18,7 @@
  */
 
 import org.ofbiz.base.util.*;
+import org.ofbiz.entity.util.*;
 import org.ofbiz.product.catalog.*;
 import org.ofbiz.product.category.*;
 import javolution.util.FastMap;
@@ -28,15 +29,24 @@ productCategoryId = parameters.productCategoryId;
 if (breadcrumbTitle) {
     context.breadcrumbTitle = breadcrumbTitle;
 } else {
-    CategoryWorker.getRelatedCategories(request, "topLevelList", CatalogWorker.getCatalogTopCategoryId(request, "SHOPMAX_CATALOG"), true);
-    curCategoryId = productCategoryId;
-    request.setAttribute("curCategoryId", curCategoryId);
-    CategoryWorker.setTrail(request, curCategoryId);
+    categoryList = [];
+    if (productCategoryId) {
+        getParentCategory(productCategoryId);
+        println("======================categoryList====================== : "+categoryList);
+        context.categoryList = categoryList;
+    }
     
-    categoryList = request.getAttribute("topLevelList");
-    if (categoryList) {
-        catContentWrappers = FastMap.newInstance();
-        CategoryWorker.getCategoryContentWrappers(catContentWrappers, categoryList, request);
-        context.catContentWrappers = catContentWrappers;
+}
+
+def getParentCategory(categoryId) {
+    if (categoryId != null) {
+        categoryMap = [:];
+        productCategoryRollup = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAndCache("ProductCategoryRollup", [productCategoryId : categoryId], null)));
+        if (productCategoryRollup) {
+            if (productCategoryRollup.parentProductCategoryId != "SHOPMAX_BROWSE_ROOT") {
+                categoryList.addAll(delegator.findOne("ProductCategory", [productCategoryId : productCategoryRollup.parentProductCategoryId], true));
+                getParentCategory(productCategoryRollup.parentProductCategoryId);
+            }
+        }
     }
 }

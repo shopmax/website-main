@@ -51,9 +51,9 @@ under the License.
                         <td class="col1 form-horizontal pull-left">
                             <h1 class="header-congratulation">Congratulation !</h1>
                             <#if partyRole?has_content>
-                                <p class="intro-txt"><strong>1 Your registration is successful. It will take 2-3 working days to verify your seller account. You could start using your buyer's account now.</strong></p>
+                                <p class="intro-txt"><strong>Your registration is successful. It will take 2-3 working days to verify your seller account. You could start using your buyer's account now.</strong></p>
                             <#else>
-                                <p class="intro-txt"><strong>2 Your registration is successful. It will take 2-3 working days to verify your seller account. You could start using your buyer's account now.</strong></p>
+                                <p class="intro-txt"><strong>Your registration is successful. It will take 2-3 working days to verify your seller account. You could start using your buyer's account now.</strong></p>
                             </#if>
                         </td>
                     </tr>
