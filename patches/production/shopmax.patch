@@ -173,20 +173,4 @@ Index: framework/webapp/config/url.properties
  force.http.host=
  
  # Static Content URLs to make it easy to move the serving load for static content to other machines
-
-Index: hot-deploy/shopmax/data/TenantData.xml
-===================================================================
---- hot-deploy/shopmax/data/TenantData.xml	(revision 266)
-+++ hot-deploy/shopmax/data/TenantData.xml	(working copy)
-@@ -22,9 +22,9 @@
-     <Tenant tenantId="shopmax" tenantName="ShopMax" />
-     <TenantComponent tenantId="shopmax" componentName="shopmax" sequenceNum="01"/>
-     <TenantDataSource tenantId="shopmax" entityGroupName="org.ofbiz"
--        jdbcUri="jdbc:derby:shopmax;create=true" jdbcUsername="ofbiz" jdbcPassword="ofbiz"/>
-+        jdbcUri="postgresql://127.0.0.1:5432/shopmax" jdbcUsername="ofbiz" jdbcPassword="ofbiz"/>
-     <TenantDataSource tenantId="shopmax" entityGroupName="org.ofbiz.olap"
--        jdbcUri="jdbc:derby:shopmaxolap;create=true" jdbcUsername="ofbiz" jdbcPassword="ofbiz"/>
-+        jdbcUri="postgresql://127.0.0.1:5432/shopmaxolap" jdbcUsername="ofbiz" jdbcPassword="ofbiz"/>
-     
-     <!-- Front-End -->
-     <TenantDomainName tenantId="shopmax" domainName="shopmax.co.nz" initialPath="/"/>
+ 
