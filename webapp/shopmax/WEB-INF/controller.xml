@@ -242,7 +242,7 @@ under the License.
     </request-map>
     
     <request-map uri="breadcrumbsajax">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="breadcrumbsajax"/>
     </request-map>
     

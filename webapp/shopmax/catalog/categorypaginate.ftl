@@ -17,26 +17,28 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<div class="add-product topviewbox clearfix">
-    <span class="tital">SORT BY</span>
-    <select class="span2">
-        <option value="" selected="selected">Price</option>
-        <option value="1">Name</option>
-        <option value="2">Stock</option>
-    </select>
-    <span class="tital">VIEW BY</span>
-    <a href="<@ofbizUrl><#if headerItem?if_exists == "categorygridview" || headerItem?if_exists == "categorylistview">categorygridview?productCategoryId=${productCategoryId}<#else>shopcategorygridview?productCategoryId=${productCategoryId}</#if></@ofbizUrl>" class="grid_view"><span class="b"></span>Grid</a>
-    <a href="<@ofbizUrl><#if headerItem?if_exists == "categorygridview" || headerItem?if_exists == "categorylistview">categorylistview?productCategoryId=${productCategoryId}<#else>shopcategorylistview?productCategoryId=${productCategoryId}</#if></@ofbizUrl>" class="list_view"><span class="b"></span>List</a>
-    <div class="paging">
-        <ul>
-            <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/arrow-prev-grey.png</@ofbizContentUrl>" /></a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">...</a></li>
-            <li><a href="#">10</a></li>
-            <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/arrow-next-blue.png</@ofbizContentUrl>" /></a></li>
-        </ul>
-    </div>
-</div>
+<#macro nextPrev commonUrl="" ajaxEnabled=true javaScriptEnabled=true paginateStyle="" paginateFirstStyle="" viewIndex=0 highIndex=0 listSize=0 viewSize=1 ajaxFirstUrl="" firstUrl="" paginateFirstLabel="" paginatePreviousStyle="" ajaxPreviousUrl="${viewIndexPrevious}" previousUrl="" paginatePreviousLabel="" pageLabel="" ajaxSelectUrl="" selectUrl="" ajaxSelectSizeUrl="" selectSizeUrl="" commonDisplaying="" paginateNextStyle="" ajaxNextUrl="${viewIndexNext}" nextUrl="" paginateNextLabel="" paginateLastStyle="" ajaxLastUrl="" lastUrl="" paginateLastLabel="" paginateViewSizeLabel="" >
+    <#local javaScriptEnabled = javaScriptEnabled />
+    <#if (!javaScriptEnabled)>
+        <#local javaScriptEnabled = Static["org.ofbiz.base.util.UtilHttp"].isJavaScriptEnabled(request) />
+    </#if>
+    <@renderNextPrev paginateStyle paginateFirstStyle viewIndex highIndex listSize viewSize ajaxEnabled javaScriptEnabled ajaxFirstUrl firstUrl uiLabelMap.CommonFirst paginatePreviousStyle ajaxPreviousUrl previousUrl uiLabelMap.CommonPrevious uiLabelMap.CommonPage ajaxSelectUrl selectUrl ajaxSelectSizeUrl selectSizeUrl commonDisplaying paginateNextStyle ajaxNextUrl nextUrl uiLabelMap.CommonNext paginateLastStyle ajaxLastUrl lastUrl uiLabelMap.CommonLast uiLabelMap.CommonItemsPerPage/>
+</#macro>
+
+<#macro renderNextPrev paginateStyle paginateFirstStyle viewIndex highIndex listSize viewSize ajaxEnabled javaScriptEnabled ajaxFirstUrl firstUrl paginateFirstLabel paginatePreviousStyle ajaxPreviousUrl previousUrl paginatePreviousLabel pageLabel ajaxSelectUrl selectUrl ajaxSelectSizeUrl selectSizeUrl commonDisplaying paginateNextStyle ajaxNextUrl nextUrl paginateNextLabel paginateLastStyle ajaxLastUrl lastUrl paginateLastLabel paginateViewSizeLabel>
+    <#if listSize gt viewSize>
+        <#if viewIndex gt 0>
+            <ul><li><a href="<#if ajaxEnabled>javascript:paginationPage('${viewIndexPrevious}')<#else>${previousUrl}</#if>"><img src="<@ofbizContentUrl>/shopmax-default/img/arrow-prev-blue.png</@ofbizContentUrl>" /></a></li>
+        <#else>
+            <ul><li><a><img src="<@ofbizContentUrl>/shopmax-default/img/arrow-prev-grey.png</@ofbizContentUrl>" /></a></li>
+        </#if>
+        <#list 0..viewIndexLast as i>
+            <li><a href="<#if ajaxEnabled>javascript:paginationPage('${i}')<#else>${nextUrl}</#if>" <#if i == viewIndex>style="color:#0E428A;"</#if>>${i+1}</a></li>
+        </#list>
+        <#if highIndex lt listSize>
+            <li><a href="<#if ajaxEnabled>javascript:paginationPage('${viewIndexNext}')<#else>${nextUrl}</#if>"><img src="<@ofbizContentUrl>/shopmax-default/img/arrow-next-blue.png</@ofbizContentUrl>" /></a></li></ul>
+        <#else>
+            <li><a><img src="<@ofbizContentUrl>/shopmax-default/img/arrow-next-grey.png</@ofbizContentUrl>" /></a></li></ul>
+        </#if>
+    </#if>
+</#macro>

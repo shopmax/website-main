@@ -29,6 +29,20 @@ under the License.
         width: 82px;
     }
 </style>
+<div class="add-product">
+    <a class="btn-general" href="<@ofbizUrl>uploadproduct</@ofbizUrl>">Add New Product</a>
+    <div class="paging">
+        <#include "component://shopmax/webapp/shopmax/catalog/manageproductpaginate.ftl" />
+        <#assign viewIndexFirst = 0/>
+        <#assign viewIndexPrevious = viewIndex - 1/>
+        <#assign viewIndexNext = viewIndex + 1/>
+        <#assign viewIndexLast = Static["java.lang.Math"].floor(listSize/viewSize)/>
+        <#assign viewIndexLastIndex = viewIndexLast-1/>
+        <#assign messageMap = Static["org.ofbiz.base.util.UtilMisc"].toMap("lowCount", lowIndex, "highCount", highIndex, "total", listSize)/>
+        <#assign commonDisplaying = Static["org.ofbiz.base.util.UtilProperties"].getMessage("CommonUiLabels", "CommonDisplaying", messageMap, locale)/>
+        <@nextPrev commonUrl=false ajaxEnabled=true javaScriptEnabled=true paginateStyle="" paginateFirstStyle="" viewIndex=viewIndex highIndex=highIndex listSize=listSize viewSize=viewSize ajaxFirstUrl="" firstUrl="" paginateFirstLabel="" paginatePreviousStyle="" ajaxPreviousUrl="" previousUrl="" paginatePreviousLabel="" pageLabel="" ajaxSelectUrl="" selectUrl="" ajaxSelectSizeUrl="" selectSizeUrl="" commonDisplaying=commonDisplaying paginateNextStyle="" ajaxNextUrl="${viewIndexNext}" nextUrl="" paginateNextLabel="" paginateLastStyle="" ajaxLastUrl="" lastUrl="" paginateLastLabel="" paginateViewSizeLabel="" />
+    </div>
+</div>
 <ul class="media-list edit-product-list manage_pro">
     <#if productList?has_content>
         <#list productList as product>
@@ -190,3 +204,17 @@ under the License.
         </#list>
     </#if>
 </ul>
+<div class="add-product">
+    <a class="btn-general" href="<@ofbizUrl>uploadproduct</@ofbizUrl>">Add New Product</a>
+    <div class="paging">
+        <#include "component://shopmax/webapp/shopmax/catalog/manageproductpaginate.ftl" />
+        <#assign viewIndexFirst = 0/>
+        <#assign viewIndexPrevious = viewIndex - 1/>
+        <#assign viewIndexNext = viewIndex + 1/>
+        <#assign viewIndexLast = Static["java.lang.Math"].floor(listSize/viewSize)/>
+        <#assign viewIndexLastIndex = viewIndexLast-1/>
+        <#assign messageMap = Static["org.ofbiz.base.util.UtilMisc"].toMap("lowCount", lowIndex, "highCount", highIndex, "total", listSize)/>
+        <#assign commonDisplaying = Static["org.ofbiz.base.util.UtilProperties"].getMessage("CommonUiLabels", "CommonDisplaying", messageMap, locale)/>
+        <@nextPrev commonUrl=false ajaxEnabled=true javaScriptEnabled=true paginateStyle="" paginateFirstStyle="" viewIndex=viewIndex highIndex=highIndex listSize=listSize viewSize=viewSize ajaxFirstUrl="" firstUrl="" paginateFirstLabel="" paginatePreviousStyle="" ajaxPreviousUrl="" previousUrl="" paginatePreviousLabel="" pageLabel="" ajaxSelectUrl="" selectUrl="" ajaxSelectSizeUrl="" selectSizeUrl="" commonDisplaying=commonDisplaying paginateNextStyle="" ajaxNextUrl="${viewIndexNext}" nextUrl="" paginateNextLabel="" paginateLastStyle="" ajaxLastUrl="" lastUrl="" paginateLastLabel="" paginateViewSizeLabel="" />
+    </div>
+</div>

@@ -62,14 +62,14 @@ productMemberList = [];
 productCategoryMembers = [];
 
 if (breadcrumbTitle) {
-	context.breadcrumbTitle = breadcrumbTitle;
+    context.breadcrumbTitle = breadcrumbTitle;
 } else {
-	categoryList = [];
-	if (productCategoryId) {
-		getParentCategory(productCategoryId);
-		context.categoryBreadcrumbList = categoryList;
-	}
-	
+    categoryList = [];
+    if (productCategoryId) {
+        getParentCategory(productCategoryId);
+        context.categoryBreadcrumbList = categoryList;
+    }
+    
 }
 
 // Cache
@@ -370,17 +370,17 @@ def <T extends Object> List<T> getUniques(List<T> list) {
 }
 
 def getParentCategory(categoryId) {
-	if (categoryId != null) {
-		categoryMap = [:];
-		productCategoryRollup = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAndCache("ProductCategoryRollup", [productCategoryId : categoryId], null)));
-		if (productCategoryRollup) {
-			if (productCategoryRollup.parentProductCategoryId != "SHOPMAX_BROWSE_ROOT") {
-				categoryList.addAll(delegator.findOne("ProductCategory", [productCategoryId : productCategoryRollup.productCategoryId], true));
-				getParentCategory(productCategoryRollup.parentProductCategoryId);
-			}
-			else{
-				categoryList.addAll(delegator.findOne("ProductCategory", [productCategoryId : productCategoryRollup.productCategoryId], true));
-			}
-		}
-	}
+    if (categoryId != null) {
+        categoryMap = [:];
+        productCategoryRollup = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAndCache("ProductCategoryRollup", [productCategoryId : categoryId], null)));
+        if (productCategoryRollup) {
+            if (productCategoryRollup.parentProductCategoryId != "SHOPMAX_BROWSE_ROOT") {
+                categoryList.addAll(delegator.findOne("ProductCategory", [productCategoryId : productCategoryRollup.productCategoryId], true));
+                getParentCategory(productCategoryRollup.parentProductCategoryId);
+            }
+            else{
+                categoryList.addAll(delegator.findOne("ProductCategory", [productCategoryId : productCategoryRollup.productCategoryId], true));
+            }
+        }
+    }
 }

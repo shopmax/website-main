@@ -18,13 +18,13 @@ under the License.
 -->
 
 <!-- MAIN CONTENT -->
-    <!-- sliderdiv -->
-    <#if headerItem?if_exists == "shopcategorygridview">
-        <div class="span9 main-content manage-product cat_grid_view">
-            <#include "component://shopmax/webapp/shopmax/catalog/categorydetail.ftl" />
-        </div><!-- /.span9 -->
-    <#elseif headerItem?if_exists == "shopcategorylistview">
-        <div class="span9 main-content manage-product cat_grid_view cat_list_view">
-            <#include "component://shopmax/webapp/shopmax/catalog/categorydetail.ftl" />
-        </div><!-- /.span9 -->
-    </#if>
+<!-- sliderdiv -->
+<#if headerItem?if_exists == "shopcategorygridview">
+    <div class="span9 main-content manage-product cat_grid_view">
+        <#include "component://shopmax/webapp/shopmax/catalog/categorydetail.ftl" />
+    </div><!-- /.span9 -->
+<#elseif headerItem?if_exists == "shopcategorylistview">
+    <div class="span9 main-content manage-product cat_grid_view cat_list_view">
+        <#include "component://shopmax/webapp/shopmax/catalog/categorydetail.ftl" />
+    </div><!-- /.span9 -->
+</#if>

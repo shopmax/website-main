@@ -60,7 +60,7 @@ under the License.
                     <field-map field-name="themeResources" from-field="layoutSettings" />
                 </service>
                 <set field="layoutSettings" from-field="themeResources" default-value="${layoutSettings}" global="true" />
-                <set field="isDemo" value="${groovy:org.ofbiz.base.component.ComponentConfig.componentExists(&quot;ofbizdemo&quot;)}" type="Boolean"/>
+                <!-- <set field="isDemo" value="${groovy:org.ofbiz.base.component.ComponentConfig.componentExists(&quot;ofbizdemo&quot;)}" type="Boolean"/> -->
                 <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/cart/ShowCart.groovy"/>
                 <!-- <entity-one value-field="partyAttribute" entity-name="PartyAttribute">
                     <field-map field-name="partyId" from-field="userLogin.partyId"/>

@@ -22,7 +22,7 @@ under the License.
         <div class="product-wrapper">
             <div class="product-inner">
                 <!-- <img src="http://placehold.it/472x472">  -->
-                <img src="<@ofbizContentUrl>${productContentWrapper.get("LARGE_IMAGE_URL")?default("/images/defaultImage.jpg")}</@ofbizContentUrl>" />
+                <img src="<@ofbizContentUrl>${productImageList[0].productImage?default("/images/defaultImage.jpg")}</@ofbizContentUrl>" width="472" style="height:472px;"/>
             </div>
         </div>
         
@@ -32,7 +32,7 @@ under the License.
                     <li>
                         <div class="product-thumb-wrapper">
                             <div class="product-thumb-inner">
-                                <a href="#"><img src="<@ofbizContentUrl>${productImage.productImageThumb?default("/images/defaultImage.jpg")}</@ofbizContentUrl>" /></a>
+                                <a href="#"><img src="<@ofbizContentUrl>${productImage.productImage?default("/images/defaultImage.jpg")}</@ofbizContentUrl>" width="143" style="height:143px;"/></a>
                             </div>
                         </div>
                     </li>
