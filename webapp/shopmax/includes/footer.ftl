@@ -24,33 +24,33 @@ under the License.
                         <div class="span2">
                             <h3>Quick Links</h3>
                             <ul>
-	                            <li><a href="todays-deal.html">Today's Deal</a></li>
-	                            <li><a href="featured.html">Featured</a></li>
-	                            <li><a href="special.html">Special</a></li>
-	                            <li><a href="top-seller.html">Top Seller</a></li>
-	                            <li><a href="shops.html">Shops</a></li>
-	                            <li><a href="shipping.html">Shipping &amp; Returns</a></li>
+                                <li><a href="todays-deal.html">Today's Deal</a></li>
+                                <li><a href="featured.html">Featured</a></li>
+                                <li><a href="special.html">Special</a></li>
+                                <li><a href="top-seller.html">Top Seller</a></li>
+                                <li><a href="shops.html">Shops</a></li>
+                                <li><a href="shipping.html">Shipping &amp; Returns</a></li>
                             </ul>
                         </div>
                         <div class="span2">
                             <h3>Top Categories</h3>
                             <ul>
-	                            <li><a href="#">Maecenas faucibus</a></li>
-	                            <li><a href="#">Interdum enean eu</a></li>
-	                            <li><a href="#">Quam ellentesque</a></li>
-	                            <li><a href="#">Sem lacinia quam</a></li>
-	                            <li><a href="#">Venenatis vestibum</a></li>
-	                            <li><a href="#">Prasent commodo</a></li>
+                                <li><a href="#">Maecenas faucibus</a></li>
+                                <li><a href="#">Interdum enean eu</a></li>
+                                <li><a href="#">Quam ellentesque</a></li>
+                                <li><a href="#">Sem lacinia quam</a></li>
+                                <li><a href="#">Venenatis vestibum</a></li>
+                                <li><a href="#">Prasent commodo</a></li>
                             </ul>
                         </div>
                         <div class="span2 noheading">
                             <ul>
-	                            <li><a href="#">Maecenas faucibus</a></li>
-	                            <li><a href="#">Interdum enean eu</a></li>
-	                            <li><a href="#">Quam ellentesque</a></li>
-	                            <li><a href="#">Sem lacinia quam</a></li>
-	                            <li><a href="#">Venenatis vestibum</a></li>
-	                            <li><a href="#">Prasent commodo</a></li>
+                                <li><a href="#">Maecenas faucibus</a></li>
+                                <li><a href="#">Interdum enean eu</a></li>
+                                <li><a href="#">Quam ellentesque</a></li>
+                                <li><a href="#">Sem lacinia quam</a></li>
+                                <li><a href="#">Venenatis vestibum</a></li>
+                                <li><a href="#">Prasent commodo</a></li>
                             </ul>                       
                         </div>
                         <div class="span3">

@@ -40,7 +40,7 @@ under the License.
                     <div class="boxbill clearfix">
                         <div class="topside clearfix">
                             <div class="left_top"><strong>Thank you for your order.<br>Please print a copy of this page for your records.</strong></div>
-                            <div class="right_top"><a href="#" class="btn-general">Print orader confirmation</a></div>
+                            <div class="right_top"><a href="<@ofbizUrl>order.pdf?orderId=${orderId}</@ofbizUrl>" class="btn-general" target="_blank">Print order confirmation</a></div>
                         </div>
                         <table cellpadding="0" cellspacing="0" border="0" class="table table_1">
                             <tr>
@@ -55,72 +55,80 @@ under the License.
                 <#list supplierOrderItemsMap.entrySet() as entry>
                     <#assign partyId = entry.getKey()/>
                     <#assign supplierOrderItems = entry.getValue()/>
-                <div class="shipp_info">
-                    <div class="tital_1 tital_green">${orderContext.getSupplierName(partyId)}</div>
-                    <table class="table bl-table sc-table-shipping ">
-                        <thead>
-                            <tr class="bl-table-header-blue bl-table-header-grey">
-                                <th class="col1 col_1" width="100">Product</th>
-                                <th class="col2 col_2" width="300"></th>
-                                <th class="col3 col_3 alighright" width="100">UNIT Price</th>
-                                <th class="col4 col_4 alighcenter" width="100">Quantity</th>
-                                <th class="col5">Sub total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                      <#list supplierOrderItems as orderItem>
-                          <#assign product = orderItem.getRelatedOne("Product", false)/>
-                          <#assign smallImageUrl = Static["org.ofbiz.product.product.ProductContentWrapper"].getProductContentAsText(product, "SMALL_IMAGE_URL", locale, dispatcher)?if_exists />
-                          <#if !smallImageUrl?string?has_content><#assign smallImageUrl = "/images/defaultImage.jpg" /></#if>
-                            <tr>
-                                <td class="col1 col_1"><img src="<@ofbizContentUrl>${requestAttributes.contentPathPrefix?if_exists}${smallImageUrl}</@ofbizContentUrl>" width="100px" height="100px" /></td>
-                                <td class="col2 col_2"><strong>${product.productName?if_exists}</strong><br />Colour - yellow</td>
-                                <td class="col3 col_3 alighright"><strong><@ofbizCurrency amount=orderItem.unitPrice /></strong></td>
-                                <td class="col4 col_4 alighcenter">${orderItem.quantity?string.number}</td>
-                                <td class="col5"><strong><@ofbizCurrency amount=Static["org.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments)/></strong></td>
-                            </tr>
-                        </#list>
-                        </tbody>
-                    </table>
-                    
-                    <div class="shop_address clearfix">
-                        <p>You have selected to pick this item up from the store listed below. Your <strong>Order Number: ${orderId}</strong>. You Must present this to the shop in order to pick up your purchase.</p>
-                        <div class="row">
-                            <div class="span5">
-                                <div class="column_1">
-                                    <h5>Store address</h5>
-                                    <ul>
-                                        <li>${productStore.storeName?if_exists}</li><#--Store Name -->
-                                        <#assign facilityContactMechValueMaps = Static["org.ofbiz.party.contact.ContactMechWorker"].getFacilityContactMechValueMaps(delegator, productStore.inventoryFacilityId, false, "POSTAL_ADDRESS") />
-                                        <#if facilityContactMechValueMaps?has_content>
-                                            <#assign postalAddress = facilityContactMechValueMaps.postalAddress />
-                                            <#assign proviceStateGeo = postalAddress.getRelatedOne("ProvinceStateGeo")/>
-                                            <li>${postalAddress.address1}</li><#--Street Address Line one -->
-                                            <li>${postalAddress.address2}</li><#--Street Address Line two -->
-                                            <li>${proviceStateGeo.geoName}</li><#--State -->
-                                        </#if>
-                                        
-                                        <#assign facilityContactMechValueMaps = Static["org.ofbiz.party.contact.ContactMechWorker"].getFacilityContactMechValueMaps(delegator, productStore.inventoryFacilityId, false, "TELECOM_NUMBER") />
-                                        <#if facilityContactMechValueMaps?has_content>
-                                            <#assign telecomNumber = facilityContactMechValueMaps.telecomNumber />
-                                            <li>Phone number ${telecomNumber.countryCode?if_exists} <#if telecomNumber.areaCode?exists>${telecomNumber.areaCode}-</#if>${telecomNumber.contactNumber}</li>
-                                        </#if>
-                                    </ul>
+                    <div class="shipp_info">
+                        <div class="tital_1 tital_green">${orderContext.getSupplierName(partyId)}</div>
+                        <table class="table bl-table sc-table-shipping ">
+                            <thead>
+                                <tr class="bl-table-header-blue bl-table-header-grey">
+                                    <th class="col1 col_1" width="100">Product</th>
+                                    <th class="col2 col_2" width="300"></th>
+                                    <th class="col3 col_3 alighright" width="100">UNIT Price</th>
+                                    <th class="col4 col_4 alighcenter" width="100">Quantity</th>
+                                    <th class="col5">Sub total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <#list supplierOrderItems as orderItem>
+                                    <#assign product = orderItem.getRelatedOne("Product", false)/>
+                                    <tr>
+                                        <td class="col1 col_1">
+                                            <#assign productContentAndInfoImages = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductContentAndInfo", {"productId" : product.productId, "productContentTypeId" : "IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"}, ["sequenceNum"], false))>
+                                            <#if productContentAndInfoImages?has_content>
+                                                <#assign contentAssocThumbs = delegator.findByAnd("ContentAssocDataResourceViewTo", {"contentIdStart" : productContentAndInfoImages[0].contentId, "caContentAssocTypeId" : "IMAGE_THUMBNAIL"}, null, false)>
+                                            </#if>
+                                            <img src="<#if contentAssocThumbs?has_content><@ofbizContentUrl>${contentAssocThumbs[0].drObjectInfo}</@ofbizContentUrl><#else><@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl></#if>" width="100px" height="100px"/>
+                                        </td>
+                                        <td class="col2 col_2"><strong>${product.productName?if_exists}</strong><br /><#-- Colour - yellow--></td>
+                                        <td class="col3 col_3 alighright">
+                                            <#assign defaultPrice = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : product.productId, "productPriceTypeId" : "DEFAULT_PRICE"}, null, false))>
+                                            <#assign promoPrice = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : product.productId, "productPriceTypeId" : "PROMO_PRICE"}, null, false))>
+                                            <#if promoPrice?has_content><div class="old"><@ofbizCurrency amount=defaultPrice[0].price/></div></#if><strong><@ofbizCurrency amount=orderItem.unitPrice/></strong>
+                                        </td>
+                                        <td class="col4 col_4 alighcenter">${orderItem.quantity?string.number}</td>
+                                        <td class="col5"><strong><@ofbizCurrency amount=Static["org.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments)/></strong></td>
+                                    </tr>
+                                </#list>
+                            </tbody>
+                        </table>
+                        
+                        <div class="shop_address clearfix">
+                            <p>You have selected to pick this item up from the store listed below. Your <strong>Order Number: ${orderId}</strong>. You Must present this to the shop in order to pick up your purchase.</p>
+                            <div class="row">
+                                <div class="span5">
+                                    <div class="column_1">
+                                        <h5>Store address</h5>
+                                        <ul>
+                                            <li>${productStore.storeName?if_exists}</li><#--Store Name -->
+                                            <#assign facilityContactMechValueMaps = Static["org.ofbiz.party.contact.ContactMechWorker"].getFacilityContactMechValueMaps(delegator, productStore.inventoryFacilityId, false, "POSTAL_ADDRESS") />
+                                            <#if facilityContactMechValueMaps?has_content>
+                                                <#assign postalAddress = facilityContactMechValueMaps.postalAddress />
+                                                <#assign proviceStateGeo = postalAddress.getRelatedOne("ProvinceStateGeo")/>
+                                                <li>${postalAddress.address1}</li><#--Street Address Line one -->
+                                                <li>${postalAddress.address2}</li><#--Street Address Line two -->
+                                                <li>${proviceStateGeo.geoName}</li><#--State -->
+                                            </#if>
+                                            
+                                            <#assign facilityContactMechValueMaps = Static["org.ofbiz.party.contact.ContactMechWorker"].getFacilityContactMechValueMaps(delegator, productStore.inventoryFacilityId, false, "TELECOM_NUMBER") />
+                                            <#if facilityContactMechValueMaps?has_content>
+                                                <#assign telecomNumber = facilityContactMechValueMaps.telecomNumber />
+                                                <li>Phone number ${telecomNumber.countryCode?if_exists} <#if telecomNumber.areaCode?exists>${telecomNumber.areaCode}-</#if>${telecomNumber.contactNumber}</li>
+                                            </#if>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="span4">
-                                <div class="column_2">
-                                    <h5>Pickup hours</h5>
-                                    <ul>
-                                        <li>Monday - Friday: 9am - 6p</li>
-                                        <li>Saturday: 10am - 4pm</li>
-                                        <li>Sunday: Closed</li>
-                                    </ul>
+                                <div class="span4">
+                                    <div class="column_2">
+                                        <h5>Pickup hours</h5>
+                                        <ul>
+                                            <li>Monday - Friday: 9am - 6p</li>
+                                            <li>Saturday: 10am - 4pm</li>
+                                            <li>Sunday: Closed</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </#list>
                 <#--
                 <div class="shop_address clearfix">
@@ -137,7 +145,7 @@ under the License.
                                 </ul>
                             </div>
                         </div>
-                   </div>
+                    </div>
                 </div>
                 -->
                 <div class="shipp_info">

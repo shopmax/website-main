@@ -142,7 +142,7 @@ under the License.
                                     <#if product.productImage?exists>
                                         <img class="media-object" src="<@ofbizContentUrl>${product.productImage}</@ofbizContentUrl>" width="170" style="height: 170px;"/>
                                     <#else>
-                                        <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-2.jpg</@ofbizContentUrl>" />
+                                        <img class="media-object" src="<@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl>" width="170" style="height: 170px;"/>
                                     </#if>
                                 </a>
                                 <div class="media-body">
@@ -158,7 +158,7 @@ under the License.
                                         </#list>
                                     </h5>
                                     <h4 class="media-heading">${product.productName?if_exists}</h4>
-                                    <h6 class="media-code">SKU : ${product.productId?if_exists}</h6>
+                                    <h6 class="media-code">SKU : <#if product.productSKU?exists>${product.productSKU?if_exists}<#else>${product.productId?if_exists}</#if></h6>
                                     <ul class="media-price">
                                         <#if product.promoPrice?exists>
                                             <li class="old"><@ofbizCurrency amount=product.defaultPrice/> NZD</li>
@@ -179,7 +179,7 @@ under the License.
                                     <#if product.productImage?exists>
                                         <img class="media-object" src="<@ofbizContentUrl>${product.productImage}</@ofbizContentUrl>" width="170" style="height: 170px;"/>
                                     <#else>
-                                        <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-170x170.jpg</@ofbizContentUrl>" />
+                                        <img class="media-object" src="<@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl>" width="170" style="height: 170px;"/>
                                     </#if>
                                 </a>
                                 <div class="media-body">
@@ -193,7 +193,7 @@ under the License.
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="inputDescription">Description</label>
+                                            <label class="control-label" for="inputDescription">Product description</label>
                                             <div class="controls">
                                                 <textarea rows="3" class="input-xlarge" name="description">${product.description?if_exists}</textarea>
                                             </div>
@@ -252,7 +252,7 @@ under the License.
                                                 <input type="text" class="input-medium" name="listingPrice" value="${product.defaultPrice?if_exists}">
                                             </label>
                                             <label style="border:1px solid #E0E0E0;">
-                                                Available stock
+                                                Stock
                                                 <input type="text" class="input-medium" name="stock" value="${product.stock?if_exists}">
                                             </label>
                                         </div>
@@ -260,6 +260,7 @@ under the License.
                                         <div class="form-inline input-promotion">
                                             <input type="checkbox" id="checkBoxManage${product_index}">
                                             <label>
+                                                 &nbsp;Promotion price&nbsp;
                                                 <input type="number" class="input-mini" name="promoPrice" value="${product.promoPrice?if_exists}" id="promoPrice${product_index}">
                                             </label>
                                             <label>

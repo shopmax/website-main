@@ -69,6 +69,7 @@ under the License.
         <response name="success" type="view" value="main"/>
         <response name="error" type="view" value="main"/>
     </request-map>
+    
     <request-map uri="login">
         <security https="true" auth="false"/>
         <event type="java" path="org.ofbiz.webapp.control.LoginWorker" invoke="login"/>
@@ -76,6 +77,7 @@ under the License.
         <response name="requirePasswordChange" type="view" value="requirePasswordChange"/>
         <response name="error" type="view" value="main"/>
     </request-map>
+    
     <request-map uri="logout">
         <security https="true" auth="true"/>
         <event type="java" path="org.ofbiz.webapp.control.LoginWorker" invoke="logout"/>
@@ -282,30 +284,35 @@ under the License.
         <response name="success" type="view" value="checkout"/>
         <response name="error" type="view" value="checkout"/>
     </request-map>
+    
     <request-map uri="onePageProcess">
         <security https="true" auth="false"/>
         <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/shoppingcart/CheckOutEvents.xml" invoke="checkLogin"/>
         <response name="success" type="request" value="createUpdateShippingAddress"/>
         <response name="empty" type="request" value="onePageProcessAccount"/>
     </request-map>
+    
     <request-map uri="onePageProcessAccount">
         <security https="true" auth="false"/>
         <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/shoppingcart/CheckOutEvents.xml" invoke="createAccount"/>
         <response name="success" type="request" value="createUpdateShippingAddress"/>
         <response name="error" type="view" value="checkout"/>
     </request-map>
+    
     <request-map uri="createUpdateShippingAddress">
         <security https="true" auth="false"/>
         <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/shoppingcart/CheckOutEvents.xml" invoke="createUpdateShippingAddress"/>
         <response name="success" type="request" value="createUpdateBillingAndPayment"/>
         <response name="error" type="view" value="checkout"/>
     </request-map>
+    
     <request-map uri="createUpdateBillingAndPayment">
         <security https="true" auth="false"/>
         <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/shoppingcart/CheckOutEvents.xml" invoke="createUpdateBillingAndPayment"/>
         <response name="success" type="request" value="onePageProcessOrder"/>
         <response name="error" type="view" value="checkout"/>
     </request-map>
+    
     <request-map uri="onePageProcessOrder">
         <security https="true" auth="false"/>
         <event type="java" path="org.ofbiz.order.shoppingcart.CheckOutEvents" invoke="createOrder"/>
@@ -313,6 +320,7 @@ under the License.
         <response name="work_order" type="request" value="onePageCheckBlacklist"/>
         <response name="error" type="view" value="checkout"/>
     </request-map>
+    
     <request-map uri="onePageCheckBlacklist">
         <security direct-request="false"/>
         <event type="java" path="org.ofbiz.order.shoppingcart.CheckOutEvents" invoke="checkOrderBlacklist"/>
@@ -320,6 +328,7 @@ under the License.
         <response name="failed" type="request" value="failedBlacklist"/>
         <response name="error" type="view" value="checkout"/>
     </request-map>
+    
     <request-map uri="onePageProcessPayment">
         <security https="true" direct-request="false"/>
         <event type="java" path="org.ofbiz.order.shoppingcart.CheckOutEvents" invoke="processPayment"/>
@@ -327,12 +336,14 @@ under the License.
         <response name="fail" type="request" value="checkouterror"/>
         <response name="error" type="view" value="checkout"/>
     </request-map>
+    
     <request-map uri="onePageClearCartForOrder">
         <security direct-request="false"/>
         <event type="java" path="org.ofbiz.order.shoppingcart.ShoppingCartEvents" invoke="clearCart"/>
         <response name="success" type="request" value="onePageCheckExternalPayment"/>
         <response name="error" type="view" value="checkout"/>
     </request-map>
+    
     <request-map uri="onePageCheckExternalPayment">
         <security https="true" direct-request="false"/>
         <event type="java" path="org.ofbiz.order.shoppingcart.CheckOutEvents" invoke="checkExternalPayment"/>
@@ -345,6 +356,7 @@ under the License.
         <response name="cod" type="request" value="emailorder"/> -->
         <response name="error" type="view" value="checkout"/>
     </request-map>
+    
     <request-map uri="emailorder">
         <security https="true" direct-request="false"/>
         <event type="service" path="async" invoke="sendOrderConfirmation"/>
@@ -492,6 +504,12 @@ under the License.
         <response name="error" type="view" value="salesummary"/>
     </request-map>
     
+    <!-- PDFs -->
+    <request-map uri="order.pdf">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="OrderPDF"/>
+    </request-map>
+    
     <request-map uri="ViewSimpleContent">
         <security auth="false" https="false"/>
         <response name="success" type="view" value="ViewSimpleContent"/>
@@ -551,5 +569,6 @@ under the License.
     <view-map name="onlinemarketing" type="screen" page="component://shopmax/widget/PromoScreens.xml#OnlineMarketing"/>
     <view-map name="createcampaign" type="screen" page="component://shopmax/widget/PromoScreens.xml#CreateCampaign"/>
     
+    <view-map name="OrderPDF" type="screenfop" page="component://order/widget/ordermgr/OrderPrintScreens.xml#OrderPDF" content-type="application/pdf" encoding="none"/>
     <view-map name="ViewSimpleContent" page="" type="simplecontent"/>
 </site-conf>

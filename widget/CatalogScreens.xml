@@ -29,6 +29,7 @@ under the License.
                 <set field="productDetailType" value="productnormal"/>
                 <set field="breadcrumbTitle" value="Shop Name"/>
                 <script location="component://order/webapp/ordermgr/WEB-INF/actions/entry/catalog/Product.groovy"/>
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/Product.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">

@@ -22,7 +22,7 @@ under the License.
         <div class="product-wrapper">
             <div class="product-inner">
                 <!-- <img src="http://placehold.it/472x472">  -->
-                <img src="<@ofbizContentUrl>${productImageList[0].productImage?default("/images/defaultImage.jpg")}</@ofbizContentUrl>" width="472" style="height:472px;"/>
+                <img src="<#if productImageList?has_content><@ofbizContentUrl>${productImageList[0].productImage}</@ofbizContentUrl><#else><@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl></#if>" width="472" style="height:472px;"/>
             </div>
         </div>
         
@@ -104,6 +104,12 @@ under the License.
                     <fieldset>
                         <input type="hidden" name="add_product_id" value="${product.productId}" />
                         <input type="hidden" name="quantity" value="1" />
+                        <#if price.promoPrice?exists>
+                            <input type="hidden" name="price" value="${price.promoPrice}" />
+                        <#else>
+                            <input type="hidden" name="price" value="${price.defaultPrice}" />
+                        </#if>
+                        
                         <button class="btn-large blue cart" type="submit">ADD TO CART</button>
                         <ul class="selectAction">
                             <li><a href="#">Add to shopping list</a></li>
