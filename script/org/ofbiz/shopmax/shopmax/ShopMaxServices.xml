@@ -590,7 +590,7 @@ under the License.
             <make-value value-field="tenantDomainName" entity-name="TenantDomainName"/>
             <set field="tenantDomainName.tenantId" from-field="tenantId"/>
             <set field="tenantDomainName.domainName" from-field="parameters.domainName"/>
-            <set field="tenantDomainName.initialPath" value="/shop"/>
+            <set field="tenantDomainName.initialPath" value="/"/>
             <create-value value-field="tenantDomainName"/>
             
             <!-- Create Tenant Backend Domain Name -->
