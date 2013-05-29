@@ -1,6 +1,6 @@
 Index: hot-deploy/shopmax/data/ShopMaxExtData.xml
 ===================================================================
---- hot-deploy/shopmax/data/ShopMaxExtData.xml	(revision 247)
+--- hot-deploy/shopmax/data/ShopMaxExtData.xml	(revision 283)
 +++ hot-deploy/shopmax/data/ShopMaxExtData.xml	(working copy)
 @@ -69,8 +69,8 @@
      <ProductStoreEmailSetting productStoreId="ShopMaxStore" emailType="PRDS_ODR_CONFIRM" bodyScreenLocation="component://shopmax/widget/ShopMaxEmailScreens.xml#Confirmation" subject="Confirmation" bccAddress="ofbiztest@example.com" fromAddress="ofbiztest@example.com"/>
@@ -12,6 +12,6 @@ Index: hot-deploy/shopmax/data/ShopMaxExtData.xml
 -        secureContentPrefix="https://backend.shopmax.localhost:8443"/>
 +        httpHost="shopmax.ofbizdemo.com" httpPort="80"
 +        httpsHost="shopmax.ofbizdemo.com" httpsPort="443"
-+        standardContentPrefix="http://backend.shopmax.ofbizdemo.com"
-+        secureContentPrefix="https://backend.shopmax.ofbizdemo.com"/>
++        standardContentPrefix="http://shopmaxbackend.ofbizdemo.com"
++        secureContentPrefix="https://shopmaxbackend.ofbizdemo.com"/>
  </entity-engine-xml>
