@@ -49,7 +49,6 @@ under the License.
                 <set field="layoutSettings.javaScripts[+0]" value="/shopmax-default/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js" global="true"/>
                 <set field="layoutSettings.javaScripts[+0]" value="/shopmax-default/js/vendor/jquery-1.8.3.min.js" global="true"/>
                 
-                
                 <!-- <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/plugins/datetimepicker/jquery-ui-timepicker-addon-1.0.5.js" global="true"/>
                 <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/ui/js/jquery-ui-1.9.0.custom.min.js" global="true"/>
                 <set field="layoutSettings.javaScripts[+0]" value="/images/jquery/ui/development-bundle/ui/jquery.ui.datepicker.js" global="true"/>
@@ -60,14 +59,8 @@ under the License.
                     <field-map field-name="themeResources" from-field="layoutSettings" />
                 </service>
                 <set field="layoutSettings" from-field="themeResources" default-value="${layoutSettings}" global="true" />
-                <set field="isDemo" value="${groovy:org.ofbiz.base.component.ComponentConfig.componentExists(&quot;ofbizdemo&quot;)}" type="Boolean"/>
                 <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/cart/ShowCart.groovy"/>
-                <!-- <entity-one value-field="partyAttribute" entity-name="PartyAttribute">
-                    <field-map field-name="partyId" from-field="userLogin.partyId"/>
-                    <field-map field-name="attrName" value="TENANT_ID"/>
-                </entity-one>-->
                 <set field="userLoginPartyId" from-field="userLogin.partyId"/>
-                <!-- <set field="tenantIdLogin" from-field="partyAttribute.attrValue"/> -->
             </actions>
             <widgets>
                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/includes/headerhead.ftl"/></html></platform-specific>
