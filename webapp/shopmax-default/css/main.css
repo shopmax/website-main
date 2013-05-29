@@ -1443,6 +1443,14 @@ textarea.required{
     background-color:#fef2ee;
 /*     border-color:red; */
 }
+.input-error{
+	color:red;
+	text-align: left;
+    padding-left: 20px;
+}
+.input-error2{
+    color:red;
+}
 
 .btn-green-small {
     background: url("../img/btn-green-small.png") repeat-x scroll 0 0 transparent;

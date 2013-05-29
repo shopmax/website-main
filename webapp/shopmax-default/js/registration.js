@@ -114,6 +114,8 @@ $(function(){
                 
                 if(!$(this).val().length){
                     $(this).addClass('required');
+                    $('.input-error').removeClass('hidden');
+                    $('html, body').animate({ scrollTop: 0 }, 0);
                     valid = false;
                 }
                 else{
@@ -123,14 +125,17 @@ $(function(){
                     }
                     if(atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length){
                         $('#emailAddress').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
                         valid = false;
                     }
                     if($('#currentPassword').val() != $('#currentPasswordVerify').val()){
                         $('#currentPassword').addClass('required');
                         $('#currentPasswordVerify').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
                         valid = false;
                     }
                     if ($('#currentPassword').hasClass('required')){
+                    	$('html, body').animate({ scrollTop: 0 }, 0);
                         valid = false;
                     }
                 }
@@ -138,12 +143,14 @@ $(function(){
                     $('#expMonth_chzn').addClass('required');
                     $('#expMonth_chzn').css({'background-color':'#FEF2EE'});
                     $('#expMonth_chzn .chzn-single').css({'background-color':'#FEF2EE'});
+                    $('html, body').animate({ scrollTop: 0 }, 0);
                     valid = false;
                 }
                 if($('#expYear_chzn').find('span').text() == 'Year' && $('#paymentMethodOption').val() == 'Y'){
                     $('#expYear_chzn').addClass('required');
                     $('#expYear_chzn').css({'background-color':'#FEF2EE'});
                     $('#expYear_chzn .chzn-single').css({'background-color':'#FEF2EE'});
+                    $('html, body').animate({ scrollTop: 0 }, 0);
                     valid = false;
                 }
                 if(valid){
@@ -160,6 +167,7 @@ $(function(){
                 
                 if(!$(this).val().length){
                     $(this).addClass('required');
+                    $('.input-error').removeClass('hidden');
                     valid = false;
                 }
                 else{
@@ -188,6 +196,14 @@ $(function(){
     });
     $('input.check').focus(function(){
         $('#'+this.id).removeClass('required');
+        $('.input-error').addClass('hidden');
+    });
+    $('#subDomain').focus(function(){
+        $('#subDomain').removeClass('required');
+        $('.input-error').addClass('hidden');
+    });
+    $('#yourBtn2').focus(function(){
+        $('.input-error').addClass('hidden');
     });
     $('#currentPassword').focus(function(){
         $('#currentPassword').removeClass('required');
@@ -242,11 +258,13 @@ $(function(){
             $('#checkDomain').val('Y');
             $('#subDomain').removeClass('check required');
             $('#domianName').addClass('check');
+            $('.input-error').addClass('hidden');
         }
         else if(this.id == 'optionsRadiosNo'){
             $('#checkDomain').val('N');
-            $('#domianName').removeClass('check required')
-            $('#subDomain').addClass('check');;
+            $('#domianName').removeClass('check required');
+            $('#subDomain').addClass('check');
+            $('.input-error').addClass('hidden');
         }
     });
     $('#domianName').click(function(){
@@ -271,7 +289,8 @@ $(function(){
             $('#phoneNumber_'+currentPhoneSelect[2]).val(prefix+$('#phoneNumber_text_'+currentPhoneSelect[2]).val());
         }
     });
-    $('.optionsRadios2').click(function(){
+    $('#optionsRadios2').click(function(){
+    	$('.input-error').addClass('hidden');
         $('#cardHolderName').addClass('check');
         $('.cardNumber').addClass('check');
         $('#expMonth_chzn').addClass('check');
@@ -280,7 +299,8 @@ $(function(){
         $('#yourBtn2').removeClass('check required');
         $('#paymentMethodOption').val('Y');
     });
-    $('.optionsRadios3').click(function(){
+    $('#optionsRadios3').click(function(){
+    	$('.input-error').addClass('hidden');
         $('#cardHolderName').removeClass('check required');
         $('.cardNumber').removeClass('check required');
         $('#expMonth_chzn').removeClass('check required');

@@ -55,6 +55,7 @@ under the License.
                             <td class="col1 form-horizontal pull-left">
                                 <p class="intro-txt"><strong>Create a new account profile by completing the new registration form. Once you are done and logged in, you can save shopping cart list, track your order history, manage addresses, and speed up the check out process</strong></p>
                                 <div class="control-group">
+                                    <label class="input-error hidden">Please fill in all required fields</label>
                                     <label class="control-label control-label-xlarge checkbox"><input type="checkbox" class="chk_regis" name="optionsRadios" id="optionsRadios1" >&nbsp; Registered as business user <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" /></label>
                                 </div>
                                 <div class="control-group">

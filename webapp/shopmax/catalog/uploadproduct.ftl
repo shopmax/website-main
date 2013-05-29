@@ -31,6 +31,8 @@ under the License.
                 //var isClickActivityOccur = confirm("Do you want to upload new product?");
                     if(!$(this).val().length){
                         $(this).addClass('required');
+                        $('.input-error2').removeClass('hidden');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
                         if(!$('#prev_upfile_1').find('div').hasClass('prev_thumb')){
                             $('#prev_upfile_1').css({'background-color':'#fef2ee'});
                             $('#prev_upfile_1').css({'border-color':'red'});
@@ -46,9 +48,16 @@ under the License.
                     else{
                    $(this).removeClass('required');
                         if(!$('.selected-products').find('tr').hasClass('')){
+                            $('.input-error2').removeClass('hidden');
+                            $('html, body').animate({ scrollTop: 0 }, 0);
                             valid = true;
                         }
+                        if(!$('#prev_upfile_1').find('div').hasClass('prev_thumb')){
+                            $('.input-error2').removeClass('hidden');
+                            $('html, body').animate({ scrollTop: 0 }, 0);
+                        }
                         if($('.required').length == 0 && $('#prev_upfile_1').find('div').hasClass('prev_thumb') && $('.selected-products').find('tr').hasClass('')){
+                            $('.input-error2').addClass('hidden');
                             $('#uploadAndUpdateProduct').submit();
                         }
                     }
@@ -71,13 +80,16 @@ under the License.
         });
         $('input.check').focus(function(){
             $('#'+this.id).removeClass('required');
+            $('.input-error2').addClass('hidden');
         });
         $('textarea.check').focus(function(){
             $('#'+this.id).removeClass('required');
+            $('.input-error2').addClass('hidden');
         });
         $('#prev_upfile_1').click(function(){
             $('#prev_upfile_1').css({'background-color':'#EAE8AD'});
             $('#prev_upfile_1').css({'border-color':'#358bd8'});
+            $('.input-error2').addClass('hidden');
         });
         var success_upload = '${parameters.uploadsuccess?if_exists}';
         success_upload = success_upload ? success_upload : false;
@@ -131,6 +143,7 @@ under the License.
               <tbody>
                 <tr>
                     <td class="col1 product-upload">
+                        <label class="input-error2 hidden">&nbsp;&nbsp;&nbsp;Please fill in all required fields</label>
                         <label>&nbsp;&nbsp;&nbsp;Select your category</label>
                         <div id="ajax-container">
                             <div class="controls controls-row select-category pull-left">

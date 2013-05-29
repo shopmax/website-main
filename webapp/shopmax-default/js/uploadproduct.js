@@ -66,6 +66,7 @@ $(function(){
         e.preventDefault();
     });
     $('#assign-category').click(function(e){
+    	$('.input-error2').addClass('hidden');
     	var formUpload = document.getElementById('uploadAndUpdateProduct');
         formUpload.getElementsByTagName('input').checked=true;
         if(typeof getUrlVars()["categoryFirstId"] != "undefined"){
