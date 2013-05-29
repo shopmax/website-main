@@ -22,7 +22,41 @@ under the License.
 <script>
     $(function(){
         $('#submit_uploadProductToSeller').click(function(){
-            $('#uploadAndUpdateProduct').submit();
+            var valid = false;
+            if(typeof getUrlVars()["productId"] != "undefined"){
+                var isClickActivityOccur = confirm("Do you want to update this product?");
+            }
+            else{
+                $('#uploadProd').find('input.check,textarea.check').each(function(){
+                //var isClickActivityOccur = confirm("Do you want to upload new product?");
+                    if(!$(this).val().length){
+                        $(this).addClass('required');
+                        if(!$('#prev_upfile_1').find('div').hasClass('prev_thumb')){
+                            $('#prev_upfile_1').css({'background-color':'#fef2ee'});
+                            $('#prev_upfile_1').css({'border-color':'red'});
+                        }
+                        else if($('#prev_upfile_1').find('div').hasClass('prev_thumb')){
+                            $('#prev_upfile_1').css({'background-color':'#EAE8AD'});
+                            $('#prev_upfile_1').css({'border-color':'#358bd8'});
+                        }
+                        if(!$('.selected-products').find('tr').hasClass('')){
+                            valid = true;
+                        }
+                    }
+                    else{
+                   $(this).removeClass('required');
+                        if(!$('.selected-products').find('tr').hasClass('')){
+                            valid = true;
+                        }
+                        if($('.required').length == 0 && $('#prev_upfile_1').find('div').hasClass('prev_thumb') && $('.selected-products').find('tr').hasClass('')){
+                            $('#uploadAndUpdateProduct').submit();
+                        }
+                    }
+                });
+            }
+            if(valid){
+            alert("Please select your category!");
+            }
         });
         $('#advanced-option-bar').click(function(){
             if($('#advanced-option-detail').is(":hidden")){
@@ -34,6 +68,16 @@ under the License.
                     $('tr').find('.col1.advanced-option.product-upload').css({'padding':'0'});
                 });
             }
+        });
+        $('input.check').focus(function(){
+            $('#'+this.id).removeClass('required');
+        });
+        $('textarea.check').focus(function(){
+            $('#'+this.id).removeClass('required');
+        });
+        $('#prev_upfile_1').click(function(){
+            $('#prev_upfile_1').css({'background-color':'#EAE8AD'});
+            $('#prev_upfile_1').css({'border-color':'#358bd8'});
         });
         var success_upload = '${parameters.uploadsuccess?if_exists}';
         success_upload = success_upload ? success_upload : false;
@@ -77,7 +121,7 @@ under the License.
         </div><!-- /.span3.sidebar -->
         <!-- MAIN CONTENT -->
         <!-- sliderdiv -->
-        <div class="span9 main-content">
+        <div class="span9 main-content" id="uploadProd">
             <table class="table table-condensed sc-table sc-table-promotion">
               <thead>
                 <tr class="sc-table-header">
@@ -158,13 +202,13 @@ under the License.
                             <div class="control-group">
                                 <label for="inputProductName" class="control-label">Product name</label>
                                 <div class="controls">
-                                    <input type="text" id="inputProductName" class="input-xlarge" name="productName" value="${productName?if_exists}">
+                                    <input type="text" id="inputProductName" class="input-xlarge check" name="productName" value="${productName?if_exists}">
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label for="inputDescription" class="control-label">Product description</label>
                                 <div class="controls">
-                                    <textarea class="input-xlarge" rows="3" name="description">${description?if_exists}</textarea>
+                                    <textarea id="prodDescript" class="input-xlarge check" rows="3" name="description">${description?if_exists}</textarea>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -217,7 +261,7 @@ under the License.
                             <div class="form-inline input-price-stock">
                                 <label>
                                     Listing price
-                                    <input type="text" class="input-medium" name="listingPrice" value="${defaultPrice?if_exists}">
+                                    <input type="text" id="listingPrice" class="input-medium check" name="listingPrice" value="${defaultPrice?if_exists}">
                                 </label>
                                 <label>
                                     Stock

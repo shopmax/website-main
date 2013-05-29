@@ -2,7 +2,7 @@
 /*
     general
 */
-.georgia{
+/* .georgia{
     font-family:'Georgia Italic',Georgia,serif;
     font-style:italic;    
     font-weight:normal;
@@ -47,7 +47,7 @@
 
 input.required{
     background-color:#fef2ee;
-/*     border-color:red; */
+    border-color:red;
 }
 
 .btn-green-small {
@@ -62,7 +62,7 @@ input.required{
     padding: 0 13px;
     text-align: center;
     text-transform: uppercase;
-   /* width:60px;*/
+   width:60px;
     margin-right: 5px;
 
 }
@@ -135,7 +135,7 @@ input.required{
 }
 
 
-/*shop header*/
+shop header
 .shop-desc {
     font-size:1.3em;
     color:#FFF;
@@ -192,7 +192,7 @@ padding-right:8px;
 
 }
 
-/* product image shadow*/
+product image shadow
 
 
 .product-wrapper {
@@ -257,7 +257,7 @@ padding-right:8px;
 
 
 
-/* timer in product detail */
+timer in product detail
 
 
 .product-detail .countdown-container {
@@ -295,7 +295,7 @@ padding-right:8px;
 
 
 
-/* product detail - general */
+product detail - general
 
 .product-detail h5{
     font-size:1.1em;
@@ -323,7 +323,7 @@ h5.review-number {
 .btn-large.blue{
     color:#FFF;
 }
-/* product detail - rush hour */
+product detail - rush hour
 .product-detail .price-option{    
     margin: 0px;
     margin-top:25px;
@@ -344,7 +344,7 @@ h5.review-number {
     font-size:1.3em;
 }
 
-/* product detail - multibuy */
+product detail - multibuy
 .product-detail ul.product-list li img.pull-left {
     border-color: white #DBDBDB #DBDBDB white;
     border-style: solid;
@@ -397,7 +397,7 @@ h5.review-number {
     border-top: 0px;    
 }
 
-/* product detail - select size*/
+product detail - select size
 
 .selectSize {
 margin-top:30px; 
@@ -409,7 +409,7 @@ height:20px;
 
 }
 
-/* product detail- select color*/
+product detail- select color
 .selectColor {
     margin-top:30px;
     margin-bottom:30px;
@@ -435,7 +435,7 @@ button.cart {
 
 }
 
-/* product detail - select action */
+product detail - select action
 ul.selectAction {
     margin-top:10px;
     margin-left: 0px;
@@ -444,7 +444,7 @@ ul.selectAction li {
     display:inline;
     margin-right:20px;
 }
-/*product detail - tab */
+product detail - tab
 
 .product-tab{
     margin-top:25px;
@@ -503,7 +503,7 @@ padding:20px;
 }
 
 
-/* product detail - product related */
+product detail - product related
 .product-related {
     padding-top:15px;
 }
@@ -566,11 +566,11 @@ padding:20px;
 .lt-ie9 .product-related .span3 {
     width:221px;
 }
-/* manage product - category list*/
+manage product - category list
 
-/*.sidebar .category-list {
+.sidebar .category-list {
     padding-left: 12px;
-}*/
+}
 
 .sidebar .nested-list {
     padding-left: 12px;
@@ -596,23 +596,23 @@ padding:20px;
 
 
 
-/* level 1 */
+level 1
 .sidebar .category-list li a {
     padding-left:3px;
     display:block;
 }
 
-/* level 2 */
+level 2
 .sidebar .category-list li li a {
     padding-left:18px;
 }
 
-/* level 3 */
+level 3
 .sidebar .category-list li li li a { 
     padding-left:33px;
 }
 
-/* level 4 */
+level 4
 .sidebar .category-list li li li li a {
     padding-left:48px;
 }
@@ -628,7 +628,7 @@ padding:20px;
     background: url('../img/expanded.gif') no-repeat center left;
 }
 
-/* manage product - form-search */
+manage product - form-search
 .form-search {
     background:#84b234;
     padding-top:0px;
@@ -691,7 +691,7 @@ margin-top:-38px;
 
 
 
-/* manage product - edit product listing*/
+manage product - edit product listing
 
 .manage-product .btn-general {
     font-size: 90%;
@@ -787,7 +787,7 @@ background: url("../img/btn-general-rpt.png") repeat-x scroll 0 0 transparent;
 .lt-ie9 .edit-product-list .btn-general {
 width:85px;
 }
-/* manage product - edit product form */
+manage product - edit product form
 
 .media-edit{
     background: #e0e0e0;
@@ -885,7 +885,7 @@ margin-bottom: 12px;
 
 }
 
-/* shopping cart */
+shopping cart
 .sc-step li {
  background: url('../img/step-inactive.gif') no-repeat top left; 
  width:173px;
@@ -969,11 +969,11 @@ border-right:1px solid #DDD;float:left;padding-right:20px;margin-right:22px;
     padding-top: 13px;
 
 }
-/*
+
 .sc-table tbody tr td:nth-child(4) {
     padding-top: 7px;
 }
-*/
+
 .sc-table tbody tr{
     background: white;
 }
@@ -1170,7 +1170,7 @@ width:80px;
 .sc-table-order-total td.col2 {
 width:80px;
 }
-/* checkout - message box*/
+checkout - message box
 .message-wrapper {
     background: url('../img/message-right-border.png') repeat-y top right;
     width:734px;
@@ -1205,7 +1205,7 @@ width:80px;
 }
 
 
-/* checkout - table */
+checkout - table
 .sc-table input.input-xxlarge {
     width: 208px;
     margin-right: 10px;
@@ -1309,7 +1309,7 @@ width:190px;
     margin-bottom: 20px;
     padding-bottom: 0px;
 }
-/* create promo */
+create promo
 
 .sc-table-promotion .sc-table-header th{
     padding-top: 10px;
@@ -1398,7 +1398,7 @@ margin-right:10px;
     padding-left: 15px;
 }
 .selected-products{
-    /*width:665px; */
+    width:665px;
     margin-left: 10px;
     border:0px;
     margin-top: 10px;
@@ -1442,7 +1442,7 @@ margin-right:10px;
     padding-left: 10px;
 }
 
-/* online marketing */
+online marketing
 .sc-table-promotion .tab-content{
     background: #f0f0f0;
     padding: 15px;
@@ -1502,7 +1502,7 @@ margin-right:10px;
     width:134px;
 }
 
-/* product upload update */
+product upload update
 .sc-table-promotion .select-category{
     width:100%;
     margin-left:-10px;
@@ -1703,7 +1703,7 @@ margin-left:20px
 }
 .sc-table input.input-cc-xsmall {
     width: 45px;
-   /* margin-right: 10px;  */
+   margin-right: 10px; 
 }
 .sc-table input.input-cc-large{ 
     width: 137px    
@@ -1712,12 +1712,12 @@ margin-left:20px
     width:130px;
     padding-top: 5px;
 }
-/* #phoneNumber1_chzn, #phoneNumber2_chzn, #phoneNumber3_chzn,  #phoneNumber4_chzn{
+#phoneNumber1_chzn, #phoneNumber2_chzn, #phoneNumber3_chzn,  #phoneNumber4_chzn{
     height:28px;
     width:45px!important;
     margin:0 5px 0;
     float:left
-} */
+}
 .sc-table input.input-xsmall {
     width: 28px;
     margin-bottom: 5px;  
@@ -1738,7 +1738,7 @@ margin-left:20px
 }
 .tooltip{
     opacity:1!important;
-    filter:alpha(opacity=100)!important; /* For IE8 and earlier */}
+    filter:alpha(opacity=100)!important; For IE8 and earlier}
 .tooltip-inner{
     border:solid 1px #00e2db;
     color:#000;
@@ -1842,4 +1842,4 @@ li li li li > a > span{
 .header-congratulation{
     text-align:center;
     font-size: 2em;
-}
+} */
