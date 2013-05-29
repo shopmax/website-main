@@ -145,8 +145,31 @@ $(function(){
             document.getElementById("checkboxUpload").checked=false;
         }
     });
+    $('.input-price').keydown(function(e){
+        if($('#'+this.id).val().indexOf(".")==-1 && e.keyCode === 110 && $('#'+this.id).val()==''){
+            return false;
+        }
+        if($('#'+this.id).val().split('.').length ===2 && e.keyCode === 110){
+            return false;
+        }
+    });
+    $('.input-date').change(function(e){
+        var parts = $('#'+this.id).val().split("/");
+        var day = parseInt(parts[1], 10);
+        var month = parseInt(parts[0], 10);
+        var year = parseInt(parts[2], 10);
+        var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+        if(!/^\d{2}\/\d{2}\/\d{4}$/.test($('#'+this.id).val())){
+            $('#'+this.id).val('');
+        }
+        if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)){
+            monthLength[1] = 29;
+        }
+        if(year < 1000 || year > 3000 || month == 0 || month > 12 ||day < 0 || day > monthLength[month - 1]){
+            $('#'+this.id).val('');
+        }
+    });
 });
-
 function checkHasValue(categoryId){
     var tempCategory = $('#listCategory').val();
     if(tempCategory == ","){
@@ -204,3 +227,10 @@ function removeCategory(categoryId){
     }
     $('#listCategory').val(tempCategory);
 }
+function isNumberKey(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 46){
+        return false;
+    }
+    return true;
+ }

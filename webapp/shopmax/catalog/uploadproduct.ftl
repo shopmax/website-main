@@ -274,7 +274,7 @@ under the License.
                             <div class="form-inline input-price-stock">
                                 <label>
                                     Listing price
-                                    <input type="text" id="listingPrice" class="input-medium check" name="listingPrice" value="${defaultPrice?if_exists}">
+                                    <input type="text" id="listingPrice" class="input-medium check input-price" name="listingPrice" value="${defaultPrice?if_exists}" onkeypress='return isNumberKey(event)'>
                                 </label>
                                 <label>
                                     Stock
@@ -286,13 +286,13 @@ under the License.
                                 <input type="checkbox" id="checkboxUpload">
                                 <label>
                                     &nbsp;Promotion price&nbsp;
-                                    <input type="number" class="input-mini" name="promoPrice" id="promoPrice" value="${promoPrice?if_exists}">
+                                    <input type="number" class="input-mini input-price" name="promoPrice" id="promoPrice" value="${promoPrice?if_exists}" onkeypress='return isNumberKey(event)'>
                                 </label>
                                 <label>&nbsp;&nbsp;Valid from&nbsp;
-                                <input id="datepicker1" type="text" class="input-small"/></label>
+                                <input id="datepicker1" type="text" class="input-small input-date"/></label>
                                 <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" id="datepickerimage1"/>
                                 <label>&nbsp;&nbsp;To&nbsp;
-                                <input type="text" class="input-small" id="datepicker2"/>
+                                <input type="text" class="input-small input-date" id="datepicker2"/>
                                 </label>
                                 <img src="<@ofbizContentUrl>/shopmax-default/img/icon-calendar.png</@ofbizContentUrl>" id="datepickerimage2"/>
                                 <input type="hidden" name="promoPriceFromDate" id="promoPriceFromDate" value="<#if productPricePromo?has_content>${productPricePromo.fromDate?if_exists}</#if>"/>

@@ -18,7 +18,6 @@ under the License.
 -->
 <script src="<@ofbizContentUrl>/shopmax-default/js/registration.js</@ofbizContentUrl>" type="text/javascript"></script>
 <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
-
 <div class="container content">
     <div id="load-script"></div>
     <!-- include breadcrumb -->
@@ -130,7 +129,7 @@ under the License.
                                         <option>0800</option>
                                     </select>
                                     <div class="pull-left">
-                                        <input type="text" class="input-large phoneNumberText check" id="phoneNumber_text_0">
+                                        <input type="text" class="input-large phoneNumberText check" id="phoneNumber_text_0" onkeypress='return isNumberKey(event)'>
                                     </div>
                                     <input type="hidden" name="contactPhoneNumber" id="phoneNumber_0" value="">
                                 </div>
@@ -145,7 +144,7 @@ under the License.
                                         <option>029</option>
                                     </select>
                                     <div class="pull-left">
-                                        <input type="text" class="input-large phoneNumberText" id="phoneNumber_text_1">
+                                        <input type="text" class="input-large phoneNumberText" id="phoneNumber_text_1" onkeypress='return isNumberKey(event)'>
                                     </div>
                                     <label class="control-label control-label-text2" for="inputPromotionDescription">(We will send TXT notification to this phone number when order arrives)</label>
                                     <input type="hidden" name="notificationPhoneNumber" id="phoneNumber_1" value="">
@@ -180,7 +179,7 @@ under the License.
                                     <div class="clearfix"></div>
                                     <label class="control-label control-label-big pull-left" for="inputPromotionDescription">&nbsp;</label>
                                     <label class="control-label control-label-bank pull-left" for="inputPromotionDescription">Account Number</label>
-                                    <div class="pull-left"><input type="text" maxlength="2" class="input-cc-xsmall accountNumber check" id="accountNumber-0" name="accountNumber-0"> - <input type="text" maxlength="4" class="input-small accountNumber check" id="accountNumber-1" name="accountNumber-1"> - <input type="text" maxlength="7" class="input-cc-large accountNumber check" id="accountNumber-2" name="accountNumber-2"> - <input type="text" maxlength="2" class="input-cc-xsmall accountNumber check" id="accountNumber-3" name="accountNumber-3"></div>
+                                    <div class="pull-left"><input type="text" maxlength="2" class="input-cc-xsmall accountNumber check" id="accountNumber-0" name="accountNumber-0" onkeypress='return isNumberKey(event)'> - <input type="text" maxlength="4" class="input-small accountNumber check" id="accountNumber-1" name="accountNumber-1" onkeypress='return isNumberKey(event)'> - <input type="text" maxlength="7" class="input-cc-large accountNumber check" id="accountNumber-2" name="accountNumber-2" onkeypress='return isNumberKey(event)'> - <input type="text" maxlength="2" class="input-cc-xsmall accountNumber check" id="accountNumber-3" name="accountNumber-3" onkeypress='return isNumberKey(event)'></div>
                                     <input type="hidden" name="accountNumber" id="accountNumber" value="">
                                 </div>
                                 <div class="control-group">
@@ -256,7 +255,7 @@ under the License.
                                                 <option>0508</option>
                                                 <option>0800</option>
                                             </select>
-                                            <input type="text" class="input-phone-number" id="phy_phone_text_0">
+                                            <input type="text" class="input-phone-number" id="phy_phone_text_0" onkeypress='return isNumberKey(event)'>
                                         </div>
                                         <label class="control-label control-label-small" for="inputPromotionDescription">Store Fax Number</label>
                                         <div class="pull-left">
@@ -269,7 +268,7 @@ under the License.
                                                 <option>0508</option>
                                                 <option>0800</option>
                                             </select>
-                                            <input type="text" class="input-phone-number" id="phy_fax_text_0">
+                                            <input type="text" class="input-phone-number" id="phy_fax_text_0" onkeypress='return isNumberKey(event)'>
                                         </div>
                                     </div>
                                     <div class='control-group'>
@@ -277,31 +276,31 @@ under the License.
                                         <div class='clearfix'></div>
                                         <label class='control-label control-label-xxsmall pull-left' for='inputMonday'><input type='checkbox' name='optionsRadios' id='mon_check_0' > Mon </label>
                                         <div clas='pull-left'>
-                                            <input type='text' class='input-xsmall input-time' id='mon_o_0_0'> : <input type='text' class='input-xsmall input-time' id='mon_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='mon_c_0_0'> : <input type='text' class='input-xsmall input-time' id='mon_c_1_0'>
+                                            <input type='text' class='input-xsmall input-hours' id='mon_o_0_0' maxlength="2" onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='mon_o_1_0' maxlength="2" onkeypress='return isNumberKey(event)'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-hours' id='mon_c_0_0' maxlength="2" onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='mon_c_1_0' maxlength="2" onkeypress='return isNumberKey(event)'>
                                         </div>
                                         <label class='control-label control-label-xxsmall pull-left' for='inputTuesday'><input type='checkbox' name='optionsRadios' id='tue_check_0' > Tue </label>
                                         <div clas='pull-left'>
-                                            <input type='text' class='input-xsmall input-time' id='tue_o_0_0'> : <input type='text' class='input-xsmall input-time' id='tue_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='tue_c_0_0'> : <input type='text' class='input-xsmall input-time' id='tue_c_1_0'>
+                                            <input type='text' class='input-xsmall input-hours' id='tue_o_0_0' maxlength="2" onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='tue_o_1_0' maxlength="2" onkeypress='return isNumberKey(event)'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-hours' id='tue_c_0_0' maxlength="2" onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='tue_c_1_0' maxlength="2" onkeypress='return isNumberKey(event)'>
                                         </div>
                                         <label class='control-label control-label-xxsmall pull-left' for='inputWednesday'><input type='checkbox' name='optionsRadios' id='wed_check_0' > Wed </label>
                                         <div clas='pull-left'>
-                                            <input type='text' class='input-xsmall input-time' id='wed_o_0_0'> : <input type='text' class='input-xsmall input-time' id='wed_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='wed_c_0_0'> : <input type='text' class='input-xsmall input-time' id='wed_c_1_0'>
+                                            <input type='text' class='input-xsmall input-hours' id='wed_o_0_0' maxlength="2" onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='wed_o_1_0' maxlength="2" onkeypress='return isNumberKey(event)'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-hours' id='wed_c_0_0' maxlength="2" onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='wed_c_1_0' maxlength="2" onkeypress='return isNumberKey(event)'>
                                         </div>
                                         <label class='control-label control-label-xxsmall pull-left' for='inputThursday'><input type='checkbox' name='optionsRadios' id='thu_check_0' > Thu </label>
                                         <div clas='pull-left'>
-                                            <input type='text' class='input-xsmall input-time' id='thu_o_0_0'> : <input type='text' class='input-xsmall input-time' id='thu_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='thu_c_0_0'> : <input type='text' class='input-xsmall input-time' id='thu_c_1_0'>
+                                            <input type='text' class='input-xsmall input-hours' id='thu_o_0_0' maxlength="2" onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='thu_o_1_0' maxlength="2" onkeypress='return isNumberKey(event)'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-hours' id='thu_c_0_0' maxlength="2" onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='thu_c_1_0' maxlength="2" onkeypress='return isNumberKey(event)'>
                                         </div>
                                         <label class='control-label control-label-xxsmall pull-left' for='inputFriday'><input type='checkbox' name='optionsRadios' id='fri_check_0' > Fri </label>
                                         <div clas='pull-left'>
-                                        <input type='text' class='input-xsmall input-time' id='fri_o_0_0'> : <input type='text' class='input-xsmall input-time' id='fri_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='fri_c_0_0'> : <input type='text' class='input-xsmall input-time' id='fri_c_1_0'>
+                                        <input type='text' class='input-xsmall input-hours' id='fri_o_0_0' maxlength="2" onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='fri_o_1_0' maxlength="2" onkeypress='return isNumberKey(event)'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-hours' id='fri_c_0_0' maxlength="2" onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='fri_c_1_0' maxlength="2" onkeypress='return isNumberKey(event)'>
                                         </div>
-                                        <label class='control-label control-label-xxsmall pull-left' for='inputSaterday'><input type='checkbox' name='optionsRadios' id='sat_check_0' > Sat </label>
+                                        <label class='control-label control-label-xxsmall pull-left' for='inputSaterday' onkeypress='return isNumberKey(event)'><input type='checkbox' name='optionsRadios' id='sat_check_0' > Sat </label>
                                         <div clas='pull-left'>
-                                        <input type='text' class='input-xsmall input-time' id='sat_o_0_0'> : <input type='text' class='input-xsmall input-time' id='sat_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='sat_c_0_0'> : <input type='text' class='input-xsmall input-time' id='sat_c_1_0'>
+                                        <input type='text' class='input-xsmall input-hours' id='sat_o_0_0' maxlength="2" onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='sat_o_1_0' maxlength="2" onkeypress='return isNumberKey(event)'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-hours' id='sat_c_0_0' maxlength="2" onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='sat_c_1_0' maxlength="2" onkeypress='return isNumberKey(event)'>
                                         </div>
                                         <label class='control-label control-label-xxsmall pull-left' for='inputSunday'><input type='checkbox' name='optionsRadios' id='sun_check_0' > Sun</label>
                                         <div clas='pull-left'>
-                                            <input type='text' class='input-xsmall input-time' id='sun_o_0_0'> : <input type='text' class='input-xsmall input-time' id='sun_o_1_0'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='sun_c_0_0'> : <input type='text' class='input-xsmall input-time' id='sun_c_1_0'>
+                                            <input type='text' class='input-xsmall input-hours' id='sun_o_0_0' maxlength="2" onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='sun_o_1_0' maxlength="2" onkeypress='return isNumberKey(event)'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-hours' id='sun_c_0_0' maxlength="2" onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='sun_c_1_0' maxlength="2" onkeypress='return isNumberKey(event)'>
                                         </div>
                                     </div>
                                 </td>
@@ -363,7 +362,7 @@ under the License.
                                     <div class="control-group-bank">
                                         <label class="control-label control-label-cc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
                                         <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Card Number</label>
-                                        <div class="pull-left"><input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-0"> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-1"> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-2"> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-3"></div>
+                                        <div class="pull-left"><input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-0" onkeypress='return isNumberKey(event)'> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-1" onkeypress='return isNumberKey(event)'> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-2" onkeypress='return isNumberKey(event)'> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-3" onkeypress='return isNumberKey(event)'></div>
                                         <input type="hidden" id="cardNumber" name="cardNumber">
                                     </div>
                                     <div class="control-group-bank">
@@ -391,7 +390,7 @@ under the License.
                                     <div class="control-group-bank">
                                         <label class="control-label control-label-cc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
                                         <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Security Code</label>
-                                        <input type="text" class="input-cc-xsmall pull-left check" id="cvcNumber" name="cvc" maxlength="3"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                        <input type="text" class="input-cc-xsmall pull-left check" id="cvcNumber" name="cvc" maxlength="3" onkeypress='return isNumberKey(event)'> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
                                     </div>
                                 </div>
                                 <br/>

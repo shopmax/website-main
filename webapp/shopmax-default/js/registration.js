@@ -342,86 +342,133 @@ $(function(){
     $(".new-branch-area").click(function() {
         var index = $('.index-tr-physical-stores').length;
         var newRow = $("<tr class='index-tr-physical-stores' id='tr-physical-"+index+"'><td class='col1 form-horizontal'>"+
-        "<div class='control-group'>"+
-            "<label class='control-label control-label-xsmall' for='inputPromotionDescription'>Branch Name</label>"+
-            "<div class='pull-left'>"+
-                "<input type='text' class='input-xxlarge branchName' id='branchName_"+index+"' name='branchName'>"+
+            "<div class='control-group'>"+
+                    "<label class='control-label control-label-xsmall' for='inputPromotionDescription'>Branch Name</label>"+
+                "<div class='pull-left'>"+
+                    "<input type='text' class='input-xxlarge branchName' id='branchName_"+index+"' name='branchName'>"+
+                "</div>"+
             "</div>"+
-        "</div>"+
-        "<div class='control-group'><label class='control-label control-label-xsmall' for='inputPromotionDescription'>Location</label>"+
-            "<div class='pull-left'>"+
-                "<input type='text' class='input-xxlarge inputLocation' id='inputLocation_"+index+"' onclick='inputLocation("+index+")'>"+
+            "<div class='control-group'><label class='control-label control-label-xsmall' for='inputPromotionDescription'>Location</label>"+
+                "<div class='pull-left'>"+
+                    "<input type='text' class='input-xxlarge inputLocation' id='inputLocation_"+index+"' onclick='inputLocation("+index+")'>"+
+                "</div>"+
             "</div>"+
-        "</div>"+
-        "<div class='control-group'>"+
-            "<label class='control-label control-label-small' for='inputPromotionDescription'>Store phone number</label>"+
-            "<div class='pull-left'>"+
-                "<select id='phy_phone_select_"+index+"' class='chosen'>"+
-                    "<option selected='elected'>03</option>"+
-                    "<option>04</option>"+
-                    "<option>06</option>"+
-                    "<option>07</option>"+
-                    "<option>09</option>"+
-                    "<option>020</option>"+
-                    "<option>021</option>"+
-                    "<option>022</option>"+
-                    "<option>027</option>"+
-                    "<option>028</option>"+
-                    "<option>029</option>"+
-                    "<option>0508</option>"+
-                    "<option>0800</option>"+
-                "</select>"+
-                "<input type='text' class='input-phone-number' id='phy_phone_text_"+index+"'>"+
+            "<div class='control-group'>"+
+                "<label class='control-label control-label-small' for='inputPromotionDescription'>Store phone number</label>"+
+                "<div class='pull-left'>"+
+                    "<select id='phy_phone_select_"+index+"' class='chosen'>"+
+                        "<option selected='elected'>03</option>"+
+                        "<option>04</option>"+
+                        "<option>06</option>"+
+                        "<option>07</option>"+
+                        "<option>09</option>"+
+                        "<option>020</option>"+
+                        "<option>021</option>"+
+                        "<option>022</option>"+
+                        "<option>027</option>"+
+                        "<option>028</option>"+
+                        "<option>029</option>"+
+                        "<option>0508</option>"+
+                        "<option>0800</option>"+
+                    "</select>"+
+                    "<input type='text' class='input-phone-number' id='phy_phone_text_"+index+"'>"+
+                "</div>"+
+                "<label class='control-label control-label-small' for='inputPromotionDescription'>Store Fax Number</label>"+
+                "<div class='pull-left'>"+
+                    "<select id='phy_fax_select_"+index+"' class='chosen'>"+
+                        "<option selected='selected'>03</option>"+
+                        "<option>04</option>"+
+                        "<option>06</option>"+
+                        "<option>07</option>"+
+                        "<option>09</option>"+
+                        "<option>0508</option>"+
+                        "<option>0800</option>"+
+                    "</select>"+
+                    "<input type='text' class='input-phone-number' id='phy_fax_text_"+index+"'>"+
+                "</div>"+
             "</div>"+
-            "<label class='control-label control-label-small' for='inputPromotionDescription'>Store Fax Number</label>"+
-            "<div class='pull-left'>"+
-                "<select id='phy_fax_select_"+index+"' class='chosen'>"+
-                    "<option selected='selected'>03</option>"+
-                    "<option>04</option>"+
-                    "<option>06</option>"+
-                    "<option>07</option>"+
-                    "<option>09</option>"+
-                    "<option>0508</option>"+
-                    "<option>0800</option>"+
-                "</select>"+
-                "<input type='text' class='input-phone-number' id='phy_fax_text_"+index+"'>"+
-            "</div>"+
-        "</div>"+
-        "<div class='control-group'>"+
+            "<div class='control-group'>"+
             "<label class='control-label control-label-xlarge' for='inputOpeningHours'>Opening Hours (24 hour format)</label>"+
             "<div class='clearfix'></div>"+
             "<label class='control-label control-label-xxsmall pull-left' for='inputMonday'><input type='checkbox' name='optionsRadios' id='mon_check_"+index+"' > Mon </label>"+
             "<div clas='pull-left'>"+
-                "<input type='text' class='input-xsmall input-time' id='mon_o_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='mon_o_1_"+index+"'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='mon_c_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='mon_c_1_"+index+"'>"+
+                "<input type='text' class='input-xsmall input-hours' id='mon_o_0_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='mon_o_1_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-hours' id='mon_c_0_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='mon_c_1_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'>"+
             "</div>"+
             "<label class='control-label control-label-xxsmall pull-left' for='inputTuesday'><input type='checkbox' name='optionsRadios' id='tue_check_"+index+"' > Tue </label>"+
             "<div clas='pull-left'>"+
-                "<input type='text' class='input-xsmall input-time' id='tue_o_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='tue_o_1_"+index+"'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='tue_c_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='tue_c_1_"+index+"'>"+
+                "<input type='text' class='input-xsmall input-hours' id='tue_o_0_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='tue_o_1_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-hours' id='tue_c_0_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='tue_c_1_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'>"+
             "</div>"+
             "<label class='control-label control-label-xxsmall pull-left' for='inputWednesday'><input type='checkbox' name='optionsRadios' id='wed_check_"+index+"' > Wed </label>"+
             "<div clas='pull-left'>"+
-                "<input type='text' class='input-xsmall input-time' id='wed_o_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='wed_o_1_"+index+"'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='wed_c_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='wed_c_1_"+index+"'>"+
+                "<input type='text' class='input-xsmall input-hours' id='wed_o_0_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='wed_o_1_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-hours' id='wed_c_0_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='wed_c_1_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'>"+
             "</div>"+
             "<label class='control-label control-label-xxsmall pull-left' for='inputThursday'><input type='checkbox' name='optionsRadios' id='thu_check_"+index+"' > Thu </label>"+
             "<div clas='pull-left'>"+
-                "<input type='text' class='input-xsmall input-time' id='thu_o_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='thu_o_1_"+index+"'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='thu_c_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='thu_c_1_"+index+"'>"+
+                "<input type='text' class='input-xsmall input-hours' id='thu_o_0_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='thu_o_1_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-hours' id='thu_c_0_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='thu_c_1_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'>"+
             "</div>"+
             "<label class='control-label control-label-xxsmall pull-left' for='inputFriday'><input type='checkbox' name='optionsRadios' id='fri_check_"+index+"' > Fri </label>"+
             "<div clas='pull-left'>"+
-            "<input type='text' class='input-xsmall input-time' id='fri_o_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='fri_o_1_"+index+"'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='fri_c_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='fri_c_1_"+index+"'>"+
+            "<input type='text' class='input-xsmall input-hours' id='fri_o_0_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='fri_o_1_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-hours' id='fri_c_0_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='fri_c_1_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'>"+
             "</div>"+
             "<label class='control-label control-label-xxsmall pull-left' for='inputSaterday'><input type='checkbox' name='optionsRadios' id='sat_check_"+index+"' > Sat </label>"+
             "<div clas='pull-left'>"+
-            "<input type='text' class='input-xsmall input-time' id='sat_o_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='sat_o_1_"+index+"'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='sat_c_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='sat_c_1_"+index+"'>"+
+            "<input type='text' class='input-xsmall input-hours' id='sat_o_0_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='sat_o_1_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-hours' id='sat_c_0_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='sat_c_1_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'>"+
             "</div>"+
             "<label class='control-label control-label-xxsmall pull-left' for='inputSunday'><input type='checkbox' name='optionsRadios' id='sun_check_"+index+"' > Sun</label>"+
             "<div clas='pull-left'>"+
-                "<input type='text' class='input-xsmall input-time' id='sun_o_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='sun_o_1_"+index+"'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-time' id='sun_c_0_"+index+"'> : <input type='text' class='input-xsmall input-time' id='sun_c_1_"+index+"'>"+
+                "<input type='text' class='input-xsmall input-hours' id='sun_o_0_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='sun_o_1_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> &nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp; <input type='text' class='input-xsmall input-hours' id='sun_c_0_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'> : <input type='text' class='input-xsmall input-min' id='sun_c_1_"+index+"' maxlength='2' onkeypress='return isNumberKey(event)'>"+
             "</div>"+
         "</div>"+
         "<a class='btn-grey-small btn_remove' onclick=removeBrach('"+index+"')>Remove Branch</a>"+
         "</td></tr>");
         $("#tr-physical-stores").append(newRow);
         $('.chosen').chosen();
+        $('.input-hours').change(function(){
+            if($('#'+this.id).val().toString().search(/^-?[0-9]+$/) == 0){
+                if($('#'+this.id).val() >= 24 || $('#'+this.id).val() < 0){
+                    $('#'+this.id).val("");
+                }
+            }
+            else{
+                $('#'+this.id).val("");
+            }
+        });
+        $('.input-min').change(function(){
+            if($('#'+this.id).val().toString().search(/^-?[0-9]+$/) == 0){
+                if($('#'+this.id).val() >= 60 || $('#'+this.id).val() < 0){
+                    $('#'+this.id).val("");
+                }
+            }
+            else{
+                $('#'+this.id).val("");
+            }
+        });
+        
+    });
+    $('.input-hours').change(function(){
+        if($('#'+this.id).val().toString().search(/^-?[0-9]+$/) == 0){
+            if($('#'+this.id).val() >= 24 || $('#'+this.id).val() < 0){
+                $('#'+this.id).val("");
+            }
+        }
+        else{
+            $('#'+this.id).val("");
+        }
+    });
+    $('.input-min').change(function(){
+        if($('#'+this.id).val().toString().search(/^-?[0-9]+$/) == 0){
+            if($('#'+this.id).val() >= 60 || $('#'+this.id).val() < 0){
+                $('#'+this.id).val("");
+            }
+        }
+        else{
+            $('#'+this.id).val("");
+        }
     });
 });
+function isNumberKey(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+ }
