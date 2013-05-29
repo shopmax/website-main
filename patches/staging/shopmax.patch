@@ -24,7 +24,7 @@ Index: hot-deploy/shopmax/widget/CommonScreens.xml
              </actions>
 Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
 ===================================================================
---- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 180)
+--- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 304)
 +++ hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(working copy)
 @@ -23,7 +23,7 @@
  
@@ -80,7 +80,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              <entity-one entity-name="UserLogin" value-field="sysUserLogin">
                  <field-map field-name="userLoginId" value="system"/>
              </entity-one>
-@@ -443,8 +443,8 @@
+@@ -446,8 +446,8 @@
                  <set field="parameters.domainName" value="${parameters.ownDomainName}"/>
                  <set field="parameters.domainNameBackend" value="backend.${parameters.ownDomainName}"/>
              <else>
@@ -91,8 +91,17 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              </else>
              </if-compare>
              
-@@ -701,7 +701,7 @@
-         </iterate>
+@@ -590,7 +590,7 @@
+             <make-value value-field="tenantDomainName" entity-name="TenantDomainName"/>
+             <set field="tenantDomainName.tenantId" from-field="tenantId"/>
+             <set field="tenantDomainName.domainName" from-field="parameters.domainName"/>
+-            <set field="tenantDomainName.initialPath" value="/"/>
++            <set field="tenantDomainName.initialPath" value="/shop"/>
+             <create-value value-field="tenantDomainName"/>
+             
+             <!-- Create Tenant Backend Domain Name -->
+@@ -750,7 +750,7 @@
+         <field-to-result field="success" result-name="uploadsuccess"/>
          
          <set field="parameters.partyId" from-field="userLogin.partyId"/>
 -        <set field="runTenantServiceInMap.tenantId" value="default"/>
