@@ -1,16 +1,27 @@
 Index: hot-deploy/shopmax/ofbiz-component.xml
 ===================================================================
---- hot-deploy/shopmax/ofbiz-component.xml	(revision 178)
+--- hot-deploy/shopmax/ofbiz-component.xml	(revision 300)
 +++ hot-deploy/shopmax/ofbiz-component.xml	(working copy)
-@@ -44,7 +44,7 @@
+@@ -44,6 +44,7 @@
      <entity-resource type="data" reader-name="ext-demo" loader="main" location="data/ShopMaxExtDemoData.xml"/>
      <entity-resource type="data" reader-name="demo" loader="main" location="data/ShopMaxSecurityGroupDemoData.xml"/>
      <entity-resource type="data" reader-name="demo" loader="main" location="data/ShopMaxDemoData.xml"/>
--    <!-- <entity-resource type="data" reader-name="tenant" loader="main" location="data/TenantData.xml"/> -->
 +    <entity-resource type="data" reader-name="tenant" loader="main" location="data/TenantData.xml"/>
  
      <!-- service resources: model(s), eca(s) and group definitions -->
      <service-resource type="model" loader="main" location="servicedef/services.xml"/>
+Index: hot-deploy/shopmax/widget/CommonScreens.xml
+===================================================================
+--- hot-deploy/shopmax/widget/CommonScreens.xml	(revision 300)
++++ hot-deploy/shopmax/widget/CommonScreens.xml	(working copy)
+@@ -59,6 +59,7 @@
+                     <field-map field-name="themeResources" from-field="layoutSettings" />
+                 </service>
+                 <set field="layoutSettings" from-field="themeResources" default-value="${layoutSettings}" global="true" />
++                <set field="isDemo" value="${groovy:org.ofbiz.base.component.ComponentConfig.componentExists(&quot;ofbizdemo&quot;)}" type="Boolean"/>
+                 <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/cart/ShowCart.groovy"/>
+                 <set field="userLoginPartyId" from-field="userLogin.partyId"/>
+             </actions>
 Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
 ===================================================================
 --- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 180)
