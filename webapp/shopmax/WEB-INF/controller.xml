@@ -398,6 +398,11 @@ under the License.
         <response name="success" type="view" value="registrationajax"/>
     </request-map>
     
+    <request-map uri="registrationsuccess">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="registrationsuccess"/>
+    </request-map>
+    
     <request-map uri="profile">
         <security https="true" auth="false"/>
         <response name="success" type="view" value="profile"/>
@@ -487,9 +492,9 @@ under the License.
         <response name="error" type="view" value="salesummary"/>
     </request-map>
     
-    <request-map uri="registrationsuccess">
-        <security https="true" auth="false"/>
-        <response name="success" type="view" value="registrationsuccess"/>
+    <request-map uri="ViewSimpleContent">
+        <security auth="false" https="false"/>
+        <response name="success" type="view" value="ViewSimpleContent"/>
     </request-map>
     
     <!-- View Mappings -->
@@ -545,4 +550,6 @@ under the License.
     <view-map name="createpromotion" type="screen" page="component://shopmax/widget/PromoScreens.xml#CreatePromotion"/>
     <view-map name="onlinemarketing" type="screen" page="component://shopmax/widget/PromoScreens.xml#OnlineMarketing"/>
     <view-map name="createcampaign" type="screen" page="component://shopmax/widget/PromoScreens.xml#CreateCampaign"/>
+    
+    <view-map name="ViewSimpleContent" page="" type="simplecontent"/>
 </site-conf>

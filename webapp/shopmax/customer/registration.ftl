@@ -398,7 +398,7 @@ under the License.
                                     <label class="radio pull-left control-label-dc">
                                         <input type="radio" name="optionsRadios1" id="optionsRadios3" class="optionsRadios"> Debit Card
                                     </label>
-                                    <label class="control-label control-label-dc-inner pull-left" for="inputPromotionDescription"><a href="#">Download a direct debit form</a></label>
+                                    <label class="control-label control-label-dc-inner pull-left" for="inputPromotionDescription"><a href="<@ofbizUrl>ViewSimpleContent?contentId=DIRECT_DEBIT_FORM</@ofbizUrl>">Download a direct debit form</a></label>
                                     <div class="clearfix"></div>
                                     <label class="control-label control-label-dc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
                                     <label class="control-label control-label-dc-inner pull-left" for="inputPromotionDescription">Upload a direct debit form</label>
