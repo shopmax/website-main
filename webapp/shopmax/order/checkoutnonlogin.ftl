@@ -188,20 +188,23 @@ under the License.
                             </div>
                             <div class="form-inline">
                                 <strong class="grey">Expires</strong>&nbsp;
-                                <select name="expMonth" class="drop-select chosen combo" data-search-bar="true">
-                                    <option value="" selected="selected">Month</option>
-                                    <#if expMonth?has_content>
-                                        <option label="${expMonth?if_exists}" value="${expMonth?if_exists}">${expMonth?if_exists}</option>
+                                <#assign expMonth = "">
+                                    <#assign expYear = "">
+                                    <#if creditCard?exists && creditCard.expireDate?exists>
+                                        <#assign expDate = creditCard.expireDate>
+                                        <#if (expDate?exists && expDate.indexOf("/") > 0)>
+                                            <#assign expMonth = expDate.substring(0,expDate.indexOf("/"))>
+                                            <#assign expYear = expDate.substring(expDate.indexOf("/")+1)>
+                                        </#if>
                                     </#if>
-                                    ${screens.render("component://common/widget/CommonScreens.xml#ccmonths")}
-                                </select>   
-                                <select name="expYear" class="drop-select chosen combo" data-search-bar="true">
-                                    <option value="" selected="selected">Year</option>
-                                    <#if expYear?has_content>
-                                        <option value="${expYear?if_exists}">${expYear?if_exists}</option>
-                                    </#if>
-                                    ${screens.render("component://common/widget/CommonScreens.xml#ccyears")}
-                                </select>
+                                    <select name="expMonth" id="expMonth" class="chosen expireDate">
+                                        <option value="">Month</option>
+                                        ${screens.render("component://common/widget/CommonScreens.xml#ccmonths")}
+                                    </select>
+                                    <select name="expYear" id="expYear" class="chosen expireDate">
+                                        <option value="">Year</option>
+                                        ${screens.render("component://common/widget/CommonScreens.xml#ccyears")}
+                                    </select>
                                 <input name="billToCardSecurityCode" type="text" class="input-medium required" placeholder="Security Code" />
                                 <img src="<@ofbizContentUrl>/shopmax-default/img/icon-card.gif</@ofbizContentUrl>" />
                                 <a href="#">What is this?</a>

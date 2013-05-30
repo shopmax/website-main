@@ -2688,10 +2688,10 @@ float:right;
 .lt-ie9.lt-ie8 .btn-checkout-wrapper {
 margin-right:15px;
 }
-.shopping-cart .btn-general {
-    width:160px;
-    background: url("../img/btn-general-rpt.png") repeat-x scroll 0 0 transparent;    
-}
+/* .shopping-cart .btn-general { */
+/*     width:160px; */
+/*     background: url("../img/btn-general-rpt.png") repeat-x scroll 0 0 transparent;     */
+/* } */
 
 
 .lt-ie9 .shopping-cart .btn-general {
@@ -3340,7 +3340,7 @@ border-top: 0px;
     background: #F0F0F0;
 }
 .shopping-cart .btn-general {
-    width:160px;
+    width:180px;
     background: url("../img/btn-general-rpt.png") repeat-x scroll 0 0 transparent;
     
 }
