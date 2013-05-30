@@ -24,6 +24,28 @@ under the License.
             'transitionIn'      : 'none',
             'transitionOut'     : 'none'
         });
+        
+        $('#createUserAccount').click(function(){
+            if($(this).is(":checked")){
+                $('#sendEmail').val('Y');
+            }
+            else{
+                $('#sendEmail').val('N');
+            }
+        });
+        
+        $('#sameAsShipping').click(function(){
+            if($(this).is(":checked")){
+                $('#tr-shipping-address').addClass('hidden');
+                $('#tr-shipping-contact').addClass('hidden');
+                $('#useShippingAddressForBilling').val('Y');
+            }
+            else{
+                $('#tr-shipping-address').removeClass('hidden');
+                $('#tr-shipping-contact').removeClass('hidden');
+                $('#useShippingAddressForBilling').val('N');
+            }
+        });
     });
 </script>
 <div class="container content shopping-cart">
@@ -106,7 +128,7 @@ under the License.
                                 <input type="text" class="input-xxlarge" name="shipToPostalCode" placeholder="Zip/ Postal Code" />
                             </div>
                             <div class="form-inline">
-                                <input type="text" class="input-xxxlarge" placeholder="Additional Address Info (optional)" />
+                                <input type="text" class="input-xxxlarge" name="shipToAddress2" placeholder="Additional Address Info (optional)" />
                                 <select name="shipToCity" class="drop-select chosen combo" data-search-bar="true">
                                     <option value="" selected="selected">Zip Return City, State</option>
                                     <option value="1">Option 1</option>
@@ -126,19 +148,20 @@ under the License.
                 <input type="hidden" value="1" name="billToCountryCode">
                 <input type="hidden" value="801" name="billToAreaCode">
                 <input type="hidden" value="" name="billToExtension">
+                <input type="hidden" value="N" name="useShippingAddressForBilling" id="useShippingAddressForBilling">
                 
                 <table class="table table-condensed sc-table sc-table-shipping">
                   <thead>
                     <tr class="sc-table-product-header">
                       <th class="col1"><div class="pull-left">Billing Information</div>
                           <label class="same-as">
-                            <input type="checkbox">Same as shipping information
+                            <input type="checkbox" id="sameAsShipping">Same as shipping information
                           </label>
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <tr id="tr-shipping-contact">
                         <td class="col1">
                             <h5 class="heading">Shipping Contact</h5>
                             
@@ -153,7 +176,7 @@ under the License.
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="tr-shipping-address">
                         <td class="col1">
                             <h5 class="heading">Shipping Address</h5>
                             
@@ -215,12 +238,13 @@ under the License.
                 </table>
                 
                 <#-- Account -->
+                <input type="hidden" id="sendEmail" name="sendEmail" value="N"/>
                 <table class="table table-condensed sc-table sc-table-shipping">
                   <thead>
                     <tr class="sc-table-product-header">
                       <th class="col1"><div class="pull-left">Account</div>
                           <label class="same-as">
-                            <input type="checkbox">Create a user account
+                            <input type="checkbox" id="createUserAccount">Create a user account
                           </label>
                       </th>
                     </tr>

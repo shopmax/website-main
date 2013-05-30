@@ -48,6 +48,7 @@ under the License.
         <set field="createShopmaxCustomerInMap.CONFIRM_PASSWORD" from-field="currentPassword"/>
         <set field="createShopmaxCustomerInMap.businessUser" value="N"/>
         <set field="createShopmaxCustomerInMap.productStoreId" from-field="productStoreId"/>
+        <set field="createShopmaxCustomerInMap.sendEmail" from-field="parameters.sendEmail"/>
         <call-service service-name="createShopmaxCustomer" in-map-name="createShopmaxCustomerInMap">
             <result-to-field result-name="USERNAME" field="userLoginId"/>
         </call-service>
@@ -56,44 +57,6 @@ under the License.
             <field-map field-name="userLoginId"/>
         </entity-one>
         <set field="partyId" from-field="createdUserLogin.partyId"/>
-        <property-to-field resource="general" property="country.geo.id.default" field="defaultCountryGeoId"/>
-        <set field="parameters.shipToCountryGeoId" from-field="defaultCountryGeoId"/>
-        <set field="parameters.billToCountryGeoId" from-field="defaultCountryGeoId"/>
-        <set field="parameters.billToStateProvinceGeoId" value="_NA_"/>
-        
-        <!-- Create shipping address -->
-        <set field="parameters.shipToName" from-field="parameters.USER_FIRST_NAME"/>
-        <set field="parameters.shipToAttnName" from-field="parameters.USER_FIRST_NAME"/>
-        <call-map-processor xml-resource="component://order/script/org/ofbiz/order/customer/CheckoutMapProcs.xml"
-            processor-name="shipToAddress" in-map-name="parameters" out-map-name="shipToAddressCtx"/>
-        <set field="shipToAddressCtx.partyId" from-field="partyId"/>
-        <set field="shipToAddressCtx.userLogin" from-field="createdUserLogin"/>
-        <set field="shipToAddressCtx.setShippingPurpose" value="Y"/>
-        <set field="shipToAddressCtx.productStoreId" from-field="productStoreId"/>
-        <if-compare field="parameters.useShippingAddressForBilling" operator="equals" value="Y">
-            <set field="shipToAddressCtx.setBillingPurpose" value="Y"/>
-        </if-compare>
-        <call-service service-name="createPostalAddressAndPurposes" in-map-name="shipToAddressCtx">
-            <result-to-field result-name="contactMechId" field="shipToContactMechId"/>
-        </call-service>
-        <log level="info" message="Shipping address created with contactMechId ${shipToContactMechId}"/>
-        
-        <!-- Create billing address -->
-        <if-compare field="parameters.useShippingAddressForBilling" operator="not-equals" value="Y">
-            <call-map-processor xml-resource="component://order/script/org/ofbiz/order/customer/CheckoutMapProcs.xml"
-                    processor-name="billToAddress" in-map-name="parameters" out-map-name="billToAddressCtx"/>
-            <set field="billToAddressCtx.partyId" from-field="partyId"/>
-            <set field="billToAddressCtx.userLogin" from-field="createdUserLogin"/>
-            <set field="billToAddressCtx.setBillingPurpose" value="Y"/>
-            <set field="billToAddressCtx.productStoreId" from-field="productStoreId"/>
-            <call-service service-name="createPostalAddressAndPurposes" in-map-name="billToAddressCtx">
-                <result-to-field result-name="contactMechId" field="billToContactMechId"/>
-            </call-service>
-            <log level="info" message="Billing address created with contactMechId ${billToContactMechId}"/>
-            <else>
-                <log level="info" message="Billing address created same as Shipping address with contactMechId ${shipToContactMechId}"/>
-            </else>
-        </if-compare>
         
         <!-- login by created customer -->
         <script>groovy:
@@ -106,41 +69,7 @@ under the License.
             }
         </script>
     </simple-method>
-    <simple-method method-name="createUpdateBillingAndPayment" short-description="Create update billing and payment" login-required="false">
-        <session-to-field session-name="userLogin"/>
-        <set field="parameters.partyId" from-field="userLogin.partyId"/>
-        <property-to-field resource="general" property="country.geo.id.default" field="defaultCountryGeoId"/>
-        <set field="parameters.billToCountryGeoId" from-field="defaultCountryGeoId"/>
-        <if-empty field="parameters.billToContactMechId">
-            <set field="parameters.billToStateProvinceGeoId" value="_NA_"/>
-            <set field="parameters.firstNameOnCard" from-field="parameters.billToName"/>
-            <set field="parameters.lastNameOnCard" from-field="parameters.billToLastName"/>
-            <else>
-                <!-- set person -->
-                <set field="getPersonInMap.partyId" from-field="parameters.partyId"/>
-                <call-service service-name="getPerson" in-map-name="getPersonInMap">
-                   <result-to-field result-name="lookupPerson"/>
-                </call-service>
-                <set field="parameters.firstNameOnCard" from-field="lookupPerson.firstName"/>
-                <set field="parameters.lastNameOnCard" from-field="lookupPerson.lastName"/>
-                
-                <!-- set credit card -->
-                <entity-one value-field="creditCard" entity-name="CreditCard">
-                    <field-map field-name="paymentMethodId" from-field="parameters.paymentMethodId"/>
-                </entity-one>
-                <set field="parameters.cardNumber" from-field="creditCard.cardNumber"/>
-                <set field="parameters.cardType" from-field="creditCard.cardType"/>
-                <set field="parameters.expMonth" value="${groovy:(creditCard.expireDate).substring(0, 2)}"/>
-                <set field="parameters.expYear" value="${groovy:(creditCard.expireDate).substring(3)}"/>
-            </else>
-        </if-empty>
-        <call-class-method method-name="getCartObject" class-name="org.ofbiz.order.shoppingcart.ShoppingCartEvents" ret-field="parameters.shoppingCart">
-            <field field="request" type="javax.servlet.http.HttpServletRequest"/>
-        </call-class-method>
-        <set-service-fields service-name="createUpdateBillingAddressAndPaymentMethod" to-map="createUpdateBillingAddressAndPaymentMethodInMap" map="parameters"/>
-        <set field="createUpdateBillingAddressAndPaymentMethodInMap.cardType" from="parameters.cardType"/>
-        <call-service service-name="createUpdateBillingAddressAndPaymentMethod" in-map-name="createUpdateBillingAddressAndPaymentMethodInMap"/>
-    </simple-method>
+    
     <simple-method method-name="createUpdateShippingAddress" short-description="Create update shipping address" login-required="false">
         <call-class-method method-name="getCartObject" class-name="org.ofbiz.order.shoppingcart.ShoppingCartEvents" ret-field="shoppingCart">
             <field field="request" type="javax.servlet.http.HttpServletRequest"/>
@@ -253,6 +182,54 @@ under the License.
         </call-object-method>
         <set field="parameters.shoppingCart" from-field="shoppingCart"/>
         <set-service-fields service-name="createUpdateCustomerAndShippingAddress" to-map="createUpdateCustomerAndShippingAddressInMap" map="parameters"/>
-        <call-service service-name="createUpdateCustomerAndShippingAddress" in-map-name="createUpdateCustomerAndShippingAddressInMap"/>
+        <call-service service-name="createUpdateCustomerAndShippingAddress" in-map-name="createUpdateCustomerAndShippingAddressInMap">
+            <result-to-request result-name="contactMechId" request-name="contactMechId"/>
+        </call-service>
+    </simple-method>
+    
+    <simple-method method-name="createUpdateBillingAndPayment" short-description="Create update billing and payment" login-required="false">
+        <request-to-field request-name="contactMechId" field="parameters.contactMechId"/>
+        <session-to-field session-name="userLogin"/>
+        <set field="parameters.partyId" from-field="userLogin.partyId"/>
+        <property-to-field resource="general" property="country.geo.id.default" field="defaultCountryGeoId"/>
+        <set field="parameters.billToCountryGeoId" from-field="defaultCountryGeoId"/>
+        <if-compare operator="equals" value="Y" field="parameters.useShippingAddressForBilling">
+            <set field="parameters.billToContactNumber" from-field="parameters.shipToContactNumber"/>
+            <set field="parameters.firstNameOnCard" from-field="parameters.USER_FIRST_NAME"/>
+            <set field="parameters.lastNameOnCard" from-field="parameters.USER_LAST_NAME"/>
+            <set field="parameters.shipToContactMechId" from-field="parameters.contactMechId"/>
+            <set field="parameters.billToContactMechId" from-field="parameters.contactMechId"/>
+            <else>
+                <if-empty field="parameters.billToContactMechId">
+                    <set field="parameters.billToStateProvinceGeoId" value="_NA_"/>
+                    <set field="parameters.firstNameOnCard" from-field="parameters.billToName"/>
+                    <set field="parameters.lastNameOnCard" from-field="parameters.billToLastName"/>
+                    <else>
+                        <!-- set person -->
+                        <set field="getPersonInMap.partyId" from-field="parameters.partyId"/>
+                        <call-service service-name="getPerson" in-map-name="getPersonInMap">
+                           <result-to-field result-name="lookupPerson"/>
+                        </call-service>
+                        <set field="parameters.firstNameOnCard" from-field="lookupPerson.firstName"/>
+                        <set field="parameters.lastNameOnCard" from-field="lookupPerson.lastName"/>
+                        
+                        <!-- set credit card -->
+                        <entity-one value-field="creditCard" entity-name="CreditCard">
+                            <field-map field-name="paymentMethodId" from-field="parameters.paymentMethodId"/>
+                        </entity-one>
+                        <set field="parameters.cardNumber" from-field="creditCard.cardNumber"/>
+                        <set field="parameters.cardType" from-field="creditCard.cardType"/>
+                        <set field="parameters.expMonth" value="${groovy:(creditCard.expireDate).substring(0, 2)}"/>
+                        <set field="parameters.expYear" value="${groovy:(creditCard.expireDate).substring(3)}"/>
+                    </else>
+                </if-empty>
+            </else>
+        </if-compare>
+        <call-class-method method-name="getCartObject" class-name="org.ofbiz.order.shoppingcart.ShoppingCartEvents" ret-field="parameters.shoppingCart">
+            <field field="request" type="javax.servlet.http.HttpServletRequest"/>
+        </call-class-method>
+        <set-service-fields service-name="createUpdateBillingAddressAndPaymentMethod" to-map="createUpdateBillingAddressAndPaymentMethodInMap" map="parameters"/>
+        <set field="createUpdateBillingAddressAndPaymentMethodInMap.cardType" from="parameters.cardType"/>
+        <call-service service-name="createUpdateBillingAddressAndPaymentMethod" in-map-name="createUpdateBillingAddressAndPaymentMethodInMap"/>
     </simple-method>
 </simple-methods>

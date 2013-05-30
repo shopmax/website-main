@@ -113,6 +113,7 @@ under the License.
         <attribute name="physicalLocation" mode="IN" type="String" optional="true"/>
         <attribute name="physicalPhone" mode="IN" type="String" optional="true"/>
         <attribute name="physicalTime" mode="IN" type="String" optional="true"/>
+        <attribute name="sendEmail" mode="IN" type="String" optional="true"/>
         <override name="city" mode="IN" optional="true"/>
         <override name="postalCode" mode="IN" optional="true"/>
     </service>

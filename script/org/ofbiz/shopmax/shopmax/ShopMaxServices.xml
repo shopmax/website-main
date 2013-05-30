@@ -363,28 +363,30 @@ under the License.
         <call-service service-name="createProductStoreRole" in-map-name="createProductStoreRoleMap"/>
         
         <!-- send off the registration email -->
-        <if-not-empty field="emailContext.emailAddress">
-            <set from-field="parameters.productStoreId" field="storeEmailLookup.productStoreId"/>
-            <set value="PRDS_CUST_REGISTER" field="storeEmailLookup.emailType"/>
-            <find-by-primary-key map="storeEmailLookup" entity-name="ProductStoreEmailSetting"  value-field="storeEmail"/>
-            <if-not-empty field="storeEmail.bodyScreenLocation">
-                <get-related-one value-field="createdUserLogin" relation-name="Person" to-value-field="person"/>
-                <set field="bodyParameters.person" from-field="person"/>
-                <set field="bodyParameters.username" from-field="parameters.USERNAME"/>
-                <set field="bodyParameters.password" from-field="parameters.PASSWORD"/>
-                <set field="bodyParameters.businessUser" from-field="parameters.businessUser"/>
-                <set field="emailParams.bodyParameters" from-field="bodyParameters"/>
-                <set field="emailParams.sendTo" from-field="emailContext.emailAddress"/>
-                <set field="emailParams.subject" from-field="storeEmail.subject"/>
-                <set field="emailParams.sendFrom" from-field="storeEmail.fromAddress"/>
-                <set field="emailParams.sendCc" from-field="storeEmail.ccAddress"/>
-                <set field="emailParams.sendBcc" from-field="storeEmail.bccAddress"/>
-                <set field="emailParams.contentType" from-field="storeEmail.contentType"/>
-                <set field="emailParams.bodyScreenUri" from-field="storeEmail.bodyScreenLocation"/>
-                <set field="emailParams.emailType" from-field="storeEmailLookup.emailType"/>
-                <call-service-asynch service-name="sendMailFromScreen" in-map-name="emailParams" include-user-login="true"/>
+        <if-compare operator="equals" value="Y" field="parameters.sendEmail">
+            <if-not-empty field="emailContext.emailAddress">
+                <set from-field="parameters.productStoreId" field="storeEmailLookup.productStoreId"/>
+                <set value="PRDS_CUST_REGISTER" field="storeEmailLookup.emailType"/>
+                <find-by-primary-key map="storeEmailLookup" entity-name="ProductStoreEmailSetting"  value-field="storeEmail"/>
+                <if-not-empty field="storeEmail.bodyScreenLocation">
+                    <get-related-one value-field="createdUserLogin" relation-name="Person" to-value-field="person"/>
+                    <set field="bodyParameters.person" from-field="person"/>
+                    <set field="bodyParameters.username" from-field="parameters.USERNAME"/>
+                    <set field="bodyParameters.password" from-field="parameters.PASSWORD"/>
+                    <set field="bodyParameters.businessUser" from-field="parameters.businessUser"/>
+                    <set field="emailParams.bodyParameters" from-field="bodyParameters"/>
+                    <set field="emailParams.sendTo" from-field="emailContext.emailAddress"/>
+                    <set field="emailParams.subject" from-field="storeEmail.subject"/>
+                    <set field="emailParams.sendFrom" from-field="storeEmail.fromAddress"/>
+                    <set field="emailParams.sendCc" from-field="storeEmail.ccAddress"/>
+                    <set field="emailParams.sendBcc" from-field="storeEmail.bccAddress"/>
+                    <set field="emailParams.contentType" from-field="storeEmail.contentType"/>
+                    <set field="emailParams.bodyScreenUri" from-field="storeEmail.bodyScreenLocation"/>
+                    <set field="emailParams.emailType" from-field="storeEmailLookup.emailType"/>
+                    <call-service-asynch service-name="sendMailFromScreen" in-map-name="emailParams" include-user-login="true"/>
+                </if-not-empty>
             </if-not-empty>
-        </if-not-empty>
+        </if-compare>
         
         <!-- tell the control servlet that we just logged in the user... -->
         <set value="TRUE" field="_LOGIN_PASSED_"/>
