@@ -355,14 +355,14 @@ under the License.
                                             <input type="radio" name="optionsRadios1" id="optionsRadios2" class="optionsRadios" checked> Credit Card
                                         </label>
                                         <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Card Holder Name</label>
-                                        <input type="text" class="input-large pull-left check" id="cardHolderName"><img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                        <input type="text" class="input-large pull-left check" id="cardHolderName" autocomplete="off"><img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
                                         <input type="hidden" id="firstNameOnCard" name="firstNameOnCard">
                                         <input type="hidden" id="lastNameOnCard" name="lastNameOnCard">
                                     </div>
                                     <div class="control-group-bank">
                                         <label class="control-label control-label-cc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
                                         <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Card Number</label>
-                                        <div class="pull-left"><input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-0" onkeypress='return isNumberKey(event)'> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-1" onkeypress='return isNumberKey(event)'> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-2" onkeypress='return isNumberKey(event)'> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-3" onkeypress='return isNumberKey(event)'></div>
+                                        <div class="pull-left"><input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-0" onkeypress='return isNumberKey(event)' autocomplete="off"> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-1" onkeypress='return isNumberKey(event)' autocomplete="off"> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-2" onkeypress='return isNumberKey(event)' autocomplete="off"> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-3" onkeypress='return isNumberKey(event)' autocomplete="off"></div>
                                         <input type="hidden" id="cardNumber" name="cardNumber">
                                     </div>
                                     <div class="control-group-bank">
@@ -390,7 +390,7 @@ under the License.
                                     <div class="control-group-bank">
                                         <label class="control-label control-label-cc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
                                         <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Security Code</label>
-                                        <input type="text" class="input-cc-xsmall pull-left check" id="cvcNumber" name="cvc" maxlength="3" onkeypress='return isNumberKey(event)'> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                        <input type="text" class="input-cc-xsmall pull-left check" id="cvcNumber" name="cvc" maxlength="3" onkeypress='return isNumberKey(event)' autocomplete="off"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
                                     </div>
                                 </div>
                                 <br/>
