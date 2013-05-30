@@ -24,7 +24,36 @@ under the License.
 <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.accordion.source.js</@ofbizContentUrl>" type="text/javascript"></script>
 <script>
     function sumbiteditproduct(index){
-        $('#updateproduct-'+index).submit();
+        $('#view-edit-product-'+index).find('input.check,textarea.check').each(function(){
+            if(!$(this).val().length){
+                $(this).addClass('required');
+            }
+            else{
+            $(this).removeClass('required');
+                if($('.required').length == 0){
+                    if(!$('#inputDescription-'+index).val().length){
+                    $('#inputDescription-'+index).addClass('required');
+                    }
+                    else if(!$('#inputListPrice-'+index).val().length){
+                    $('#inputListPrice-'+index).addClass('required');
+                    }
+                    else{
+                    $('#updateproduct-'+index).submit();
+                    }
+                }
+            }
+        });
+        $('input.check').focus(function(){
+            $('#'+this.id).removeClass('required');
+        });
+        $('textarea.check').focus(function(){
+            $('#'+this.id).removeClass('required');
+        });
+        $('.edit').click(function(){
+            $('.media-list').find('input.check,textarea.check').each(function(){
+                $(this).removeClass('required');
+            });
+        });
     }
     
     function getUrlVars() {
@@ -189,13 +218,13 @@ under the License.
                                         <div class="control-group">
                                             <label class="control-label" for="inputProductName">Product name</label>
                                             <div class="controls">
-                                                <input type="text" class="input-xlarge" id="inputProductName" name="productName" value="${product.productName?if_exists}">
+                                                <input type="text" class="input-xlarge check" id="inputProductName" name="productName" value="${product.productName?if_exists}">
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label" for="inputDescription">Product description</label>
                                             <div class="controls">
-                                                <textarea rows="3" class="input-xlarge" name="description">${product.description?if_exists}</textarea>
+                                                <textarea rows="3" id="inputDescription-${product_index}" class="input-xlarge check" name="description">${product.description?if_exists}</textarea>
                                             </div>
                                         </div>
                                         <div class="control-group">
@@ -249,7 +278,7 @@ under the License.
                                         <div class="form-inline input-price-stock">
                                             <label>
                                                 Listing price
-                                                <input type="text" class="input-medium" name="listingPrice" value="${product.defaultPrice?if_exists}">
+                                                <input type="text" id="inputListPrice-${product_index}" class="input-medium check" name="listingPrice" value="${product.defaultPrice?if_exists}">
                                             </label>
                                             <label style="border:1px solid #E0E0E0;">
                                                 Stock

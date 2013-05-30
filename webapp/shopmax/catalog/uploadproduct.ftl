@@ -46,19 +46,29 @@ under the License.
                         }
                     }
                     else{
-                   $(this).removeClass('required');
+                    $(this).removeClass('required');
                         if(!$('.selected-products').find('tr').hasClass('')){
                             $('.input-error2').removeClass('hidden');
                             $('html, body').animate({ scrollTop: 0 }, 0);
                             valid = true;
                         }
                         if(!$('#prev_upfile_1').find('div').hasClass('prev_thumb')){
+                            $('#prev_upfile_1').css({'background-color':'#fef2ee'});
+                            $('#prev_upfile_1').css({'border-color':'red'});
                             $('.input-error2').removeClass('hidden');
                             $('html, body').animate({ scrollTop: 0 }, 0);
                         }
                         if($('.required').length == 0 && $('#prev_upfile_1').find('div').hasClass('prev_thumb') && $('.selected-products').find('tr').hasClass('')){
+                            if(!$('#prodDescript').val().length){
+                            $('#prodDescript').addClass('required');
+                            }
+                            else if(!$('#listingPrice').val().length){
+                            $('#listingPrice').addClass('required');
+                            }
+                            else{
                             $('.input-error2').addClass('hidden');
                             $('#uploadAndUpdateProduct').submit();
+                            }
                         }
                     }
                 });
