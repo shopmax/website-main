@@ -17,6 +17,25 @@ specific language governing permissions and limitations
 under the License.
 -->
 
+<script type="text/javascript">
+    function deleteItem(event, cartLineIndex) {
+        event.preventDefault();
+        var newForm = jQuery('<form>', {
+            'action': '<@ofbizUrl>modifycart</@ofbizUrl>',
+            'method': 'post',
+            'target': '_top'
+        }).append(jQuery('<input>', {
+            'name': 'removeSelected',
+            'value': 'true',
+            'type': 'hidden'
+        })).append(jQuery('<input>', {
+            'name': 'selectedItem',
+            'value': cartLineIndex,
+            'type': 'hidden'
+        }));
+        newForm.appendTo('body').submit();
+    }
+</script>
 <div class="container content shopping-cart">
     <div class="row">
         <div class="span3 sidebar" id="side-menu">
@@ -98,7 +117,7 @@ under the License.
                                             <#if promoPrice?has_content><div class="old"><@ofbizCurrency amount=defaultPrice[0].price/></div></#if><strong><@ofbizCurrency amount=cartLine.getDisplayPrice()/></strong>
                                         </td>
                                         <td class="col4"><input type="text" class="input-mini" value="${cartLine.getQuantity()?string.number}"/><br />
-                                            <a href="#">Delete item</a>
+                                            <a href="javascript:void(0)" onclick="deleteItem(event, ${cartLineIndex})">Delete item</a>
                                         </td>
                                         <td class="col5"><strong><@ofbizCurrency amount=cartLine.getDisplayItemSubTotal()/></strong></td>
                                     </tr>

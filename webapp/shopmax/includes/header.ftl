@@ -161,8 +161,13 @@ under the License.
             <!-- CART INFORMATION -->
             <div id="cart-info" class="nav-collapse collapse">
                 <h3>${shoppingCartSize} Items</h3>
-                <p><a href="<@ofbizUrl>shoppingcart</@ofbizUrl>" class="btn-flat round">View Cart</a></p>
-                <p><a href="<@ofbizUrl>shoppingcart</@ofbizUrl>" class="btn-flat checkout">Check Out</a></p>
+                <#if shoppingCartSize &gt; 0>
+                    <p><a href="<@ofbizUrl>shoppingcart</@ofbizUrl>" class="btn-flat round">View Cart</a></p>
+                    <p><a href="<@ofbizUrl>shoppingcart</@ofbizUrl>" class="btn-flat checkout">Check Out</a></p>
+                <#else>
+                    <p><label class="btn-flat round disabled">View Cart</label></p>
+                    <p><label class="btn-flat checkout disabled">Check Out</label></p>
+                </#if>
             </div>
         </div><!--/.container -->
     </div><!--/. navbar-inner -->

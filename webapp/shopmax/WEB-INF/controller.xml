@@ -275,7 +275,14 @@ under the License.
     <!-- Order Requests -->
     <request-map uri="shoppingcart">
         <security https="false" auth="false"/>
-        <response name="success" type="view" value="shoppingcart"/>
+        <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/shoppingcart/ShoppingCartEvents.xml" invoke="routeShoppingCart"/>
+        <response name="cart" type="view" value="shoppingcart"/>
+        <response name="empty" type="view" value="main"/>
+    </request-map>
+    <request-map uri="modifycart">
+        <security https="false" auth="false"/>
+        <event type="java" path="org.ofbiz.order.shoppingcart.ShoppingCartEvents" invoke="modifyCart"/>
+        <response name="success" type="request" value="shoppingcart"/>
         <response name="error" type="view" value="shoppingcart"/>
     </request-map>
     
