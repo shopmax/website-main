@@ -72,6 +72,7 @@ under the License.
                                     <#assign product = orderItem.getRelatedOne("Product", false)/>
                                     <tr>
                                         <td class="col1 col_1">
+                                            <#assign contentAssocThumbs = ""/>
                                             <#assign productContentAndInfoImages = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductContentAndInfo", {"productId" : product.productId, "productContentTypeId" : "IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"}, ["sequenceNum"], false))>
                                             <#if productContentAndInfoImages?has_content>
                                                 <#assign contentAssocThumbs = delegator.findByAnd("ContentAssocDataResourceViewTo", {"contentIdStart" : productContentAndInfoImages[0].contentId, "caContentAssocTypeId" : "IMAGE_THUMBNAIL"}, null, false)>

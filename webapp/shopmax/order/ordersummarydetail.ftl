@@ -35,6 +35,7 @@ under the License.
                 </#if>
                 <tr>
                     <td class="col1">
+                        <#assign contentAssocThumbs = ""/>
                         <#assign productContentAndInfoImages = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductContentAndInfo", {"productId" : cartLine.getProductId(), "productContentTypeId" : "IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"}, ["sequenceNum"], false))>
                         <#if productContentAndInfoImages?has_content>
                             <#assign contentAssocThumbs = delegator.findByAnd("ContentAssocDataResourceViewTo", {"contentIdStart" : productContentAndInfoImages[0].contentId, "caContentAssocTypeId" : "IMAGE_THUMBNAIL"}, null, false)>
