@@ -73,7 +73,7 @@ under the License.
     <request-map uri="login">
         <security https="true" auth="false"/>
         <event type="java" path="org.ofbiz.webapp.control.LoginWorker" invoke="login"/>
-        <response name="success" type="view" value="main"/>
+        <response name="success" type="view-last" value="main"/>
         <response name="requirePasswordChange" type="view" value="requirePasswordChange"/>
         <response name="error" type="view" value="main"/>
     </request-map>
@@ -281,8 +281,8 @@ under the License.
     
     <request-map uri="checkout">
         <security https="true" auth="false"/>
-        <response name="success" type="view" value="checkout"/>
-        <response name="error" type="view" value="checkout"/>
+        <response name="success" type="view" value="checkout" save-current-view="true"/>
+        <response name="error" type="view" value="checkout" save-current-view="true"/>
     </request-map>
     
     <request-map uri="onePageProcess">

@@ -104,7 +104,7 @@ under the License.
         <attribute name="cardNumber" type="String" mode="IN" optional="true"/>
         <attribute name="expireDate" type="String" mode="IN" optional="true"/>
         <attribute name="cvc" type="String" mode="IN" optional="true"/>
-        <attribute name="paymentMethodOption" type="String" mode="IN" optional="false"/>
+        <attribute name="paymentMethodOption" type="String" mode="IN" optional="true"/>
         <attribute name="uploadedFile2" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
         <attribute name="_uploadedFile2_fileName" type="String" mode="IN" optional="true"/>
         <attribute name="_uploadedFile2_contentType" type="String" mode="IN" optional="true"/>

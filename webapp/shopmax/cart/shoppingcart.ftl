@@ -109,7 +109,7 @@ under the License.
                                 <td colspan="5" class="col1">
                                     <h5 class="heading">Delivery Options</h5>
                                     <select name="shipmentCarrierPartyId:${partyId}_o_${supplierIndex}" class="drop-select chosen combo" data-search-bar="true">
-                                        <option value="" selected="selected">Ship</option>
+                                        <option value="" selected="selected">Select Ship</option>
                                         <#list shipmentCarriers as shipmentCarrier>
                                             <option value="${shipmentCarrier.partyId}">${(shipmentCarrier.firstName)!} ${(shipmentCarrier.lastName)!} ${(shipmentCarrier.groupName)!}</option>
                                         </#list>
