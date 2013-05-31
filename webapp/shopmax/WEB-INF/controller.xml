@@ -158,17 +158,17 @@ under the License.
         <response name="error" type="view" value="shopcategorygridviewdetail"/>
     </request-map>
     
-    <!-- <request-map uri="manageproductlogin">
-        <security https="true" auth="false"/>
-        <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/customer/CustomerEvents.xml" invoke="sellerDoBasicLogin"/>
-        <response name="success" type="request-redirect-noparam" value="manageproduct"/>
-        <response name="error" type="view" value="main"/>
-    </request-map>
-    
-    <request-map uri="uploadproductlogin">
+    <!-- <request-map uri="uploadproductlogin">
         <security https="true" auth="false"/>
         <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/customer/CustomerEvents.xml" invoke="sellerDoBasicLogin"/>
         <response name="success" type="request-redirect-noparam" value="uploadproduct"/>
+        <response name="error" type="view" value="main"/>
+    </request-map>
+    
+    <request-map uri="manageproductlogin">
+        <security https="true" auth="false"/>
+        <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/customer/CustomerEvents.xml" invoke="sellerDoBasicLogin"/>
+        <response name="success" type="request-redirect-noparam" value="manageproduct"/>
         <response name="error" type="view" value="main"/>
     </request-map>
     

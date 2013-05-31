@@ -284,7 +284,7 @@ under the License.
                             <div class="form-inline input-price-stock">
                                 <label>
                                     Listing price
-                                    <input type="text" id="listingPrice" class="input-medium check input-price" name="listingPrice" value="${defaultPrice?if_exists}" onkeypress='return isNumberKey(event)'>
+                                    <input type="text" id="listingPrice" class="input-medium check input-price" name="listingPrice" value="${listPrice?if_exists}" onkeypress='return isNumberKey(event)'>
                                 </label>
                                 <label>
                                     Stock

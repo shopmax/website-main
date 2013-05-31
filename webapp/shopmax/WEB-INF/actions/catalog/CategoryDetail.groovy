@@ -187,11 +187,11 @@ def getProductDetail(productIds) {
             productMap.description = product.description;
             productMap.isVirtual = product.isVirtual;
             
-            defaultPrice = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : productId, productPriceTypeId : "DEFAULT_PRICE"])));
-            if (defaultPrice) {
-                productMap.defaultPrice = defaultPrice.price;
+            listPrice = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : productId, productPriceTypeId : "LIST_PRICE"])));
+            if (listPrice) {
+                productMap.listPrice = listPrice.price;
             }
-            promoPrice = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : productId, productPriceTypeId : "PROMO_PRICE"])));
+            promoPrice = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : productId, productPriceTypeId : "SPECIAL_PROMO_PRICE"])));
             if (promoPrice) {
                 productMap.promoPrice = promoPrice.price;
             }

@@ -85,6 +85,16 @@ under the License.
             <!--<div class="nav-collapse collapse"> to make it collapse -->
             <div class="header-search">
                 <ul class="nav">
+                    <#--<#assign tenantId = "default">
+                    <#assign tenantDomainName = "">
+                    <#assign partyRole = delegator.findOne("PartyRole", {"partyId" : userLogin.partyId?if_exists, "roleTypeId" : "SELLER"}, true)>
+                    <#if partyRole?has_content>
+                        <#assign tenantId = partyRole.partyId>
+                        <#assign partyAttribute = delegator.findOne("PartyAttribute", {"partyId" : userLogin.partyId?if_exists, "attrName" : "DOMAIN_NAME"}, true)>
+                        <#if partyAttribute?has_content>
+                            <#assign tenantDomainName = partyAttribute.attrValue>
+                        </#if>
+                    </#if>-->
                     <!--onclick="clickMenuSeller('uploadproductlogin');"-->
                     <li><a <#if userLogin?has_content>href="<@ofbizUrl>uploadproduct</@ofbizUrl>"<#else>class="various" href="#inline1"</#if>>Upload Product</a></li>
                     <!--onclick="clickMenuSeller('manageproductlogin');"-->

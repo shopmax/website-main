@@ -190,10 +190,10 @@ under the License.
                                     <h6 class="media-code">SKU : <#if product.productSKU?exists>${product.productSKU?if_exists}<#else>${product.productId?if_exists}</#if></h6>
                                     <ul class="media-price">
                                         <#if product.promoPrice?exists>
-                                            <li class="old"><@ofbizCurrency amount=product.defaultPrice/> NZD</li>
+                                            <li class="old"><@ofbizCurrency amount=product.listPrice/> NZD</li>
                                             <li class="current-price"><@ofbizCurrency amount=product.promoPrice/> NZD</li>
                                         <#else>
-                                            <div class="price"><@ofbizCurrency amount=product.defaultPrice/> NZD</div>
+                                            <div class="price"><@ofbizCurrency amount=product.listPrice/> NZD</div>
                                         </#if>
                                     </ul>
                                     <p>Stocks : ${product.stock?if_exists}</p>
@@ -278,7 +278,7 @@ under the License.
                                         <div class="form-inline input-price-stock">
                                             <label>
                                                 Listing price
-                                                <input type="text" id="inputListPrice-${product_index}" class="input-medium check" name="listingPrice" value="${product.defaultPrice?if_exists}">
+                                                <input type="text" id="inputListPrice-${product_index}" class="input-medium check" name="listingPrice" value="${product.listPrice?if_exists}">
                                             </label>
                                             <label style="border:1px solid #E0E0E0;">
                                                 Stock
