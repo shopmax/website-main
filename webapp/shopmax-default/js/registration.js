@@ -341,13 +341,11 @@ $(function(){
             $('.business-guide').removeClass('hidden');
             $('.business-registered').removeClass('hidden');
             $('#businessUser').val("Y");
-            $('.business-guide').removeClass('hidden');
-            $('.business-registered').removeClass('hidden');
-            $('#businessUser').val("Y");
         }
         else{
             $('.business-registered').addClass('hidden');
             $('.business-guide').addClass('hidden');
+            $('#businessUser').val("N");
         }
     });
     $('.phoneNumberText').change(function(){
