@@ -33,7 +33,7 @@ under the License.
                             <td valign="top"  height="26" align="left">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td valign="top"  align="left"  height="48" style="padding:0 0 0 18px"><a href="#"><img src="https://shopmaxbackend.ofbizdemo.com/shopmax-default/img/logo-img.png" width="202" height="57" alt="img" border="0" align="left"></a></td>
+                            <td valign="top"  align="left"  height="48" style="padding:0 0 0 18px"><a href="#"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/logo-img.png" width="202" height="57" alt="img" border="0" align="left"></a></td>
                         </tr>
                         <tr>
                             <td valign="top"  align="left" height="0" style="padding:0 0 0 18px"><p style="margin:0;padding:0;font-family:Georgia, 'Times New Roman', Times, serif;font-style:italic;font-size:19px;color:#469beb">Buy from pros, not Joes</p></td>
@@ -42,7 +42,7 @@ under the License.
                             <td valign="top"  height="14" align="left">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td valign="top" align="left" height="0" width="730"> <img src="https://shopmaxbackend.ofbizdemo.com/shopmax-default/img/border-img.gif" width="727" height="1" alt="line" border="0" align="left"></td>
+                            <td valign="top" align="left" height="0" width="730"> <img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/border-img.gif" width="727" height="1" alt="line" border="0" align="left"></td>
                         </tr>
                     </table>
                     <table width="730" border="0" cellspacing="0" cellpadding="0">
@@ -76,7 +76,7 @@ under the License.
                     </table>
                     <table width="730"  cellspacing="0" cellpadding="0" >
                         <tr>
-                            <td valign="top"  align="left"  height="39"><a href="#"><img src="https://shopmaxbackend.ofbizdemo.com/shopmax-default/img/order-img.jpg" width="732" height="39" alt="img" border="0" align="left"></a></td>
+                            <td valign="top"  align="left"  height="39"><a href="#"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/order-img.jpg" width="732" height="39" alt="img" border="0" align="left"></a></td>
                         </tr>
                     </table>
                     <table width="730"  cellspacing="0" cellpadding="0" style="border:1px solid #e1e1e1">
@@ -140,9 +140,8 @@ under the License.
                                                     <#if productContentAndInfoImages?has_content>
                                                         <#assign contentAssocThumbs = delegator.findByAnd("ContentAssocDataResourceViewTo", {"contentIdStart" : productContentAndInfoImages[0].contentId, "caContentAssocTypeId" : "IMAGE_THUMBNAIL"}, null, false)>
                                                     </#if>
-                                                    <#if !smallImageUrl?string?has_content><#assign smallImageUrl = "/images/defaultImage.jpg" /></#if>
                                                     <tr>
-                                                        <td valign="top"  align="left"  width="107" style="padding:0 0 0 20px"><a href="#"><img src="<#if contentAssocThumbs?has_content><@ofbizContentUrl>${contentAssocThumbs[0].drObjectInfo}</@ofbizContentUrl><#else><@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl></#if>" width="100px" height="100px"/></a></td>
+                                                        <td valign="top"  align="left"  width="107" style="padding:0 0 0 20px"><a href="#"><img src="<#if contentAssocThumbs?has_content>${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}${contentAssocThumbs[0].drObjectInfo}<#else>${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/images/defaultImage.jpg</#if>" width="100px" height="100px"/></a></td>
                                                         <td valign="top"  align="left" width="326"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px;line-height:20px; color:#464646"><b>${product.productName?if_exists}</b></td>
                                                         <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b><@ofbizCurrency amount=orderItem.unitPrice /></b></p></td>
                                                         <td valign="top"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> ${orderItem.quantity?string.number}</b></p></td>

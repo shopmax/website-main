@@ -374,6 +374,7 @@ under the License.
                     <set field="bodyParameters.username" from-field="parameters.USERNAME"/>
                     <set field="bodyParameters.password" from-field="parameters.PASSWORD"/>
                     <set field="bodyParameters.businessUser" from-field="parameters.businessUser"/>
+                    <set field="bodyParameters.productStoreId" from-field="parameters.productStoreId"/>
                     <set field="emailParams.bodyParameters" from-field="bodyParameters"/>
                     <set field="emailParams.sendTo" from-field="emailContext.emailAddress"/>
                     <set field="emailParams.subject" from-field="storeEmail.subject"/>
