@@ -66,8 +66,8 @@ $(function(){
         e.preventDefault();
     });
     $('#assign-category').click(function(e){
-    	$('.input-error2').addClass('hidden');
-    	var formUpload = document.getElementById('uploadAndUpdateProduct');
+        $('.input-error2').addClass('hidden');
+        var formUpload = document.getElementById('uploadAndUpdateProduct');
         formUpload.getElementsByTagName('input').checked=true;
         if(typeof getUrlVars()["categoryFirstId"] != "undefined"){
             var categoryFirstId = getUrlVars()["categoryFirstId"];
@@ -96,20 +96,32 @@ $(function(){
             }else{alert(" This category already assign");}
         }
         if(categoryFirstId && categorySecondId && categoryThirdId && !categoryFourthId){
-            if(checkHasValue(categoryThirdId)){
-                newRow = $("<tr id='tr-"+categoryThirdId+"'><td>"+categoryFirstName+" &gt; "+categorySecondName+" &gt; "+categoryThirdName+"</td><td><a id='remove-"+categoryThirdId+"' onclick='removeCategory(&quot;"+categoryThirdId+"&quot;)'>Remove</a></td></tr>");
-            }else{alert(" This category already assign");}
+            if($('#category_4').find('option').length == 0){
+                if(checkHasValue(categoryThirdId)){
+                    newRow = $("<tr id='tr-"+categoryThirdId+"'><td>"+categoryFirstName+" &gt; "+categorySecondName+" &gt; "+categoryThirdName+"</td><td><a id='remove-"+categoryThirdId+"' onclick='removeCategory(&quot;"+categoryThirdId+"&quot;)'>Remove</a></td></tr>");
+                }else{alert(" This category already assign");}
+            }else{
+            	alert('Please assign a product to leaf node category');
+            }
         }
         if(categoryFirstId && categorySecondId && !categoryThirdId && !categoryFourthId){
-            if(checkHasValue(categorySecondId)){
-                newRow = $("<tr id='tr-"+categorySecondId+"'><td>"+categoryFirstName+" &gt; "+categorySecondName+"</td><td><a id='remove-"+categorySecondId+"' onclick='removeCategory(&quot;"+categorySecondId+"&quot;)'>Remove</a></td></tr>");
-            }else{alert(" This category already assign");}
+            if($('#category_3').find('option').length == 0){
+                if(checkHasValue(categorySecondId)){
+                    newRow = $("<tr id='tr-"+categorySecondId+"'><td>"+categoryFirstName+" &gt; "+categorySecondName+"</td><td><a id='remove-"+categorySecondId+"' onclick='removeCategory(&quot;"+categorySecondId+"&quot;)'>Remove</a></td></tr>");
+                }else{alert(" This category already assign");}
+            }else{
+            	alert('Please assign a product to leaf node category');
+            }
         }
-        /*if(categoryFirstId && !categorySecondId && !categoryThirdId && !categoryFourthId){
-            if(checkHasValue(categoryFirstId)){
-                newRow = $("<tr id='tr-"+categoryFirstId+"'><td>"+categoryFirstName+"</td><td><a id='remove-"+categoryFirstId+"' onclick='removeCategory(&quot;"+categoryFirstId+"&quot;)'>Remove</a></td></tr>");
-            }else{alert(" This category already assign");}
-        }*/
+        if(categoryFirstId && !categorySecondId && !categoryThirdId && !categoryFourthId){
+            if($('#category_2').find('option').length == 0){
+                if(checkHasValue(categoryFirstId)){
+                    newRow = $("<tr id='tr-"+categoryFirstId+"'><td>"+categoryFirstName+"</td><td><a id='remove-"+categoryFirstId+"' onclick='removeCategory(&quot;"+categoryFirstId+"&quot;)'>Remove</a></td></tr>");
+                }else{alert(" This category already assign");}
+            }else{
+            	alert('Please assign a product to leaf node category');
+            }
+        }
         $(".selected-products").append(newRow);
         e.preventDefault();
     });
