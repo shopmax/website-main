@@ -114,16 +114,15 @@ under the License.
                                         </td>
                                         <td class="col3">
                                             <#assign listPrice = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : cartLine.getProductId(), "productPriceTypeId" : "LIST_PRICE"}, null, false))>
-                                            <#assign promoPrice = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : cartLine.getProductId(), "productPriceTypeId" : "SPECIAL_PROMO_PRICE"}, null, false))>
-                                            <#if promoPrice?has_content><div class="old"><@ofbizCurrency amount=listPrice[0].price/></div></#if><strong><@ofbizCurrency amount=cartLine.getDisplayPrice()/></strong>
+                                            <#assign specialPromoPrices = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : cartLine.getProductId(), "productPriceTypeId" : "SPECIAL_PROMO_PRICE"}, null, false))>
+                                            <#if specialPromoPrices?has_content><div class="old"><@ofbizCurrency amount=cartLine.getDisplayPrice() isoCode=shoppingCart.getCurrency()/></div></#if><strong><@ofbizCurrency amount=specialPromoPrices[0].price isoCode=shoppingCart.getCurrency()/></strong>
                                         </td>
                                         <td class="col4"><input type="text" class="input-mini" value="${cartLine.getQuantity()?string.number}"/><br />
                                             <a href="javascript:void(0)" onclick="deleteItem(event, ${cartLineIndex})">Delete item</a>
                                         </td>
-                                        <td class="col5"><strong><@ofbizCurrency amount=cartLine.getDisplayItemSubTotal()/></strong></td>
+                                        <td class="col5"><strong><@ofbizCurrency amount=cartLine.getDisplayItemSubTotal() isoCode=shoppingCart.getCurrency()/></strong></td>
                                     </tr>
                                 </#if>
-                                <#assign shopSubTotal = shopSubTotal + cartLine.getDisplayItemSubTotal() />
                             </#list>
                             <tr class="row-grey">
                                 <td colspan="5" class="col1">
@@ -153,7 +152,7 @@ under the License.
                                     <a href="#" class="sc-apply-code">Apply code</a>
                                 </td>
                                 <td class="col4"><h5 class="heading" style="padding-left:10px;">Sub Total</h5></td>
-                                <td class="col5" style="padding-right:10px;"><h5 class="blue"><@ofbizCurrency amount=shopSubTotal/></h5></td>
+                                <td class="col5" style="padding-right:10px;"><h5 class="blue"><@ofbizCurrency amount=shoppingCart.getDisplayGrandTotal() isoCode=shoppingCart.getCurrency()/></h5></td>
                             </tr>
                         </tbody>
                     </table>
