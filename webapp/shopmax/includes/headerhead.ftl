@@ -104,6 +104,17 @@ under the License.
                 });
             });
         }
+        
+        function addItem(productId){
+            jQuery.ajax({
+                url: 'additem',
+                type: 'POST',
+                data: $('#'+productId).serialize(),
+                success: function(data) {
+                    $('#cart-info').html(data);
+                }
+            });
+        }
         </script>
     </head>
     <body class="home">

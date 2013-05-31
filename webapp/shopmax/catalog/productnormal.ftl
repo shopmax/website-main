@@ -16,7 +16,6 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-
 <div class="row content-left">
     <div class="span6">
         <div class="product-wrapper">
@@ -100,7 +99,7 @@ under the License.
             Quantity: <strong>${availableInventory?default(0)} in stock</strong> <br /> <br />
             
             <div id="addItemForm">
-                <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" name="addform"  style="margin: 0;">
+                <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" id="${product.productId}" name="addform"  style="margin: 0;">
                     <fieldset>
                         <input type="hidden" name="add_product_id" value="${product.productId}" />
                         <input type="hidden" name="quantity" value="1" />
@@ -110,7 +109,7 @@ under the License.
                             <input type="hidden" name="price" value="${price.defaultPrice}" />
                         </#if>
                         
-                        <button class="btn-large blue cart" type="submit">ADD TO CART</button>
+                        <a class="btn-general" onclick="addItem('${product.productId}');">ADD TO CART</a>
                         <ul class="selectAction">
                             <li><a href="#">Add to shopping list</a></li>
                             <li><a href="#">Share with a friend</a></li>

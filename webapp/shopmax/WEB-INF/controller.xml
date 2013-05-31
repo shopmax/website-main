@@ -203,6 +203,12 @@ under the License.
         </response>
     </request-map>
     
+    <request-map uri="additem">
+        <security https="false" auth="false"/>
+        <event type="java" path="org.ofbiz.order.shoppingcart.ShoppingCartEvents" invoke="addToCart"/>
+        <response name="success" type="view" value="additemajax"/>
+    </request-map>
+    
     <request-map uri="removeProductFromSeller">
         <security https="true" auth="true"/>
         <event type="service" invoke="removeProductFromSeller"/>
@@ -565,6 +571,7 @@ under the License.
     <view-map name="paymentoption" type="screen" page="component://shopmax/widget/OrderScreens.xml#PaymentOption"/>
     <view-map name="transactionhistory" type="screen" page="component://shopmax/widget/OrderScreens.xml#TransactionHistory"/>
     <view-map name="shippingmethod" type="screen" page="component://shopmax/widget/OrderScreens.xml#ShippingMethod"/>
+    <view-map name="additemajax" type="screen" page="component://shopmax/widget/OrderScreens.xml#AddItemAjax"/>
     
     <view-map name="registration" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Registration"/>
     <view-map name="registrationajax" type="screen" page="component://shopmax/widget/CustomerScreens.xml#RegistrationAjax"/>

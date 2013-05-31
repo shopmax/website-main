@@ -210,4 +210,15 @@ under the License.
             </widgets>
         </section>
     </screen>
+    
+    <screen name="AddItemAjax">
+        <section>
+            <actions>
+                <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/cart/ShowCart.groovy"/>
+            </actions>
+            <widgets>
+                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/order/additemajax.ftl"></html-template></html></platform-specific>
+            </widgets>
+        </section>
+    </screen>
 </screens>

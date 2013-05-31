@@ -39,11 +39,11 @@ under the License.
             <p>${product.description?if_exists}</p>
             <p>Shop: <strong>${shopName?if_exists}</strong><br>Destance: <strong>About 1km</strong></p>
             <div class="buttonbox">
-                <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" name="addform"  style="margin: 0;">
+                <form method="post" name="addform" id="${product.productId}" style="margin: 0;">
                     <fieldset>
                         <input type="hidden" name="add_product_id" value="${product.productId}" />
                         <input type="hidden" name="quantity" value="1" />
-                        <button class="btn-general" type="submit">ADD TO CART</button>
+                        <a class="btn-general" onclick="addItem('${product.productId}');">ADD TO CART</a>
                     </fieldset>
                 </form>
             </div>
@@ -72,11 +72,11 @@ under the License.
             <p>${product.description?if_exists}</p>
             <div class="distancebox"><p>Shop: <strong>${shopName?if_exists}</strong><span></span>Destance: <strong>About 1km</strong></p></div>
             <div class="buttonbox">
-                <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" name="addform"  style="margin: 0;">
+                <form method="post" id="${product.productId}" name="addform" style="margin: 0;">
                     <fieldset>
                         <input type="hidden" name="add_product_id" value="${product.productId}" />
                         <input type="hidden" name="quantity" value="1" />
-                        <button class="btn-general" type="submit">ADD TO CART</button>
+                        <a class="btn-general" onclick="addItem('${product.productId}');">ADD TO CART</a>
                         <a href="#" class="addtolist">Add to shopping List</a>
                     </fieldset>
                 </form>
