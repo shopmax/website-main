@@ -158,17 +158,17 @@ under the License.
         <response name="error" type="view" value="shopcategorygridviewdetail"/>
     </request-map>
     
-    <!-- <request-map uri="uploadproductlogin">
-        <security https="true" auth="false"/>
-        <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/customer/CustomerEvents.xml" invoke="sellerDoBasicLogin"/>
-        <response name="success" type="request-redirect-noparam" value="uploadproduct"/>
-        <response name="error" type="view" value="main"/>
-    </request-map>
-    
-    <request-map uri="manageproductlogin">
+    <!-- <request-map uri="manageproductlogin">
         <security https="true" auth="false"/>
         <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/customer/CustomerEvents.xml" invoke="sellerDoBasicLogin"/>
         <response name="success" type="request-redirect-noparam" value="manageproduct"/>
+        <response name="error" type="view" value="main"/>
+    </request-map>
+    
+    <request-map uri="uploadproductlogin">
+        <security https="true" auth="false"/>
+        <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/customer/CustomerEvents.xml" invoke="sellerDoBasicLogin"/>
+        <response name="success" type="request-redirect-noparam" value="uploadproduct"/>
         <response name="error" type="view" value="main"/>
     </request-map>
     
@@ -198,7 +198,7 @@ under the License.
     <request-map uri="updateProduct">
         <security https="true" auth="true"/>
         <event type="service" invoke="editProductToSeller"/>
-        <response name="success" type="request" value="manageproduct">
+        <response name="success" type="request-redirect" value="manageproduct">
             <redirect-parameter name="productCategoryId"/>
         </response>
     </request-map>
@@ -527,12 +527,6 @@ under the License.
         <security auth="false" https="false"/>
         <response name="success" type="view" value="ViewSimpleContent"/>
     </request-map>
-    <!-- Test Index headerHead -->
-    <request-map uri="testindexheaderhead">
-        <security auth="false" https="false"/>
-        <response name="success" type="view" value="testindexheaderhead"/>
-    </request-map>
-    <view-map name="testindexheaderhead" type="screen" page="component://shopmax/widget/ShopMaxEmailScreens.xml#TestIndexHeaderHead"/>
     
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>

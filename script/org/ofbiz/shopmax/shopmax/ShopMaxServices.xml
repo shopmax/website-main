@@ -641,7 +641,7 @@ under the License.
         <set field="createProductMap.productTypeId" value="FINISHED_GOOD"/>
         <set field="createProductMap.internalName" from-field="parameters.productName"/>
         <set field="createProductMap.productName" from-field="parameters.productName"/>
-        <set field="createProductMap.longDescription" from-field="parameters.description"/>
+        <set field="createProductMap.description" from-field="parameters.description"/>
         <call-service service-name="createProduct" in-map-name="createProductMap">
             <result-to-field result-name="productId" field="parameters.productId"/>
         </call-service>

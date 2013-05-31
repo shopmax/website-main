@@ -218,7 +218,7 @@ under the License.
                                         <div class="control-group">
                                             <label class="control-label" for="inputProductName">Product name</label>
                                             <div class="controls">
-                                                <input type="text" class="input-xlarge check" id="inputProductName" name="productName" value="${product.productName?if_exists}">
+                                                <input type="text" class="input-xlarge check" id="inputProductName-${product_index}" name="productName" value="${product.productName?if_exists}">
                                             </div>
                                         </div>
                                         <div class="control-group">
