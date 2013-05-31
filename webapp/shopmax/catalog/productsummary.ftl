@@ -28,8 +28,8 @@ under the License.
                 </#if>
             </a>
             <div class="mdic">${product.productName?if_exists}</div>
-            <#if price.promoPrice?exists>
-                <div class="price"><span><@ofbizCurrency amount=price.listPrice/> NZD</span><@ofbizCurrency amount=price.promoPrice/> NZD</div>
+            <#if price.specialPromoPrice?exists>
+                <div class="price"><span><@ofbizCurrency amount=price.listPrice/> NZD</span><@ofbizCurrency amount=price.specialPromoPrice/> NZD</div>
             <#else>
                 <div class="price"><@ofbizCurrency amount=price.listPrice/> NZD</div>
             </#if>
@@ -60,8 +60,8 @@ under the License.
             </a>
             <div class="mdic">${product.productName?if_exists}</div>
             <div class="pricestar">
-                <#if price.promoPrice?exists>
-                    <div class="price"><span><@ofbizCurrency amount=price.listPrice/> NZD</span><@ofbizCurrency amount=price.promoPrice/> NZD</div>
+                <#if price.specialPromoPrice?exists>
+                    <div class="price"><span><@ofbizCurrency amount=price.listPrice/> NZD</span><@ofbizCurrency amount=price.specialPromoPrice/> NZD</div>
                 <#else>
                     <div class="price"><@ofbizCurrency amount=price.listPrice/> NZD</div>
                 </#if>

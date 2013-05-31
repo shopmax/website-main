@@ -157,8 +157,8 @@ under the License.
     
     <!-- Create Category Level 3-->
     <ProductCategory productCategoryId="DEMO_CAT1_LV3" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 1.3" description="Demo Category 1.3" showInSelect="Y"/>
-    <ProductCategory productCategoryId="DEMO_CAT2_LV3" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 2.3" description="Demo Category 2.3"/>
-    <ProductCategory productCategoryId="DEMO_CAT3_LV3" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 3.3" description="Demo Category 3.3"/>
+    <ProductCategory productCategoryId="DEMO_CAT2_LV3" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 2.3" description="Demo Category 2.3" showInSelect="Y"/>
+    <ProductCategory productCategoryId="DEMO_CAT3_LV3" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 3.3" description="Demo Category 3.3" showInSelect="Y"/>
     <ProductCategory productCategoryId="DEMO_CAT4_LV3" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 4.3" description="Demo Category 4.3" showInSelect="Y"/>
     
     <!-- Create Parent Category Level 3 -->
@@ -169,13 +169,13 @@ under the License.
     
     <!-- Create Category Level 4 -->
     <ProductCategory productCategoryId="DEMO_CAT1_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 1.4" description="Demo Category 1.4" showInSelect="Y"/>
-    <ProductCategory productCategoryId="DEMO_CAT2_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 2.4" description="Demo Category 2.4"/>
-    <ProductCategory productCategoryId="DEMO_CAT3_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 3.4" description="Demo Category 3.4"/>
-    <ProductCategory productCategoryId="DEMO_CAT4_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 4.4" description="Demo Category 4.4"/>
-    <ProductCategory productCategoryId="DEMO_CAT5_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 5.4" description="Demo Category 5.4"/>
+    <ProductCategory productCategoryId="DEMO_CAT2_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 2.4" description="Demo Category 2.4" showInSelect="Y"/>
+    <ProductCategory productCategoryId="DEMO_CAT3_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 3.4" description="Demo Category 3.4" showInSelect="Y"/>
+    <ProductCategory productCategoryId="DEMO_CAT4_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 4.4" description="Demo Category 4.4" showInSelect="Y"/>
+    <ProductCategory productCategoryId="DEMO_CAT5_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 5.4" description="Demo Category 5.4" showInSelect="Y"/>
     <ProductCategory productCategoryId="DEMO_CAT6_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 6.4" description="Demo Category 6.4"/>
-    <ProductCategory productCategoryId="DEMO_CAT7_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 7.4" description="Demo Category 7.4"/>
-    <ProductCategory productCategoryId="DEMO_CAT8_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 8.4" description="Demo Category 8.4" showInSelect="Y"/>
+    <ProductCategory productCategoryId="DEMO_CAT7_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 7.4" description="Demo Category 7.4" showInSelect="Y"/>
+    <ProductCategory productCategoryId="DEMO_CAT8_LV4" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 8.4" description="Demo Category 8.4"/>
     
     <!-- Create Parent Category Level 4 -->
     <ProductCategoryRollup productCategoryId="DEMO_CAT1_LV4" parentProductCategoryId="DEMO_CAT1_LV3" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>

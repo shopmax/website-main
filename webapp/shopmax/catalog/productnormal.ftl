@@ -45,9 +45,9 @@ under the License.
             <div class="raty" data-rating="3"></div>
             <h5 class="review-number">(${productReviews.size()} reviews)</h5>
             <br /><br />
-            <#if price.promoPrice?exists>
+            <#if price.specialPromoPrice?exists>
                 <h5 class="old"><@ofbizCurrency amount=price.listPrice/> NZD</h5>
-                <h1><@ofbizCurrency amount=price.promoPrice/> NZD</h1>
+                <h1><@ofbizCurrency amount=price.specialPromoPrice/> NZD</h1>
             <#else>
                 <h1><@ofbizCurrency amount=price.listPrice/> NZD</h1>
             </#if>
@@ -103,8 +103,8 @@ under the License.
                     <fieldset>
                         <input type="hidden" name="add_product_id" value="${product.productId}" />
                         <input type="hidden" name="quantity" value="1" />
-                        <#if price.promoPrice?exists>
-                            <input type="hidden" name="price" value="${price.promoPrice}" />
+                        <#if price.specialPromoPrice?exists>
+                            <input type="hidden" name="price" value="${price.specialPromoPrice}" />
                         <#else>
                             <input type="hidden" name="price" value="${price.listPrice}" />
                         </#if>
