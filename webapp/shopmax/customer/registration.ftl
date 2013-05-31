@@ -42,6 +42,7 @@ under the License.
             <form action="<@ofbizUrl>createCustomer</@ofbizUrl>" id="createcustomer" name="createcustomer" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="productStoreId" value="${productStoreId}"/>
                 <input type="hidden" name="businessUser" id="businessUser" value="N"/>
+                <input type="hidden" name="sendEmail" value="Y"/>
                 <div id="userinformation">
                     <table class="table table-condensed sc-table sc-table-promotion">
                       <thead>
