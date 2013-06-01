@@ -21,6 +21,7 @@ import org.ofbiz.base.util.*;
 import org.ofbiz.entity.*;
 import org.ofbiz.entity.util.*;
 import org.ofbiz.entity.condition.*;
+import org.ofbiz.product.store.ProductStoreWorker;
 
 def productStore = ProductStoreWorker.getProductStore(request);
 context.productStoreId = productStore.productStoreId;

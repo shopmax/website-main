@@ -1091,6 +1091,21 @@ under the License.
             tenantDelegator.create(tenantUserLogin);
         </script>
         
+        <entity-one value-field="partyAttribute" entity-name="PartyAttribute">
+            <field-map field-name="partyId" from-field="parameters.partyId"/>
+            <field-map field-name="attrName" value="DOMAIN_NAME"/>
+        </entity-one>
+        <if-not-empty field="partyAttribute">
+            <set field="createPartyAttributeMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createPartyAttributeMap.partyId" from-field="parameters.partyId"/>
+            <set field="createPartyAttributeMap.attrName" value="DOMAIN_NAME"/>
+            <set field="createPartyAttributeMap.attrValue" from-field="partyAttribute.attrValue"/>
+            <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
+            <set field="runTenantServiceInMap.serviceName" value="createPartyAttribute"/>
+            <set field="runTenantServiceInMap.serviceParameters" from-field="createPartyAttributeMap"/>
+            <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+        </if-not-empty>
+        
         <entity-and list="partyRelationships" entity-name="PartyRelationship" filter-by-date="true">
             <field-map field-name="partyIdTo" from-field="parameters.partyId"/>
             <field-map field-name="roleTypeIdFrom" value="INTERNAL_ORGANIZATIO"/>
