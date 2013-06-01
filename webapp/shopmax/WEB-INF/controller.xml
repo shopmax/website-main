@@ -135,25 +135,25 @@ under the License.
     </request-map>
     
     <request-map uri="shopcategorylistview">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="shopcategorylistview"/>
         <response name="error" type="view" value="shopcategorylistview"/>
     </request-map>
     
     <request-map uri="shopcategorylistviewdetail">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="shopcategorylistviewdetail"/>
         <response name="error" type="view" value="shopcategorylistviewdetail"/>
     </request-map>
     
     <request-map uri="shopcategorygridview">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="shopcategorygridview"/>
         <response name="error" type="view" value="shopcategorygridview"/>
     </request-map>
     
     <request-map uri="shopcategorygridviewdetail">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="shopcategorygridviewdetail"/>
         <response name="error" type="view" value="shopcategorygridviewdetail"/>
     </request-map>
@@ -414,12 +414,12 @@ under the License.
     
     <!-- Customer Requests -->
     <request-map uri="registration">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="registration"/>
     </request-map>
     
     <request-map uri="registrationajax">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="registrationajax"/>
     </request-map>
     

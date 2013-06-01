@@ -55,7 +55,7 @@ under the License.
                         </form>
                         <li>
                             <p>Don't have an account yet?</p>
-                            <a href="<@ofbizUrl>registration</@ofbizUrl>"><input type="submit" name="" value="Register" class="sub_reg"></a>
+                            <a href="${shopmaxCentralDomain}registration"><input type="submit" name="" value="Register" class="sub_reg"></a>
                         </li>
                     </ul>
                 </div>
@@ -85,16 +85,6 @@ under the License.
             <!--<div class="nav-collapse collapse"> to make it collapse -->
             <div class="header-search">
                 <ul class="nav">
-                    <#--<#assign tenantId = "default">
-                    <#assign tenantDomainName = "">
-                    <#assign partyRole = delegator.findOne("PartyRole", {"partyId" : userLogin.partyId?if_exists, "roleTypeId" : "SELLER"}, true)>
-                    <#if partyRole?has_content>
-                        <#assign tenantId = partyRole.partyId>
-                        <#assign partyAttribute = delegator.findOne("PartyAttribute", {"partyId" : userLogin.partyId?if_exists, "attrName" : "DOMAIN_NAME"}, true)>
-                        <#if partyAttribute?has_content>
-                            <#assign tenantDomainName = partyAttribute.attrValue>
-                        </#if>
-                    </#if>-->
                     <!--onclick="clickMenuSeller('uploadproductlogin');"-->
                     <li><a <#if userLogin?has_content>href="<@ofbizUrl>uploadproduct</@ofbizUrl>"<#else>class="various" href="#inline1"</#if>>Upload Product</a></li>
                     <!--onclick="clickMenuSeller('manageproductlogin');"-->
@@ -165,15 +155,15 @@ under the License.
                     </form>
                 <#else>
                     <h2>Hello</h2>
-                    <p><a class="various" href="#inline1">Login</a> / <a href="<@ofbizUrl>registration</@ofbizUrl>">Register</a></p>
+                    <p><a class="various" href="#inline1">Login</a> / <a href="${shopmaxCentralDomain}registration">Register</a></p>
                 </#if>
             </div>
             <!-- CART INFORMATION -->
             <div id="cart-info" class="nav-collapse collapse">
                 <h3>${shoppingCartSize} Items</h3>
                 <#if shoppingCartSize &gt; 0>
-                    <p><a href="<@ofbizUrl>shoppingcart</@ofbizUrl>" class="btn-flat round">View Cart</a></p>
-                    <p><a href="<@ofbizUrl>shoppingcart</@ofbizUrl>" class="btn-flat checkout">Check Out</a></p>
+                    <p><a href="${shopmaxCentralDomain}shoppingcart" class="btn-flat round">View Cart</a></p>
+                    <p><a href="${shopmaxCentralDomain}shoppingcart" class="btn-flat checkout">Check Out</a></p>
                 <#else>
                     <p><label class="btn-flat round disabled">View Cart</label></p>
                     <p><label class="btn-flat checkout disabled">Check Out</label></p>

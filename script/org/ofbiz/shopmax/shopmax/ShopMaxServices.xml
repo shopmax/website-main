@@ -707,6 +707,10 @@ under the License.
         <set field="createListPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
         <call-service service-name="createProductPrice" in-map-name="createListPriceMap"/>
         
+        <set-service-fields service-name="createProductPrice" to-map="createDefaultPriceMap" map="createListPriceMap"/>
+        <set field="createDefaultPriceMap.productPriceTypeId" value="DEFAULT_PRICE"/>
+        <call-service service-name="createProductPrice" in-map-name="createDefaultPriceMap"/>
+        
         <if-not-empty field="parameters.promoPrice">
             <set field="createPromoPriceMap.userLogin" from-field="systemUserLogin"/>
             <set field="createPromoPriceMap.productId" from-field="parameters.productId"/>
@@ -845,6 +849,10 @@ under the License.
         <set field="createListPriceMap.productStoreGroupId" value="_NA_"/>
         <set field="createListPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
         <call-service service-name="createProductPrice" in-map-name="createListPriceMap"/>
+        
+        <set-service-fields service-name="createProductPrice" to-map="createDefaultPriceMap" map="createListPriceMap"/>
+        <set field="createDefaultPriceMap.productPriceTypeId" value="DEFAULT_PRICE"/>
+        <call-service service-name="createProductPrice" in-map-name="createDefaultPriceMap"/>
         
         <if-not-empty field="parameters.promoPrice">
             <set field="createPromoPriceMap.userLogin" from-field="systemUserLogin"/>
@@ -1388,6 +1396,10 @@ under the License.
             <set field="createListPriceMap.productPricePurposeId" value="PURCHASE"/>
             <set field="createListPriceMap.productPriceTypeId" value="LIST_PRICE"/>
             <call-service service-name="createProductPrice" in-map-name="createListPriceMap"/>
+            
+            <set-service-fields service-name="createProductPrice" to-map="createDefaultPriceMap" map="createListPriceMap"/>
+            <set field="createDefaultPriceMap.productPriceTypeId" value="DEFAULT_PRICE"/>
+            <call-service service-name="createProductPrice" in-map-name="createDefaultPriceMap"/>
         <else>
             <first-from-list entry="productListPrice" list="productListPriceList"/>
             <set field="updateListPriceMap.userLogin" from-field="systemUserLogin"/>
@@ -1399,6 +1411,10 @@ under the License.
             <set field="updateListPriceMap.fromDate" from-field="productListPrice.fromDate"/>
             <set field="updateListPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
             <call-service service-name="updateProductPrice" in-map-name="updateListPriceMap"/>
+            
+            <set-service-fields service-name="updateProductPrice" to-map="updateDefaultPriceMap" map="updateListPriceMap"/>
+            <set field="updateDefaultPriceMap.productPriceTypeId" value="DEFAULT_PRICE"/>
+            <call-service service-name="updateProductPrice" in-map-name="updateDefaultPriceMap"/>
         </else>
         </if-empty>
         
@@ -1586,6 +1602,10 @@ under the License.
             <set field="createListPriceMap.productPricePurposeId" value="PURCHASE"/>
             <set field="createListPriceMap.productPriceTypeId" value="LIST_PRICE"/>
             <call-service service-name="createProductPrice" in-map-name="createListPriceMap"/>
+            
+            <set-service-fields service-name="createProductPrice" to-map="createDefaultPriceMap" map="createListPriceMap"/>
+            <set field="createDefaultPriceMap.productPriceTypeId" value="DEFAULT_PRICE"/>
+            <call-service service-name="createProductPrice" in-map-name="createDefaultPriceMap"/>
         <else>
             <first-from-list entry="productListPrice" list="productListPriceList"/>
             <set field="updateListPriceMap.userLogin" from-field="systemUserLogin"/>
@@ -1597,6 +1617,10 @@ under the License.
             <set field="updateListPriceMap.fromDate" from-field="productListPrice.fromDate"/>
             <set field="updateListPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
             <call-service service-name="updateProductPrice" in-map-name="updateListPriceMap"/>
+            
+            <set-service-fields service-name="updateProductPrice" to-map="updateDefaultPriceMap" map="updateListPriceMap"/>
+            <set field="updateDefaultPriceMap.productPriceTypeId" value="DEFAULT_PRICE"/>
+            <call-service service-name="updateProductPrice" in-map-name="updateDefaultPriceMap"/>
         </else>
         </if-empty>
         
