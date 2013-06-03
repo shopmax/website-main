@@ -222,7 +222,7 @@ if (productCategoryMembers) {
         product = delegator.findOne("Product", [productId : productCategoryMember.productId], true);
         productMap.productId = product.productId;
         productMap.productName = product.productName;
-        productMap.description = product.description;
+        productMap.description = product.longDescription;
         
         productPriceList = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : product.productId, productPricePurposeId : "PURCHASE", productPriceTypeId : "LIST_PRICE"], null, false)));
         if (productPriceList) {
@@ -329,7 +329,7 @@ def getProductDetail(productIds) {
             productMap.productId = product.productId;
             productMap.internalName = product.internalName;
             productMap.productName = product.productName;
-            productMap.description = product.description;
+            productMap.description = product.longDescription;
             productMap.isVirtual = product.isVirtual;
             
             listPrice = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : productId, productPriceTypeId : "LIST_PRICE"], null, false)));

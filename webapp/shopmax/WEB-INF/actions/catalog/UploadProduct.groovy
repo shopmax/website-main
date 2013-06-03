@@ -43,7 +43,7 @@ if(parameters.productId){
     if(product){
         context.productId = product.productId;
         context.productName = product.productName;
-        context.description = product.description;
+        context.description = product.longDescription;
         
         categoryMemberNameList = [];
         categoryMemberList = EntityUtil.filterByDate(delegator.findByAnd("ProductCategoryMember" , [productId : product.productId], null, true));

@@ -641,7 +641,7 @@ under the License.
         <set field="createProductMap.productTypeId" value="FINISHED_GOOD"/>
         <set field="createProductMap.internalName" from-field="parameters.productName"/>
         <set field="createProductMap.productName" from-field="parameters.productName"/>
-        <set field="createProductMap.description" from-field="parameters.description"/>
+        <set field="createProductMap.longDescription" from-field="parameters.description"/>
         <call-service service-name="createProduct" in-map-name="createProductMap">
             <result-to-field result-name="productId" field="parameters.productId"/>
         </call-service>
@@ -786,7 +786,7 @@ under the License.
         <set field="createProductMap.productTypeId" value="FINISHED_GOOD"/>
         <set field="createProductMap.internalName" from-field="parameters.productName"/>
         <set field="createProductMap.productName" from-field="parameters.productName"/>
-        <set field="createProductMap.description" from-field="parameters.description"/>
+        <set field="createProductMap.longDescription" from-field="parameters.description"/>
         <set field="createProductMap.requirementMethodEnumId" value="PRODRQM_DS"/>
         <call-service service-name="createProduct" in-map-name="createProductMap"/>
         
@@ -1340,7 +1340,7 @@ under the License.
         <set field="updateProductMap.productId" from-field="parameters.productId"/>
         <set field="updateProductMap.internalName" from-field="parameters.productName"/>
         <set field="updateProductMap.productName" from-field="parameters.productName"/>
-        <set field="updateProductMap.description" from-field="parameters.description"/>
+        <set field="updateProductMap.longDescription" from-field="parameters.description"/>
         <call-service service-name="updateProduct" in-map-name="updateProductMap"/>
         
         <field-to-result field="parameters.productCategoryId" result-name="productCategoryId"/>
@@ -1564,7 +1564,7 @@ under the License.
         <set field="updateProductMap.productId" from-field="parameters.productId"/>
         <set field="updateProductMap.internalName" from-field="parameters.productName"/>
         <set field="updateProductMap.productName" from-field="parameters.productName"/>
-        <set field="updateProductMap.description" from-field="parameters.description"/>
+        <set field="updateProductMap.longDescription" from-field="parameters.description"/>
         <call-service service-name="updateProduct" in-map-name="updateProductMap"/>
         
         <!-- Create images of product -->
@@ -1874,7 +1874,7 @@ under the License.
         <set field="updateProductMap.productId" from-field="parameters.productId"/>
         <set field="updateProductMap.internalName" from-field="parameters.productName"/>
         <set field="updateProductMap.productName" from-field="parameters.productName"/>
-        <set field="updateProductMap.description" from-field="parameters.description"/>
+        <set field="updateProductMap.longDescription" from-field="parameters.description"/>
         <call-service service-name="updateProduct" in-map-name="updateProductMap"/>
         <field-to-result field="parameters.productId" result-name="productId"/>
         
@@ -2092,7 +2092,7 @@ under the License.
         <set field="updateProductMap.productId" from-field="parameters.productId"/>
         <set field="updateProductMap.internalName" from-field="parameters.productName"/>
         <set field="updateProductMap.productName" from-field="parameters.productName"/>
-        <set field="updateProductMap.description" from-field="parameters.description"/>
+        <set field="updateProductMap.longDescription" from-field="parameters.description"/>
         <call-service service-name="updateProduct" in-map-name="updateProductMap"/>
         
         <!-- Create product to category -->

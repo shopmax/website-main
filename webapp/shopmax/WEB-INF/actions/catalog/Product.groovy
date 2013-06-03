@@ -21,12 +21,12 @@ import org.ofbiz.base.util.*;
 import org.ofbiz.entity.*;
 import org.ofbiz.entity.util.*;
 
-shopProducts = delegator.findByAnd("SupplierProduct", [productId : productId], false);
+shopProducts = delegator.findByAnd("SupplierProduct", [productId : productId], null, false);
 if (shopProducts) {
     shopProduct = EntityUtil.getFirst(shopProducts);
     shopPartId = shopProduct.partyId;
 } else {
-    partyRoles = delegator.findByAnd("PartyRole", [roleTypeId : "INTERNAL_ORGANIZATIO"], false);
+    partyRoles = delegator.findByAnd("PartyRole", [roleTypeId : "INTERNAL_ORGANIZATIO"],null, false);
     if (partyRoles) {
         partyRole = EntityUtil.getFirst(partyRoles);
         shopPartId = partyRole.partyId;

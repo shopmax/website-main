@@ -25,7 +25,7 @@ under the License.
         </ul>
         <div class="tab-content" id="myTabContent">
           <div id="prdDesc" class="tab-pane fade active in">
-            <p>${productContentWrapper.get("DESCRIPTION")?if_exists}</p>
+            <p>${product.longDescription?if_exists}</p>
           </div>
           <div id="prdReviews" class="tab-pane fade">
               <#if productReviews?has_content>
