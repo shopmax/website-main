@@ -74,6 +74,19 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              </else>
              </if-compare>
              
+Index: hot-deploy/shopmax/webapp/shopmax/includes/header.ftl
+===================================================================
+--- hot-deploy/shopmax/webapp/shopmax/includes/header.ftl	(revision 342)
++++ hot-deploy/shopmax/webapp/shopmax/includes/header.ftl	(working copy)
+@@ -29,7 +29,7 @@
+             alert("You do not have permission to view this page.");
+         }
+         else{
+-            window.location.href = "http://${shopmaxSellerDomain?if_exists}:8080/control/"+pathRequest+"?partyId=${userLoginPartyId?if_exists}";
++            window.location.href = "http://${shopmaxSellerDomain?if_exists}/control/"+pathRequest+"?partyId=${userLoginPartyId?if_exists}";
+         }
+     }
+ </script>
 Index: hot-deploy/tenant/config/default-tenant.xml
 ===================================================================
 --- hot-deploy/tenant/config/default-tenant.xml	(revision 295)

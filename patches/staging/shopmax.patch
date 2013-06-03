@@ -157,3 +157,16 @@ Index: hot-deploy/shopmax/config/shopmax.properties
  shopmax.seller.sms=N
 -shopmax.central.domain=http://shopmax.localhost:8080/control/
 +shopmax.central.domain=http://shopmax.ofbizdemo.com/control/
+Index: hot-deploy/shopmax/webapp/shopmax/includes/header.ftl
+===================================================================
+--- hot-deploy/shopmax/webapp/shopmax/includes/header.ftl	(revision 342)
++++ hot-deploy/shopmax/webapp/shopmax/includes/header.ftl	(working copy)
+@@ -29,7 +29,7 @@
+             alert("You do not have permission to view this page.");
+         }
+         else{
+-            window.location.href = "http://${shopmaxSellerDomain?if_exists}:8080/control/"+pathRequest+"?partyId=${userLoginPartyId?if_exists}";
++            window.location.href = "http://${shopmaxSellerDomain?if_exists}/shop/control/"+pathRequest+"?partyId=${userLoginPartyId?if_exists}";
+         }
+     }
+ </script>
