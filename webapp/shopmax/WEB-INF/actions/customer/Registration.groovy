@@ -17,27 +17,8 @@
  * under the License.
  */
 
-import org.ofbiz.base.util.*;
-import org.ofbiz.entity.*;
-import org.ofbiz.entity.util.*;
-import org.ofbiz.entity.condition.*;
 import org.ofbiz.product.store.ProductStoreWorker;
 
-shopmaxCentralDomain = UtilProperties.getPropertyValue("shopmax.properties", "shopmax.central.domain");
-context.shopmaxCentralDomain = shopmaxCentralDomain;
-
-tenantId = "default";
-shopmaxSellerDomain = null;
-if (userLogin) {
-    partyId = userLogin.partyId;
-    partyRole = delegator.findOne("PartyRole", [partyId : partyId, roleTypeId : "SELLER"], false);
-    if (partyRole) {
-        tenantId = partyRole.partyId;
-        partyAttribute = delegator.findOne("PartyAttribute", [partyId : partyId, attrName : "DOMAIN_NAME"], false)
-        if (partyAttribute) {
-            shopmaxSellerDomain = partyAttribute.attrValue
-        }
-    }
-}
-context.tenantId = tenantId;
-context.shopmaxSellerDomain = shopmaxSellerDomain;
+productStore = ProductStoreWorker.getProductStore(request);
+context.productStore = productStore;
+context.productStoreId = productStore.productStoreId;

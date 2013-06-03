@@ -79,6 +79,8 @@ under the License.
                 <br />
                 <div class="billing_de">
                     <#if contactMechList?has_content>
+                        <input type="hidden" value="1" name="shipToCountryCode">
+                        <input type="hidden" value="801" name="shipToAreaCode">
                         <div class="shipp_info">
                             <div class="tital_1">Shipping Information</div>
                             <div class="row">

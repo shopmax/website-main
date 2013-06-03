@@ -204,6 +204,8 @@ under the License.
                     <set field="parameters.billToStateProvinceGeoId" value="_NA_"/>
                     <set field="parameters.firstNameOnCard" from-field="parameters.billToName"/>
                     <set field="parameters.lastNameOnCard" from-field="parameters.billToLastName"/>
+                    <set field="parameters.billToContactNumber" from-field="parameters.billToContactNumber"/>
+                    <set field="parameters.emailAddress" from-field="parameters.billToEmailAddress"/>
                     <else>
                         <!-- set person -->
                         <set field="getPersonInMap.partyId" from-field="parameters.partyId"/>
