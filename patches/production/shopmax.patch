@@ -1,3 +1,13 @@
+Index: hot-deploy/shopmax/config/shopmax.properties
+===================================================================
+--- hot-deploy/shopmax/config/shopmax.properties	(revision 333)
++++ hot-deploy/shopmax/config/shopmax.properties	(working copy)
+@@ -19,4 +19,4 @@
+ 
+ shopmax.product.category.cache=N
+ shopmax.seller.sms=N
+-shopmax.central.domain=http://shopmax.localhost:8080/control/
++shopmax.central.domain=http://shopmax.co.nz/control/
 Index: applications/content/servicedef/secas.xml
 ===================================================================
 --- applications/content/servicedef/secas.xml	(revision 1470483)
@@ -19,12 +29,12 @@ Index: applications/content/servicedef/secas.xml
          <condition field-name="contentAssocTypeId" operator="is-not-empty"/>
 Index: hot-deploy/shopmax/data/ShopMaxData.xml
 ===================================================================
---- hot-deploy/shopmax/data/ShopMaxData.xml	(revision 228)
+--- hot-deploy/shopmax/data/ShopMaxData.xml	(revision 334)
 +++ hot-deploy/shopmax/data/ShopMaxData.xml	(working copy)
-@@ -28,4 +28,38 @@
-     <CarrierShipmentMethod partyId="_NA_" roleTypeId="CARRIER" shipmentMethodTypeId="NO_SHIPPING"/>
+@@ -31,4 +31,46 @@
      
-     <OrderItemAssocType orderItemAssocTypeId="SELLER_ORDER" hasTable="Y" description="Seller Order"/>
+     <DataResource dataResourceId="DIRECT_DEBIT_FORM" dataResourceName="direct_debit.pdf" dataResourceTypeId="OFBIZ_FILE" dataTemplateTypeId="NONE" mimeTypeId="application/pdf" objectInfo="hot-deploy/shopmax/documents/direct_debit.pdf" statusId="CTNT_PUBLISHED"/>
+     <Content contentId="DIRECT_DEBIT_FORM" contentName="direct_debit.pdf" description="Direct Debit Form" contentTypeId="TEMPLATE" dataResourceId="DIRECT_DEBIT_FORM" mimeTypeId="application/pdf" statusId="CTNT_AVAILABLE" createdDate="2013-04-01 00:00:00"/>
 +    
 +    <Party partyId="admin" partyTypeId="PERSON"/>
 +    <Person firstName="THE" lastName="ADMINISTRATOR" middleName="PRIVILEGED" partyId="admin" personalTitle="Mr."/>
@@ -70,9 +80,9 @@ Index: hot-deploy/shopmax/data/ShopMaxData.xml
  </entity-engine-xml>
 Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
 ===================================================================
---- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 228)
+--- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 334)
 +++ hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(working copy)
-@@ -443,8 +443,8 @@
+@@ -444,8 +444,8 @@
                  <set field="parameters.domainName" value="${parameters.ownDomainName}"/>
                  <set field="parameters.domainNameBackend" value="backend.${parameters.ownDomainName}"/>
              <else>
@@ -181,4 +191,3 @@ Index: framework/webapp/config/url.properties
  force.http.host=
  
  # Static Content URLs to make it easy to move the serving load for static content to other machines
- 
