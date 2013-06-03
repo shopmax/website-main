@@ -1,7 +1,7 @@
 $(function(){
     $('.category_1').click(function(e){
         window.history.pushState("", "", 'uploadproduct?categoryFirstId='+this.id);
-        jQuery.ajax({
+        $.ajax({
             url: 'uploadproductajax',
             type: 'POST',
             data: { categoryFirstId: this.id},
@@ -17,7 +17,7 @@ $(function(){
     $('.category_2').click(function(e){
         var categoryFirstId = getUrlVars()["categoryFirstId"];
         window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+this.id);
-        jQuery.ajax({
+        $.ajax({
             url: 'uploadproductajax',
             type: 'POST',
             data: { categoryFirstId: categoryFirstId, categorySecondId: this.id},
@@ -34,7 +34,7 @@ $(function(){
         var categoryFirstId = getUrlVars()["categoryFirstId"];
         var categorySecondId = getUrlVars()["categorySecondId"];
         window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+this.id);
-        jQuery.ajax({
+        $.ajax({
             url: 'uploadproductajax',
             type: 'POST',
             data: { categoryFirstId: categoryFirstId, categorySecondId: categorySecondId, categoryThirdId: this.id},
@@ -52,7 +52,7 @@ $(function(){
         var categorySecondId = getUrlVars()["categorySecondId"];
         var categoryThirdId = getUrlVars()["categoryThirdId"];
         window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+categoryThirdId+'&categoryFourthId='+this.id);
-        jQuery.ajax({
+        $.ajax({
             url: 'uploadproductajax',
             type: 'POST',
             data: { categoryFirstId: categoryFirstId, categorySecondId: categorySecondId, categoryThirdId: categoryThirdId, categoryFourthId: this.id},

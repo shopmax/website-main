@@ -60,6 +60,7 @@ under the License.
         
         <script type="text/javascript">
         $(document).ready(function() {
+            $.support.cors = true;
             $(".various").fancybox({
                 'titlePosition'     : 'inside',
                 'transitionIn'      : 'none',

@@ -64,18 +64,24 @@ under the License.
         return vars;
     }
     function removeProductImage(productCategoryId,productId,contentId,fromDate,productContentTypeId,index){
-        $('.media-edit').addClass('media-edit-load');
-        $('#load-remove-'+index).html("<img src='<@ofbizContentUrl>/shopmax-default/img/ajax-loader.gif</@ofbizContentUrl>'>");
-        jQuery.ajax({
-            url: 'removeProductContentAndImageFileSeller',
-            type: 'POST',
-            data: {productCategoryId: productCategoryId, productId: productId, contentId: contentId, fromDate: fromDate, productContentTypeId: productContentTypeId},
-            success: function(data) {
-                $('#category-container').html(data);
-                $('#view-edit-product-'+index).slideDown("slow");
-            }
-        });
+        if(confirm("Do you want to remove this product image?")){
+            $('.media-edit').addClass('media-edit-load');
+            $('#load-remove-'+index).html("<img src='<@ofbizContentUrl>/shopmax-default/img/ajax-loader.gif</@ofbizContentUrl>'>");
+            jQuery.ajax({
+                url: 'removeProductContentAndImageFileSeller',
+                type: 'POST',
+                data: {productCategoryId: productCategoryId, productId: productId, contentId: contentId, fromDate: fromDate, productContentTypeId: productContentTypeId},
+                success: function(data) {
+                    $('#category-container').html(data);
+                    $('#view-edit-product-'+index).slideDown("slow");
+                }
+            });
+        }
+        else{
+            return false;
+        }
     }
+    
     function getFile(inputIndex){
         document.getElementById("upfile_"+inputIndex).click();
     }
@@ -89,17 +95,22 @@ under the License.
         
     }
     function removeProduct(productCategoryId,productId,index){
-        $('#view-edit-product-'+index).slideUp("slow");
-        $('#media-'+index).addClass('media-edit-load');
-        $('#load-'+index).html("<img src='<@ofbizContentUrl>/shopmax-default/img/ajax-loader.gif</@ofbizContentUrl>'>");
-        jQuery.ajax({
-            url: 'removeProductFromSeller',
-            type: 'POST',
-            data: {productId: productId, productCategoryId: productCategoryId},
-            success: function(data) {
-                $('#category-container').html(data);
-            }
-        });
+        if(confirm("Do you want to remove this product?")){
+            $('#view-edit-product-'+index).slideUp("slow");
+            $('#media-'+index).addClass('media-edit-load');
+            $('#load-'+index).html("<img src='<@ofbizContentUrl>/shopmax-default/img/ajax-loader.gif</@ofbizContentUrl>'>");
+            jQuery.ajax({
+                url: 'removeProductFromSeller',
+                type: 'POST',
+                data: {productId: productId, productCategoryId: productCategoryId},
+                success: function(data) {
+                    $('#category-container').html(data);
+                }
+            });
+        }
+        else{
+            return false;
+        }
     }
     function paginationPage(index){
         var productCategoryId = getUrlVars()["productCategoryId"];

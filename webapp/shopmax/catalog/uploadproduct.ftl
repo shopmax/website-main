@@ -21,15 +21,20 @@ under the License.
 <script src="<@ofbizContentUrl>/shopmax-default/js/jquery-ui.js</@ofbizContentUrl>" type="text/javascript"></script>
 <script>
     function removeProductImageFullMode(productId,contentId,fromDate,productContentTypeId,index){
-        jQuery.ajax({
-            url: 'removeProductImageFullMode',
-            type: 'POST',
-            data: {productId: productId, contentId: contentId, fromDate: fromDate, productContentTypeId: productContentTypeId},
-            success: function(data) {
-                $('.uploading').html(data);
-                $('.file').preimage();
-            }
-        });
+        if(confirm("Do you want to remove this product image?")){
+            jQuery.ajax({
+                url: 'removeProductImageFullMode',
+                type: 'POST',
+                data: {productId: productId, contentId: contentId, fromDate: fromDate, productContentTypeId: productContentTypeId},
+                success: function(data) {
+                    $('.uploading').html(data);
+                    $('.file').preimage();
+                }
+            });
+        }
+        else{
+            return false;
+        }
     }
 
     $(function(){
@@ -39,6 +44,12 @@ under the License.
             var valid = false;
             if(typeof getUrlVars()["productId"] != "undefined"){
                 var isClickActivityOccur = confirm("Do you want to update this product?");
+                if(isClickActivityOccur){
+                    $('#uploadAndUpdateProduct').submit();
+                }
+                else{
+                    return false;
+                }
             }
             else{
                 $('#uploadProd').find('input.check,textarea.check').each(function(){
@@ -74,21 +85,21 @@ under the License.
                         }
                         if($('.required').length == 0 && $('#prev_upfile_1').find('div').hasClass('prev_thumb') && $('.selected-products').find('tr').hasClass('')){
                             if(!$('#prodDescript').val().length){
-                            $('#prodDescript').addClass('required');
+                                $('#prodDescript').addClass('required');
                             }
                             else if(!$('#listingPrice').val().length){
-                            $('#listingPrice').addClass('required');
+                                $('#listingPrice').addClass('required');
                             }
                             else{
-                            $('.input-error2').addClass('hidden');
-                            $('#uploadAndUpdateProduct').submit();
+                                $('.input-error2').addClass('hidden');
+                                $('#uploadAndUpdateProduct').submit();
                             }
                         }
                     }
                 });
             }
             if(valid){
-            alert("Please select your category!");
+                alert("Please select your category!");
             }
         });
         $('#advanced-option-bar').click(function(){
@@ -437,7 +448,7 @@ under the License.
             <div class="sc-table-promotion footer-button">
                 <a href="#" class="btn-green-small" style="width:80px;">Preview</a>&nbsp;&nbsp;
                 <a class="btn-general-small" id="submit_uploadProductToSeller">Submit</a>&nbsp;&nbsp;
-                <a class="btn-grey-small" href="#">Cancel</a>
+                <a class="btn-grey-small" href="<@ofbizUrl>manageproduct</@ofbizUrl>">Cancel</a>
             </div>
         </div><!-- /.span9 -->
     </div><!-- /.row -->
