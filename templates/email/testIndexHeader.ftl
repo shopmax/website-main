@@ -31,22 +31,22 @@ under the License.
         <meta name="viewport" content="width=device-width">
         <!-- what happens with this with mobile phones? 
         <meta name="viewport" content="width=device-width, initial-scale=1" />-->
-        <link rel="shortcut icon" href="http://shopmaxbackend.localhost:8080/shopmax-default/img/favicon.ico" type="text/css"/>
-        <link rel="stylesheet" href="http://shopmaxbackend.localhost:8080/shopmax-default/css/bootstrap.css" type="text/css"/>
-        <link rel="stylesheet" href="http://shopmaxbackend.localhost:8080/shopmax-default/css/bootstrap-responsive.css" type="text/css"/>
-        <link rel="stylesheet" href="http://shopmaxbackend.localhost:8080/shopmax-default/js/vendor/chosen.css" type="text/css"/>
-        <link rel="stylesheet" href="http://shopmaxbackend.localhost:8080/shopmax-default/css/main.css" type="text/css"/>
-        <script type="text/javascript" src="http://shopmaxbackend.localhost:8080/shopmax-default/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <link rel="shortcut icon" href="<@ofbizContentUrl>/shopmax-default/img/favicon.ico" type="text/css</@ofbizContentUrl>"/>
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/bootstrap.css" type="text/css</@ofbizContentUrl>"/>
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/bootstrap-responsive.css" type="text/css</@ofbizContentUrl>"/>
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/js/vendor/chosen.css" type="text/css</@ofbizContentUrl>"/>
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/main.css" type="text/css</@ofbizContentUrl>"/>
+        <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js</@ofbizContentUrl>"></script>
         <#--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
         -->
-        <script type="text/javascript" src="http://shopmaxbackend.localhost:8080/shopmax-default/js/vendor/jquery-1.8.3.min.js"></script>
-        <script type="text/javascript" src="http://shopmaxbackend.localhost:8080/shopmax-default/js/vendor/bootstrap.min.js"></script>
-        <script type="text/javascript" src="http://shopmaxbackend.localhost:8080/shopmax-default/js/vendor/chosen.jquery.min.js"></script>
-        <link rel="stylesheet" href="http://shopmaxbackend.localhost:8080/shopmax-default/css/anythingslider.css" type="text/css"/>
-        <script type="text/javascript" src="http://shopmaxbackend.localhost:8080/shopmax-default/js/vendor/jquery.anythingslider.min.js"></script>
-        <link rel="stylesheet" href="http://shopmaxbackend.localhost:8080/shopmax-default/js/fancybox/source/jquery.fancybox.css" type="text/css"/>
-        <script type="text/javascript" src="http://shopmaxbackend.localhost:8080/shopmax-default/js/fancybox/source/jquery.fancybox.pack.js"></script>
+        <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery-1.8.3.min.js</@ofbizContentUrl>"></script>
+        <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/bootstrap.min.js</@ofbizContentUrl>"></script>
+        <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/chosen.jquery.min.js</@ofbizContentUrl>"></script>
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/anythingslider.css</@ofbizContentUrl>" type="text/css"/>
+        <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.anythingslider.min.js</@ofbizContentUrl>"></script>
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.css</@ofbizContentUrl>" type="text/css"/>
+        <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.pack.js</@ofbizContentUrl>"></script>
         <#--<script src="js/main.js"></script>-->
         <script>
             (function($) {
@@ -95,11 +95,11 @@ under the License.
                     if ($('.countdown').exists()){
                         var deflabels = ['Years', 'Months', 'Weeks', 'Days', 'HOURS', 'MIN', 'SEC'];
                         var deflayout = '<span class="timer-inner">'+
-                            '<span class="block"><span class="time-unit">{hl}</span><code><span>{h10}</span><span>{h1}</span><img src="'+imageUrlPath+'/shopmax-default/img/1px-line.png" width="54" height="33" alt="" /></code></span>'+
+                            '<span class="block"><span class="time-unit">{hl}</span><code><span>{h10}</span><span>{h1}</span><img src="<@ofbizContentUrl>/shopmax-default/img/1px-line.png</@ofbizContentUrl>" width="54" height="33" alt="" /></code></span>'+
                             '<span class="sep">{sep}</span>'+
-                            '<span class="block"><span class="time-unit">{ml}</span><code><span>{m10}</span><span>{m1}</span><img src="'+imageUrlPath+'/shopmax-default/img/1px-line.png" width="54" height="33" alt="" /></code></span>'+
+                            '<span class="block"><span class="time-unit">{ml}</span><code><span>{m10}</span><span>{m1}</span><img src="<@ofbizContentUrl>/shopmax-default/img/1px-line.png</@ofbizContentUrl>" width="54" height="33" alt="" /></code></span>'+
                             '<span class="sep">{sep}</span>'+
-                            '<span class="block"><span class="time-unit">{sl}</span><code><span>{s10}</span><span>{s1}</span><img src="'+imageUrlPath+'/shopmax-default/img/1px-line.png" width="54" height="33" alt="" /></code></span>'+
+                            '<span class="block"><span class="time-unit">{sl}</span><code><span>{s10}</span><span>{s1}</span><img src="<@ofbizContentUrl>/shopmax-default/img/1px-line.png</@ofbizContentUrl>" width="54" height="33" alt="" /></code></span>'+
                             '</span>'; 
                         var defformat = 'H:M:S';
                         var start = Date.now();

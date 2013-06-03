@@ -135,25 +135,25 @@ under the License.
     </request-map>
     
     <request-map uri="shopcategorylistview">
-        <security https="false" auth="false"/>
+        <security https="true" auth="false"/>
         <response name="success" type="view" value="shopcategorylistview"/>
         <response name="error" type="view" value="shopcategorylistview"/>
     </request-map>
     
     <request-map uri="shopcategorylistviewdetail">
-        <security https="false" auth="false"/>
+        <security https="true" auth="false"/>
         <response name="success" type="view" value="shopcategorylistviewdetail"/>
         <response name="error" type="view" value="shopcategorylistviewdetail"/>
     </request-map>
     
     <request-map uri="shopcategorygridview">
-        <security https="false" auth="false"/>
+        <security https="true" auth="false"/>
         <response name="success" type="view" value="shopcategorygridview"/>
         <response name="error" type="view" value="shopcategorygridview"/>
     </request-map>
     
     <request-map uri="shopcategorygridviewdetail">
-        <security https="false" auth="false"/>
+        <security https="true" auth="false"/>
         <response name="success" type="view" value="shopcategorygridviewdetail"/>
         <response name="error" type="view" value="shopcategorygridviewdetail"/>
     </request-map>
@@ -198,15 +198,9 @@ under the License.
     <request-map uri="updateProduct">
         <security https="true" auth="true"/>
         <event type="service" invoke="editProductToSeller"/>
-        <response name="success" type="request-redirect" value="manageproduct">
+        <response name="success" type="request" value="manageproduct">
             <redirect-parameter name="productCategoryId"/>
         </response>
-    </request-map>
-    
-    <request-map uri="additem">
-        <security https="false" auth="false"/>
-        <event type="java" path="org.ofbiz.order.shoppingcart.ShoppingCartEvents" invoke="addToCart"/>
-        <response name="success" type="view" value="additemajax"/>
     </request-map>
     
     <request-map uri="removeProductFromSeller">
@@ -414,12 +408,12 @@ under the License.
     
     <!-- Customer Requests -->
     <request-map uri="registration">
-        <security https="false" auth="false"/>
+        <security https="true" auth="false"/>
         <response name="success" type="view" value="registration"/>
     </request-map>
     
     <request-map uri="registrationajax">
-        <security https="false" auth="false"/>
+        <security https="true" auth="false"/>
         <response name="success" type="view" value="registrationajax"/>
     </request-map>
     
@@ -527,6 +521,12 @@ under the License.
         <security auth="false" https="false"/>
         <response name="success" type="view" value="ViewSimpleContent"/>
     </request-map>
+    <!-- Test Index headerHead -->
+    <request-map uri="testindexheaderhead">
+        <security auth="false" https="false"/>
+        <response name="success" type="view" value="testindexheaderhead"/>
+    </request-map>
+    <view-map name="testindexheaderhead" type="screen" page="component://shopmax/widget/ShopMaxEmailScreens.xml#TestIndexHeaderHead"/>
     
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>
@@ -571,7 +571,6 @@ under the License.
     <view-map name="paymentoption" type="screen" page="component://shopmax/widget/OrderScreens.xml#PaymentOption"/>
     <view-map name="transactionhistory" type="screen" page="component://shopmax/widget/OrderScreens.xml#TransactionHistory"/>
     <view-map name="shippingmethod" type="screen" page="component://shopmax/widget/OrderScreens.xml#ShippingMethod"/>
-    <view-map name="additemajax" type="screen" page="component://shopmax/widget/OrderScreens.xml#AddItemAjax"/>
     
     <view-map name="registration" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Registration"/>
     <view-map name="registrationajax" type="screen" page="component://shopmax/widget/CustomerScreens.xml#RegistrationAjax"/>
