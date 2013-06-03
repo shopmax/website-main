@@ -257,7 +257,7 @@ under the License.
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
                     <decorator-section name="body">
-                    <section>
+                        <section>
                             <condition>
                                 <if-has-permission permission="SHOPMAX" action="_SELLER"/>
                             </condition>
@@ -284,6 +284,20 @@ under the License.
             </actions>
             <widgets>
                 <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/uploadproductajax.ftl"/></html></platform-specific>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="RemoverProductImageAjax">
+        <section>
+            <actions>
+                <set field="titleProperty" value="PageTitleUploadProduct"/>
+                <set field="headerItem" value="uploadproduct"/>
+                <set field="breadcrumbTitle" value="Upload Product"/>
+                <script location="component:///shopmax/webapp/shopmax/WEB-INF/actions/catalog/UploadProduct.groovy"/>
+            </actions>
+            <widgets>
+                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/removerproductimageajax.ftl"/></html></platform-specific>
             </widgets>
         </section>
     </screen>

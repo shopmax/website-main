@@ -1793,6 +1793,8 @@ under the License.
             <call-service service-name="updateProductToCategory" in-map-name="updateProductToCategoryMap"/>
         </iterate>
         
+        <field-to-result field="parameters.productId" result-name="productId"/>
+        
         <set field="runTenantServiceInMap.tenantId" value="default"/>
         <set field="runTenantServiceInMap.serviceName" value="removeProductFromShopmax"/>
         <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>

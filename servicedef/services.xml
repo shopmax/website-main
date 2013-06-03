@@ -345,7 +345,7 @@ under the License.
     <service name="removeProductFromSeller" engine="simple" 
             location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="removeProductFromSeller" auth="true">
         <description>Remove Product From Seller</description>
-        <attribute name="productId" mode="IN" type="String" optional="false"/>
+        <attribute name="productId" mode="INOUT" type="String" optional="false"/>
     </service>
     
     <service name="removeProductFromShopmax" engine="simple" 

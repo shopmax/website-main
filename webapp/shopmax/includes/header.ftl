@@ -24,14 +24,13 @@ under the License.
 </#if>
 <script>
     function clickMenuSeller(pathRequest){
-        <!--var tenantId = '${tenantIdLogin?if_exists}' || 'shopmax';-->
-        <!--var tenantId = 'shopmaxseller';-->
-        <#--if(tenantId == 'shopmax'){
+        var tenantId = '${tenantId?if_exists}';
+        if(tenantId == 'default'){
             alert("You do not have permission to view this page.");
         }
         else{
-            window.location.href = "https://"+tenantId+".localhost:8443/shop/control/"+pathRequest+"?partyId=${userLoginPartyId?if_exists}";
-        }-->
+            window.location.href = "http://${shopmaxSellerDomain?if_exists}:8080/control/"+pathRequest+"?partyId=${userLoginPartyId?if_exists}";
+        }
     }
 </script>
 <div style="display: none;">
@@ -86,9 +85,9 @@ under the License.
             <div class="header-search">
                 <ul class="nav">
                     <!--onclick="clickMenuSeller('uploadproductlogin');"-->
-                    <li><a <#if userLogin?has_content>href="<@ofbizUrl>uploadproduct</@ofbizUrl>"<#else>class="various" href="#inline1"</#if>>Upload Product</a></li>
+                    <li><a <#if userLogin?has_content><#if tenantId == 'default'>href="<@ofbizUrl>uploadproduct</@ofbizUrl>"<#else>onclick="clickMenuSeller('uploadproductlogin');"</#if><#else>class="various" href="#inline1"</#if>>Upload Product</a></li>
                     <!--onclick="clickMenuSeller('manageproductlogin');"-->
-                    <li><a <#if userLogin?has_content>href="<@ofbizUrl>manageproduct</@ofbizUrl>"<#else>class="various" href="#inline1"</#if>>Manage Product</a></li>
+                    <li><a <#if userLogin?has_content><#if tenantId == 'default'>href="<@ofbizUrl>manageproduct</@ofbizUrl>"<#else>onclick="clickMenuSeller('manageproductlogin');"</#if><#else>class="various" href="#inline1"</#if>>Manage Product</a></li>
                     <!--<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -102,7 +101,7 @@ under the License.
                         </ul>
                     </li>-->
                     <!--onclick="clickMenuSeller('orderlistlogin');-->
-                    <li><a <#if userLogin?has_content>href="<@ofbizUrl>orderlist</@ofbizUrl>"<#else>class="various" href="#inline1"</#if>>Manage Orders</a></li>
+                    <li><a <#if userLogin?has_content><#if tenantId == 'default'>href="<@ofbizUrl>orderlist</@ofbizUrl>"<#else>onclick="clickMenuSeller('orderlistlogin');"</#if><#else>class="various" href="#inline1"</#if>>Manage Orders</a></li>
                     <li><a href="shopping-list.html">Shopping List</a></li>
                     <li class="last"><a href="buying-orders.html">Buying Orders</a></li>
                 </ul>

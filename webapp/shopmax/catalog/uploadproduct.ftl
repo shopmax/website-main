@@ -20,7 +20,21 @@ under the License.
 <link rel='stylesheet' href='<@ofbizContentUrl>/shopmax-default/css/jquery-ui.css</@ofbizContentUrl>' type='text/css'>
 <script src="<@ofbizContentUrl>/shopmax-default/js/jquery-ui.js</@ofbizContentUrl>" type="text/javascript"></script>
 <script>
+    function removeProductImageFullMode(productId,contentId,fromDate,productContentTypeId,index){
+        jQuery.ajax({
+            url: 'removeProductImageFullMode',
+            type: 'POST',
+            data: {productId: productId, contentId: contentId, fromDate: fromDate, productContentTypeId: productContentTypeId},
+            success: function(data) {
+                $('.uploading').html(data);
+                $('.file').preimage();
+            }
+        });
+    }
+
     $(function(){
+        $('.file').preimage();
+        
         $('#submit_uploadProductToSeller').click(function(){
             var valid = false;
             if(typeof getUrlVars()["productId"] != "undefined"){
@@ -248,7 +262,7 @@ under the License.
                                                                 <div class="uploaded-image">
                                                                     <img src="<@ofbizContentUrl>${productImage.productImageThumb}</@ofbizContentUrl>" width="82" style="height: 82px;"/>
                                                                 </div>
-                                                                <a onclick="removeProductImage('${productId?if_exists}','${productImage.contentId?if_exists}','${productImage.fromDate?if_exists}','IMAGE','${i}')">Remove</a>
+                                                                <a onclick="removeProductImageFullMode('${productId?if_exists}','${productImage.contentId?if_exists}','${productImage.fromDate?if_exists}','IMAGE','${i}')">Remove</a>
                                                             </li>
                                                         <#else>
                                                             <#if seqNumNoImage?has_content>

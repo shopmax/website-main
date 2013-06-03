@@ -105,11 +105,11 @@ under the License.
                                 <div class="control-group">
                                     <label class="control-label control-label-big" for="inputPromotionDescription">Official Business Name</label>
                                     <div class="pull-left">
-                                        <input type="text" class="input-large check" id="businessName" name="officialBusinessName">*
+                                        <input type="text" class="input-large check" id="businessName" name="officialBusinessName">
                                     </div>
                                     <label class="control-label control-label-big" for="inputPromotionDescription">Official Trading Name</label>
                                     <div class="pull-left">
-                                        <input type="text" class="input-large" id="tradingName" name="officialTradingName">*
+                                        <input type="text" class="input-large" id="tradingName" name="officialTradingName">
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -132,7 +132,7 @@ under the License.
                                     <div class="pull-left">
                                         <input type="text" class="input-large phoneNumberText check" id="phoneNumber_text_0" onkeypress='return isNumberKey(event)'>
                                     </div>
-                                    <input type="hidden" name="contactPhoneNumber" id="phoneNumber_0" value="">*
+                                    <input type="hidden" name="contactPhoneNumber" id="phoneNumber_0" value="">
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label control-label-text" for="inputPromotionDescription">TXT Notification Phone Number</label>

@@ -158,17 +158,17 @@ under the License.
         <response name="error" type="view" value="shopcategorygridviewdetail"/>
     </request-map>
     
-    <!-- <request-map uri="manageproductlogin">
-        <security https="true" auth="false"/>
-        <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/customer/CustomerEvents.xml" invoke="sellerDoBasicLogin"/>
-        <response name="success" type="request-redirect-noparam" value="manageproduct"/>
-        <response name="error" type="view" value="main"/>
-    </request-map>
-    
     <request-map uri="uploadproductlogin">
         <security https="true" auth="false"/>
         <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/customer/CustomerEvents.xml" invoke="sellerDoBasicLogin"/>
         <response name="success" type="request-redirect-noparam" value="uploadproduct"/>
+        <response name="error" type="view" value="main"/>
+    </request-map>
+    
+    <request-map uri="manageproductlogin">
+        <security https="true" auth="false"/>
+        <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/customer/CustomerEvents.xml" invoke="sellerDoBasicLogin"/>
+        <response name="success" type="request-redirect-noparam" value="manageproduct"/>
         <response name="error" type="view" value="main"/>
     </request-map>
     
@@ -177,7 +177,7 @@ under the License.
         <event type="simple" path="component://shopmax/script/org/ofbiz/shopmax/customer/CustomerEvents.xml" invoke="sellerDoBasicLogin"/>
         <response name="success" type="request-redirect-noparam" value="orderlist"/>
         <response name="error" type="view" value="main"/>
-    </request-map> -->
+    </request-map>
     
     <request-map uri="subcategoriesaccordionview">
         <security https="false" auth="false"/>
@@ -185,58 +185,64 @@ under the License.
         <response name="error" type="view" value="subcategoriesaccordionview"/>
     </request-map>
     
+    <request-map uri="uploadproduct">
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="uploadproductview"/>
+    </request-map>
+    
     <request-map uri="manageproduct">
-        <security https="true" auth="true"/>
-        <response name="success" type="view" value="manageproduct"/>
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="manageproductview"/>
     </request-map>
     
     <request-map uri="manageproductdetail">
-        <security https="true" auth="true"/>
+        <security https="true" auth="false"/>
         <response name="success" type="view" value="manageproductajax"/>
     </request-map>
     
     <request-map uri="updateProduct">
-        <security https="true" auth="true"/>
+        <security https="true" auth="false"/>
         <event type="service" invoke="editProductToSeller"/>
         <response name="success" type="request" value="manageproduct">
             <redirect-parameter name="productCategoryId"/>
         </response>
     </request-map>
     
+    <request-map uri="removeProductImageFullMode">
+        <security https="true" auth="false"/>
+        <event type="service" invoke="removeProductContentAndImageFileSeller"/>
+        <response name="success" type="view" value="removerproductimageajax"/>
+    </request-map>
+    
     <request-map uri="removeProductFromSeller">
-        <security https="true" auth="true"/>
+        <security https="true" auth="false"/>
         <event type="service" invoke="removeProductFromSeller"/>
         <response name="success" type="view" value="manageproductajax"/>
     </request-map>
     
     <request-map uri="removeProductContentAndImageFileSeller">
-        <security https="true" auth="true"/>
+        <security https="true" auth="false"/>
         <event type="service" invoke="removeProductContentAndImageFileSeller"/>
         <response name="success" type="view" value="manageproductajax"/>
     </request-map>
     
-    <request-map uri="uploadproduct">
-        <security https="true" auth="true"/>
-        <response name="success" type="view" value="uploadproduct"/>
-    </request-map>
-    
     <request-map uri="uploadproductajax">
-        <security https="true" auth="true"/>
+        <security https="true" auth="false"/>
         <response name="success" type="view" value="uploadproductajax"/>
     </request-map>
     
     <request-map uri="uploadProductToSeller">
-        <security https="true" auth="true"/>
+        <security https="true" auth="false"/>
         <event type="service" invoke="uploadProductToSeller"/>
         <response name="success" type="request" value="uploadproduct">
             <redirect-parameter name="productId"/>
             <redirect-parameter name="success"/>
         </response>
-        <response name="error" type="view" value="uploadproduct"/>
+        <response name="error" type="view" value="uploadproductview"/>
     </request-map>
     
     <request-map uri="updateProductFullMode">
-        <security https="true" auth="true"/>
+        <security https="true" auth="false"/>
         <event type="service" invoke="updateProductToSeller"/>
         <response name="success" type="request" value="uploadproduct">
             <redirect-parameter name="productId"/>
@@ -384,8 +390,8 @@ under the License.
     </request-map>
     
     <request-map uri="orderlist">
-        <security https="true" auth="true"/>
-        <response name="success" type="view" value="orderlist"/>
+        <security https="true" auth="false"/>
+        <response name="success" type="view" value="orderlistview"/>
     </request-map>
     
     <request-map uri="paymentoption">
@@ -404,6 +410,12 @@ under the License.
         <security https="true" auth="false"/>
         <response name="success" type="view" value="shippingmethod"/>
         <response name="error" type="view" value="shippingmethod"/>
+    </request-map>
+    
+    <request-map uri="additem">
+        <security https="false" auth="false"/>
+        <event type="java" path="org.ofbiz.order.shoppingcart.ShoppingCartEvents" invoke="addToCart"/>
+        <response name="success" type="view" value="additemajax"/>
     </request-map>
     
     <!-- Customer Requests -->
@@ -551,7 +563,7 @@ under the License.
     <view-map name="categorygridviewdetail" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryGridViewDetail"/>
     <view-map name="categorylistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryListView"/>
     <view-map name="categorylistviewdetail" type="screen" page="component://shopmax/widget/CatalogScreens.xml#CategoryListViewDetail"/>
-    <view-map name="manageproduct" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ManageProduct"/>
+    <view-map name="manageproductview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ManageProduct"/>
     <view-map name="manageproductajax" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ManageProductAjax"/>
     <view-map name="searchgridview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#SearchGridView"/>
     <view-map name="searchlistview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#SearchListView"/>
@@ -560,17 +572,19 @@ under the License.
     <view-map name="shopcategorygridview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ShopCategoryGridView"/>
     <view-map name="shopcategorygridviewdetail" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ShopCategoryGridViewDetail"/>
     <view-map name="subcategoriesaccordionview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#SubCategoriesAccordionView"/>
-    <view-map name="uploadproduct" type="screen" page="component://shopmax/widget/CatalogScreens.xml#UploadProduct"/>
+    <view-map name="uploadproductview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#UploadProduct"/>
     <view-map name="uploadproductajax" type="screen" page="component://shopmax/widget/CatalogScreens.xml#UploadProductAjax"/>
+    <view-map name="removerproductimageajax" type="screen" page="component://shopmax/widget/CatalogScreens.xml#RemoverProductImageAjax"/>
     
     <view-map name="shoppingcart" type="screen" page="component://shopmax/widget/CartScreens.xml#ShoppingCart"/>
     <view-map name="checkout" type="screen" page="component://shopmax/widget/OrderScreens.xml#Checkout"/>
     <view-map name="orderconfirmation" type="screen" page="component://shopmax/widget/OrderScreens.xml#Confirmation"/>
     <view-map name="orderdetail" type="screen" page="component://shopmax/widget/OrderScreens.xml#OrderDetail"/>
-    <view-map name="orderlist" type="screen" page="component://shopmax/widget/OrderScreens.xml#OrderList"/>
+    <view-map name="orderlistview" type="screen" page="component://shopmax/widget/OrderScreens.xml#OrderList"/>
     <view-map name="paymentoption" type="screen" page="component://shopmax/widget/OrderScreens.xml#PaymentOption"/>
     <view-map name="transactionhistory" type="screen" page="component://shopmax/widget/OrderScreens.xml#TransactionHistory"/>
     <view-map name="shippingmethod" type="screen" page="component://shopmax/widget/OrderScreens.xml#ShippingMethod"/>
+    <view-map name="additemajax" type="screen" page="component://shopmax/widget/OrderScreens.xml#AddItemAjax"/>
     
     <view-map name="registration" type="screen" page="component://shopmax/widget/CustomerScreens.xml#Registration"/>
     <view-map name="registrationajax" type="screen" page="component://shopmax/widget/CustomerScreens.xml#RegistrationAjax"/>
