@@ -46,10 +46,10 @@ under the License.
             <h5 class="review-number">(${productReviews.size()} reviews)</h5>
             <br /><br />
             <#if price.specialPromoPrice?exists>
-                <h5 class="old"><@ofbizCurrency amount=price.listPrice/> NZD</h5>
+                <h5 class="old"><@ofbizCurrency amount=price.price/> NZD</h5>
                 <h1><@ofbizCurrency amount=price.specialPromoPrice/> NZD</h1>
             <#else>
-                <h1><@ofbizCurrency amount=price.listPrice/> NZD</h1>
+                <h1><@ofbizCurrency amount=price.price/> NZD</h1>
             </#if>
             
             <#if "Y" = product.isVirtual?if_exists>
@@ -106,9 +106,8 @@ under the License.
                         <#if price.specialPromoPrice?exists>
                             <input type="hidden" name="price" value="${price.specialPromoPrice}" />
                         <#else>
-                            <input type="hidden" name="price" value="${price.listPrice}" />
+                            <input type="hidden" name="price" value="${price.price}" />
                         </#if>
-                        
                         <a class="btn-general" onclick="addItem('${product.productId}');">ADD TO CART</a>
                         <ul class="selectAction">
                             <li><a href="#">Add to shopping list</a></li>

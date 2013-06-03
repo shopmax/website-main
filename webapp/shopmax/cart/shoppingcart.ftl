@@ -113,9 +113,9 @@ under the License.
                                             <strong>${cartLine.getName()?if_exists}</strong><#-- <br />Colour - yellow -->
                                         </td>
                                         <td class="col3">
-                                            <#assign listPrice = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : cartLine.getProductId(), "productPriceTypeId" : "LIST_PRICE"}, null, false))>
+                                            <#assign defaultPrice = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : cartLine.getProductId(), "productPriceTypeId" : "DEFAULT_PRICE"}, null, false))>
                                             <#assign promoPrice = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : cartLine.getProductId(), "productPriceTypeId" : "SPECIAL_PROMO_PRICE"}, null, false))>
-                                            <#if promoPrice?has_content><div class="old"><@ofbizCurrency amount=listPrice[0].price/></div></#if><strong><@ofbizCurrency amount=promoPrice[0].price/></strong>
+                                            <#if promoPrice?has_content><div class="old"><@ofbizCurrency amount=defaultPrice[0].price/></div></#if><strong><@ofbizCurrency amount=promoPrice[0].price/></strong>
                                         </td>
                                         <td class="col4"><input type="text" class="input-mini" value="${cartLine.getQuantity()?string.number}"/><br />
                                             <a href="javascript:void(0)" onclick="deleteItem(event, ${cartLineIndex})">Delete item</a>

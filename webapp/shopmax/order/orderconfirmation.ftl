@@ -81,9 +81,9 @@ under the License.
                                         </td>
                                         <td class="col2 col_2"><strong>${product.productName?if_exists}</strong><br /><#-- Colour - yellow--></td>
                                         <td class="col3 col_3 alighright">
-                                            <#assign listPrice = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : product.productId, "productPriceTypeId" : "LIST_PRICE"}, null, false))>
+                                            <#assign defaultPrice = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : product.productId, "productPriceTypeId" : "LIST_PRICE"}, null, false))>
                                             <#assign promoPrice = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : product.productId, "productPriceTypeId" : "SPECIAL_PROMO_PRICE"}, null, false))>
-                                            <#if promoPrice?has_content><div class="old"><@ofbizCurrency amount=listPrice[0].price/></div></#if><strong><@ofbizCurrency amount=orderItem.unitPrice/></strong>
+                                            <#if promoPrice?has_content><div class="old"><@ofbizCurrency amount=defaultPrice[0].price/></div></#if><strong><@ofbizCurrency amount=orderItem.unitPrice/></strong>
                                         </td>
                                         <td class="col4 col_4 alighcenter">${orderItem.quantity?string.number}</td>
                                         <td class="col5"><strong><@ofbizCurrency amount=Static["org.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments)/></strong></td>

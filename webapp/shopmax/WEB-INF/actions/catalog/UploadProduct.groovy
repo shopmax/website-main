@@ -56,9 +56,9 @@ if(parameters.productId){
         }
         context.categoryMemberNameList = categoryMemberNameList;
         
-        productPriceList = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : product.productId, productPricePurposeId : "PURCHASE", productPriceTypeId : "LIST_PRICE"], null, false)));
-        if (productPriceList) {
-            context.listPrice = productPriceList.price;
+        productPriceDefault = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : product.productId, productPricePurposeId : "PURCHASE", productPriceTypeId : "DEFAULT_PRICE"], null, false)));
+        if (productPriceDefault) {
+            context.defaultPrice = productPriceDefault.price;
         }
         
         productPricePromo = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : product.productId, productPricePurposeId : "PURCHASE", productPriceTypeId : "SPECIAL_PROMO_PRICE"], null, false)));

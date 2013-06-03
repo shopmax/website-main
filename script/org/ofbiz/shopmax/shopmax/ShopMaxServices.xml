@@ -698,17 +698,13 @@ under the License.
         </if-not-empty>
         
         <!-- Create product price -->
-        <set field="createListPriceMap.userLogin" from-field="systemUserLogin"/>
-        <set field="createListPriceMap.productId" from-field="parameters.productId"/>
-        <set field="createListPriceMap.productPriceTypeId" value="LIST_PRICE"/>
-        <set field="createListPriceMap.productPricePurposeId" value="PURCHASE"/>
-        <set field="createListPriceMap.currencyUomId" value="NZD"/>
-        <set field="createListPriceMap.productStoreGroupId" value="_NA_"/>
-        <set field="createListPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
-        <call-service service-name="createProductPrice" in-map-name="createListPriceMap"/>
-        
-        <set-service-fields service-name="createProductPrice" to-map="createDefaultPriceMap" map="createListPriceMap"/>
+        <set field="createDefaultPriceMap.userLogin" from-field="systemUserLogin"/>
+        <set field="createDefaultPriceMap.productId" from-field="parameters.productId"/>
         <set field="createDefaultPriceMap.productPriceTypeId" value="DEFAULT_PRICE"/>
+        <set field="createDefaultPriceMap.productPricePurposeId" value="PURCHASE"/>
+        <set field="createDefaultPriceMap.currencyUomId" value="NZD"/>
+        <set field="createDefaultPriceMap.productStoreGroupId" value="_NA_"/>
+        <set field="createDefaultPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
         <call-service service-name="createProductPrice" in-map-name="createDefaultPriceMap"/>
         
         <if-not-empty field="parameters.promoPrice">
@@ -841,17 +837,13 @@ under the License.
         </if-not-empty>
         
         <!-- Create product price -->
-        <set field="createListPriceMap.userLogin" from-field="systemUserLogin"/>
-        <set field="createListPriceMap.productId" from-field="parameters.productId"/>
-        <set field="createListPriceMap.productPriceTypeId" value="LIST_PRICE"/>
-        <set field="createListPriceMap.productPricePurposeId" value="PURCHASE"/>
-        <set field="createListPriceMap.currencyUomId" value="NZD"/>
-        <set field="createListPriceMap.productStoreGroupId" value="_NA_"/>
-        <set field="createListPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
-        <call-service service-name="createProductPrice" in-map-name="createListPriceMap"/>
-        
-        <set-service-fields service-name="createProductPrice" to-map="createDefaultPriceMap" map="createListPriceMap"/>
+        <set field="createDefaultPriceMap.userLogin" from-field="systemUserLogin"/>
+        <set field="createDefaultPriceMap.productId" from-field="parameters.productId"/>
         <set field="createDefaultPriceMap.productPriceTypeId" value="DEFAULT_PRICE"/>
+        <set field="createDefaultPriceMap.productPricePurposeId" value="PURCHASE"/>
+        <set field="createDefaultPriceMap.currencyUomId" value="NZD"/>
+        <set field="createDefaultPriceMap.productStoreGroupId" value="_NA_"/>
+        <set field="createDefaultPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
         <call-service service-name="createProductPrice" in-map-name="createDefaultPriceMap"/>
         
         <if-not-empty field="parameters.promoPrice">
@@ -1395,57 +1387,33 @@ under the License.
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>
         
-        <entity-and list="productListPriceList" entity-name="ProductPrice">
+        <entity-and list="productDefaultPriceList" entity-name="ProductPrice">
             <field-map field-name="productId" from-field="parameters.productId"/>
-            <field-map field-name="productPriceTypeId" value="LIST_PRICE"/>
+            <field-map field-name="productPriceTypeId" value="DEFAULT_PRICE"/>
             <field-map field-name="productPricePurposeId" value="PURCHASE"/>
             <field-map field-name="currencyUomId" value="NZD"/>
             <field-map field-name="productStoreGroupId" value="_NA_"/>
         </entity-and>
-        <if-empty field="productListPriceList">
-            <set field="createListPriceMap.userLogin" from-field="systemUserLogin"/>
-            <set field="createListPriceMap.productId" from-field="parameters.productId"/>
-            <set field="createListPriceMap.currencyUomId" value="NZD"/>
-            <set field="createListPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
-            <set field="createListPriceMap.productStoreGroupId" value="_NA_"/>
-            <set field="createListPriceMap.productPricePurposeId" value="PURCHASE"/>
-            <set field="createListPriceMap.productPriceTypeId" value="LIST_PRICE"/>
-            <call-service service-name="createProductPrice" in-map-name="createListPriceMap"/>
-            
-            <set-service-fields service-name="createProductPrice" to-map="createDefaultPriceMap" map="createListPriceMap"/>
+        <if-empty field="productDefaultPriceList">
+            <set field="createDefaultPriceMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createDefaultPriceMap.productId" from-field="parameters.productId"/>
             <set field="createDefaultPriceMap.productPriceTypeId" value="DEFAULT_PRICE"/>
+            <set field="createDefaultPriceMap.productPricePurposeId" value="PURCHASE"/>
+            <set field="createDefaultPriceMap.currencyUomId" value="NZD"/>
+            <set field="createDefaultPriceMap.productStoreGroupId" value="_NA_"/>
+            <set field="createDefaultPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
             <call-service service-name="createProductPrice" in-map-name="createDefaultPriceMap"/>
         <else>
-            <first-from-list entry="productListPrice" list="productListPriceList"/>
-            <set field="updateListPriceMap.userLogin" from-field="systemUserLogin"/>
-            <set field="updateListPriceMap.productId" from-field="productListPrice.productId"/>
-            <set field="updateListPriceMap.productPriceTypeId" from-field="productListPrice.productPriceTypeId"/>
-            <set field="updateListPriceMap.productPricePurposeId" from-field="productListPrice.productPricePurposeId"/>
-            <set field="updateListPriceMap.currencyUomId" from-field="productListPrice.currencyUomId"/>
-            <set field="updateListPriceMap.productStoreGroupId" from-field="productListPrice.productStoreGroupId"/>
-            <set field="updateListPriceMap.fromDate" from-field="productListPrice.fromDate"/>
-            <set field="updateListPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
-            <call-service service-name="updateProductPrice" in-map-name="updateListPriceMap"/>
-            
-            <entity-and list="productDefaultPriceList" entity-name="ProductPrice">
-                <field-map field-name="productId" from-field="parameters.productId"/>
-                <field-map field-name="productPriceTypeId" value="DEFAULT_PRICE"/>
-                <field-map field-name="productPricePurposeId" value="PURCHASE"/>
-                <field-map field-name="currencyUomId" value="NZD"/>
-                <field-map field-name="productStoreGroupId" value="_NA_"/>
-            </entity-and>
-            <if-not-empty field="productDefaultPriceList">
-                <first-from-list entry="productDefaultPrice" list="productDefaultPriceList"/>
-                <set field="updateDefaultPriceMap.userLogin" from-field="systemUserLogin"/>
-                <set field="updateDefaultPriceMap.productId" from-field="productDefaultPrice.productId"/>
-                <set field="updateDefaultPriceMap.productPriceTypeId" from-field="productDefaultPrice.productPriceTypeId"/>
-                <set field="updateDefaultPriceMap.productPricePurposeId" from-field="productDefaultPrice.productPricePurposeId"/>
-                <set field="updateDefaultPriceMap.currencyUomId" from-field="productDefaultPrice.currencyUomId"/>
-                <set field="updateDefaultPriceMap.productStoreGroupId" from-field="productDefaultPrice.productStoreGroupId"/>
-                <set field="updateDefaultPriceMap.fromDate" from-field="productDefaultPrice.fromDate"/>
-                <set field="updateDefaultPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
-                <call-service service-name="updateProductPrice" in-map-name="updateDefaultPriceMap"/>
-            </if-not-empty>
+            <first-from-list entry="productDefaultPrice" list="productDefaultPriceList"/>
+            <set field="updateDefaultPriceMap.userLogin" from-field="systemUserLogin"/>
+            <set field="updateDefaultPriceMap.productId" from-field="productDefaultPrice.productId"/>
+            <set field="updateDefaultPriceMap.productPriceTypeId" from-field="productDefaultPrice.productPriceTypeId"/>
+            <set field="updateDefaultPriceMap.productPricePurposeId" from-field="productDefaultPrice.productPricePurposeId"/>
+            <set field="updateDefaultPriceMap.currencyUomId" from-field="productDefaultPrice.currencyUomId"/>
+            <set field="updateDefaultPriceMap.productStoreGroupId" from-field="productDefaultPrice.productStoreGroupId"/>
+            <set field="updateDefaultPriceMap.fromDate" from-field="productDefaultPrice.fromDate"/>
+            <set field="updateDefaultPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
+            <call-service service-name="updateProductPrice" in-map-name="updateDefaultPriceMap"/>
         </else>
         </if-empty>
         
@@ -1617,57 +1585,33 @@ under the License.
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>
         
-        <entity-and list="productListPriceList" entity-name="ProductPrice">
+        <entity-and list="productDefaultPriceList" entity-name="ProductPrice">
             <field-map field-name="productId" from-field="parameters.productId"/>
-            <field-map field-name="productPriceTypeId" value="LIST_PRICE"/>
+            <field-map field-name="productPriceTypeId" value="DEFAULT_PRICE"/>
             <field-map field-name="productPricePurposeId" value="PURCHASE"/>
             <field-map field-name="currencyUomId" value="NZD"/>
             <field-map field-name="productStoreGroupId" value="_NA_"/>
         </entity-and>
-        <if-empty field="productListPriceList">
-            <set field="createListPriceMap.userLogin" from-field="systemUserLogin"/>
-            <set field="createListPriceMap.productId" from-field="parameters.productId"/>
-            <set field="createListPriceMap.currencyUomId" value="NZD"/>
-            <set field="createListPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
-            <set field="createListPriceMap.productStoreGroupId" value="_NA_"/>
-            <set field="createListPriceMap.productPricePurposeId" value="PURCHASE"/>
-            <set field="createListPriceMap.productPriceTypeId" value="LIST_PRICE"/>
-            <call-service service-name="createProductPrice" in-map-name="createListPriceMap"/>
-            
-            <set-service-fields service-name="createProductPrice" to-map="createDefaultPriceMap" map="createListPriceMap"/>
+        <if-empty field="productDefaultPriceList">
+            <set field="createDefaultPriceMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createDefaultPriceMap.productId" from-field="parameters.productId"/>
             <set field="createDefaultPriceMap.productPriceTypeId" value="DEFAULT_PRICE"/>
+            <set field="createDefaultPriceMap.productPricePurposeId" value="PURCHASE"/>
+            <set field="createDefaultPriceMap.currencyUomId" value="NZD"/>
+            <set field="createDefaultPriceMap.productStoreGroupId" value="_NA_"/>
+            <set field="createDefaultPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
             <call-service service-name="createProductPrice" in-map-name="createDefaultPriceMap"/>
         <else>
-            <first-from-list entry="productListPrice" list="productListPriceList"/>
-            <set field="updateListPriceMap.userLogin" from-field="systemUserLogin"/>
-            <set field="updateListPriceMap.productId" from-field="productListPrice.productId"/>
-            <set field="updateListPriceMap.productPriceTypeId" from-field="productListPrice.productPriceTypeId"/>
-            <set field="updateListPriceMap.productPricePurposeId" from-field="productListPrice.productPricePurposeId"/>
-            <set field="updateListPriceMap.currencyUomId" from-field="productListPrice.currencyUomId"/>
-            <set field="updateListPriceMap.productStoreGroupId" from-field="productListPrice.productStoreGroupId"/>
-            <set field="updateListPriceMap.fromDate" from-field="productListPrice.fromDate"/>
-            <set field="updateListPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
-            <call-service service-name="updateProductPrice" in-map-name="updateListPriceMap"/>
-            
-            <entity-and list="productDefaultPriceList" entity-name="ProductPrice">
-                <field-map field-name="productId" from-field="parameters.productId"/>
-                <field-map field-name="productPriceTypeId" value="DEFAULT_PRICE"/>
-                <field-map field-name="productPricePurposeId" value="PURCHASE"/>
-                <field-map field-name="currencyUomId" value="NZD"/>
-                <field-map field-name="productStoreGroupId" value="_NA_"/>
-            </entity-and>
-            <if-not-empty field="productDefaultPriceList">
-                <first-from-list entry="productDefaultPrice" list="productDefaultPriceList"/>
-                <set field="updateDefaultPriceMap.userLogin" from-field="systemUserLogin"/>
-                <set field="updateDefaultPriceMap.productId" from-field="productDefaultPrice.productId"/>
-                <set field="updateDefaultPriceMap.productPriceTypeId" from-field="productDefaultPrice.productPriceTypeId"/>
-                <set field="updateDefaultPriceMap.productPricePurposeId" from-field="productDefaultPrice.productPricePurposeId"/>
-                <set field="updateDefaultPriceMap.currencyUomId" from-field="productDefaultPrice.currencyUomId"/>
-                <set field="updateDefaultPriceMap.productStoreGroupId" from-field="productDefaultPrice.productStoreGroupId"/>
-                <set field="updateDefaultPriceMap.fromDate" from-field="productDefaultPrice.fromDate"/>
-                <set field="updateDefaultPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
-                <call-service service-name="updateProductPrice" in-map-name="updateDefaultPriceMap"/>
-            </if-not-empty>
+            <first-from-list entry="productDefaultPrice" list="productDefaultPriceList"/>
+            <set field="updateDefaultPriceMap.userLogin" from-field="systemUserLogin"/>
+            <set field="updateDefaultPriceMap.productId" from-field="productDefaultPrice.productId"/>
+            <set field="updateDefaultPriceMap.productPriceTypeId" from-field="productDefaultPrice.productPriceTypeId"/>
+            <set field="updateDefaultPriceMap.productPricePurposeId" from-field="productDefaultPrice.productPricePurposeId"/>
+            <set field="updateDefaultPriceMap.currencyUomId" from-field="productDefaultPrice.currencyUomId"/>
+            <set field="updateDefaultPriceMap.productStoreGroupId" from-field="productDefaultPrice.productStoreGroupId"/>
+            <set field="updateDefaultPriceMap.fromDate" from-field="productDefaultPrice.fromDate"/>
+            <set field="updateDefaultPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
+            <call-service service-name="updateProductPrice" in-map-name="updateDefaultPriceMap"/>
         </else>
         </if-empty>
         
@@ -1946,33 +1890,33 @@ under the License.
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>
         
-        <entity-and list="productListPriceList" entity-name="ProductPrice">
+        <entity-and list="productDefaultPriceList" entity-name="ProductPrice">
             <field-map field-name="productId" from-field="parameters.productId"/>
             <field-map field-name="productPriceTypeId" value="LIST_PRICE"/>
             <field-map field-name="productPricePurposeId" value="PURCHASE"/>
             <field-map field-name="currencyUomId" value="NZD"/>
             <field-map field-name="productStoreGroupId" value="_NA_"/>
         </entity-and>
-        <if-empty field="productListPriceList">
-            <set field="createListPriceMap.userLogin" from-field="systemUserLogin"/>
-            <set field="createListPriceMap.productId" from-field="parameters.productId"/>
-            <set field="createListPriceMap.currencyUomId" value="NZD"/>
-            <set field="createListPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
-            <set field="createListPriceMap.productStoreGroupId" value="_NA_"/>
-            <set field="createListPriceMap.productPricePurposeId" value="PURCHASE"/>
-            <set field="createListPriceMap.productPriceTypeId" value="LIST_PRICE"/>
-            <call-service service-name="createProductPrice" in-map-name="createListPriceMap"/>
+        <if-empty field="productDefaultPriceList">
+            <set field="createDefaultPriceMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createDefaultPriceMap.productId" from-field="parameters.productId"/>
+            <set field="createDefaultPriceMap.currencyUomId" value="NZD"/>
+            <set field="createDefaultPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
+            <set field="createDefaultPriceMap.productStoreGroupId" value="_NA_"/>
+            <set field="createDefaultPriceMap.productPricePurposeId" value="PURCHASE"/>
+            <set field="createDefaultPriceMap.productPriceTypeId" value="LIST_PRICE"/>
+            <call-service service-name="createProductPrice" in-map-name="createDefaultPriceMap"/>
         <else>
-            <first-from-list entry="productListPrice" list="productListPriceList"/>
-            <set field="updateListPriceMap.userLogin" from-field="systemUserLogin"/>
-            <set field="updateListPriceMap.productId" from-field="productListPrice.productId"/>
-            <set field="updateListPriceMap.productPriceTypeId" from-field="productListPrice.productPriceTypeId"/>
-            <set field="updateListPriceMap.productPricePurposeId" from-field="productListPrice.productPricePurposeId"/>
-            <set field="updateListPriceMap.currencyUomId" from-field="productListPrice.currencyUomId"/>
-            <set field="updateListPriceMap.productStoreGroupId" from-field="productListPrice.productStoreGroupId"/>
-            <set field="updateListPriceMap.fromDate" from-field="productListPrice.fromDate"/>
-            <set field="updateListPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
-            <call-service service-name="updateProductPrice" in-map-name="updateListPriceMap"/>
+            <first-from-list entry="productDefaultPrice" list="productDefaultPriceList"/>
+            <set field="updateDefaultPriceMap.userLogin" from-field="systemUserLogin"/>
+            <set field="updateDefaultPriceMap.productId" from-field="productDefaultPrice.productId"/>
+            <set field="updateDefaultPriceMap.productPriceTypeId" from-field="productDefaultPrice.productPriceTypeId"/>
+            <set field="updateDefaultPriceMap.productPricePurposeId" from-field="productDefaultPrice.productPricePurposeId"/>
+            <set field="updateDefaultPriceMap.currencyUomId" from-field="productDefaultPrice.currencyUomId"/>
+            <set field="updateDefaultPriceMap.productStoreGroupId" from-field="productDefaultPrice.productStoreGroupId"/>
+            <set field="updateDefaultPriceMap.fromDate" from-field="productDefaultPrice.fromDate"/>
+            <set field="updateDefaultPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
+            <call-service service-name="updateProductPrice" in-map-name="updateDefaultPriceMap"/>
         </else>
         </if-empty>
         
@@ -2163,33 +2107,33 @@ under the License.
             <clear-field field="addAdditionalViewForProductMap"/>
         </if-not-empty>
         
-        <entity-and list="productListPriceList" entity-name="ProductPrice">
+        <entity-and list="productDefaultPriceList" entity-name="ProductPrice">
             <field-map field-name="productId" from-field="parameters.productId"/>
             <field-map field-name="productPriceTypeId" value="LIST_PRICE"/>
             <field-map field-name="productPricePurposeId" value="PURCHASE"/>
             <field-map field-name="currencyUomId" value="NZD"/>
             <field-map field-name="productStoreGroupId" value="_NA_"/>
         </entity-and>
-        <if-empty field="productListPriceList">
-            <set field="createListPriceMap.userLogin" from-field="systemUserLogin"/>
-            <set field="createListPriceMap.productId" from-field="parameters.productId"/>
-            <set field="createListPriceMap.currencyUomId" value="NZD"/>
-            <set field="createListPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
-            <set field="createListPriceMap.productStoreGroupId" value="_NA_"/>
-            <set field="createListPriceMap.productPricePurposeId" value="PURCHASE"/>
-            <set field="createListPriceMap.productPriceTypeId" value="LIST_PRICE"/>
-            <call-service service-name="createProductPrice" in-map-name="createListPriceMap"/>
+        <if-empty field="productDefaultPriceList">
+            <set field="createDefaultPriceMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createDefaultPriceMap.productId" from-field="parameters.productId"/>
+            <set field="createDefaultPriceMap.currencyUomId" value="NZD"/>
+            <set field="createDefaultPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
+            <set field="createDefaultPriceMap.productStoreGroupId" value="_NA_"/>
+            <set field="createDefaultPriceMap.productPricePurposeId" value="PURCHASE"/>
+            <set field="createDefaultPriceMap.productPriceTypeId" value="LIST_PRICE"/>
+            <call-service service-name="createProductPrice" in-map-name="createDefaultPriceMap"/>
         <else>
-            <first-from-list entry="productListPrice" list="productListPriceList"/>
-            <set field="updateListPriceMap.userLogin" from-field="systemUserLogin"/>
-            <set field="updateListPriceMap.productId" from-field="productListPrice.productId"/>
-            <set field="updateListPriceMap.productPriceTypeId" from-field="productListPrice.productPriceTypeId"/>
-            <set field="updateListPriceMap.productPricePurposeId" from-field="productListPrice.productPricePurposeId"/>
-            <set field="updateListPriceMap.currencyUomId" from-field="productListPrice.currencyUomId"/>
-            <set field="updateListPriceMap.productStoreGroupId" from-field="productListPrice.productStoreGroupId"/>
-            <set field="updateListPriceMap.fromDate" from-field="productListPrice.fromDate"/>
-            <set field="updateListPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
-            <call-service service-name="updateProductPrice" in-map-name="updateListPriceMap"/>
+            <first-from-list entry="productDefaultPrice" list="productDefaultPriceList"/>
+            <set field="updateDefaultPriceMap.userLogin" from-field="systemUserLogin"/>
+            <set field="updateDefaultPriceMap.productId" from-field="productDefaultPrice.productId"/>
+            <set field="updateDefaultPriceMap.productPriceTypeId" from-field="productDefaultPrice.productPriceTypeId"/>
+            <set field="updateDefaultPriceMap.productPricePurposeId" from-field="productDefaultPrice.productPricePurposeId"/>
+            <set field="updateDefaultPriceMap.currencyUomId" from-field="productDefaultPrice.currencyUomId"/>
+            <set field="updateDefaultPriceMap.productStoreGroupId" from-field="productDefaultPrice.productStoreGroupId"/>
+            <set field="updateDefaultPriceMap.fromDate" from-field="productDefaultPrice.fromDate"/>
+            <set field="updateDefaultPriceMap.price" from-field="parameters.listingPrice" type="BigDecimal"/>
+            <call-service service-name="updateProductPrice" in-map-name="updateDefaultPriceMap"/>
         </else>
         </if-empty>
         
