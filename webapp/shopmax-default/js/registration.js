@@ -454,6 +454,7 @@ $(function(){
         $('#cvcNumber').val('');
         $('#expMonth_chzn').find('span').text('Month');
         $('#expYear_chzn').find('span').text('Year');
+        $('#paymentMethodOption').val('N');
         $('.pull-left').find('input.check').each(function(){
         	if($(this).val().length){
         		$(this).removeClass('check required');
@@ -641,6 +642,26 @@ $(function(){
         else{
             $('#'+this.id).val("");
         }
+    });
+    $('.upload-btn').click(function(){
+        document.getElementById('optionsRadios2').checked = false;
+        document.getElementById('optionsRadios3').checked = true;
+        $('#cardHolderName').removeClass('check required');
+        $('.cardNumber').removeClass('check required');
+        $('#expMonth_chzn').removeClass('check required');
+        $('#expMonth_chzn').css({'background-color':'#FFFFFF'});
+        $('#expYear_chzn').removeClass('check required');
+        $('#expYear_chzn').css({'background-color':'#FFFFFF'});
+        $('.chzn-single').css({'background-color':'#FFFFFF'});
+        $('#cvcNumber').removeClass('check required');
+        $('#yourBtn2').addClass('check');
+        $('#yourBtn2').removeClass('required');
+        $('#paymentMethodOption').val('N');
+        $('#expMonth_chzn').find('span').text('Month');
+        $('#expYear_chzn').find('span').text('Year');
+        $('#cardHolderName').val('');
+        $('.cardNumber').val('');
+        $('#cvcNumber').val('');
     });
 });
 function isNumberKey(evt) {
