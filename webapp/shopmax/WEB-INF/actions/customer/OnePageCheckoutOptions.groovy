@@ -22,19 +22,19 @@ import org.ofbiz.party.contact.ContactHelper;
 import org.ofbiz.entity.condition.EntityCondition;
 
 if (userLogin) {
-	 party = userLogin.getRelatedOne("Party", false);
-	 context.partyId = party.partyId
-	 if ("PERSON".equals(party.partyTypeId)) {
-		 person = delegator.findOne("Person", [partyId : party.partyId], false);
-		 context.firstName = person.firstName;
-		 context.lastName = person.lastName;
-	 } else {
-		 group = delegator.findOne("PartyGroup", [partyId : party.partyId], false);
-		 context.firstName = group.groupName;
-		 context.lastName = "";
-	 }
- 
-	 context.contactMechList = ContactHelper.getContactMech(party, "SHIPPING_LOCATION", "POSTAL_ADDRESS", false);
-	 
-	 context.billPaymentMethod = EntityUtil.filterByDate(delegator.findList("PaymentMethod", EntityCondition.makeCondition([partyId : party.partyId, paymentMethodTypeId : "CREDIT_CARD"]), null, ["fromDate"], null, false))
+    party = userLogin.getRelatedOne("Party", false);
+    context.partyId = party.partyId
+    if ("PERSON".equals(party.partyTypeId)) {
+        person = delegator.findOne("Person", [partyId : party.partyId], false);
+        context.firstName = person.firstName;
+        context.lastName = person.lastName;
+    } else {
+        group = delegator.findOne("PartyGroup", [partyId : party.partyId], false);
+        context.firstName = group.groupName;
+        context.lastName = "";
+    }
+    
+    context.contactMechList = ContactHelper.getContactMech(party, "SHIPPING_LOCATION", "POSTAL_ADDRESS", false);
+    
+    context.billPaymentMethod = EntityUtil.filterByDate(delegator.findList("PaymentMethod", EntityCondition.makeCondition([partyId : party.partyId, paymentMethodTypeId : "CREDIT_CARD"]), null, ["fromDate"], false))
 }

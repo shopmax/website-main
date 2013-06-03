@@ -38,7 +38,7 @@ if (userLogin) {
     roleTypeId = "BILL_TO_CUSTOMER"
     partyRole = delegator.findOne("PartyRole", [partyId : partyId, roleTypeId : "SELLER"], false);
     if (partyRole) {
-        partyRelationships = delegator.findByAnd("PartyRelationship", [partyIdTo : partyId, roleTypeIdFrom : "INTERNAL_ORGANIZATIO", roleTypeIdTo : "EMPLOYEE", partyRelationshipTypeId : "EMPLOYMENT"], null, true);
+        partyRelationships = delegator.findByAnd("PartyRelationship", [partyIdTo : partyId, roleTypeIdFrom : "INTERNAL_ORGANIZATIO", roleTypeIdTo : "EMPLOYEE", partyRelationshipTypeId : "EMPLOYMENT"], null, false);
         if (partyRelationships) {
             partyRelationship = EntityUtil.getFirst(partyRelationships);
             partyId = partyRelationship.partyIdFrom;
@@ -113,7 +113,7 @@ if (userLogin) {
     }
     if (returnHeaders) {
         returnHeaders.each { returnHeader ->
-            returnItems = delegator.findByAnd("ReturnItem", [returnId : returnHeader.returnId], null, false);
+            returnItems = delegator.findByAnd("ReturnItem", [returnId : returnHeader.returnId], false);
             if (returnItems) {
                 returnItems.each { returnItem ->
                     returnInfoMap = [:];

@@ -40,7 +40,7 @@ if (breadcrumbTitle) {
 def getParentCategory(categoryId) {
     if (categoryId != null) {
         categoryMap = [:];
-        productCategoryRollup = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAndCache("ProductCategoryRollup", [productCategoryId : categoryId], null)));
+        productCategoryRollup = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductCategoryRollup", [productCategoryId : categoryId], null, true)));
         if (productCategoryRollup) {
             if (productCategoryRollup.parentProductCategoryId != "SHOPMAX_BROWSE_ROOT") {
                 categoryList.addAll(delegator.findOne("ProductCategory", [productCategoryId : productCategoryRollup.productCategoryId], true));

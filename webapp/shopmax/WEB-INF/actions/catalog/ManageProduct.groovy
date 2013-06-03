@@ -130,7 +130,7 @@ if (limitView) {
 
 if (productMemberList.size() == 0) {
     if (productCategoryId) {
-        productCategoryMembers = EntityUtil.filterByDate(delegator.findByAndCache("ProductCategoryMember", [productCategoryId : productCategoryId], null));
+        productCategoryMembers = EntityUtil.filterByDate(delegator.findByAnd("ProductCategoryMember", [productCategoryId : productCategoryId], null, true));
         if (!productCategoryMembers) {
             CategoryWorker.getRelatedCategories(request, "subLevelList", productCategoryId, true, false);
             subLevelList = request.getAttribute("subLevelList");
@@ -211,11 +211,11 @@ productList = [];
 if (productCategoryMembers) {
     productCategoryMembers.each { productCategoryMember ->
         productMap = [:];
-        categoryMemberList = EntityUtil.filterByDate(delegator.findByAnd("ProductCategoryMember" , [productId : productCategoryMember.productId], null, false));
+        categoryMemberList = EntityUtil.filterByDate(delegator.findByAnd("ProductCategoryMember" , [productId : productCategoryMember.productId], null, true));
         categoryMemberNameList = [];
         for (categoryMember in categoryMemberList) {
-            categoryMemberName = delegator.findByAnd("ProductCategory", [productCategoryId : categoryMember.productCategoryId], null, false);
-            categoryMemberNameList.add(categoryMemberName[0].categoryName);
+            categoryMemberName = delegator.findOne("ProductCategory", [productCategoryId : categoryMember.productCategoryId], true);
+            categoryMemberNameList.add(categoryMemberName.categoryName);
         }
         productMap.categoryMember = categoryMemberNameList;
         
@@ -235,18 +235,18 @@ if (productCategoryMembers) {
             productMap.productPricePromo = productPricePromo;
         }
         
-        productContentAndInfoDefault= EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductContentAndInfo", ["productId": product.productId, productContentTypeId : "DEFAULT_IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"])));
+        productContentAndInfoDefault= EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductContentAndInfo", ["productId": product.productId, productContentTypeId : "DEFAULT_IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"], null, false)));
         if (UtilValidate.isNotEmpty(productContentAndInfoDefault)) {
             productMap.productImage = productContentAndInfoDefault.drObjectInfo;
-            contentAssocThumb = EntityUtil.getFirst(delegator.findByAnd("ContentAssocDataResourceViewTo", [contentIdStart : productContentAndInfoDefault.contentId, caContentAssocTypeId : "IMAGE_THUMBNAIL"]));
+            contentAssocThumb = EntityUtil.getFirst(delegator.findByAnd("ContentAssocDataResourceViewTo", [contentIdStart : productContentAndInfoDefault.contentId, caContentAssocTypeId : "IMAGE_THUMBNAIL"], null, false));
             if (contentAssocThumb) {
                 productMap.productImageThumb = contentAssocThumb.drObjectInfo;
             }
         } else {
-            productContentAndInfoImage = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductContentAndInfo", ["productId": product.productId, productContentTypeId : "IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"], ["sequenceNum"])));
+            productContentAndInfoImage = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductContentAndInfo", ["productId": product.productId, productContentTypeId : "IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"], ["sequenceNum"], false)));
             if (productContentAndInfoImage) {
                 productMap.productImage = productContentAndInfoImage.drObjectInfo;
-                contentAssocThumb = EntityUtil.getFirst(delegator.findByAnd("ContentAssocDataResourceViewTo", [contentIdStart : productContentAndInfoImage.contentId, caContentAssocTypeId : "IMAGE_THUMBNAIL"]));
+                contentAssocThumb = EntityUtil.getFirst(delegator.findByAnd("ContentAssocDataResourceViewTo", [contentIdStart : productContentAndInfoImage.contentId, caContentAssocTypeId : "IMAGE_THUMBNAIL"], null, false));
                 if (contentAssocThumb) {
                     productMap.productImageThumb = contentAssocThumb.drObjectInfo;
                 }
@@ -256,11 +256,11 @@ if (productCategoryMembers) {
         productImageList = [];
         imageSequenceList = [];
         imageSeqEmpty = [1,2,3,4];
-        productContentAndInfoImageManamentList = delegator.findByAnd("ProductContentAndInfo", ["productId": product.productId, productContentTypeId : "IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"], ["sequenceNum"]);
+        productContentAndInfoImageManamentList = delegator.findByAnd("ProductContentAndInfo", ["productId": product.productId, productContentTypeId : "IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"], ["sequenceNum"], false);
         if (productContentAndInfoImageManamentList) {
             productContentAndInfoImageManamentList.each { productContentAndInfoImageManament ->
                 productImageMap = [:];
-                contentAssocThumb = EntityUtil.getFirst(delegator.findByAnd("ContentAssocDataResourceViewTo", [contentIdStart : productContentAndInfoImageManament.contentId, caContentAssocTypeId : "IMAGE_THUMBNAIL"]));
+                contentAssocThumb = EntityUtil.getFirst(delegator.findByAnd("ContentAssocDataResourceViewTo", [contentIdStart : productContentAndInfoImageManament.contentId, caContentAssocTypeId : "IMAGE_THUMBNAIL"], null, false));
                 if (contentAssocThumb) {
                     productImageMap.productImage = productContentAndInfoImageManament.drObjectInfo;
                     productImageMap.productImageThumb = contentAssocThumb.drObjectInfo;
@@ -310,7 +310,7 @@ def getProductMember(categories) {
             }
         }
         for (category in categoryList) {
-            productCategoryMembers.addAll(EntityUtil.filterByDate(delegator.findByAndCache("ProductCategoryMember", [productCategoryId : category.productCategoryId], null)));
+            productCategoryMembers.addAll(EntityUtil.filterByDate(delegator.findByAnd("ProductCategoryMember", [productCategoryId : category.productCategoryId], null, true)));
             subCategories = CategoryWorker.getRelatedCategoriesRet(request, "subLevelList", category.productCategoryId, true, false, true);
             if (subCategories) {
                 getProductMember(subCategories);
@@ -332,11 +332,11 @@ def getProductDetail(productIds) {
             productMap.description = product.description;
             productMap.isVirtual = product.isVirtual;
             
-            listPrice = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : productId, productPriceTypeId : "LIST_PRICE"])));
+            listPrice = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : productId, productPriceTypeId : "LIST_PRICE"], null, false)));
             if (listPrice) {
                 productMap.listPrice = listPrice.price;
             }
-            promoPrice = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : productId, productPriceTypeId : "SPECIAL_PROMO_PRICE"])));
+            promoPrice = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : productId, productPriceTypeId : "SPECIAL_PROMO_PRICE"], null, false)));
             if (promoPrice) {
                 productMap.promoPrice = promoPrice.price;
             }
@@ -372,7 +372,7 @@ def <T extends Object> List<T> getUniques(List<T> list) {
 def getParentCategory(categoryId) {
     if (categoryId != null) {
         categoryMap = [:];
-        productCategoryRollup = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAndCache("ProductCategoryRollup", [productCategoryId : categoryId], null)));
+        productCategoryRollup = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductCategoryRollup", [productCategoryId : categoryId], null, true)));
         if (productCategoryRollup) {
             if (productCategoryRollup.parentProductCategoryId != "SHOPMAX_BROWSE_ROOT") {
                 categoryList.addAll(delegator.findOne("ProductCategory", [productCategoryId : productCategoryRollup.productCategoryId], true));

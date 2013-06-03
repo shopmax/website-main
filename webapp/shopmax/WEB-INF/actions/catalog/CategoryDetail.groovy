@@ -89,7 +89,7 @@ if (productCategoryId) {
     }
     
     if (productMemberList.size() == 0) {
-        productCategoryMembers = EntityUtil.filterByDate(delegator.findByAndCache("ProductCategoryMember", [productCategoryId : productCategoryId], null));
+        productCategoryMembers = EntityUtil.filterByDate(delegator.findByAnd("ProductCategoryMember", [productCategoryId : productCategoryId], null, true));
         if (!productCategoryMembers) {
             CategoryWorker.getRelatedCategories(request, "subLevelList", productCategoryId, true, false);
             subLevelList = request.getAttribute("subLevelList");
@@ -165,7 +165,7 @@ def getProductMember(categories) {
             }
         }
         for (category in categoryList) {
-            productCategoryMembers.addAll(EntityUtil.filterByDate(delegator.findByAndCache("ProductCategoryMember", [productCategoryId : category.productCategoryId], null)));
+            productCategoryMembers.addAll(EntityUtil.filterByDate(delegator.findByAnd("ProductCategoryMember", [productCategoryId : category.productCategoryId], null, true)));
             subCategories = CategoryWorker.getRelatedCategoriesRet(request, "subLevelList", category.productCategoryId, true, false, true);
             if (subCategories) {
                 getProductMember(subCategories);
@@ -187,11 +187,11 @@ def getProductDetail(productIds) {
             productMap.description = product.description;
             productMap.isVirtual = product.isVirtual;
             
-            listPrice = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : productId, productPriceTypeId : "LIST_PRICE"])));
+            listPrice = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : productId, productPriceTypeId : "LIST_PRICE"], null, false)));
             if (listPrice) {
                 productMap.listPrice = listPrice.price;
             }
-            promoPrice = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : productId, productPriceTypeId : "SPECIAL_PROMO_PRICE"])));
+            promoPrice = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : productId, productPriceTypeId : "SPECIAL_PROMO_PRICE"], null, false)));
             if (promoPrice) {
                 productMap.promoPrice = promoPrice.price;
             }

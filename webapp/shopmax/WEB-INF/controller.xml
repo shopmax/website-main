@@ -135,25 +135,25 @@ under the License.
     </request-map>
     
     <request-map uri="shopcategorylistview">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="shopcategorylistview"/>
         <response name="error" type="view" value="shopcategorylistview"/>
     </request-map>
     
     <request-map uri="shopcategorylistviewdetail">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="shopcategorylistviewdetail"/>
         <response name="error" type="view" value="shopcategorylistviewdetail"/>
     </request-map>
     
     <request-map uri="shopcategorygridview">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="shopcategorygridview"/>
         <response name="error" type="view" value="shopcategorygridview"/>
     </request-map>
     
     <request-map uri="shopcategorygridviewdetail">
-        <security https="true" auth="false"/>
+        <security https="false" auth="false"/>
         <response name="success" type="view" value="shopcategorygridviewdetail"/>
         <response name="error" type="view" value="shopcategorygridviewdetail"/>
     </request-map>
@@ -423,13 +423,13 @@ under the License.
     </request-map>
     
     <request-map uri="profile">
-        <security https="true" auth="false"/>
+        <security https="true" auth="true"/>
         <response name="success" type="view" value="profile"/>
         <response name="error" type="view" value="profile"/>
     </request-map>
     
     <request-map uri="account">
-        <security https="true" auth="false"/>
+        <security https="true" auth="true"/>
         <response name="success" type="view" value="account"/>
         <response name="error" type="view" value="account"/>
     </request-map>
@@ -450,19 +450,19 @@ under the License.
     
     <!-- Promotion Requests -->
     <request-map uri="createpromotion">
-        <security https="true" auth="false"/>
+        <security https="true" auth="true"/>
         <response name="success" type="view" value="createpromotion"/>
         <response name="error" type="view" value="createpromotion"/>
     </request-map>
     
     <request-map uri="onlinemarketing">
-        <security https="true" auth="false"/>
+        <security https="true" auth="true"/>
         <response name="success" type="view" value="onlinemarketing"/>
         <response name="error" type="view" value="onlinemarketing"/>
     </request-map>
     
     <request-map uri="createcampaign">
-        <security https="true" auth="false"/>
+        <security https="true" auth="true"/>
         <response name="success" type="view" value="createcampaign"/>
         <response name="error" type="view" value="createcampaign"/>
     </request-map>

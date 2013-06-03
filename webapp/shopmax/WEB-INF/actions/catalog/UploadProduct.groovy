@@ -46,12 +46,12 @@ if(parameters.productId){
         context.description = product.description;
         
         categoryMemberNameList = [];
-        categoryMemberList = EntityUtil.filterByDate(delegator.findByAnd("ProductCategoryMember" , [productId : product.productId], null, false));
+        categoryMemberList = EntityUtil.filterByDate(delegator.findByAnd("ProductCategoryMember" , [productId : product.productId], null, true));
         for (categoryMember in categoryMemberList) {
             categoryMemberMap = [:];
-            categoryMemberName = delegator.findByAnd("ProductCategory", [productCategoryId : categoryMember.productCategoryId], null, false);
+            categoryMemberName = delegator.findOne("ProductCategory", [productCategoryId : categoryMember.productCategoryId], true);
             categoryMemberMap.productCategoryId = categoryMember.productCategoryId;
-            categoryMemberMap.categoryName = categoryMemberName[0].categoryName;
+            categoryMemberMap.categoryName = categoryMemberName.categoryName;
             categoryMemberNameList.add(categoryMemberMap);
         }
         context.categoryMemberNameList = categoryMemberNameList;
@@ -70,11 +70,11 @@ if(parameters.productId){
         productImageList = [];
         imageSequenceList = [];
         imageSeqEmpty = [1,2,3,4];
-        productImageAndContentLists = delegator.findByAnd("ProductContentAndInfo", ["productId": product.productId, productContentTypeId : "IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"], ["sequenceNum"]);
+        productImageAndContentLists = delegator.findByAnd("ProductContentAndInfo", ["productId": product.productId, productContentTypeId : "IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"], ["sequenceNum"], false);
         if (productImageAndContentLists) {
             productImageAndContentLists.each { productImageAndContentLists ->
                 productImageMap = [:];
-                contentAssocThumb = EntityUtil.getFirst(delegator.findByAnd("ContentAssocDataResourceViewTo", [contentIdStart : productImageAndContentLists.contentId, caContentAssocTypeId : "IMAGE_THUMBNAIL"]));
+                contentAssocThumb = EntityUtil.getFirst(delegator.findByAnd("ContentAssocDataResourceViewTo", [contentIdStart : productImageAndContentLists.contentId, caContentAssocTypeId : "IMAGE_THUMBNAIL"], null, false));
                 if (contentAssocThumb) {
                     productImageMap.productImage = productImageAndContentLists.drObjectInfo;
                     productImageMap.productImageThumb = contentAssocThumb.drObjectInfo;

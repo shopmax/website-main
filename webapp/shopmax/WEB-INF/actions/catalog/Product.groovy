@@ -21,12 +21,12 @@ import org.ofbiz.base.util.*;
 import org.ofbiz.entity.*;
 import org.ofbiz.entity.util.*;
 
-shopProducts = delegator.findByAnd("SupplierProduct", [productId : productId], null, true);
+shopProducts = delegator.findByAnd("SupplierProduct", [productId : productId], false);
 if (shopProducts) {
     shopProduct = EntityUtil.getFirst(shopProducts);
     shopPartId = shopProduct.partyId;
 } else {
-    partyRoles = delegator.findByAnd("PartyRole", [roleTypeId : "INTERNAL_ORGANIZATIO"], null, true);
+    partyRoles = delegator.findByAnd("PartyRole", [roleTypeId : "INTERNAL_ORGANIZATIO"], false);
     if (partyRoles) {
         partyRole = EntityUtil.getFirst(partyRoles);
         shopPartId = partyRole.partyId;
@@ -36,5 +36,5 @@ if (shopPartId) {
     getPartyNameForDateInMap = ["partyId": shopPartId, "userLogin": delegator.findOne("UserLogin", ["userLoginId": "system"], false)];
     getPartyNameForDate = dispatcher.runSync("getPartyNameForDate", getPartyNameForDateInMap);
     context.shopName = getPartyNameForDate.fullName;
-	context.breadcrumbTitle = getPartyNameForDate.fullName;
+    context.breadcrumbTitle = getPartyNameForDate.fullName;
 }
