@@ -1,6 +1,18 @@
+Index: applications/party/widget/partymgr/PartyMenus.xml
+===================================================================
+--- applications/party/widget/partymgr/PartyMenus.xml	(revision 1487148)
++++ applications/party/widget/partymgr/PartyMenus.xml	(working copy)
+@@ -35,6 +35,7 @@
+         </menu-item>
+         <menu-item name="addrmap" title="${uiLabelMap.PageTitleAddressMatchMap}"><link target="addressMatchMap"/></menu-item>
+         <menu-item name="partyinv" title="${uiLabelMap.PartyInvitation}"><link target="partyInvitation"/></menu-item>
++        <menu-item name="approvalseller" title="Approval Seller"><link target="approvalseller"/></menu-item>
+     </menu>
+ 
+     <menu name="ProfileTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml"
 Index: applications/party/webapp/partymgr/WEB-INF/controller.xml
 ===================================================================
---- applications/party/webapp/partymgr/WEB-INF/controller.xml	(revision 1470483)
+--- applications/party/webapp/partymgr/WEB-INF/controller.xml	(revision 1487148)
 +++ applications/party/webapp/partymgr/WEB-INF/controller.xml	(working copy)
 @@ -1246,6 +1246,17 @@
          <security https="true" auth="true"/>
@@ -28,56 +40,9 @@ Index: applications/party/webapp/partymgr/WEB-INF/controller.xml
 +
      <!-- end of view mappings -->
  </site-conf>
-Index: applications/party/widget/partymgr/PartyMenus.xml
-===================================================================
---- applications/party/widget/partymgr/PartyMenus.xml	(revision 1470483)
-+++ applications/party/widget/partymgr/PartyMenus.xml	(working copy)
-@@ -35,6 +35,7 @@
-         </menu-item>
-         <menu-item name="addrmap" title="${uiLabelMap.PageTitleAddressMatchMap}"><link target="addressMatchMap"/></menu-item>
-         <menu-item name="partyinv" title="${uiLabelMap.PartyInvitation}"><link target="partyInvitation"/></menu-item>
-+        <menu-item name="approvalseller" title="Approval Seller"><link target="approvalseller"/></menu-item>
-     </menu>
- 
-     <menu name="ProfileTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml"
-Index: applications/product/config/catalog.properties
-===================================================================
---- applications/product/config/catalog.properties	(revision 1470483)
-+++ applications/product/config/catalog.properties	(working copy)
-@@ -36,8 +36,8 @@
- reactivate.product.from.receipt=Y
- 
- # Image upload path on the image management
--image.management.path=${sys:getProperty('ofbiz.home')}/framework/images/webapp/images/products/management
--image.management.url=/images/products/management
-+image.management.path=${sys:getProperty('ofbiz.home')}/hot-deploy/shopmax/webapp/shopmax-product/images/products
-+image.management.url=/shopmax-product/images/products
- image.management.nameofthumbnail=-100
- image.management.autoApproveImage=Y
- image.management.multipleApproval=N
-Index: applications/product/src/org/ofbiz/product/imagemanagement/ImageManagementServices.java
-===================================================================
---- applications/product/src/org/ofbiz/product/imagemanagement/ImageManagementServices.java	(revision 1470483)
-+++ applications/product/src/org/ofbiz/product/imagemanagement/ImageManagementServices.java	(working copy)
-@@ -93,6 +93,7 @@
-         String uploadFileName = (String) context.get("_uploadedFile_fileName");
-         String imageResize = (String) context.get("imageResize");
-         Locale locale = (Locale) context.get("locale");
-+        Long sequenceNum = (Long) context.get("sequenceNum");
-         
-         if (UtilValidate.isNotEmpty(uploadFileName)) {
-             String imageFilenameFormat = UtilProperties.getPropertyValue("catalog", "image.filename.format");
-@@ -258,6 +259,7 @@
-             productContentCtx.put("userLogin", userLogin);
-             productContentCtx.put("contentId", contentId);
-             productContentCtx.put("statusId", "IM_PENDING");
-+            productContentCtx.put("sequenceNum", sequenceNum);
-             try {
-                 dispatcher.runSync("createProductContent", productContentCtx);
-             } catch (GenericServiceException e) {
 Index: applications/product/servicedef/services.xml
 ===================================================================
---- applications/product/servicedef/services.xml	(revision 1470483)
+--- applications/product/servicedef/services.xml	(revision 1487148)
 +++ applications/product/servicedef/services.xml	(working copy)
 @@ -840,9 +840,9 @@
      <service name="safeAddProductCategoryToCategory" engine="simple"
@@ -105,7 +70,7 @@ Index: applications/product/servicedef/services.xml
      </service>
 Index: applications/product/script/org/ofbiz/product/category/CategoryServices.xml
 ===================================================================
---- applications/product/script/org/ofbiz/product/category/CategoryServices.xml	(revision 1470483)
+--- applications/product/script/org/ofbiz/product/category/CategoryServices.xml	(revision 1487148)
 +++ applications/product/script/org/ofbiz/product/category/CategoryServices.xml	(working copy)
 @@ -277,6 +277,9 @@
          </if-empty>
@@ -128,7 +93,7 @@ Index: applications/product/script/org/ofbiz/product/category/CategoryServices.x
          <set value="removeProductCategoryFromCategory" field="callingMethodName"/>
 Index: applications/product/script/org/ofbiz/product/product/ProductServices.xml
 ===================================================================
---- applications/product/script/org/ofbiz/product/product/ProductServices.xml	(revision 1470483)
+--- applications/product/script/org/ofbiz/product/product/ProductServices.xml	(revision 1487148)
 +++ applications/product/script/org/ofbiz/product/product/ProductServices.xml	(working copy)
 @@ -33,6 +33,13 @@
          <set from-field="parameters.productId" field="newEntity.productId"/>
@@ -144,3 +109,38 @@ Index: applications/product/script/org/ofbiz/product/product/ProductServices.xml
          <else>
              <check-id field="newEntity.productId"/>
              <check-errors />
+Index: applications/product/config/catalog.properties
+===================================================================
+--- applications/product/config/catalog.properties	(revision 1487148)
++++ applications/product/config/catalog.properties	(working copy)
+@@ -36,8 +36,8 @@
+ reactivate.product.from.receipt=Y
+ 
+ # Image upload path on the image management
+-image.management.path=${sys:getProperty('ofbiz.home')}/framework/images/webapp/images/products/management
+-image.management.url=/images/products/management
++image.management.path=${sys:getProperty('ofbiz.home')}/hot-deploy/shopmax/webapp/shopmax-product/images/products
++image.management.url=/shopmax-product/images/products
+ image.management.nameofthumbnail=-100
+ image.management.autoApproveImage=Y
+ image.management.multipleApproval=N
+Index: applications/product/src/org/ofbiz/product/imagemanagement/ImageManagementServices.java
+===================================================================
+--- applications/product/src/org/ofbiz/product/imagemanagement/ImageManagementServices.java	(revision 1487148)
++++ applications/product/src/org/ofbiz/product/imagemanagement/ImageManagementServices.java	(working copy)
+@@ -93,6 +93,7 @@
+         String uploadFileName = (String) context.get("_uploadedFile_fileName");
+         String imageResize = (String) context.get("imageResize");
+         Locale locale = (Locale) context.get("locale");
++        Long sequenceNum = (Long) context.get("sequenceNum");
+         
+         if (UtilValidate.isNotEmpty(uploadFileName)) {
+             String imageFilenameFormat = UtilProperties.getPropertyValue("catalog", "image.filename.format");
+@@ -258,6 +259,7 @@
+             productContentCtx.put("userLogin", userLogin);
+             productContentCtx.put("contentId", contentId);
+             productContentCtx.put("statusId", "IM_PENDING");
++            productContentCtx.put("sequenceNum", sequenceNum);
+             try {
+                 dispatcher.runSync("createProductContent", productContentCtx);
+             } catch (GenericServiceException e) {
