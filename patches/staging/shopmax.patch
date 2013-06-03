@@ -12,19 +12,21 @@ Index: hot-deploy/shopmax/ofbiz-component.xml
      <service-resource type="model" loader="main" location="servicedef/services.xml"/>
 Index: hot-deploy/shopmax/widget/CommonScreens.xml
 ===================================================================
---- hot-deploy/shopmax/widget/CommonScreens.xml	(revision 300)
+Index: hot-deploy/shopmax/widget/CommonScreens.xml
+===================================================================
+--- hot-deploy/shopmax/widget/CommonScreens.xml	(revision 327)
 +++ hot-deploy/shopmax/widget/CommonScreens.xml	(working copy)
 @@ -59,6 +59,7 @@
                      <field-map field-name="themeResources" from-field="layoutSettings" />
                  </service>
                  <set field="layoutSettings" from-field="themeResources" default-value="${layoutSettings}" global="true" />
 +                <set field="isDemo" value="${groovy:org.ofbiz.base.component.ComponentConfig.componentExists(&quot;ofbizdemo&quot;)}" type="Boolean"/>
+                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/shopmax/Shopmax.groovy"/>
                  <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/cart/ShowCart.groovy"/>
                  <set field="userLoginPartyId" from-field="userLogin.partyId"/>
-             </actions>
 Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
 ===================================================================
---- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 304)
+--- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 327)
 +++ hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(working copy)
 @@ -23,7 +23,7 @@
  
@@ -80,7 +82,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              <entity-one entity-name="UserLogin" value-field="sysUserLogin">
                  <field-map field-name="userLoginId" value="system"/>
              </entity-one>
-@@ -446,8 +446,8 @@
+@@ -444,8 +444,8 @@
                  <set field="parameters.domainName" value="${parameters.ownDomainName}"/>
                  <set field="parameters.domainNameBackend" value="backend.${parameters.ownDomainName}"/>
              <else>
@@ -91,7 +93,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              </else>
              </if-compare>
              
-@@ -590,7 +590,7 @@
+@@ -594,7 +594,7 @@
              <make-value value-field="tenantDomainName" entity-name="TenantDomainName"/>
              <set field="tenantDomainName.tenantId" from-field="tenantId"/>
              <set field="tenantDomainName.domainName" from-field="parameters.domainName"/>
@@ -100,7 +102,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              <create-value value-field="tenantDomainName"/>
              
              <!-- Create Tenant Backend Domain Name -->
-@@ -750,7 +750,7 @@
+@@ -768,7 +768,7 @@
          <field-to-result field="success" result-name="uploadsuccess"/>
          
          <set field="parameters.partyId" from-field="userLogin.partyId"/>
