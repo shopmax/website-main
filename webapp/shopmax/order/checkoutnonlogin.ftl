@@ -131,8 +131,9 @@ under the License.
                                 <input type="text" class="input-xxxlarge" name="shipToAddress2" placeholder="Additional Address Info (optional)" />
                                 <select name="shipToCity" class="drop-select chosen combo" data-search-bar="true">
                                     <option value="" selected="selected">Zip Return City, State</option>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
+                                    <option value="Auckland">Auckland</option>
+                                    <option value="Christ Church">Christ Church</option>
+                                    <option value="Wellington">Wellington</option>
                                 </select>
                             </div>
                         </td>
@@ -188,8 +189,9 @@ under the License.
                                 <input type="text" class="input-xxxlarge" placeholder="Additional Address Info (optional)" />
                                 <select name="billToCity" class="drop-select chosen combo" data-search-bar="true">
                                     <option value="" selected="selected">Zip Return City, State</option>
-                                    <option value="1">Option 1</option>
-                                    <option value="2">Option 2</option>
+                                    <option value="Auckland">Auckland</option>
+                                    <option value="Christ Church">Christ Church</option>
+                                    <option value="Wellington">Wellington</option>
                                 </select>
                             </div>
                         </td>

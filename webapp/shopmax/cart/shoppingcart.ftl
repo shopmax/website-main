@@ -127,7 +127,17 @@ under the License.
                             <tr class="row-grey">
                                 <td colspan="5" class="col1">
                                     <h5 class="heading">Delivery Options</h5>
-                                    <select name="shipmentCarrierPartyId:${partyId}_o_${supplierIndex}" class="drop-select chosen combo" data-search-bar="true">
+                                    <select name="scDelivery" class="drop-select chosen combo" data-search-bar="true">
+                                        <option value="" selected="selected">Ship</option>
+                                        <option value="PICKUP">Pick up in store</option>
+                                        <option value="DELIVERY">Delivery to me</option>
+                                    </select>
+                                    <select name="scBranchStore" class="drop-select chosen combo" data-search-bar="true">
+                                        <option value="" selected="selected">Select Branch Store</option>
+                                        <option value="1">Branch 1</option>
+                                        <option value="2">Branch 2</option>
+                                    </select>
+                                    <#-- <select name="shipmentCarrierPartyId:${partyId}_o_${supplierIndex}" class="drop-select chosen combo" data-search-bar="true">
                                         <option value="" selected="selected">Select Ship</option>
                                         <#list shipmentCarriers as shipmentCarrier>
                                             <option value="${shipmentCarrier.partyId}">${(shipmentCarrier.firstName)!} ${(shipmentCarrier.lastName)!} ${(shipmentCarrier.groupName)!}</option>
@@ -138,7 +148,7 @@ under the License.
                                         <#list shipmentMethodTypes as shipmentMethodType>
                                             <option value="${shipmentMethodType.shipmentMethodTypeId}">${shipmentMethodType.description}</option>
                                         </#list>
-                                    </select>
+                                    </select> -->
                                 </td>
                             </tr>
                             <tr class="row-grey">
