@@ -147,3 +147,14 @@ Index: hot-deploy/shopmax/webapp/shopmax-default/css/main.css
  #content-messages{
  	margin: 50px 0 -50px;
  }
+Index: hot-deploy/shopmax/config/shopmax.properties
+===================================================================
+--- hot-deploy/shopmax/config/shopmax.properties	(revision 333)
++++ hot-deploy/shopmax/config/shopmax.properties	(working copy)
+@@ -19,4 +19,4 @@
+ 
+ shopmax.product.category.cache=N
+ shopmax.seller.sms=N
+-shopmax.central.domain=http://shopmax.localhost:8080/control/
++shopmax.central.domain=http://shopmax.ofbizdemo.com/control/
+ 
