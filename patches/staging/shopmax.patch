@@ -157,4 +157,3 @@ Index: hot-deploy/shopmax/config/shopmax.properties
  shopmax.seller.sms=N
 -shopmax.central.domain=http://shopmax.localhost:8080/control/
 +shopmax.central.domain=http://shopmax.ofbizdemo.com/control/
- 
