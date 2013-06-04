@@ -32,7 +32,7 @@ under the License.
                             <td valign="top"  height="26" align="left"></td>
                         </tr>
                         <tr>
-                            <td valign="top"  align="left"  style="padding:0 0 0 18px"><a href="#"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/logo-img.png" width="202" height="57" alt="logo" border="0" align="left"></a></td>
+                            <td valign="top"  align="left"  style="padding:0 0 0 18px"><a href="http://shopmax.co.nz"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/logo-img.png" width="202" height="57" alt="logo" border="0" align="left"></a></td>
                         </tr>
                         <tr>
                             <td valign="top"  align="left" ><p style="padding:0;margin:0 0 0 38px;font-family:Georgia, 'Times New Roman', Times, serif;font-style:italic;font-size:19px;color:#469beb">Buy from pros, not Joes</p></td>
@@ -96,7 +96,7 @@ under the License.
                                                     <td valign="top"  height="26" align="left"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td valign="top"  align="left" style="padding:0 0 0 32px"><a href="<@ofbizUrl>main</@ofbizUrl>"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/sharp-btn-img.png" width="138" height="31" alt="start shopping" border="0" align="left"></a></td>
+                                                    <td valign="top"  align="left" style="padding:0 0 0 32px"><a href="http://shopmax.co.nz"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/sharp-btn-img.png" width="138" height="31" alt="start shopping" border="0" align="left"></a></td>
                                                 </tr>
                                                 <tr>
                                                     <td valign="top"  height="28" align="left"></td>

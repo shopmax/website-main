@@ -33,7 +33,7 @@ under the License.
                             <td valign="top"  height="26" align="left">&nbsp;</td>
                         </tr>
                         <tr>
-                            <td valign="top"  align="left"  height="48" style="padding:0 0 0 18px"><a href="#"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/logo-img.png" width="202" height="57" alt="img" border="0" align="left"></a></td>
+                            <td valign="top"  align="left"  height="48" style="padding:0 0 0 18px"><a href="http://shopmax.co.nz"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/logo-img.png" width="202" height="57" alt="img" border="0" align="left"></a></td>
                         </tr>
                         <tr>
                             <td valign="top"  align="left" height="0" style="padding:0 0 0 18px"><p style="margin:0;padding:0;font-family:Georgia, 'Times New Roman', Times, serif;font-style:italic;font-size:19px;color:#469beb">Buy from pros, not Joes</p></td>

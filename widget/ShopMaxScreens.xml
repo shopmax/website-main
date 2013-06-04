@@ -212,7 +212,7 @@ under the License.
                 <set field="headerItem" value="approvalseller"/>
                 <entity-and entity-name="PartyRoleDetailAndPartyDetail" list="sellerList">
                     <field-map field-name="isUnread" value="Y"/>
-                    <field-map field-name="roleTypeId" value="SELLER"/>
+                    <!-- <field-map field-name="roleTypeId" value="SELLER"/> -->
                 </entity-and>
             </actions>
             <widgets>

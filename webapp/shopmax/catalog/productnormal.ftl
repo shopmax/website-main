@@ -96,7 +96,9 @@ under the License.
                 </div>
             </#if>
             
-            Quantity: <strong>${availableInventory?default(0)} in stock</strong> <br /> <br />
+            <#assign stock = delegator.findOne("ProductAttribute", {"productId" : product.productId, "attrName" : "STOCK"}, true)>
+            Quantity: <strong>${stock.attrValue?if_exists} in stock</strong> <br /> <br />
+            <#-- Quantity: <strong>${availableInventory?default(0)} in stock</strong> <br /> <br /> -->
             
             <div id="addItemForm">
                 <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" id="${product.productId}" name="addform"  style="margin: 0;">
