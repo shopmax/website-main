@@ -493,14 +493,18 @@ under the License.
             </if-not-empty>
             
             <!-- Create bank account -->
-            <set field="createEftAccountMap.userLogin" from-field="systemUserLogin"/>
-            <set field="createEftAccountMap.partyId" from-field="tempMap.partyId"/>
-            <set field="createEftAccountMap.bankName" from-field="parameters.bankName"/>
-            <set field="createEftAccountMap.nameOnAccount" from-field="parameters.nameOnAccount"/>
-            <set field="createEftAccountMap.accountNumber" from-field="parameters.accountNumber"/>
-            <set field="createEftAccountMap.routingNumber" from-field="parameters.routingNumber"/>
-            <set field="createEftAccountMap.accountType" from-field="parameters.accountType"/>
-            <call-service service-name="createEftAccount" in-map-name="createEftAccountMap"/>
+            <if-not-empty field="parameters.nameOnAccount">
+                <if-not-empty field="parameters.accountNumber">
+                    <set field="createEftAccountMap.userLogin" from-field="systemUserLogin"/>
+                    <set field="createEftAccountMap.partyId" from-field="tempMap.partyId"/>
+                    <set field="createEftAccountMap.bankName" from-field="parameters.bankName"/>
+                    <set field="createEftAccountMap.nameOnAccount" from-field="parameters.nameOnAccount"/>
+                    <set field="createEftAccountMap.accountNumber" from-field="parameters.accountNumber"/>
+                    <set field="createEftAccountMap.routingNumber" from-field="parameters.routingNumber"/>
+                    <set field="createEftAccountMap.accountType" from-field="parameters.accountType"/>
+                    <call-service service-name="createEftAccount" in-map-name="createEftAccountMap"/>
+                </if-not-empty>
+            </if-not-empty>
             
             <set field="branchNameList" value="${groovy: if(parameters.physicalBranchName){physicalBranchName = parameters.physicalBranchName.split(&quot;/&quot;); return physicalBranchName.toList();}}" type="List"/>
             <set field="locationList" value="${groovy: if(parameters.physicalLocation){physicalLocation = parameters.physicalLocation.split(&quot;/&quot;); return physicalLocation.toList();}}" type="List"/>

@@ -150,6 +150,10 @@ $(function(){
                         $('#businessName').addClass('required');
                         valid = false;
                     }
+                    if(!$('#tradingName').val().length){
+                        $('#tradingName').addClass('required');
+                        valid = false;
+                    }
                     if(!$('#phoneNumber_text_0').val().length){
                         $('#phoneNumber_text_0').addClass('required');
                         valid = false;
@@ -162,28 +166,33 @@ $(function(){
                     }
                     else if($('#optionsRadiosNo').is(':checked')){
                         if(!$('#subDomain').val().length){
-                        	$('#subDomain').addClass('required');
+                            $('#subDomain').addClass('required');
                             valid = false;
                         }
                     }
-                    if(!$('#inputAccountName').val().length){
-                        $('#inputAccountName').addClass('required');
-                        valid = false;
-                    }
-                    if(!$('#accountNumber-0').val().length){
-                        $('#accountNumber-0').addClass('required');
-                        valid = false;
-                    }
-                    if(!$('#accountNumber-1').val().length){
-                        $('#accountNumber-1').addClass('required');
-                        valid = false;
-                    }
-                    if(!$('#accountNumber-2').val().length){
-                        $('#accountNumber-2').addClass('required');
-                        valid = false;
-                    }
-                    if(!$('#accountNumber-3').val().length){
-                        $('#accountNumber-3').addClass('required');
+//                    if(!$('#inputAccountName').val().length){
+//                        $('#inputAccountName').addClass('required');
+//                        valid = false;
+//                    }
+//                    if(!$('#accountNumber-0').val().length){
+//                        $('#accountNumber-0').addClass('required');
+//                        valid = false;
+//                    }
+//                    if(!$('#accountNumber-1').val().length){
+//                        $('#accountNumber-1').addClass('required');
+//                        valid = false;
+//                    }
+//                    if(!$('#accountNumber-2').val().length){
+//                        $('#accountNumber-2').addClass('required');
+//                        valid = false;
+//                    }
+//                    if(!$('#accountNumber-3').val().length){
+//                        $('#accountNumber-3').addClass('required');
+//                        valid = false;
+//                    }
+                    if(!$('#yourBtn').val().length){
+                        $('#yourBtn').addClass('required');
+                        $('#yourBtn').css({'background-color':'#FEF2EE'});
                         valid = false;
                     }
                     for(var i=0;i<physicalNumber;i++){
@@ -241,7 +250,6 @@ $(function(){
                             $('#yourBtn2').addClass('required');
                             valid = false;
                         }
-                        
                     }
                 }
                 if($('#expMonth_chzn').find('span').text() == 'Month' && $('#paymentMethodOption').val() == 'Y'){
@@ -262,6 +270,36 @@ $(function(){
                     $('#createcustomer').submit();
                 }
             });
+            $('input.reWhite').each(function(){
+                if($('#optionsRadios2').is(':checked')){
+                    if(!$('#cardHolderName').val().length){
+                        $('#cardHolderName').addClass('required');
+                        $('#cardHolderName').css({'background-color':'#FEF2EE'});
+                    }
+                    if(!$('#cardNumber-0').val().length){
+                        $('#cardNumber-0').addClass('required');
+                        $('#cardNumber-0').css({'background-color':'#FEF2EE'});
+                    }
+                    if(!$('#cardNumber-1').val().length){
+                        $('#cardNumber-1').addClass('required');
+                        $('#cardNumber-1').css({'background-color':'#FEF2EE'});
+                    }
+                    if(!$('#cardNumber-2').val().length){
+                        $('#cardNumber-2').addClass('required');
+                        $('#cardNumber-2').css({'background-color':'#FEF2EE'});
+                    }
+                    if(!$('#cardNumber-3').val().length){
+                        $('#cardNumber-3').addClass('required');
+                        $('#cardNumber-3').css({'background-color':'#FEF2EE'});
+                    }
+                    if(!$('#cvcNumber').val().length){
+                        $('#cvcNumber').addClass('required');
+                        $('#cvcNumber').css({'background-color':'#FEF2EE'});
+                    }
+                }
+            });
+            
+            
         }
         else{
             $('#userinformation').find('input.check').each(function(){
@@ -305,6 +343,7 @@ $(function(){
                     $('#createcustomer').submit();
                 }
             });
+            
         }
     });
     $('input.check').focus(function(){
@@ -327,7 +366,7 @@ $(function(){
         $('#currentPasswordVerify').removeClass('required');
     });
     $('#expMonth_chzn').click(function(){
-    	document.getElementById('optionsRadios3').checked = false;
+        document.getElementById('optionsRadios3').checked = false;
         document.getElementById('optionsRadios2').checked = true;
         $('#expMonth_chzn').removeClass('required');
         $('#expMonth_chzn').css({'background-color':'#FFFFFF'});
@@ -337,7 +376,7 @@ $(function(){
         $('#yourBtn2').removeClass('check required');
     });
     $('#expYear_chzn').click(function(){
-    	document.getElementById('optionsRadios3').checked = false;
+        document.getElementById('optionsRadios3').checked = false;
         document.getElementById('optionsRadios2').checked = true;
         $('#expYear_chzn').removeClass('required');
         $('#expYear_chzn').css({'background-color':'#FFFFFF'});
@@ -382,9 +421,9 @@ $(function(){
             $('#subDomain').val('');
             $('.input-error').addClass('hidden');
             $('.form-inline').find('input.check').each(function(){
-            	if($(this).val().length){
-            		$(this).removeClass('check required');
-            	}
+                if($(this).val().length){
+                    $(this).removeClass('check required');
+                }
             });
         }
         else if(this.id == 'optionsRadiosNo'){
@@ -394,9 +433,9 @@ $(function(){
             $('#domianName').val('');
             $('.input-error').addClass('hidden');
             $('.form-inline').find('input.check').each(function(){
-            	if($(this).val().length){
-            		$(this).removeClass('check required');
-            	}
+                if($(this).val().length){
+                    $(this).removeClass('check required');
+                }
             });
         }
     });
@@ -428,6 +467,8 @@ $(function(){
         $('.input-error').addClass('hidden');
         $('#cardHolderName').addClass('check required');
         $('.cardNumber').addClass('check required');
+        $('#cardHolderName').css({'background-color':'#FEF2EE'});
+        $('.cardNumber').css({'background-color':'#FEF2EE'});
         $('#expMonth_chzn').addClass('check required');
         $('#expYear_chzn').addClass('check required');
         $('#cvcNumber').addClass('check required');
@@ -435,29 +476,34 @@ $(function(){
         $('#yourBtn2').val('');
         $('#expMonth_chzn').css({'background-color':'#FEF2EE'});
         $('#expYear_chzn').css({'background-color':'#FEF2EE'});
-        $('.chzn-single').css({'background-color':'#FEF2EE'});
+        $('#expMonth_chzn .chzn-single').css({'background-color':'#FEF2EE'});
+        $('#expYear_chzn .chzn-single').css({'background-color':'#FEF2EE'});
+        $('#cvcNumber').css({'background-color':'#FEF2EE'});
         $('#paymentMethodOption').val('Y');
         $('.control-group').find('input.check').each(function(){
-        	if($(this).val().length){
-        		$(this).removeClass('check required');
-        	}
-        	if($('#expMonth_chzn').find('span').text() != 'Month' && $('#expYear_chzn').find('span').text() != 'Year'){
-        		$('#expMonth_chzn').css({'background-color':'#FFFFFF'});
+            if($(this).val().length){
+                $(this).removeClass('check required');
+            }
+            if($('#expMonth_chzn').find('span').text() != 'Month' && $('#expYear_chzn').find('span').text() != 'Year'){
+                $('#expMonth_chzn').css({'background-color':'#FFFFFF'});
                 $('.chzn-single').css({'background-color':'#FFFFFF'});
                 $('#expYear_chzn').css({'background-color':'#FFFFFF'});
-        	}
+            }
         });
     });
     $('#optionsRadios3').click(function(){
         $('.input-error').addClass('hidden');
         $('#cardHolderName').removeClass('check required');
         $('.cardNumber').removeClass('check required');
+        $('#cardHolderName').css({'background-color':'#FFFFFF'});
+        $('.cardNumber').css({'background-color':'#FFFFFF'});
         $('#expMonth_chzn').removeClass('check required');
         $('#expMonth_chzn').css({'background-color':'#FFFFFF'});
         $('#expYear_chzn').removeClass('check required');
         $('#expYear_chzn').css({'background-color':'#FFFFFF'});
         $('.chzn-single').css({'background-color':'#FFFFFF'});
         $('#cvcNumber').removeClass('check required');
+        $('#cvcNumber').css({'background-color':'#FFFFFF'});
         $('#yourBtn2').addClass('check required');
         $('#cardHolderName').val('');
         $('.cardNumber').val('');
@@ -466,9 +512,9 @@ $(function(){
         $('#expYear_chzn').find('span').text('Year');
         $('#paymentMethodOption').val('N');
         $('.pull-left').find('input.check').each(function(){
-        	if($(this).val().length){
-        		$(this).removeClass('check required');
-        	}
+            if($(this).val().length){
+                $(this).removeClass('check required');
+            }
         });
     });
     $('#cardHolderName').click(function(){
@@ -482,6 +528,7 @@ $(function(){
         $('#yourBtn2').removeClass('check required');
         $('#paymentMethodOption').val('Y');
         $('#yourBtn2').val('');
+        $('#'+this.id).css({'background-color':'#FFFFFF'});
     });
     $('.cardNumber').click(function(){
         document.getElementById('optionsRadios3').checked = false;
@@ -494,6 +541,7 @@ $(function(){
         $('#yourBtn2').removeClass('check required');
         $('#paymentMethodOption').val('Y');
         $('#yourBtn2').val('');
+        $('#'+this.id).css({'background-color':'#FFFFFF'});
     });
     $('#cvcNumber').click(function(){
         document.getElementById('optionsRadios3').checked = false;
@@ -506,6 +554,7 @@ $(function(){
         $('#yourBtn2').removeClass('check required');
         $('#paymentMethodOption').val('Y');
         $('#yourBtn2').val('');
+        $('#'+this.id).css({'background-color':'#FFFFFF'});
     });
     $('#yourBtn2').click(function(){
         document.getElementById('optionsRadios2').checked = false;
@@ -661,7 +710,7 @@ $(function(){
             $('#'+this.id).val("");
         }
     });
-    $('.upload-btn').click(function(){
+    $('#browse2').click(function(){
         document.getElementById('optionsRadios2').checked = false;
         document.getElementById('optionsRadios3').checked = true;
         $('#cardHolderName').removeClass('check required');
@@ -680,6 +729,14 @@ $(function(){
         $('#cardHolderName').val('');
         $('.cardNumber').val('');
         $('#cvcNumber').val('');
+    });
+    $('#yourBtn').click(function(){
+    	$('#yourBtn').removeClass('check required');
+        $('#yourBtn').css({'background-color':'#FFFFFF'});
+    });
+    $('#browse0').click(function(){
+    	$('#browse0').removeClass('check required');
+        $('#yourBtn').css({'background-color':'#FFFFFF'});
     });
 });
 function isNumberKey(evt) {

@@ -105,11 +105,11 @@ under the License.
                                 <div class="control-group">
                                     <label class="control-label control-label-big" for="inputPromotionDescription">Official Business Name</label>
                                     <div class="pull-left">
-                                        <input type="text" class="input-large check" id="businessName" name="officialBusinessName">
+                                        <input type="text" class="input-large check" id="businessName" name="officialBusinessName">*
                                     </div>
-                                    <label class="control-label control-label-big" for="inputPromotionDescription">Official Trading Name</label>
+                                    <label class="control-label control-label-big" for="inputPromotionDescription" id="tradingNameText" style="padding-left: 10px;">Official Trading Name</label>
                                     <div class="pull-left">
-                                        <input type="text" class="input-large" id="tradingName" name="officialTradingName">
+                                        <input type="text" class="input-large check" id="tradingName" name="officialTradingName">*
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -130,7 +130,7 @@ under the License.
                                         <option>0800</option>
                                     </select>
                                     <div class="pull-left">
-                                        <input type="text" class="input-large phoneNumberText check" id="phoneNumber_text_0" onkeypress='return isNumberKey(event)'>
+                                        <input type="text" class="input-large phoneNumberText check" id="phoneNumber_text_0" onkeypress='return isNumberKey(event)'>*
                                     </div>
                                     <input type="hidden" name="contactPhoneNumber" id="phoneNumber_0" value="">
                                 </div>
@@ -175,19 +175,19 @@ under the License.
                                     <div class="control-group-bank">
                                     <label class="control-label control-label-big pull-left" for="inputPromotionDescription">Bank Account Detail</label>
                                     <label class="control-label control-label-bank pull-left" for="inputPromotionDescription">Account Name</label>
-                                    <input type="text" class="input-large pull-left check" id="inputAccountName" name="nameOnAccount"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                    <input type="text" class="input-large " id="inputAccountName" name="nameOnAccount"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
                                     </div>
                                     <div class="clearfix"></div>
                                     <label class="control-label control-label-big pull-left" for="inputPromotionDescription">&nbsp;</label>
                                     <label class="control-label control-label-bank pull-left" for="inputPromotionDescription">Account Number</label>
-                                    <div class="pull-left"><input type="text" maxlength="2" class="input-cc-xsmall accountNumber check" id="accountNumber-0" name="accountNumber-0" onkeypress='return isNumberKey(event)'> - <input type="text" maxlength="4" class="input-small accountNumber check" id="accountNumber-1" name="accountNumber-1" onkeypress='return isNumberKey(event)'> - <input type="text" maxlength="7" class="input-cc-large accountNumber check" id="accountNumber-2" name="accountNumber-2" onkeypress='return isNumberKey(event)'> - <input type="text" maxlength="2" class="input-cc-xsmall accountNumber check" id="accountNumber-3" name="accountNumber-3" onkeypress='return isNumberKey(event)'></div>
+                                    <div class="pull-left"><input type="text" maxlength="2" class="input-cc-xsmall accountNumber" id="accountNumber-0" name="accountNumber-0" onkeypress='return isNumberKey(event)'> - <input type="text" maxlength="4" class="input-small accountNumber" id="accountNumber-1" name="accountNumber-1" onkeypress='return isNumberKey(event)'> - <input type="text" maxlength="7" class="input-cc-large accountNumber" id="accountNumber-2" name="accountNumber-2" onkeypress='return isNumberKey(event)'> - <input type="text" maxlength="2" class="input-cc-xsmall accountNumber" id="accountNumber-3" name="accountNumber-3" onkeypress='return isNumberKey(event)'></div>
                                     <input type="hidden" name="accountNumber" id="accountNumber" value="">
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label control-label-llarge pull-left" for="inputEmailAddress">Upload your shop's logo (153x153)</label>
                                     <div class="pull-left">
-                                        <input type="text" class="input-xlarge pull-left" id="yourBtn" onclick="getFile('')">
-                                        <a class="btn-general-small upload-btn" onclick="getFile('')">BROWSE</a>
+                                        <input type="text" class="input-xlarge pull-left check" id="yourBtn" onclick="getFile('')">*
+                                        <a class="btn-general-small upload-btn" onclick="getFile('')" id="browse0">BROWSE</a>
                                         <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
                                         <div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile" type="file" onchange="sub(this,'')" name="uploadedFile"/></div>
                                     </div>
@@ -353,17 +353,17 @@ under the License.
                                 <div class="control-group">
                                     <div class="control-group-bank">
                                         <label class="radio pull-left control-label-cc">
-                                            <input type="radio" name="optionsRadios1" id="optionsRadios2" class="optionsRadios" checked> Credit Card
+                                            <input type="radio" name="optionsRadios1" id="optionsRadios2" class="optionsRadios"> Credit Card
                                         </label>
                                         <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Card Holder Name</label>
-                                        <input type="text" class="input-large pull-left check" id="cardHolderName" autocomplete="off"><img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                        <input type="text" class="input-large pull-left reWhite" id="cardHolderName" autocomplete="off"><img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
                                         <input type="hidden" id="firstNameOnCard" name="firstNameOnCard">
                                         <input type="hidden" id="lastNameOnCard" name="lastNameOnCard">
                                     </div>
                                     <div class="control-group-bank">
                                         <label class="control-label control-label-cc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
                                         <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Card Number</label>
-                                        <div class="pull-left"><input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-0" onkeypress='return isNumberKey(event)' autocomplete="off"> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-1" onkeypress='return isNumberKey(event)' autocomplete="off"> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-2" onkeypress='return isNumberKey(event)' autocomplete="off"> - <input type="text" maxlength="4" class="input-small cardNumber check" id="cardNumber-3" onkeypress='return isNumberKey(event)' autocomplete="off"></div>
+                                        <div class="pull-left"><input type="text" maxlength="4" class="input-small cardNumber reWhite" id="cardNumber-0" onkeypress='return isNumberKey(event)' autocomplete="off"> - <input type="text" maxlength="4" class="input-small cardNumber reWhite" id="cardNumber-1" onkeypress='return isNumberKey(event)' autocomplete="off"> - <input type="text" maxlength="4" class="input-small cardNumber reWhite" id="cardNumber-2" onkeypress='return isNumberKey(event)' autocomplete="off"> - <input type="text" maxlength="4" class="input-small cardNumber reWhite" id="cardNumber-3" onkeypress='return isNumberKey(event)' autocomplete="off"></div>
                                         <input type="hidden" id="cardNumber" name="cardNumber">
                                     </div>
                                     <div class="control-group-bank">
@@ -391,7 +391,7 @@ under the License.
                                     <div class="control-group-bank">
                                         <label class="control-label control-label-cc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
                                         <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Security Code</label>
-                                        <input type="text" class="input-cc-xsmall pull-left check" id="cvcNumber" name="cvc" maxlength="3" onkeypress='return isNumberKey(event)' autocomplete="off"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                        <input type="text" class="input-cc-xsmall pull-left reWhite" id="cvcNumber" name="cvc" maxlength="3" onkeypress='return isNumberKey(event)' autocomplete="off"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
                                     </div>
                                 </div>
                                 <br/>
@@ -405,11 +405,11 @@ under the License.
                                     <label class="control-label control-label-dc-inner pull-left" for="inputPromotionDescription">Upload a direct debit form</label>
                                     <div class="pull-left">
                                         <input type="text" class="input-xlarge pull-left" id="yourBtn2" onclick="getFile(2)">
-                                        <a class="btn-general-small upload-btn" onclick="getFile(2)">BROWSE</a>
+                                        <a class="btn-general-small upload-btn" onclick="getFile(2)" id="browse2">BROWSE</a>
                                         <div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile2" type="file" onchange="sub(this,2)" name="uploadedFile2"/></div>
                                     </div>
                                 </div>
-                                <input type="hidden" name="paymentMethodOption" id="paymentMethodOption" value="Y">
+                                <input type="hidden" name="paymentMethodOption" id="paymentMethodOption" value="N">
                                 <div class="clearfix"></div>
                             </td>
                         </tr>
