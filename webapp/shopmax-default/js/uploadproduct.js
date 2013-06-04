@@ -1,6 +1,9 @@
 $(function(){
     $('.category_1').click(function(e){
-        window.history.pushState("", "", 'uploadproduct?categoryFirstId='+this.id);
+    	
+        //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+this.id);
+        var currentUrl = document.URL;
+        window.location.hash = '?categoryFirstId='+this.id;
         $.ajax({
             url: 'uploadproductajax',
             type: 'POST',
@@ -16,7 +19,8 @@ $(function(){
     });
     $('.category_2').click(function(e){
         var categoryFirstId = getUrlVars()["categoryFirstId"];
-        window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+this.id);
+        window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+this.id;
+        //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+this.id);
         $.ajax({
             url: 'uploadproductajax',
             type: 'POST',
@@ -33,7 +37,8 @@ $(function(){
     $('.category_3').click(function(e){
         var categoryFirstId = getUrlVars()["categoryFirstId"];
         var categorySecondId = getUrlVars()["categorySecondId"];
-        window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+this.id);
+        window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+this.id;
+        //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+this.id);
         $.ajax({
             url: 'uploadproductajax',
             type: 'POST',
@@ -51,7 +56,8 @@ $(function(){
         var categoryFirstId = getUrlVars()["categoryFirstId"];
         var categorySecondId = getUrlVars()["categorySecondId"];
         var categoryThirdId = getUrlVars()["categoryThirdId"];
-        window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+categoryThirdId+'&categoryFourthId='+this.id);
+        window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+categoryThirdId+'&categoryFourthId='+this.id;
+        //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+categoryThirdId+'&categoryFourthId='+this.id);
         $.ajax({
             url: 'uploadproductajax',
             type: 'POST',
