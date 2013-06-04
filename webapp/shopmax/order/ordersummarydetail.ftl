@@ -55,7 +55,12 @@ under the License.
                     <td class="col3">
                         <#assign defaultPrice = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : cartLine.getProductId(), "productPriceTypeId" : "LIST_PRICE"}, null, false))>
                         <#assign promoPrice = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : cartLine.getProductId(), "productPriceTypeId" : "SPECIAL_PROMO_PRICE"}, null, false))>
-                        <#if promoPrice?has_content><div class="old"><@ofbizCurrency amount=defaultPrice[0].price/></div></#if><strong><@ofbizCurrency amount=cartLine.getDisplayPrice()/></strong>
+                        <#if promoPrice?has_content>
+                            <div class="old"><@ofbizCurrency amount=defaultPrice[0].price/></div>
+                            <strong><@ofbizCurrency amount=promoPrice[0].price/></strong>
+                        <#else>
+                            <strong><@ofbizCurrency amount=defaultPrice[0].price/></strong>
+                        </#if>
                     </td>
                     <td class="col4">${cartLine.getQuantity()?string.number}</td>
                     <td class="col5"><strong><@ofbizCurrency amount=cartLine.getDisplayItemSubTotal() /></strong></td>

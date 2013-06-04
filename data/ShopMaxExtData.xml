@@ -68,6 +68,11 @@ under the License.
     <ProductStoreEmailSetting productStoreId="ShopMaxStore" emailType="PRDS_CUST_REGISTER" bodyScreenLocation="component://shopmax/widget/ShopMaxEmailScreens.xml#CreatePartyNotification" subject="New Account Created" bccAddress="ofbiztest@example.com" fromAddress="ofbiztest@example.com"/>
     <ProductStoreEmailSetting productStoreId="ShopMaxStore" emailType="PRDS_ODR_CONFIRM" bodyScreenLocation="component://shopmax/widget/ShopMaxEmailScreens.xml#Confirmation" subject="Confirmation" bccAddress="ofbiztest@example.com" fromAddress="ofbiztest@example.com"/>
     
+    <ProductPromo productPromoId="DISCOUNTED_PROMO" promoName="Product On Discounted Price" userEntered="N" showToCustomer="Y" requireCode="N"/>
+    <ProductPromoRule productPromoId="DISCOUNTED_PROMO" productPromoRuleId="01" ruleName="Product On Discounted Price"/>
+    <ProductStorePromoAppl productStoreId="ShopMaxStore" productPromoId="DISCOUNTED_PROMO" fromDate="2013-04-01 00:00:00"/>
+    <ProductPromoAction productPromoId="DISCOUNTED_PROMO" productPromoRuleId="01" productPromoActionSeqId="01" productPromoActionEnumId="PROMO_PROD_SPPRC" orderAdjustmentTypeId="PROMOTION_ADJUSTMENT" useCartQuantity="N"/>
+    
     <WebSite webSiteId="SHOPMAX" siteName="ShopMax Web Site" productStoreId="ShopMaxStore"
         httpHost="shopmax.localhost" httpPort="8080"
         httpsHost="shopmax.localhost" httpsPort="8443"
