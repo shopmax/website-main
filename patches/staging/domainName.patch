@@ -1,9 +1,9 @@
 Index: hot-deploy/shopmax/data/ShopMaxExtData.xml
 ===================================================================
---- hot-deploy/shopmax/data/ShopMaxExtData.xml	(revision 283)
+--- hot-deploy/shopmax/data/ShopMaxExtData.xml	(revision 348)
 +++ hot-deploy/shopmax/data/ShopMaxExtData.xml	(working copy)
-@@ -69,8 +69,8 @@
-     <ProductStoreEmailSetting productStoreId="ShopMaxStore" emailType="PRDS_ODR_CONFIRM" bodyScreenLocation="component://shopmax/widget/ShopMaxEmailScreens.xml#Confirmation" subject="Confirmation" bccAddress="ofbiztest@example.com" fromAddress="ofbiztest@example.com"/>
+@@ -74,8 +74,8 @@
+     <ProductPromoAction productPromoId="DISCOUNTED_PROMO" productPromoRuleId="01" productPromoActionSeqId="01" productPromoActionEnumId="PROMO_PROD_SPPRC" orderAdjustmentTypeId="PROMOTION_ADJUSTMENT" useCartQuantity="N"/>
      
      <WebSite webSiteId="SHOPMAX" siteName="ShopMax Web Site" productStoreId="ShopMaxStore"
 -        httpHost="shopmax.localhost" httpPort="8080"
