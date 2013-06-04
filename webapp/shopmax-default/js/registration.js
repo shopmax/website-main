@@ -186,6 +186,16 @@ $(function(){
                         $('#accountNumber-3').addClass('required');
                         valid = false;
                     }
+                    for(var i=0;i<physicalNumber;i++){
+	                    if(!$('#branchName_'+i).val().length){
+	                        $('#branchName_'+i).addClass('required');
+	                        valid = false;
+	                    }
+	                    if(!$('#inputLocation_'+i).val().length){
+	                        $('#inputLocation_'+i).addClass('required');
+	                        valid = false;
+	                    }
+                    }
                     if($('#optionsRadios2').is(':checked')){
                         if(!$('#cardHolderName').val().length){
                             $('#cardHolderName').addClass('required');
@@ -523,12 +533,12 @@ $(function(){
             "<div class='control-group'>"+
                     "<label class='control-label control-label-xsmall' for='inputPromotionDescription'>Branch Name</label>"+
                 "<div class='pull-left'>"+
-                    "<input type='text' class='input-xxlarge branchName' id='branchName_"+index+"' name='branchName'>"+
+                    "<input type='text' class='input-xxlarge branchName check' id='branchName_"+index+"' name='branchName'>"+
                 "</div>"+
             "</div>"+
             "<div class='control-group'><label class='control-label control-label-xsmall' for='inputPromotionDescription'>Location</label>"+
                 "<div class='pull-left'>"+
-                    "<input type='text' class='input-xxlarge inputLocation' id='inputLocation_"+index+"' onclick='inputLocation("+index+")'>"+
+                    "<input type='text' class='input-xxlarge inputLocation check' id='inputLocation_"+index+"' onclick='inputLocation("+index+")'>"+
                 "</div>"+
             "</div>"+
             "<div class='control-group'>"+
@@ -620,6 +630,14 @@ $(function(){
             else{
                 $('#'+this.id).val("");
             }
+        });
+        $('#branchName_'+index).focus(function(){
+            $('#branchName_'+index).removeClass('required');
+            $('.input-error').addClass('hidden');
+        });
+        $('#inputLocation_'+index).focus(function(){
+            $('#inputLocation_'+index).removeClass('required');
+            $('.input-error').addClass('hidden');
         });
         
     });

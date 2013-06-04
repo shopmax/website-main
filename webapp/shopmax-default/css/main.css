@@ -3353,6 +3353,12 @@ border-top: 0px;
     background: url("../img/btn-general-rpt.png") repeat-x scroll 0 0 transparent;
     
 }
+#processShoppingCartButton{
+    width:160px;
+}
+#processShoppingCartSummaryButton{
+    width:160px;
+}
 
 .blue{
     color:#469BEB;

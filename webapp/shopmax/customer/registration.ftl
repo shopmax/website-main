@@ -229,13 +229,13 @@ under the License.
                                     <div class="control-group">
                                         <label class="control-label control-label-xsmall" for="inputPromotionDescription">Branch Name</label>
                                         <div class="pull-left">
-                                            <input type="text" class="input-xxlarge branchName" id="branchName_0" name="branchName">
+                                            <input type="text" class="input-xxlarge branchName check" id="branchName_0" name="branchName">
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label control-label-xsmall" for="inputPromotionDescription">Location</label>
                                         <div class="pull-left">
-                                            <input type="text" class="input-xxlarge inputLocation" id="inputLocation_0" onclick="inputLocation('0')">
+                                            <input type="text" class="input-xxlarge inputLocation check" id="inputLocation_0" onclick="inputLocation('0')">
                                         </div>
                                     </div>
                                     <div class="control-group">
