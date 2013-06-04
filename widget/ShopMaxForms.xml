@@ -37,13 +37,16 @@ under the License.
             <entity-one entity-name="PartyGroup" value-field="sellerCompany">
                 <field-map field-name="partyId" from-field="partyRelationships[0].partyIdFrom"/>
             </entity-one>
+            <entity-one entity-name="PartyNameView" value-field="partyNameView">
+                <field-map field-name="partyId" from-field="partyId"/>
+            </entity-one>
         </row-actions>
         <field name="partyId" title="">
             <hyperlink target="/partymgr/control/viewprofile" description="${partyId}" target-type="inter-app">
                 <parameter param-name="partyId"/>
             </hyperlink>
         </field>
-        <field name="customerName" title=""><display description="${firstName} ${lastName}"/></field>
+        <field name="customerName" title=""><display description="${partyNameView.firstName} ${partyNameView.lastName}"/></field>
         <field name="emailAddress" title=""><display description="${emailAddresses[0].infoString}"/></field>
         <field name="officialBusinessName" title=""><display description="${sellerCompany.groupName}"/></field>
         <field name="officialTradingName" title=""><display description="${sellerCompany.groupNameLocal}"/></field>
