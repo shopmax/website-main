@@ -448,7 +448,7 @@ under the License.
             <div class="sc-table-promotion footer-button">
                 <a href="#" class="btn-green-small" style="width:80px;">Preview</a>&nbsp;&nbsp;
                 <a class="btn-general-small" id="submit_uploadProductToSeller">Submit</a>&nbsp;&nbsp;
-                <a class="btn-grey-small" href="<@ofbizUrl>manageproduct</@ofbizUrl>">Cancel</a>
+                <a class="btn-grey-small" href="<@ofbizUrl><#if productId?has_content>manageproduct<#else>main</#if></@ofbizUrl>">Cancel</a>
             </div>
         </div><!-- /.span9 -->
     </div><!-- /.row -->

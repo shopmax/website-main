@@ -1,8 +1,6 @@
 $(function(){
-    $('.category_1').click(function(e){
-    	
+    $('.category_1').click(function(){
         //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+this.id);
-        var currentUrl = document.URL;
         window.location.hash = '?categoryFirstId='+this.id;
         $.ajax({
             url: 'uploadproductajax',
@@ -15,9 +13,8 @@ $(function(){
                 $('#ajax-container').html(data);
             }
         });
-        e.preventDefault();
     });
-    $('.category_2').click(function(e){
+    $('.category_2').click(function(){
         var categoryFirstId = getUrlVars()["categoryFirstId"];
         window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+this.id;
         //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+this.id);
@@ -32,9 +29,8 @@ $(function(){
                 $('#ajax-container').html(data);
             }
         });
-        e.preventDefault();
     });
-    $('.category_3').click(function(e){
+    $('.category_3').click(function(){
         var categoryFirstId = getUrlVars()["categoryFirstId"];
         var categorySecondId = getUrlVars()["categorySecondId"];
         window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+this.id;
@@ -50,9 +46,8 @@ $(function(){
                 $('#ajax-container').html(data);
             }
         });
-        e.preventDefault();
     });
-    $('.category_4').click(function(e){
+    $('.category_4').click(function(){
         var categoryFirstId = getUrlVars()["categoryFirstId"];
         var categorySecondId = getUrlVars()["categorySecondId"];
         var categoryThirdId = getUrlVars()["categoryThirdId"];
@@ -69,9 +64,8 @@ $(function(){
                 $('#ajax-container').html(data);
             }
         });
-        e.preventDefault();
     });
-    $('#assign-category').click(function(e){
+    $('#assign-category').click(function(){
         $('.input-error2').addClass('hidden');
         var formUpload = document.getElementById('uploadAndUpdateProduct');
         formUpload.getElementsByTagName('input').checked=true;
@@ -129,7 +123,6 @@ $(function(){
             }
         }
         $(".selected-products").append(newRow);
-        e.preventDefault();
     });
     
     $("#datepicker1").datepicker();
