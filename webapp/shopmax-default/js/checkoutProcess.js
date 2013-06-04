@@ -18,14 +18,14 @@
  */
 
 jQuery(document).ready(function() {
-    jQuery('#processOrderButton').click(function(){
+    /*jQuery('#processOrderButton').click(function(){
         processOrderSummary();
-    });
-    jQuery('#processOrderSummaryButton').click(function(){
+    });*/
+    /*jQuery('#processOrderSummaryButton').click(function(){
         processOrderSummary();
-    });
+    });*/
 });
 
-function processOrderSummary() {
+/*function processOrderSummary() {
     jQuery('#orderSummarySubmitForm').submit();
-}
+}*/

@@ -1451,6 +1451,15 @@ textarea.required{
 .input-error2{
     color:red;
 }
+.form-inline .input-small{
+	width:75px;
+}
+.form-inline .chzn-single{
+	background-color:#FEF2EE
+}
+.form-inline .chzn-container{
+    background-color:#FEF2EE
+}
 
 .btn-green-small {
     background: url("../img/btn-green-small.png") repeat-x scroll 0 0 transparent;
