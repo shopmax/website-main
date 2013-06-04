@@ -39,5 +39,6 @@ if (userLogin) {
         }
     }
 }
-context.tenantId = tenantId;
-context.shopmaxSellerDomain = shopmaxSellerDomain;
+
+globalContext.tenantId = tenantId;
+globalContext.shopmaxSellerDomain = shopmaxSellerDomain;

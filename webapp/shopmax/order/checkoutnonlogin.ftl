@@ -446,7 +446,7 @@ under the License.
                                 <select id="paymentDropDown" name="cardType" class="drop-select chosen combo" data-search-bar="true">
                                     <option value="" selected="selected">Select Card Type</option>
                                     <option value="Visa">Visa</option>
-                                    <option value="2">Option 2</option>
+                                    <option value="MasterCard">Master Card</option>
                                 </select>
                                 <#-- Example card number: 4111111111111111 -->
                                 <#-- <input name="cardNumber" type="text" class="input-xxlarge required" placeholder="Card Number" />-->

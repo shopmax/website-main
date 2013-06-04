@@ -740,6 +740,12 @@ under the License.
             <set field="receiveCtx.quantityRejected" value="0" type="BigDecimal"/>
             <set field="receiveCtx.inventoryItemTypeId" value="NON_SERIAL_INV_ITEM"/>
             <call-service service-name="receiveInventoryProduct" in-map-name="receiveCtx"/>
+            
+            <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
+            <set field="createProductAttributeMap.attrName" value="STOCK"/>
+            <set field="createProductAttributeMap.attrValue" from-field="parameters.stock"/>
+            <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
         </if-not-empty>
         
         <!-- Create product to category -->

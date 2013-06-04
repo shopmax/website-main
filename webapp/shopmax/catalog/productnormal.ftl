@@ -16,6 +16,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
 <div class="row content-left">
     <div class="span6">
         <div class="product-wrapper">
@@ -42,7 +43,7 @@ under the License.
     <div class="span6">
         <div class="product-detail">
             <h5>${productContentWrapper.get("PRODUCT_NAME")?if_exists}</h5>
-            <div class="raty" data-rating="3"></div>
+            <div class="raty" data-rating="${averageRating?if_exists}"></div>
             <h5 class="review-number">(${productReviews.size()} reviews)</h5>
             <br /><br />
             <#if price.specialPromoPrice?exists>
@@ -96,9 +97,12 @@ under the License.
                 </div>
             </#if>
             
-            <#assign stock = delegator.findOne("ProductAttribute", {"productId" : product.productId, "attrName" : "STOCK"}, true)>
-            Quantity: <strong>${stock.attrValue?if_exists} in stock</strong> <br /> <br />
-            <#-- Quantity: <strong>${availableInventory?default(0)} in stock</strong> <br /> <br /> -->
+            <#assign stock = (delegator.findOne("ProductAttribute", {"productId" : product.productId, "attrName" : "STOCK"}, true))?if_exists>
+            <#if stock?has_content>
+                Quantity: <strong>${stock.attrValue?if_exists} in stock</strong> <br /> <br />
+            <#else>
+                Quantity: <strong>${availableInventory?default(0)} in stock</strong> <br /> <br />
+            </#if>
             
             <div id="addItemForm">
                 <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" id="${product.productId}" name="addform"  style="margin: 0;">

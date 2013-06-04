@@ -81,7 +81,7 @@ under the License.
                                         </td>
                                         <td class="col2 col_2"><strong>${product.productName?if_exists}</strong><br /><#-- Colour - yellow--></td>
                                         <td class="col3 col_3 alighright">
-                                            <#assign defaultPrice = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : product.productId, "productPriceTypeId" : "LIST_PRICE"}, null, false))>
+                                            <#assign defaultPrice = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : product.productId, "productPriceTypeId" : "DEFAULT_PRICE"}, null, false))>
                                             <#assign promoPrice = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : product.productId, "productPriceTypeId" : "SPECIAL_PROMO_PRICE"}, null, false))>
                                             <#if promoPrice?has_content>
                                                 <div class="old"><@ofbizCurrency amount=defaultPrice[0].price/></div>
