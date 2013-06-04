@@ -22,9 +22,9 @@ under the License.
         <div class="block_1">
             <a href="<@ofbizUrl>product?product_id=${product.productId}</@ofbizUrl>">
                 <#if productImage?exists>
-                    <div class="image"><img src="<@ofbizContentUrl>${productImage}</@ofbizContentUrl>" alt="" width="153" style="height: 153px;"/></div>
+                    <div class="image" id="image_additem_${listIndex}"><img src="<@ofbizContentUrl>${productImage}</@ofbizContentUrl>" alt="" width="153" style="height: 153px;"/></div>
                 <#else>
-                    <div class="image"><img src="<@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl>" alt="" width="153" style="height: 153px;"></div>
+                    <div class="image" id="image_additem_${listIndex}"><img src="<@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl>" alt="" width="153" style="height: 153px;"></div>
                 </#if>
             </a>
             <div class="mdic">${product.productName?if_exists}</div>
@@ -43,7 +43,7 @@ under the License.
                     <fieldset>
                         <input type="hidden" name="add_product_id" value="${product.productId}" />
                         <input type="hidden" name="quantity" value="1" />
-                        <a class="btn-general" onclick="addItem('${product.productId}');">ADD TO CART</a>
+                        <a class="btn-general additem" id="additem_${listIndex}" onclick="addItem('${product.productId}');">ADD TO CART</a>
                     </fieldset>
                 </form>
             </div>
@@ -53,9 +53,9 @@ under the License.
         <div class="block_1">
             <a href="<@ofbizUrl>product?product_id=${product.productId}</@ofbizUrl>">
                 <#if productImage?exists>
-                    <div class="image"><img src="<@ofbizContentUrl>${productImage}</@ofbizContentUrl>" alt="" width="153" style="height: 153px;"/></div>
+                    <div class="image" id="image_additem_${listIndex}"><img src="<@ofbizContentUrl>${productImage}</@ofbizContentUrl>" alt="" width="153" style="height: 153px;"/></div>
                 <#else>
-                    <div class="image"><img src="<@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl>" alt="" width="153" style="height: 153px;"></div>
+                    <div class="image" id="image_additem_${listIndex}"><img src="<@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl>" alt="" width="153" style="height: 153px;"></div>
                 </#if>
             </a>
             <div class="mdic">${product.productName?if_exists}</div>
@@ -76,7 +76,7 @@ under the License.
                     <fieldset>
                         <input type="hidden" name="add_product_id" value="${product.productId}" />
                         <input type="hidden" name="quantity" value="1" />
-                        <a class="btn-general" onclick="addItem('${product.productId}');">ADD TO CART</a>
+                        <a class="btn-general" id="additem_${listIndex}" onclick="addItem('${product.productId}');">ADD TO CART</a>
                         <a href="#" class="addtolist">Add to shopping List</a>
                     </fieldset>
                 </form>

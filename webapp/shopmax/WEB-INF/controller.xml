@@ -203,7 +203,7 @@ under the License.
     <request-map uri="updateProduct">
         <security https="true" auth="false"/>
         <event type="service" invoke="editProductToSeller"/>
-        <response name="success" type="request" value="manageproduct">
+        <response name="success" type="request-redirect" value="manageproduct">
             <redirect-parameter name="productCategoryId"/>
         </response>
     </request-map>

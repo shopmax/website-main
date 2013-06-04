@@ -34,6 +34,7 @@ import java.text.NumberFormat;
 product = request.getAttribute("optProduct");
 optProductId = request.getAttribute("optProductId");
 productId = product?.productId ?: optProductId ?: request.getAttribute("productId");
+listIndex = request.getAttribute("listIndex");
 
 webSiteId = WebSiteWorker.getWebSiteId(request);
 catalogId = CatalogWorker.getCurrentCatalogId(request);
@@ -252,6 +253,7 @@ if (UtilValidate.isNotEmpty(productContentAndInfoDefault)) {
 }
 
 context.product = product;
+context.listIndex = listIndex;
 context.categoryId = categoryId;
 context.productReviews = reviews;
 context.sizeProductFeatureAndAppls = sizeProductFeatureAndAppls;
