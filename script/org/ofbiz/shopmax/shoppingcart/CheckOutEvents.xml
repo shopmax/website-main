@@ -133,9 +133,22 @@ under the License.
             <set field="parameters.shipToStateProvinceGeoId" value="_NA_"/>
             <set field="parameters.shipToName" from-field="parameters.USER_FIRST_NAME"/>
             <set field="parameters.partyId" from-field="userLogin.partyId"/>
-            <set field="parameters.firstName" from-field="parameters.USER_FIRST_NAME"/>
-            <set field="parameters.lastName" from-field="parameters.USER_LAST_NAME"/>
             <set field="parameters.emailAddress" from-field="parameters.CUSTOMER_EMAIL"/>
+            
+            <!-- set person -->
+            <if-not-empty field="parameters.partyId">
+                <set field="getPersonInMap.partyId" from-field="parameters.partyId"/>
+                <call-service service-name="getPerson" in-map-name="getPersonInMap">
+                   <result-to-field result-name="lookupPerson"/>
+                </call-service>
+                <set field="parameters.firstName" from-field="lookupPerson.firstName"/>
+                <set field="parameters.lastName" from-field="lookupPerson.lastName"/>
+                <else>
+                    <set field="parameters.firstName" from-field="parameters.USER_FIRST_NAME"/>
+                    <set field="parameters.lastName" from-field="parameters.USER_LAST_NAME"/>
+                </else>
+            </if-not-empty>
+            
             <else>
                 <!-- set person -->
                 <set field="getPersonInMap.partyId" from-field="parameters.partyId"/>

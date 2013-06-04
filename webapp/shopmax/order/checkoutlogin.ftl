@@ -31,6 +31,236 @@ under the License.
             }
         });
     });
+    $(function(){
+        $('.cardNumber').change(function(){
+            $('#cardNumber').val($('#cardNumber-0').val()+$('#cardNumber-1').val()+$('#cardNumber-2').val()+$('#cardNumber-3').val());
+        });
+        $('.main-content').find('input.check,.chzn-container-single').each(function(){
+            $('input.check').focus(function(){
+                $('#'+this.id).removeClass('required');
+            });
+            $('.chzn-container-single').click(function(){
+                $('#'+this.id).css({'background-color':'#FFFFFF'});
+                $(this).removeClass('required');
+                $('#'+this.id).find('.chzn-single').each(function(){
+                    $(this).css({'background-color':'#FFFFFF'});
+                });
+                /*if($('#'+this.id).find('span').text() == 'Zip Return City, State' || $('#'+this.id).find('span').text() == 'Select Card Type' || $('#'+this.id).find('span').text() == 'Month' || $('#'+this.id).find('span').text() == 'Year'){
+                $('#'+this.id).css({'background-color':'#FEF2EE'});
+                $('#'+this.id).find('.chzn-single').each(function(){
+                    $(this).css({'background-color':'#FEF2EE'});
+                });
+                }*/
+            });
+        });
+        $('#processOrderSummaryButton').click(function(){
+            $('.main-content').find('input.check').each(function(){
+                var valid = false;
+                var x=document.forms["orderSummarySubmitForm"]["CUSTOMER_EMAIL"].value;
+                var atpos=x.indexOf("@");
+                var dotpos=x.lastIndexOf(".");
+                var y=document.forms["orderSummarySubmitForm"]["CUSTOMER_EMAILS"].value;
+                var atpos1=y.indexOf("@");
+                var dotpos1=y.lastIndexOf(".");
+                
+                if(!$(this).val().length){
+                    $(this).addClass('required');
+                    $('html, body').animate({ scrollTop: 0 }, 0);
+                    valid = false;
+                    if($('#shipDropDown1_chzn').find('span').text() == 'Zip Return City, State'){
+                        $('#shipDropDown1_chzn').css({'background-color':'#FEF2EE'});
+                        $('#shipDropDown1_chzn').find('.chzn-single').each(function(){
+                        $(this).css({'background-color':'#FEF2EE'});
+                        });
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if($('#shipDropDown2_chzn').find('span').text() == 'Zip Return City, State'){
+                        $('#shipDropDown2_chzn').css({'background-color':'#FEF2EE'});
+                        $('#shipDropDown2_chzn').find('.chzn-single').each(function(){
+                        $(this).css({'background-color':'#FEF2EE'});
+                        });
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if($('#paymentDropDown_chzn').find('span').text() == 'Select Card Type'){
+                        $('#paymentDropDown_chzn').css({'background-color':'#FEF2EE'});
+                        $('#paymentDropDown_chzn').find('.chzn-single').each(function(){
+                        $(this).css({'background-color':'#FEF2EE'});
+                        });
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if($('#expMonth_chzn').find('span').text() == 'Month'){
+                        $('#expMonth_chzn').css({'background-color':'#FEF2EE'});
+                        $('#expMonth_chzn').find('.chzn-single').each(function(){
+                        $(this).css({'background-color':'#FEF2EE'});
+                        });
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if($('#expYear_chzn').find('span').text() == 'Year'){
+                        $('#expYear_chzn').css({'background-color':'#FEF2EE'});
+                        $('#expYear_chzn').find('.chzn-single').each(function(){
+                        $(this).css({'background-color':'#FEF2EE'});
+                        });
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                }
+                else{
+                    $(this).removeClass('required');
+                    if($('.required').length == 0){
+                        valid = true;
+                    }
+                    if(atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length){
+                        $('#shipEmail').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(atpos1<1 || dotpos1<atpos1+2 || dotpos1+2>=y.length){
+                        $('#billEmail').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#shipFirstName').val().length){
+                        $('#shipFirstName').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#shipLastName').val().length){
+                        $('#shipLastName').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#shipPhone').val().length){
+                        $('#shipPhone').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#shipEmail').val().length){
+                        $('#shipEmail').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#shipStreetAddress').val().length){
+                        $('#shipStreetAddress').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#shipPostal').val().length){
+                        $('#shipPostal').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#billFirstName').val().length){
+                        $('#billFirstName').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#billLastName').val().length){
+                        $('#billLastName').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#billPhone').val().length){
+                        $('#billPhone').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#billEmail').val().length){
+                        $('#billEmail').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#billStreetAddress').val().length){
+                        $('#billStreetAddress').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#billPostal').val().length){
+                        $('#billPostal').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#cardNumber-0').val().length){
+                        $('#cardNumber-0').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#cardNumber-1').val().length){
+                        $('#cardNumber-1').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#cardNumber-2').val().length){
+                        $('#cardNumber-2').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#cardNumber-3').val().length){
+                        $('#cardNumber-3').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#secureCode').val().length){
+                        $('#secureCode').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if($('#shipDropDown1_chzn').find('span').text() == 'Zip Return City, State'){
+                        $('#shipDropDown1_chzn').css({'background-color':'#FEF2EE'});
+                        $('#shipDropDown1_chzn').find('.chzn-single').each(function(){
+                        $(this).css({'background-color':'#FEF2EE'});
+                        });
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if($('#shipDropDown2_chzn').find('span').text() == 'Zip Return City, State'){
+                        $('#shipDropDown2_chzn').css({'background-color':'#FEF2EE'});
+                        $('#shipDropDown2_chzn').find('.chzn-single').each(function(){
+                        $(this).css({'background-color':'#FEF2EE'});
+                        });
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if($('#paymentDropDown_chzn').find('span').text() == 'Select Card Type'){
+                        $('#paymentDropDown_chzn').css({'background-color':'#FEF2EE'});
+                        $('#paymentDropDown_chzn').find('.chzn-single').each(function(){
+                        $(this).css({'background-color':'#FEF2EE'});
+                        });
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if($('#expMonth_chzn').find('span').text() == 'Month'){
+                        $('#expMonth_chzn').css({'background-color':'#FEF2EE'});
+                        $('#expMonth_chzn').find('.chzn-single').each(function(){
+                        $(this).css({'background-color':'#FEF2EE'});
+                        });
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if($('#expYear_chzn').find('span').text() == 'Year'){
+                        $('#expYear_chzn').css({'background-color':'#FEF2EE'});
+                        $('#expYear_chzn').find('.chzn-single').each(function(){
+                        $(this).css({'background-color':'#FEF2EE'});
+                        });
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                }
+                if(valid){
+                    $('#orderSummarySubmitForm').submit();
+                }
+            });
+        });
+    });
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+     }
 </script>
 
 <#macro maskSensitiveNumber cardNumber>
@@ -69,7 +299,6 @@ under the License.
                 <#assign shipmentMethodTypeId = supplierShipmentMethodTypeMap.get(partyId)/>
                 <input name="shipmentMethodTypeId:${partyId}_o_${supplierIndex}" value="${shipmentMethodTypeId}" type="hidden"/>
             </#list>
-            
             <div class="span9 main-content">
                 <ul class="sc-step">
                     <li><span class="badge badge-inactive">1</span>&nbsp;&nbsp;Shopping Cart</li>
@@ -129,12 +358,12 @@ under the License.
                                     <h5 class="heading">Shipping Contact</h5>
                                     
                                     <div class="form-inline">
-                                        <input type="text" class="input-xxlarge required" name="USER_FIRST_NAME" placeholder="First Name" />
-                                        <input type="text" class="input-xxlarge required" name="USER_LAST_NAME" placeholder="Last Name" />
+                                        <input type="text" id="shipFirstName" class="input-xxlarge check required" name="USER_FIRST_NAME" placeholder="First Name" />
+                                        <input type="text" id="shipLastName" class="input-xxlarge check required" name="USER_LAST_NAME" placeholder="Last Name" />
                                     </div>
                                     <div class="form-inline">
-                                        <input name="shipToContactNumber" type="text" class="input-xxlarge required" placeholder="Phone Number" />
-                                        <input name="CUSTOMER_EMAIL" type="text" class="input-xxlarge required" placeholder="Email Address" />
+                                        <input name="shipToContactNumber" type="text" id="shipPhone" class="input-xxlarge check required" placeholder="Phone Number" />
+                                        <input name="CUSTOMER_EMAIL" type="text" id="shipEmail" class="input-xxlarge check required" placeholder="Email Address" />
                                         <input type="text" class="input-xxlarge" placeholder="Fax Number (optional)" />
                                     </div>
                                 </td>
@@ -144,12 +373,12 @@ under the License.
                                     <h5 class="heading">Shipping Address</h5>
                                     <input type="hidden" name="shipMethod" value="NO_SHIPPING"/>
                                     <div class="form-inline">
-                                        <input type="text" class="input-xxxlarge required" name="shipToAddress1" placeholder="Street Address" />
-                                        <input type="text" class="input-xxlarge" name="shipToPostalCode" placeholder="Zip/ Postal Code" />
+                                        <input type="text" id="shipStreetAddress" class="input-xxxlarge check required" name="shipToAddress1" placeholder="Street Address" />
+                                        <input type="text" id="shipPostal" class="input-xxlarge check required" name="shipToPostalCode" placeholder="Zip/ Postal Code" />
                                     </div>
                                     <div class="form-inline">
                                         <input type="text" class="input-xxxlarge" placeholder="Additional Address Info (optional)" />
-                                        <select name="shipToCity" class="drop-select chosen combo" data-search-bar="true">
+                                        <select id="shipDropDown1" name="shipToCity" class="drop-select chosen combo" data-search-bar="true">
                                             <option value="" selected="selected">Zip Return City, State</option>
                                             <option value="1">Option 1</option>
                                             <option value="2">Option 2</option>
@@ -244,12 +473,12 @@ under the License.
                                     <h5 class="heading">Shipping Contact</h5>
                                     
                                     <div class="form-inline">
-                                        <input type="text" name="billToName" class="input-xxlarge required" placeholder="First Name" />
-                                        <input type="text" name="billToLastName" class="input-xxlarge required" placeholder="Last Name" />
+                                        <input type="text" name="billToName" id="billFirstName" class="input-xxlarge check required" placeholder="First Name" />
+                                        <input type="text" name="billToLastName" id="billLastName" class="input-xxlarge check required" placeholder="Last Name" />
                                     </div>
                                     <div class="form-inline">
-                                        <input name="billToContactNumber" type="text" class="input-xxlarge required" placeholder="Phone Number" />
-                                        <input type="text" class="input-xxlarge required" placeholder="Email Address" />
+                                        <input name="billToContactNumber" type="text" id="billPhone" class="input-xxlarge check required" placeholder="Phone Number" />
+                                        <input type="text" name="CUSTOMER_EMAILS" id="billEmail" class="input-xxlarge check required" placeholder="Email Address" />
                                         <input type="text" class="input-xxlarge" placeholder="Fax Number (optional)" />
                                     </div>
                                 </td>
@@ -259,12 +488,12 @@ under the License.
                                     <h5 class="heading">Shipping Address</h5>
                                     
                                     <div class="form-inline">
-                                        <input type="text" class="input-xxxlarge required" name="billToAddress1" placeholder="Street Address" />
-                                        <input type="text" class="input-xxlarge" name="billToPostalCode" placeholder="Zip/ Postal Code" />
+                                        <input type="text" id="billStreetAddress" class="input-xxxlarge check required" name="billToAddress1" placeholder="Street Address" />
+                                        <input type="text" id="billPostal" class="input-xxlarge check required" name="billToPostalCode" placeholder="Zip/ Postal Code" />
                                     </div>
                                     <div class="form-inline">
                                         <input type="text" class="input-xxxlarge" placeholder="Additional Address Info (optional)" />
-                                        <select name="billToCity" class="drop-select chosen combo" data-search-bar="true">
+                                        <select id="shipDropDown2" name="billToCity" class="drop-select chosen combo" data-search-bar="true">
                                             <option value="" selected="selected">Zip Return City, State</option>
                                             <option value="1">Option 1</option>
                                             <option value="2">Option 2</option>
@@ -279,13 +508,15 @@ under the License.
                                 <td class="col1">
                                     <h5 class="heading">Payment Information</h5>
                                     <div class="form-inline">
-                                        <select name="cardType" class="drop-select chosen combo" data-search-bar="true">
+                                        <select id="paymentDropDown" name="cardType" class="drop-select chosen combo" data-search-bar="true">
                                             <option value="" selected="selected">Select Card Type</option>
-                                            <option value="Visa" selected="selected">Visa</option>
+                                            <option value="Visa">Visa</option>
                                             <option value="2">Option 2</option>
                                         </select>
                                         <#-- Example card number: 4111111111111111 -->
-                                        <input name="cardNumber" type="text" class="input-xxlarge required" placeholder="Card Number" />
+                                        <#-- <input name="cardNumber" type="text" class="input-xxlarge check required" placeholder="Card Number" /> -->
+                                        <input type="text" maxlength="4" class="input-small cardNumber check required" id="cardNumber-0" onkeypress='return isNumberKey(event)' autocomplete="off"> - <input type="text" maxlength="4" class="input-small cardNumber check required" id="cardNumber-1" onkeypress='return isNumberKey(event)' autocomplete="off"> - <input type="text" maxlength="4" class="input-small cardNumber check required" id="cardNumber-2" onkeypress='return isNumberKey(event)' autocomplete="off"> - <input type="text" maxlength="4" class="input-small cardNumber check required" id="cardNumber-3" onkeypress='return isNumberKey(event)' autocomplete="off">
+                                        <input type="hidden" id="cardNumber" name="cardNumber">
                                     </div>
                                     <div class="form-inline">
                                         <strong class="grey">Expires</strong>&nbsp;
@@ -306,7 +537,7 @@ under the License.
                                             <option value="">Year</option>
                                             ${screens.render("component://common/widget/CommonScreens.xml#ccyears")}
                                         </select>
-                                        <input name="billToCardSecurityCode" type="text" class="input-medium required" placeholder="Security Code" />
+                                        <input name="billToCardSecurityCode" type="text" id="secureCode" class="input-medium check required" placeholder="Security Code" />
                                         <img src="<@ofbizContentUrl>/shopmax-default/img/icon-card.gif</@ofbizContentUrl>" />
                                         <a href="#">What is this?</a>
                                     </div>

@@ -61,7 +61,7 @@ under the License.
                 $('#'+this.id).find('.chzn-single').each(function(){
                     $(this).css({'background-color':'#FFFFFF'});
                 });
-                /*if($('#'+this.id).find('span').text() == 'Zip Return City, State' || $('#'+this.id).find('span').text() == 'Visa' || $('#'+this.id).find('span').text() == 'Month' || $('#'+this.id).find('span').text() == 'Year'){
+                /*if($('#'+this.id).find('span').text() == 'Zip Return City, State' || $('#'+this.id).find('span').text() == 'Select Card Type' || $('#'+this.id).find('span').text() == 'Month' || $('#'+this.id).find('span').text() == 'Year'){
                 $('#'+this.id).css({'background-color':'#FEF2EE'});
                 $('#'+this.id).find('.chzn-single').each(function(){
                     $(this).css({'background-color':'#FEF2EE'});
@@ -99,7 +99,7 @@ under the License.
                         $('html, body').animate({ scrollTop: 0 }, 0);
                         valid = false;
                     }
-                    if($('#paymentDropDown_chzn').find('span').text() == 'Visa'){
+                    if($('#paymentDropDown_chzn').find('span').text() == 'Select Card Type'){
                         $('#paymentDropDown_chzn').css({'background-color':'#FEF2EE'});
                         $('#paymentDropDown_chzn').find('.chzn-single').each(function(){
                         $(this).css({'background-color':'#FEF2EE'});
@@ -250,7 +250,7 @@ under the License.
                         $('html, body').animate({ scrollTop: 0 }, 0);
                         valid = false;
                     }
-                    if($('#paymentDropDown_chzn').find('span').text() == 'Visa'){
+                    if($('#paymentDropDown_chzn').find('span').text() == 'Select Card Type'){
                         $('#paymentDropDown_chzn').css({'background-color':'#FEF2EE'});
                         $('#paymentDropDown_chzn').find('.chzn-single').each(function(){
                         $(this).css({'background-color':'#FEF2EE'});
@@ -445,7 +445,7 @@ under the License.
                             <div class="form-inline">
                                 <select id="paymentDropDown" name="cardType" class="drop-select chosen combo" data-search-bar="true">
                                     <option value="" selected="selected">Select Card Type</option>
-                                    <option value="Visa" selected="selected">Visa</option>
+                                    <option value="Visa">Visa</option>
                                     <option value="2">Option 2</option>
                                 </select>
                                 <#-- Example card number: 4111111111111111 -->
