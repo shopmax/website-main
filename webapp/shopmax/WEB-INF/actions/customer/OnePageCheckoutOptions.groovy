@@ -36,5 +36,5 @@ if (userLogin) {
     
     context.contactMechList = ContactHelper.getContactMech(party, "SHIPPING_LOCATION", "POSTAL_ADDRESS", false);
     
-    context.billPaymentMethod = EntityUtil.filterByDate(delegator.findList("PaymentMethod", EntityCondition.makeCondition([partyId : party.partyId, paymentMethodTypeId : "CREDIT_CARD"]), null, ["fromDate"], false))
+    context.billPaymentMethod = EntityUtil.filterByDate(delegator.findList("PaymentMethod", EntityCondition.makeCondition([partyId : party.partyId, paymentMethodTypeId : "CREDIT_CARD"]), null, ["fromDate"], null, false));
 }
