@@ -3381,7 +3381,7 @@ border-top: 0px;
 .billing_de .shipp_info ul { display:block; margin:0; padding:5px 0 0 10px; clear:both; overflow:hidden;}
 .billing_de .shipp_info ul li { margin:0; padding:0; display:block; font-size:13px; color:#464646; float:none; overflow:hidden;}
 .billing_de .shipp_info ul li.lastbox { padding-top:10px;}
-.billing_de .shipp_info ul li .textb { background:#fef2ee; float:left; border:solid 1px #e0e0e0; margin-right:8px;}
+.billing_de .shipp_info ul li .textb { float:left; border:solid 1px #e0e0e0; margin-right:8px;}
 .billing_de .shipp_info ul li .card { float:left; margin:2px 8px 0 0;}
 .billing_de .shipp_info ul li a.what { display:block; float:left; margin:5px 0 0 0;}
 .billing_de .shipp_info ul li a.what:hover { color:#555;}

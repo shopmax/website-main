@@ -53,6 +53,48 @@ under the License.
                 }*/
             });
         });
+        
+        $('#shipAddressDrop').click(function(){
+            $('#shipAddressDrop').css({'background-color':'#FFFFFF'});
+        });
+        $('#billAddressDrop').click(function(){
+            $('#billAddressDrop').css({'background-color':'#FFFFFF'});
+        });
+        
+        $('#summaryButton3').click(function(){
+            $('.main-content').find('input.check').each(function(){
+                var valid = false;
+                if(!$(this).val().length){
+                $(this).addClass('required');
+                valid = false;
+                    if($('select#shipAddressDrop option:selected').val() == 'error'){
+                    $('#shipAddressDrop').css({'background-color':'#FEF2EE'});
+                        valid = false;
+                    }
+                    if($('select#billAddressDrop option:selected').val() == 'error2'){
+                        $('#billAddressDrop').css({'background-color':'#FEF2EE'});
+                        valid = false;
+                    }
+                }
+                else{
+                    $(this).removeClass('required');
+                    if($('.required').length == 0){
+                        valid = true;
+                    }
+                    if($('select#shipAddressDrop option:selected').val() == 'error'){
+                    $('#shipAddressDrop').css({'background-color':'#FEF2EE'});
+                        valid = false;
+                    }
+                    if($('select#billAddressDrop option:selected').val() == 'error2'){
+                        $('#billAddressDrop').css({'background-color':'#FEF2EE'});
+                        valid = false;
+                    }
+                }
+                if(valid){
+                        $('#orderSummarySubmitForm').submit();
+                }
+            });
+        });
         $('#processOrderSummaryButton').click(function(){
             $('.main-content').find('input.check').each(function(){
                 var valid = false;
@@ -315,8 +357,8 @@ under the License.
                             <div class="row">
                                 <div class="span5">
                                     <div class="column_1">
-                                        <select name="shipToContactMechId" class="span4">
-                                            <option value="">Please Select Shipping Address</option>
+                                        <select name="shipToContactMechId" id="shipAddressDrop" class="span4">
+                                            <option value="error">Please Select Shipping Address</option>
                                             <#if contactMechList?has_content>
                                                 <#list contactMechList as contactMech>
                                                     <#assign postalAddress = contactMech.getRelatedOne("PostalAddress", false)?if_exists/>
@@ -409,8 +451,8 @@ under the License.
                             <div class="row">
                                 <div class="span5">
                                     <div class="column_1">
-                                        <select name="paymentMethodId" class="span3">
-                                            <option value="">Please Select Billing Address</option>
+                                        <select name="paymentMethodId" id="billAddressDrop" class="span3">
+                                            <option value="error2">Please Select Billing Address</option>
                                             <#if billPaymentMethod?has_content>
                                                 <#list billPaymentMethod as paymentMethod>
                                                     <#assign creditCard = paymentMethod.getRelatedOne("CreditCard", false)?if_exists/>
@@ -438,7 +480,7 @@ under the License.
                                             <li><@maskSensitiveNumber cardNumber=cardNumber?if_exists/></li><#--••••••••••••1234 -->
                                             <li>Exp:</li>
                                             <li class="lastbox">
-                                                <input type="text" class="span1 textb">
+                                                <input type="text" id="exp" class="span1 textb check required">
                                                 <div class="card"><img src="<@ofbizContentUrl>img/icon-card.gif</@ofbizContentUrl>" alt=""></div>
                                                 <a href="#" class="what">What is this ?</a>
                                             </li>
@@ -552,8 +594,20 @@ under the License.
                         <#include "component://shopmax/webapp/shopmax/order/ordersummarydetail.ftl" />
                     </div>
                 </div>
-                <input type="button" id="processOrderSummaryButton" name="processOrderSummaryButton" class="btn-general pull-right" value="Place Order" />
+                
                 <input type="button" style="display: none;" id="processingOrderSummaryButton" name="processingOrderSummaryButton" value="${uiLabelMap.OrderSubmittingOrder}" />
+                <#if !contactMechList?has_content && billPaymentMethod?has_content>
+                <input type="button" id="summaryButton1" name="processOrderSummaryButton" class="btn-general pull-right" value="Place Order" />
+                </#if>
+                <#if !billPaymentMethod?has_content && contactMechList?has_content>
+                <input type="button" id="summaryButton2" name="processOrderSummaryButton" class="btn-general pull-right" value="Place Order" />
+                </#if>
+                <#if contactMechList?has_content && billPaymentMethod?has_content>
+                <input type="button" id="summaryButton3" name="processOrderSummaryButton" class="btn-general pull-right" value="Place Order" />
+                </#if>
+                <#if !contactMechList?has_content && !billPaymentMethod?has_content>
+                <input type="button" id="processOrderSummaryButton" name="processOrderSummaryButton" class="btn-general pull-right" value="Place Order" />
+                </#if>
             </div><!-- /.span9 -->
         </form>
     </div><!-- /.row -->
