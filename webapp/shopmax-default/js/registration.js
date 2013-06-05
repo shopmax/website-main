@@ -582,12 +582,12 @@ $(function(){
             "<div class='control-group'>"+
                     "<label class='control-label control-label-xsmall' for='inputPromotionDescription'>Branch Name</label>"+
                 "<div class='pull-left'>"+
-                    "<input type='text' class='input-xxlarge branchName check' id='branchName_"+index+"' name='branchName'>"+
+                    "<input type='text' class='input-xxlarge branchName check' id='branchName_"+index+"' name='branchName'>*"+
                 "</div>"+
             "</div>"+
             "<div class='control-group'><label class='control-label control-label-xsmall' for='inputPromotionDescription'>Location</label>"+
                 "<div class='pull-left'>"+
-                    "<input type='text' class='input-xxlarge inputLocation check' id='inputLocation_"+index+"' onclick='inputLocation("+index+")'>"+
+                    "<input type='text' class='input-xxlarge inputLocation check' id='inputLocation_"+index+"' onclick='inputLocation("+index+")'>*"+
                 "</div>"+
             "</div>"+
             "<div class='control-group'>"+
