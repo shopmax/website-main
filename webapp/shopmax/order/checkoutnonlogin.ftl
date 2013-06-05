@@ -333,7 +333,7 @@ under the License.
                 
                 <#-- Shipping Information -->
                 <input type="hidden" name="shipMethod" value="NO_SHIPPING"/>
-                <input type="hidden" value="1" name="shipToCountryCode">
+                <input type="hidden" value="64" name="shipToCountryCode">
                 <input type="hidden" value="801" name="shipToAreaCode">
                 <input type="hidden" value="" name="shipToExtension">
                 
@@ -386,7 +386,7 @@ under the License.
                 <input type="hidden" id="paymentMethodTypeId" name="paymentMethodTypeId" value="${paymentMethodTypeId?default("CREDIT_CARD")}" />
                 <input type="hidden" value="Y" name="keepAddressBook">
                 <input type="hidden" value="Y" name="setDefaultBilling">
-                <input type="hidden" value="1" name="billToCountryCode">
+                <input type="hidden" value="64" name="billToCountryCode">
                 <input type="hidden" value="801" name="billToAreaCode">
                 <input type="hidden" value="" name="billToExtension">
                 <input type="hidden" value="N" name="useShippingAddressForBilling" id="useShippingAddressForBilling">

@@ -111,7 +111,7 @@ under the License.
                                                 <#assign proviceStateGeo = postalAddress.getRelatedOne("ProvinceStateGeo")/>
                                                 <li>${postalAddress.address1}</li><#--Street Address Line one -->
                                                 <li>${postalAddress.address2}</li><#--Street Address Line two -->
-                                                <li>${proviceStateGeo.geoName}</li><#--State -->
+                                                <li>${postalAddress.city}</li><#--State -->
                                             </#if>
                                             
                                             <#assign facilityContactMechValueMaps = Static["org.ofbiz.party.contact.ContactMechWorker"].getFacilityContactMechValueMaps(delegator, productStore.inventoryFacilityId, false, "TELECOM_NUMBER") />

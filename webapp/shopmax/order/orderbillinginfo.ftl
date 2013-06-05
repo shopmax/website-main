@@ -28,11 +28,12 @@ under the License.
             <#assign stateProvinceGeo = billingAddress.getRelatedOne("StateProvinceGeo", false)?if_exists>
             <tr><td>${billingAddress.toName?default("No Contact Name")}</td></tr><#-- Contact Name -->
             <tr><td>${billingAddress.address1?if_exists}</td></tr><#-- Street Address Line one -->
-            <tr><td>${billingAddress.address2?if_exists}</td></tr><#-- Street Address Line two -->
-            <tr><td>${stateProvinceGeo.geoName?if_exists}</td></tr><#-- State -->
+            <tr><td><#if billingAddress.address2?exists>${billingAddress.address2}</#if></td></tr><#-- Street Address Line two -->
+            <tr><td>${billingAddress.city?if_exists}</td></tr><#-- State -->
         </#if>
         <#if billToTelecomNumber?exists>
-            <tr><td>Phone number: ${billToTelecomNumber.countryCode?if_exists} <#if billToTelecomNumber.areaCode?exists>${billToTelecomNumber.areaCode}-</#if>${billToTelecomNumber.contactNumber}</td></tr>
+            <#-- <tr><td>Phone number ${billToTelecomNumber.countryCode?if_exists} <#if billToTelecomNumber.areaCode?exists>${billToTelecomNumber.areaCode}-</#if>${billToTelecomNumber.contactNumber}</td></tr> -->
+            <tr><td>Phone number <#if billToTelecomNumber.areaCode?exists>${billToTelecomNumber.areaCode}-</#if>${billToTelecomNumber.contactNumber?if_exists}</td></tr>
         </#if>
     </tbody>
 </table>

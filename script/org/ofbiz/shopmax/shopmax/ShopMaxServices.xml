@@ -457,6 +457,7 @@ under the License.
             
             <!-- Create the contact phone number -->
             <if-not-empty field="parameters.contactPhoneNumber">
+                <set field="homePhoneContext.areaCode" from-field="parameters.contactPhoneNumberArea"/>
                 <set field="homePhoneContext.contactNumber" from-field="parameters.contactPhoneNumber"/>
                 <call-service service-name="createPartyTelecomNumber" in-map-name="homePhoneContext">
                     <result-to-field result-name="contactMechId" field="homePhonePurposeContext.contactMechId"/>
@@ -468,6 +469,7 @@ under the License.
             
             <!-- Create the notification phone number -->
             <if-not-empty field="parameters.notificationPhoneNumber">
+                <set field="mobilePhoneContext.areaCode" from-field="parameters.notificationPhoneNumberArea"/>
                 <set field="mobilePhoneContext.contactNumber" from-field="parameters.notificationPhoneNumber"/>
                 <call-service service-name="createPartyTelecomNumber" in-map-name="mobilePhoneContext">
                     <result-to-field result-name="contactMechId" field="mobilePhonePurposeContext.contactMechId"/>

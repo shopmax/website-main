@@ -350,7 +350,7 @@ under the License.
                 <br />
                 <div class="billing_de">
                     <#if contactMechList?has_content>
-                        <input type="hidden" value="1" name="shipToCountryCode">
+                        <input type="hidden" value="64" name="shipToCountryCode">
                         <input type="hidden" value="801" name="shipToAreaCode">
                         <div class="shipp_info">
                             <div class="tital_1">Shipping Information</div>
@@ -372,8 +372,8 @@ under the License.
                                             <li>${shipToName?if_exists}</li>
                                             <li>${shipToAddress1?if_exists}</li>
                                             <li>${shipToAddress2?if_exists}</li>
-                                            <li>${shipToStateProvinceGeo?if_exists}</li>
-                                            <li>Phone number ${shipToTelecomNumber.countryCode?if_exists} <#if shipToTelecomNumber.areaCode?exists>${shipToTelecomNumber.areaCode}-</#if>${shipToTelecomNumber.contactNumber}</li>
+                                            <li>${shipToCity?if_exists}</li>
+                                            <li>Phone number <#if shipToTelecomNumber.areaCode?exists>${shipToTelecomNumber.areaCode}-</#if>${shipToTelecomNumber.contactNumber}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -384,7 +384,7 @@ under the License.
                         </div>
                     <#else>
                         <input type="hidden" name="shipMethod" value="NO_SHIPPING"/>
-                        <input type="hidden" value="1" name="shipToCountryCode">
+                        <input type="hidden" value="64" name="shipToCountryCode">
                         <input type="hidden" value="801" name="shipToAreaCode">
                         <input type="hidden" value="" name="shipToExtension">
                         
@@ -465,8 +465,8 @@ under the License.
                                             <li>${billToName?if_exists}</li>
                                             <li>${billToAddress1?if_exists}</li>
                                             <li>${billToAddress2?if_exists}</li>
-                                            <li>${billToStateProvinceGeo?if_exists}</li>
-                                            <li>Phone number ${billToTelecomNumber.countryCode?if_exists} <#if billToTelecomNumber.areaCode?exists>${billToTelecomNumber.areaCode}-</#if>${billToTelecomNumber.contactNumber}</li>
+                                            <li>${billToCity?if_exists}</li>
+                                            <li>Phone number <#if billToTelecomNumber.areaCode?exists>${billToTelecomNumber.areaCode}-</#if>${billToTelecomNumber.contactNumber}</li>
                                         </ul>
                                     </div>
                                 </div>

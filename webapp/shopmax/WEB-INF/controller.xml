@@ -359,7 +359,7 @@ under the License.
     <request-map uri="onePageClearCartForOrder">
         <security direct-request="false"/>
         <event type="java" path="org.ofbiz.order.shoppingcart.ShoppingCartEvents" invoke="clearCart"/>
-        <response name="success" type="request" value="onePageCheckExternalPayment"/>
+        <response name="success" type="request" value="emailorder"/>
         <response name="error" type="view" value="checkout"/>
     </request-map>
     
