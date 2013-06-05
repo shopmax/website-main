@@ -1490,17 +1490,27 @@ under the License.
             <field-map field-name="attrName" value="SHIPPING_SIZE"/>
         </entity-one>
         <if-empty field="productAttribute">
-            <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
-            <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
-            <set field="createProductAttributeMap.attrName" value="SHIPPING_SIZE"/>
-            <set field="createProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
-            <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
+            <if-not-empty field="parameters.shippingSize">
+                <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+                <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
+                <set field="createProductAttributeMap.attrName" value="SHIPPING_SIZE"/>
+                <set field="createProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
+                <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
+            </if-not-empty>
         <else>
-            <set field="updateProductAttributeMap.userLogin" from-field="systemUserLogin"/>
-            <set field="updateProductAttributeMap.productId" from-field="productAttribute.productId"/>
-            <set field="updateProductAttributeMap.attrName" from-field="productAttribute.attrName"/>
-            <set field="updateProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
-            <call-service service-name="updateProductAttribute" in-map-name="updateProductAttributeMap"/>
+            <if-not-empty field="parameters.shippingSize">
+                <set field="updateProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+                <set field="updateProductAttributeMap.productId" from-field="productAttribute.productId"/>
+                <set field="updateProductAttributeMap.attrName" from-field="productAttribute.attrName"/>
+                <set field="updateProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
+                <call-service service-name="updateProductAttribute" in-map-name="updateProductAttributeMap"/>
+            <else>
+                <set field="deleteProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+                <set field="deleteProductAttributeMap.productId" from-field="parameters.productId"/>
+                <set field="deleteProductAttributeMap.attrName" value="SHIPPING_SIZE"/>
+                <call-service service-name="deleteProductAttribute" in-map-name="deleteProductAttributeMap"/>
+            </else>
+            </if-not-empty>
         </else>
         </if-empty>
         
@@ -1688,17 +1698,27 @@ under the License.
             <field-map field-name="attrName" value="SHIPPING_SIZE"/>
         </entity-one>
         <if-empty field="productAttribute">
-            <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
-            <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
-            <set field="createProductAttributeMap.attrName" value="SHIPPING_SIZE"/>
-            <set field="createProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
-            <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
+            <if-not-empty field="parameters.shippingSize">
+                <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+                <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
+                <set field="createProductAttributeMap.attrName" value="SHIPPING_SIZE"/>
+                <set field="createProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
+                <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
+            </if-not-empty>
         <else>
-            <set field="updateProductAttributeMap.userLogin" from-field="systemUserLogin"/>
-            <set field="updateProductAttributeMap.productId" from-field="productAttribute.productId"/>
-            <set field="updateProductAttributeMap.attrName" from-field="productAttribute.attrName"/>
-            <set field="updateProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
-            <call-service service-name="updateProductAttribute" in-map-name="updateProductAttributeMap"/>
+            <if-not-empty field="parameters.shippingSize">
+                <set field="updateProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+                <set field="updateProductAttributeMap.productId" from-field="productAttribute.productId"/>
+                <set field="updateProductAttributeMap.attrName" from-field="productAttribute.attrName"/>
+                <set field="updateProductAttributeMap.attrValue" from-field="parameters.shippingSize"/>
+                <call-service service-name="updateProductAttribute" in-map-name="updateProductAttributeMap"/>
+            <else>
+                <set field="deleteProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+                <set field="deleteProductAttributeMap.productId" from-field="parameters.productId"/>
+                <set field="deleteProductAttributeMap.attrName" value="SHIPPING_SIZE"/>
+                <call-service service-name="deleteProductAttribute" in-map-name="deleteProductAttributeMap"/>
+            </else>
+            </if-not-empty>
         </else>
         </if-empty>
         

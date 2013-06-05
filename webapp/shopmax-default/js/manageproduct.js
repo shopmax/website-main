@@ -79,10 +79,16 @@ $(function(){
         $('#promo-'+this.id).val(dateFormat[2]+"-"+dateFormat[0]+"-"+dateFormat[1]+" 00:00:00.000");
     });
     $('.shippingSize').click(function(){
-        $('.shippingSize').css({'color':'#FFFFFF'});
         var shippingSize = (this.id).split('-');
-        $('#'+this.id).css({'color':'#358BDB'});
-        $('#'+shippingSize[1]).val(shippingSize[0]);
+        if($('#'+shippingSize[1]).val() == shippingSize[0]){
+            $('#'+this.id).css({'color':'#FFFFFF'});
+            $('#'+shippingSize[1]).val('');
+        }
+        else{
+          $('.shippingSize').css({'color':'#FFFFFF'});
+          $('#'+this.id).css({'color':'#358BDB'});
+          $('#'+shippingSize[1]).val(shippingSize[0]);
+        }
     });
     $('.file').preimage();
 });

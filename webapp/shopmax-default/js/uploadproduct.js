@@ -151,9 +151,15 @@ $(function(){
     });
     
     $('.shippingSize').click(function(){
-        $('.shippingSize').css({'color':'#FFFFFF'});
-        $('#'+this.id).css({'color':'#358BDB'});
-        $('#shippingSize').val(this.id);
+    	if($('#shippingSize').val() == this.id){
+            $('#'+this.id).css({'color':'#FFFFFF'});
+            $('#shippingSize').val('');
+    	}
+    	else{
+            $('.shippingSize').css({'color':'#FFFFFF'});
+            $('#'+this.id).css({'color':'#358BDB'});
+            $('#shippingSize').val(this.id);
+    	}
     });
     
     $('#datepicker1').change(function(){

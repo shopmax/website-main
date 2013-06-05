@@ -66,27 +66,27 @@ under the License.
                                     <div class="control-group">
                                         <label class="control-label control-label-small" for="inputEmailAddress">Email Address</label>
                                         <div class="pull-left">
-                                            <input type="text" class="input-xlarge check" id="emailAddress" name="CUSTOMER_EMAIL">
+                                            <input type="text" class="input-xlarge check" id="emailAddress" name="CUSTOMER_EMAIL">*
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label control-label-small" for="inputPromotionDescription">Password</label>
                                         <div class="pull-left">
-                                            <input type="password" class="input-xlarge check" id="currentPassword" name="PASSWORD">
+                                            <input type="password" class="input-xlarge check" id="currentPassword" name="PASSWORD">*
                                         </div>
-                                        <label class="control-label control-label-small" for="inputPromotionDescription">Confirm Password</label>
+                                        <label class="control-label control-label-small" for="inputPromotionDescription" style="padding-left: 10px;">Confirm Password</label>
                                         <div class="pull-left">
-                                            <input type="password" class="input-xlarge check" id="currentPasswordVerify" name="CONFIRM_PASSWORD">
+                                            <input type="password" class="input-xlarge check" id="currentPasswordVerify" name="CONFIRM_PASSWORD">*
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label control-label-small" for="inputPromotionDescription">First Name</label>
                                         <div class="pull-left">
-                                            <input type="text" class="input-xlarge check" id="firstName" name="USER_FIRST_NAME">
+                                            <input type="text" class="input-xlarge check" id="firstName" name="USER_FIRST_NAME">*
                                         </div>
-                                        <label class="control-label control-label-small" for="inputPromotionDescription">Last Name</label>
+                                        <label class="control-label control-label-small" for="inputPromotionDescription" style="padding-left: 10px;">Last Name</label>
                                         <div class="pull-left">
-                                            <input type="text" class="input-xlarge check" id="lastName" name="USER_LAST_NAME">
+                                            <input type="text" class="input-xlarge check" id="lastName" name="USER_LAST_NAME">*
                                         </div>
                                     </div>
                                 </td>
@@ -234,13 +234,13 @@ under the License.
                                         <div class="control-group">
                                             <label class="control-label control-label-xsmall" for="inputPromotionDescription">Branch Name</label>
                                             <div class="pull-left">
-                                                <input type="text" class="input-xxlarge branchName check" id="branchName_0" name="branchName">
+                                                <input type="text" class="input-xxlarge branchName check" id="branchName_0" name="branchName">*
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label control-label-xsmall" for="inputPromotionDescription">Location</label>
                                             <div class="pull-left">
-                                                <input type="text" class="input-xxlarge inputLocation check" id="inputLocation_0" onclick="inputLocation('0')">
+                                                <input type="text" class="input-xxlarge inputLocation check" id="inputLocation_0" onclick="inputLocation('0')">*
                                             </div>
                                         </div>
                                         <div class="control-group">
