@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+	<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>ShopMax - My Profile</title>
+        <meta name="description" content="">
+
+        <meta name="viewport" content="width=device-width">
+
+		<!-- what happens with this with mobile phones? 
+		<meta name="viewport" content="width=device-width, initial-scale=1" />-->
+		
+      
+		<link rel="stylesheet" href="css/bootstrap.css">     
+		
+		<link rel="stylesheet" href="css/bootstrap-responsive.css">
+		
+		<link rel="stylesheet" href="js/vendor/chosen.css">
+		
+		
+        <link rel="stylesheet" href="css/main.css">
+       
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+		<script src="js/vendor/chosen.jquery.min.js"></script>
+
+		<link rel="stylesheet" href="css/anythingslider.css">
+
+		<script src="js/vendor/jquery.anythingslider.min.js"></script>
+		
+		<link rel="stylesheet" href="js/fancybox/source/jquery.fancybox.css">
+		
+		<script src="js/fancybox/source/jquery.fancybox.pack.js"></script>	
+	
+		<script src="js/main.js"></script>
+	
+    </head>
+    <body class="profile">
+        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
+
+        <header id="topnav" class="navbar navbar-inverse navbar-fixed-top clearfix">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <h1 title="Shopmax"><a class="brand" href="/"><img src="img/logo-2.png" width="159" height="55" alt="Shopmax logo" /></a></h1>
+					<!-- was <img src="img/logo.png" width="186" height="65" alt="" /> padding:top 10px right 27 -->
+                    <!--<div class="nav-collapse collapse"> to make it collapse -->
+					<div class="header-search">
+                        <ul class="nav">
+                            <li><a href="upload.html">Upload Product</a></li>
+                            <li><a href="manage-product.html">Manage Product</a></li>
+                            <!--
+							<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li class="nav-header">Nav header</li>
+                                    <li><a href="#">Separated link</a></li>
+                                    <li><a href="#">One more separated link</a></li>
+                                </ul>
+                            </li>-->
+							<li><a href="manage-orders.html">Manage Orders</a></li>
+							<li><a href="shopping-list.html">Shopping List</a></li>
+							<li class="last"><a href="buying-orders.html">Buying Orders</a></li>
+                        </ul>
+                        <form class="navbar-form pull-left">
+							<div class="field search-filters">
+								<div class="main-search-control">
+									<div class="main-search-dropdown bold">
+										<!--
+									<span class="drop-container">					
+									
+										<span class="drop-label"></span>		
+										<span class="drop-arrow"></span>
+										-->
+										
+										<select id="SearchType" name="searchType" class="drop-select chosen combo" data-search-bar="true">
+												<option value="shop1.html" selected="selected">This Shop</option>
+												<option value="shop2.html">Shop 2</option>
+												<option value="shop3.html">Shop 3</option>
+												<option value="shop4.html">Shop 4</option>
+										</select>
+
+									<!-- </span> -->
+									</div>
+									<div class="main-search-input">
+										<input type="text" placeholder="Search" name="searchTerm">
+									</div>
+								</div>
+							</div>
+							<div class="pull-left">
+								<button type="submit" class="btn-search pull-left"></button>
+							</div>
+                        </form>
+                    </div><!--/.nav-collapse -->
+					<!-- PERSONAL GREETING & LINKS -->
+					<div id="personal" class="pull-left nav-collapse collapse">
+						<h4>Hi <span>James</span></h4>
+						<form class="rounded-form">
+							<select id="accountOptions" class="chosen actionable" name="accountOptions">
+								<option selected="selected">My Account</option>
+								<option value="selling.html">Selling</option>
+								<option value="buying.html">Buying</option>
+								<option value="profile.html">Profile</option>
+								<option value="log-out.html">Log Out</option>
+							</select>
+						</form>
+					</div>
+					<!-- CART INFORMATION -->
+					<div id="cart-info" class="nav-collapse collapse">
+						<h3>3 Items</h3>
+						<p><a href="view-cart.html" class="btn-flat round">View Cart</a></p>
+						<p><a href="check-out.html" class="btn-flat checkout">Check Out</a></p>
+					</div>
+                </div><!--/.container -->
+			</div><!--/. navbar-inner --> 
+		</header><!--/. navbar -->
+		<nav id="mainnav" class="navbar navbar-static-top"><!-- blue navbar -->			
+			<div class="navbar-inner">
+				<div class="container">
+						<ul class="nav">
+							<li><a href="/">Home</a></li>
+							<li><a href="shops.html">Shops</a></li>
+							<li><a href="group-bang.html">Group Bang</a></li>
+							<li><a href="rush-hour.html">Rush Hour</a></li>
+							<li><a href="multi-buy.html">Multi Buy</a></li>
+							<li><a href="about-us.html">About Us</a></li>
+							<li><a href="help.html">Help</a></li>
+						</ul>
+				</div>
+			</div>	
+		</nav>
+
+	      
+
+        <div class="container content">
+			<div class="row">
+				<a class="skip-link small" href="#side-menu">Skip to sidebar menu</a>
+			</div>
+			<div>
+				<ul class="breadcrum"><li><a href="/">Home</a></li>
+				<li>Profile</li></ul>
+			</div>
+			<div class="row content-left">
+			<!-- MAIN CONTENT -->
+				<!-- sliderdiv -->
+				<div class="span9 main-content">
+					<div class="tabbed">
+							<div class="tabs">
+								<ul class="tabnavs">
+									<li><h3>Profile</h3></li>
+									<li><h3>Merchant</h3></li>
+									<li><h3>Manage Branches</h3></li>
+								</ul>
+							</div><!-- /.tabs-->
+							<div id="profile-tab" class="tabcontent">
+								<div class="inside">
+									<h4>Personal Details<span><a href="#" class="box-link">Edit</a></span></h4>
+									<div class="span5">
+										<p><strong>David Smith</strong></p>
+										<p>david.smith@davidsmith.com</p>
+									</div>
+									<div class="span3">
+										<p><strong>Connect With</strong></p>
+										<ul><li><a href="#"><img src="img/fb.png" width="23" height="23" alt="" /></a></li>
+										<li><a href="#"><img src="img/tw.png" width="23" height="23" alt="" /></a></li>
+										<li><a href="#"><img src="img/gplus.png" width="23" height="23" alt="" /></a></li></ul>
+										
+									</div>
+								</div>
+								<div class="inside">
+									<h4>Password</h4>
+									<form>
+									<div class="span9">
+										<p class="span4"><label for="oldpassword">Old password</label><input id="oldpassword" name="oldpassword" type="text" /></p>
+									</div>
+									<p class="span9">
+										<span class="span4">
+											<label for="newpassword">New password</label><input id="newpassword" name="newpassword" type="text" />	
+										</span>
+										<span class="span4">
+											<label for="newpassword2">Confirm password</label><input id="newpassword2" name="newpassword2" type="text" />
+										</span>
+										<span class="span1">
+											<button type="submit" class="btn-general" value="Submit">Submit</button>
+										</span>	
+									</p>
+									</form>
+								</div>
+								<div class="inside">
+									<h4>Credit Card<span>1 credit card stored</span></h4>
+									<div class="span8">
+										<p><strong><a href="#">Remove your saved credit card</a></strong></p>
+										<p><a href="#" class="btn-grey">Forget</a></p>
+									</div>
+								</div>
+								<div class="inside">
+									<h4 class="no-margin">Address Book</h4>
+									<div class="span9 no-margin">
+										<div class="span5">
+											<h5 class="no-margin">Default Shipping address</h5>
+											<p>Contact Name<br />
+											Street address line one<br />
+											Street address line two<br />
+											State<br />
+											Phone Number XX-XXXXXXX
+											</p>
+										</div>
+										<div class="span4">
+											<h5 class="no-margin">Default billing address</h5>
+											<p>Contact Name<br />
+											Street address line one<br />
+											Street address line two<br />
+											State<br />
+											Phone Number XX-XXXXXXX
+											</p>
+										</div>
+									</div>
+									<div class="span9 no-margin">
+											<h5 class="no-margin">Other addresses</h5>
+											<div class="row">
+												<div class="span5">
+													<p>Contact Name 1<br />
+												Street address line one<br />
+												Street address line two<br />
+												State<br />
+												Phone Number XX-XXXXXXX
+												</p>
+												</div>
+												<div class="span4">
+													<p><a href="#">Edit</a><br />
+													<a href="#">Remove</a><br />
+													<a href="#">Set as default shipping</a><br />
+													<a href="#">Set as default billing</a>
+													</p>
+												</div>
+												<hr />
+											</div><!-- /.row -->
+											<div class="row">
+												<div class="span5">
+													<p>Contact Name 2<br />
+												Street address line one<br />
+												Street address line two<br />
+												State<br />
+												Phone Number XX-XXXXXXX
+												</p>
+												</div>
+												<div class="span4">
+													<p><a href="#">Edit</a><br />
+													<a href="#">Remove</a><br />
+													<a href="#">Set as default shipping</a><br />
+													<a href="#">Set as default billing</a>
+													</p>
+												</div>
+												<hr />
+											</div><!-- /.row -->
+											<div class="row">
+												<p><a href="#" class="btn-general">Add New Addresses</a></p>
+											</div>
+									</div>
+								</div>
+
+							</div><!-- /#profile-tab -->
+							<div id="merchant-tab" class="tabcontent">
+								<div class="inside">
+								<h4>Business Details<span><a class="box-link" href="#">Edit</a></span></h4>
+									<form>
+									<div class="span9">
+										<table border="1">
+										<tr><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td><td width="4%">&nbsp;</td></tr>
+										<tr><td colspan="25">
+										<p><strong>NAME</strong></p></td></tr>
+										<tr><td width="36%">										
+												<label for="obusname">Official business name</label></td>
+											<td width="12%">
+												<input type="text" name="obusname" id="obusname" />
+											</td>
+											<td width="36%" class="align-center">
+												<label for="tradename" >Trading name</label>
+											</td>
+											<td width="12%">
+												<input type="text" name="tradename" id="tradename" /> 
+											</td>
+											<td width="4%">&nbsp;</td>
+										</tr>
+										<tr><td colspan="25"><hr /></td></tr>
+										<tr><td colspan="25">
+												<p><strong>DOMAIN</strong></p></td>
+										</tr>
+										<tr><td width="36%">
+												<label for="currdomname">Current domain name</label>
+											</td>
+											<td width="60%">
+												<input type="text" name="currdomname" id="currdomname" /></td>
+											<td width="4%">&nbsp;</td>
+										</tr>
+										<tr><td width="4%" class="align-left">
+												<input type="checkbox" checked="checked" name="usedomname" id="usedomname">
+											</td>
+											<td width="40%">
+												<label for="domname">Use your own domain name</label></td>
+											<td width="52%"><input type="text" name="domname" id="domname" /></td>
+											<td width="4%" class="align-right"><a href="profile-help.html" class="fancylink fancybox.iframe"><img src="img/help.png" width="20" height="27" alt="" /></a></td>
+										</tr>
+										<tr><td colspan="25"><hr /></td></tr>
+										<tr>
+										<td colspan="25">
+										<p>
+											<strong>BANK ACCOUNT TO RECEIVE PAYMENT</strong>
+										</p></td>
+										</tr>
+										<tr>
+											<td width="36%">
+												<label for="accntname">Account name</label></td>
+											<td width="24%">
+												<input type="text" id="accntname" name="accntname" /></td>
+											<td width="60%">&nbsp;</td>
+										</tr>
+										<tr>
+											<td width="36%">
+												<label for="accntnum">Account number</label></td>
+											<td width="60%"><input type="text" id="accntnum" maxlength="2" class="span1" />&#8212;
+											
+												<input type="text" id="accntnum2" maxlength="4" class="span1" />
+											&#8212;
+											
+												<input type="text"  id="accntnum3" maxlength="7" class="span4" />
+											&#8212;
+											
+												<input type="text" id="accntnum4" maxlength="2" class="span1" />
+											</td>
+											<td width="4%">&nbsp;</td>
+										</tr>
+										<tr>
+											<td width="88%">&nbsp;</td>
+											<td width="4%" class="align-right"><button type="submit" class="btn-general">Submit</button></td>
+											<td width="4%" class="align-right"><button type="reset" class="btn-grey">Cancel</button></td>
+											<td width="4%">&nbsp;</td>
+										</tr>
+										<tr><td colspan="25"><p><strong>Note:</strong> For your security, your change request will be sent to our website administration for action, you will receive a confirmation email once the change has been made.</p></td></tr>
+										<!-- horrible hack to get table working --> 
+								
+										</table>
+									</div>
+									</form>
+								</div>
+							</div><!-- /#merchant-tab -->
+							<div id="manage-branches-tab" class="tabcontent">
+								<div class="inside">
+								<h4>Manage Branches</h4>
+									<div class="span8">
+									<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent quam lorem, scelerisque et, mattis cursus, porttitor sit amet, libero. Praesent pulvinar.</p>
+									<p>Duis vitae nunc ut sapien mollis scelerisque. Sed tempor libero sed nisl. Praesent ultricies nulla. Proin sit amet mi. Sed dignissim eleifend odio. Mauris viverra lectus. Etiam tellus diam, pharetra sit amet, convallis nec, cursus eu, urna. Aliquam erat volutpat.</p>
+									</div>
+								</div>
+							</div><!-- /#branches-tab -->
+						</div><!-- /.tabbed -->
+				</div><!-- /.span9 -->
+				<!-- sidebar -->
+				<div class="span3 sidebar dropped" id="side-menu">
+					<div class="categories innerbox georgia grey">
+						<h2>Reserved</h2>
+						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent quam lorem, scelerisque et, mattis cursus, porttitor sit amet, libero. Praesent pulvinar. Duis vitae nunc ut sapien mollis scelerisque. Sed tempor libero sed nisl. Praesent ultricies nulla. Proin sit amet mi. Sed dignissim eleifend odio. Mauris viverra lectus. Etiam tellus diam, pharetra sit amet, convallis nec, cursus eu, urna. Aliquam erat volutpat.</p>
+						
+					</div><!-- /.categories .innerbox -->
+				</div><!-- /.span3.sidebar -->
+				</div><!-- /.row -->				
+			</div> <!-- /container -->
+         
+
+            <footer>
+                <div id="top-foot" class="georgia">
+					<div class="container">
+						<div class="row">
+							<div class="span2">
+								<h3>Quick Links</h3>
+								<ul>
+								<li><a href="todays-deal.html">Today's Deal</a></li>
+								<li><a href="featured.html">Featured</a></li>
+								<li><a href="special.html">Special</a></li>
+								<li><a href="top-seller.html">Top Seller</a></li>
+								<li><a href="shops.html">Shops</a></li>
+								<li><a href="shipping.html">Shipping &amp; Returns</a></li>
+								</ul>
+							</div>
+							<div class="span2">
+								<h3>Top Categories</h3>
+								<ul>
+								<li><a href="#">Maecenas faucibus</a></li>
+								<li><a href="#">Interdum enean eu</a></li>
+								<li><a href="#">Quam ellentesque</a></li>
+								<li><a href="#">Sem lacinia quam</a></li>
+								<li><a href="#">Venenatis vestibum</a></li>
+								<li><a href="#">Prasent commodo</a></li>
+								</ul>
+								
+							</div>
+							<div class="span2 noheading">
+								<ul>
+								<li><a href="#">Maecenas faucibus</a></li>
+								<li><a href="#">Interdum enean eu</a></li>
+								<li><a href="#">Quam ellentesque</a></li>
+								<li><a href="#">Sem lacinia quam</a></li>
+								<li><a href="#">Venenatis vestibum</a></li>
+								<li><a href="#">Prasent commodo</a></li>
+								</ul>						
+							</div>
+							<div class="span3">
+								<h3>Looking For Something?</h3>
+								<form class="pull-left">
+									<input type="text" placeholder="Search through our site" class="pull-left">
+									<button type="submit" class="btn-search-large pull-left"></button>
+								</form>
+
+								<h3>Contact us for a Quotation</h3>
+								<p><strong>0800 123 456</strong> <em>or</em> <strong><a href="mailto:abc@xyz.com">Email Us</a></strong><br />
+								<dfn>7 days 9am to 5pm NZDT</dfn></p>
+								
+
+							</div>
+							<div class="span3">
+								<h3>Sign Up Our Newsletter</h3>
+								<form class="pull-left">
+									<input type="text" placeholder="Your email address" class="pull-left">
+									<button type="submit" class="btn-email pull-left"></button>
+								</form>
+								<h3>Connect with us</h3>
+								<ul id="connect">
+									<li class="pull-left"><a href="#"><img src="img/icon-twitter.png" width="33" height="33" alt="" /></a></li>
+									<li class="pull-left"><a href="#"><img src="img/icon-fb.png" width="34" height="33" alt="" /></a></li>
+									<li class="pull-left"><a href="#"><img src="img/icon-gplus.png" width="33" height="33" alt="" /></a></li>
+									<li class="pull-left"><a href="#"><img src="img/icon-rss.png" width="33" height="33" alt="" /></a></li>
+								</ul>
+
+							</div>
+						</div><!-- /. row -->
+					</div><!-- /.container -->
+				</div><!-- /# top-foot -->
+				<div id="blue-foot">
+					<div class="container">
+						<div class="row">
+							<div class="span10">
+								<ul><li>&copy; Copyright 2012 shopmax</li>
+									<li><a href="contact.html">Contact Us</a></li>
+									<li><a href="about.html">About Us</a></li>
+									<li><a href="support.html">Support</a></li>
+									<li><a href="privacy.html">Privacy Notice</a></li>
+									<li><a href="conditions.html">Conditions of Use</a></li>
+								</ul>
+							</div>
+							<div id="logo" class="span2">
+								<p><a href="#topnav" title="Jump to page top"><img src="img/shopmax-bottom-logo.png" width="106" height="30" alt="" /><!--<img src="img/logo-bottom.png" width="107" height="58" alt="" />--></a></p>
+							</div>
+						</div><!-- /.row -->
+					</div><!-- /. container -->
+				</div><!-- /#blue-foot -->
+            </footer>
+
+        
+
+        
+        <script>
+        /*    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+		*/
+		
+        </script>
+    </body>
+</html>

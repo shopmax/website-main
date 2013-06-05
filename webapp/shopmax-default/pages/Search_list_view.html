@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+	<head>
+	<!--script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script-->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>ShopMax - Manage Product Edit Mode</title>
+        <meta name="description" content="">
+
+        <meta name="viewport" content="width=device-width">
+
+		<!-- what happens with this with mobile phones? 
+		<meta name="viewport" content="width=device-width, initial-scale=1" />-->
+		
+        <link rel="stylesheet" href="css/bootstrap.css">     
+		
+		<link rel="stylesheet" href="css/bootstrap-responsive.css">
+		
+		<link rel="stylesheet" href="js/vendor/chosen.css">
+		
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/product_details.css" />
+        <link rel="stylesheet" href="css/new_style.css" />
+
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+       <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places&language=en-AU"></script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+		<script src="js/vendor/chosen.jquery.min.js"></script>
+
+		<link rel="stylesheet" href="css/anythingslider.css">
+
+		<script src="js/vendor/jquery.anythingslider.min.js"></script>
+
+		<link rel="stylesheet" href="js/fancybox/source/jquery.fancybox.css">
+		
+		<script src="js/fancybox/source/jquery.fancybox.pack.js"></script>	
+        
+        <script src="js/vendor/jquery.raty.min.js"></script>
+	
+        <script src="js/main.js"></script>
+		 <!--script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script-->
+	<script type="text/javascript">
+$(document).ready(function() {
+  $(".content2").hide();
+  $(".heading1").hide();
+  $(".collheading3").hide();
+  $(".collheading2").hide();
+   $(".fullgrid").hide();
+  
+ 
+  //toggle the componenet with class msg_body
+ $(".collheading1").click(function()
+  {
+  $(".heading1").show();
+  $(".collheading1").hide();
+  $(".content2").slideToggle(700);
+  });
+  
+  
+  $(".heading1").click(function()
+  {
+    $(".collheading1").show();
+	
+    $(".heading1").hide();
+   $(".content2").slideToggle(700);
+
+  });
+  
+  $(".heading2").click(function()
+  {
+    $(".collheading2").show();
+    $(".heading2").hide();
+   $(".content3").slideToggle(700);
+
+  });
+    
+   $(".collheading2").click(function()
+  {
+    $(".collheading2").hide();
+    $(".heading2").show();
+   $(".content3").slideToggle(700);
+
+  });
+    
+ $(".heading3").click(function()
+  {
+   $(".collheading3").show();
+   $(".heading3").hide();
+   $(".content4").slideToggle(700);
+
+  });
+  
+   $(".collheading3").click(function()
+  {
+   $(".collheading3").hide();
+   $(".heading3").show();
+   $(".content4").slideToggle(700);
+
+  });
+  
+  <!--for grid and list start--->
+  $(".grid_view").click(function()
+  {
+   $(".fulllist").hide();
+   $(".fullgrid").show();
+  });
+  
+  
+   $(".list_view").click(function()
+  {
+   $(".fullgrid").hide();
+   $(".fulllist").show();
+  });
+  <!--for grid and list end--->
+  
+});
+</script>
+    </head>
+    <body class="home">
+        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
+
+        <header id="topnav" class="navbar navbar-inverse navbar-fixed-top clearfix">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <h1 title="Shopmax"><a class="brand" href="/"><img src="img/logo-2.png" width="159" height="55" alt="Shopmax logo" /></a></h1>
+					<div class="header-search">
+                        <ul class="nav">
+                            <li><a href="upload.html">Upload Product</a></li>
+                            <li><a href="manage-product.html">Manage Product</a></li>
+
+							<li><a href="manage-orders.html">Manage Orders</a></li>
+							<li><a href="shopping-list.html">Shopping List</a></li>
+							<li class="last"><a href="buying-orders.html">Buying Orders</a></li>
+                        </ul>
+                        <form class="navbar-form pull-left">
+							<div class="field search-filters">
+								<div class="main-search-control">
+									<div class="main-search-dropdown bold">
+										<select id="SearchType" name="searchType" class="drop-select chosen combo" data-search-bar="true">
+												<option value="shop1" selected="selected">This Shop</option>
+												<option value="shop2">Shop 2</option>
+												<option value="shop3">Shop 3</option>
+												<option value="shop4">Shop 4</option>
+										</select>
+
+									</div>
+									<div class="main-search-input">
+										<input type="text" placeholder="Search" name="searchTerm">
+									</div>
+								</div>
+							</div>
+							<div class="pull-left">
+								<button type="submit" class="btn-search pull-left"></button>
+							</div>
+                        </form>
+                    </div><!--/.nav-collapse -->
+					<!-- PERSONAL GREETING & LINKS -->
+					<div id="personal" class="pull-left nav-collapse collapse">
+						<h4>Hi <span>James</span></h4>
+						<form class="rounded-form">
+							<select id="accountOptions" class="chosen actionable" name="accountOptions">
+								<option selected="selected">My Account</option>
+								<option value="selling.html">Selling</option>
+								<option value="buying.html">Buying</option>
+								<option value="profile.html">Profile</option>
+								<option value="log-out.html">Log Out</option>
+							</select>
+						</form>
+					</div>
+					<!-- CART INFORMATION -->
+					<div id="cart-info" class="nav-collapse collapse">
+						<h3>3 Items</h3>
+						<p><a href="view-cart.html" class="btn-flat round">View Cart</a></p>
+						<p><a href="check-out.html" class="btn-flat checkout">Check Out</a></p>
+					</div>
+                </div><!--/.container -->
+			</div><!--/. navbar-inner --> 
+		</header><!--/. navbar -->
+		<nav id="mainnav" class="navbar navbar-static-top"><!-- blue navbar -->			
+			<div class="navbar-inner">
+				<div class="container">
+						<ul class="nav">
+							<li class="on"><a href="/">Home</a></li>
+							<li><a href="shops.html">Shops</a></li>
+							<li><a href="group-bang.html">Group Bang</a></li>
+							<li><a href="rush-hour.html">Rush Hour</a></li>
+							<li><a href="multi-buy.html">Multi Buy</a></li>
+							<li><a href="about-us.html">About Us</a></li>
+							<li><a href="help.html">Help</a></li>
+						</ul>
+				</div>
+			</div>	
+		</nav>
+
+	      
+       <span class="fulllist">
+        <div class="container content">
+			<div>
+				<ul class="breadcrum"><li><a href="/">Home</a></li><li>Manage product</li></ul>
+			</div> 
+
+			<div class="row">
+			<!-- MAIN CONTENT -->
+				<!-- sliderdiv -->
+				<div class="span9 main-content manage-product cat_grid_view cat_list_view">
+                <!--	<div class="serbox clearfix">
+                    	<p><strong>Your current location is “30 Queen st, Auckland, cbd, 1001”</strong></p>
+                        <div class="leftside">
+                        	<input type="text" class="span4" id="address8" value="">
+							 
+							<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places&language=en-AU"></script>
+							<script type="text/javascript">
+								//var autocomplete = new google.maps.places.Autocomplete($("#address8")[0], {});
+								  //alert(autocomplete);
+								  var options1 = {
+								  // types: ['(cities)'],
+								   componentRestrictions: {country: 'nz'}//NewZealand only
+								   
+								};
+								var input1 = document.getElementById('address8');
+								var autocomplete = new google.maps.places.Autocomplete(input1,options1);
+								google.maps.event.addListener(autocomplete, 'place_changed', function() {
+									var place = autocomplete.getPlace();
+									console.log(place.address_components);
+								});
+							</script>
+							
+							
+                            <input type="submit" value="apply" class="btn-general">
+                        </div>
+                        <span>About 6,970 results</span>
+                    </div>-->
+					<div class="serbox clearfix">
+                    	<p><strong>Your current location is “30 Queen st, Auckland, cbd, 1001”</strong></p>
+                        <div class="leftside">
+                        	<input type="text" class="span3" id="address11" value="">
+						
+						
+							<script type="text/javascript">
+								//var autocomplete = new google.maps.places.Autocomplete($("#address8")[0], {});
+								  //alert(autocomplete);
+								  var options = {
+								  // types: ['(cities)'],
+								   componentRestrictions: {country: 'nz'}//NewZealand only
+								   
+								};
+								var input = document.getElementById('address11');
+								var autocomplete = new google.maps.places.Autocomplete(input,options);
+								google.maps.event.addListener(autocomplete, 'place_changed', function() {
+									var place = autocomplete.getPlace();
+									console.log(place.address_components);
+								});
+							</script>
+							
+							
+                            <input type="submit" value="apply" class="btn-general">
+							</div>
+                            <span class="pull-right">About 6,970 results</span>
+                        
+                    </div>
+				    <div class="add-product topviewbox clearfix">
+				    	<span class="tital">SORT BY</span>
+                        <div class="shortbybox">
+                            <select id="accountOp" class="chosen actionable" name="accountOptions">
+                                <option selected="selected">My Account</option>
+                                <option value="selling.html">Selling</option>
+                                <option value="buying.html">Buying</option>
+                                <option value="profile.html">Profile</option>
+                                <option value="log-out.html">Log Out</option>
+                            </select>
+                        </div>
+                        <span class="tital">VIEW BY</span>
+                        <a href="#" class="grid_view"><span class="b"></span>Grid</a>
+                        <a href="#" class="list_view"><span class="b"></span>List</a>
+					    <div class="paging">
+                            <ul>
+                                <li><a href="#"><img src="img/arrow-prev-grey.png" /></a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">...</a></li>
+                                <li><a href="#">10</a></li>
+                                <li><a href="#"><img src="img/arrow-next-blue.png" /></a></li>
+                            </ul>
+					    </div>
+				    </div>
+                    
+                    <div class="cat_viewing">
+                    	<div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="pricestar">
+                                <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                                <div class="stars">
+                                    <div class="raty" data-rating="3"></div>
+                                </div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <div class="distancebox"><p>Shop: <strong>The Warehouse</strong><span></span>Destance: <strong>About 1km</strong></p></div>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                        <div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="pricestar">
+                                <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                                <div class="stars">
+                                    <div class="raty" data-rating="3"></div>
+                                </div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <div class="distancebox"><p>Shop: <strong>The Warehouse</strong><span></span>Destance: <strong>About 1km</strong></p></div>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                        <div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="pricestar">
+                                <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                                <div class="stars">
+                                    <div class="raty" data-rating="3"></div>
+                                </div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <div class="distancebox"><p>Shop: <strong>The Warehouse</strong><span></span>Destance: <strong>About 1km</strong></p></div>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                        <div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="pricestar">
+                                <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                                <div class="stars">
+                                    <div class="raty" data-rating="3"></div>
+                                </div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <div class="distancebox"><p>Shop: <strong>The Warehouse</strong><span></span>Destance: <strong>About 1km</strong></p></div>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                        <div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="pricestar">
+                                <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                                <div class="stars">
+                                    <div class="raty" data-rating="3"></div>
+                                </div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <div class="distancebox"><p>Shop: <strong>The Warehouse</strong><span></span>Destance: <strong>About 1km</strong></p></div>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                        <div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="pricestar">
+                                <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                                <div class="stars">
+                                    <div class="raty" data-rating="3"></div>
+                                </div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <div class="distancebox"><p>Shop: <strong>The Warehouse</strong><span></span>Destance: <strong>About 1km</strong></p></div>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                        <div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="pricestar">
+                                <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                                <div class="stars">
+                                    <div class="raty" data-rating="3"></div>
+                                </div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <div class="distancebox"><p>Shop: <strong>The Warehouse</strong><span></span>Destance: <strong>About 1km</strong></p></div>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                        <div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="pricestar">
+                                <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                                <div class="stars">
+                                    <div class="raty" data-rating="3"></div>
+                                </div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <div class="distancebox"><p>Shop: <strong>The Warehouse</strong><span></span>Destance: <strong>About 1km</strong></p></div>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                    </div>
+				    
+			        
+                    
+                    
+                    <div class="add-product topviewbox clearfix">
+				    	<span class="tital">SORT BY</span>
+                        <select class="span2">
+                        	<option></option>
+                        </select>
+                        <span class="tital">VIEW BY</span>
+                        <a href="#" class="grid_view"><span class="b"></span>Grid</a>
+                        <a href="#" class="list_view"><span class="b"></span>List</a>
+					    <div class="paging">
+                            <ul>
+                                <li><a href="#"><img src="img/arrow-prev-grey.png" /></a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">...</a></li>
+                                <li><a href="#">10</a></li>
+                                <li><a href="#"><img src="img/arrow-next-blue.png" /></a></li>
+                            </ul>
+					    </div>
+				    </div>
+				    
+
+				    
+				</div><!-- /.span9 -->
+				<div class="span3 sidebar" id="side-menu">
+					<div class="categories innerbox georgia">
+						<h2>Category list</h2>
+						<div class="category-list nested-list">
+							<ul>
+							<li class="expanded"><a href="#" class="heading1"><span>Category Lv1</span></a>
+							<li class="collapsed"><a href="#" class="collheading1"><span>Category Lv1</span></a>
+								<span class="content2">
+									<ul>
+										<li class="expanded">
+										<a href="#" class="heading2"><span>Category Lv2</span></a>
+										<li class="collapsed">
+										<a href="#" class="collheading2"><span>Category Lv2</span></a>
+										<span class="content3">
+											<ul>
+												<li class="collapsed"><a href="#"><span>Category Lv3</span></a></li>
+												<li class="collapsed"><a href="#"><span>Category Lv3</span></a></li>
+												
+												<li class="expanded">
+												<a href="#" class="heading3"><span>Category Lv3</span></a>
+												<li class="collapsed">
+												<a href="#" class="collheading3"><span>Category Lv3</span></a>
+												<span class="content4">
+													<ul>
+														<li class="collapsed"><a href="#"><span>Category Lv4</span></a></li>
+													</ul>
+													</span>
+												</li>
+												</li>
+											</ul>
+											</span>
+										</li>
+										</li>
+
+										<li class="collapsed"><a href="#"><span>Category Lv2</span></a></li>
+									</ul>
+									</span>
+							</li>
+							</li>
+							<li class="collapsed"><a href="#"><span>Category Lv1</span></a></li>
+
+							</ul>
+						</div>
+                        
+                    </div><!-- /.categories .innerbox -->
+                    
+                    <div class="categories innerbox georgia">
+						<h2 class="greentital">Refine by</h2>
+						<div class="refine clearfix">
+							<a href="#" class="tital_acc">Locations</a>
+                            <ul>
+                            	<li><input type="checkbox" class="checkbox_l">Auckland Region</li>
+                                <li><input type="checkbox" class="checkbox_l">Willington Region</li>
+                                <li><input type="checkbox" class="checkbox_l">Canterbury Region</li>
+                                <li><input type="checkbox" class="checkbox_l">Bay of Plenty</li>
+                            </ul>
+                            <div class="sep"></div>
+                            <a href="#" class="tital_acc">Materials</a>
+                            <ul>
+                            	<li><input type="checkbox" class="checkbox_l">Fermetum Commodo</li>
+                                <li><input type="checkbox" class="checkbox_l">Malesuada</li>
+                                <li><input type="checkbox" class="checkbox_l">Tristique Etiam</li>
+                                <li><input type="checkbox" class="checkbox_l">Adipiscing</li>
+                            </ul>
+                            <div class="sep"></div>
+                            <a href="#" class="tital_acc">Price</a>
+                            <ul>
+                            	<li>
+                                	<img src="img/price_con.png" alt="">
+                                    <span class="pri_1">NZD $20</span>
+                                    <span class="pri_2">NZD $299</span>
+                                </li>
+                            </ul>
+						</div>
+                        
+                    </div>
+
+				</div><!-- /.span3.sidebar -->
+				</div><!-- /.row -->				
+			</div> <!-- /container -->
+         </span>
+		
+		
+		<span class="fullgrid">
+		  <div class="container content">
+			<div>
+				<ul class="breadcrum"><li><a href="/">Home</a></li><li>Manage product</li></ul>
+			</div> 
+
+			<div class="row">
+			<!-- MAIN CONTENT -->
+				<!-- sliderdiv -->
+				<div class="span9 main-content manage-product cat_grid_view">
+                	<div class="serbox clearfix">
+                    	<p><strong>Your current location is “30 Queen st, Auckland, cbd, 1001”</strong></p>
+                        <div class="leftside">
+                        	<input type="text" class="span3" id="address111" value="">
+						
+						
+							<script type="text/javascript">
+								//var autocomplete = new google.maps.places.Autocomplete($("#address8")[0], {});
+								  //alert(autocomplete);
+								  var options = {
+								  // types: ['(cities)'],
+								   componentRestrictions: {country: 'nz'}//NewZealand only
+								   
+								};
+								var input = document.getElementById('address111');
+								var autocomplete = new google.maps.places.Autocomplete(input,options);
+								google.maps.event.addListener(autocomplete, 'place_changed', function() {
+									var place = autocomplete.getPlace();
+									console.log(place.address_components);
+								});
+							</script>
+							
+							
+                            <input type="submit" value="apply" class="btn-general">
+							</div>
+                            <span class="pull-right">About 6,970 results</span>
+                        
+                    </div>
+				    <div class="add-product topviewbox clearfix">
+				    	<span class="tital">SORT BY</span>
+                        <!--select class="span2">
+                        	<option></option>
+                        </select-->
+                        <div class="shortbybox">
+                            <select id="accountOp" class="chosen actionable" name="accountOptions">
+                                <option selected="selected">My Account</option>
+                                <option value="selling.html">Selling</option>
+                                <option value="buying.html">Buying</option>
+                                <option value="profile.html">Profile</option>
+                                <option value="log-out.html">Log Out</option>
+                            </select>
+                        </div>
+                        <span class="tital">VIEW BY</span>
+                        <a href="#" class="grid_view"><span class="b"></span>Grid</a>
+                        <a href="#" class="list_view"><span class="b"></span>List</a>
+					    <div class="paging">
+                            <ul>
+                                <li><a href="#"><img src="img/arrow-prev-grey.png" /></a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">...</a></li>
+                                <li><a href="#">10</a></li>
+                                <li><a href="#"><img src="img/arrow-next-blue.png" /></a></li>
+                            </ul>
+					    </div>
+				    </div>
+                    
+                    <div class="cat_viewing">
+                    	<div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                            <div class="stars">
+                            	<!--a href="#" class="active"></a>
+                                <a href="#" class="active"></a>
+                                <a href="#" class="active"></a>
+                                <a href="#"></a>
+                                <a href="#"></a-->
+                                <div class="raty" data-rating="3"></div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <p>Shop: <strong>The Warehouse</strong><br>Destance: <strong>About 1km</strong></p>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a></div>
+                            <div class="buttonbox"><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                        <div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                            <div class="stars">
+                            	<a href="#" class="active"></a>
+                                <a href="#" class="active"></a>
+                                <a href="#" class="active"></a>
+                                <a href="#"></a>
+                                <a href="#"></a>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <p>Shop: <strong>The Warehouse</strong><br>Destance: <strong>About 1km</strong></p>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a></div>
+                            <div class="buttonbox"><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                        <div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                            <div class="stars">
+                            	<div class="raty" data-rating="3"></div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <p>Shop: <strong>The Warehouse</strong><br>Destance: <strong>About 1km</strong></p>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a></div>
+                            <div class="buttonbox"><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                        <div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                            <div class="stars">
+                            	<div class="raty" data-rating="3"></div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <p>Shop: <strong>The Warehouse</strong><br>Destance: <strong>About 1km</strong></p>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a></div>
+                            <div class="buttonbox"><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                    </div>
+				    
+			        <div class="cat_viewing">
+                    	<div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                            <div class="stars">
+                            	<div class="raty" data-rating="3"></div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <p>Shop: <strong>The Warehouse</strong><br>Destance: <strong>About 1km</strong></p>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a></div>
+                            <div class="buttonbox"><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                        <div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                            <div class="stars">
+                            	<div class="raty" data-rating="3"></div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <p>Shop: <strong>The Warehouse</strong><br>Destance: <strong>About 1km</strong></p>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a></div>
+                            <div class="buttonbox"><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                        <div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                            <div class="stars">
+                            	<div class="raty" data-rating="3"></div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <p>Shop: <strong>The Warehouse</strong><br>Destance: <strong>About 1km</strong></p>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a></div>
+                            <div class="buttonbox"><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                        <div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                            <div class="stars">
+                            	<div class="raty" data-rating="3"></div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <p>Shop: <strong>The Warehouse</strong><br>Destance: <strong>About 1km</strong></p>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a></div>
+                            <div class="buttonbox"><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                    </div>
+                    <div class="cat_viewing">
+                    	<div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                            <div class="stars">
+                            	<div class="raty" data-rating="3"></div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <p>Shop: <strong>The Warehouse</strong><br>Destance: <strong>About 1km</strong></p>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a></div>
+                            <div class="buttonbox"><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                        <div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                            <div class="stars">
+                            	<div class="raty" data-rating="3"></div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <p>Shop: <strong>The Warehouse</strong><br>Destance: <strong>About 1km</strong></p>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a></div>
+                            <div class="buttonbox"><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                        <div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                            <div class="stars">
+                            	<div class="raty" data-rating="3"></div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <p>Shop: <strong>The Warehouse</strong><br>Destance: <strong>About 1km</strong></p>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a></div>
+                            <div class="buttonbox"><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                        <div class="block_1">
+                        	<div class="image"><img src="img/img_1.png" alt=""></div>
+                            <div class="mdic">Duis cursus iaculis dui a viverra. Donec metus massa.</div>
+                            <div class="price"><span>$179.00 NZD</span>$135.00 NZD</div>
+                            <div class="stars">
+                            	<div class="raty" data-rating="3"></div>
+                            </div>
+                            <p>lacinia dui pharetra. Quisque semper gravida ipsum, ut hendrerit erat auctor at. Curabitur nunc tortor, pharetra.</p>
+                            <p>Shop: <strong>The Warehouse</strong><br>Destance: <strong>About 1km</strong></p>
+                            <div class="buttonbox"><a href="#" class="btn-general">ADD TO CART</a></div>
+                            <div class="buttonbox"><a href="#" class="addtolist">Add to shopping List</a></div>
+                        </div>
+                    </div>
+                    
+                    <div class="add-product topviewbox clearfix">
+				    	<span class="tital">SORT BY</span>
+                        <select class="span2">
+                        	<option></option>
+                        </select>
+                        <span class="tital">VIEW BY</span>
+                        <a href="#" class="grid_view"><span class="b"></span>Grid</a>
+                        <a href="#" class="list_view"><span class="b"></span>List</a>
+					    <div class="paging">
+                            <ul>
+                                <li><a href="#"><img src="img/arrow-prev-grey.png" /></a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">...</a></li>
+                                <li><a href="#">10</a></li>
+                                <li><a href="#"><img src="img/arrow-next-blue.png" /></a></li>
+                            </ul>
+					    </div>
+				    </div>
+				    
+
+				    
+				</div><!-- /.span9 -->
+				<div class="span3 sidebar" id="side-menu">
+					<div class="categories innerbox georgia">
+						<h2>Category list</h2>
+						<div class="category-list nested-list">
+							<!-- <ul>
+							
+							<li class="expanded"><a href="#" class="heading1">
+							<span>Category Lv1</span></a>
+							<span class="content2">
+									<ul>
+										<li class="expanded"><a href="#" class="heading1"><span>Category Lv2</span></a>
+											<span class="content2">
+											<ul>
+												<li class="collapsed"><a href="#" ><span>Category Lv3</span></a></li>
+												<li class="collapsed"><a href="#"><span>Category Lv3</span></a></li>
+												<li class="expanded"><a href="#" class="heading1"><span>Category Lv3</span></a>
+												<span class="content2">
+													<ul>
+														<li class="collapsed"><a href="#"><span>Category Lv4</span></a></li>
+													</ul>
+													</span>
+												</li>
+											</ul>
+											</span>
+										</li>
+										<li class="collapsed"><a href="#"><span>Category Lv2</span></a></li>
+									</ul>
+									</span>
+							</li>
+							<li class="collapsed"><a href="#"><span>Category Lv1</span></a></li>
+
+							</ul> -->
+							
+							
+							
+							<ul>
+							<li class="expanded"><a href="#" class="heading1"><span>Category Lv1</span></a>
+							<li class="collapsed"><a href="#" class="collheading1"><span>Category Lv1</span></a>
+								<span class="content2">
+									<ul>
+										<li class="expanded">
+										<a href="#" class="heading2"><span>Category Lv2</span></a>
+										<li class="collapsed">
+										<a href="#" class="collheading2"><span>Category Lv2</span></a>
+										<span class="content3">
+											<ul>
+												<li class="collapsed"><a href="#"><span>Category Lv3</span></a></li>
+												<li class="collapsed"><a href="#"><span>Category Lv3</span></a></li>
+												
+												<li class="expanded">
+												<a href="#" class="heading3"><span>Category Lv3</span></a>
+												<li class="collapsed">
+												<a href="#" class="collheading3"><span>Category Lv3</span></a>
+												<span class="content4">
+													<ul>
+														<li class="collapsed"><a href="#"><span>Category Lv4</span></a></li>
+													</ul>
+													</span>
+												</li>
+												</li>
+											</ul>
+											</span>
+										</li>
+										</li>
+
+										<li class="collapsed"><a href="#"><span>Category Lv2</span></a></li>
+									</ul>
+									</span>
+							</li>
+							</li>
+							<li class="collapsed"><a href="#"><span>Category Lv1</span></a></li>
+
+							</ul>
+							
+							
+							
+						</div>
+                        
+                    </div><!-- /.categories .innerbox -->
+                    
+                    <div class="categories innerbox georgia">
+						<h2 class="greentital">Refine by</h2>
+						<div class="refine clearfix">
+							<a href="#" class="tital_acc">Locations</a>
+                            <ul>
+                            	<li><input type="checkbox" class="checkbox_l">Auckland Region</li>
+                                <li><input type="checkbox" class="checkbox_l">Willington Region</li>
+                                <li><input type="checkbox" class="checkbox_l">Canterbury Region</li>
+                                <li><input type="checkbox" class="checkbox_l">Bay of Plenty</li>
+                            </ul>
+                            <div class="sep"></div>
+                            <a href="#" class="tital_acc">Materials</a>
+                            <ul>
+                            	<li><input type="checkbox" class="checkbox_l">Fermetum Commodo</li>
+                                <li><input type="checkbox" class="checkbox_l">Malesuada</li>
+                                <li><input type="checkbox" class="checkbox_l">Tristique Etiam</li>
+                                <li><input type="checkbox" class="checkbox_l">Adipiscing</li>
+                            </ul>
+                            <div class="sep"></div>
+                            <a href="#" class="tital_acc">Price</a>
+                            <ul>
+                            	<li>
+                                	<img src="img/price_con.png" alt="">
+                                    <span class="pri_1">NZD $20</span>
+                                    <span class="pri_2">NZD $299</span>
+                                </li>
+                            </ul>
+						</div>
+                        
+                    </div>
+
+				</div><!-- /.span3.sidebar -->
+				</div><!-- /.row -->				
+			</div> <!-- /container -->
+         
+		</span>
+		 
+		 
+		 
+		 
+
+            <footer>
+                <div id="top-foot" class="georgia">
+					<div class="container">
+						<div class="row">
+							<div class="span2">
+								<h3>Quick Links</h3>
+								<ul>
+								<li><a href="todays-deal.html">Today's Deal</a></li>
+								<li><a href="featured.html">Featured</a></li>
+								<li><a href="special.html">Special</a></li>
+								<li><a href="top-seller.html">Top Seller</a></li>
+								<li><a href="shops.html">Shops</a></li>
+								<li><a href="shipping.html">Shipping &amp; Returns</a></li>
+								</ul>
+							</div>
+							<div class="span2">
+								<h3>Top Categories</h3>
+								<ul>
+								<li><a href="#">Maecenas faucibus</a></li>
+								<li><a href="#">Interdum enean eu</a></li>
+								<li><a href="#">Quam ellentesque</a></li>
+								<li><a href="#">Sem lacinia quam</a></li>
+								<li><a href="#">Venenatis vestibum</a></li>
+								<li><a href="#">Prasent commodo</a></li>
+								</ul>
+								
+							</div>
+							<div class="span2 noheading">
+								<ul>
+								<li><a href="#">Maecenas faucibus</a></li>
+								<li><a href="#">Interdum enean eu</a></li>
+								<li><a href="#">Quam ellentesque</a></li>
+								<li><a href="#">Sem lacinia quam</a></li>
+								<li><a href="#">Venenatis vestibum</a></li>
+								<li><a href="#">Prasent commodo</a></li>
+								</ul>						
+							</div>
+							<div class="span3">
+								<h3>Looking For Something?</h3>
+								<form class="pull-left">
+									<input type="text" placeholder="Search through our site" class="pull-left">
+									<button type="submit" class="btn-search-large pull-left"></button>
+								</form>
+
+								<h3>Contact us for a Quotation</h3>
+								<p><strong>0800 123 456</strong> <em>or</em> <strong><a href="mailto:abc@xyz.com">Email Us</a></strong><br />
+								<dfn>7 days 9am to 5pm NZDT</dfn></p>
+								
+
+							</div>
+							<div class="span3">
+								<h3>Sign Up Our Newsletter</h3>
+								<form class="pull-left">
+									<input type="text" placeholder="Your email address" class="pull-left">
+									<button type="submit" class="btn-email pull-left"></button>
+								</form>
+								<h3>Connect with us</h3>
+								<ul id="connect">
+									<li class="pull-left"><a href="#"><img src="img/icon-twitter.png" width="33" height="33" alt="" /></a></li>
+									<li class="pull-left"><a href="#"><img src="img/icon-fb.png" width="34" height="33" alt="" /></a></li>
+									<li class="pull-left"><a href="#"><img src="img/icon-gplus.png" width="33" height="33" alt="" /></a></li>
+									<li class="pull-left"><a href="#"><img src="img/icon-rss.png" width="33" height="33" alt="" /></a></li>
+								</ul>
+
+							</div>
+						</div><!-- /. row -->
+					</div><!-- /.container -->
+				</div><!-- /# top-foot -->
+				<div id="blue-foot">
+					<div class="container">
+						<div class="row">
+							<div class="span10">
+								<ul><li>&copy; Copyright 2012 shopmax</li>
+									<li><a href="contact.html">Contact Us</a></li>
+									<li><a href="about.html">About Us</a></li>
+									<li><a href="support.html">Support</a></li>
+									<li><a href="privacy.html">Privacy Notice</a></li>
+									<li><a href="conditions.html">Conditions of Use</a></li>
+								</ul>
+							</div>
+							<div id="logo" class="span2">
+								<p><a href="#topnav" title="Jump to page top"><img src="img/shopmax-bottom-logo.png" width="106" height="30" alt="" /><!--<img src="img/logo-bottom.png" width="107" height="58" alt="" />--></a></p>
+							</div>
+						</div><!-- /.row -->
+					</div><!-- /. container -->
+				</div><!-- /#blue-foot -->
+            </footer>
+
+        
+
+        
+        <script>
+        /*    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+		*/
+		
+        </script>
+    </body>
+</html>

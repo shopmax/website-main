@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+	<head>
+	
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+
+
+
+
+
+	  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+  <script src="js/simple-slider.js"></script>
+
+  <link href="css/simple-slider.css" rel="stylesheet" type="text/css" />
+  <link href="css/simple-slider-volume.css" rel="stylesheet" type="text/css" />  
+  
+  <!-- These styles are only used for this page, not required for the slider -->
+ 
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>ShopMax - Group Bang</title>
+        <meta name="description" content="">
+
+        <meta name="viewport" content="width=device-width">
+
+		<!-- what happens with this with mobile phones? 
+		<meta name="viewport" content="width=device-width, initial-scale=1" />-->
+		
+      
+		<link rel="stylesheet" href="css/bootstrap.css">     
+		
+		<link rel="stylesheet" href="css/bootstrap-responsive.css">
+		
+		<link rel="stylesheet" href="js/vendor/chosen.css">
+		
+		
+        <link rel="stylesheet" href="css/main.css">
+       
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+		<script src="js/vendor/chosen.jquery.min.js"></script>
+
+		<link rel="stylesheet" href="css/anythingslider.css">
+
+		<script src="js/vendor/jquery.anythingslider.min.js"></script>
+		
+		<link rel="stylesheet" href="js/fancybox/source/jquery.fancybox.css">
+		
+		<script src="js/fancybox/source/jquery.fancybox.pack.js"></script>
+
+		<script src="js/vendor/jquery.countdown.min.js"></script>
+
+		<script src="js/vendor/jquery.raty.min.js"></script>
+	
+		<script src="js/main.js"></script>
+		
+	<!-- <style>	
+		.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: url("img/new_pointer.png") repeat-x scroll 50% 50% #E6E6E6 !important;
+    <!--background: url("images/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50% #E6E6E6;
+    border: 1px solid #D3D3D3;
+    border: 1px solid #D3D3D3;
+    color: #555555;
+    color: #555555;
+    font-weight: normal;
+}
+</style> -->
+							<style> 
+							 .design{width:500;font-size: 11px;
+    text-align: center;}
+										 					 
+							 </style> 
+							  <style>
+  body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  [class^=slider] { display: inline-block; margin-bottom: 30px;width:500px; }
+  .output { color: #888; font-size: 14px; padding-top: 1px; margin-left: 5px; vertical-align: top;}
+  h1 { font-size: 20px; }
+  h2 { clear: both; margin: 0; margin-bottom: 5px; font-size: 16px; }
+  p { font-size: 15px; margin-bottom: 30px; }
+  h2:first-of-type { margin-top: 0; }
+  .ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl{border:none !important;}
+  .ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br{border:none !important;}
+  .ui-widget-content{background:none !important;}
+  .ui-widget-content {border:none !important;}
+  .ui-slider-horizontal .ui-slider-range-min {left:0px;dispay:none !important;}
+  
+  .ui-slider-range,.ui-widget-header,.ui-corner-all,.ui-slider-range-min { style="top: 78px; width: 93%; opacity: 0 !important;}
+  
+  </style>
+	
+    </head>
+    <body class="rush-hour group-bang landing">
+        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
+
+        <header id="topnav" class="navbar navbar-inverse navbar-fixed-top clearfix">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <h1 title="Shopmax"><a class="brand" href="/"><img src="img/logo-2.png" width="159" height="55" alt="Shopmax logo" /></a></h1>
+					<!-- was <img src="img/logo.png" width="186" height="65" alt="" /> padding:top 10px right 27 -->
+                    <!--<div class="nav-collapse collapse"> to make it collapse -->
+					<div class="header-search">
+                        <ul class="nav">
+                            <li><a href="upload.html">Upload Product</a></li>
+                            <li><a href="manage-product.html">Manage Product</a></li>
+                            <!--
+							<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li class="nav-header">Nav header</li>
+                                    <li><a href="#">Separated link</a></li>
+                                    <li><a href="#">One more separated link</a></li>
+                                </ul>
+                            </li>-->
+							<li><a href="manage-orders.html">Manage Orders</a></li>
+							<li><a href="shopping-list.html">Shopping List</a></li>
+							<li class="last"><a href="buying-orders.html">Buying Orders</a></li>
+                        </ul>
+                        <form class="navbar-form pull-left">
+							<div class="field search-filters">
+								<div class="main-search-control">
+									<div class="main-search-dropdown bold">
+										<!--
+									<span class="drop-container">					
+									
+										<span class="drop-label"></span>		
+										<span class="drop-arrow"></span>
+										-->
+										
+										<select id="SearchType" name="searchType" class="drop-select chosen combo" data-search-bar="true">
+												<option value="shop1.html" selected="selected">This Shop</option>
+												<option value="shop2.html">Shop 2</option>
+												<option value="shop3.html">Shop 3</option>
+												<option value="shop4.html">Shop 4</option>
+										</select>
+
+									<!-- </span> -->
+									</div>
+									<div class="main-search-input">
+										<input type="text" placeholder="Search" name="searchTerm">
+									</div>
+								</div>
+							</div>
+							<div class="pull-left">
+								<button type="submit" class="btn-search pull-left"></button>
+							</div>
+                        </form>
+                    </div><!--/.nav-collapse -->
+					<!-- PERSONAL GREETING & LINKS -->
+					<div id="personal" class="pull-left nav-collapse collapse">
+						<h4>Hi <span>James</span></h4>
+						<form class="rounded-form">
+							<select id="accountOptions" class="chosen actionable" name="accountOptions">
+								<option selected="selected">My Account</option>
+								<option value="selling.html">Selling</option>
+								<option value="buying.html">Buying</option>
+								<option value="profile.html">Profile</option>
+								<option value="log-out.html">Log Out</option>
+							</select>
+						</form>
+					</div>
+					<!-- CART INFORMATION -->
+					<div id="cart-info" class="nav-collapse collapse">
+						<h3>3 Items</h3>
+						<p><a href="view-cart.html" class="btn-flat round">View Cart</a></p>
+						<p><a href="check-out.html" class="btn-flat checkout">Check Out</a></p>
+					</div>
+                </div><!--/.container -->
+			</div><!--/. navbar-inner --> 
+		</header><!--/. navbar -->
+		<nav id="mainnav" class="navbar navbar-static-top"><!-- blue navbar -->			
+			<div class="navbar-inner">
+				<div class="container">
+						<ul class="nav">
+							<li><a href="/">Home</a></li>
+							<li><a href="shops.html">Shops</a></li>
+							<li class="on"><a href="group-bang.html">Group Bang</a></li>
+							<li><a href="rush-hour.html">Rush Hour</a></li>
+							<li><a href="multi-buy.html">Multi Buy</a></li>
+							<li><a href="about-us.html">About Us</a></li>
+							<li><a href="help.html">Help</a></li>
+						</ul>
+				</div>
+			</div>	
+		</nav>
+
+	      
+
+        <div class="container content">
+			<div>
+				<ul class="breadcrum"><li><a href="/">Home</a></li>
+				<li>Group Bang</li></ul>
+			</div>
+			<div class="row content-left">
+			<!-- MAIN CONTENT -->
+				<!-- sliderdiv -->
+				<div class="span12 main-content">
+					<h2>Group Bang</h2>
+					<h3 class="time-left countdown-container">Hurry! Time Left to Buy
+					<span class="countdown" id="countdown-time-left"><!-- see /js/main.js for counter --></span></h3>
+					<!--
+					<span class="countdown hasCountdown" id="time-left"><span class="timer-inner"><span id="hrs"><span class="time-unit">HOURS</span><code><span>8</span><span>8</span><img src="img/1px-line.png" width="54" height="33" alt="" /></code></span><span class="sep">:</span><span id="mins"><span class="time-unit">MIN</span><code><span>3</span><span>4</span><img src="img/1px-line.png" width="54" height="33" alt="" /></code></span><span class="sep">:</span><span id="secs"><span class="time-unit">SEC</span><code><span>1</span><span>8</span><img src="img/1px-line.png" width="54" height="33" alt="" /></code></span></span></span></h3>
+					-->
+					<!-- hurry product list starts here -->
+					
+					<ul class="product-list hurry">
+						<li>
+							<div class="span6 details">
+								<img src="img/product-generic.png" width="230" height="180" alt="" class="pull-left" />
+								<h3>Product Name</h3>
+								<div class="raty" data-rating="3"></div>
+								<p class="share">Share with  <a href="#"><img src="img/email.png" width="23" height="23" alt="" /></a><a href="#"><img src="img/fb.png" width="23" height="23" alt="" /></a><a href="#"><img src="img/tw.png" width="23" height="23" alt="" /></a><a href="#"><img src="img/gplus.png" width="23" height="23" alt="" /></a></p>
+								<p class="desc">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent quam lorem, scelerisque et, mattis cursus, porttitor sit amet, libero. Praesent pulvinar. Duis vitae nunc ut sapien mollis scelerisque.</p>							
+							</div>
+							 
+
+
+							
+							
+							<div class="span6 action">
+								<div class="slider">
+								<div class="design">
+								<table border=0 cellspacing="10px" width="475px">
+								<tr align=center >
+								<td style="position: relative; float: left; left: 15px;">1</td><td style="position: relative; float: left; left: 44px;">5</td><td style="float: left; position: relative; left: 75px;">10</td><td style="float: left; position: relative; left: 150px;">20</td><td style="float: left; position: relative; left: 212px;">30</td><td style="float: left; position: relative; left: 282px;">40</td><td style="float: left; position: relative; left: 348px;">50</td></tr>
+								<tr align=center>
+								<td style="position: relative; float: left; left: 2px;">Buyers</td><td style="position: relative; float: left; left: 5px;">Buyers</td><td style="position: relative; float: left; left: 8px;">Buyers</td><td style="position: relative; float: left; left: 60px;">Buyers</td><td style="position: relative; float: left; left: 99px;">Buyers</td><td style="position: relative; float: left; left: 144px;">Buyers</td><td style="position: relative; float: left; left: 188px;">Buyers</td></tr>
+								 <tr>
+								 </table>
+								</div>
+								
+
+								<img src="img/new_slider_implemnt1.png" width="454" height="284" alt="" style="" />
+
+							
+								<div class="design">
+								<table border=0 cellspacing="10px" width="475px">
+								<tr align=center >
+								<td style="float: left; position: relative; left: 9px;">$299</td><td style="float: left; position: relative; left: 18px;">$249</td><td style="float: left; position: relative; left: 31px;">$199</td><td style="float: left; position: relative; left: 95px;">$159</td><td style="float: left; position: relative; left: 150px;">$149</td><td style="float: left; position: relative; left: 205px;">$139</td><td style="float: left; position: relative; left: 263px;">$129</td></tr>
+								</table>
+								</div> 
+								
+								 
+  <!--input type="text" data-slider="true" data-slider-theme="volume"-->
+
+
+<!-- <script>
+  $("[data-slider]")
+    .each(function () {
+      var input = $(this);
+      $("<span>")
+        .addClass("output") 
+        .insertAfter($(this));
+    })
+    .bind("slider:ready slider:changed", function (event, data) {
+      $(this)
+        .nextAll(".output:first")
+          .html(data.value.toFixed(3));
+    });
+  </script> -->
+  
+  </div>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<!--script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script-->
+	<script src="js/jquery-ui.js"></script>
+	<link rel="stylesheet" href="/resources/demos/style.css" />
+	 <script>
+	 var value1=10;//Math.floor((Math.random()*26)+10);
+	 var istart=299;
+$(function() {
+// setup master volume
+$( "#master" ).slider({
+value: 1,
+orientation: "horizontal",
+range: "min",
+min: 1,
+max: 50,
+animate: false,
+slide: function( event, ui ) {
+//alert($( "#master img" ));
+//alert($( "#master img" ).css("left"));
+var selection = $( "#master" ).slider( "value" )
+	var lvals=$( "#master img" ).css("left");
+	
+	//alert(selection);
+	lvals=lvals.replace("px","");
+	$( "#master img" ).css("height","162px");
+	$( "#master img" ).css("top","-48px");
+	//alert(kval);
+	$("#teid").css( "left", lvals-39 +"px" );
+	$("#teid").text(ui.value + " buyers");
+	$("#teidb").css( "left", lvals-25 +"px" );
+	if(selection<6)
+	{
+	//alert(selection);
+	var ical=(selection-1)*12.5;
+	ical=299-ical;
+	//alert(ical);
+	//istart=
+	$("#teidb").text("$ " + ical);
+	}
+	else if(selection<11)
+	{
+	var ical=(selection-6)*12.5;
+	ical=249-ical;
+	//istart=
+	$("#teidb").text("$ " + ical);
+	}
+	else if(selection<21)
+	{
+	var ical=(selection-10)*4;
+	ical=199-ical;
+	//alert(selection);
+	//istart=
+	$("#teidb").text("$ " + ical);
+	}
+	else
+	{
+	var ical=(selection-20)*1;
+	ical=159-ical;
+	//alert(selection);
+	//istart=
+	$("#teidb").text("$ " + ical);
+	}
+//$( "#amount1" ).val( "$" + ui.value );
+}
+});
+// setup graphic EQ
+//$('#master').slider( 'disable' );
+$('#master').slider( 'value',value1 );
+$( "#master img" ).after("<div id='teidb' style='top:-46px;position:relative;font-weight:bold;'>8299</div>");
+$( "#master img" ).before("<div  id='teid' style='position:relative;font-weight:bold;top:-50px;'>1</div>");
+setval();
+});
+function setval()
+{
+var selection = $( "#master" ).slider( "value" )
+	var lvals=$( "#master img" ).css("left");
+	
+	//alert(selection);
+	lvals=lvals.replace("px","");
+	$( "#master img" ).css("height","162px");
+	$( "#master img" ).css("top","-48px");
+	//alert(kval);
+	$("#teid").css( "left", lvals-39 +"px" );
+	$("#teid").text(value1 + " buyers");
+	$("#teidb").css( "left", lvals-25 +"px" );
+	if(selection<6)
+	{
+	var ical=(selection-1)*12.5;
+	ical=299-ical;
+	//alert(ical);
+	//istart=
+	$("#teidb").text("$ " + ical);
+	}
+	else if(selection<11)
+	{
+	var ical=(selection-6)*12.5;
+	ical=249-ical;
+	//istart=
+	$("#teidb").text("$ " + ical);
+	}
+	else if(selection<21)
+	{
+	var ical=(selection-10)*4;
+	ical=199-ical;
+	//alert(selection);
+	//istart=
+	$("#teidb").text("$ " + ical);
+	}
+	else
+	{
+	var ical=(selection-20)*1;
+	ical=159-ical;
+	//alert(selection);
+	//istart=
+	$("#teidb").text("$ " + ical);
+	}
+	//$("#amount1").css( "left", selection-7  + "%" );
+//$( "#amount" ).val( "$" + selection  );
+
+}
+
+</script>
+	
+<div id="master" style="margin: 16px;">	</div>
+
+
+  
+
+  
+
+								<p class="buttons"><button type="submit" class="btn-large green">Buy Now</button><button type="submit" class="btn-large blue">Add to Cart</button></p>
+							</div>
+						</li>
+						<li>
+							<div class="span6 details">
+								<img src="img/product-generic.png" width="230" height="180" alt="" class="pull-left" />
+								<h3>Product Name 2</h3>
+								<div class="raty" data-rating="1"></div>
+								<p class="share">Share with  <a href="#"><img src="img/email.png" width="23" height="23" alt="" /></a><a href="#"><img src="img/fb.png" width="23" height="23" alt="" /></a><a href="#"><img src="img/tw.png" width="23" height="23" alt="" /></a><a href="#"><img src="img/gplus.png" width="23" height="23" alt="" /></a></p>
+								<p class="desc">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent quam lorem, scelerisque et, mattis cursus, porttitor sit amet, libero. Praesent pulvinar. Duis vitae nunc ut sapien mollis scelerisque.</p>							
+							</div>
+							<div class="span6 action">
+								<div class="slider">
+								<div class="design">
+								<table border=0 cellspacing="10px" width="475px">
+								<tr align=center >
+								<td style="position: relative; float: left; left: 15px;">1</td><td style="position: relative; float: left; left: 44px;">5</td><td style="float: left; position: relative; left: 75px;">10</td><td style="float: left; position: relative; left: 150px;">20</td><td style="float: left; position: relative; left: 212px;">30</td><td style="float: left; position: relative; left: 282px;">40</td><td style="float: left; position: relative; left: 348px;">50</td></tr>
+								<tr align=center>
+								<td style="position: relative; float: left; left: 2px;">Buyers</td><td style="position: relative; float: left; left: 5px;">Buyers</td><td style="position: relative; float: left; left: 8px;">Buyers</td><td style="position: relative; float: left; left: 60px;">Buyers</td><td style="position: relative; float: left; left: 99px;">Buyers</td><td style="position: relative; float: left; left: 144px;">Buyers</td><td style="position: relative; float: left; left: 188px;">Buyers</td></tr>
+								</table>
+								</div>
+								
+								
+								<img src="img/new_slider_implemnt1.png" width="454" height="184" alt="" />
+								
+								<div class="design">
+								<table border=0 cellspacing="10px" width="475px">
+								<tr align=center >
+								<td style="float: left; position: relative; left: 9px;">$299</td><td style="float: left; position: relative; left: 18px;">$249</td><td style="float: left; position: relative; left: 31px;">$199</td><td style="float: left; position: relative; left: 95px;">$159</td><td style="float: left; position: relative; left: 150px;">$149</td><td style="float: left; position: relative; left: 205px;">$139</td><td style="float: left; position: relative; left: 263px;">$129</td></tr>
+								</table>
+								</div> 
+								
+								
+								</div>
+								 
+								 
+								 
+								 <script>
+	 var value2=10//Math.floor((Math.random()*26)+10);
+	 var istart=299;
+$(function() {
+// setup master1 volume
+$( "#master1" ).slider({
+value: 1,
+orientation: "horizontal",
+range: "min",
+min: 1,
+max: 50,
+animate: false,
+slide: function( event, ui ) {
+//alert($( "#master1 img" ));
+//alert($( "#master1 img" ).css("left"));
+var lvals=$( "#master1 img" ).css("left");
+$("#teid1").css( "left", lvals  );
+$("#teid1").text(ui.value);
+$("#teidb1").css( "left", lvals  );
+if(ui.value<6)
+{
+var ical=(ui.value-1)*11.5;
+ical=299-ical;
+//istart=
+$("#teidb1").text("$ " + ical);
+}
+else if(ui.value<11)
+{
+var ical=(ui.value-6)*12.5;
+ical=249-ical;
+//istart=
+$("#teidb1").text("$ " + ical);
+}
+else if(ui.value<21)
+{
+var ical=(ui.value-10)*4;
+ical=199-ical;
+//istart=
+$("#teidb1").text("$ " + ical);
+}
+else
+{
+var ical=(ui.value-20)*1;
+ical=159-ical;
+//istart=
+$("#teidb1").text("$ " + ical);
+}
+//$("#amount1").css( "left", ui.value-7  + "%" );
+$( "#amount" ).val( "$" + ui.value );
+//$( "#amount1" ).val( "$" + ui.value );
+}
+});
+// setup graphic EQ
+//$('#master1').slider( 'disable' );
+$('#master1').slider( 'value',value2 );
+$( "#master1 img" ).after("<div id='teidb1' style='top:-46px;position:relative;font-weight:bold;'>8299</div>");
+$( "#master1 img" ).before("<div id='teid1' style='position:relative;font-weight:bold; top:-50px;'>1</div>");
+setval1();
+});
+function setval1()
+{
+var selection = $( "#master1" ).slider( "value" )
+	var lvals=$( "#master1 img" ).css("left");
+	lvals=lvals.replace("px","");
+	$( "#master1 img" ).css("height","162px");
+	$( "#master1 img" ).css("top","-48px");
+
+	$("#teid1").css( "left", lvals-39 +"px"  );
+	$("#teid1").text(selection + " buyers");
+	$("#teidb1").css( "left", lvals-25 +"px" );
+	if(selection<6)
+	{
+	var ical=(selection-1)*12.5;
+	ical=299-ical;
+	//istart=
+	$("#teidb1").text("$ " + ical);
+	}
+	else if(selection<11)
+	{
+	var ical=(selection-6)*12.5;
+	ical=249-ical;
+	//istart=
+	$("#teidb1").text("$ " + ical);
+	}
+	else if(selection<21)
+	{
+	var ical=(selection-10)*4;
+	ical=199-ical;
+	//istart=
+	$("#teidb1").text("$ " + ical);
+	}
+	else
+	{
+	var ical=(selection-20)*1;
+	ical=159-ical;
+	//istart=
+	$("#teidb1").text("$ " + ical);
+	}
+	//$("#amount1").css( "left", selection-7  + "%" );
+//$( "#amount" ).val( "$" + selection  );
+
+}
+
+</script>
+	
+<div id="master1" style="width: 407px; margin: 14px;"></div>
+
+								<p class="buttons"><button type="submit" class="btn-large green">Buy Now</button><button type="submit" class="btn-large blue">Add to Cart</button></p>
+							</div>
+						</li>
+					</ul>
+				
+				<h3 class="next-deal countdown-container">Next deal open in <span class="countdown" id="countdown-next-deal"></span></h3>
+					<ul class="product-list next-deal">
+						<li>
+							<div class="span6 details">
+								<img src="img/product-generic.png" width="230" height="180" alt="" class="pull-left" />
+								<h3>Product Name 3</h3>
+								<div class="raty" data-rating="1"></div>
+								<p class="share">Share with  <a href="#"><img src="img/email.png" width="23" height="23" alt="" /></a><a href="#"><img src="img/fb.png" width="23" height="23" alt="" /></a><a href="#"><img src="img/tw.png" width="23" height="23" alt="" /></a><a href="#"><img src="img/gplus.png" width="23" height="23" alt="" /></a></p>
+								<p class="desc">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent quam lorem, scelerisque et, mattis cursus, porttitor sit amet, libero. Praesent pulvinar. Duis vitae nunc ut sapien mollis scelerisque.</p>							
+							</div>
+							<div class="span6 action">
+								<div class="slider">
+								<div class="design">
+								<table border=0 cellspacing="10px" width="475px">
+								<tr align=center >
+								<td style="position: relative; float: left; left: 15px;">1</td><td style="position: relative; float: left; left: 44px;">5</td><td style="float: left; position: relative; left: 75px;">10</td><td style="float: left; position: relative; left: 150px;">20</td><td style="float: left; position: relative; left: 212px;">30</td><td style="float: left; position: relative; left: 282px;">40</td><td style="float: left; position: relative; left: 348px;">50</td></tr>
+								<tr align=center>
+								<td style="position: relative; float: left; left: 2px;">Buyers</td><td style="position: relative; float: left; left: 5px;">Buyers</td><td style="position: relative; float: left; left: 8px;">Buyers</td><td style="position: relative; float: left; left: 60px;">Buyers</td><td style="position: relative; float: left; left: 99px;">Buyers</td><td style="position: relative; float: left; left: 144px;">Buyers</td><td style="position: relative; float: left; left: 188px;">Buyers</td></tr>
+								</table>
+								</div>
+								
+								
+								
+								<img src="img/new_slider_implemnt1.png" width="454" height="184" alt="" />
+								
+								<div class="design">
+								<table border=0 cellspacing="10px" width="475px">
+								<tr align=center >
+								<td style="float: left; position: relative; left: 9px;">$299</td><td style="float: left; position: relative; left: 18px;">$249</td><td style="float: left; position: relative; left: 31px;">$199</td><td style="float: left; position: relative; left: 95px;">$159</td><td style="float: left; position: relative; left: 150px;">$149</td><td style="float: left; position: relative; left: 205px;">$139</td><td style="float: left; position: relative; left: 263px;">$129</td></tr>
+								</table>
+								</div> 
+								
+								
+								</div>
+								
+								
+<script>
+	 var value3=10//Math.floor((Math.random()*26)+10);
+	 var istart=299;
+$(function() {
+// setup master1 volume
+$( "#master2" ).slider({
+value: 1,
+orientation: "horizontal",
+range: "min",
+min: 1,
+max: 50,
+animate: false,
+slide: function( event, ui ) {
+//alert($( "#master1 img" ));
+//alert($( "#master1 img" ).css("left"));
+var lvals=$( "#master2 img" ).css("left");
+$("#teid2").css( "left", lvals  );
+$("#teid2").text(ui.value);
+$("#teidb2").css( "left", lvals  );
+if(ui.value<6)
+{
+var ical=(ui.value-1)*12.5;
+ical=299-ical;
+//istart=
+$("#teidb2").text("$ " + ical);
+}
+else if(ui.value<11)
+{
+var ical=(ui.value-6)*12.5;
+ical=249-ical;
+//istart=
+$("#teidb2").text("$ " + ical);
+}
+else if(ui.value<21)
+{
+var ical=(ui.value-10)*4;
+ical=199-ical;
+//istart=
+$("#teidb2").text("$ " + ical);
+}
+else
+{
+var ical=(ui.value-20)*1;
+ical=159-ical;
+//istart=
+$("#teidb2").text("$ " + ical);
+}
+//$("#amount1").css( "left", ui.value-7  + "%" );
+$( "#amount" ).val( "$" + ui.value );
+//$( "#amount1" ).val( "$" + ui.value );
+}
+});
+// setup graphic EQ
+//$('#master2').slider( 'disable' );
+$('#master2').slider( 'value',value3 );
+$( "#master2 img" ).after("<div id='teidb2' style='top:-46px; position:relative;font-weight:bold;'>8299</div>");
+$( "#master2 img" ).before("<div id='teid2' style='position:relative;font-weight:bold; top:-50px;'>1</div>");
+setval2();
+});
+function setval2()
+{
+var selection = $( "#master2" ).slider( "value" )
+	var lvals=$( "#master2 img" ).css("left");
+	lvals=lvals.replace("px","");
+	$( "#master2 img" ).css("height","162px");
+	$( "#master2 img" ).css("top","-48px");
+
+	$("#teid2").css( "left", lvals-39 +"px"  );
+	$("#teid2").text(selection + " buyers");
+	$("#teidb2").css( "left", lvals-25 +"px"  );
+	if(selection<6)
+	{
+	var ical=(selection-1)*12.5;
+	ical=299-ical;
+	//istart=
+	$("#teidb2").text("$ " + ical);
+	}
+	else if(selection<11)
+	{
+	var ical=(selection-6)*12.5;
+	ical=249-ical;
+	//istart=
+	$("#teidb2").text("$ " + ical);
+	}
+	else if(selection<21)
+	{
+	var ical=(selection-10)*4;
+	ical=199-ical;
+	//istart=
+	$("#teidb2").text("$ " + ical);
+	}
+	else
+	{
+	var ical=(selection-20)*1;
+	ical=159-ical;
+	//istart=
+	$("#teidb2").text("$ " + ical);
+	}
+	//$("#amount1").css( "left", selection-7  + "%" );
+//$( "#amount" ).val( "$" + selection  );
+
+}
+
+</script>	
+<div id="master2" style="width: 282px; margin: 14px;"></div>
+
+								<p class="buttons"><button type="submit" class="btn-large green">Buy Now</button><button type="submit" class="btn-large blue">Add to Cart</button></p>
+							</div>
+						</li>
+						<li>
+							<div class="span6 details">
+								<img src="img/product-generic.png" width="230" height="180" alt="" class="pull-left" />
+								<h3>Product Name 4</h3>
+								<div class="raty" data-rating="5"></div>
+								<p class="share">Share with  <a href="#"><img src="img/email.png" width="23" height="23" alt="" /></a><a href="#"><img src="img/fb.png" width="23" height="23" alt="" /></a><a href="#"><img src="img/tw.png" width="23" height="23" alt="" /></a><a href="#"><img src="img/gplus.png" width="23" height="23" alt="" /></a></p>
+								<p class="desc">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cras non mauris. Praesent quam lorem, scelerisque et, mattis cursus, porttitor sit amet, libero. Praesent pulvinar. Duis vitae nunc ut sapien mollis scelerisque.</p>							
+							</div>
+							<div class="span6 action">
+							<div class="slider">
+								<div class="design">
+								<table border=0 cellspacing="10px" width="475px">
+								<tr align=center >
+								<td style="position: relative; float: left; left: 15px;">1</td><td style="position: relative; float: left; left: 44px;">5</td><td style="float: left; position: relative; left: 75px;">10</td><td style="float: left; position: relative; left: 150px;">20</td><td style="float: left; position: relative; left: 212px;">30</td><td style="float: left; position: relative; left: 282px;">40</td><td style="float: left; position: relative; left: 348px;">50</td></tr>
+								<tr align=center>
+								<td style="position: relative; float: left; left: 2px;">Buyers</td><td style="position: relative; float: left; left: 5px;">Buyers</td><td style="position: relative; float: left; left: 8px;">Buyers</td><td style="position: relative; float: left; left: 60px;">Buyers</td><td style="position: relative; float: left; left: 99px;">Buyers</td><td style="position: relative; float: left; left: 144px;">Buyers</td><td style="position: relative; float: left; left: 188px;">Buyers</td></tr>
+								</table>
+								</div>
+								<img src="img/new_slider_implemnt1.png" width="454" height="184" alt="" />
+								
+								<div class="design">
+								<table border=0 cellspacing="10px" width="475px">
+								<tr align=center >
+								<td style="float: left; position: relative; left: 9px;">$299</td><td style="float: left; position: relative; left: 18px;">$249</td><td style="float: left; position: relative; left: 31px;">$199</td><td style="float: left; position: relative; left: 95px;">$159</td><td style="float: left; position: relative; left: 150px;">$149</td><td style="float: left; position: relative; left: 205px;">$139</td><td style="float: left; position: relative; left: 263px;">$129</td></tr>
+								</table>
+								</div> 
+								</div>
+								
+
+<script>
+	 var value4=10//Math.floor((Math.random()*26)+10);
+	 var istart=299;
+$(function() {
+// setup master1 volume
+$( "#master3" ).slider({
+value: 1,
+orientation: "horizontal",
+range: "min",
+min: 1,
+max: 50,
+animate: false,
+slide: function( event, ui ) {
+//alert($( "#master1 img" ));
+//alert($( "#master1 img" ).css("left"));
+var lvals=$( "#master3 img" ).css("left");
+$("#teid3").css( "left", lvals  );
+$("#teid3").text(ui.value);
+$("#teidb3").css( "left", lvals  );
+if(ui.value<6)
+{
+var ical=(ui.value-1)*12.5;
+ical=299-ical;
+//istart=
+$("#teidb3").text("$ " + ical);
+}
+else if(ui.value<11)
+{
+var ical=(ui.value-6)*12.5;
+ical=249-ical;
+//istart=
+$("#teidb3").text("$ " + ical);
+}
+else if(ui.value<21)
+{
+var ical=(ui.value-10)*4;
+ical=199-ical;
+//istart=
+$("#teidb3").text("$ " + ical);
+}
+else
+{
+var ical=(ui.value-20)*1;
+ical=159-ical;
+//istart=
+$("#teidb3").text("$ " + ical);
+}
+//$("#amount1").css( "left", ui.value-7  + "%" );
+$( "#amount" ).val( "$" + ui.value );
+//$( "#amount1" ).val( "$" + ui.value );
+}
+});
+// setup graphic EQ
+//$('#master3').slider( 'disable' );
+$('#master3').slider( 'value',value4 );
+$( "#master3 img" ).after("<div id='teidb3' style='top:-46px;position:relative;font-weight:bold;'>8299</div>");
+$( "#master3 img" ).before("<div id='teid3' style='position:relative;font-weight:bold;top:-50px;'>1</div>");
+setval3();
+});
+function setval3()
+{
+var selection = $( "#master3" ).slider( "value" )
+	var lvals=$( "#master3 img" ).css("left");
+	lvals=lvals.replace("px","");
+	$( "#master3 img" ).css("height","162px");
+	$( "#master3 img" ).css("top","-48px");
+
+	$("#teid3").css( "left", lvals-39 +"px"  );
+	$("#teid3").text(selection + " buyers");
+	$("#teidb3").css( "left", lvals-25 +"px"  );
+	if(selection<6)
+	{
+	var ical=(selection-1)*12.5;
+	ical=299-ical;
+	//istart=
+	$("#teidb3").text("$ " + ical);
+	}
+	else if(selection<11)
+	{
+	var ical=(selection-6)*12.5;
+	ical=249-ical;
+	//istart=
+	$("#teidb3").text("$ " + ical);
+	}
+	else if(selection<21)
+	{
+	var ical=(selection-10)*4;
+	ical=199-ical;
+	//istart=
+	$("#teidb3").text("$ " + ical);
+	}
+	else
+	{
+	var ical=(selection-20)*1;
+	ical=159-ical;
+	//istart=
+	$("#teidb3").text("$ " + ical);
+	}
+	//$("#amount1").css( "left", selection-7  + "%" );
+//$( "#amount" ).val( "$" + selection  );
+
+}
+
+</script>	
+	
+<div id="master3" style="width: 282px; margin: 14px;"></div>
+								<p class="buttons"><button type="submit" class="btn-large green">Buy Now</button><button type="submit" class="btn-large blue">Add to Cart</button></p>
+							</div>
+						</li>
+					</ul>
+					
+					
+				
+				</div><!-- /.span12 -->
+				</div><!-- /.row -->				
+			</div> <!-- /container -->
+         
+
+            <footer>
+                <div id="top-foot" class="georgia">
+					<div class="container">
+						<div class="row">
+							<div class="span2">
+								<h3>Quick Links</h3>
+								<ul>
+								<li><a href="todays-deal.html">Today's Deal</a></li>
+								<li><a href="featured.html">Featured</a></li>
+								<li><a href="special.html">Special</a></li>
+								<li><a href="top-seller.html">Top Seller</a></li>
+								<li><a href="shops.html">Shops</a></li>
+								<li><a href="shipping.html">Shipping &amp; Returns</a></li>
+								</ul>
+							</div>
+							<div class="span2">
+								<h3>Top Categories</h3>
+								<ul>
+								<li><a href="#">Maecenas faucibus</a></li>
+								<li><a href="#">Interdum enean eu</a></li>
+								<li><a href="#">Quam ellentesque</a></li>
+								<li><a href="#">Sem lacinia quam</a></li>
+								<li><a href="#">Venenatis vestibum</a></li>
+								<li><a href="#">Prasent commodo</a></li>
+								</ul>
+								
+							</div>
+							<div class="span2 noheading">
+								<ul>
+								<li><a href="#">Maecenas faucibus</a></li>
+								<li><a href="#">Interdum enean eu</a></li>
+								<li><a href="#">Quam ellentesque</a></li>
+								<li><a href="#">Sem lacinia quam</a></li>
+								<li><a href="#">Venenatis vestibum</a></li>
+								<li><a href="#">Prasent commodo</a></li>
+								</ul>						
+							</div>
+							<div class="span3">
+								<h3>Looking For Something?</h3>
+								<form class="pull-left">
+									<input type="text" placeholder="Search through our site" class="pull-left">
+									<button type="submit" class="btn-search-large pull-left"></button>
+								</form>
+
+								<h3>Contact us for a Quotation</h3>
+								<p><strong>0800 123 456</strong> <em>or</em> <strong><a href="mailto:abc@xyz.com">Email Us</a></strong><br />
+								<dfn>7 days 9am to 5pm NZDT</dfn></p>
+								
+
+							</div>
+							<div class="span3">
+								<h3>Sign Up Our Newsletter</h3>
+								<form class="pull-left">
+									<input type="text" placeholder="Your email address" class="pull-left">
+									<button type="submit" class="btn-email pull-left"></button>
+								</form>
+								<h3>Connect with us</h3>
+								<ul id="connect">
+									<li class="pull-left"><a href="#"><img src="img/icon-twitter.png" width="33" height="33" alt="" /></a></li>
+									<li class="pull-left"><a href="#"><img src="img/icon-fb.png" width="34" height="33" alt="" /></a></li>
+									<li class="pull-left"><a href="#"><img src="img/icon-gplus.png" width="33" height="33" alt="" /></a></li>
+									<li class="pull-left"><a href="#"><img src="img/icon-rss.png" width="33" height="33" alt="" /></a></li>
+								</ul>
+
+							</div>
+						</div><!-- /. row -->
+					</div><!-- /.container -->
+				</div><!-- /# top-foot -->
+				<div id="blue-foot">
+					<div class="container">
+						<div class="row">
+							<div class="span10">
+								<ul><li>&copy; Copyright 2012 shopmax</li>
+									<li><a href="contact.html">Contact Us</a></li>
+									<li><a href="about.html">About Us</a></li>
+									<li><a href="support.html">Support</a></li>
+									<li><a href="privacy.html">Privacy Notice</a></li>
+									<li><a href="conditions.html">Conditions of Use</a></li>
+								</ul>
+							</div>
+							<div id="logo" class="span2">
+								<p><a href="#topnav" title="Jump to page top"><img src="img/shopmax-bottom-logo.png" width="106" height="30" alt="" /><!--<img src="img/logo-bottom.png" width="107" height="58" alt="" />--></a></p>
+							</div>
+						</div><!-- /.row -->
+					</div><!-- /. container -->
+				</div><!-- /#blue-foot -->
+            </footer>
+
+        
+
+        
+        <script>
+        /*    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+		*/
+		
+        </script>
+    </body>
+</html>
