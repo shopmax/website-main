@@ -1,0 +1,17 @@
+Index: hot-deploy/shopmax/data/ShopMaxExtData.xml
+===================================================================
+--- hot-deploy/shopmax/data/ShopMaxExtData.xml	(revision 361)
++++ hot-deploy/shopmax/data/ShopMaxExtData.xml	(working copy)
+@@ -74,8 +74,8 @@
+     <ProductPromoAction productPromoId="DISCOUNTED_PROMO" productPromoRuleId="01" productPromoActionSeqId="01" productPromoActionEnumId="PROMO_PROD_SPPRC" orderAdjustmentTypeId="PROMOTION_ADJUSTMENT" useCartQuantity="N"/>
+     
+     <WebSite webSiteId="SHOPMAX" siteName="ShopMax Web Site" productStoreId="ShopMaxStore"
+-        httpHost="shopmax.localhost" httpPort="8080"
+-        httpsHost="shopmax.localhost" httpsPort="8443"
+-        standardContentPrefix="http://backend.shopmax.localhost:8080"
+-        secureContentPrefix="https://backend.shopmax.localhost:8443"/>
++        httpHost="shopmax.co.nz" httpPort="80"
++        httpsHost="shopmax.co.nz" httpsPort="443"
++        standardContentPrefix="http://backend.shopmax.co.nz"
++        secureContentPrefix="https://backend.shopmax.co.nz"/>
+ </entity-engine-xml>
