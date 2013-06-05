@@ -25,7 +25,7 @@ Index: applications/party/webapp/partymgr/WEB-INF/controller.xml
 +    </request-map>
 +    <request-map uri="approveShopmaxSeller">
 +        <security https="true" auth="true"/>
-+        <event type="service" path="" invoke="createTenantForSeller"/>
++        <event type="service" path="" invoke="approveShopmaxSeller"/>
 +        <response name="success" type="view" value="approvalseller"/>
 +        <response name="error" type="view" value="approvalseller"/>
 +    </request-map>

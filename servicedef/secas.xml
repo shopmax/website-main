@@ -46,9 +46,9 @@ under the License.
         <action service="deleteCategoryRollUpToSeller" mode="sync"/>
     </eca>
     
-    <eca service="createTenantForSeller" event="commit">
+    <eca service="approveShopmaxSeller" event="return">
         <condition field-name="partyId" operator="is-not-empty"/>
-        <action service="approveShopmaxSeller" mode="sync"/>
+        <action service="createTenantForSeller" mode="async" persist="true" new-transaction="true"/>
     </eca>
     
     <eca service="createTenantForSeller" event="commit">
