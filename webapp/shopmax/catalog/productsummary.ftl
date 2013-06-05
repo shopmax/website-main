@@ -16,7 +16,17 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-
+<script>
+    $(function(){
+        $('.additem').each(function(){
+            var img = $('#image_'+this.id).find('img');
+            $(this).click(function(){
+                flyToElement($(img), $('#cart-info'));
+                return false;
+            });
+        });
+    });
+</script>
 <#if product?exists>
     <#if headerItem?if_exists == "categorygridview" || headerItem?if_exists == "shopcategorygridview">
         <div class="block_1">
