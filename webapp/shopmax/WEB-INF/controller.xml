@@ -278,6 +278,12 @@ under the License.
         <response name="error" type="view" value="productrushhour"/>
     </request-map>
     
+    <request-map uri="productpreview">
+        <security https="false" auth="false"/>
+        <response name="success" type="view" value="productpreview"/>
+        <response name="error" type="view" value="productpreview"/>
+    </request-map>
+    
     <!-- Order Requests -->
     <request-map uri="shoppingcart">
         <security https="false" auth="false"/>
@@ -577,6 +583,7 @@ under the License.
     <view-map name="uploadproductview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#UploadProduct"/>
     <view-map name="uploadproductajax" type="screen" page="component://shopmax/widget/CatalogScreens.xml#UploadProductAjax"/>
     <view-map name="removerproductimageajax" type="screen" page="component://shopmax/widget/CatalogScreens.xml#RemoverProductImageAjax"/>
+    <view-map name="productpreview" type="screen" page="component://shopmax/widget/CatalogScreens.xml#ProductPreview"/>
     
     <view-map name="shoppingcart" type="screen" page="component://shopmax/widget/CartScreens.xml#ShoppingCart"/>
     <view-map name="checkout" type="screen" page="component://shopmax/widget/OrderScreens.xml#Checkout"/>

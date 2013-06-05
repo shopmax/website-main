@@ -512,7 +512,28 @@ under the License.
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/ProductSummary.groovy"/>
             </actions>
             <widgets>
-                <platform-specific><html><html-template location="component://shopmax/webapp/shopmax/catalog/productsummary.ftl"/></html></platform-specific>
+                <platform-specific>
+                    <html><html-template location="component://shopmax/webapp/shopmax/catalog/productsummary.ftl"/></html>
+                </platform-specific>
+            </widgets>
+        </section>
+    </screen>
+    
+    <screen name="ProductPreview">
+        <section>
+            <actions>
+                <set field="titleProperty" value="Shop Name"/>
+                <set field="headerItem" value="shop"/>
+                <set field="breadcrumbTitle" value="Shop Name"/>
+            </actions>
+            <widgets>
+                <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">
+                    <decorator-section name="body">
+                        <platform-specific>
+                            <html><html-template location="component://shopmax/webapp/shopmax/catalog/productpreview.ftl"/></html>
+                        </platform-specific>
+                    </decorator-section>
+                </decorator-screen>
             </widgets>
         </section>
     </screen>
