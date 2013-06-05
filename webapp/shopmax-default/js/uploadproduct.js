@@ -1,70 +1,86 @@
 $(function(){
-    $('.category_1').click(function(){
-        //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+this.id);
-        window.location.hash = '?categoryFirstId='+this.id;
-        $.ajax({
-            url: 'uploadproductajax',
-            type: 'POST',
-            data: { categoryFirstId: this.id},
-            success: function(data) {
-                if ($(data).find('#errorExits').length > 0) {
-                  window.location.href = "/";
+    $("#category_1").change(function(event){
+        $("option:selected", $(this)).each(function(){
+            var obj = this.id;
+            //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+this.id);
+            window.location.hash = '?categoryFirstId='+this.id;
+            $.ajax({
+                url: 'uploadproductajax',
+                type: 'POST',
+                data: { categoryFirstId: this.id},
+                success: function(data) {
+                    if ($(data).find('#errorExits').length > 0) {
+                      window.location.href = "/";
+                    }
+                    $('#ajax-container').html(data);
                 }
-                $('#ajax-container').html(data);
-            }
+            });
         });
     });
-    $('.category_2').click(function(){
-        var categoryFirstId = getUrlVars()["categoryFirstId"];
-        window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+this.id;
-        //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+this.id);
-        $.ajax({
-            url: 'uploadproductajax',
-            type: 'POST',
-            data: { categoryFirstId: categoryFirstId, categorySecondId: this.id},
-            success: function(data) {
-                if ($(data).find('#errorExits').length > 0) {
-                  window.location.href = "/";
+    
+    $("#category_2").change(function(event){
+        $("option:selected", $(this)).each(function(){
+            var obj = this.id;
+            var categoryFirstId = getUrlVars()["categoryFirstId"];
+            //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+this.id);
+            window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+this.id;
+            $.ajax({
+                url: 'uploadproductajax',
+                type: 'POST',
+                data: { categoryFirstId: categoryFirstId, categorySecondId: this.id},
+                success: function(data) {
+                    if ($(data).find('#errorExits').length > 0) {
+                      window.location.href = "/";
+                    }
+                    $('#ajax-container').html(data);
                 }
-                $('#ajax-container').html(data);
-            }
+            });
         });
     });
-    $('.category_3').click(function(){
-        var categoryFirstId = getUrlVars()["categoryFirstId"];
-        var categorySecondId = getUrlVars()["categorySecondId"];
-        window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+this.id;
-        //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+this.id);
-        $.ajax({
-            url: 'uploadproductajax',
-            type: 'POST',
-            data: { categoryFirstId: categoryFirstId, categorySecondId: categorySecondId, categoryThirdId: this.id},
-            success: function(data) {
-                if ($(data).find('#errorExits').length > 0) {
-                  window.location.href = "/";
+    
+    $("#category_3").change(function(event){
+        $("option:selected", $(this)).each(function(){
+            var obj = this.id;
+            var categoryFirstId = getUrlVars()["categoryFirstId"];
+            var categorySecondId = getUrlVars()["categorySecondId"];
+            //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+this.id);
+            window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+this.id;
+            $.ajax({
+                url: 'uploadproductajax',
+                type: 'POST',
+                data: { categoryFirstId: categoryFirstId, categorySecondId: categorySecondId, categoryThirdId: this.id},
+                success: function(data) {
+                    if ($(data).find('#errorExits').length > 0) {
+                      window.location.href = "/";
+                    }
+                    $('#ajax-container').html(data);
                 }
-                $('#ajax-container').html(data);
-            }
+            });
         });
     });
-    $('.category_4').click(function(){
-        var categoryFirstId = getUrlVars()["categoryFirstId"];
-        var categorySecondId = getUrlVars()["categorySecondId"];
-        var categoryThirdId = getUrlVars()["categoryThirdId"];
-        window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+categoryThirdId+'&categoryFourthId='+this.id;
-        //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+categoryThirdId+'&categoryFourthId='+this.id);
-        $.ajax({
-            url: 'uploadproductajax',
-            type: 'POST',
-            data: { categoryFirstId: categoryFirstId, categorySecondId: categorySecondId, categoryThirdId: categoryThirdId, categoryFourthId: this.id},
-            success: function(data) {
-                if ($(data).find('#errorExits').length > 0) {
-                  window.location.href = "/";
+    
+    $("#category_4").change(function(event){
+        $("option:selected", $(this)).each(function(){
+            var obj = this.id;
+            var categoryFirstId = getUrlVars()["categoryFirstId"];
+            var categorySecondId = getUrlVars()["categorySecondId"];
+            var categoryThirdId = getUrlVars()["categoryThirdId"];
+          //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+categoryThirdId+'&categoryFourthId='+this.id);
+            window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+categoryThirdId+'&categoryFourthId='+this.id;
+            $.ajax({
+                url: 'uploadproductajax',
+                type: 'POST',
+                data: { categoryFirstId: categoryFirstId, categorySecondId: categorySecondId, categoryThirdId: categoryThirdId, categoryFourthId: this.id},
+                success: function(data) {
+                    if ($(data).find('#errorExits').length > 0) {
+                      window.location.href = "/";
+                    }
+                    $('#ajax-container').html(data);
                 }
-                $('#ajax-container').html(data);
-            }
+            });
         });
     });
+    
     $('#assign-category').click(function(){
         $('.input-error2').addClass('hidden');
         var formUpload = document.getElementById('uploadAndUpdateProduct');
@@ -101,7 +117,7 @@ $(function(){
                     newRow = $("<tr id='tr-"+categoryThirdId+"'><td>"+categoryFirstName+" &gt; "+categorySecondName+" &gt; "+categoryThirdName+"</td><td><a id='remove-"+categoryThirdId+"' onclick='removeCategory(&quot;"+categoryThirdId+"&quot;)'>Remove</a></td></tr>");
                 }else{alert(" This category already assign");}
             }else{
-            	alert('Please assign a product to leaf node category');
+                alert('Please assign a product to leaf node category');
             }
         }
         if(categoryFirstId && categorySecondId && !categoryThirdId && !categoryFourthId){
@@ -110,7 +126,7 @@ $(function(){
                     newRow = $("<tr id='tr-"+categorySecondId+"'><td>"+categoryFirstName+" &gt; "+categorySecondName+"</td><td><a id='remove-"+categorySecondId+"' onclick='removeCategory(&quot;"+categorySecondId+"&quot;)'>Remove</a></td></tr>");
                 }else{alert(" This category already assign");}
             }else{
-            	alert('Please assign a product to leaf node category');
+                alert('Please assign a product to leaf node category');
             }
         }
         if(categoryFirstId && !categorySecondId && !categoryThirdId && !categoryFourthId){
@@ -119,7 +135,7 @@ $(function(){
                     newRow = $("<tr id='tr-"+categoryFirstId+"'><td>"+categoryFirstName+"</td><td><a id='remove-"+categoryFirstId+"' onclick='removeCategory(&quot;"+categoryFirstId+"&quot;)'>Remove</a></td></tr>");
                 }else{alert(" This category already assign");}
             }else{
-            	alert('Please assign a product to leaf node category');
+                alert('Please assign a product to leaf node category');
             }
         }
         $(".selected-products").append(newRow);
