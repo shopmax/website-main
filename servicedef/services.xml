@@ -86,7 +86,9 @@ under the License.
         <attribute name="checkDomain" mode="IN" type="String" optional="true"/>
         <attribute name="ownDomainName" mode="IN" type="String" optional="true"/>
         <attribute name="freeDomainName" mode="IN" type="String" optional="true"/>
+        <attribute name="contactPhoneNumberArea" mode="IN" type="String" optional="true"/>
         <attribute name="contactPhoneNumber" mode="IN" type="String" optional="true"/>
+        <attribute name="notificationPhoneNumberArea" mode="IN" type="String" optional="true"/>
         <attribute name="notificationPhoneNumber" mode="IN" type="String" optional="true"/>
         <attribute name="uploadedFile" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
         <attribute name="_uploadedFile_fileName" type="String" mode="IN" optional="true"/>

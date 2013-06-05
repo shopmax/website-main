@@ -400,7 +400,8 @@ $(function(){
     $('.phoneNumberText').change(function(){
         var currentPhoneSelect = this.id.split("_");
         var prefix = $('#phoneNumber_select_'+currentPhoneSelect[2]+'_chzn').find('span').text();
-        $('#phoneNumber_'+currentPhoneSelect[2]).val(prefix+$('#'+this.id).val());
+        $('#phoneNumber_'+currentPhoneSelect[2]).val($('#'+this.id).val());
+        $('#phoneNumberArea_'+currentPhoneSelect[2]).val(prefix);
     });
     $('#cardHolderName').change(function(){
         var cardHolderName = $('#cardHolderName').val().split(" ");

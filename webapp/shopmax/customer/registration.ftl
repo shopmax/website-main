@@ -137,6 +137,7 @@ under the License.
                                         <div class="pull-left">
                                             <input type="text" class="input-large phoneNumberText check" id="phoneNumber_text_0" onkeypress='return isNumberKey(event)'>*
                                         </div>
+                                        <input type="hidden" name="contactPhoneNumberArea" id="phoneNumberArea_0" value="">
                                         <input type="hidden" name="contactPhoneNumber" id="phoneNumber_0" value="">
                                     </div>
                                     <div class="control-group">
@@ -153,6 +154,7 @@ under the License.
                                             <input type="text" class="input-large phoneNumberText" id="phoneNumber_text_1" onkeypress='return isNumberKey(event)'>
                                         </div>
                                         <label class="control-label control-label-text2" for="inputPromotionDescription">(We will send TXT notification to this phone number when order arrives)</label>
+                                        <input type="hidden" name="notificationPhoneNumberArea" id="phoneNumberArea_1" value="">
                                         <input type="hidden" name="notificationPhoneNumber" id="phoneNumber_1" value="">
                                     </div>
                                     <div class="control-group">
