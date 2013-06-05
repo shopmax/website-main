@@ -402,11 +402,4 @@ under the License.
         <attribute name="productContentTypeId" mode="IN" type="String" optional="false"/>
         <attribute name="sequenceNum" mode="IN" type="Long" optional="false"/>
     </service>
-    
-    <service name="createBuyerToSeller" engine="simple" 
-            location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="createBuyerToSeller" auth="true">
-        <description>Create Buyer To Seller</description>
-        <attribute name="tenantId" mode="IN" type="String" optional="false"/>
-        <attribute name="partyId" mode="IN" type="String" optional="false"/>
-    </service>
 </services>

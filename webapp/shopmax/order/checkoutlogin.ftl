@@ -380,8 +380,9 @@ under the License.
                                         <input type="text" class="input-xxxlarge" placeholder="Additional Address Info (optional)" />
                                         <select id="shipDropDown1" name="shipToCity" class="drop-select chosen combo" data-search-bar="true">
                                             <option value="" selected="selected">Zip Return City, State</option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
+                                            <option value="Auckland">Auckland</option>
+                                            <option value="Christ Church">Christ Church</option>
+                                            <option value="Wellington">Wellington</option>
                                         </select>
                                     </div>
                                 </td>
@@ -495,8 +496,9 @@ under the License.
                                         <input type="text" class="input-xxxlarge" placeholder="Additional Address Info (optional)" />
                                         <select id="shipDropDown2" name="billToCity" class="drop-select chosen combo" data-search-bar="true">
                                             <option value="" selected="selected">Zip Return City, State</option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
+                                            <option value="Auckland">Auckland</option>
+                                            <option value="Christ Church">Christ Church</option>
+                                            <option value="Wellington">Wellington</option>
                                         </select>
                                     </div>
                                 </td>
@@ -511,7 +513,7 @@ under the License.
                                         <select id="paymentDropDown" name="cardType" class="drop-select chosen combo" data-search-bar="true">
                                             <option value="" selected="selected">Select Card Type</option>
                                             <option value="Visa">Visa</option>
-                                            <option value="2">Option 2</option>
+                                            <option value="MasterCard">Master Card</option>
                                         </select>
                                         <#-- Example card number: 4111111111111111 -->
                                         <#-- <input name="cardNumber" type="text" class="input-xxlarge check required" placeholder="Card Number" /> -->
