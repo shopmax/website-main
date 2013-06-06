@@ -64,10 +64,10 @@ $(function(){
                     sun = 'SUN-'+$('#sun_o_0_'+i).val()+'-'+$('#sun_o_1_'+i).val()+'-'+$('#sun_c_0_'+i).val()+'-'+$('#sun_c_1_'+i).val();}
                 
                 if(tempPhoneText){
-                    phoneNumber = "STORE_PHONE_NUMBER-"+phonePrefix+tempPhoneText;
+                    phoneNumber = "STORE_PHONE_NUMBER:"+phonePrefix+"-"+tempPhoneText;
                 }
                 if(tempFaxText){
-                    faxNumber = "STORE_FAX_NUMBER-"+faxPrefix+tempFaxText;
+                    faxNumber = "STORE_FAX_NUMBER:"+faxPrefix+"-"+tempFaxText;
                 }
                 
                 if(!tempBranchName){
@@ -76,6 +76,7 @@ $(function(){
                 else{
                     tempBranchName = tempBranchName+'/'+$('#branchName_'+i).val();
                 }
+                
                 if(!tempLocation){
                     tempLocation = $('#inputLocation_'+i).val();
                 }
@@ -170,26 +171,6 @@ $(function(){
                             valid = false;
                         }
                     }
-//                    if(!$('#inputAccountName').val().length){
-//                        $('#inputAccountName').addClass('required');
-//                        valid = false;
-//                    }
-//                    if(!$('#accountNumber-0').val().length){
-//                        $('#accountNumber-0').addClass('required');
-//                        valid = false;
-//                    }
-//                    if(!$('#accountNumber-1').val().length){
-//                        $('#accountNumber-1').addClass('required');
-//                        valid = false;
-//                    }
-//                    if(!$('#accountNumber-2').val().length){
-//                        $('#accountNumber-2').addClass('required');
-//                        valid = false;
-//                    }
-//                    if(!$('#accountNumber-3').val().length){
-//                        $('#accountNumber-3').addClass('required');
-//                        valid = false;
-//                    }
                     if(!$('#yourBtn').val().length){
                         $('#yourBtn').addClass('required');
                         $('#yourBtn').css({'background-color':'#FEF2EE'});
@@ -298,8 +279,6 @@ $(function(){
                     }
                 }
             });
-            
-            
         }
         else{
             $('#userinformation').find('input.check').each(function(){
@@ -745,4 +724,4 @@ function isNumberKey(evt) {
     if (charCode > 31 && (charCode < 48 || charCode > 57))
         return false;
     return true;
- }
+}

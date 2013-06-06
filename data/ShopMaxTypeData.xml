@@ -23,4 +23,5 @@ under the License.
     
     <ShipmentMethodType description="No Shipping" shipmentMethodTypeId="NO_SHIPPING"/>
     <ContactMechPurposeType contactMechPurposeTypeId="PHYS_STORE_LOCATION" description="Physical Store Location"/>
+    <ContactMechTypePurpose contactMechPurposeTypeId="PHYS_STORE_LOCATION" contactMechTypeId="POSTAL_ADDRESS"/>
 </entity-engine-xml>

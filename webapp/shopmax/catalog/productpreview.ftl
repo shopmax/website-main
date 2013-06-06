@@ -52,7 +52,7 @@ under the License.
         </div>
         <div class="span6">
             <div class="product-detail">
-                <h5>${productName?if_exists}</h5>
+                <h5>${parameters.productName?if_exists}</h5>
                 <div class="raty" data-rating="5"></div>
                 <h5 class="review-number">(0 reviews)</h5>
                 <br /><br />

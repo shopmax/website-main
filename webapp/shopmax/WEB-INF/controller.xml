@@ -281,7 +281,6 @@ under the License.
     <request-map uri="productpreview">
         <security https="false" auth="false"/>
         <response name="success" type="view" value="productpreview"/>
-        <response name="error" type="view" value="productpreview"/>
     </request-map>
     
     <!-- Order Requests -->

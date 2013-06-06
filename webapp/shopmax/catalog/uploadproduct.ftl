@@ -36,7 +36,6 @@ under the License.
             return false;
         }
     }
-
     $(function(){
         $('.file').preimage();
         
@@ -140,6 +139,31 @@ under the License.
             alert('Product is updated successfully');
             window.location = "<@ofbizUrl>manageproduct</@ofbizUrl>";
         }
+        $('#productpreview').click(function(){
+            if($('#prev_upfile_1').find('div').length != 0){
+                $('#productImageReview1').val($('#prev_upfile_1').find('div.prev_thumb').attr('style'));
+            }
+            if($('#prev_upfile_2').find('div').length != 0){
+                $('#productImageReview1').val($('#prev_upfile_2').find('div.prev_thumb').attr('style'));
+            }
+            if($('#prev_upfile_3').find('div').length != 0){
+                $('#productImageReview1').val($('#prev_upfile_3').find('div.prev_thumb').attr('style'));
+            }
+            if($('#prev_upfile_4').find('div').length != 0){
+                $('#productImageReview1').val($('#prev_upfile_4').find('div.prev_thumb').attr('style'));
+            }
+            $.ajax({
+                url: 'productpreview',
+                type: 'POST',
+                data: $('#uploadAndUpdateProduct').serialize(),
+                success: function(data){
+                    var w = window.open();
+                    w.document.open();
+                    w.document.write(data);
+                    w.document.close();
+                }
+            });
+        });
     });
 </script>
 <style>
@@ -247,6 +271,10 @@ under the License.
                         <form class="form-horizontal pull-left media-edit" action="<#if parameters.productId?has_content>updateProductFullMode<#else>uploadProductToSeller</#if>" id="uploadAndUpdateProduct" name="uploadAndUpdateProduct" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="productId" value="${parameters.productId?if_exists}"/>
                             <input type="hidden" name="listCategory" value="" id="listCategory">
+                            <input type="hidden" name="productImageReview1" id="productImageReview1"/>
+                            <input type="hidden" name="productImageReview2" id="productImageReview2"/>
+                            <input type="hidden" name="productImageReview3" id="productImageReview3"/>
+                            <input type="hidden" name="productImageReview4" id="productImageReview4"/>
                             <div class="control-group">
                                 <label for="inputProductName" class="control-label">Product name</label>
                                 <div class="controls">
@@ -446,7 +474,7 @@ under the License.
               </tbody>
             </table>
             <div class="sc-table-promotion footer-button">
-                <a href="#" class="btn-green-small" style="width:80px;">Preview</a>&nbsp;&nbsp;
+                <a id="productpreview" class="btn-green-small" style="width:80px;">Preview</a>&nbsp;&nbsp;
                 <a class="btn-general-small" id="submit_uploadProductToSeller">Submit</a>&nbsp;&nbsp;
                 <a class="btn-grey-small" href="<@ofbizUrl><#if productId?has_content>manageproduct<#else>main</#if></@ofbizUrl>">Cancel</a>
             </div>

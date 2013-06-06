@@ -513,11 +513,15 @@ under the License.
             <set field="physicalPhones" value="${groovy: if(parameters.physicalPhone){physicalPhone = parameters.physicalPhone.split(&quot;/&quot;); return physicalPhone.toList();}}" type="List"/>
             <set field="physicalDateTimeList" value="${groovy: if(parameters.physicalTime){physicalTime = parameters.physicalTime.split(&quot;/&quot;); return physicalTime.toList();}}" type="List"/>
             <if-not-empty field="branchNameList">
+                <property-to-field resource="general" property="country.geo.id.default" field="defaultCountryGeoId"/>
+                <set field="countryGeoId" from-field="defaultCountryGeoId"/>
                 <loop count="${parameters.physicalNum}" field="i">
                     <set field="locationContext.userLogin" from-field="systemUserLogin"/>
                     <set field="locationContext.address1" from-field="locationList[i]"/>
-                    <set field="locationContext.city" value="city"/>
-                    <set field="locationContext.postalCode" value="00000"/>
+                    <set field="locationContext.city" value="NA"/>
+                    <set field="locationContext.postalCode" value="NA"/>
+                    <set field="locationContext.countryGeoId" from-field="countryGeoId"/>
+                    <set field="locationContext.stateProvinceGeoId" value="_NA_"/>
                     <set field="locationContext.toName" from-field="branchNameList[i]"/>
                     <set field="locationContext.partyId" from-field="tempMap.partyId"/>
                     <call-service service-name="createPartyPostalAddress" in-map-name="locationContext">
@@ -530,7 +534,7 @@ under the License.
                     
                     <set field="physicalPhoneLists" value="${groovy: if(physicalPhones[i]){physicalPhones = physicalPhones[i].split(&quot;,&quot;); return physicalPhones.toList();}}" type="List"/>
                     <iterate entry="physicalPhoneList" list="physicalPhoneLists">
-                        <set field="physicalPhone" value="${groovy: if(physicalPhoneList){physicalPhoneList = physicalPhoneList.split(&quot;-&quot;); return physicalPhoneList.toList();}}" type="List"/>
+                        <set field="physicalPhone" value="${groovy: if(physicalPhoneList){physicalPhoneList = physicalPhoneList.split(&quot;:&quot;); return physicalPhoneList.toList();}}" type="List"/>
                         <set field="createStorePhoneNumberMap.contactMechId" from-field="addressPurposeContext.contactMechId"/>
                         <set field="createStorePhoneNumberMap.attrName" from-field="physicalPhone[0]"/>
                         <set field="createStorePhoneNumberMap.attrValue" from-field="physicalPhone[1]"/>

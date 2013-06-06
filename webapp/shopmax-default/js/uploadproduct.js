@@ -142,7 +142,7 @@ $(function(){
     });
     
     $("#datepicker1").datepicker();
-    $("#datepickerimage1").click(function() { 
+    $("#datepickerimage1").click(function() {
         $("#datepicker1").datepicker( "show" );
     });
     $("#datepicker2").datepicker();
@@ -151,15 +151,15 @@ $(function(){
     });
     
     $('.shippingSize').click(function(){
-    	if($('#shippingSize').val() == this.id){
+        if($('#shippingSize').val() == this.id){
             $('#'+this.id).css({'color':'#FFFFFF'});
             $('#shippingSize').val('');
-    	}
-    	else{
+        }
+        else{
             $('.shippingSize').css({'color':'#FFFFFF'});
             $('#'+this.id).css({'color':'#358BDB'});
             $('#shippingSize').val(this.id);
-    	}
+        }
     });
     
     $('#datepicker1').change(function(){
