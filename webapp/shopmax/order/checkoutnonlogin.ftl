@@ -629,7 +629,7 @@ under the License.
                                     <option>0508</option>
                                     <option>0800</option>
                                 </select>
-                                <input type="text" class="input-xxlarge" placeholder="Fax Number (optional)" id="shipFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
+                                <input type="text" class="input-xxlarge" placeholder="Fax Number" id="shipFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
                             </div>
                         </td>
                     </tr>
@@ -710,7 +710,7 @@ under the License.
                                     <option>0508</option>
                                     <option>0800</option>
                                 </select>
-                                <input type="text" class="input-xxlarge" placeholder="Fax Number (optional)" id = "billingFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
+                                <input type="text" class="input-xxlarge" placeholder="Fax Number" id = "billingFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
                             </div>
                         </td>
                     </tr>

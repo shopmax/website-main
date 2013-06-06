@@ -125,7 +125,7 @@ under the License.
                                             <#if productContentAndInfoImages?has_content>
                                                 <#assign contentAssocThumbs = delegator.findByAnd("ContentAssocDataResourceViewTo", {"contentIdStart" : productContentAndInfoImages[0].contentId, "caContentAssocTypeId" : "IMAGE_THUMBNAIL"}, null, false)>
                                             </#if>
-                                            <img src="<#if contentAssocThumbs?has_content><@ofbizContentUrl>${contentAssocThumbs[0].drObjectInfo}</@ofbizContentUrl><#else><@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl></#if>"/>
+                                            <img src="<#if contentAssocThumbs?has_content><@ofbizContentUrl>${contentAssocThumbs[0].drObjectInfo}</@ofbizContentUrl><#else><@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl></#if>" width="100px"/>
                                         </td>
                                         <td class="col2">
                                             <strong>${cartLine.getName()?if_exists}</strong><#-- <br />Colour - yellow -->
