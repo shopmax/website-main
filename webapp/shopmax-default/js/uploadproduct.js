@@ -261,7 +261,7 @@ function removeCategory(categoryId){
     $('#listCategory').val(tempCategory);
 }
 function isNumberKey(evt) {
-    var charCode = (evt.which) ? evt.which : event.keyCode
+    var charCode = (evt.which) ? evt.which : evt.keyCode
     if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 46){
         return false;
     }

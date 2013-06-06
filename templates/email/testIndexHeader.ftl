@@ -31,24 +31,23 @@ under the License.
         <meta name="viewport" content="width=device-width">
         <!-- what happens with this with mobile phones? 
         <meta name="viewport" content="width=device-width, initial-scale=1" />-->
-        <#-- ***<link rel="shortcut icon" href="<@ofbizContentUrl>/shopmax-default/img/favicon.ico" type="text/css</@ofbizContentUrl>"/>-->
+        <link rel="shortcut icon" href="<@ofbizContentUrl>/shopmax-default/img/favicon.ico" type="text/css</@ofbizContentUrl>"/>
         <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery-1.8.3.min.js</@ofbizContentUrl>"></script>
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/bootstrap-responsive.css" type="text/css</@ofbizContentUrl>"/>
         <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/bootstrap.css" type="text/css</@ofbizContentUrl>"/>
-        <#-- ***<link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/bootstrap-responsive.css" type="text/css</@ofbizContentUrl>"/>-->
-        <#-- ***<link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/js/vendor/chosen.css" type="text/css</@ofbizContentUrl>"/>-->
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/bootstrap-responsive.css" type="text/css</@ofbizContentUrl>"/>
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/js/vendor/chosen.css" type="text/css</@ofbizContentUrl>"/>
         <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/main.css" type="text/css</@ofbizContentUrl>"/>
-        <#-- ***<script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js</@ofbizContentUrl>"></script>-->
+        <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js</@ofbizContentUrl>"></script>
         <#--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
         -->
-        <#-- ***<script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery-1.8.3.min.js</@ofbizContentUrl>"></script>-->
+        <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery-1.8.3.min.js</@ofbizContentUrl>"></script>
         <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/bootstrap.min.js</@ofbizContentUrl>"></script>
-        <#-- ***<script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/chosen.jquery.min.js</@ofbizContentUrl>"></script>-->
+        <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/chosen.jquery.min.js</@ofbizContentUrl>"></script>
         <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/anythingslider.css</@ofbizContentUrl>" type="text/css"/>
         <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.anythingslider.min.js</@ofbizContentUrl>"></script>
-        <#-- ***<link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.css</@ofbizContentUrl>" type="text/css"/>-->
-        <#-- ***<script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.pack.js</@ofbizContentUrl>"></script>-->
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.css</@ofbizContentUrl>" type="text/css"/>
+        <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.pack.js</@ofbizContentUrl>"></script>
         <#--<script src="js/main.js"></script>-->
         <script>
             (function($) {
@@ -67,10 +66,10 @@ under the License.
                     pauseOnHover:true             // If true, and autoPlay is enabled, the show will pause on hover
                     });
             
-                    /* *****************************************Modernizr.addTest('mediaqueries', Modernizr.mq('all')); */
+                    Modernizr.addTest('mediaqueries', Modernizr.mq('all')); 
                     
-                    /* *****************************************$('.fancylink').fancybox({width:'50%', height:'50%'});*/
-            /* *************************************************
+                    $('.fancylink').fancybox({width:'50%', height:'50%'});
+            
                     //$('.chosen').chosen();
                     //$("#accountOptions").data("placeholder","Select Frameworks...").chosen();
                     $('.chosen').chosen();
@@ -92,7 +91,7 @@ under the License.
                         return new Date().valueOf();
                         }
                     }
-            */
+            
                     // the date below will obviously need to be taken from the server - see comment below for code ref
                     if ($('.countdown').exists()){
                         var deflabels = ['Years', 'Months', 'Weeks', 'Days', 'HOURS', 'MIN', 'SEC'];
