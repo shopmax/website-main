@@ -64,8 +64,20 @@ under the License.
             $(".various").fancybox({
                 'titlePosition'     : 'inside',
                 'transitionIn'      : 'none',
-                'transitionOut'     : 'none'
+                'transitionOut'     : 'none',
+                'onClosed'  : function() {
+                    $('#username').removeClass('check');
+                    $('#password').removeClass('check');
+                }
             });
+            
+            $(".various").click(function(){
+                if($('.login_popup').is(":visible")){
+                    $('#username').addClass('check');
+                    $('#password').addClass('check');
+                }
+            });
+            
             makeAccordion($("#category-menu"));
             
             $('#advanced-option-detail').slideUp(300, function() {
