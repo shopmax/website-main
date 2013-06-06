@@ -208,15 +208,11 @@ under the License.
         <set field="parameters.billToCountryGeoId" from-field="defaultCountryGeoId"/>
         <if-compare operator="equals" value="Y" field="parameters.useShippingAddressForBilling">
             <set field="parameters.billToContactNumber" from-field="parameters.shipToContactNumber"/>
-            <set field="parameters.firstNameOnCard" from-field="parameters.USER_FIRST_NAME"/>
-            <set field="parameters.lastNameOnCard" from-field="parameters.USER_LAST_NAME"/>
             <set field="parameters.shipToContactMechId" from-field="parameters.contactMechId"/>
             <set field="parameters.billToContactMechId" from-field="parameters.contactMechId"/>
             <else>
                 <if-empty field="parameters.billToContactMechId">
                     <set field="parameters.billToStateProvinceGeoId" value="_NA_"/>
-                    <set field="parameters.firstNameOnCard" from-field="parameters.billToName"/>
-                    <set field="parameters.lastNameOnCard" from-field="parameters.billToLastName"/>
                     <set field="parameters.billToContactNumber" from-field="parameters.billToContactNumber"/>
                     <set field="parameters.emailAddress" from-field="parameters.billToEmailAddress"/>
                     <else>
@@ -225,8 +221,6 @@ under the License.
                         <call-service service-name="getPerson" in-map-name="getPersonInMap">
                            <result-to-field result-name="lookupPerson"/>
                         </call-service>
-                        <set field="parameters.firstNameOnCard" from-field="lookupPerson.firstName"/>
-                        <set field="parameters.lastNameOnCard" from-field="lookupPerson.lastName"/>
                         
                         <!-- set credit card -->
                         <entity-one value-field="creditCard" entity-name="CreditCard">

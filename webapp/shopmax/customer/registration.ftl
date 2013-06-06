@@ -363,9 +363,9 @@ under the License.
                                                 <input type="radio" name="optionsRadios1" id="optionsRadios2" class="optionsRadios"> Credit Card
                                             </label>
                                             <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Card Holder Name</label>
-                                            <input type="text" class="input-large pull-left reWhite" id="cardHolderName" autocomplete="off"><img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
-                                            <input type="hidden" id="firstNameOnCard" name="firstNameOnCard">
-                                            <input type="hidden" id="lastNameOnCard" name="lastNameOnCard">
+                                            <input type="text" class="input-large pull-left reWhite" id="firstNameOnCard" name="firstNameOnCard" autocomplete="off">
+                                            <input type="text" class="input-large pull-left reWhite" id="lastNameOnCard" name="lastNameOnCard" autocomplete="off">
+                                            <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
                                         </div>
                                         <div class="control-group-bank">
                                             <label class="control-label control-label-cc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>

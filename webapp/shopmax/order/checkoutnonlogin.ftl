@@ -234,6 +234,16 @@ under the License.
                         $('html, body').animate({ scrollTop: 0 }, 0);
                         valid = false;
                     }
+                    if(!$('#firstNameOnCard').val().length){
+                        $('#firstNameOnCard').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('#lastNameOnCard').val().length){
+                        $('#lastNameOnCard').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
                     if($('#shipDropDown1_chzn').find('span').text() == 'Zip Return City, State'){
                         $('#shipDropDown1_chzn').css({'background-color':'#FEF2EE'});
                         $('#shipDropDown1_chzn').find('.chzn-single').each(function(){
@@ -489,6 +499,10 @@ under the License.
                     <tr>
                         <td class="col1">
                             <h5 class="heading">Payment Information</h5>
+                            <div class="form-inline">
+                                <input type="text" name="firstNameOnCard" id="firstNameOnCard" class="input-xxlarge check required" placeholder="First Name" />
+                                <input type="text" name="lastNameOnCard" id="lastNameOnCard" class="input-xxlarge check required" placeholder="Last Name" />
+                            </div>
                             <div class="form-inline">
                                 <select id="paymentDropDown" name="cardType" class="drop-select chosen combo" data-search-bar="true">
                                     <option value="" selected="selected">Select Card Type</option>
