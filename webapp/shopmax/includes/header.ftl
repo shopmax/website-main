@@ -32,6 +32,34 @@ under the License.
             window.location.href = "http://${shopmaxSellerDomain?if_exists}:8080/control/"+pathRequest+"?partyId=${userLoginPartyId?if_exists}";
         }
     }
+    $(function(){
+        $('#loginButton').click(function(){
+        var valid = false;
+            $('input.check').each(function(){
+                $(this).removeClass('required');
+                if($('.required').length == 0){
+                    valid = true;
+                }
+                if(!$('#username').val().length){
+                    $('#username').addClass('required');
+                    $('#username').css({'background-color':'#FEF2EE'});
+                    valid = false;
+                }
+                if(!$('#password').val().length){
+                    $('#password').addClass('required');
+                    $('#password').css({'background-color':'#FEF2EE'});
+                    valid = false;
+                }
+            });
+            if(valid){
+                $('#login').submit();
+            }
+        });
+        $('.reWhite').click(function(){
+             $('#'+this.id).css({'background-color':'#FFFFFF'});
+        });
+    });
+
 </script>
 <div style="display: none;">
     <div id="inline1" style="overflow:auto;">
@@ -43,12 +71,13 @@ under the License.
                         <form name="login" id="login" action="<@ofbizUrl>login</@ofbizUrl>" method="post">
                             <li>
                                 <label class="label-1">Email address</label>
-                                <input type="text" class="input-1" name="USERNAME">
+                                <input type="text" class="input-1 check reWhite" name="USERNAME" id="username">
                             </li>
                             <li>
                                 <label class="label-1">Password</label>
-                                <input type="password" class="input-2" name="PASSWORD">
-                                <input type="submit" name="" value="Login" class="log_btn">
+                                <input type="password" class="input-2 check reWhite" name="PASSWORD" id="password">
+                                <a name="" value="Login" class="btn-general-small" id="loginButton">Login</a>
+                                
                                 <a href="#" class="forgot">Forgotten password?</a>
                             </li>
                         </form>
