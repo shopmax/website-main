@@ -28,7 +28,7 @@ under the License.
             <#assign stateProvinceGeo = shippingAddress.getRelatedOne("StateProvinceGeo", false)?if_exists>
             <tr><td>${shippingAddress.toName?default("No Contact Name")}</td></tr><#-- Contact Name -->
             <tr><td>${shippingAddress.address1?if_exists}</td></tr><#-- Street Address Line one -->
-            <tr><td><#if shippingAddress.address2?exists>${shippingAddress.address2}</#if></td></tr><#-- Street Address Line two -->
+            <#if shippingAddress.address2?exists><tr><td>${shippingAddress.address2}</td></tr></#if><#-- Street Address Line two -->
             <tr><td>${shippingAddress.city?if_exists}</td></tr><#-- State -->
         </#if>
         <#if shipToTelecomNumber?exists>

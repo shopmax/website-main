@@ -28,7 +28,7 @@ under the License.
             <#assign stateProvinceGeo = billingAddress.getRelatedOne("StateProvinceGeo", false)?if_exists>
             <tr><td>${billingAddress.toName?default("No Contact Name")}</td></tr><#-- Contact Name -->
             <tr><td>${billingAddress.address1?if_exists}</td></tr><#-- Street Address Line one -->
-            <tr><td><#if billingAddress.address2?exists>${billingAddress.address2}</#if></td></tr><#-- Street Address Line two -->
+            <#if billingAddress.address2?exists><tr><td>${billingAddress.address2}</td></tr></#if><#-- Street Address Line two -->
             <tr><td>${billingAddress.city?if_exists}</td></tr><#-- State -->
         </#if>
         <#if billToTelecomNumber?exists>

@@ -77,7 +77,7 @@ under the License.
                                             <#if productContentAndInfoImages?has_content>
                                                 <#assign contentAssocThumbs = delegator.findByAnd("ContentAssocDataResourceViewTo", {"contentIdStart" : productContentAndInfoImages[0].contentId, "caContentAssocTypeId" : "IMAGE_THUMBNAIL"}, null, false)>
                                             </#if>
-                                            <img src="<#if contentAssocThumbs?has_content><@ofbizContentUrl>${contentAssocThumbs[0].drObjectInfo}</@ofbizContentUrl><#else><@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl></#if>" width="100px" height="100px"/>
+                                            <img src="<#if contentAssocThumbs?has_content><@ofbizContentUrl>${contentAssocThumbs[0].drObjectInfo}</@ofbizContentUrl><#else><@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl></#if>"/>
                                         </td>
                                         <td class="col2 col_2"><strong>${product.productName?if_exists}</strong><br /><#-- Colour - yellow--></td>
                                         <td class="col3 col_3 alighright">
