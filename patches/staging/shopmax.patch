@@ -26,7 +26,7 @@ Index: hot-deploy/shopmax/widget/CommonScreens.xml
                  <set field="userLoginPartyId" from-field="userLogin.partyId"/>
 Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
 ===================================================================
---- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 327)
+--- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 374)
 +++ hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(working copy)
 @@ -23,7 +23,7 @@
  
@@ -93,7 +93,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              </else>
              </if-compare>
              
-@@ -594,7 +594,7 @@
+@@ -600,7 +600,7 @@
              <make-value value-field="tenantDomainName" entity-name="TenantDomainName"/>
              <set field="tenantDomainName.tenantId" from-field="tenantId"/>
              <set field="tenantDomainName.domainName" from-field="parameters.domainName"/>
@@ -102,7 +102,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              <create-value value-field="tenantDomainName"/>
              
              <!-- Create Tenant Backend Domain Name -->
-@@ -768,7 +768,7 @@
+@@ -766,7 +766,7 @@
          <field-to-result field="success" result-name="uploadsuccess"/>
          
          <set field="parameters.partyId" from-field="userLogin.partyId"/>
@@ -111,6 +111,42 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
          <set field="runTenantServiceInMap.serviceName" value="uploadProductToShopmax"/>
          <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
          <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+@@ -1528,7 +1528,7 @@
+         </if-not-empty>
+         
+         <set field="parameters.partyId" from-field="userLogin.partyId"/>
+-        <set field="runTenantServiceInMap.tenantId" value="default"/>
++        <set field="runTenantServiceInMap.tenantId" value="shopmax"/>
+         <set field="runTenantServiceInMap.serviceName" value="editProductToShopmax"/>
+         <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
+         <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+@@ -1761,7 +1761,7 @@
+         
+         <field-to-result field="parameters.productId" result-name="productId"/>
+         
+-        <set field="runTenantServiceInMap.tenantId" value="default"/>
++        <set field="runTenantServiceInMap.tenantId" value="shopmax"/>
+         <set field="runTenantServiceInMap.serviceName" value="removeProductFromShopmax"/>
+         <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
+         <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+@@ -2044,7 +2044,7 @@
+         <field-to-result field="success" result-name="updatesuccess"/>
+         
+         <set field="parameters.partyId" from-field="userLogin.partyId"/>
+-        <set field="runTenantServiceInMap.tenantId" value="default"/>
++        <set field="runTenantServiceInMap.tenantId" value="shopmax"/>
+         <set field="runTenantServiceInMap.serviceName" value="updateProductToShopmax"/>
+         <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
+         <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+@@ -2296,7 +2296,7 @@
+             <set field="removeProductImageShopmaxMap.productId" from-field="lookedUpValue.productId"/>
+             <set field="removeProductImageShopmaxMap.productContentTypeId" from-field="lookedUpValue.productContentTypeId"/>
+             <set field="removeProductImageShopmaxMap.sequenceNum" from-field="lookedUpValue.sequenceNum"/>
+-            <set field="runTenantServiceInMap.tenantId" value="default"/>
++            <set field="runTenantServiceInMap.tenantId" value="shopmax"/>
+             <set field="runTenantServiceInMap.serviceName" value="removeProductContentAndImageFileShopmax"/>
+             <set field="runTenantServiceInMap.serviceParameters" from-field="removeProductImageShopmaxMap"/>
+             <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
 Index: hot-deploy/shopmax/webapp/shopmax-default/css/main.css
 ===================================================================
 --- hot-deploy/shopmax/webapp/shopmax-default/css/main.css	(revision 276)
