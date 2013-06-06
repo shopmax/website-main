@@ -1455,10 +1455,22 @@ textarea.required{
 	width:75px;
 }
 .form-inline .chzn-single{
-	background-color:#FEF2EE
+	background-color:#FEF2EE;
 }
 .form-inline .chzn-container{
-    background-color:#FEF2EE
+    background-color:#FEF2EE;
+}
+#shipFaxNumberArea_chzn .chzn-single{
+	background-color:#FFFFFF;
+}
+#shipFaxNumberArea_chzn{
+    background-color:#FFFFFF;
+}
+#billingFaxNumberArea_chzn .chzn-single{
+    background-color:#FFFFFF;
+}
+#billingFaxNumberArea_chzn{
+    background-color:#FFFFFF;
 }
 
 .btn-green-small {
