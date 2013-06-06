@@ -76,7 +76,7 @@ under the License.
                             <li>
                                 <label class="label-1">Password</label>
                                 <input type="password" class="input-2 check reWhite" name="PASSWORD" id="password">
-                                <a name="" value="Login" class="btn-general-small" id="loginButton">Login</a>
+                                <input type="button" name="" value="Login" class="log_btn" id="loginButton">
                                 
                                 <a href="#" class="forgot">Forgotten password?</a>
                             </li>
