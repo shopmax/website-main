@@ -56,14 +56,14 @@ under the License.
                 <div class="raty" data-rating="5"></div>
                 <h5 class="review-number">(0 reviews)</h5>
                 <br /><br />
-                <#if promoPrice?exists>
-                    <h5 class="old"><@ofbizCurrency amount=defaultPrice/> NZD</h5>
-                    <h1><@ofbizCurrency amount=promoPrice/> NZD</h1>
+                <#if parameters.promoPrice?exists>
+                    <h5 class="old"><@ofbizCurrency amount=parameters.defaultPrice/> NZD</h5>
+                    <h1><@ofbizCurrency amount=parameters.promoPrice/> NZD</h1>
                 <#else>
-                    <h1><@ofbizCurrency amount=defaultPrice/> NZD</h1>
+                    <h1><@ofbizCurrency amount=parameters.defaultPrice/> NZD</h1>
                 </#if>
                 
-                Quantity: <strong>${stock?if_exists} in stock</strong> <br /> <br />
+                Quantity: <strong>${parameters.stock?if_exists} in stock</strong> <br /> <br />
                 
                 <button class="btn-large blue cart" type="submit">ADD TO CART</button>
                 <ul class="selectAction">
@@ -81,7 +81,7 @@ under the License.
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div id="prdDesc" class="tab-pane fade active in">
-                    <p>${description?if_exists}</p>
+                    <p>${parameters.description?if_exists}</p>
                 </div>
             </div>
         </div>
