@@ -187,8 +187,12 @@ $(function(){
 	                    }
                     }
                     if($('#optionsRadios2').is(':checked')){
-                        if(!$('#cardHolderName').val().length){
-                            $('#cardHolderName').addClass('required');
+                        if(!$('#firstNameOnCard').val().length){
+                            $('#firstNameOnCard').addClass('required');
+                            valid = false;
+                        }
+                        if(!$('#lastNameOnCard').val().length){
+                            $('#lastNameOnCard').addClass('required');
                             valid = false;
                         }
                         if(!$('#cardNumber-0').val().length){
@@ -253,9 +257,13 @@ $(function(){
             });
             $('input.reWhite').each(function(){
                 if($('#optionsRadios2').is(':checked')){
-                    if(!$('#cardHolderName').val().length){
-                        $('#cardHolderName').addClass('required');
-                        $('#cardHolderName').css({'background-color':'#FEF2EE'});
+                    if(!$('#firstNameOnCard').val().length){
+                        $('#firstNameOnCard').addClass('required');
+                        $('#firstNameOnCard').css({'background-color':'#FEF2EE'});
+                    }
+                    if(!$('#lastNameOnCard').val().length){
+                        $('#lastNameOnCard').addClass('required');
+                        $('#lastNameOnCard').css({'background-color':'#FEF2EE'});
                     }
                     if(!$('#cardNumber-0').val().length){
                         $('#cardNumber-0').addClass('required');
@@ -382,11 +390,6 @@ $(function(){
         $('#phoneNumber_'+currentPhoneSelect[2]).val($('#'+this.id).val());
         $('#phoneNumberArea_'+currentPhoneSelect[2]).val(prefix);
     });
-    $('#cardHolderName').change(function(){
-        var cardHolderName = $('#cardHolderName').val().split(" ");
-        $('#firstNameOnCard').val(cardHolderName[0]);
-        $('#lastNameOnCard').val(cardHolderName[1]);
-    });
     $('.accountNumber').change(function(){
         $('#accountNumber').val($('#accountNumber-0').val()+$('#accountNumber-1').val()+$('#accountNumber-2').val()+$('#accountNumber-3').val());
     });
@@ -445,9 +448,11 @@ $(function(){
     });
     $('#optionsRadios2').click(function(){
         $('.input-error').addClass('hidden');
-        $('#cardHolderName').addClass('check required');
+        $('#firstNameOnCard').addClass('check required');
+        $('#lastNameOnCard').addClass('check required');
         $('.cardNumber').addClass('check required');
-        $('#cardHolderName').css({'background-color':'#FEF2EE'});
+        $('#firstNameOnCard').css({'background-color':'#FEF2EE'});
+        $('#lastNameOnCard').css({'background-color':'#FEF2EE'});
         $('.cardNumber').css({'background-color':'#FEF2EE'});
         $('#expMonth_chzn').addClass('check required');
         $('#expYear_chzn').addClass('check required');
@@ -473,9 +478,11 @@ $(function(){
     });
     $('#optionsRadios3').click(function(){
         $('.input-error').addClass('hidden');
-        $('#cardHolderName').removeClass('check required');
+        $('#firstNameOnCard').removeClass('check required');
+        $('#lastNameOnCard').removeClass('check required');
         $('.cardNumber').removeClass('check required');
-        $('#cardHolderName').css({'background-color':'#FFFFFF'});
+        $('#firstNameOnCard').css({'background-color':'#FFFFFF'});
+        $('#lastNameOnCard').css({'background-color':'#FFFFFF'});
         $('.cardNumber').css({'background-color':'#FFFFFF'});
         $('#expMonth_chzn').removeClass('check required');
         $('#expMonth_chzn').css({'background-color':'#FFFFFF'});
@@ -485,7 +492,8 @@ $(function(){
         $('#cvcNumber').removeClass('check required');
         $('#cvcNumber').css({'background-color':'#FFFFFF'});
         $('#yourBtn2').addClass('check required');
-        $('#cardHolderName').val('');
+        $('#firstNameOnCard').val('');
+        $('#lastNameOnCard').val('');
         $('.cardNumber').val('');
         $('#cvcNumber').val('');
         $('#expMonth_chzn').find('span').text('Month');
@@ -497,10 +505,25 @@ $(function(){
             }
         });
     });
-    $('#cardHolderName').click(function(){
+    $('#firstNameOnCard').click(function(){
         document.getElementById('optionsRadios3').checked = false;
         document.getElementById('optionsRadios2').checked = true;
-        $('#cardHolderName').addClass('check');
+        $('#firstNameOnCard').addClass('check');
+        $('#lastNameOnCard').addClass('check');
+        $('.cardNumber').addClass('check');
+        $('#expMonth_chzn').addClass('check');
+        $('#expYear_chzn').addClass('check');
+        $('#cvcNumber').addClass('check');
+        $('#yourBtn2').removeClass('check required');
+        $('#paymentMethodOption').val('Y');
+        $('#yourBtn2').val('');
+        $('#'+this.id).css({'background-color':'#FFFFFF'});
+    });
+    $('#lastNameOnCard').click(function(){
+        document.getElementById('optionsRadios3').checked = false;
+        document.getElementById('optionsRadios2').checked = true;
+        $('#firstNameOnCard').addClass('check');
+        $('#lastNameOnCard').addClass('check');
         $('.cardNumber').addClass('check');
         $('#expMonth_chzn').addClass('check');
         $('#expYear_chzn').addClass('check');
@@ -513,7 +536,8 @@ $(function(){
     $('.cardNumber').click(function(){
         document.getElementById('optionsRadios3').checked = false;
         document.getElementById('optionsRadios2').checked = true;
-        $('#cardHolderName').addClass('check');
+        $('#firstNameOnCard').addClass('check');
+        $('#lastNameOnCard').addClass('check');
         $('.cardNumber').addClass('check');
         $('#expMonth_chzn').addClass('check');
         $('#expYear_chzn').addClass('check');
@@ -526,7 +550,8 @@ $(function(){
     $('#cvcNumber').click(function(){
         document.getElementById('optionsRadios3').checked = false;
         document.getElementById('optionsRadios2').checked = true;
-        $('#cardHolderName').addClass('check');
+        $('#firstNameOnCard').addClass('check');
+        $('#lastNameOnCard').addClass('check');
         $('.cardNumber').addClass('check');
         $('#expMonth_chzn').addClass('check');
         $('#expYear_chzn').addClass('check');
@@ -539,7 +564,8 @@ $(function(){
     $('#yourBtn2').click(function(){
         document.getElementById('optionsRadios2').checked = false;
         document.getElementById('optionsRadios3').checked = true;
-        $('#cardHolderName').removeClass('check required');
+        $('#firstNameOnCard').removeClass('check required');
+        $('#lastNameOnCard').removeClass('check required');
         $('.cardNumber').removeClass('check required');
         $('#expMonth_chzn').removeClass('check required');
         $('#expMonth_chzn').css({'background-color':'#FFFFFF'});
@@ -552,7 +578,8 @@ $(function(){
         $('#paymentMethodOption').val('N');
         $('#expMonth_chzn').find('span').text('Month');
         $('#expYear_chzn').find('span').text('Year');
-        $('#cardHolderName').val('');
+        $('#firstNameOnCard').val('');
+        $('#lastNameOnCard').val('');
         $('.cardNumber').val('');
         $('#cvcNumber').val('');
     });
@@ -693,7 +720,8 @@ $(function(){
     $('#browse2').click(function(){
         document.getElementById('optionsRadios2').checked = false;
         document.getElementById('optionsRadios3').checked = true;
-        $('#cardHolderName').removeClass('check required');
+        $('#firstNameOnCard').removeClass('check required');
+        $('#lastNameOnCard').removeClass('check required');
         $('.cardNumber').removeClass('check required');
         $('#expMonth_chzn').removeClass('check required');
         $('#expMonth_chzn').css({'background-color':'#FFFFFF'});
@@ -706,7 +734,8 @@ $(function(){
         $('#paymentMethodOption').val('N');
         $('#expMonth_chzn').find('span').text('Month');
         $('#expYear_chzn').find('span').text('Year');
-        $('#cardHolderName').val('');
+        $('#firstNameOnCard').val('');
+        $('#lastNameOnCard').val('');
         $('.cardNumber').val('');
         $('#cvcNumber').val('');
     });
