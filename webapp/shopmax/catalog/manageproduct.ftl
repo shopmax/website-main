@@ -32,13 +32,13 @@ under the License.
             $(this).removeClass('required');
                 if($('.required').length == 0){
                     if(!$('#inputDescription-'+index).val().length){
-                    $('#inputDescription-'+index).addClass('required');
+                        $('#inputDescription-'+index).addClass('required');
                     }
                     else if(!$('#inputListPrice-'+index).val().length){
-                    $('#inputListPrice-'+index).addClass('required');
+                        $('#inputListPrice-'+index).addClass('required');
                     }
                     else{
-                    $('#updateproduct-'+index).submit();
+                        $('#updateproduct-'+index).submit();
                     }
                 }
             }
@@ -123,15 +123,24 @@ under the License.
             }
         });
     }
+    
+    function showPreview(ele,index)
+    {
+        $('#imgAvatar_'+index).attr('src', ele.value); // for IE
+        if (ele.files && ele.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imgAvatar_'+index).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(ele.files[0]);
+            $('#li-'+index).addClass('uploaded');
+        }
+    }
 </script>
 <style>
-    .prev_container{
+    .uploaded-image{
         width: 82px;
         height: 82px;
-    }
-    .prev_thumb{
-        height: 82px;
-        width: 82px;
     }
 </style>
 <div class="container content">
@@ -259,10 +268,11 @@ under the License.
                                                                             <#list product.seqNumNoImage as seqNoImage>
                                                                                 <#if seqNoImage == i && check !=0>
                                                                                     <li id="li-${product_index}_${i}">
-                                                                                        <div id="prev_upfile_${product_index}_${i}" class="uploaded-image" onclick="getFile('${product_index}_${i}')">
+                                                                                        <div class="uploaded-image" onclick="getFile('${product_index}_${i}')">
+                                                                                            <img id="imgAvatar_${product_index}_${i}">
                                                                                         </div>
                                                                                         <a onclick="getFile('${product_index}_${i}')">Add Photo</a>
-                                                                                        <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${product_index}_${i}" type="file" onchange="sub(this,'${product_index}_${i}')" name="uploadedFile${i}"/></div>
+                                                                                        <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${product_index}_${i}" type="file" onchange="showPreview(this,'${product_index}_${i}')" name="uploadedFile${i}"/></div>
                                                                                     </li>
                                                                                     <#assign check = 0>
                                                                                 </#if>
@@ -275,10 +285,11 @@ under the License.
                                                     <#else>
                                                         <#list 1..4 as i>
                                                             <li id="li-${product_index}_${i}">
-                                                                <div id="prev_upfile_${product_index}_${i}" class="uploaded-image" onclick="getFile('${product_index}_${i}')">
+                                                                <div class="uploaded-image" onclick="getFile('${product_index}_${i}')">
+                                                                    <img id="imgAvatar_${product_index}_${i}">
                                                                 </div>
                                                                 <a onclick="getFile('${product_index}_${i}')">Add Photo</a>
-                                                                <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${product_index}_${i}" type="file" onchange="sub(this,'${product_index}_${i}')" name="uploadedFile${i}"/></div>
+                                                                <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${product_index}_${i}" type="file" onchange="showPreview(this,'${product_index}_${i}')" name="uploadedFile${i}"/></div>
                                                             </li>
                                                         </#list>
                                                     </#if>

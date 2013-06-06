@@ -16,9 +16,10 @@
                             <#if seqNoImage == i && check !=0>
                                 <li id="li-${i}">
                                     <div id="prev_upfile_${i}" class="uploaded-image" onclick="getFile('${i}')">
+                                        <img id="imgAvatar_${i}">
                                     </div>
                                     <a onclick="getFile('${i}')">Add Photo</a>
-                                    <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${i}" type="file" onchange="sub(this,'${i}')" name="uploadedFile${i}"/></div>
+                                    <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${i}" type="file" onchange="showPreview(this,'${i}')" name="uploadedFile${i}"/></div>
                                 </li>
                                 <#assign check = 0>
                             </#if>
@@ -28,13 +29,14 @@
             </#list>
         </#if>
     </#list>
-    <#else>
+<#else>
     <#list 1..4 as i>
         <li id="li-${i}">
             <div id="prev_upfile_${i}" class="uploaded-image" onclick="getFile('${i}')">
+                <img id="imgAvatar_${i}">
             </div>
             <a onclick="getFile('${i}')">Add Photo</a>
-            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${i}" type="file" onchange="sub(this,'${i}')" name="uploadedFile${i}"/></div>
+            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${i}" type="file" onchange="showPreview(this,'${i}')" name="uploadedFile${i}"/></div>
         </li>
     </#list>
 </#if>

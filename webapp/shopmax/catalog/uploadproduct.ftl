@@ -28,7 +28,6 @@ under the License.
                 data: {productId: productId, contentId: contentId, fromDate: fromDate, productContentTypeId: productContentTypeId},
                 success: function(data) {
                     $('.uploading').html(data);
-                    $('.file').preimage();
                 }
             });
         }
@@ -36,9 +35,21 @@ under the License.
             return false;
         }
     }
+    
+    function showPreview(ele,index)
+    {
+        $('#imgAvatar_'+index).attr('src', ele.value); // for IE
+        if (ele.files && ele.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imgAvatar_'+index).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(ele.files[0]);
+            $('#li-'+index).addClass('uploaded');
+        }
+    }
+    
     $(function(){
-        $('.file').preimage();
-        
         $('#submit_uploadProductToSeller').click(function(){
             var valid = false;
             if(typeof getUrlVars()["productId"] != "undefined"){
@@ -57,11 +68,11 @@ under the License.
                         $(this).addClass('required');
                         $('.input-error2').removeClass('hidden');
                         $('html, body').animate({ scrollTop: 0 }, 0);
-                        if(!$('#prev_upfile_1').find('div').hasClass('prev_thumb')){
+                        if(typeof $('#imgAvatar_1').attr('src') == "undefined"){
                             $('#prev_upfile_1').css({'background-color':'#fef2ee'});
                             $('#prev_upfile_1').css({'border-color':'red'});
                         }
-                        else if($('#prev_upfile_1').find('div').hasClass('prev_thumb')){
+                        else{
                             $('#prev_upfile_1').css({'background-color':'#EAE8AD'});
                             $('#prev_upfile_1').css({'border-color':'#358bd8'});
                         }
@@ -76,13 +87,13 @@ under the License.
                             $('html, body').animate({ scrollTop: 0 }, 0);
                             valid = true;
                         }
-                        if(!$('#prev_upfile_1').find('div').hasClass('prev_thumb')){
+                        if(typeof $('#imgAvatar_1').attr('src') == "undefined"){
                             $('#prev_upfile_1').css({'background-color':'#fef2ee'});
                             $('#prev_upfile_1').css({'border-color':'red'});
                             $('.input-error2').removeClass('hidden');
                             $('html, body').animate({ scrollTop: 0 }, 0);
                         }
-                        if($('.required').length == 0 && $('#prev_upfile_1').find('div').hasClass('prev_thumb') && $('.selected-products').find('tr').hasClass('')){
+                        if($('.required').length == 0 && typeof $('#imgAvatar_1').attr('src') != "undefined" && $('.selected-products').find('tr').hasClass('')){
                             if(!$('#prodDescript').val().length){
                                 $('#prodDescript').addClass('required');
                             }
@@ -140,17 +151,17 @@ under the License.
             window.location = "<@ofbizUrl>manageproduct</@ofbizUrl>";
         }
         $('#productpreview').click(function(){
-            if($('#prev_upfile_1').find('div').length != 0){
-                $('#productImageReview1').val($('#prev_upfile_1').find('div.prev_thumb').attr('style'));
+            if(typeof $('#imgAvatar_1').attr('src') != "undefined"){
+                $('#productImageReview1').val($('#imgAvatar_1').attr('src'));
             }
-            if($('#prev_upfile_2').find('div').length != 0){
-                $('#productImageReview1').val($('#prev_upfile_2').find('div.prev_thumb').attr('style'));
+            if(typeof $('#imgAvatar_2').attr('src') != "undefined"){
+                $('#productImageReview2').val($('#imgAvatar_2').attr('src'));
             }
-            if($('#prev_upfile_3').find('div').length != 0){
-                $('#productImageReview1').val($('#prev_upfile_3').find('div.prev_thumb').attr('style'));
+            if(typeof $('#imgAvatar_3').attr('src') != "undefined"){
+                $('#productImageReview3').val($('#imgAvatar_3').attr('src'));
             }
-            if($('#prev_upfile_4').find('div').length != 0){
-                $('#productImageReview1').val($('#prev_upfile_4').find('div.prev_thumb').attr('style'));
+            if(typeof $('#imgAvatar_4').attr('src') != "undefined"){
+                $('#productImageReview4').val($('#imgAvatar_4').attr('src'));
             }
             $.ajax({
                 url: 'productpreview',
@@ -167,13 +178,9 @@ under the License.
     });
 </script>
 <style>
-    .prev_container{
+    .uploaded-image{
         width: 82px;
         height: 82px;
-    }
-    .prev_thumb{
-        height: 82px;
-        width: 82px;
     }
 </style>
 <div class="container content promotion">
@@ -309,9 +316,10 @@ under the License.
                                                                     <#if seqNoImage == i && check !=0>
                                                                         <li id="li-${i}">
                                                                             <div id="prev_upfile_${i}" class="uploaded-image" onclick="getFile('${i}')">
+                                                                                <img id="imgAvatar_${i}">
                                                                             </div>
                                                                             <a onclick="getFile('${i}')">Add Photo</a>
-                                                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${i}" type="file" onchange="sub(this,'${i}')" name="uploadedFile${i}"/></div>
+                                                                            <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${i}" type="file" onchange="showPreview(this,'${i}')" name="uploadedFile${i}"/></div>
                                                                         </li>
                                                                         <#assign check = 0>
                                                                     </#if>
@@ -325,9 +333,10 @@ under the License.
                                             <#list 1..4 as i>
                                                 <li id="li-${i}">
                                                     <div id="prev_upfile_${i}" class="uploaded-image" onclick="getFile('${i}')">
+                                                        <img id="imgAvatar_${i}">
                                                     </div>
                                                     <a onclick="getFile('${i}')">Add Photo</a>
-                                                    <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${i}" type="file" onchange="sub(this,'${i}')" name="uploadedFile${i}"/></div>
+                                                    <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${i}" type="file" onchange="showPreview(this,'${i}')" name="uploadedFile${i}"/></div>
                                                 </li>
                                             </#list>
                                         </#if>

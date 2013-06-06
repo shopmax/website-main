@@ -239,14 +239,6 @@ function getUrlVars() {
 function getFile(inputIndex){
     document.getElementById("upfile_"+inputIndex).click();
 }
-function sub(obj,inputIndex){
-    var file = obj.value;
-    if(!inputIndex){
-        inputIndex = 0;
-    }
-    $('#yourBtn'+inputIndex).val(file);
-    $('#li-'+inputIndex).addClass('uploaded');
-}
 function removeCategory(categoryId){
     $('#tr-'+categoryId).remove();
     var listCategory = $('#listCategory').val().split(',');

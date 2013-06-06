@@ -90,5 +90,4 @@ $(function(){
           $('#'+shippingSize[1]).val(shippingSize[0]);
         }
     });
-    $('.file').preimage();
 });

@@ -20,13 +20,9 @@ under the License.
 
 <script src="<@ofbizContentUrl>/shopmax-default/js/manageproduct.js</@ofbizContentUrl>" type="text/javascript"></script>
 <style>
-    .prev_container{
+    .uploaded-image{
         width: 82px;
         height: 82px;
-    }
-    .prev_thumb{
-        height: 82px;
-        width: 82px;
     }
 </style>
 <div class="add-product">
@@ -129,10 +125,11 @@ under the License.
                                                             <#list product.seqNumNoImage as seqNoImage>
                                                                 <#if seqNoImage == i && check !=0>
                                                                     <li id="li-${product_index}_${i}">
-                                                                        <div id="prev_upfile_${product_index}_${i}" class="uploaded-image" onclick="getFile('${product_index}_${i}')">
+                                                                        <div class="uploaded-image" onclick="getFile('${product_index}_${i}')">
+                                                                            <img id="imgAvatar_${product_index}_${i}">
                                                                         </div>
                                                                         <a onclick="getFile('${product_index}_${i}')">Add Photo</a>
-                                                                        <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${product_index}_${i}" type="file" onchange="sub(this,'${product_index}_${i}')" name="uploadedFile${i}"/></div>
+                                                                        <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${product_index}_${i}" type="file" onchange="showPreview(this,'${product_index}_${i}')" name="uploadedFile${i}"/></div>
                                                                     </li>
                                                                     <#assign check = 0>
                                                                 </#if>
@@ -145,10 +142,11 @@ under the License.
                                     <#else>
                                         <#list 1..4 as i>
                                             <li id="li-${product_index}_${i}">
-                                                <div id="prev_upfile_${product_index}_${i}" class="uploaded-image" onclick="getFile('${product_index}_${i}')">
+                                                <div class="uploaded-image" onclick="getFile('${product_index}_${i}')">
+                                                    <img id="imgAvatar_${product_index}_${i}">
                                                 </div>
                                                 <a onclick="getFile('${product_index}_${i}')">Add Photo</a>
-                                                <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${product_index}_${i}" type="file" onchange="sub(this,'${product_index}_${i}')" name="uploadedFile${i}"/></div>
+                                                <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${product_index}_${i}" type="file" onchange="showPreview(this,'${product_index}_${i}')" name="uploadedFile${i}"/></div>
                                             </li>
                                         </#list>
                                     </#if>

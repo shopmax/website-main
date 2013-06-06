@@ -32,22 +32,33 @@ under the License.
             <div class="product-wrapper">
                 <div class="product-inner">
                     <!-- <img src="http://placehold.it/472x472">  -->
-                    <img src="<#if productImageList?has_content><@ofbizContentUrl>${productImageList[0].productImage}</@ofbizContentUrl><#else><@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl></#if>" width="472" style="height:472px;"/>
+                    <!-- <img src="<#if productImageList?has_content><@ofbizContentUrl>${productImageList[0].productImage}</@ofbizContentUrl><#else><@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl></#if>" width="472" style="height:472px;"/> -->
+                    <img src="<#if parameters.productImageReview1?has_content>${parameters.productImageReview1}<#else><@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl></#if>" width="472" style="height:472px;"/>
                 </div>
             </div>
             
             <ul class="product-thumbs">
-                <#if productImageList?has_content>
-                    <#list productImageList as productImage>
-                        <li>
-                            <div class="product-thumb-wrapper">
-                                <div class="product-thumb-inner">
-                                    <a href="#"><img src="<@ofbizContentUrl>${productImage.productImage?default("/images/defaultImage.jpg")}</@ofbizContentUrl>" width="143" style="height:143px;"/></a>
-                                </div>
-                            </div>
-                        </li>
-                    </#list>
-                </#if>
+                <li>
+                    <div class="product-thumb-wrapper">
+                        <div class="product-thumb-inner">
+                            <a href="#"><img src="<#if parameters.productImageReview2?has_content>${parameters.productImageReview2}<#else><@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl></#if>" width="143" style="height:143px;"/></a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="product-thumb-wrapper">
+                        <div class="product-thumb-inner">
+                            <a href="#"><img src="<#if parameters.productImageReview3?has_content>${parameters.productImageReview3}<#else><@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl></#if>" width="143" style="height:143px;"/></a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="product-thumb-wrapper">
+                        <div class="product-thumb-inner">
+                            <a href="#"><img src="<#if parameters.productImageReview4?has_content>${parameters.productImageReview4}<#else><@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl></#if>" width="143" style="height:143px;"/></a>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
         <div class="span6">
@@ -56,11 +67,13 @@ under the License.
                 <div class="raty" data-rating="5"></div>
                 <h5 class="review-number">(0 reviews)</h5>
                 <br /><br />
-                <#if parameters.promoPrice?exists>
-                    <h5 class="old"><@ofbizCurrency amount=parameters.defaultPrice/> NZD</h5>
-                    <h1><@ofbizCurrency amount=parameters.promoPrice/> NZD</h1>
-                <#else>
-                    <h1><@ofbizCurrency amount=parameters.defaultPrice/> NZD</h1>
+                <#if parameters.promoPrice?has_content>
+                    <#if parameters.listingPrice?has_content>
+                        <h5 class="old"><@ofbizCurrency amount=parameters.listingPrice/> NZD</h5>
+                    </#if>
+                    <h1><@ofbizCurrency amount=parameters.promoPrice?if_exists/> NZD</h1>
+                <#elseif parameters.listingPrice?has_content>
+                    <h1><@ofbizCurrency amount=parameters.listingPrice/> NZD</h1>
                 </#if>
                 
                 Quantity: <strong>${parameters.stock?if_exists} in stock</strong> <br /> <br />
