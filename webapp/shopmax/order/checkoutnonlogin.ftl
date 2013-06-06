@@ -334,7 +334,7 @@ under the License.
                 <#-- Shipping Information -->
                 <input type="hidden" name="shipMethod" value="NO_SHIPPING"/>
                 <input type="hidden" value="64" name="shipToCountryCode">
-                <input type="hidden" value="801" name="shipToAreaCode">
+
                 <input type="hidden" value="" name="shipToExtension">
                 
                 <table class="table table-condensed sc-table sc-table-shipping">
@@ -353,9 +353,33 @@ under the License.
                                 <input type="text" id="shipLastName" class="input-xxlarge check required" name="USER_LAST_NAME" placeholder="Last Name" />
                             </div>
                             <div class="form-inline">
-                                <input name="shipToContactNumber" type="text" id="shipPhone" class="input-xxlarge check required" placeholder="Phone Number" />
+                                <select id="shoppingPhoneNumberArea" name="shipToAreaCode" class="chosen contactNumber" style="width: 60px;">
+                                    <option selected="selected">03</option>
+                                    <option>04</option>
+                                    <option>06</option>
+                                    <option>07</option>
+                                    <option>09</option>
+                                    <option>020</option>
+                                    <option>021</option>
+                                    <option>022</option>
+                                    <option>027</option>
+                                    <option>028</option>
+                                    <option>029</option>
+                                    <option>0508</option>
+                                    <option>0800</option>
+                                </select>
+                                <input name="shipToContactNumber" type="text" id="shipPhone" class="input-xxlarge check required" placeholder="Phone Number" style="width: 135px;"/>
                                 <input name="CUSTOMER_EMAIL" type="text" id="shipEmail" class="input-xxlarge check required" placeholder="Email Address" />
-                                <input type="text" class="input-xxlarge" placeholder="Fax Number (optional)" />
+                                <select id="shipFaxNumberArea" class="chosen contactNumber" id="shipPhoneFaxNumberArea" style="width: 60px;">
+                                    <option selected="selected">03</option>
+                                    <option>04</option>
+                                    <option>06</option>
+                                    <option>07</option>
+                                    <option>09</option>
+                                    <option>0508</option>
+                                    <option>0800</option>
+                                </select>
+                                <input type="text" class="input-xxlarge" placeholder="Fax Number (optional)" id="shipFaxNumber" style="width: 135px;"/>
                             </div>
                         </td>
                     </tr>
@@ -387,7 +411,6 @@ under the License.
                 <input type="hidden" value="Y" name="keepAddressBook">
                 <input type="hidden" value="Y" name="setDefaultBilling">
                 <input type="hidden" value="64" name="billToCountryCode">
-                <input type="hidden" value="801" name="billToAreaCode">
                 <input type="hidden" value="" name="billToExtension">
                 <input type="hidden" value="N" name="useShippingAddressForBilling" id="useShippingAddressForBilling">
                 
@@ -411,9 +434,33 @@ under the License.
                                 <input type="text" name="billToLastName" id="billLastName" class="input-xxlarge check required" placeholder="Last Name" />
                             </div>
                             <div class="form-inline">
-                                <input name="billToContactNumber" type="text" id="billPhone" class="input-xxlarge check required" placeholder="Phone Number" />
+                            <select id="billToAreaCode" name="billToAreaCode" class="chosen contactNumber" style="width: 60px;">
+                                <option selected="selected">03</option>
+                                <option>04</option>
+                                <option>06</option>
+                                <option>07</option>
+                                <option>09</option>
+                                <option>020</option>
+                                <option>021</option>
+                                <option>022</option>
+                                <option>027</option>
+                                <option>028</option>
+                                <option>029</option>
+                                <option>0508</option>
+                                <option>0800</option>
+                            </select>
+                                <input name="billToContactNumber" type="text" id="billPhone" class="input-xxlarge check required" placeholder="Phone Number"  style="width: 135px;"/>
                                 <input type="text" id="billEmail" class="input-xxlarge check required" name="CUSTOMER_EMAILS" placeholder="Email Address" />
-                                <input type="text" class="input-xxlarge" placeholder="Fax Number (optional)" />
+                                <select id="billingFaxNumberArea" class="chosen contactNumber" id="shipPhoneFaxNumberArea" style="width: 60px;">
+                                    <option selected="selected">03</option>
+                                    <option>04</option>
+                                    <option>06</option>
+                                    <option>07</option>
+                                    <option>09</option>
+                                    <option>0508</option>
+                                    <option>0800</option>
+                                </select>
+                                <input type="text" class="input-xxlarge" placeholder="Fax Number (optional)" id = "billingFaxNumber"  style="width: 135px;"/>
                             </div>
                         </td>
                     </tr>
@@ -472,7 +519,7 @@ under the License.
                                         <option value="">Year</option>
                                         ${screens.render("component://common/widget/CommonScreens.xml#ccyears")}
                                     </select>
-                                <input name="billToCardSecurityCode" type="text" id="secureCode" class="input-medium check required" placeholder="Security Code" />
+                                <input name="billToCardSecurityCode" type="text" id="secureCode" class="input-medium check required" placeholder="Security Code" autocomplete="off"/>
                                 <img src="<@ofbizContentUrl>/shopmax-default/img/icon-card.gif</@ofbizContentUrl>" />
                                 <a href="#">What is this?</a>
                             </div>
