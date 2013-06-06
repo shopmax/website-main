@@ -1472,6 +1472,18 @@ textarea.required{
 #billingFaxNumberArea_chzn{
     background-color:#FFFFFF;
 }
+#shoppingPhoneNumberArea_chzn .chzn-single{
+    background-color:#FFFFFF;
+}
+#shoppingPhoneNumberArea_chzn{
+    background-color:#FFFFFF;
+}
+#billToAreaCode_chzn .chzn-single{
+    background-color:#FFFFFF;
+}
+#billToAreaCode_chzn{
+    background-color:#FFFFFF;
+}
 
 .btn-green-small {
     background: url("../img/btn-green-small.png") repeat-x scroll 0 0 transparent;
