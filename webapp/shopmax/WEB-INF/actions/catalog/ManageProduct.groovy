@@ -229,7 +229,7 @@ if (productCategoryMembers) {
             productMap.defaultPrice = productPriceDefault.price;
         }
         
-        productPricePromo = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : product.productId, productPricePurposeId : "PURCHASE", productPriceTypeId : "SPECIAL_PROMO_PRICE"], null, false)));
+        productPricePromo = EntityUtil.getFirst(delegator.findByAnd("ProductPrice", [productId : product.productId, productPricePurposeId : "PURCHASE", productPriceTypeId : "SPECIAL_PROMO_PRICE"], null, false));
         if (productPricePromo) {
             productMap.promoPrice = productPricePromo.price;
             productMap.productPricePromo = productPricePromo;

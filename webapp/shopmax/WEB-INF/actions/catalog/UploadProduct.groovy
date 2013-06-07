@@ -61,7 +61,7 @@ if(parameters.productId){
             context.defaultPrice = productPriceDefault.price;
         }
         
-        productPricePromo = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("ProductPrice", [productId : product.productId, productPricePurposeId : "PURCHASE", productPriceTypeId : "SPECIAL_PROMO_PRICE"], null, false)));
+        productPricePromo = EntityUtil.getFirst(delegator.findByAnd("ProductPrice", [productId : product.productId, productPricePurposeId : "PURCHASE", productPriceTypeId : "SPECIAL_PROMO_PRICE"], null, false));
         if (productPricePromo) {
             context.promoPrice = productPricePromo.price;
             context.productPricePromo = productPricePromo;
