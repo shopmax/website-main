@@ -16,6 +16,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
 <#if userLogin?has_content>
     <script type="text/javascript">
         window.location.href = "<@ofbizUrl>main</@ofbizUrl>";

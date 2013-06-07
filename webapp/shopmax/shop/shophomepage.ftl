@@ -16,6 +16,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
 <script>
 jQuery(document).ready(function() {
     $("#changeTheme").click(function() {
@@ -33,8 +34,8 @@ jQuery(document).ready(function() {
     });
 });
 </script>
+
 <div class="container content">
-    
     <div class="row">
     <!-- MAIN CONTENT -->
         <#include "component://shopmax/webapp/shopmax/shop/shopheader.ftl" />
@@ -49,21 +50,21 @@ jQuery(document).ready(function() {
                 <p class="pull-right"><a href="#" class="btn-general">Shop Now</a>
                 <p class="pull-right addshop"><a href="#">Add to Shopping List</a></p>
                 </li>
-
+                 
                 <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/shops-2.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
                 <h4>Shop 2</h4>
                 <p class="price">$189.95</p>
                 <p class="pull-right"><a href="#" class="btn-general">Shop Now</a>
                 <p class="pull-right addshop"><a href="#">Add to Shopping List</a></p>
                 </li>
-
+                
                 <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/shops-3.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
                 <h4>Shop 3</h4>
                 <p class="price">$189.95</p>
                 <p class="pull-right"><a href="#" class="btn-general">Shop Now</a>
                 <p class="pull-right addshop"><a href="#">Add to Shopping List</a></p>
                 </li>
-
+                
                 <!--li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/shops-4.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
                 <h4>Shop 4</h4>
                 <p>Description</p>
@@ -84,7 +85,7 @@ jQuery(document).ready(function() {
                 <p class="price">$129.85</p>
                 <p class="pull-right"><a href="#" class="btn-general">Add To Cart</a></p>
                 <p class="pull-right addshop"><a href="#">Add to Shopping List</a></p></li>
-
+                
                 <li class="sale"><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/product-3.png</@ofbizContentUrl>" width="136" height="139" alt="" /></a>
                 <h4>Product 3</h4>
                 <p class="price">$129.85</p>
@@ -106,9 +107,9 @@ jQuery(document).ready(function() {
                 <div class="category-list nested-list">
                      <#if categoryList?has_content>
                         <ul>
-	                        <#list categoryList as productCategory>
-	                            <li><a href="<@ofbizUrl>shopcategorygridview?productCategoryId=${productCategory.productCategoryId}</@ofbizUrl>">${productCategory.categoryName}</a></li>
-	                        </#list>
+                            <#list categoryList as productCategory>
+                                <li><a href="<@ofbizUrl>shopcategorygridview?productCategoryId=${productCategory.productCategoryId}</@ofbizUrl>">${productCategory.categoryName}</a></li>
+                            </#list>
                         </ul>
                     </#if>
                 </div><!-- /#product-tab -->

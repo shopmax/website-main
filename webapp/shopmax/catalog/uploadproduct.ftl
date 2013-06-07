@@ -16,6 +16,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
 <script src="<@ofbizContentUrl>/shopmax-default/js/uploadproduct.js</@ofbizContentUrl>" type="text/javascript"></script>
 <link rel='stylesheet' href='<@ofbizContentUrl>/shopmax-default/css/jquery-ui.css</@ofbizContentUrl>' type='text/css'>
 <script src="<@ofbizContentUrl>/shopmax-default/js/jquery-ui.js</@ofbizContentUrl>" type="text/javascript"></script>
@@ -183,6 +184,7 @@ under the License.
         height: 82px;
     }
 </style>
+
 <div class="container content promotion">
     <!-- include breadcrumb -->
     ${screens.render("component://shopmax/widget/ShopMaxScreens.xml#Breadcrumbs")}

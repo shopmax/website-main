@@ -26,6 +26,7 @@ under the License.
         });
     });
 </script>
+
 <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
 <div class="container content">
     <div class="row">

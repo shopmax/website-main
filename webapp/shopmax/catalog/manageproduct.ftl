@@ -135,6 +135,7 @@ under the License.
         height: 82px;
     }
 </style>
+
 <div class="container content">
     <!-- include breadcrumb -->
     ${screens.render("component://shopmax/widget/ShopMaxScreens.xml#Breadcrumbs")}

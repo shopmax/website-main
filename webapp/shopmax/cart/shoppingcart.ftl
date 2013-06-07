@@ -54,6 +54,7 @@ under the License.
         });
     });
 </script>
+
 <div class="container content shopping-cart">
     <div class="row">
         <div class="span3 sidebar" id="side-menu">

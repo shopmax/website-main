@@ -17,7 +17,6 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-
 <div class="categories innerbox georgia">
     <#if headerItem?if_exists == "manageproduct">
         <h2><a href="<@ofbizUrl>manageproduct</@ofbizUrl>">See All Products</a></h2>

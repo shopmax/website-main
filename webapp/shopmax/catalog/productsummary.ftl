@@ -16,6 +16,7 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+
 <script>
     $(function(){
         $('.additem').each(function(){
@@ -27,6 +28,7 @@ under the License.
         });
     });
 </script>
+
 <#if product?exists>
     <#if headerItem?if_exists == "categorygridview" || headerItem?if_exists == "shopcategorygridview">
         <div class="block_1">
