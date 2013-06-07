@@ -226,6 +226,8 @@ under the License.
                         <entity-one value-field="creditCard" entity-name="CreditCard">
                             <field-map field-name="paymentMethodId" from-field="parameters.paymentMethodId"/>
                         </entity-one>
+                        <set field="parameters.firstNameOnCard" from-field="creditCard.firstNameOnCard"/>
+                        <set field="parameters.lastNameOnCard" from-field="creditCard.lastNameOnCard"/>
                         <set field="parameters.cardNumber" from-field="creditCard.cardNumber"/>
                         <set field="parameters.cardType" from-field="creditCard.cardType"/>
                         <set field="parameters.expMonth" value="${groovy:(creditCard.expireDate).substring(0, 2)}"/>
