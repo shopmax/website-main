@@ -85,15 +85,7 @@ under the License.
     function getFile(inputIndex){
         document.getElementById("upfile_"+inputIndex).click();
     }
-    function sub(obj,inputIndex){
-        var file = obj.value;
-        if(!inputIndex){
-            inputIndex = 0;
-        }
-        $('#yourBtn'+inputIndex).val(file);
-        $('#li-'+inputIndex).addClass('uploaded');
-        
-    }
+    
     function removeProduct(productCategoryId,productId,index){
         if(confirm("Do you want to remove this product?")){
             $('#view-edit-product-'+index).slideUp("slow");
@@ -126,15 +118,15 @@ under the License.
     
     function showPreview(ele,index)
     {
-        $('#imgAvatar_'+index).attr('src', ele.value); // for IE
+        $('#imgAvatar_'+index).attr('src', '<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>');
         if (ele.files && ele.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
                 $('#imgAvatar_'+index).attr('src', e.target.result);
             }
             reader.readAsDataURL(ele.files[0]);
-            $('#li-'+index).addClass('uploaded');
         }
+        $('#li-'+index).addClass('uploaded');
     }
 </script>
 <style>

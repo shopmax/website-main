@@ -38,15 +38,15 @@ under the License.
     
     function showPreview(ele,index)
     {
-        $('#imgAvatar_'+index).attr('src', ele.value); // for IE
+        $('#imgAvatar_'+index).attr('src', '<@ofbizContentUrl>/shopmax-default/img/product-generic-82x82.jpg</@ofbizContentUrl>');
         if (ele.files && ele.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
                 $('#imgAvatar_'+index).attr('src', e.target.result);
             }
             reader.readAsDataURL(ele.files[0]);
-            $('#li-'+index).addClass('uploaded');
         }
+        $('#li-'+index).addClass('uploaded');
     }
     
     $(function(){
@@ -316,7 +316,7 @@ under the License.
                                                                     <#if seqNoImage == i && check !=0>
                                                                         <li id="li-${i}">
                                                                             <div id="prev_upfile_${i}" class="uploaded-image" onclick="getFile('${i}')">
-                                                                                <img id="imgAvatar_${i}">
+                                                                                <img id="imgAvatar_${i}"/>
                                                                             </div>
                                                                             <a onclick="getFile('${i}')">Add Photo</a>
                                                                             <div style='height: 0px;width:0px; overflow:hidden; border:0;'><input class="file" id="upfile_${i}" type="file" onchange="showPreview(this,'${i}')" name="uploadedFile${i}"/></div>

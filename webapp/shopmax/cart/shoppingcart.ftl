@@ -39,7 +39,7 @@ under the License.
         $("[id^='scShipOption_']").css({'display':'none'});
         $('.scDelivery').change(function(){
             var partyId = $('#'+this.id).val().split('-');
-            if(partyId[0] == 'PICKUP'){
+            if(partyId[0] == 'NO_SHIPPING'){
                 $("#scShipOption_"+partyId[1]).val($("#scShipOption_"+partyId[1]+"option:first").val());
                 $('#scShipOption_'+partyId[1]+'_chzn').find('span').text('Select Shipping Option');
                 $('#scShipOption_'+partyId[1]+'_chzn').css({'display':'none'});
@@ -151,8 +151,8 @@ under the License.
                                 <td colspan="5" class="col1">
                                     <h5 class="heading">Delivery Options</h5>
                                     <select name="scDelivery" class="drop-select chosen combo scDelivery" id="scDelivery_${entry_index?if_exists}" data-search-bar="true">
-                                        <option value="PICKUP-${entry_index?if_exists}" selected="selected">Pick up in store</option>
-                                        <option value="DELIVERY-${entry_index?if_exists}">Delivery to me</option>
+                                        <option value="NO_SHIPPING-${entry_index?if_exists}" selected="selected">Pick up in store</option>
+                                        <option value="DELIVERY_TO-${entry_index?if_exists}">Delivery to me</option>
                                     </select>
                                     <#assign branchStoreNameList = delegator.findByAnd("PartyAndPostalAddress", {"partyId" : partyId}, null, false)>
                                     <select name="scBranchStore" class="drop-select chosen combo scBranchStore" id="scBranchStore_${entry_index?if_exists}" data-search-bar="true">

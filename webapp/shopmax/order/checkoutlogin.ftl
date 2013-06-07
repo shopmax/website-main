@@ -567,12 +567,11 @@ under the License.
                                 <div class="span5">
                                     <div class="column_1">
                                         <select name="shipToContactMechId" id="shipAddressDrop" class="span4">
-                                            <option value="error">Please Select Shipping Address</option>
                                             <#if contactMechList?has_content>
                                                 <#list contactMechList as contactMech>
                                                     <#assign postalAddress = contactMech.getRelatedOne("PostalAddress", false)?if_exists/>
                                                     <#assign stateProvinceGeo = postalAddress.getRelatedOne("StateProvinceGeo", false)?if_exists>
-                                                    <option value="${postalAddress.contactMechId}">${postalAddress.toName?default("No Contact Name")} - ${postalAddress.address1?if_exists} ${stateProvinceGeo.geoName?if_exists} </option>
+                                                    <option value="${postalAddress.contactMechId}">${postalAddress.toName?default("No Contact Name")} - ${postalAddress.address1?if_exists}</option>
                                                 </#list>
                                             </#if>
                                         </select>
@@ -684,7 +683,6 @@ under the License.
                                 <div class="span5">
                                     <div class="column_1">
                                         <select name="paymentMethodId" id="billAddressDrop" class="span3">
-                                            <option value="error2">Please Select Billing Address</option>
                                             <#if billPaymentMethod?has_content>
                                                 <#list billPaymentMethod as paymentMethod>
                                                     <#assign creditCard = paymentMethod.getRelatedOne("CreditCard", false)?if_exists/>

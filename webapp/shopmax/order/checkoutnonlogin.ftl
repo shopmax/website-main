@@ -564,11 +564,9 @@ under the License.
                 <br />
                 <div class="message-wrapper">
                     <div class="message-inner">
-                        <a href="#">
                         <div class="message-box georgia">
                             Do you already have an account?&nbsp;&nbsp;<img src="<@ofbizContentUrl>/shopmax-default/img/icon-hand-right.gif</@ofbizContentUrl>" />&nbsp;&nbsp;<a id="cartLoginButton" href="#inline1">Login now !</a>
                         </div>
-                        </a>
                     </div>
                 </div>
                 <div class="red">or</div>
