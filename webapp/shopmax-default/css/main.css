@@ -3375,8 +3375,11 @@ border-top: 0px;
 .shopping-cart .btn-general {
     width:185px;
     background: url("../img/btn-general-rpt.png") repeat-x scroll 0 0 transparent;
-    
 }
+.shopping-cart .btn-form{
+    float:left;
+}
+
 #processShoppingCartButton{
     width:160px;
 }

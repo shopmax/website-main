@@ -29,8 +29,8 @@ under the License.
                 $('#billEmail').removeClass('check required');
                 $('#billStreetAddress').removeClass('check required');
                 $('#billPostal').removeClass('check required');
-                $('#processOrderSummaryButton').attr('style','display: none;');
-                $('#summaryButton2').attr('style','');
+                $('.processOrderSummaryButton').attr('style','display: none;');
+                $('.summaryButton2').attr('style','');
                 
                 
             }
@@ -44,8 +44,8 @@ under the License.
                 $('#billEmail').addClass('check required');
                 $('#billStreetAddress').addClass('check required');
                 $('#billPostal').addClass('check required');
-                $('#summaryButton2').attr('style','display: none;');
-                $('#processOrderSummaryButton').attr('style','');
+                $('.summaryButton2').attr('style','display: none;');
+                $('.processOrderSummaryButton').attr('style','');
             }
         });
     });
@@ -78,7 +78,7 @@ under the License.
             $('#billAddressDrop').css({'background-color':'#FFFFFF'});
         });
 
-        $('#summaryButton3').click(function(){
+        $('.summaryButton3').click(function(){
             $('.main-content').find('input.check').each(function(){
                 var valid = false;
                 if(!$(this).val().length){
@@ -113,7 +113,7 @@ under the License.
             });
         });
 
-        $('#summaryButton2').click(function(){
+        $('.summaryButton2').click(function(){
             $('.main-content').find('input.check').each(function(){
                 var valid = false;
                 var x=document.forms["orderSummarySubmitForm"]["CUSTOMER_EMAIL"].value;
@@ -122,6 +122,7 @@ under the License.
                 
                 if(!$(this).val().length){
                 $(this).addClass('required');
+                $('html, body').animate({ scrollTop: 0 }, 0);
                 valid = false;
                     if($('select#shipAddressDrop option:selected').val() == 'error'){
                     $('#shipAddressDrop').css({'background-color':'#FEF2EE'});
@@ -203,7 +204,7 @@ under the License.
             });
         });
 
-        $('#summaryButton1').click(function(){
+        $('.summaryButton1').click(function(){
             $('.main-content').find('input.check').each(function(){
                 var valid = false;
                 var y=document.forms["orderSummarySubmitForm"]["CUSTOMER_EMAILS"].value;
@@ -293,7 +294,7 @@ under the License.
             });
         });
 
-        $('#processOrderSummaryButton').click(function(){
+        $('.processOrderSummaryButton').click(function(){
             $('.main-content').find('input.check').each(function(){
                 var valid = false;
                 var x=document.forms["orderSummarySubmitForm"]["CUSTOMER_EMAIL"].value;
@@ -855,17 +856,17 @@ under the License.
                 
                 <input type="button" style="display: none;" id="processingOrderSummaryButton" name="processingOrderSummaryButton" value="${uiLabelMap.OrderSubmittingOrder}" />
                 <#if !contactMechList?has_content && billPaymentMethod?has_content>
-                <input type="button" id="summaryButton2" name="processOrderSummaryButton" class="btn-general pull-right" value="Place Order" />
+                    <input type="button" id="summaryButton2" name="summaryButton2" class="btn-general pull-right summaryButton2" value="Place Order" />
                 </#if>
                 <#if !billPaymentMethod?has_content && contactMechList?has_content>
-                <input type="button" id="summaryButton1" name="processOrderSummaryButton" class="btn-general pull-right" value="Place Order" />
+                    <input type="button" id="summaryButton1" name="summaryButton1" class="btn-general pull-right summaryButton1" value="Place Order" />
                 </#if>
                 <#if contactMechList?has_content && billPaymentMethod?has_content>
-                <input type="button" id="summaryButton3" name="processOrderSummaryButton" class="btn-general pull-right" value="Place Order" />
+                    <input type="button" id="summaryButton3" name="summaryButton3" class="btn-general pull-right summaryButton3" value="Place Order" />
                 </#if>
                 <#if !contactMechList?has_content && !billPaymentMethod?has_content>
-                <input type="button" style="" id="processOrderSummaryButton" name="processOrderSummaryButton" class="btn-general pull-right" value="Place Order" />
-                <input type="button" style="display: none;" id="summaryButton2" name="summaryButton2" class="btn-general pull-right" value="Place Order" />
+                    <input type="button" style="" id="processOrderSummaryButton" name="processOrderSummaryButton" class="btn-general pull-right processOrderSummaryButton" value="Place Order" />
+                    <input type="button" style="display: none;" id="summaryButton2" name="summaryButton2" class="btn-general pull-right summaryButton2" value="Place Order" />
                 </#if>
             </div><!-- /.span9 -->
         </form>

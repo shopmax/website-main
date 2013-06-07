@@ -38,7 +38,20 @@ under the License.
                     <tr class="row-grey"><td colspan="2"><br />
                         <form id="orderSubmitForm" action="<@ofbizUrl>onePageProcess</@ofbizUrl>" method="post">
                             <fieldset>
-                                <input type="button" id="processOrderButton" name="processOrderButton" class="btn-general" value="Place Order" />
+                                <#if !contactMechList?has_content && billPaymentMethod?has_content>
+                                    <input type="button" id="summaryButton2" name="summaryButton2" class="btn-general pull-right summaryButton2 btn-form" value="Place Order" />
+                                </#if>
+                                <#if !billPaymentMethod?has_content && contactMechList?has_content>
+                                    <input type="button" id="summaryButton1" name="summaryButton1" class="btn-general pull-right summaryButton1 btn-form" value="Place Order" />
+                                </#if>
+                                <#if contactMechList?has_content && billPaymentMethod?has_content>
+                                    <input type="button" id="summaryButton3" name="summaryButton3" class="btn-general pull-right summaryButton3 btn-form" value="Place Order" />
+                                </#if>
+                                <#if !contactMechList?has_content && !billPaymentMethod?has_content>
+                                    <input type="button" style="" id="processOrderSummaryButton" name="processOrderSummaryButton" class="btn-form btn-general pull-right processOrderSummaryButton" value="Place Order" />
+                                    <input type="button" style="display: none;" id="summaryButton2" name="summaryButton2" class="btn-general pull-right summaryButton2 btn-form" value="Place Order" />
+                                </#if>
+                                <#-- <input type="button" id="processOrderButton" name="processOrderButton" class="btn-general processOrderSummaryButton" value="Place Order" /> -->
                                 <input type="button" style="display: none;" id="processingOrderButton" name="processingOrderButton" value="${uiLabelMap.OrderSubmittingOrder}" />
                             </fieldset>
                         </form>
