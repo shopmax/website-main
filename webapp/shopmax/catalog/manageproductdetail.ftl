@@ -48,7 +48,7 @@ under the License.
                     <#if product.productImage?exists>
                         <img class="media-object" src="<@ofbizContentUrl>${product.productImage}</@ofbizContentUrl>" width="170" style="height: 170px;"/>
                     <#else>
-                        <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-2.jpg</@ofbizContentUrl>" />
+                        <img class="media-object" src="<@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl>" />
                     </#if>
                 </a>
                 <div class="media-body">
@@ -85,7 +85,7 @@ under the License.
                     <#if product.productImage?exists>
                         <img class="media-object" src="<@ofbizContentUrl>${product.productImage}</@ofbizContentUrl>" width="170" style="height: 170px;"/>
                     <#else>
-                        <img class="media-object" src="<@ofbizContentUrl>/shopmax-default/img/product-generic-170x170.jpg</@ofbizContentUrl>" />
+                        <img class="media-object" src="<@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl>" width="170" style="height: 170px;"/>
                     </#if>
                 </a>
                 <div class="media-body">
