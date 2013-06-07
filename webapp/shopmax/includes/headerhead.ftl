@@ -68,6 +68,8 @@ under the License.
                 'onClosed'  : function() {
                     $('#username').removeClass('check');
                     $('#password').removeClass('check');
+                    $('#username').removeClass('required');
+                    $('#password').removeClass('required');
                 }
             });
             
