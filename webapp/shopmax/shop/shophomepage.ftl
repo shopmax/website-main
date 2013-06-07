@@ -107,7 +107,7 @@ jQuery(document).ready(function() {
                      <#if categoryList?has_content>
                         <ul>
 	                        <#list categoryList as productCategory>
-	                            <li><a href="<@ofbizUrl>shopcategorygridview?productCategoryId=${productCategory.productCategoryId}</@ofbizUrl>">${productCategory.categoryName}</li>
+	                            <li><a href="<@ofbizUrl>shopcategorygridview?productCategoryId=${productCategory.productCategoryId}</@ofbizUrl>">${productCategory.categoryName}</a></li>
 	                        </#list>
                         </ul>
                     </#if>

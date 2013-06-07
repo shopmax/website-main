@@ -122,13 +122,13 @@ under the License.
                         </ul>
                     </div><!-- /.tabs-->
                     <div id="product-tab" class="tabcontent">
-                    <#if categoryList?has_content>
-                        <ul>
-                        <#list categoryList as productCategory>
-                            <li><a href="<@ofbizUrl>categorygridview?productCategoryId=${productCategory.productCategoryId}</@ofbizUrl>">${productCategory.categoryName}</li>
-                        </#list>
-                        </ul>
-                    </#if>
+                        <#if categoryList?has_content>
+                            <ul>
+                                <#list categoryList as productCategory>
+                                    <li><a href="<@ofbizUrl>categorygridview?productCategoryId=${productCategory.productCategoryId}</@ofbizUrl>">${productCategory.categoryName}</a></li>
+                                </#list>
+                            </ul>
+                        </#if>
                     </div><!-- /#product-tab -->
                     <div id="services-tab" class="tabcontent">
                         <ul>
