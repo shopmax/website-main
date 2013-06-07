@@ -483,7 +483,7 @@ under the License.
               </tbody>
             </table>
             <div class="sc-table-promotion footer-button">
-                <a id="productpreview" class="btn-green-small" style="width:80px;">Preview</a>&nbsp;&nbsp;
+                <a id="productpreview" class="btn-green-small <#if productId?has_content>hidden</#if>" style="width:80px;" >Preview</a>&nbsp;&nbsp;
                 <a class="btn-general-small" id="submit_uploadProductToSeller">Submit</a>&nbsp;&nbsp;
                 <a class="btn-grey-small" href="<@ofbizUrl><#if productId?has_content>manageproduct<#else>main</#if></@ofbizUrl>">Cancel</a>
             </div>
