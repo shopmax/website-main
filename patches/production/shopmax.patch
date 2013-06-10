@@ -1,68 +1,6 @@
-Index: hot-deploy/shopmax/config/shopmax.properties
-===================================================================
---- hot-deploy/shopmax/config/shopmax.properties	(revision 333)
-+++ hot-deploy/shopmax/config/shopmax.properties	(working copy)
-@@ -19,4 +19,4 @@
- 
- shopmax.product.category.cache=N
- shopmax.seller.sms=N
--shopmax.central.domain=http://shopmax.localhost:8080/control/
-+shopmax.central.domain=http://shopmax.co.nz/control/
-Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
-===================================================================
---- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 334)
-+++ hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(working copy)
-@@ -444,8 +444,8 @@
-                 <set field="parameters.domainName" value="${parameters.ownDomainName}"/>
-                 <set field="parameters.domainNameBackend" value="backend.${parameters.ownDomainName}"/>
-             <else>
--                <set field="parameters.domainName" value="${parameters.freeDomainName}.shopmax.localhost"/>
--                <set field="parameters.domainNameBackend" value="backend.${parameters.freeDomainName}.shopmax.localhost"/>
-+                <set field="parameters.domainName" value="${parameters.freeDomainName}.shopmax.co.nz"/>
-+                <set field="parameters.domainNameBackend" value="backend.${parameters.freeDomainName}.shopmax.co.nz"/>
-             </else>
-             </if-compare>
-             
-Index: hot-deploy/shopmax/webapp/shopmax/includes/header.ftl
-===================================================================
---- hot-deploy/shopmax/webapp/shopmax/includes/header.ftl	(revision 342)
-+++ hot-deploy/shopmax/webapp/shopmax/includes/header.ftl	(working copy)
-@@ -29,7 +29,7 @@
-             alert("You do not have permission to view this page.");
-         }
-         else{
--            window.location.href = "http://${shopmaxSellerDomain?if_exists}:8080/control/"+pathRequest+"?partyId=${userLoginPartyId?if_exists}";
-+            window.location.href = "http://${shopmaxSellerDomain?if_exists}/control/"+pathRequest+"?partyId=${userLoginPartyId?if_exists}";
-         }
-     }
- </script>
-Index: hot-deploy/tenant/config/default-tenant.xml
-===================================================================
---- hot-deploy/tenant/config/default-tenant.xml	(revision 295)
-+++ hot-deploy/tenant/config/default-tenant.xml	(working copy)
-@@ -1,16 +1,10 @@
- <?xml version="1.0" encoding="UTF-8"?>
- <default-tenant>
--    <component name="growerpbackend"/>
--    <component name="growerpwebsite"/>
--    <component name="growerpsaas"/>
-+    <component name="shopmax"/>
-     
-     <!-- frontend -->
--    <domain name="growerpsaas.localhost" initial-path="/"/>
--    <domain name="growerpsaas.ofbizdemo.com" initial-path="/"/>
--    <domain name="saas.growerp.com" initial-path="/"/>
-+    <domain name="shopmax.co.nz" initial-path="/"/>
-     
-     <!-- backend -->
--    <domain name="growerpsaasbackend.localhost" initial-path="/backend"/>
--    <domain name="growerpsaasbackend.ofbizdemo.com" initial-path="/backend"/>
--    <domain name="saasbackend.growerp.com" initial-path="/backend"/>
-+    <domain name="backend.shopmax.co.nz" initial-path="/catalog"/>
- </default-tenant>
 Index: applications/content/servicedef/secas.xml
 ===================================================================
---- applications/content/servicedef/secas.xml	(revision 1470483)
+--- applications/content/servicedef/secas.xml	(revision 1487148)
 +++ applications/content/servicedef/secas.xml	(working copy)
 @@ -123,14 +123,6 @@
          <set field-name="roleTypeId" value="OWNER"/>
@@ -81,7 +19,7 @@ Index: applications/content/servicedef/secas.xml
          <condition field-name="contentAssocTypeId" operator="is-not-empty"/>
 Index: framework/entity/config/entityengine.xml
 ===================================================================
---- framework/entity/config/entityengine.xml	(revision 1470483)
+--- framework/entity/config/entityengine.xml	(revision 1487148)
 +++ framework/entity/config/entityengine.xml	(working copy)
 @@ -52,39 +52,39 @@
      <debug-xa-resources value="false" />  <!-- see https://issues.apache.org/jira/browse/OFBIZ-4282 for more -->
@@ -137,7 +75,7 @@ Index: framework/entity/config/entityengine.xml
      <!-- need to at least define a name for each component to use -->
 Index: framework/webapp/config/url.properties
 ===================================================================
---- framework/webapp/config/url.properties	(revision 1470483)
+--- framework/webapp/config/url.properties	(revision 1487148)
 +++ framework/webapp/config/url.properties	(working copy)
 @@ -22,11 +22,11 @@
  
@@ -153,3 +91,43 @@ Index: framework/webapp/config/url.properties
  force.http.host=
  
  # Static Content URLs to make it easy to move the serving load for static content to other machines
+Index: hot-deploy/shopmax/webapp/shopmax/includes/header.ftl
+===================================================================
+--- hot-deploy/shopmax/webapp/shopmax/includes/header.ftl	(revision 400)
++++ hot-deploy/shopmax/webapp/shopmax/includes/header.ftl	(working copy)
+@@ -29,7 +29,7 @@
+             alert("You do not have permission to view this page.");
+         }
+         else{
+-            window.location.href = "http://${shopmaxSellerDomain?if_exists}:8080/control/"+pathRequest+"?partyId=${userLoginPartyId?if_exists}";
++            window.location.href = "http://${shopmaxSellerDomain?if_exists}/control/"+pathRequest+"?partyId=${userLoginPartyId?if_exists}";
+         }
+     }
+     $(function(){
+Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
+===================================================================
+--- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 400)
++++ hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(working copy)
+@@ -444,8 +444,8 @@
+                 <set field="parameters.domainName" value="${parameters.ownDomainName}"/>
+                 <set field="parameters.domainNameBackend" value="backend.${parameters.ownDomainName}"/>
+             <else>
+-                <set field="parameters.domainName" value="${parameters.freeDomainName}.shopmax.localhost"/>
+-                <set field="parameters.domainNameBackend" value="backend.${parameters.freeDomainName}.shopmax.localhost"/>
++                <set field="parameters.domainName" value="${parameters.freeDomainName}.shopmax.co.nz"/>
++                <set field="parameters.domainNameBackend" value="backend.${parameters.freeDomainName}.shopmax.co.nz"/>
+             </else>
+             </if-compare>
+             
+Index: hot-deploy/shopmax/config/shopmax.properties
+===================================================================
+--- hot-deploy/shopmax/config/shopmax.properties	(revision 400)
++++ hot-deploy/shopmax/config/shopmax.properties	(working copy)
+@@ -18,5 +18,5 @@
+ ###############################################################################
+ 
+ shopmax.product.category.cache=N
+-shopmax.seller.sms=N
+-shopmax.central.domain=http://shopmax.localhost:8080/control/
++shopmax.seller.sms=Y
++shopmax.central.domain=http://shopmax.co.nz/control/
