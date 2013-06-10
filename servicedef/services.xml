@@ -397,11 +397,23 @@ under the License.
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
     
-    <service name="removeProductContentAndImageFileShopmax" default-entity-name="ProductContent" engine="simple"
-        location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="removeProductContentAndImageFileShopmax" auth="true">
-        <description>Remove Product Content and File Image of Shopmax</description>
-        <attribute name="productId" mode="IN" type="String" optional="false"/>
-        <attribute name="productContentTypeId" mode="IN" type="String" optional="false"/>
-        <attribute name="sequenceNum" mode="IN" type="Long" optional="false"/>
+    <service name="createProductCategoryFlyoutSub" default-entity-name="ProductCategoryFlyoutSub" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a ProductCategoryFlyoutSub</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+    </service>
+    
+    <service name="deleteProductCategoryFlyoutSub" default-entity-name="ProductCategoryFlyoutSub" engine="entity-auto" invoke="delete" auth="true">
+        <description>Delete a ProductCategoryFlyoutSub</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+    </service>
+    
+    <service name="createProductCategoryRelated" default-entity-name="ProductCategoryRelated" engine="entity-auto" invoke="create" auth="true">
+        <description>Create a ProductCategoryRelated</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+    </service>
+    
+    <service name="deleteProductCategoryRelated" default-entity-name="ProductCategoryRelated" engine="entity-auto" invoke="delete" auth="true">
+        <description>Delete a ProductCategoryRelated</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
     </service>
 </services>

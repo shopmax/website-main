@@ -53,4 +53,38 @@ under the License.
         <field name="createdDate" title=""><display/></field>
         <field name="submitButton" title="Approve" widget-style="smallSubmit"><submit button-type="button"/></field>
     </form>
+    
+    <form name="CreateProductCategoryFlyoutSub" header-row-style="header-row" default-table-style="basic-table" type="single" target="createProductCategoryFlyoutSub" title="">
+        <field name="productCategoryId"><hidden/></field>
+        <field name="subProductCategoryId" title="Subcategory">
+            <lookup target-form-name="LookupProductCategory"/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonCreate}"><submit/></field>
+    </form>
+    
+    <form name="EditProductCategoryFlyoutSub" odd-row-style="alternate-row" default-table-style="basic-table" type="list" target="deleteProductCategoryFlyoutSub" title="" list-name="categoryFlyoutSubList">
+        <field name="productCategoryId"><hidden/></field>
+        <field name="subProductCategoryId" title="Subcategory">
+            <display-entity entity-name="ProductCategory" description="${description}" key-field-name="productCategoryId"/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonDelete}"><submit/></field>
+    </form>
+    
+    <form name="CreateProductCategoryRelated" header-row-style="header-row" default-table-style="basic-table" type="single" target="createProductCategoryRelated" title="">
+        <field name="productCategoryId"><hidden/></field>
+        <field name="productCategoryIdFrom"><hidden/></field>
+        <field name="productCategoryIdTo" title="Related Category">
+            <lookup target-form-name="LookupProductCategory"/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonCreate}"><submit/></field>
+    </form>
+    
+    <form name="EditProductCategoryRelated" odd-row-style="alternate-row" default-table-style="basic-table" type="list" target="deleteProductCategoryRelated" title="" list-name="categoryRelatedList">
+        <field name="productCategoryId"><hidden/></field>
+        <field name="productCategoryIdFrom"><hidden/></field>
+        <field name="productCategoryIdTo" title="Related Category">
+            <display-entity entity-name="ProductCategory" description="${description}" key-field-name="productCategoryId"/>
+        </field>
+        <field name="submitButton" title="${uiLabelMap.CommonDelete}"><submit/></field>
+    </form>
 </forms>

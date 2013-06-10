@@ -25,7 +25,8 @@ under the License.
         <section>
             <actions>
                 <set field="headerItem" value="home"/>
-                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopCategories.groovy"/>
+                <!-- <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopCategories.groovy"/> -->
+                <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetFlyoutCategories.groovy"/>
             </actions>
             <widgets>
                 <decorator-screen name="ShopMaxCommonDecorator" location="${parameters.mainDecoratorLocation}">

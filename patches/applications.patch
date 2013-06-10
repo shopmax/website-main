@@ -144,3 +144,103 @@ Index: applications/product/src/org/ofbiz/product/imagemanagement/ImageManagemen
              try {
                  dispatcher.runSync("createProductContent", productContentCtx);
              } catch (GenericServiceException e) {
+Index: applications/product/webapp/catalog/category/EditCategory.ftl
+===================================================================
+--- applications/product/webapp/catalog/category/EditCategory.ftl	(revision 1487148)
++++ applications/product/webapp/catalog/category/EditCategory.ftl	(working copy)
+@@ -194,6 +194,17 @@
+                     </td>
+                 </tr>
+                 <tr>
++                    <td width="26%" align="right" class="label">Show In Flyout</td>
++                    <td>&nbsp;</td>
++                    <td width="74%">
++                        <select name="showInFlyout" size="1">
++                            <option>${productCategory.showInFlyout?if_exists}</option>
++                            <option value="N">N</option>
++                            <option value="Y">Y</option>
++                        </select>
++                    </td>
++                </tr>
++                <tr>
+                     <td colspan="2">&nbsp;</td>
+                     <td><input type="submit" name="Update" value="${uiLabelMap.CommonUpdate}"/></td>
+                 </tr>
+Index: applications/product/webapp/catalog/WEB-INF/controller.xml
+===================================================================
+--- applications/product/webapp/catalog/WEB-INF/controller.xml	(revision 1487148)
++++ applications/product/webapp/catalog/WEB-INF/controller.xml	(working copy)
+@@ -3072,6 +3072,44 @@
+         <response name="success" type="request-redirect" value="EditProductTag"/>
+         <response name="error" type="view" value="EditProductTag"/>
+     </request-map>
++
++    <request-map uri="EditProductCategoryFlyoutSub">
++        <security https="true" auth="true"/>
++        <response name="success" type="view" value="EditProductCategoryFlyoutSub"/>
++    </request-map>
++    
++    <request-map uri="createProductCategoryFlyoutSub">
++        <security https="true" auth="true"/>
++        <event type="service" invoke="createProductCategoryFlyoutSub"/>
++        <response name="success" type="view" value="EditProductCategoryFlyoutSub"/>
++        <response name="error" type="view" value="EditProductCategoryFlyoutSub"/>
++    </request-map>
++    
++    <request-map uri="deleteProductCategoryFlyoutSub">
++        <security https="true" auth="true"/>
++        <event type="service" invoke="deleteProductCategoryFlyoutSub"/>
++        <response name="success" type="view" value="EditProductCategoryFlyoutSub"/>
++        <response name="error" type="view" value="EditProductCategoryFlyoutSub"/>
++    </request-map>
++    
++    <request-map uri="EditProductCategoryRelated">
++        <security https="true" auth="true"/>
++        <response name="success" type="view" value="EditProductCategoryRelated"/>
++    </request-map>
++    
++    <request-map uri="createProductCategoryRelated">
++        <security https="true" auth="true"/>
++        <event type="service" invoke="createProductCategoryRelated"/>
++        <response name="success" type="view" value="EditProductCategoryRelated"/>
++        <response name="error" type="view" value="EditProductCategoryRelated"/>
++    </request-map>
++    
++    <request-map uri="deleteProductCategoryRelated">
++        <security https="true" auth="true"/>
++        <event type="service" invoke="deleteProductCategoryRelated"/>
++        <response name="success" type="view" value="EditProductCategoryRelated"/>
++        <response name="error" type="view" value="EditProductCategoryRelated"/>
++    </request-map>
+     <!-- end of request mappings -->
+ 
+     <!-- View Mappings -->
+@@ -3287,4 +3325,7 @@
+     <view-map name="LookupImageFrame" type="screen" page="component://product/widget/catalog/ImageManagementScreens.xml#LookupImageFrame"/>
+     <view-map name="ImageResize" type="screen" page="component://product/widget/catalog/ImageManagementScreens.xml#ImageResize"/>
+     <!-- end of view mappings -->
++    
++    <view-map name="EditProductCategoryFlyoutSub" type="screen" page="component://shopmax/widget/CatalogScreens.xml#EditProductCategoryFlyoutSub"/>
++    <view-map name="EditProductCategoryRelated" type="screen" page="component://shopmax/widget/CatalogScreens.xml#EditProductCategoryRelated"/>
+ </site-conf>
+Index: applications/product/widget/catalog/CatalogMenus.xml
+===================================================================
+--- applications/product/widget/catalog/CatalogMenus.xml	(revision 1487148)
++++ applications/product/widget/catalog/CatalogMenus.xml	(working copy)
+@@ -145,6 +145,16 @@
+                 <parameter param-name="productCategoryId"/>
+             </link>
+         </menu-item>
++        <menu-item name="EditProductCategoryFlyoutSub" title="Flyout Subcategory">
++            <link target="EditProductCategoryFlyoutSub">
++                <parameter param-name="productCategoryId"/>
++            </link>
++        </menu-item>
++        <menu-item name="EditProductCategoryRelated" title="Related">
++            <link target="EditProductCategoryRelated">
++                <parameter param-name="productCategoryId"/>
++            </link>
++        </menu-item>
+     </menu>
+ 
+     <menu name="CategorySubTabBar" menu-container-style="button-bar button-style-2" default-selected-style="selected">

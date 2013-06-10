@@ -41,4 +41,28 @@ under the License.
             <key-map field-name="contactMechId"/>
         </relation>
     </entity>
+    
+    <extend-entity entity-name="ProductCategory">
+        <field name="showInFlyout" type="indicator"></field>
+    </extend-entity>
+    
+    <entity entity-name="ProductCategoryFlyoutSub" package-name="org.ofbiz.entity.shopmax">
+        <field name="productCategoryId" type="id-ne"></field>
+        <field name="subProductCategoryId" type="id-ne"></field>
+        <prim-key field="productCategoryId"/>
+        <prim-key field="subProductCategoryId"/>
+        <relation type="one" fk-name="PROD_CTGRY_FLY_SUB" rel-entity-name="ProductCategory">
+            <key-map field-name="productCategoryId"/>
+        </relation>
+    </entity>
+    
+    <entity entity-name="ProductCategoryRelated" package-name="org.ofbiz.entity.shopmax">
+        <field name="productCategoryIdFrom" type="id-ne"></field>
+        <field name="productCategoryIdTo" type="id-ne"></field>
+        <prim-key field="productCategoryIdFrom"/>
+        <prim-key field="productCategoryIdTo"/>
+        <relation type="one" fk-name="PROD_CTGRY_REL" rel-entity-name="ProductCategory">
+            <key-map field-name="productCategoryIdFrom"/>
+        </relation>
+    </entity>
 </entitymodel>

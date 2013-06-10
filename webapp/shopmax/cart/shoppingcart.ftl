@@ -147,6 +147,7 @@ under the License.
                                         <td class="col5"><strong><@ofbizCurrency amount=cartLine.getDisplayItemSubTotal()/></strong></td>
                                     </tr>
                                 </#if>
+                                <#assign shopSubTotal = shopSubTotal + cartLine.getDisplayItemSubTotal() />
                             </#list>
                             <tr class="row-grey">
                                 <td colspan="5" class="col1">
@@ -192,7 +193,7 @@ under the License.
                                     <a href="#" class="sc-apply-code">Apply code</a>
                                 </td>
                                 <td class="col4"><h5 class="heading" style="padding-left:10px;">Sub Total</h5></td>
-                                <td class="col5" style="padding-right:10px;"><h5 class="blue"><@ofbizCurrency amount=shoppingCart.getDisplayGrandTotal()/></h5></td>
+                                <td class="col5" style="padding-right:10px;"><h5 class="blue"><@ofbizCurrency amount=shopSubTotal/></h5></td>
                             </tr>
                         </tbody>
                     </table>

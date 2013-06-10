@@ -143,8 +143,8 @@ under the License.
     <ProdCatalogCategory prodCatalogId="SHOPMAX_CATALOG" productCategoryId="SHOPMAX_BROWSE_ROOT" fromDate="2013-04-01 00:00:00" sequenceNum="1" prodCatalogCategoryTypeId="PCCT_BROWSE_ROOT"/>
     
     <!-- Create Category Level 1 -->
-    <ProductCategory productCategoryId="DEMO_CAT1_LV1" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 1.1" description="Demo Category 1.1" showInSelect="Y"/>
-    <ProductCategory productCategoryId="DEMO_CAT2_LV1" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 2.1" description="Demo Category 2.1" showInSelect="Y"/>
+    <ProductCategory productCategoryId="DEMO_CAT1_LV1" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 1.1" description="Demo Category 1.1" showInSelect="Y" showInFlyout="Y"/>
+    <ProductCategory productCategoryId="DEMO_CAT2_LV1" productCategoryTypeId="CATALOG_CATEGORY" primaryParentCategoryId="" categoryName="Demo Category 2.1" description="Demo Category 2.1" showInSelect="Y" showInFlyout="Y"/>
     <!-- Create Parent Category Level 1 -->
     <ProductCategoryRollup productCategoryId="DEMO_CAT1_LV1" parentProductCategoryId="SHOPMAX_BROWSE_ROOT" fromDate="2013-04-01 00:00:00" sequenceNum="1"/>
     <ProductCategoryRollup productCategoryId="DEMO_CAT2_LV1" parentProductCategoryId="SHOPMAX_BROWSE_ROOT" fromDate="2013-04-01 00:00:00" sequenceNum="2"/>
@@ -195,7 +195,7 @@ under the License.
     <ProductPrice productId="dropShip1" productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" currencyUomId="NZD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" price="15.00"/>
     <ProductPrice productId="dropShip1" productPricePurposeId="PURCHASE" productPriceTypeId="SPECIAL_PROMO_PRICE" currencyUomId="NZD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" thruDate="2013-12-31 00:00:00" price="10.00"/>
     <SupplierProduct productId="dropShip1" partyId="SHOPMAX_SELLER" availableFromDate="2013-04-01 00:00:00" minimumOrderQuantity="0.0" lastPrice="10.0" currencyUomId="NZD" supplierProductName="Drop ship product from Shopmax Seller" supplierProductId="dropShip1-DS" canDropShip="Y"/>
-    <ProductReview productId="dropShip1" productRating="4.000000" productReview="Good" productReviewId="dropShip1_1" productStoreId="ShopMaxStore" statusId="PRR_APPROVED" userLoginId="DemoCustomer"/>
+    <ProductReview productId="dropShip1" productRating="3.000000" productReview="Good" productReviewId="dropShip1_1" productStoreId="ShopMaxStore" statusId="PRR_APPROVED" userLoginId="DemoCustomer"/>
     <ProductReview productId="dropShip1" productRating="5.000000" productReview="It's useful." productReviewId="dropShip1_2" productStoreId="ShopMaxStore" statusId="PRR_APPROVED" userLoginId="DemoCustomer"/>
     
     <Product productId="dropShip2" productTypeId="FINISHED_GOOD" internalName="DropShip 2" productName="DropShip 2" description="Description of DropShip 2" longDescription="Description of DropShip 2" smallImageUrl="/shopmax-default/img/product-generic-472x472.jpgg" mediumImageUrl="/shopmax-default/img/product-generic-472x472.jpg" largeImageUrl="/shopmax-default/img/product-generic-472x472.jpg" isVirtual="N" isVariant="N" requirementMethodEnumId="PRODRQM_DS"/>
