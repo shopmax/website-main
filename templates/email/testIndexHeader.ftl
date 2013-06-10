@@ -31,127 +31,20 @@ under the License.
         <meta name="viewport" content="width=device-width">
         <!-- what happens with this with mobile phones? 
         <meta name="viewport" content="width=device-width, initial-scale=1" />-->
-        <link rel="shortcut icon" href="<@ofbizContentUrl>/shopmax-default/img/favicon.ico" type="text/css</@ofbizContentUrl>"/>
-        <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery-1.8.3.min.js</@ofbizContentUrl>"></script>
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/bootstrap.css" type="text/css</@ofbizContentUrl>"/>
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/bootstrap-responsive.css" type="text/css</@ofbizContentUrl>"/>
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/js/vendor/chosen.css" type="text/css</@ofbizContentUrl>"/>
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/main.css" type="text/css</@ofbizContentUrl>"/>
-        <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js</@ofbizContentUrl>"></script>
-        <#--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
-        -->
-        <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery-1.8.3.min.js</@ofbizContentUrl>"></script>
-        <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/bootstrap.min.js</@ofbizContentUrl>"></script>
-        <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/chosen.jquery.min.js</@ofbizContentUrl>"></script>
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/anythingslider.css</@ofbizContentUrl>" type="text/css"/>
-        <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.anythingslider.min.js</@ofbizContentUrl>"></script>
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.css</@ofbizContentUrl>" type="text/css"/>
-        <script type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.pack.js</@ofbizContentUrl>"></script>
-        <#--<script src="js/main.js"></script>-->
-        <script>
-            (function($) {
-                    $(document).ready(function() {
-                    var imageUrlPath = "<@ofbizContentUrl></@ofbizContentUrl>";
-                    $.fn.exists = function(){return this.length>0;}
-            
-                    $('#slider').anythingSlider({
-                    autoPlay: true,                 // This turns off the entire FUNCTIONALY, not just if it starts running or not
-                    startStopped: false,            // If autoPlay is on, this can force it to start stopped
-                    buildNavigation:false,      // If true, builds a list of anchor links to link to each panel 
-                    buildStartStop:false, 
-                    delay: 3000,                    // How long between slide transitions in AutoPlay mode
-                    animationTime: 700,             // How long the slide transition takes
-                    hashTags: false,                 // Should links change the hashtag in the URL?
-                    pauseOnHover:true             // If true, and autoPlay is enabled, the show will pause on hover
-                    });
-            
-                    Modernizr.addTest('mediaqueries', Modernizr.mq('all')); 
-                    
-                    $('.fancylink').fancybox({width:'50%', height:'50%'});
-            
-                    //$('.chosen').chosen();
-                    //$("#accountOptions").data("placeholder","Select Frameworks...").chosen();
-                    $('.chosen').chosen();
-            
-                    $('.actionable').change(function() {
-                        location.href=$(this).val();
-                    });
-            
-                    function reveal(){ // reveals the hidden ul, used by the countdown script below
-                        $('#countdown-next-deal').parent('h3').siblings().find('li,.next-deal').css({'opacity':1,'background':'white'});
-                        $('.next-deal').css({'opacity':1});
-                        // enable buttons
-                        $('#countdown-next-deal').parent('h3').siblings().find('button').removeAttr('disabled');
-                    }
-            
-                    // For IE8 and earlier version.
-                    if (!Date.now) {
-                        Date.now = function() {
-                        return new Date().valueOf();
-                        }
-                    }
-            
-                    // the date below will obviously need to be taken from the server - see comment below for code ref
-                    if ($('.countdown').exists()){
-                        var deflabels = ['Years', 'Months', 'Weeks', 'Days', 'HOURS', 'MIN', 'SEC'];
-                        var deflayout = '<span class="timer-inner">'+
-                            '<span class="block"><span class="time-unit">{hl}</span><code><span>{h10}</span><span>{h1}</span><img src="<@ofbizContentUrl>/shopmax-default/img/1px-line.png</@ofbizContentUrl>" width="54" height="33" alt="" /></code></span>'+
-                            '<span class="sep">{sep}</span>'+
-                            '<span class="block"><span class="time-unit">{ml}</span><code><span>{m10}</span><span>{m1}</span><img src="<@ofbizContentUrl>/shopmax-default/img/1px-line.png</@ofbizContentUrl>" width="54" height="33" alt="" /></code></span>'+
-                            '<span class="sep">{sep}</span>'+
-                            '<span class="block"><span class="time-unit">{sl}</span><code><span>{s10}</span><span>{s1}</span><img src="<@ofbizContentUrl>/shopmax-default/img/1px-line.png</@ofbizContentUrl>" width="54" height="33" alt="" /></code></span>'+
-                            '</span>'; 
-                        var defformat = 'H:M:S';
-                        var start = Date.now();
-                        var twentySecs = 20000;// milliseconds
-                        var twoHours = 7200000;
-                        $('#countdown-time-left').countdown({until: new Date(2013, 1/*zero-based*/, 1), timeSeparator:':',format: defformat, compact: false, layout: deflayout, labels:deflabels});
-                        $('#countdown-next-deal').countdown({onExpiry:reveal, until: new Date(start+twentySecs), timeSeparator:':',format: defformat, compact: false, layout: deflayout, labels:deflabels});
-                    }
-                    // example of server time retrieval from here http://keith-wood.name/countdownRef.html#serverSync
-            
-                
-                    /* star rating */
-                    if ($('.raty').exists()){
-                        $('.raty').raty({
-                            score: function() {
-                            return $(this).attr('data-rating');
-                        }
-                        });
-                    }
-                    
-                    $('.tool-tip').tooltip();
-            
-                    /*
-                    var breedte = document.body.clientWidth;
-                    console.log(breedte);
-                    */
-                    
-            
-                    /* tabs - 
-                            hide all but the first .tabcontent, change the style of its tab
-                            on click hide all tabs except the one with the id [link]-tab
-                            
-                    */
-                    $(document).ready(function() {
-                        if(!$('body').hasClass('help')){
-                            $('.tabcontent').not('.tabcontent:eq(0)').hide();
-                            $('.tabnavs li:first-child').addClass('active');
-                            $('.tabnavs li').css('cursor','pointer');
-                            $('.tabnavs li').click(function () {
-                                var target = $(this).text().replace(/ /g,"-").toLowerCase();
-                                //console.log(target);
-                                $(this).parents('ul.tabnavs').find('li').removeClass('active');
-                                $(this).addClass('active');
-                                $('.tabcontent').hide();
-                                $('#'+target+'-tab').show();
-                            });
-                        }
-                    });
-                });
-            })(jQuery);
-        </script>
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/bootstrap.css</@ofbizContentUrl>">
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/bootstrap-responsive.css</@ofbizContentUrl>">
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/js/vendor/chosen.css</@ofbizContentUrl>">
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/main.css</@ofbizContentUrl>">
+        <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js</@ofbizContentUrl>"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery-1.8.3.min.js</@ofbizContentUrl>"><\/script>')</script>
+        <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/bootstrap.min.js</@ofbizContentUrl>"></script>
+        <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/chosen.jquery.min.js</@ofbizContentUrl>"></script>
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/anythingslider.css</@ofbizContentUrl>">
+        <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.anythingslider.min.js</@ofbizContentUrl>"></script>
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.css</@ofbizContentUrl>">
+        <script src="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.pack.js</@ofbizContentUrl>"></script>  
+        <script src="<@ofbizContentUrl>/shopmax-default/js/main.js</@ofbizContentUrl>"></script>
     </head>
     <body class="home">
         <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
@@ -170,6 +63,19 @@ under the License.
                         <ul class="nav">
                             <li><a href="upload.html">Upload Product</a></li>
                             <li><a href="manage-product.html">Manage Product</a></li>
+                            <!--
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li class="nav-header">Nav header</li>
+                                    <li><a href="#">Separated link</a></li>
+                                    <li><a href="#">One more separated link</a></li>
+                                </ul>
+                            </li>-->
                             <li><a href="manage-orders.html">Manage Orders</a></li>
                             <li><a href="shopping-list.html">Shopping List</a></li>
                             <li class="last"><a href="buying-orders.html">Buying Orders</a></li>
@@ -178,12 +84,18 @@ under the License.
                             <div class="field search-filters">
                                 <div class="main-search-control">
                                     <div class="main-search-dropdown bold">
+                                        <!--
+                                        <span class="drop-container">
+                                        <span class="drop-label"></span>
+                                        <span class="drop-arrow"></span>
+                                        -->
                                         <select id="SearchType" name="searchType" class="drop-select chosen combo" data-search-bar="true">
                                                 <option value="shop1" selected="selected">This Shop</option>
                                                 <option value="shop2">Shop 2</option>
                                                 <option value="shop3">Shop 3</option>
                                                 <option value="shop4">Shop 4</option>
                                         </select>
+                                    <!-- </span> -->
                                     </div>
                                     <div class="main-search-input">
                                         <input type="text" placeholder="Search" name="searchTerm">
@@ -232,6 +144,7 @@ under the License.
                 </div>
             </div>  
         </nav>
+
         <div class="container content">
             <div class="row">
                 <a class="skip-link small" href="#side-menu">Skip to sidebar menu</a>
@@ -263,53 +176,63 @@ under the License.
                     <div id="featured-shops" class="featured green">
                         <h3>Featured Shops</h3>
                         <ul>
-                        <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/shops-1.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
-                        <h4>Shop 1</h4>
-                        <p>Description</p>
-                        <p><a href="#" class="btn-general">Shop Now</a></li>
-
-                        <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/shops-2.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
-                        <h4>Shop 2</h4>
-                        <p>Description</p>
-                        <p><a href="#" class="btn-general">SHOP NOW</a></li>
-
-                        <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/shops-3.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
-                        <h4>Shop 3</h4>
-                        <p>Description</p>
-                        <p><a href="#" class="btn-general">SHOP NOW</a></li>
-
-                        <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/shops-4.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
-                        <h4>Shop 4</h4>
-                        <p>Description</p>
-                        <p><a href="#" class="btn-general">SHOP NOW</a></li>
+                        <li>
+                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/shops-1.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
+                            <h4>Shop 1</h4>
+                            <p>Description</p>
+                            <p><a href="#" class="btn-general">Shop Now</a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/shops-2.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
+                            <h4>Shop 2</h4>
+                            <p>Description</p>
+                            <p><a href="#" class="btn-general">SHOP NOW</a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/shops-3.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
+                            <h4>Shop 3</h4>
+                            <p>Description</p>
+                            <p><a href="#" class="btn-general">SHOP NOW</a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/shops-4.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
+                            <h4>Shop 4</h4>
+                            <p>Description</p>
+                            <p><a href="#" class="btn-general">SHOP NOW</a>
+                        </li>
                         </ul>
                     </div>
                     <div id="featured-products" class="featured blue">
                         <h3>Featured Products</h3>
                         <ul>
-                        <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/product-1.png</@ofbizContentUrl>" width="136" height="139" alt="" /></a>
-                        <h4>Product 1</h4>
-                        <p class="price">$129.85</p>
-                        <p class="pull-right"><a href="#" class="btn-general">Add To Cart</a></p>
-                        <p class="pull-right addshop"><a href="#">Add to Shopping List</a></p></li>
-                        
-                        <li class="sale"><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/product-2.png</@ofbizContentUrl>" width="136" height="139" alt="" /></a>
-                        <h4>Product 2</h4>
-                        <p class="price">$129.85</p>
-                        <p class="pull-right"><a href="#" class="btn-general">Add To Cart</a></p>
-                        <p class="pull-right addshop"><a href="#">Add to Shopping List</a></p></li>
-
-                        <li class="sale"><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/product-3.png</@ofbizContentUrl>" width="136" height="139" alt="" /></a>
-                        <h4>Product 3</h4>
-                        <p class="price">$129.85</p>
-                        <p class="pull-right"><a href="#" class="btn-general">Add To Cart</a></p>
-                        <p class="pull-right addshop"><a href="#">Add to Shopping List</a></p></li>
-                        
-                        <li><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/shops-4.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
-                        <h4>Product 4</h4>
-                        <p class="price">$129.85</p>
-                        <p class="pull-right"><a href="#" class="btn-general">Add To Cart</a></p>
-                        <p class="pull-right addshop"><a href="#">Add to Shopping List</a></p></li>
+                        <li>
+                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/product-1.png</@ofbizContentUrl>" width="136" height="139" alt="" /></a>
+                            <h4>Product 1</h4>
+                            <p class="price">$129.85</p>
+                            <p class="pull-right"><a href="#" class="btn-general">Add To Cart</a></p>
+                            <p class="pull-right addshop"><a href="#">Add to Shopping List</a></p>
+                        </li>
+                        <li class="sale">
+                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/product-2.png</@ofbizContentUrl>" width="136" height="139" alt="" /></a>
+                            <h4>Product 2</h4>
+                            <p class="price">$129.85</p>
+                            <p class="pull-right"><a href="#" class="btn-general">Add To Cart</a></p>
+                            <p class="pull-right addshop"><a href="#">Add to Shopping List</a></p>
+                        </li>
+                        <li class="sale">
+                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/product-3.png</@ofbizContentUrl>" width="136" height="139" alt="" /></a>
+                            <h4>Product 3</h4>
+                            <p class="price">$129.85</p>
+                            <p class="pull-right"><a href="#" class="btn-general">Add To Cart</a></p>
+                            <p class="pull-right addshop"><a href="#">Add to Shopping List</a></p>
+                        </li>
+                        <li>
+                            <a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/shops-4.png</@ofbizContentUrl>" width="139" height="139" alt="" /></a>
+                            <h4>Product 4</h4>
+                            <p class="price">$129.85</p>
+                            <p class="pull-right"><a href="#" class="btn-general">Add To Cart</a></p>
+                            <p class="pull-right addshop"><a href="#">Add to Shopping List</a></p>
+                        </li>
                         </ul>
                     </div>
                     <div id="recently-added" class="featured">
@@ -338,25 +261,25 @@ under the License.
                             </div><!-- /.tabs-->
                             <div id="product-tab" class="tabcontent">
                                 <ul>
-                                <li><a href="/">Electronics &amp; Office</a></li>
-                                            <li><a href="#">Movies, Music &amp; Books</a></li>
-                                            <li><a href="#">Home, Furniture &amp; Patio</a></li>
-                                            <li><a href="#">Apparel, Shoes &amp; Jewellery</a></li>
-                                            <li><a href="#">Baby &amp; Kids</a></li>
-                                            <li><a href="#">Toys &amp; Video Games</a></li>
-                                            <li><a href="#">Sports, Fitness &amp; Outdoors</a></li>
+                                    <li><a href="/">Electronics &amp; Office</a></li>
+                                    <li><a href="#">Movies, Music &amp; Books</a></li>
+                                    <li><a href="#">Home, Furniture &amp; Patio</a></li>
+                                    <li><a href="#">Apparel, Shoes &amp; Jewellery</a></li>
+                                    <li><a href="#">Baby &amp; Kids</a></li>
+                                    <li><a href="#">Toys &amp; Video Games</a></li>
+                                    <li><a href="#">Sports, Fitness &amp; Outdoors</a></li>
                                 </ul>
                             </div><!-- /#product-tab -->
                             <div id="services-tab" class="tabcontent">
                                 <ul>
-                                <li><a href="#">Services List</a></li>
-                                <li><a href="/">Home</a></li>
-                                            <li><a href="shops.html">Shops</a></li>
-                                            <li><a href="group-bang.html">Group Bang</a></li>
-                                            <li><a href="rush-hour.html">Rush Hour</a></li>
-                                            <li><a href="multi-buy.html">Multi Buy</a></li>
-                                            <li><a href="about-us.html">About Us</a></li>
-                                            <li><a href="help.html">Help</a></li>
+                                    <li><a href="#">Services List</a></li>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="shops.html">Shops</a></li>
+                                    <li><a href="group-bang.html">Group Bang</a></li>
+                                    <li><a href="rush-hour.html">Rush Hour</a></li>
+                                    <li><a href="multi-buy.html">Multi Buy</a></li>
+                                    <li><a href="about-us.html">About Us</a></li>
+                                    <li><a href="help.html">Help</a></li>
                                 </ul>
                             </div><!-- /#services-tab -->
                         </div><!-- /.tabbed -->
@@ -459,6 +382,7 @@ under the License.
                 </div><!-- /.span3.sidebar -->
                 </div><!-- /.row -->                
             </div> <!-- /container -->
+
             <footer>
                 <div id="top-foot" class="georgia">
                     <div class="container">
@@ -484,7 +408,6 @@ under the License.
                                 <li><a href="#">Venenatis vestibum</a></li>
                                 <li><a href="#">Prasent commodo</a></li>
                                 </ul>
-                                
                             </div>
                             <div class="span2 noheading">
                                 <ul>
@@ -502,12 +425,9 @@ under the License.
                                     <input type="text" placeholder="Search through our site" class="pull-left">
                                     <button type="submit" class="btn-search-large pull-left"></button>
                                 </form>
-
                                 <h3>Contact us for a Quotation</h3>
                                 <p><strong>0800 123 456</strong> <em>or</em> <strong><a href="mailto:abc@xyz.com">Email Us</a></strong><br />
                                 <dfn>7 days 9am to 5pm NZDT</dfn></p>
-                                
-
                             </div>
                             <div class="span3">
                                 <h3>Sign Up Our Newsletter</h3>
@@ -522,7 +442,6 @@ under the License.
                                     <li class="pull-left"><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/icon-gplus.png</@ofbizContentUrl>" width="33" height="33" alt="" /></a></li>
                                     <li class="pull-left"><a href="#"><img src="<@ofbizContentUrl>/shopmax-default/img/icon-rss.png</@ofbizContentUrl>" width="33" height="33" alt="" /></a></li>
                                 </ul>
-
                             </div>
                         </div><!-- /. row -->
                     </div><!-- /.container -->
@@ -547,6 +466,11 @@ under the License.
                 </div><!-- /#blue-foot -->
             </footer>
         <script>
+        /*    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        */
         </script>
     </body>
 </html>
