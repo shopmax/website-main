@@ -1,6 +1,6 @@
 Index: hot-deploy/shopmax/ofbiz-component.xml
 ===================================================================
---- hot-deploy/shopmax/ofbiz-component.xml	(revision 300)
+--- hot-deploy/shopmax/ofbiz-component.xml	(revision 400)
 +++ hot-deploy/shopmax/ofbiz-component.xml	(working copy)
 @@ -44,6 +44,7 @@
      <entity-resource type="data" reader-name="ext-demo" loader="main" location="data/ShopMaxExtDemoData.xml"/>
@@ -12,9 +12,7 @@ Index: hot-deploy/shopmax/ofbiz-component.xml
      <service-resource type="model" loader="main" location="servicedef/services.xml"/>
 Index: hot-deploy/shopmax/widget/CommonScreens.xml
 ===================================================================
-Index: hot-deploy/shopmax/widget/CommonScreens.xml
-===================================================================
---- hot-deploy/shopmax/widget/CommonScreens.xml	(revision 327)
+--- hot-deploy/shopmax/widget/CommonScreens.xml	(revision 400)
 +++ hot-deploy/shopmax/widget/CommonScreens.xml	(working copy)
 @@ -59,6 +59,7 @@
                      <field-map field-name="themeResources" from-field="layoutSettings" />
@@ -26,7 +24,7 @@ Index: hot-deploy/shopmax/widget/CommonScreens.xml
                  <set field="userLoginPartyId" from-field="userLogin.partyId"/>
 Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
 ===================================================================
---- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 374)
+--- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 400)
 +++ hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(working copy)
 @@ -23,7 +23,7 @@
  
@@ -93,7 +91,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              </else>
              </if-compare>
              
-@@ -600,7 +600,7 @@
+@@ -604,7 +604,7 @@
              <make-value value-field="tenantDomainName" entity-name="TenantDomainName"/>
              <set field="tenantDomainName.tenantId" from-field="tenantId"/>
              <set field="tenantDomainName.domainName" from-field="parameters.domainName"/>
@@ -102,7 +100,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              <create-value value-field="tenantDomainName"/>
              
              <!-- Create Tenant Backend Domain Name -->
-@@ -766,7 +766,7 @@
+@@ -770,7 +770,7 @@
          <field-to-result field="success" result-name="uploadsuccess"/>
          
          <set field="parameters.partyId" from-field="userLogin.partyId"/>
@@ -111,7 +109,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
          <set field="runTenantServiceInMap.serviceName" value="uploadProductToShopmax"/>
          <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
          <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-@@ -1528,7 +1528,7 @@
+@@ -1532,7 +1532,7 @@
          </if-not-empty>
          
          <set field="parameters.partyId" from-field="userLogin.partyId"/>
@@ -120,7 +118,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
          <set field="runTenantServiceInMap.serviceName" value="editProductToShopmax"/>
          <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
          <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-@@ -1761,7 +1761,7 @@
+@@ -1765,7 +1765,7 @@
          
          <field-to-result field="parameters.productId" result-name="productId"/>
          
@@ -129,7 +127,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
          <set field="runTenantServiceInMap.serviceName" value="removeProductFromShopmax"/>
          <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
          <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-@@ -2044,7 +2044,7 @@
+@@ -2048,7 +2048,7 @@
          <field-to-result field="success" result-name="updatesuccess"/>
          
          <set field="parameters.partyId" from-field="userLogin.partyId"/>
@@ -138,7 +136,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
          <set field="runTenantServiceInMap.serviceName" value="updateProductToShopmax"/>
          <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
          <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-@@ -2296,7 +2296,7 @@
+@@ -2300,7 +2300,7 @@
              <set field="removeProductImageShopmaxMap.productId" from-field="lookedUpValue.productId"/>
              <set field="removeProductImageShopmaxMap.productContentTypeId" from-field="lookedUpValue.productContentTypeId"/>
              <set field="removeProductImageShopmaxMap.sequenceNum" from-field="lookedUpValue.sequenceNum"/>
@@ -149,7 +147,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
 Index: hot-deploy/shopmax/webapp/shopmax-default/css/main.css
 ===================================================================
---- hot-deploy/shopmax/webapp/shopmax-default/css/main.css	(revision 276)
+--- hot-deploy/shopmax/webapp/shopmax-default/css/main.css	(revision 400)
 +++ hot-deploy/shopmax/webapp/shopmax-default/css/main.css	(working copy)
 @@ -36,6 +36,7 @@
  -----------------------------------------------------------------*/
@@ -185,17 +183,19 @@ Index: hot-deploy/shopmax/webapp/shopmax-default/css/main.css
  }
 Index: hot-deploy/shopmax/config/shopmax.properties
 ===================================================================
---- hot-deploy/shopmax/config/shopmax.properties	(revision 333)
+--- hot-deploy/shopmax/config/shopmax.properties	(revision 400)
 +++ hot-deploy/shopmax/config/shopmax.properties	(working copy)
-@@ -19,4 +19,4 @@
+@@ -18,5 +18,5 @@
+ ###############################################################################
  
  shopmax.product.category.cache=N
- shopmax.seller.sms=N
+-shopmax.seller.sms=N
 -shopmax.central.domain=http://shopmax.localhost:8080/control/
++shopmax.seller.sms=Y
 +shopmax.central.domain=http://shopmax.ofbizdemo.com/control/
 Index: hot-deploy/shopmax/webapp/shopmax/includes/header.ftl
 ===================================================================
---- hot-deploy/shopmax/webapp/shopmax/includes/header.ftl	(revision 342)
+--- hot-deploy/shopmax/webapp/shopmax/includes/header.ftl	(revision 400)
 +++ hot-deploy/shopmax/webapp/shopmax/includes/header.ftl	(working copy)
 @@ -29,7 +29,7 @@
              alert("You do not have permission to view this page.");
@@ -205,10 +205,10 @@ Index: hot-deploy/shopmax/webapp/shopmax/includes/header.ftl
 +            window.location.href = "http://${shopmaxSellerDomain?if_exists}/shop/control/"+pathRequest+"?partyId=${userLoginPartyId?if_exists}";
          }
      }
- </script>
+     $(function(){
 Index: hot-deploy/shopmax/data/ShopMaxExtDemoData.xml
 ===================================================================
---- hot-deploy/shopmax/data/ShopMaxExtDemoData.xml	(revision 345)
+--- hot-deploy/shopmax/data/ShopMaxExtDemoData.xml	(revision 400)
 +++ hot-deploy/shopmax/data/ShopMaxExtDemoData.xml	(working copy)
 @@ -72,7 +72,7 @@
      
@@ -221,7 +221,7 @@ Index: hot-deploy/shopmax/data/ShopMaxExtDemoData.xml
      <Party partyId="DemoCustomer" partyTypeId="PERSON"/>
 Index: hot-deploy/shopmax/templates/email/registration.ftl
 ===================================================================
---- hot-deploy/shopmax/templates/email/registration.ftl	(revision 351)
+--- hot-deploy/shopmax/templates/email/registration.ftl	(revision 400)
 +++ hot-deploy/shopmax/templates/email/registration.ftl	(working copy)
 @@ -32,7 +32,7 @@
                              <td valign="top"  height="26" align="left"></td>
@@ -243,7 +243,7 @@ Index: hot-deploy/shopmax/templates/email/registration.ftl
                                                      <td valign="top"  height="28" align="left"></td>
 Index: hot-deploy/shopmax/templates/email/confirmation.ftl
 ===================================================================
---- hot-deploy/shopmax/templates/email/confirmation.ftl	(revision 351)
+--- hot-deploy/shopmax/templates/email/confirmation.ftl	(revision 400)
 +++ hot-deploy/shopmax/templates/email/confirmation.ftl	(working copy)
 @@ -33,7 +33,7 @@
                              <td valign="top"  height="26" align="left">&nbsp;</td>
