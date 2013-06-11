@@ -244,3 +244,25 @@ Index: applications/product/widget/catalog/CatalogMenus.xml
      </menu>
  
      <menu name="CategorySubTabBar" menu-container-style="button-bar button-style-2" default-selected-style="selected">
+Index: applications/order/webapp/ordermgr/order/orderReportContactMechs.fo.ftl
+===================================================================
+--- applications/order/webapp/ordermgr/order/orderReportContactMechs.fo.ftl	(revision 1487148)
++++ applications/order/webapp/ordermgr/order/orderReportContactMechs.fo.ftl	(working copy)
+@@ -31,7 +31,7 @@
+                 <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2?if_exists}</fo:block></#if>
+                 <fo:block>
+                     <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId?if_exists}, false))?if_exists />
+-                    ${postalAddress.city}<#if stateGeo?has_content>, ${stateGeo.geoName?if_exists}</#if> ${postalAddress.postalCode?if_exists}
++                    ${postalAddress.city} ${postalAddress.postalCode?if_exists}
+                 </fo:block>
+                 <fo:block>
+                     <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId?if_exists}, false))?if_exists />
+@@ -63,7 +63,7 @@
+                 <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2?if_exists}</fo:block></#if>
+                 <fo:block>
+                     <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId?if_exists}, false))?if_exists />
+-                    ${postalAddress.city}<#if stateGeo?has_content>, ${stateGeo.geoName?if_exists}</#if> ${postalAddress.postalCode?if_exists}
++                    ${postalAddress.city} ${postalAddress.postalCode?if_exists}
+                 </fo:block>
+                 <fo:block>
+                     <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId?if_exists}, false))?if_exists />
