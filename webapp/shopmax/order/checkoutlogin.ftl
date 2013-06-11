@@ -32,8 +32,6 @@ under the License.
                 $('#billPostal').removeClass('check required');
                 $('.processOrderSummaryButton').attr('style','display: none;');
                 $('.summaryButton2').attr('style','');
-                
-                
             }
             else{
                 $('#tr-shipping-address').removeClass('hidden');
@@ -561,7 +559,6 @@ under the License.
                 <div class="billing_de">
                     <#if contactMechList?has_content>
                         <input type="hidden" value="64" name="shipToCountryCode">
-                        <input type="hidden" value="801" name="shipToAreaCode">
                         <div class="shipp_info">
                             <div class="tital_1">Shipping Information</div>
                             <div class="row">
@@ -629,7 +626,7 @@ under the License.
                                         </select>
                                         <input name="shipToContactNumber" type="text" id="shipPhone" class="input-xxlarge check required" onkeypress="return isNumberKey(event)" placeholder="Phone Number" style="width: 135px;"/>
                                         <input name="CUSTOMER_EMAIL" type="text" id="shipEmail" class="input-xxlarge check required" placeholder="Email Address" />
-                                        <select id="shipFaxNumberArea" class="chosen contactNumber" id="shipPhoneFaxNumberArea" style="width: 60px;">
+                                        <select id="shipFaxNumberArea" name="shipFaxNumberArea" class="chosen contactNumber" id="shipPhoneFaxNumberArea" style="width: 60px;">
                                             <option selected="selected">03</option>
                                             <option>04</option>
                                             <option>06</option>
@@ -638,7 +635,7 @@ under the License.
                                             <option>0508</option>
                                             <option>0800</option>
                                         </select>
-                                        <input type="text" class="input-xxlarge" placeholder="Fax Number" id="shipFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
+                                        <input type="text" class="input-xxlarge" placeholder="Fax Number" id="shipFaxNumber" name="shipToFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
                                     </div>
                                 </td>
                             </tr>
@@ -726,7 +723,7 @@ under the License.
                         <input type="hidden" id="paymentMethodTypeId" name="paymentMethodTypeId" value="${paymentMethodTypeId?default("CREDIT_CARD")}" />
                         <input type="hidden" value="Y" name="keepAddressBook">
                         <input type="hidden" value="Y" name="setDefaultBilling">
-                        <input type="hidden" value="1" name="billToCountryCode">
+                        <input type="hidden" value="64" name="billToCountryCode">
                         <input type="hidden" value="" name="billToExtension">
                         <input type="hidden" value="N" name="useShippingAddressForBilling" id="useShippingAddressForBilling">
                         
@@ -767,7 +764,7 @@ under the License.
                                         </select>
                                         <input name="billToContactNumber" type="text" id="billPhone" class="input-xxlarge check required" onkeypress="return isNumberKey(event)" placeholder="Phone Number" style="width: 135px;"/>
                                         <input type="text" name="CUSTOMER_EMAILS" id="billEmail" class="input-xxlarge check required" placeholder="Email Address" />
-                                        <select id="billingFaxNumberArea" class="chosen contactNumber" id="shipPhoneFaxNumberArea" style="width: 60px;">
+                                        <select id="billingFaxNumberArea" name="billToFaxNumberArea" class="chosen contactNumber" id="shipPhoneFaxNumberArea" style="width: 60px;">
                                             <option selected="selected">03</option>
                                             <option>04</option>
                                             <option>06</option>
@@ -776,7 +773,7 @@ under the License.
                                             <option>0508</option>
                                             <option>0800</option>
                                         </select>
-                                        <input type="text" class="input-xxlarge" placeholder="Fax Number" id = "billingFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
+                                        <input type="text" class="input-xxlarge" name="billToFaxNumber" placeholder="Fax Number" id = "billingFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
                                     </div>
                                 </td>
                             </tr>

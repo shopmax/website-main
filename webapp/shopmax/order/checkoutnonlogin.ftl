@@ -619,7 +619,7 @@ under the License.
                                 </select>
                                 <input name="shipToContactNumber" type="text" id="shipPhone" class="input-xxlarge check required" placeholder="Phone Number" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
                                 <input name="CUSTOMER_EMAIL" type="text" id="shipEmail" class="input-xxlarge check required" placeholder="Email Address" />
-                                <select id="shipFaxNumberArea" class="chosen contactNumber" id="shipPhoneFaxNumberArea" style="width: 60px;">
+                                <select id="shipFaxNumberArea" name="shipFaxNumberArea" class="chosen contactNumber" id="shipPhoneFaxNumberArea" style="width: 60px;">
                                     <option selected="selected">03</option>
                                     <option>04</option>
                                     <option>06</option>
@@ -628,7 +628,7 @@ under the License.
                                     <option>0508</option>
                                     <option>0800</option>
                                 </select>
-                                <input type="text" class="input-xxlarge" placeholder="Fax Number" id="shipFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
+                                <input type="text" class="input-xxlarge" placeholder="Fax Number" id="shipFaxNumber" name="shipToFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
                             </div>
                         </td>
                     </tr>
@@ -700,7 +700,7 @@ under the License.
                             </select>
                                 <input name="billToContactNumber" type="text" id="billPhone" class="input-xxlarge check required" placeholder="Phone Number" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
                                 <input type="text" id="billEmail" class="input-xxlarge check required" name="CUSTOMER_EMAILS" placeholder="Email Address" />
-                                <select id="billingFaxNumberArea" class="chosen contactNumber" id="shipPhoneFaxNumberArea" style="width: 60px;">
+                                <select name="billToFaxNumberArea" id="billingFaxNumberArea" class="chosen contactNumber" id="shipPhoneFaxNumberArea" style="width: 60px;">
                                     <option selected="selected">03</option>
                                     <option>04</option>
                                     <option>06</option>
@@ -709,7 +709,7 @@ under the License.
                                     <option>0508</option>
                                     <option>0800</option>
                                 </select>
-                                <input type="text" class="input-xxlarge" placeholder="Fax Number" id = "billingFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
+                                <input type="text" name="billToFaxNumber" class="input-xxlarge" placeholder="Fax Number" id = "billingFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
                             </div>
                         </td>
                     </tr>
@@ -798,8 +798,8 @@ under the License.
                         <td class="col1">
                             <p>This email address you entered in your shipping information will be used as the user name of your account.</p>
                             <p class="form-inline">
-                                <input type="text" id="accountFirstName" class="input-xxlarge check required" placeholder="First Name" />
-                                <input type="text" id="accountLastName" class="input-xxlarge check required" placeholder="Last Name" />
+                                <input type="text" id="accountFirstName" class="input-xxlarge check required" name="accountFirstName" placeholder="First Name" />
+                                <input type="text" id="accountLastName" class="input-xxlarge check required" name="accountLastName" placeholder="Last Name" />
                             </p>
                         </td>
                     </tr>

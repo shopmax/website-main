@@ -189,7 +189,7 @@ under the License.
                             </tr>
                             <tr class="row-grey sc-table-discount">
                                 <td colspan="3" class="col1">
-                                    <input type="text" class="input-xlarge" placeholder="Enter 8 digit numbers" />
+                                    <input type="text" class="input-xlarge" maxlength="8" placeholder="Enter 8 digit numbers" />
                                     <a href="#" class="sc-apply-code">Apply code</a>
                                 </td>
                                 <td class="col4"><h5 class="heading" style="padding-left:10px;">Sub Total</h5></td>
@@ -210,7 +210,7 @@ under the License.
                         <tr>
                             <td class="col1">
                                 <h5 class="heading">Zip/Postal Code</h5>
-                                <input type="text" class="input-xlarge" placeholder="Enter 4 digit numbers" /> <br />
+                                <input type="text" class="input-xlarge" maxlength="4" placeholder="Enter 4 digit numbers" /> <br />
                                 By enter ZIp/Postal Code can help estimate shipping costs or finding a store located closest to you
                             </td>
                             <td class="sc-table-estimate-shipping">

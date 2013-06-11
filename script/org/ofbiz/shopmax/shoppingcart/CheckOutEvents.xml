@@ -43,6 +43,10 @@ under the License.
         <!-- Create customer -->
         <set field="createShopmaxCustomerInMap.USER_FIRST_NAME" from-field="parameters.USER_FIRST_NAME"/>
         <set field="createShopmaxCustomerInMap.USER_LAST_NAME" from-field="parameters.USER_LAST_NAME"/>
+        <if-compare operator="equals" value="Y" field="parameters.sendEmail">
+            <set field="createShopmaxCustomerInMap.USER_FIRST_NAME" from-field="parameters.accountFirstName"/>
+            <set field="createShopmaxCustomerInMap.USER_LAST_NAME" from-field="parameters.accountLastName"/>
+        </if-compare>
         <set field="createShopmaxCustomerInMap.CUSTOMER_EMAIL" from-field="parameters.CUSTOMER_EMAIL"/>
         <set field="createShopmaxCustomerInMap.PASSWORD" from-field="currentPassword"/>
         <set field="createShopmaxCustomerInMap.CONFIRM_PASSWORD" from-field="currentPassword"/>
@@ -134,6 +138,17 @@ under the License.
             <set field="parameters.shipToName" from-field="parameters.USER_FIRST_NAME"/>
             <set field="parameters.partyId" from-field="userLogin.partyId"/>
             <set field="parameters.emailAddress" from-field="parameters.CUSTOMER_EMAIL"/>
+            <!-- fax phone -->
+            <if-not-empty field="parameters.shipToFaxNumber">
+                <set field="faxPhoneContext.areaCode" from-field="parameters.shipFaxNumberArea"/>
+                <set field="faxPhoneContext.contactNumber" from-field="parameters.shipToFaxNumber"/>
+                <call-service service-name="createPartyTelecomNumber" in-map-name="faxPhoneContext">
+                    <result-to-field result-name="contactMechId" field="faxPhonePurposeContext.contactMechId"/>
+                </call-service>
+                <set field="faxPhonePurposeContext.partyId" from-field="tempMap.partyId"/>
+                <set field="faxPhonePurposeContext.contactMechPurposeTypeId" value="FAX_SHIPPING"/>
+                <call-service service-name="createPartyContactMechPurpose" in-map-name="faxPhonePurposeContext"/>
+            </if-not-empty>
             
             <!-- set person -->
             <if-not-empty field="parameters.partyId">
@@ -215,6 +230,17 @@ under the License.
                     <set field="parameters.billToStateProvinceGeoId" value="_NA_"/>
                     <set field="parameters.billToContactNumber" from-field="parameters.billToContactNumber"/>
                     <set field="parameters.emailAddress" from-field="parameters.billToEmailAddress"/>
+                    <!-- fax phone -->
+                    <if-not-empty field="parameters.billToFaxNumber">
+                        <set field="faxPhoneContext.areaCode" from-field="parameters.billToFaxNumberArea"/>
+                        <set field="faxPhoneContext.contactNumber" from-field="parameters.billToFaxNumber"/>
+                        <call-service service-name="createPartyTelecomNumber" in-map-name="faxPhoneContext">
+                            <result-to-field result-name="contactMechId" field="faxPhonePurposeContext.contactMechId"/>
+                        </call-service>
+                        <set field="faxPhonePurposeContext.partyId" from-field="tempMap.partyId"/>
+                        <set field="faxPhonePurposeContext.contactMechPurposeTypeId" value="FAX_BILLING"/>
+                        <call-service service-name="createPartyContactMechPurpose" in-map-name="faxPhonePurposeContext"/>
+                    </if-not-empty>
                     <else>
                         <!-- set person -->
                         <set field="getPersonInMap.partyId" from-field="parameters.partyId"/>
