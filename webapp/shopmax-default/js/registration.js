@@ -171,11 +171,11 @@ $(function(){
                             valid = false;
                         }
                     }
-                    if(!$('#yourBtn').val().length){
+                    /*if(!$('#yourBtn').val().length){
                         $('#yourBtn').addClass('required');
                         $('#yourBtn').css({'background-color':'#FEF2EE'});
                         valid = false;
-                    }
+                    }*/
                     for(var i=0;i<physicalNumber;i++){
 	                    if(!$('#branchName_'+i).val().length){
 	                        $('#branchName_'+i).addClass('required');
@@ -230,12 +230,12 @@ $(function(){
                             valid = false;
                         }
                     }
-                    else if($('#optionsRadios3').is(':checked')){
+                    /*else if($('#optionsRadios3').is(':checked')){
                         if(!$('#yourBtn2').val().length){
                             $('#yourBtn2').addClass('required');
                             valid = false;
                         }
-                    }
+                    }*/
                 }
                 if($('#expMonth_chzn').find('span').text() == 'Month' && $('#paymentMethodOption').val() == 'Y'){
                     $('#expMonth_chzn').addClass('required');
@@ -739,10 +739,10 @@ $(function(){
         $('.cardNumber').val('');
         $('#cvcNumber').val('');
     });
-    $('#yourBtn').click(function(){
+    /*$('#yourBtn').click(function(){
     	$('#yourBtn').removeClass('check required');
         $('#yourBtn').css({'background-color':'#FFFFFF'});
-    });
+    });*/
     $('#browse0').click(function(){
     	$('#browse0').removeClass('check required');
         $('#yourBtn').css({'background-color':'#FFFFFF'});

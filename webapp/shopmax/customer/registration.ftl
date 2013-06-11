@@ -194,10 +194,11 @@ under the License.
                                     <div class="control-group">
                                         <label class="control-label control-label-llarge pull-left" for="inputEmailAddress">Upload your shop's logo (153x153)</label>
                                         <div class="pull-left">
-                                            <input type="text" class="input-xlarge pull-left check" id="yourBtn" onclick="getFile('')">*
-                                            <a class="btn-general-small upload-btn" onclick="getFile('')" id="browse0">BROWSE</a>
+                                            <#--<input type="text" class="input-xlarge pull-left check" id="yourBtn" onclick="getFile('')">*
+                                            <a class="btn-general-small upload-btn" onclick="getFile('')" id="browse0">BROWSE</a>-->
+                                            <input id="upfile" type="file" name="uploadedFile"/>*
                                             <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
-                                            <div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile" type="file" onchange="sub(this,'')" name="uploadedFile"/></div>
+                                            <#--<div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile" type="file" onchange="sub(this,'')" name="uploadedFile"/></div>-->
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
@@ -337,10 +338,11 @@ under the License.
                                     <div class="control-group">
                                         <label class="control-label control-label-llarge pull-left" for="inputEmailAddress">Upload a photo of your driver license</label>
                                         <div class="pull-left">
-                                            <input type="text" class="input-xlarge pull-left" id="yourBtn1" onclick="getFile(1)">
-                                            <a class="btn-general-small upload-btn" onclick="getFile(1)">BROWSE</a>
+                                            <#--<input type="text" class="input-xlarge pull-left" id="yourBtn1" onclick="getFile(1)">
+                                            <a class="btn-general-small upload-btn" onclick="getFile(1)">BROWSE</a>-->
+                                            <input id="upfile1" type="file" name="uploadedFile1"/>
                                             <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
-                                            <div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile1" type="file" onchange="sub(this,1)" name="uploadedFile1"/></div>
+                                            <#-- <div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile1" type="file" onchange="sub(this,1)" name="uploadedFile1"/></div>-->
                                         </div>
                                     </div>
                                 </td>
@@ -412,9 +414,10 @@ under the License.
                                         <label class="control-label control-label-dc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
                                         <label class="control-label control-label-dc-inner pull-left" for="inputPromotionDescription">Upload a direct debit form</label>
                                         <div class="pull-left">
-                                            <input type="text" class="input-xlarge pull-left" id="yourBtn2" onclick="getFile(2)">
+                                            <#--<input type="text" class="input-xlarge pull-left" id="yourBtn2" onclick="getFile(2)">
                                             <a class="btn-general-small upload-btn" onclick="getFile(2)" id="browse2">BROWSE</a>
-                                            <div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile2" type="file" onchange="sub(this,2)" name="uploadedFile2"/></div>
+                                            <div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile2" type="file" onchange="sub(this,2)" name="uploadedFile2"/></div>-->
+                                            <input id="upfile1" type="file" name="uploadedFile2"/>
                                         </div>
                                     </div>
                                     <input type="hidden" name="paymentMethodOption" id="paymentMethodOption" value="N">

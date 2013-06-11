@@ -156,7 +156,7 @@ under the License.
                                         <option value="NO_SHIPPING-${entry_index?if_exists}" selected="selected">Pick up in store</option>
                                         <option value="DELIVERY_TO-${entry_index?if_exists}">Delivery to me</option>
                                     </select>
-                                    <#assign branchStoreNameList = delegator.findByAnd("PartyAndPostalAddress", {"partyId" : partyId}, null, false)>
+                                    <#assign branchStoreNameList = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("PartyContactDetailByPurpose", {"partyId" : partyId, "contactMechPurposeTypeId" : "PHYS_STORE_LOCATION"}, null, false))>
                                     <select name="scBranchStore" class="drop-select chosen combo scBranchStore" id="scBranchStore_${entry_index?if_exists}" data-search-bar="true">
                                         <option value="" selected="selected">Select Branch Store</option>
                                         <#if branchStoreNameList?has_content>
