@@ -31,20 +31,20 @@ under the License.
         <meta name="viewport" content="width=device-width">
         <!-- what happens with this with mobile phones? 
         <meta name="viewport" content="width=device-width, initial-scale=1" />-->
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/bootstrap.css</@ofbizContentUrl>">
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/bootstrap-responsive.css</@ofbizContentUrl>">
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/js/vendor/chosen.css</@ofbizContentUrl>">
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/main.css</@ofbizContentUrl>">
-        <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js</@ofbizContentUrl>"></script>
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/csstest/bootstrap.css</@ofbizContentUrl>">
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/csstest/bootstrap-responsive.css</@ofbizContentUrl>">
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/jstest/vendor/chosen.css</@ofbizContentUrl>">
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/csstest/main.css</@ofbizContentUrl>">
+        <script src="<@ofbizContentUrl>/shopmax-default/jstest/vendor/modernizr-2.6.2-respond-1.1.0.min.js</@ofbizContentUrl>"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery-1.8.3.min.js</@ofbizContentUrl>"><\/script>')</script>
-        <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/bootstrap.min.js</@ofbizContentUrl>"></script>
-        <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/chosen.jquery.min.js</@ofbizContentUrl>"></script>
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/css/anythingslider.css</@ofbizContentUrl>">
-        <script src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery.anythingslider.min.js</@ofbizContentUrl>"></script>
-        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.css</@ofbizContentUrl>">
-        <script src="<@ofbizContentUrl>/shopmax-default/js/fancybox/source/jquery.fancybox.pack.js</@ofbizContentUrl>"></script>  
-        <script src="<@ofbizContentUrl>/shopmax-default/js/main.js</@ofbizContentUrl>"></script>
+        <script>window.jQuery || document.write('<script src="<@ofbizContentUrl>/shopmax-default/jstest/vendor/jquery-1.8.3.min.js</@ofbizContentUrl>"><\/script>')</script>
+        <script src="<@ofbizContentUrl>/shopmax-default/jstest/vendor/bootstrap.min.js</@ofbizContentUrl>"></script>
+        <script src="<@ofbizContentUrl>/shopmax-default/jstest/vendor/chosen.jquery.min.js</@ofbizContentUrl>"></script>
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/csstest/anythingslider.css</@ofbizContentUrl>">
+        <script src="<@ofbizContentUrl>/shopmax-default/jstest/vendor/jquery.anythingslider.min.js</@ofbizContentUrl>"></script>
+        <link rel="stylesheet" href="<@ofbizContentUrl>/shopmax-default/jstest/fancybox/source/jquery.fancybox.css</@ofbizContentUrl>">
+        <script src="<@ofbizContentUrl>/shopmax-default/jstest/fancybox/source/jquery.fancybox.pack.js</@ofbizContentUrl>"></script>  
+        <script src="<@ofbizContentUrl>/shopmax-default/jstest/main.js</@ofbizContentUrl>"></script>
     </head>
     <body class="home">
         <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
