@@ -233,4 +233,10 @@ under the License.
     <ProductPrice productId="dropShip7" productPricePurposeId="PURCHASE" productPriceTypeId="DEFAULT_PRICE" currencyUomId="NZD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" price="40.00"/>
     <ProductPrice productId="dropShip7" productPricePurposeId="PURCHASE" productPriceTypeId="SPECIAL_PROMO_PRICE" currencyUomId="NZD" productStoreGroupId="_NA_" fromDate="2013-04-01 00:00:00" thruDate="2013-12-31 00:00:00" price="10.00"/>
     <SupplierProduct productId="dropShip7" partyId="SHOPMAX_SELLER2" availableFromDate="2013-04-01 00:00:00" minimumOrderQuantity="0.0" lastPrice="16.0" currencyUomId="NZD" supplierProductName="Drop ship product from Shopmax Seller" supplierProductId="dropShip7-DS" canDropShip="Y"/>
+    
+    <ProductCategoryFlyoutSub productCategoryId="DEMO_CAT1_LV1" subProductCategoryId="DEMO_CAT1_LV2"/>
+    <ProductCategoryFlyoutSub productCategoryId="DEMO_CAT1_LV1" subProductCategoryId="DEMO_CAT1_LV3"/>
+    
+    <ProductCategoryFlyoutSub productCategoryId="DEMO_CAT2_LV1" subProductCategoryId="DEMO_CAT2_LV2"/>
+    <ProductCategoryFlyoutSub productCategoryId="DEMO_CAT2_LV1" subProductCategoryId="DEMO_CAT4_LV3"/>
 </entity-engine-xml>
