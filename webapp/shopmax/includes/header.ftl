@@ -42,12 +42,14 @@ under the License.
                 }
                 if(!$('#username').val().length){
                     $('#username').addClass('required');
-                    $('#username').css({'background-color':'#FEF2EE'});
+                    $('#username').css({'background-color':'#FFE9E9'});
+                    $('.input-error').removeClass('hidden');
                     valid = false;
                 }
                 if(!$('#password').val().length){
                     $('#password').addClass('required');
-                    $('#password').css({'background-color':'#FEF2EE'});
+                    $('#password').css({'background-color':'#FFE9E9'});
+                    $('.input-error').removeClass('hidden');
                     valid = false;
                 }
             });
@@ -57,6 +59,7 @@ under the License.
         });
         $('.reWhite').click(function(){
              $('#'+this.id).css({'background-color':'#FFFFFF'});
+             $('.input-error').addClass('hidden');
         });
     });
 
@@ -70,6 +73,7 @@ under the License.
                     <ul>
                         <form name="login" id="login" action="<@ofbizUrl>login</@ofbizUrl>" method="post">
                             <li>
+                                <label class="input-error hidden" style="padding-left: 0px;">Please enter an email and password</label>
                                 <label class="label-1">Email address</label>
                                 <input type="text" class="input-1 reWhite" name="USERNAME" id="username">
                             </li>
