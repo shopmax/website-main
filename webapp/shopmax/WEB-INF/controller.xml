@@ -244,7 +244,7 @@ under the License.
     <request-map uri="updateProductFullMode">
         <security https="true" auth="false"/>
         <event type="service" invoke="updateProductToSeller"/>
-        <response name="success" type="request" value="uploadproduct">
+        <response name="success" type="request-redirect" value="uploadproduct">
             <redirect-parameter name="productId"/>
         </response>
     </request-map>

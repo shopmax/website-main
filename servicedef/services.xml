@@ -213,7 +213,7 @@ under the License.
         location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="updateProductToSeller" auth="true">
         <description>Update Product To Seller</description>
         <attribute name="productCategoryId" type="String" mode="INOUT" optional="true"/>
-        <attribute name="productId" type="String" mode="IN" optional="false"/>
+        <attribute name="productId" type="String" mode="INOUT" optional="false"/>
         <attribute name="productName" type="String" mode="IN" optional="false"/>
         <attribute name="description" mode="IN" type="String" optional="false"/>
         <attribute name="uploadedFile1" type="java.nio.ByteBuffer" mode="IN" optional="true"/>
@@ -235,6 +235,7 @@ under the License.
         <attribute name="promoPriceThruDate" type="Timestamp" mode="IN" optional="true"/>
         <attribute name="shippingSize" mode="IN" type="String" optional="true"/>
         <attribute name="listCategory" mode="IN" type="String" optional="true"/>
+        <attribute name="listCategoryRemove" mode="IN" type="String" optional="true"/>
         <attribute name="productSKU" type="String" mode="IN" optional="true"/>
     </service>
     
@@ -264,6 +265,7 @@ under the License.
         <attribute name="promoPriceThruDate" type="Timestamp" mode="IN" optional="true"/>
         <attribute name="shippingSize" mode="IN" type="String" optional="true"/>
         <attribute name="listCategory" mode="IN" type="String" optional="true"/>
+        <attribute name="listCategoryRemove" mode="IN" type="String" optional="true"/>
         <attribute name="partyId" type="String" mode="IN" optional="false"/>
         <attribute name="productSKU" type="String" mode="IN" optional="true"/>
     </service>

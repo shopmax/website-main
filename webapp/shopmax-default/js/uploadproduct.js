@@ -3,7 +3,11 @@ $(function(){
         $("option:selected", $(this)).each(function(){
             var obj = this.id;
             //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+this.id);
-            window.location.hash = '?categoryFirstId='+this.id;
+            if(getUrlVars()["productId"]){
+                window.location.hash = '&categoryFirstId='+this.id;
+            }else{
+                window.location.hash = '?categoryFirstId='+this.id;
+            }
             $.ajax({
                 url: 'uploadproductajax',
                 type: 'POST',
@@ -23,7 +27,11 @@ $(function(){
             var obj = this.id;
             var categoryFirstId = getUrlVars()["categoryFirstId"];
             //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+this.id);
-            window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+this.id;
+            if(getUrlVars()["productId"]){
+                window.location.hash = '&categoryFirstId='+categoryFirstId+'&categorySecondId='+this.id;
+            }else{
+                window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+this.id;
+            }
             $.ajax({
                 url: 'uploadproductajax',
                 type: 'POST',
@@ -44,7 +52,11 @@ $(function(){
             var categoryFirstId = getUrlVars()["categoryFirstId"];
             var categorySecondId = getUrlVars()["categorySecondId"];
             //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+this.id);
-            window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+this.id;
+            if(getUrlVars()["productId"]){
+                window.location.hash = '&categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+this.id;
+            }else{
+                window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+this.id;
+            }
             $.ajax({
                 url: 'uploadproductajax',
                 type: 'POST',
@@ -66,7 +78,11 @@ $(function(){
             var categorySecondId = getUrlVars()["categorySecondId"];
             var categoryThirdId = getUrlVars()["categoryThirdId"];
           //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+categoryThirdId+'&categoryFourthId='+this.id);
-            window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+categoryThirdId+'&categoryFourthId='+this.id;
+            if(getUrlVars()["productId"]){
+                window.location.hash = '&categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+categoryThirdId+'&categoryFourthId='+this.id;
+            }else{
+                window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+categoryThirdId+'&categoryFourthId='+this.id;
+            }
             $.ajax({
                 url: 'uploadproductajax',
                 type: 'POST',
@@ -242,13 +258,28 @@ function getFile(inputIndex){
 function removeCategory(categoryId){
     $('#tr-'+categoryId).remove();
     var listCategory = $('#listCategory').val().split(',');
+    var listCategoryRemove = $('#listCategoryRemove').val();
     var tempCategory = '';
-    for(var i=0;i<listCategory.length-1;i++){
+    for(var i=0;i<listCategory.length;i++){
         if(listCategory[i]==categoryId){
             var index = listCategory.indexOf(categoryId);
+            if(!listCategoryRemove){
+                listCategoryRemove = categoryId;
+            }
+            else{
+                listCategoryRemove = listCategoryRemove + ',' +categoryId;
+            }
             listCategory.splice(index, 1);
+            $('#listCategoryRemove').val(listCategoryRemove)
         }
-        tempCategory = listCategory[i]+','+tempCategory;
+        if(typeof listCategory[i] != "undefined"){
+            if(tempCategory){
+                tempCategory = tempCategory +','+ listCategory[i];
+            }
+            else{
+                tempCategory = listCategory[i];
+            }
+        }
     }
     $('#listCategory').val(tempCategory);
 }

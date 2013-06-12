@@ -17,7 +17,6 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<script src="<@ofbizContentUrl>/shopmax-default/js/uploadproduct.js</@ofbizContentUrl>" type="text/javascript"></script>
 <link rel='stylesheet' href='<@ofbizContentUrl>/shopmax-default/css/jquery-ui.css</@ofbizContentUrl>' type='text/css'>
 <script src="<@ofbizContentUrl>/shopmax-default/js/jquery-ui.js</@ofbizContentUrl>" type="text/javascript"></script>
 <script>
@@ -178,6 +177,7 @@ under the License.
         });
     });
 </script>
+<script src="<@ofbizContentUrl>/shopmax-default/js/uploadproduct.js</@ofbizContentUrl>" type="text/javascript"></script>
 <style>
     .uploaded-image{
         width: 82px;
@@ -217,6 +217,7 @@ under the License.
                             <div class="controls controls-row select-category pull-left">
                                 <div class="span3">
                                     <select size=9 id="category_1">
+                                        ${categoryList}
                                         <#if categoryList?has_content>
                                             <#list categoryList as category>
                                                 <#assign productCatelogId = category.productCategoryId/>
@@ -279,7 +280,8 @@ under the License.
                         </div>
                         <form class="form-horizontal pull-left media-edit" action="<#if parameters.productId?has_content>updateProductFullMode<#else>uploadProductToSeller</#if>" id="uploadAndUpdateProduct" name="uploadAndUpdateProduct" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="productId" value="${parameters.productId?if_exists}"/>
-                            <input type="hidden" name="listCategory" value="" id="listCategory">
+                            <input type="hidden" name="listCategory" value="<#if categoryMemberNameList?has_content><#list categoryMemberNameList as categoryMember>${categoryMember.productCategoryId?if_exists}<#if categoryMember_has_next>,</#if></#list></#if>"id="listCategory">
+                            <input type="hidden" name="listCategoryRemove" value="" id="listCategoryRemove"/>
                             <input type="hidden" name="productImageReview1" id="productImageReview1"/>
                             <input type="hidden" name="productImageReview2" id="productImageReview2"/>
                             <input type="hidden" name="productImageReview3" id="productImageReview3"/>

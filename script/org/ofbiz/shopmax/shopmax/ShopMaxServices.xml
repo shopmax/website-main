@@ -1368,20 +1368,49 @@ under the License.
         
         <field-to-result field="parameters.productCategoryId" result-name="productCategoryId"/>
         
+        <!-- Remove product category -->
+        <set field="categoryRemoveLists" from-field="parameters.listCategoryRemove"/>
+        <if-not-empty field="categoryRemoveLists">
+            <set field="categoryRemoveList" value="${groovy: categoryRemoveList = categoryRemoveLists.split(&quot;,&quot;); return categoryRemoveList.toList();}" type="List"/>
+            <iterate entry="productCategoryId" list="categoryRemoveList" >
+                <entity-and list="productCategoryMembers" entity-name="ProductCategoryMember">
+                    <field-map field-name="productId" from-field="parameters.productId"/>
+                    <field-map field-name="productCategoryId" from-field="productCategoryId"/>
+                </entity-and>
+                <if-not-empty field="productCategoryMembers">
+                    <set field="removeProductFromCategoryMap.userLogin" from-field="systemUserLogin"/>
+                    <set field="removeProductFromCategoryMap.productCategoryId" from-field="productCategoryId"/>
+                    <set field="removeProductFromCategoryMap.productId" from-field="parameters.productId"/>
+                    <set field="removeProductFromCategoryMap.fromDate" from-field="productCategoryMembers[0].fromDate"/>
+                    <call-service service-name="removeProductFromCategory" in-map-name="removeProductFromCategoryMap"/>
+                    
+                    <set field="setCategoryHasProductMap.productCategoryId" from-field="productCategoryId"/>
+                    <set field="setCategoryHasProductMap.showInSelect" value="N"/>
+                    <call-service service-name="setCategoryHasProduct" in-map-name="setCategoryHasProductMap"/>
+                </if-not-empty>
+            </iterate>
+        </if-not-empty>
+        
         <!-- Create product to category -->
         <set field="categoryLists" from-field="parameters.listCategory"/>
         <if-not-empty field="categoryLists">
             <set field="categoryList" value="${groovy: categoryList = categoryLists.split(&quot;,&quot;); return categoryList.toList();}" type="List"/>
             <iterate entry="productCategoryId" list="categoryList" >
-                <set field="createProductToCategoryMap.userLogin" from-field="systemUserLogin"/>
-                <set field="createProductToCategoryMap.productCategoryId" from-field="productCategoryId"/>
-                <set field="createProductToCategoryMap.productId" from-field="parameters.productId"/>
-                <set field="createProductToCategoryMap.fromDate" from-field="nowTimestamp"/>
-                <call-service service-name="safeAddProductToCategory" in-map-name="createProductToCategoryMap"/>
-                
-                <set field="setCategoryHasProductMap.productCategoryId" from-field="productCategoryId"/>
-                <set field="setCategoryHasProductMap.showInSelect" value="Y"/>
-                <call-service service-name="setCategoryHasProduct" in-map-name="setCategoryHasProductMap"/>
+                <entity-and list="productCategoryMembers" entity-name="ProductCategoryMember">
+                    <field-map field-name="productId" from-field="parameters.productId"/>
+                    <field-map field-name="productCategoryId" from-field="productCategoryId"/>
+                </entity-and>
+                <if-empty field="productCategoryMembers[0]">
+                    <set field="createProductToCategoryMap.userLogin" from-field="systemUserLogin"/>
+                    <set field="createProductToCategoryMap.productCategoryId" from-field="productCategoryId"/>
+                    <set field="createProductToCategoryMap.productId" from-field="parameters.productId"/>
+                    <set field="createProductToCategoryMap.fromDate" from-field="nowTimestamp"/>
+                    <call-service service-name="safeAddProductToCategory" in-map-name="createProductToCategoryMap"/>
+                    
+                    <set field="setCategoryHasProductMap.productCategoryId" from-field="productCategoryId"/>
+                    <set field="setCategoryHasProductMap.showInSelect" value="Y"/>
+                    <call-service service-name="setCategoryHasProduct" in-map-name="setCategoryHasProductMap"/>
+                </if-empty>
             </iterate>
         </if-not-empty>
         
@@ -1573,6 +1602,8 @@ under the License.
             </if-empty>
         </if-not-empty>
         
+        <field-to-result field="parameters.productId" result-name="productId"/>
+        
         <set field="parameters.partyId" from-field="userLogin.partyId"/>
         <set field="runTenantServiceInMap.tenantId" value="default"/>
         <set field="runTenantServiceInMap.serviceName" value="updateProductToShopmax"/>
@@ -1593,20 +1624,49 @@ under the License.
         <set field="updateProductMap.longDescription" from-field="parameters.description"/>
         <call-service service-name="updateProduct" in-map-name="updateProductMap"/>
         
+        <!-- Remove product category -->
+        <set field="categoryRemoveLists" from-field="parameters.listCategoryRemove"/>
+        <if-not-empty field="categoryRemoveLists">
+            <set field="categoryRemoveList" value="${groovy: categoryRemoveList = categoryRemoveLists.split(&quot;,&quot;); return categoryRemoveList.toList();}" type="List"/>
+            <iterate entry="productCategoryId" list="categoryRemoveList" >
+                <entity-and list="productCategoryMembers" entity-name="ProductCategoryMember">
+                    <field-map field-name="productId" from-field="parameters.productId"/>
+                    <field-map field-name="productCategoryId" from-field="productCategoryId"/>
+                </entity-and>
+                <if-not-empty field="productCategoryMembers">
+                    <set field="removeProductFromCategoryMap.userLogin" from-field="systemUserLogin"/>
+                    <set field="removeProductFromCategoryMap.productCategoryId" from-field="productCategoryId"/>
+                    <set field="removeProductFromCategoryMap.productId" from-field="parameters.productId"/>
+                    <set field="removeProductFromCategoryMap.fromDate" from-field="productCategoryMembers[0].fromDate"/>
+                    <call-service service-name="removeProductFromCategory" in-map-name="removeProductFromCategoryMap"/>
+                    
+                    <set field="setCategoryHasProductMap.productCategoryId" from-field="productCategoryId"/>
+                    <set field="setCategoryHasProductMap.showInSelect" value="N"/>
+                    <call-service service-name="setCategoryHasProduct" in-map-name="setCategoryHasProductMap"/>
+                </if-not-empty>
+            </iterate>
+        </if-not-empty>
+        
         <!-- Create product to category -->
         <set field="categoryLists" from-field="parameters.listCategory"/>
         <if-not-empty field="categoryLists">
             <set field="categoryList" value="${groovy: categoryList = categoryLists.split(&quot;,&quot;); return categoryList.toList();}" type="List"/>
             <iterate entry="productCategoryId" list="categoryList" >
-                <set field="createProductToCategoryMap.userLogin" from-field="systemUserLogin"/>
-                <set field="createProductToCategoryMap.productCategoryId" from-field="productCategoryId"/>
-                <set field="createProductToCategoryMap.productId" from-field="parameters.productId"/>
-                <set field="createProductToCategoryMap.fromDate" from-field="nowTimestamp"/>
-                <call-service service-name="safeAddProductToCategory" in-map-name="createProductToCategoryMap"/>
-                
-                <set field="setCategoryHasProductMap.productCategoryId" from-field="productCategoryId"/>
-                <set field="setCategoryHasProductMap.showInSelect" value="Y"/>
-                <call-service service-name="setCategoryHasProduct" in-map-name="setCategoryHasProductMap"/>
+                <entity-and list="productCategoryMembers" entity-name="ProductCategoryMember">
+                    <field-map field-name="productId" from-field="parameters.productId"/>
+                    <field-map field-name="productCategoryId" from-field="productCategoryId"/>
+                </entity-and>
+                <if-empty field="productCategoryMembers[]">
+                    <set field="createProductToCategoryMap.userLogin" from-field="systemUserLogin"/>
+                    <set field="createProductToCategoryMap.productCategoryId" from-field="productCategoryId"/>
+                    <set field="createProductToCategoryMap.productId" from-field="parameters.productId"/>
+                    <set field="createProductToCategoryMap.fromDate" from-field="nowTimestamp"/>
+                    <call-service service-name="safeAddProductToCategory" in-map-name="createProductToCategoryMap"/>
+                    
+                    <set field="setCategoryHasProductMap.productCategoryId" from-field="productCategoryId"/>
+                    <set field="setCategoryHasProductMap.showInSelect" value="Y"/>
+                    <call-service service-name="setCategoryHasProduct" in-map-name="setCategoryHasProductMap"/>
+                </if-empty>
             </iterate>
         </if-not-empty>
         
