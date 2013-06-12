@@ -43,13 +43,13 @@ under the License.
                 if(!$('#username').val().length){
                     $('#username').addClass('required');
                     $('#username').css({'background-color':'#FFE9E9'});
-                    $('.input-error').removeClass('hidden');
+                    $('#emailPasswordWarning').removeClass('hidden');
                     valid = false;
                 }
                 if(!$('#password').val().length){
                     $('#password').addClass('required');
                     $('#password').css({'background-color':'#FFE9E9'});
-                    $('.input-error').removeClass('hidden');
+                    $('#emailPasswordWarning').removeClass('hidden');
                     valid = false;
                 }
             });
@@ -59,7 +59,47 @@ under the License.
         });
         $('.reWhite').click(function(){
              $('#'+this.id).css({'background-color':'#FFFFFF'});
-             $('.input-error').addClass('hidden');
+             $('#emailPasswordWarning').addClass('hidden');
+             $('#emailWarning').addClass('hidden');
+        });
+        $('.reWhiteForgotSide').click(function(){
+             $('#'+this.id).css({'background-color':'#FFFFFF'});
+             $('#emailWarning').addClass('hidden');
+        });
+        $('.forgot').click(function(){
+            $('#loginDiv').css({'display':'none'});
+            $('#forgotPasswordDiv').css({'display':''});
+            $('#username').removeClass('check');
+            $('#password').removeClass('check');
+            $('#username').removeClass('required');
+            $('#password').removeClass('required');
+            $('#emailPassword').addClass('check');
+        });
+        $('.return').click(function(){
+            $('#loginDiv').css({'display':''});
+            $('#forgotPasswordDiv').css({'display':'none'});
+            $('#emailPassword').removeClass('check');
+            $('#emailPassword').removeClass('required');
+            $('#username').addClass('check');
+            $('#password').addClass('check');
+        });
+        $('#emailPasswordButton').click(function(){
+            var valid = false;
+            $('input.check').each(function(){
+                $(this).removeClass('required');
+                if($('.required').length == 0){
+                    valid = true;
+                }
+                if(!$('#emailPassword').val().length){
+                    $('#emailPassword').addClass('required');
+                    $('#emailPassword').css({'background-color':'#FFE9E9'});
+                    $('#emailWarning').removeClass('hidden');
+                    valid = false;
+                }
+            });
+            if(valid){
+                $('#forgotPassword').submit();
+            }
         });
     });
 
@@ -70,26 +110,46 @@ under the License.
             <div class="title"><h6>login and registration</h6></div>
             <div class="block-left">
                 <div class="box">
-                    <ul>
-                        <form name="login" id="login" action="<@ofbizUrl>login</@ofbizUrl>" method="post">
+                    <div id="loginDiv">
+                        <ul>
+                            <form name="login" id="login" action="<@ofbizUrl>login</@ofbizUrl>" method="post">
+                                <li>
+                                    <label class="input-error hidden" style="padding-left: 0px;" id="emailPasswordWarning">Please enter an email and password</label>
+                                    <label class="label-1" id="emailText">Email address</label>
+                                    <input type="text" class="input-1 reWhite" name="USERNAME" id="username">
+                                </li>
+                                <li>
+                                    <label class="label-1" id="passwordText">Password</label>
+                                    <input type="password" class="input-2 reWhite" name="PASSWORD" id="password">
+                                    <input type="button" name="" value="Login" class="log_btn" id="loginButton">
+                                    <a href="#" class="forgot">Forgotten password?</a>
+                                </li>
+                            </form>
                             <li>
-                                <label class="input-error hidden" style="padding-left: 0px;">Please enter an email and password</label>
-                                <label class="label-1">Email address</label>
-                                <input type="text" class="input-1 reWhite" name="USERNAME" id="username">
+                                <p>Don't have an account yet?</p>
+                                <a href="${shopmaxCentralDomain}registration"><input type="submit" name="" value="Register" class="sub_reg"></a>
                             </li>
-                            <li>
-                                <label class="label-1">Password</label>
-                                <input type="password" class="input-2 reWhite" name="PASSWORD" id="password">
-                                <input type="button" name="" value="Login" class="log_btn" id="loginButton">
-                                
-                                <a href="#" class="forgot">Forgotten password?</a>
+                        </ul>
+                    </div>
+                    <div style="display:none;" id="forgotPasswordDiv">
+                        <ul>
+                            <form name="forgotPassword" id="forgotPassword" method="post">
+                                <li>
+                                    <label class="input-error hidden" style="padding-left: 0px;" id="emailWarning">Please enter an email</label>
+                                    <label class="label-1 forgot-password" id="emailPasswordText">Email password</label>
+                                    <input type="text" class="input-1 forgot-password reWhiteForgotSide" id="emailPassword">
+                                </li>
+                                <li>
+                                    <input type="button" name="" value="E-mail Password" class="log_btn forgot-password" id="emailPasswordButton" style="width: 125px; margin-left: 100px; float:left;">
+                                    <a href="#" class="return forgot-password" style="margin-left: 15px;">Login?</a>
+                                </li>
+                            </form>
+                            <li style="padding-top: 40px;">
+                                <p>Don't have an account yet?</p>
+                                <a href="${shopmaxCentralDomain}registration"><input type="submit" name="" value="Register" class="sub_reg"></a>
                             </li>
-                        </form>
-                        <li>
-                            <p>Don't have an account yet?</p>
-                            <a href="${shopmaxCentralDomain}registration"><input type="submit" name="" value="Register" class="sub_reg"></a>
-                        </li>
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
             </div>
             

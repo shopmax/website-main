@@ -70,6 +70,8 @@ under the License.
                     $('#password').removeClass('check');
                     $('#username').removeClass('required');
                     $('#password').removeClass('required');
+                    $('#emailPassword').removeClass('check');
+                    $('#emailPassword').removeClass('required');
                 }
             });
             
