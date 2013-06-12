@@ -609,7 +609,7 @@ under the License.
                                         <input type="text" id="shipLastName" class="input-xxlarge check required" name="USER_LAST_NAME" placeholder="Last Name" />
                                     </div>
                                     <div class="form-inline">
-                                        <select id="shoppingPhoneNumberArea" name="shipToAreaCode" class="chosen contactNumber" style="width: 60px;">
+                                        <select id="shipToAreaCode" name="shipToAreaCode" class="chosen contactNumber" style="width: 60px;">
                                             <option selected="selected">03</option>
                                             <option>04</option>
                                             <option>06</option>
@@ -624,9 +624,9 @@ under the License.
                                             <option>0508</option>
                                             <option>0800</option>
                                         </select>
-                                        <input name="shipToContactNumber" type="text" id="shipPhone" class="input-xxlarge check required" onkeypress="return isNumberKey(event)" placeholder="Phone Number" style="width: 135px;"/>
+                                        <input name="shipToContactNumber" type="text" id="shipPhone" class="input-xxlarge check required" placeholder="Phone Number" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
                                         <input name="CUSTOMER_EMAIL" type="text" id="shipEmail" class="input-xxlarge check required" placeholder="Email Address" />
-                                        <select id="shipFaxNumberArea" name="shipFaxNumberArea" class="chosen contactNumber" id="shipPhoneFaxNumberArea" style="width: 60px;">
+                                        <select id="shipToFaxNumberArea" name="shipToFaxNumberArea" class="chosen contactNumber" style="width: 60px;">
                                             <option selected="selected">03</option>
                                             <option>04</option>
                                             <option>06</option>
@@ -635,7 +635,7 @@ under the License.
                                             <option>0508</option>
                                             <option>0800</option>
                                         </select>
-                                        <input type="text" class="input-xxlarge" placeholder="Fax Number" id="shipFaxNumber" name="shipToFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
+                                        <input type="text" class="input-xxlarge" placeholder="Fax Number" id="shipToFaxNumber" name="shipToFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
                                     </div>
                                 </td>
                             </tr>
@@ -648,7 +648,7 @@ under the License.
                                         <input type="text" id="shipPostal" class="input-xxlarge check required" name="shipToPostalCode" onkeypress="return isNumberKey(event)" placeholder="Zip/ Postal Code" />
                                     </div>
                                     <div class="form-inline">
-                                        <input type="text" class="input-xxxlarge" placeholder="Additional Address Info (optional)" />
+                                        <input type="text" class="input-xxxlarge" name="shipToAddress2" placeholder="Additional Address Info (optional)" />
                                         <select id="shipDropDown1" name="shipToCity" class="drop-select chosen combo" data-search-bar="true">
                                             <option value="" selected="selected">Zip Return City, State</option>
                                             <option value="Auckland">Auckland</option>
@@ -762,9 +762,9 @@ under the License.
                                             <option>0508</option>
                                             <option>0800</option>
                                         </select>
-                                        <input name="billToContactNumber" type="text" id="billPhone" class="input-xxlarge check required" onkeypress="return isNumberKey(event)" placeholder="Phone Number" style="width: 135px;"/>
-                                        <input type="text" name="CUSTOMER_EMAILS" id="billEmail" class="input-xxlarge check required" placeholder="Email Address" />
-                                        <select id="billingFaxNumberArea" name="billToFaxNumberArea" class="chosen contactNumber" id="shipPhoneFaxNumberArea" style="width: 60px;">
+                                        <input name="billToContactNumber" type="text" id="billPhone" class="input-xxlarge check required" placeholder="Phone Number" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
+                                        <input type="text" id="billEmail" class="input-xxlarge check required" name="CUSTOMER_EMAILS" placeholder="Email Address" />
+                                        <select name="billToFaxNumberArea" id="billToFaxNumberArea" class="chosen contactNumber" style="width: 60px;">
                                             <option selected="selected">03</option>
                                             <option>04</option>
                                             <option>06</option>
@@ -773,7 +773,7 @@ under the License.
                                             <option>0508</option>
                                             <option>0800</option>
                                         </select>
-                                        <input type="text" class="input-xxlarge" name="billToFaxNumber" placeholder="Fax Number" id = "billingFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
+                                        <input type="text" name="billToFaxNumber" class="input-xxlarge" placeholder="Fax Number" id="billToFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
                                     </div>
                                 </td>
                             </tr>
@@ -783,7 +783,7 @@ under the License.
                                     
                                     <div class="form-inline">
                                         <input type="text" id="billStreetAddress" class="input-xxxlarge check required" name="billToAddress1" placeholder="Street Address" />
-                                        <input type="text" id="billPostal" class="input-xxlarge check required" onkeypress="return isNumberKey(event)" name="billToPostalCode" placeholder="Zip/ Postal Code" />
+                                        <input type="text" id="billPostal" class="input-xxlarge check required" name="billToPostalCode" onkeypress="return isNumberKey(event)" placeholder="Zip/ Postal Code" />
                                     </div>
                                     <div class="form-inline">
                                         <input type="text" class="input-xxxlarge" placeholder="Additional Address Info (optional)" />
@@ -813,30 +813,30 @@ under the License.
                                             <option value="MasterCard">Master Card</option>
                                         </select>
                                         <#-- Example card number: 4111111111111111 -->
-                                        <#-- <input name="cardNumber" type="text" class="input-xxlarge check required" placeholder="Card Number" /> -->
+                                        <#-- <input name="cardNumber" type="text" class="input-xxlarge required" placeholder="Card Number" />-->
                                         <input type="text" maxlength="4" class="input-small cardNumber check required" id="cardNumber-0" onkeypress='return isNumberKey(event)' autocomplete="off"> - <input type="text" maxlength="4" class="input-small cardNumber check required" id="cardNumber-1" onkeypress='return isNumberKey(event)' autocomplete="off"> - <input type="text" maxlength="4" class="input-small cardNumber check required" id="cardNumber-2" onkeypress='return isNumberKey(event)' autocomplete="off"> - <input type="text" maxlength="4" class="input-small cardNumber check required" id="cardNumber-3" onkeypress='return isNumberKey(event)' autocomplete="off">
                                         <input type="hidden" id="cardNumber" name="cardNumber">
                                     </div>
                                     <div class="form-inline">
                                         <strong class="grey">Expires</strong>&nbsp;
                                         <#assign expMonth = "">
-                                        <#assign expYear = "">
-                                        <#if creditCard?exists && creditCard.expireDate?exists>
-                                            <#assign expDate = creditCard.expireDate>
-                                            <#if (expDate?exists && expDate.indexOf("/") > 0)>
-                                                <#assign expMonth = expDate.substring(0,expDate.indexOf("/"))>
-                                                <#assign expYear = expDate.substring(expDate.indexOf("/")+1)>
+                                            <#assign expYear = "">
+                                            <#if creditCard?exists && creditCard.expireDate?exists>
+                                                <#assign expDate = creditCard.expireDate>
+                                                <#if (expDate?exists && expDate.indexOf("/") > 0)>
+                                                    <#assign expMonth = expDate.substring(0,expDate.indexOf("/"))>
+                                                    <#assign expYear = expDate.substring(expDate.indexOf("/")+1)>
+                                                </#if>
                                             </#if>
-                                        </#if>
-                                        <select name="expMonth" id="expMonth" class="chosen expireDate">
-                                            <option value="">Month</option>
-                                            ${screens.render("component://common/widget/CommonScreens.xml#ccmonths")}
-                                        </select>
-                                        <select name="expYear" id="expYear" class="chosen expireDate">
-                                            <option value="">Year</option>
-                                            ${screens.render("component://common/widget/CommonScreens.xml#ccyears")}
-                                        </select>
-                                        <input name="billToCardSecurityCode" type="text" id="secureCode" class="input-medium check required" placeholder="Security Code" onkeypress="return isNumberKey(event)" maxlength="3" autocomplete="off"/>
+                                            <select name="expMonth" id="expMonth" class="chosen expireDate">
+                                                <option value="">Month</option>
+                                                ${screens.render("component://common/widget/CommonScreens.xml#ccmonths")}
+                                            </select>
+                                            <select name="expYear" id="expYear" class="chosen expireDate">
+                                                <option value="">Year</option>
+                                                ${screens.render("component://common/widget/CommonScreens.xml#ccyears")}
+                                            </select>
+                                            <input name="billToCardSecurityCode" type="text" id="secureCode" class="input-medium check required" placeholder="Security Code" onkeypress="return isNumberKey(event)" maxlength="3" autocomplete="off"/>
                                         <img src="<@ofbizContentUrl>/shopmax-default/img/icon-card.gif</@ofbizContentUrl>" />
                                         <a href="#">What is this?</a>
                                     </div>

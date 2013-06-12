@@ -583,7 +583,6 @@ under the License.
                 <#-- Shipping Information -->
                 <input type="hidden" name="shipMethod" value="NO_SHIPPING"/>
                 <input type="hidden" value="64" name="shipToCountryCode">
-
                 <input type="hidden" value="" name="shipToExtension">
                 
                 <table class="table table-condensed sc-table sc-table-shipping">
@@ -602,7 +601,7 @@ under the License.
                                 <input type="text" id="shipLastName" class="input-xxlarge check required" name="USER_LAST_NAME" placeholder="Last Name" />
                             </div>
                             <div class="form-inline">
-                                <select id="shoppingPhoneNumberArea" name="shipToAreaCode" class="chosen contactNumber" style="width: 60px;">
+                                <select id="shipToAreaCode" name="shipToAreaCode" class="chosen contactNumber" style="width: 60px;">
                                     <option selected="selected">03</option>
                                     <option>04</option>
                                     <option>06</option>
@@ -619,7 +618,7 @@ under the License.
                                 </select>
                                 <input name="shipToContactNumber" type="text" id="shipPhone" class="input-xxlarge check required" placeholder="Phone Number" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
                                 <input name="CUSTOMER_EMAIL" type="text" id="shipEmail" class="input-xxlarge check required" placeholder="Email Address" />
-                                <select id="shipFaxNumberArea" name="shipFaxNumberArea" class="chosen contactNumber" id="shipPhoneFaxNumberArea" style="width: 60px;">
+                                <select id="shipToFaxNumberArea" name="shipToFaxNumberArea" class="chosen contactNumber" style="width: 60px;">
                                     <option selected="selected">03</option>
                                     <option>04</option>
                                     <option>06</option>
@@ -628,7 +627,7 @@ under the License.
                                     <option>0508</option>
                                     <option>0800</option>
                                 </select>
-                                <input type="text" class="input-xxlarge" placeholder="Fax Number" id="shipFaxNumber" name="shipToFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
+                                <input type="text" class="input-xxlarge" placeholder="Fax Number" id="shipToFaxNumber" name="shipToFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
                             </div>
                         </td>
                     </tr>
@@ -683,24 +682,24 @@ under the License.
                                 <input type="text" name="billToLastName" id="billLastName" class="input-xxlarge check required" placeholder="Last Name" />
                             </div>
                             <div class="form-inline">
-                            <select id="billToAreaCode" name="billToAreaCode" class="chosen contactNumber" style="width: 60px;">
-                                <option selected="selected">03</option>
-                                <option>04</option>
-                                <option>06</option>
-                                <option>07</option>
-                                <option>09</option>
-                                <option>020</option>
-                                <option>021</option>
-                                <option>022</option>
-                                <option>027</option>
-                                <option>028</option>
-                                <option>029</option>
-                                <option>0508</option>
-                                <option>0800</option>
-                            </select>
+                                <select id="billToAreaCode" name="billToAreaCode" class="chosen contactNumber" style="width: 60px;">
+                                    <option selected="selected">03</option>
+                                    <option>04</option>
+                                    <option>06</option>
+                                    <option>07</option>
+                                    <option>09</option>
+                                    <option>020</option>
+                                    <option>021</option>
+                                    <option>022</option>
+                                    <option>027</option>
+                                    <option>028</option>
+                                    <option>029</option>
+                                    <option>0508</option>
+                                    <option>0800</option>
+                                </select>
                                 <input name="billToContactNumber" type="text" id="billPhone" class="input-xxlarge check required" placeholder="Phone Number" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
                                 <input type="text" id="billEmail" class="input-xxlarge check required" name="CUSTOMER_EMAILS" placeholder="Email Address" />
-                                <select name="billToFaxNumberArea" id="billingFaxNumberArea" class="chosen contactNumber" id="shipPhoneFaxNumberArea" style="width: 60px;">
+                                <select name="billToFaxNumberArea" id="billToFaxNumberArea" class="chosen contactNumber" style="width: 60px;">
                                     <option selected="selected">03</option>
                                     <option>04</option>
                                     <option>06</option>
@@ -709,7 +708,7 @@ under the License.
                                     <option>0508</option>
                                     <option>0800</option>
                                 </select>
-                                <input type="text" name="billToFaxNumber" class="input-xxlarge" placeholder="Fax Number" id = "billingFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
+                                <input type="text" name="billToFaxNumber" class="input-xxlarge" placeholder="Fax Number" id="billToFaxNumber" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
                             </div>
                         </td>
                     </tr>

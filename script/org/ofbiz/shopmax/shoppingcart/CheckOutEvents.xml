@@ -140,7 +140,7 @@ under the License.
             <set field="parameters.emailAddress" from-field="parameters.CUSTOMER_EMAIL"/>
             <!-- fax phone -->
             <if-not-empty field="parameters.shipToFaxNumber">
-                <set field="faxPhoneContext.areaCode" from-field="parameters.shipFaxNumberArea"/>
+                <set field="faxPhoneContext.areaCode" from-field="parameters.shipToFaxNumberArea"/>
                 <set field="faxPhoneContext.contactNumber" from-field="parameters.shipToFaxNumber"/>
                 <call-service service-name="createPartyTelecomNumber" in-map-name="faxPhoneContext">
                     <result-to-field result-name="contactMechId" field="faxPhonePurposeContext.contactMechId"/>
@@ -225,6 +225,17 @@ under the License.
             <set field="parameters.billToContactNumber" from-field="parameters.shipToContactNumber"/>
             <set field="parameters.shipToContactMechId" from-field="parameters.contactMechId"/>
             <set field="parameters.billToContactMechId" from-field="parameters.contactMechId"/>
+            <!-- fax phone -->
+            <if-not-empty field="parameters.shipToFaxNumber">
+                <set field="faxPhoneContext.areaCode" from-field="parameters.shipToFaxNumberArea"/>
+                <set field="faxPhoneContext.contactNumber" from-field="parameters.shipToFaxNumber"/>
+                <call-service service-name="createPartyTelecomNumber" in-map-name="faxPhoneContext">
+                    <result-to-field result-name="contactMechId" field="faxPhonePurposeContext.contactMechId"/>
+                </call-service>
+                <set field="faxPhonePurposeContext.partyId" from-field="tempMap.partyId"/>
+                <set field="faxPhonePurposeContext.contactMechPurposeTypeId" value="FAX_BILLING"/>
+                <call-service service-name="createPartyContactMechPurpose" in-map-name="faxPhonePurposeContext"/>
+            </if-not-empty>
             <else>
                 <if-empty field="parameters.billToContactMechId">
                     <set field="parameters.billToStateProvinceGeoId" value="_NA_"/>

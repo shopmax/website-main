@@ -1460,22 +1460,22 @@ textarea.required{
 .form-inline .chzn-container{
     background-color:#FEF2EE;
 }
-#shipFaxNumberArea_chzn .chzn-single{
+#shipToFaxNumberArea_chzn .chzn-single{
 	background-color:#FFFFFF;
 }
-#shipFaxNumberArea_chzn{
+#shipToFaxNumberArea_chzn{
     background-color:#FFFFFF;
 }
-#billingFaxNumberArea_chzn .chzn-single{
+#billToFaxNumberArea_chzn .chzn-single{
     background-color:#FFFFFF;
 }
-#billingFaxNumberArea_chzn{
+#billToFaxNumberArea_chzn{
     background-color:#FFFFFF;
 }
-#shoppingPhoneNumberArea_chzn .chzn-single{
+#shipToAreaCode_chzn .chzn-single{
     background-color:#FFFFFF;
 }
-#shoppingPhoneNumberArea_chzn{
+#shipToAreaCode_chzn{
     background-color:#FFFFFF;
 }
 #billToAreaCode_chzn .chzn-single{
