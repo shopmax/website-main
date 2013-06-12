@@ -59,7 +59,7 @@ under the License.
         <field name="subProductCategoryId" title="Subcategory">
             <lookup target-form-name="LookupProductCategory"/>
         </field>
-        <field name="submitButton" title="${uiLabelMap.CommonCreate}"><submit/></field>
+        <field name="submitButton" title="${uiLabelMap.CommonAdd}"><submit/></field>
     </form>
     
     <form name="EditProductCategoryFlyoutSub" odd-row-style="alternate-row" default-table-style="basic-table" type="list" target="deleteProductCategoryFlyoutSub" title="" list-name="categoryFlyoutSubList">
@@ -76,7 +76,7 @@ under the License.
         <field name="productCategoryIdTo" title="Related Category">
             <lookup target-form-name="LookupProductCategory"/>
         </field>
-        <field name="submitButton" title="${uiLabelMap.CommonCreate}"><submit/></field>
+        <field name="submitButton" title="${uiLabelMap.CommonAdd}"><submit/></field>
     </form>
     
     <form name="EditProductCategoryRelated" odd-row-style="alternate-row" default-table-style="basic-table" type="list" target="deleteProductCategoryRelated" title="" list-name="categoryRelatedList">

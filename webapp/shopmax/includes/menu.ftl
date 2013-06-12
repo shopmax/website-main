@@ -22,13 +22,13 @@ under the License.
         <div class="container">
             <ul class="nav">
                 <#if headerItem?has_content>
-                    <li <#if headerItem?if_exists == "home">class="on"</#if>><a href="<@ofbizUrl>main</@ofbizUrl>">Home</a></li>
-                    <li <#if headerItem?if_exists == "shops">class="on"</#if>><a href="#">Shops</a></li>
-                    <li <#if headerItem?if_exists == "groupbang">class="on"</#if>><a href="<@ofbizUrl>groupbang</@ofbizUrl>">Group Bang</a></li>
-                    <li <#if headerItem?if_exists == "rushhour">class="on"</#if>><a href="<@ofbizUrl>rushhour</@ofbizUrl>">Rush Hour</a></li>
-                    <li <#if headerItem?if_exists == "multibuy">class="on"</#if>><a href="<@ofbizUrl>multibuy</@ofbizUrl>">Multi Buy</a></li>
-                    <li <#if headerItem?if_exists == "aboutus">class="on"</#if>><a href="<@ofbizUrl>aboutus</@ofbizUrl>">About Us</a></li>
-                    <li <#if headerItem?if_exists == "helpcenter">class="on"</#if>><a href="<@ofbizUrl>helpcenter?contentId=SHOPMAX_FAQs</@ofbizUrl>">Help</a></li>
+                    <li <#if headerItem?if_exists == "home">class="on"</#if>><a href="${shopmaxCentralDomain}main">Home</a></li>
+                    <li <#if headerItem?if_exists == "shops">class="on"</#if>><a href="${shopmaxCentralDomain}shops">Shops</a></li>
+                    <li <#if headerItem?if_exists == "groupbang">class="on"</#if>><a href="${shopmaxCentralDomain}groupbang">Group Bang</a></li>
+                    <li <#if headerItem?if_exists == "rushhour">class="on"</#if>><a href="${shopmaxCentralDomain}rushhour">Rush Hour</a></li>
+                    <li <#if headerItem?if_exists == "multibuy">class="on"</#if>><a href="${shopmaxCentralDomain}multibuy">Multi Buy</a></li>
+                    <li <#if headerItem?if_exists == "aboutus">class="on"</#if>><a href="${shopmaxCentralDomain}aboutus">About Us</a></li>
+                    <li <#if headerItem?if_exists == "helpcenter">class="on"</#if>><a href="${shopmaxCentralDomain}helpcenter?contentId=SHOPMAX_FAQs">Help</a></li>
                 </#if>
             </ul>
         </div>

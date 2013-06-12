@@ -24,7 +24,7 @@ import org.ofbiz.entity.condition.*;
 import org.ofbiz.product.store.ProductStoreWorker;
 
 shopmaxCentralDomain = UtilProperties.getPropertyValue("shopmax.properties", "shopmax.central.domain");
-context.shopmaxCentralDomain = shopmaxCentralDomain;
+globalContext.shopmaxCentralDomain = shopmaxCentralDomain;
 
 tenantId = "default";
 shopmaxSellerDomain = null;

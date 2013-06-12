@@ -62,7 +62,7 @@ under the License.
         <prim-key field="productCategoryIdFrom"/>
         <prim-key field="productCategoryIdTo"/>
         <relation type="one" fk-name="PROD_CTGRY_REL" rel-entity-name="ProductCategory">
-            <key-map field-name="productCategoryIdFrom"/>
+            <key-map field-name="productCategoryIdFrom" rel-field-name="productCategoryId"/>
         </relation>
     </entity>
 </entitymodel>
