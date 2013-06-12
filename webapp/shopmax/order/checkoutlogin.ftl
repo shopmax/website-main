@@ -662,7 +662,7 @@ under the License.
                         </table>
                     </#if>
                     
-                    <#if billPaymentMethod?has_content>
+                    <#if billPaymentMethod?has_content && billToName?has_content>
                         <#-- Billing Informatioin -->
                         <input name="billToContactMechId" value="${billToContactMechId?if_exists}" type="hidden"/>
                         <input name="billToName" value="${billToName?if_exists}" type="hidden"/>
