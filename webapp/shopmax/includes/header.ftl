@@ -34,7 +34,8 @@ under the License.
     }
     $(function(){
         $('#loginButton').click(function(){
-        var valid = false;
+            $('.content-messages').remove();
+            var valid = false;
             $('input.check').each(function(){
                 $(this).removeClass('required');
                 if($('.required').length == 0){
@@ -101,20 +102,56 @@ under the License.
                 $('#forgotPassword').submit();
             }
         });
+        if($('#content-messages').length != 0){
+            $('.various').click();
+        }
     });
-
 </script>
+<style>
+    #content-messages{
+        margin: -25px 0 0 0;
+    }
+    #content-messages p{
+        color : red;
+        margin-top: 10px;
+    }
+    .input-error{
+        margin: -25px 0 10px 0;
+        color:red;
+    }
+    .input-error2{
+        color:red;
+    }
+</style>
 <div style="display: none;">
     <div id="inline1" style="overflow:auto;">
         <div class="login_popup">
             <div class="title"><h6>login and registration</h6></div>
             <div class="block-left">
                 <div class="box">
+                    <#if (errorMessage?has_content || errorMessageList?has_content)>
+                      <div id="content-messages" class="content-messages errorMessage" onclick="document.getElementById('content-messages').parentNode.removeChild(this)">
+                        <#if errorMessage?has_content>
+                          <p>${errorMessage}</p>
+                        </#if>
+                        <#if errorMessageList?has_content>
+                          <#list errorMessageList as errorMsg>
+                            <#if errorMsg == "username was empty reenter">
+                                <p>Please enter an email and password</p>
+                            <#else>
+                                <p>Email or password incorrect</p>
+                            </#if>
+                            <#break>
+                          </#list>
+                        </#if>
+                      </div>
+                    </#if>
+                    <p class="input-error hidden" style="padding-left: 0px;" id="emailPasswordWarning">Please enter an email and password</p>
+                    <ul>
                     <div id="loginDiv">
                         <ul>
                             <form name="login" id="login" action="<@ofbizUrl>login</@ofbizUrl>" method="post">
                                 <li>
-                                    <label class="input-error hidden" style="padding-left: 0px;" id="emailPasswordWarning">Please enter an email and password</label>
                                     <label class="label-1" id="emailText">Email address</label>
                                     <input type="text" class="input-1 reWhite" name="USERNAME" id="username">
                                 </li>

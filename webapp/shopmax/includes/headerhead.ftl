@@ -72,6 +72,10 @@ under the License.
                     $('#password').removeClass('required');
                     $('#emailPassword').removeClass('check');
                     $('#emailPassword').removeClass('required');
+                    $('.content-messages').remove();
+                    $('.input-error').addClass('hidden');
+                    $('#username').css({'background-color':'#FFFFFF'});
+                    $('#password').css({'background-color':'#FFFFFF'});
                 }
             });
             
