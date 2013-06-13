@@ -354,7 +354,7 @@ under the License.
                                 </label>
                                 <label>
                                     Stock
-                                    <input type="text" class="input-medium" name="stock" value="${stock?if_exists}">
+                                    <input type="text" class="input-medium" name="stock" id="stock" value="${stock?if_exists}" onkeypress='return isNumberKeyNoneDecimal(event)'>
                                 </label>
                             </div>
                             <!-- Promotion price -->
@@ -399,7 +399,7 @@ under the License.
                                 <a class="btn-dark-grey-small shippingSize" id="LARGE" <#if shippingSize?if_exists == 'LARGE'>style="color: rgb(53, 139, 219);"</#if>>Large</a>
                                 <a class="btn-dark-grey-small shippingSize" id="XTRA_LARGE" <#if shippingSize?if_exists == 'XTRA_LARGE'>style="color: rgb(53, 139, 219);"</#if>>Xtra Large</a>
                             </div>
-                            <input type="hidden" id="shippingSize" name="shippingSize" value="">
+                            <input type="hidden" id="shippingSize" name="shippingSize" value="${shippingSize?if_exists}">
                         </form>
                     </td>
                 </tr>

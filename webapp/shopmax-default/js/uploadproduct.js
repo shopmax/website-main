@@ -218,6 +218,12 @@ $(function(){
             $('#'+this.id).val('');
         }
     });
+    $('#stock').change(function(){
+        var defaultStock = document.getElementById(this.id).defaultValue;
+        if ($('#'+this.id).val()<defaultStock){
+            $('#'+this.id).val(defaultStock);
+        }
+    });
 });
 function checkHasValue(categoryId){
     var tempCategory = $('#listCategory').val();
@@ -286,6 +292,13 @@ function removeCategory(categoryId){
 function isNumberKey(evt) {
     var charCode = (evt.which) ? evt.which : evt.keyCode
     if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 46){
+        return false;
+    }
+    return true;
+ }
+function isNumberKeyNoneDecimal(evt) {
+    var charCode = (evt.which) ? evt.which : evt.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57)){
         return false;
     }
     return true;

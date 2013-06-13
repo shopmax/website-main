@@ -90,4 +90,32 @@ $(function(){
           $('#'+shippingSize[1]).val(shippingSize[0]);
         }
     });
+    $('.input-stock').change(function(){
+        var defaultStock = document.getElementById(this.id).defaultValue;
+        if ($('#'+this.id).val()<defaultStock){
+            $('#'+this.id).val(defaultStock);
+        }
+    });
+    $('.input-price').keydown(function(e){
+        if($('#'+this.id).val().indexOf(".")==-1 && e.keyCode === 110 && $('#'+this.id).val()==''){
+            return false;
+        }
+        if($('#'+this.id).val().split('.').length ===2 && e.keyCode === 110){
+            return false;
+        }
+    });
 });
+function isNumberKey(evt) {
+    var charCode = (evt.which) ? evt.which : evt.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 46){
+        return false;
+    }
+    return true;
+ }
+function isNumberKeyNoneDecimal(evt) {
+    var charCode = (evt.which) ? evt.which : evt.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57)){
+        return false;
+    }
+    return true;
+ }

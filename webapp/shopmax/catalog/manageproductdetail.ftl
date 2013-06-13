@@ -157,11 +157,11 @@ under the License.
                         <div class="form-inline input-price-stock">
                             <label>
                                 Listing price
-                                <input type="text" id="inputListPrice-${product_index}" class="input-medium check" name="listingPrice" value="${product.defaultPrice?if_exists}">
+                                <input type="text" id="inputListPrice-${product_index}" class="input-medium check input-price" name="listingPrice" value="${product.defaultPrice?if_exists}" onkeypress='return isNumberKey(event)'>
                             </label>
                             <label style="border:1px solid #E0E0E0;">
                                 Available stock
-                                <input type="text" class="input-medium" name="stock" value="${product.stock?if_exists}">
+                                <input type="text" class="input-medium input-stock" name="stock" id="stock-${product_index}" value="${product.stock?if_exists}" onkeypress='return isNumberKeyNoneDecimal(event)'>
                             </label>
                         </div>
                         
@@ -169,7 +169,7 @@ under the License.
                             <input type="checkbox" id="checkBoxManage${product_index}">
                             <label>
                                 &nbsp;Promotion price&nbsp;
-                                <input type="number" class="input-mini" name="promoPrice" value="${product.promoPrice?if_exists}"  id="promoPrice${product_index}">
+                                <input type="number" class="input-mini input-price" name="promoPrice" value="${product.promoPrice?if_exists}"  id="promoPrice${product_index}" onkeypress='return isNumberKey(event)'>
                             </label>
                             <label>
                                 &nbsp;&nbsp;Valid from&nbsp;
