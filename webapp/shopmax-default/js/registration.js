@@ -337,6 +337,18 @@ $(function(){
         $('#'+this.id).removeClass('required');
         $('.input-error').addClass('hidden');
     });
+    $('#firstNameOnCard').focus(function(){
+        $('#firstNameOnCard').removeClass('required');
+        $('#firstNameOnCard').css({'background-color':'#FFFFFF'});
+    });
+    $('#lastNameOnCard').focus(function(){
+        $('#lastNameOnCard').removeClass('required');
+        $('#lastNameOnCard').css({'background-color':'#FFFFFF'});
+    });
+    $('#cvcNumber').focus(function(){
+        $('#cvcNumber').removeClass('required');
+        $('#cvcNumber').css({'background-color':'#FFFFFF'});
+    });
     $('#subDomain').focus(function(){
         $('#subDomain').removeClass('required');
         $('.input-error').addClass('hidden');
@@ -533,7 +545,7 @@ $(function(){
         $('#yourBtn2').val('');
         $('#'+this.id).css({'background-color':'#FFFFFF'});
     });
-    $('.cardNumber').click(function(){
+    $('.cardNumber').focus(function(){
         document.getElementById('optionsRadios3').checked = false;
         document.getElementById('optionsRadios2').checked = true;
         $('#firstNameOnCard').addClass('check');

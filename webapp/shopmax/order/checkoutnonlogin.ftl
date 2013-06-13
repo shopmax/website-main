@@ -771,7 +771,7 @@ under the License.
                                         <option value="">Year</option>
                                         ${screens.render("component://common/widget/CommonScreens.xml#ccyears")}
                                     </select>
-                                    <input name="billToCardSecurityCode" type="text" id="secureCode" class="input-medium check required" placeholder="Security Code" onkeypress="return isNumberKey(event)" maxlength="3" autocomplete="off"/>
+                                    <input name="billToCardSecurityCode" type="text" id="secureCode" class="input-medium check required" placeholder="Security Code" onkeypress="return isNumberKey(event)" maxlength="4" autocomplete="off"/>
                                 <img src="<@ofbizContentUrl>/shopmax-default/img/icon-card.gif</@ofbizContentUrl>" />
                                 <a href="#">What is this?</a>
                             </div>

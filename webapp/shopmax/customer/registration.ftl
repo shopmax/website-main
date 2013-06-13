@@ -401,7 +401,7 @@ under the License.
                                         <div class="control-group-bank">
                                             <label class="control-label control-label-cc-blank pull-left" for="inputPromotionDescription">&nbsp;</label>
                                             <label class="control-label control-label-cc-inner pull-left" for="inputPromotionDescription">Security Code</label>
-                                            <input type="text" class="input-cc-xsmall pull-left reWhite" id="cvcNumber" name="cvc" maxlength="3" onkeypress='return isNumberKey(event)' autocomplete="off"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                            <input type="text" class="input-cc-xsmall pull-left reWhite" id="cvcNumber" name="cvc" maxlength="4" onkeypress='return isNumberKey(event)' autocomplete="off"> <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
                                         </div>
                                     </div>
                                     <br/>
