@@ -24,7 +24,7 @@ Index: hot-deploy/shopmax/widget/CommonScreens.xml
                  <set field="userLoginPartyId" from-field="userLogin.partyId"/>
 Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
 ===================================================================
---- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 400)
+--- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 418)
 +++ hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(working copy)
 @@ -23,7 +23,7 @@
  
@@ -100,7 +100,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              <create-value value-field="tenantDomainName"/>
              
              <!-- Create Tenant Backend Domain Name -->
-@@ -770,7 +770,7 @@
+@@ -771,7 +771,7 @@
          <field-to-result field="success" result-name="uploadsuccess"/>
          
          <set field="parameters.partyId" from-field="userLogin.partyId"/>
@@ -109,16 +109,16 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
          <set field="runTenantServiceInMap.serviceName" value="uploadProductToShopmax"/>
          <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
          <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-@@ -1532,7 +1532,7 @@
-         </if-not-empty>
+@@ -1605,7 +1605,7 @@
+         <field-to-result field="parameters.productId" result-name="productId"/>
          
          <set field="parameters.partyId" from-field="userLogin.partyId"/>
 -        <set field="runTenantServiceInMap.tenantId" value="default"/>
 +        <set field="runTenantServiceInMap.tenantId" value="shopmax"/>
-         <set field="runTenantServiceInMap.serviceName" value="editProductToShopmax"/>
+         <set field="runTenantServiceInMap.serviceName" value="updateProductToShopmax"/>
          <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
          <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-@@ -1765,7 +1765,7 @@
+@@ -1888,7 +1888,7 @@
          
          <field-to-result field="parameters.productId" result-name="productId"/>
          
@@ -127,16 +127,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
          <set field="runTenantServiceInMap.serviceName" value="removeProductFromShopmax"/>
          <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
          <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-@@ -2048,7 +2048,7 @@
-         <field-to-result field="success" result-name="updatesuccess"/>
-         
-         <set field="parameters.partyId" from-field="userLogin.partyId"/>
--        <set field="runTenantServiceInMap.tenantId" value="default"/>
-+        <set field="runTenantServiceInMap.tenantId" value="shopmax"/>
-         <set field="runTenantServiceInMap.serviceName" value="updateProductToShopmax"/>
-         <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
-         <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-@@ -2300,7 +2300,7 @@
+@@ -2001,7 +2001,7 @@
              <set field="removeProductImageShopmaxMap.productId" from-field="lookedUpValue.productId"/>
              <set field="removeProductImageShopmaxMap.productContentTypeId" from-field="lookedUpValue.productContentTypeId"/>
              <set field="removeProductImageShopmaxMap.sequenceNum" from-field="lookedUpValue.sequenceNum"/>
@@ -147,7 +138,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
 Index: hot-deploy/shopmax/webapp/shopmax-default/css/main.css
 ===================================================================
---- hot-deploy/shopmax/webapp/shopmax-default/css/main.css	(revision 400)
+--- hot-deploy/shopmax/webapp/shopmax-default/css/main.css	(revision 418)
 +++ hot-deploy/shopmax/webapp/shopmax-default/css/main.css	(working copy)
 @@ -36,6 +36,7 @@
  -----------------------------------------------------------------*/
@@ -157,7 +148,7 @@ Index: hot-deploy/shopmax/webapp/shopmax-default/css/main.css
  }
  
  .container {position:relative;top:0;}
-@@ -52,6 +53,7 @@
+@@ -52,10 +53,21 @@
  #cart-info {width:108px;margin:0 0;}
  #mainnav {background:#469BEB url('../img/mainnav-bg.png') repeat-x 0 100%;
     ;margin-bottom:0;display:block;padding:0 0 21px 0;z-index:1;overflow:hidden;
@@ -165,22 +156,20 @@ Index: hot-deploy/shopmax/webapp/shopmax-default/css/main.css
  }
  #mainnav .navbar-inner {min-height:29px;}
  .navbar-inner {min-height:100%;}
-@@ -1370,6 +1372,15 @@
- .row.content-left .white_nav{
- 	margin-bottom: 36px;
- }
+ 
++/*Demo Message*/
 +.demoMessage{
-+	width:100%;
-+	background:#ffffff url('../img/body-bg.png') repeat;
-+	z-index:99999;
-+	position: fixed;
-+	text-align: center;
-+	margin: 0;
-+	top:0;
++   width:100%;
++   background:#ffffff url('../img/body-bg.png') repeat;
++   z-index:99999;
++   position: fixed;
++   text-align: center;
++   margin: 0;
++   top:0;
 +}
- #content-messages{
- 	margin: 50px 0 -50px;
- }
+ 
+ /* top menu */
+ .navbar {margin-bottom:0;}
 Index: hot-deploy/shopmax/config/shopmax.properties
 ===================================================================
 --- hot-deploy/shopmax/config/shopmax.properties	(revision 400)
