@@ -97,7 +97,7 @@ if(parameters.productId){
         context.seqNumNoImage = imageSeqEmpty
         context.productImageList = productImageList;
         
-        inventorySummary = dispatcher.runSync("getInventoryAvailableByFacility", UtilMisc.toMap("productId", product.productId, "facilityId", "SellerWarehouse"));
+        inventorySummary = dispatcher.runSync("getProductInventoryAvailable", UtilMisc.toMap("productId", product.productId));
         context.stock = inventorySummary.availableToPromiseTotal;
         
         productAttribute = delegator.findOne("ProductAttribute", [productId : product.productId, attrName : "SHIPPING_SIZE"], true);

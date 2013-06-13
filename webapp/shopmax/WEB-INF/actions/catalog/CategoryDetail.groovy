@@ -200,7 +200,7 @@ def getProductDetail(productIds) {
             if (productAttribute) {
                 productMap.stock = productAttribute.attrValue;
             } else {
-                inventorySummary = dispatcher.runSync("getInventoryAvailableByFacility", UtilMisc.toMap("productId", productId, "facilityId", "SellerWarehouse"));
+                inventorySummary = dispatcher.runSync("getProductInventoryAvailable", UtilMisc.toMap("productId", productId));
                 productMap.stock = inventorySummary.availableToPromiseTotal;
             }
             

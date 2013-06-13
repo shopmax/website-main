@@ -45,9 +45,10 @@ under the License.
 <div class="add-product topviewbox clearfix">
     <span class="tital">SORT BY</span>
     <select class="span2">
-        <option value="" selected="selected">Price</option>
-        <option value="1">Name</option>
-        <option value="2">Stock</option>
+        <option value="" selected="selected">Sort By</option>
+        <option value="price">Price</option>
+        <option value="name">Name</option>
+        <option value="stock">Stock</option>
     </select>
     <span class="tital">VIEW BY</span>
     <a href="<@ofbizUrl><#if headerItem?if_exists == "categorygridview" || headerItem?if_exists == "categorylistview">categorygridview?productCategoryId=${productCategoryId}<#else>shopcategorygridview?productCategoryId=${productCategoryId}</#if></@ofbizUrl>" class="grid_view"><span class="b"></span>Grid</a>

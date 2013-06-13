@@ -146,9 +146,10 @@ under the License.
             <form class="form-inline form-search">
                 <label>Sort By</label>
                 <select name="SortBy" class="drop-select chosen combo sortBy" data-search-bar="true">
-                    <option value="" selected="selected">Price</option>
-                    <option value="1">Name</option>
-                    <option value="2">Stock</option>
+                    <option value="" selected="selected">Sort By</option>
+                    <option value="price">Price</option>
+                    <option value="name">Name</option>
+                    <option value="stock">Stock</option>
                 </select>
                 
                 <div class="input-search">

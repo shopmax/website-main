@@ -283,7 +283,7 @@ if (productCategoryMembers) {
         productMap.seqNumNoImage = imageSeqEmpty
         productMap.productImageList = productImageList;
         
-        inventorySummary = dispatcher.runSync("getInventoryAvailableByFacility", UtilMisc.toMap("productId", product.productId, "facilityId", "SellerWarehouse"));
+        inventorySummary = dispatcher.runSync("getProductInventoryAvailable", UtilMisc.toMap("productId", product.productId));
         productMap.stock = inventorySummary.availableToPromiseTotal;
         
         productAttribute = delegator.findOne("ProductAttribute", [productId : product.productId, attrName : "SHIPPING_SIZE"], true);
@@ -345,7 +345,7 @@ def getProductDetail(productIds) {
             if (productAttribute) {
                 productMap.stock = productAttribute.attrValue;
             } else {
-                inventorySummary = dispatcher.runSync("getInventoryAvailableByFacility", UtilMisc.toMap("productId", productId, "facilityId", "SellerWarehouse"));
+                inventorySummary = dispatcher.runSync("getProductInventoryAvailable", UtilMisc.toMap("productId", productId));
                 productMap.stock = inventorySummary.availableToPromiseTotal;
             }
             

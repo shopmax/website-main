@@ -881,6 +881,14 @@ under the License.
             <call-service service-name="createProductPrice" in-map-name="createPromoPriceMap"/>
         </if-not-empty>
         
+        <if-not-empty field="parameters.stock">
+            <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
+            <set field="createProductAttributeMap.attrName" value="STOCK"/>
+            <set field="createProductAttributeMap.attrValue" from-field="parameters.stock"/>
+            <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
+        </if-not-empty>
+        
         <if-not-empty field="parameters.shippingSize">
             <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
             <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
@@ -908,14 +916,6 @@ under the License.
             <set field="createSupplierProductMap.supplierProductId" from-field="parameters.productId"/>
             <set field="createSupplierProductMap.canDropShip" value="Y"/>
             <call-service service-name="createSupplierProduct" in-map-name="createSupplierProductMap"/>
-            
-            <if-not-empty field="parameters.stock">
-                <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
-                <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
-                <set field="createProductAttributeMap.attrName" value="STOCK"/>
-                <set field="createProductAttributeMap.attrValue" from-field="parameters.stock"/>
-                <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
-            </if-not-empty>
         </if-not-empty>
         
         <if-not-empty field="parameters.productSKU">
@@ -1552,6 +1552,45 @@ under the License.
             </if-empty>
         </if-not-empty>
         
+        <set field="oldStock" value="0" type="BigDecimal"/>
+        <set field="getProductInventoryAvailableMap.productId" from-field="parameters.productId"/>
+        <call-service service-name="getProductInventoryAvailable" in-map-name="getProductInventoryAvailableMap">
+            <result-to-field result-name="availableToPromiseTotal" field="oldStock"/>
+        </call-service>
+        <if-compare field="parameters.stock" operator="greater" value="${oldStock}" type="BigDecimal">
+            <calculate field="newStock">
+                <calcop operator="subtract" field="parameters.stock">
+                    <calcop operator="get" field="oldStock"/>
+                </calcop>
+            </calculate>
+            <set field="receiveCtx.userLogin" from-field="systemUserLogin"/>
+            <set field="receiveCtx.productId" from-field="parameters.productId"/>
+            <set field="receiveCtx.facilityId" value="SellerWarehouse"/>
+            <set field="receiveCtx.quantityAccepted" from-field="newStock"/>
+            <set field="receiveCtx.quantityRejected" value="0" type="BigDecimal"/>
+            <set field="receiveCtx.inventoryItemTypeId" value="NON_SERIAL_INV_ITEM"/>
+            <call-service service-name="receiveInventoryProduct" in-map-name="receiveCtx"/>
+            
+            <entity-one value-field="productAttribute" entity-name="ProductAttribute">
+                <field-map field-name="productId" from-field="parameters.productId"/>
+                <field-map field-name="attrName" value="STOCK"/>
+            </entity-one>
+            <if-empty field="productAttribute">
+                <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+                <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
+                <set field="createProductAttributeMap.attrName" value="STOCK"/>
+                <set field="createProductAttributeMap.attrValue" from-field="parameters.stock"/>
+                <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
+            <else>
+                <set field="updateProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+                <set field="updateProductAttributeMap.productId" from-field="productAttribute.productId"/>
+                <set field="updateProductAttributeMap.attrName" from-field="productAttribute.attrName"/>
+                <set field="updateProductAttributeMap.attrValue" from-field="parameters.stock"/>
+                <call-service service-name="updateProductAttribute" in-map-name="updateProductAttributeMap"/>
+            </else>
+            </if-empty>
+        </if-compare>
+        
         <entity-one value-field="productAttribute" entity-name="ProductAttribute">
             <field-map field-name="productId" from-field="parameters.productId"/>
             <field-map field-name="attrName" value="SHIPPING_SIZE"/>
@@ -1807,6 +1846,25 @@ under the License.
             </else>
             </if-empty>
         </if-not-empty>
+        
+        <entity-one value-field="productAttribute" entity-name="ProductAttribute">
+            <field-map field-name="productId" from-field="parameters.productId"/>
+            <field-map field-name="attrName" value="STOCK"/>
+        </entity-one>
+        <if-empty field="productAttribute">
+            <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
+            <set field="createProductAttributeMap.attrName" value="STOCK"/>
+            <set field="createProductAttributeMap.attrValue" from-field="parameters.stock"/>
+            <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
+        <else>
+            <set field="updateProductAttributeMap.userLogin" from-field="systemUserLogin"/>
+            <set field="updateProductAttributeMap.productId" from-field="productAttribute.productId"/>
+            <set field="updateProductAttributeMap.attrName" from-field="productAttribute.attrName"/>
+            <set field="updateProductAttributeMap.attrValue" from-field="parameters.stock"/>
+            <call-service service-name="updateProductAttribute" in-map-name="updateProductAttributeMap"/>
+        </else>
+        </if-empty>
         
         <entity-one value-field="productAttribute" entity-name="ProductAttribute">
             <field-map field-name="productId" from-field="parameters.productId"/>
