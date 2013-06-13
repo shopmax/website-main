@@ -208,6 +208,12 @@ under the License.
         </response>
     </request-map>
     
+    <request-map uri="updateProductNoCate">
+        <security https="true" auth="false"/>
+        <event type="service" invoke="updateProductToSeller"/>
+        <response name="success" type="request-redirect" value="manageproduct"/>
+    </request-map>
+    
     <request-map uri="removeProductImageFullMode">
         <security https="true" auth="false"/>
         <event type="service" invoke="removeProductContentAndImageFileSeller"/>

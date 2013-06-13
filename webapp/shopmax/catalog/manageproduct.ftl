@@ -73,6 +73,23 @@ under the License.
                 data: {productCategoryId: productCategoryId, productId: productId, contentId: contentId, fromDate: fromDate, productContentTypeId: productContentTypeId},
                 success: function(data) {
                     $('#category-container').html(data);
+                    if($('#promo-datePickerFrom'+index).val()){
+                        var getFromDate = $('#promo-datePickerFrom'+index).val().split(" ");
+                        var fromDateFormat = getFromDate[0].split("-");
+                        $('#datePickerFrom'+index).val(fromDateFormat[1]+'/'+fromDateFormat[2]+'/'+fromDateFormat[0]);
+                    }
+                    if($('#promo-datePickerThru'+index).val()){
+                        var getThruDate = $('#promo-datePickerThru'+index).val().split(" ");
+                        var thruDateFormat = getThruDate[0].split("-");
+                        $('#datePickerThru'+index).val(thruDateFormat[1]+'/'+thruDateFormat[2]+'/'+thruDateFormat[0]);
+                    }
+                    if($('#promoPrice'+index).val()){
+                        document.getElementById("checkBoxManage"+index).checked=true;
+                    }
+                    $("#datePickerFrom"+index).datepicker();
+                    $("#datePickerThru"+index).datepicker();
+                    $('#view-edit-product-'+index).slideDown("slow");
+                    $('.productCategoryId').val(getUrlVars()["productCategoryId"]);
                     $('#view-edit-product-'+index).slideDown("slow");
                 }
             });
@@ -226,7 +243,7 @@ under the License.
                                     </#if>
                                 </a>
                                 <div class="media-body">
-                                    <form class="form-horizontal pull-left" id="updateproduct-${product_index}" name="updateproduct-${product_index}" action="<@ofbizUrl>updateProduct</@ofbizUrl>" method="post" enctype="multipart/form-data">
+                                    <form class="form-horizontal pull-left" id="updateproduct-${product_index}" name="updateproduct-${product_index}" action="<@ofbizUrl><#if parameters.productCategoryId?has_content>updateProduct<#else>updateProductNoCate</#if></@ofbizUrl>" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="productCategoryId" class="productCategoryId"/>
                                         <input type="hidden" name="productId" value="${product.productId?if_exists}"/>
                                         <div class="control-group">
@@ -301,7 +318,6 @@ under the License.
                                                 <input type="text" class="input-medium" name="stock" value="${product.stock?if_exists}">
                                             </label>
                                         </div>
-                                        
                                         <div class="form-inline input-promotion">
                                             <input type="checkbox" id="checkBoxManage${product_index}">
                                             <label>
