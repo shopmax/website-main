@@ -24,7 +24,7 @@ Index: hot-deploy/shopmax/widget/CommonScreens.xml
                  <set field="userLoginPartyId" from-field="userLogin.partyId"/>
 Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
 ===================================================================
---- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 418)
+--- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 421)
 +++ hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(working copy)
 @@ -23,7 +23,7 @@
  
@@ -109,7 +109,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
          <set field="runTenantServiceInMap.serviceName" value="uploadProductToShopmax"/>
          <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
          <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-@@ -1605,7 +1605,7 @@
+@@ -1644,7 +1644,7 @@
          <field-to-result field="parameters.productId" result-name="productId"/>
          
          <set field="parameters.partyId" from-field="userLogin.partyId"/>
@@ -118,7 +118,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
          <set field="runTenantServiceInMap.serviceName" value="updateProductToShopmax"/>
          <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
          <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-@@ -1888,7 +1888,7 @@
+@@ -1946,7 +1946,7 @@
          
          <field-to-result field="parameters.productId" result-name="productId"/>
          
@@ -127,7 +127,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
          <set field="runTenantServiceInMap.serviceName" value="removeProductFromShopmax"/>
          <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
          <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-@@ -2001,7 +2001,7 @@
+@@ -2059,7 +2059,7 @@
              <set field="removeProductImageShopmaxMap.productId" from-field="lookedUpValue.productId"/>
              <set field="removeProductImageShopmaxMap.productContentTypeId" from-field="lookedUpValue.productContentTypeId"/>
              <set field="removeProductImageShopmaxMap.sequenceNum" from-field="lookedUpValue.sequenceNum"/>
