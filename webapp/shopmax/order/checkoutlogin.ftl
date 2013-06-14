@@ -21,34 +21,93 @@ under the License.
     $(document).ready(function() {
         $('#sameAsShipping').click(function(){
             if($(this).is(":checked")){
-                $('#tr-shipping-address').addClass('hidden');
-                $('#tr-shipping-contact').addClass('hidden');
                 $('#useShippingAddressForBilling').val('Y');
-                $('#billFirstName').removeClass('check required');
-                $('#billLastName').removeClass('check required');
-                $('#billPhone').removeClass('check required');
-                $('#billEmail').removeClass('check required');
-                $('#billStreetAddress').removeClass('check required');
-                $('#billPostal').removeClass('check required');
                 $('.processOrderSummaryButton').attr('style','display: none;');
                 $('.summaryButton2').attr('style','');
+                $('#billFirstName').attr('value',$('#shipFirstName').val());
+                $('#billLastName').attr('value',$('#shipLastName').val());
+                $('#billPhone').attr('value',$('#shipPhone').val());
+                $('#billEmail').attr('value',$('#shipEmail').val());
+                $('#billStreetAddress').attr('value',$('#shipStreetAddress').val());
+                $('#billPostal').attr('value',$('#shipPostal').val());
+                $('#billToFaxNumber').attr('value',$('#shipToFaxNumber').val());
+                $('#billAddressInfo').attr('value',$('#shipAddressInfo').val());
+                if($('#billToFaxNumber').val().length){
+                $('#billToFaxNumber').attr('readonly','readonly');
+                }
+                if($('#billAddressInfo').val().length){
+                $('#billAddressInfo').attr('readonly','readonly');
+                }
+                if($('#billToAreaCode_chzn').find('span').text() != $('#shipToAreaCode_chzn').find('span').text()){
+                    $('#billToAreaCode_chzn').find('span').text($('#shipToAreaCode_chzn').find('span').text());
+                }
+                if($('#billToFaxNumberArea_chzn').find('span').text() != $('#shipToFaxNumberArea_chzn').find('span').text()){
+                    $('#billToFaxNumberArea_chzn').find('span').text($('#shipToFaxNumberArea_chzn').find('span').text());
+                }
+                if($('#shipDropDown2_chzn').find('span').text() != $('#shipDropDown1_chzn').find('span').text()){
+                    $('#shipDropDown2_chzn').find('span').text($('#shipDropDown1_chzn').find('span').text());
+                    if($('#shipDropDown2_chzn').find('span').text() != 'Zip Return City, State'){
+                        $('#shipDropDown2_chzn').css({'background-color':'#FFFFFF'});
+                        $('#shipDropDown2_chzn').find('.chzn-single').each(function(){
+                        $(this).css({'background-color':'#FFFFFF'});
+                        });
+                    }
+                }
+                $('.billTB').find('input.check').each(function(){
+                    if($(this).val().length){
+                        $('#'+this.id).attr('readonly','readonly');
+                        $('#'+this.id).removeClass('required');
+                    }
+                });
+                
             }
             else{
-                $('#tr-shipping-address').removeClass('hidden');
-                $('#tr-shipping-contact').removeClass('hidden');
                 $('#useShippingAddressForBilling').val('N');
-                $('#billFirstName').addClass('check required');
-                $('#billLastName').addClass('check required');
-                $('#billPhone').addClass('check required');
-                $('#billEmail').addClass('check required');
-                $('#billStreetAddress').addClass('check required');
-                $('#billPostal').addClass('check required');
                 $('.summaryButton2').attr('style','display: none;');
                 $('.processOrderSummaryButton').attr('style','');
+                $('#billToFaxNumber').attr('value','');
+                $('#billAddressInfo').attr('value','');
+                $('#billToAreaCode_chzn').find('span').text('03');
+                $('#billToFaxNumberArea_chzn').find('span').text('03');
+                $('#shipDropDown2_chzn').find('span').text('Zip Return City, State');
+                $('#shipDropDown2_chzn').css({'background-color':'#FEF2EE'});
+                $('#shipDropDown2_chzn').find('.chzn-single').each(function(){
+                    $(this).css({'background-color':'#FEF2EE'});
+                });
+                $('#billToFaxNumber').removeAttr('readonly');
+                $('#billAddressInfo').removeAttr('readonly');
+                $('.billTB').find('input.check').each(function(){
+                    if($(this).val().length){
+                        $('#'+this.id).attr('value','');
+                        $('#'+this.id).removeAttr('readonly');
+                        $('#'+this.id).addClass('required');
+                    }
+                    else if(!$(this).val().length){
+                        $('#'+this.id).addClass('required');
+                    }
+                });
             }
         });
     });
     $(function(){
+        if($('#shipFirstName').val().length){
+            $('#shipFirstName').removeClass('required');
+        }
+        if($('#shipLastName').val().length){
+            $('#shipLastName').removeClass('required');
+        }
+        if($('#shipEmail').val().length){
+            $('#shipEmail').removeClass('required');
+        }
+        if($('#billFirstName').val().length){
+            $('#billFirstName').removeClass('required');
+        }
+        if($('#billLastName').val().length){
+            $('#billLastName').removeClass('required');
+        }
+        if($('#billEmail').val().length){
+            $('#billEmail').removeClass('required');
+        }
         $('.cardNumber').change(function(){
             $('#cardNumber').val($('#cardNumber-0').val()+$('#cardNumber-1').val()+$('#cardNumber-2').val()+$('#cardNumber-3').val());
         });
@@ -650,7 +709,7 @@ under the License.
                                         <input type="text" id="shipPostal" class="input-xxlarge check required" name="shipToPostalCode" onkeypress="return isNumberKey(event)" placeholder="Zip/ Postal Code" />
                                     </div>
                                     <div class="form-inline">
-                                        <input type="text" class="input-xxxlarge" name="shipToAddress2" placeholder="Additional Address Info (optional)" />
+                                        <input type="text" class="input-xxxlarge" name="shipToAddress2" id="shipAddressInfo" placeholder="Additional Address Info (optional)" />
                                         <select id="shipDropDown1" name="shipToCity" class="drop-select chosen combo" data-search-bar="true">
                                             <option value="" selected="selected">Zip Return City, State</option>
                                             <option value="Auckland">Auckland</option>
@@ -741,7 +800,7 @@ under the License.
                           </thead>
                           <tbody>
                             <tr id="tr-shipping-contact">
-                                <td class="col1">
+                                <td class="col1 billTB">
                                     <h5 class="heading">Billing Contact</h5>
                                     
                                     <div class="form-inline">
@@ -780,15 +839,15 @@ under the License.
                                 </td>
                             </tr>
                             <tr id="tr-shipping-address">
-                                <td class="col1">
-                                    <h5 class="heading">Shipping Address</h5>
+                                <td class="col1 billTB">
+                                    <h5 class="heading">Billing Address</h5>
                                     
                                     <div class="form-inline">
                                         <input type="text" id="billStreetAddress" class="input-xxxlarge check required" name="billToAddress1" placeholder="Street Address" />
                                         <input type="text" id="billPostal" class="input-xxlarge check required" name="billToPostalCode" onkeypress="return isNumberKey(event)" placeholder="Zip/ Postal Code" />
                                     </div>
                                     <div class="form-inline">
-                                        <input type="text" class="input-xxxlarge" placeholder="Additional Address Info (optional)" />
+                                        <input type="text" class="input-xxxlarge" id="billAddressInfo" name="billToAddress2" placeholder="Additional Address Info (optional)" />
                                         <select id="shipDropDown2" name="billToCity" class="drop-select chosen combo" data-search-bar="true">
                                             <option value="" selected="selected">Zip Return City, State</option>
                                             <option value="Auckland">Auckland</option>
