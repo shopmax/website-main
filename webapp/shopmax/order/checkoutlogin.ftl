@@ -90,24 +90,27 @@ under the License.
         });
     });
     $(function(){
-        if($('#shipFirstName').val().length){
+        if($('#shipFirstName').val()){
             $('#shipFirstName').removeClass('required');
         }
-        if($('#shipLastName').val().length){
+        if($('#shipLastName').val()){
             $('#shipLastName').removeClass('required');
         }
-        if($('#shipEmail').val().length){
+        if($('#shipEmail').val()){
             $('#shipEmail').removeClass('required');
         }
-        if($('#billFirstName').val().length){
+        if($('#billFirstName').val()){
             $('#billFirstName').removeClass('required');
         }
-        if($('#billLastName').val().length){
+        if($('#billLastName').val()){
             $('#billLastName').removeClass('required');
         }
-        if($('#billEmail').val().length){
+        if($('#billEmail').val()){
             $('#billEmail').removeClass('required');
         }
+        $('#exp').focus(function(){
+            $('#exp').removeClass('required');
+        });
         $('.cardNumber').change(function(){
             $('#cardNumber').val($('#cardNumber-0').val()+$('#cardNumber-1').val()+$('#cardNumber-2').val()+$('#cardNumber-3').val());
         });
