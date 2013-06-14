@@ -135,7 +135,7 @@ under the License.
             <property-to-field resource="general" property="country.geo.id.default" field="defaultCountryGeoId"/>
             <set field="parameters.shipToCountryGeoId" from-field="defaultCountryGeoId"/>
             <set field="parameters.shipToStateProvinceGeoId" value="_NA_"/>
-            <set field="parameters.shipToName" from-field="parameters.USER_FIRST_NAME"/>
+            <set field="parameters.shipToName" value="${parameters.USER_FIRST_NAME} ${parameters.USER_LAST_NAME}"/>
             <set field="parameters.partyId" from-field="userLogin.partyId"/>
             <set field="parameters.emailAddress" from-field="parameters.CUSTOMER_EMAIL"/>
             <!-- fax phone -->
@@ -238,6 +238,7 @@ under the License.
             </if-not-empty>
             <else>
                 <if-empty field="parameters.billToContactMechId">
+                    <set field="parameters.billToName" value="${parameters.billFirstName} ${parameters.billLastName}"/>
                     <set field="parameters.billToStateProvinceGeoId" value="_NA_"/>
                     <set field="parameters.billToContactNumber" from-field="parameters.billToContactNumber"/>
                     <set field="parameters.emailAddress" from-field="parameters.billToEmailAddress"/>

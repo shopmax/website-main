@@ -43,6 +43,14 @@ under the License.
                             <div class="right_top"><a href="<@ofbizUrl>order.pdf?orderId=${orderId}</@ofbizUrl>" class="btn-general" target="_blank">Print order confirmation</a></div>
                         </div>
                         <table cellpadding="0" cellspacing="0" border="0" class="table table_1">
+                            <tr style="border-bottom : 1px solid #CCCCCC;">
+                                <#if orderHeader.orderDate?has_content>
+                                    <#assign orderDate = Static["org.ofbiz.base.util.UtilDateTime"].toDateString(orderHeader.orderDate, "dd/MM/yyyy")/>
+                                </#if>
+                                <td><b> Tax Invoice : ${orderId?if_exists}</b> </p></td> <#-- 0009439 -->
+                                <td><b> Invoice Date : ${orderDate?if_exists}</b> </p></td> <#-- 09/08/2012 -->
+                                <td><b> GST Number :</b> </p></td> <#-- 74-343-657 -->
+                            </tr>
                             <tr>
                                 <td>${screens.render("component://shopmax/widget/OrderScreens.xml#ordershippinginfo")}</td>
                                 <td>${screens.render("component://shopmax/widget/OrderScreens.xml#orderbillinginfo")}</td>
@@ -98,7 +106,7 @@ under the License.
                         </table>
                         
                         <div class="shop_address clearfix">
-                            <p>You have selected to pick this item up from the store listed below. Your <strong>Order Number: ${orderId}</strong>. You Must present this to the shop in order to pick up your purchase.</p>
+                            <p>You have selected to pick this item up from the store listed below. Your <strong>Order Number: ${orderId?if_exists}</strong>. You Must present this to the shop in order to pick up your purchase.</p>
                             <div class="row">
                                 <div class="span5">
                                     <div class="column_1">

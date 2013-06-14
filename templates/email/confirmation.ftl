@@ -84,8 +84,11 @@ under the License.
                             <td valign="top"  height="23" align="left">&nbsp;
                                 <table width="730"  cellspacing="0" cellpadding="0" style="border-bottom:1px solid #e1e1e1">
                                     <tr>
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> Tax Invoice :</b> </p></td> <#-- 0009439 -->
-                                        <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b>  Invoice Date :</b> </p></td> <#-- 09/08/2012 -->
+                                        <#if orderHeader.orderDate?has_content>
+                                            <#assign orderDate = Static["org.ofbiz.base.util.UtilDateTime"].toDateString(orderHeader.orderDate, "dd/MM/yyyy")/>
+                                        </#if>
+                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> Tax Invoice : ${orderId?if_exists}</b> </p></td> <#-- 0009439 -->
+                                        <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> Invoice Date : ${orderDate?if_exists}</b> </p></td> <#-- 09/08/2012 -->
                                         <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> GST Number :</b> </p></td> <#-- 74-343-657 -->
                                     </tr>
                                     <tr>
@@ -160,7 +163,7 @@ under the License.
                                         <td valign="top"  height="16" align="left"></td>
                                     </tr>
                                     <tr>
-                                        <td valign="top"  align="left"><p style="margin:0;padding:0px 0 0px 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646">You have selected to pick this item up from the store listed below. Your <b>Order Number: ${orderId}</b> You Must present this to the shop in order to pick up your purchase.</p></td>
+                                        <td valign="top"  align="left"><p style="margin:0;padding:0px 0 0px 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646">You have selected to pick this item up from the store listed below. Your <b>Order Number: ${orderId?if_exists}</b> You Must present this to the shop in order to pick up your purchase.</p></td>
                                     </tr>
                                     <tr>
                                         <td valign="top"  height="26" align="left">

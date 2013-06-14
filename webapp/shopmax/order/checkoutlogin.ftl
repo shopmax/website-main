@@ -536,6 +536,9 @@ under the License.
     <div class="row">
         <#include "component://shopmax/webapp/shopmax/order/ordersummary.ftl" />
         <form id="orderSummarySubmitForm" action="<@ofbizUrl>onePageProcess</@ofbizUrl>" method="post">
+            <#if userLogin?has_content>
+                <#assign partyName = delegator.findOne("PartyNameView", {"partyId" : userLogin.partyId}, true) />
+            </#if> 
             <#-- Shipping Options -->
             <#assign supplierIndex = -1/>
             <#list supplierCarrierMap.keySet() as partyId>
@@ -603,10 +606,9 @@ under the License.
                             <tr>
                                 <td class="col1">
                                     <h5 class="heading">Shipping Contact</h5>
-                                    
                                     <div class="form-inline">
-                                        <input type="text" id="shipFirstName" class="input-xxlarge check required" name="USER_FIRST_NAME" placeholder="First Name" />
-                                        <input type="text" id="shipLastName" class="input-xxlarge check required" name="USER_LAST_NAME" placeholder="Last Name" />
+                                        <input type="text" id="shipFirstName" class="input-xxlarge check required" name="USER_FIRST_NAME" placeholder="First Name" value="${partyName.firstName?if_exists}" />
+                                        <input type="text" id="shipLastName" class="input-xxlarge check required" name="USER_LAST_NAME" placeholder="Last Name" value="${partyName.lastName?if_exists}" />
                                     </div>
                                     <div class="form-inline">
                                         <select id="shipToAreaCode" name="shipToAreaCode" class="chosen contactNumber" style="width: 60px;">
@@ -625,7 +627,7 @@ under the License.
                                             <option>0800</option>
                                         </select>
                                         <input name="shipToContactNumber" type="text" id="shipPhone" class="input-xxlarge check required" placeholder="Phone Number" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
-                                        <input name="CUSTOMER_EMAIL" type="text" id="shipEmail" class="input-xxlarge check required" placeholder="Email Address" />
+                                        <input name="CUSTOMER_EMAIL" type="text" id="shipEmail" class="input-xxlarge check required" placeholder="Email Address" value="${userLogin.userLoginId?if_exists}" />
                                         <select id="shipToFaxNumberArea" name="shipToFaxNumberArea" class="chosen contactNumber" style="width: 60px;">
                                             <option selected="selected">03</option>
                                             <option>04</option>
@@ -740,11 +742,11 @@ under the License.
                           <tbody>
                             <tr id="tr-shipping-contact">
                                 <td class="col1">
-                                    <h5 class="heading">Shipping Contact</h5>
+                                    <h5 class="heading">Billing Contact</h5>
                                     
                                     <div class="form-inline">
-                                        <input type="text" name="billToName" id="billFirstName" class="input-xxlarge check required" placeholder="First Name" />
-                                        <input type="text" name="billToLastName" id="billLastName" class="input-xxlarge check required" placeholder="Last Name" />
+                                        <input type="text" name="billFirstName" id="billFirstName" class="input-xxlarge check required" placeholder="First Name" value="${partyName.firstName?if_exists}" />
+                                        <input type="text" name="billLastName" id="billLastName" class="input-xxlarge check required" placeholder="Last Name" value="${partyName.lastName?if_exists}" />
                                     </div>
                                     <div class="form-inline">
                                         <select id="billToAreaCode" name="billToAreaCode" class="chosen contactNumber" style="width: 60px;">
@@ -763,7 +765,7 @@ under the License.
                                             <option>0800</option>
                                         </select>
                                         <input name="billToContactNumber" type="text" id="billPhone" class="input-xxlarge check required" placeholder="Phone Number" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
-                                        <input type="text" id="billEmail" class="input-xxlarge check required" name="CUSTOMER_EMAILS" placeholder="Email Address" />
+                                        <input type="text" id="billEmail" class="input-xxlarge check required" name="CUSTOMER_EMAILS" placeholder="Email Address" value="${userLogin.userLoginId?if_exists}" />
                                         <select name="billToFaxNumberArea" id="billToFaxNumberArea" class="chosen contactNumber" style="width: 60px;">
                                             <option selected="selected">03</option>
                                             <option>04</option>

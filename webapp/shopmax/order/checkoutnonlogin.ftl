@@ -675,11 +675,11 @@ under the License.
                   <tbody>
                     <tr id="tr-shipping-contact">
                         <td class="col1">
-                            <h5 class="heading">Shipping Contact</h5>
+                            <h5 class="heading">Billing Contact</h5>
                             
                             <div class="form-inline">
-                                <input type="text" name="billToName" id="billFirstName" class="input-xxlarge check required" placeholder="First Name" />
-                                <input type="text" name="billToLastName" id="billLastName" class="input-xxlarge check required" placeholder="Last Name" />
+                                <input type="text" name="billFirstName" id="billFirstName" class="input-xxlarge check required" placeholder="First Name" />
+                                <input type="text" name="billLastName" id="billLastName" class="input-xxlarge check required" placeholder="Last Name" />
                             </div>
                             <div class="form-inline">
                                 <select id="billToAreaCode" name="billToAreaCode" class="chosen contactNumber" style="width: 60px;">
