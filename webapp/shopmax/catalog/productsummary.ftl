@@ -55,7 +55,11 @@ under the License.
                     <fieldset>
                         <input type="hidden" name="add_product_id" value="${product.productId}" />
                         <input type="hidden" name="quantity" value="1" />
-                        <a class="btn-general additem" id="additem_${listIndex}" onclick="addItem('${product.productId}');">ADD TO CART</a>
+                        <#if !stock?has_content || stock == 0>
+                            <button class="btn-grey" type="button" value="OUT OF STOCK" style="float:right;">OUT OF STOCK</button>
+                        <#else>
+                            <a class="btn-general additem" id="additem_${listIndex}" onclick="addItem('${product.productId}');">ADD TO CART</a>
+                        </#if>
                     </fieldset>
                 </form>
             </div>
@@ -88,7 +92,11 @@ under the License.
                     <fieldset>
                         <input type="hidden" name="add_product_id" value="${product.productId}" />
                         <input type="hidden" name="quantity" value="1" />
-                        <a class="btn-general" id="additem_${listIndex}" onclick="addItem('${product.productId}');">ADD TO CART</a>
+                        <#if !stock?has_content || stock == 0>
+                            <button class="btn-grey" type="button" value="OUT OF STOCK" style="float:left;">OUT OF STOCK</button>
+                        <#else>
+                            <a class="btn-general additem" id="additem_${listIndex}" onclick="addItem('${product.productId}');">ADD TO CART</a>
+                        </#if>
                         <a href="#" class="addtolist">Add to shopping List</a>
                     </fieldset>
                 </form>

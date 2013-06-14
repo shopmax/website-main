@@ -16,7 +16,16 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-
+<style>
+.btn-large.grey {
+    background-color:#8F8F8F;
+    text-shadow:none;
+    color:#fff;
+    box-shadow: 1px 1px 1px #888888;
+    border-bottom: 1px solid #000000;
+    border-top: 1px solid #000000;
+}
+</style>
 <div class="row content-left">
     <div class="span6">
         <div class="product-wrapper">
@@ -114,7 +123,11 @@ under the License.
                         <#else>
                             <input type="hidden" name="price" value="${price.price}" />
                         </#if>
-                        <a class="btn-general" onclick="addItem('${product.productId}');">ADD TO CART</a>
+                        <#if !stock?has_content || "0" = stock.attrValue?if_exists>
+                            <button class="btn-large grey cart" type="button" value="OUT OF STOCK">OUT OF STOCK</button>
+                        <#else>
+                            <button class="btn-large blue cart" type="button" value="ADD TO CART" onclick="addItem('${product.productId}');">ADD TO CART</button>
+                        </#if>
                         <ul class="selectAction">
                             <li><a href="#">Add to shopping list</a></li>
                             <li><a href="#">Share with a friend</a></li>
