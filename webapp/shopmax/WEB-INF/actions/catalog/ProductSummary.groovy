@@ -29,6 +29,7 @@ import org.ofbiz.order.shoppingcart.*;
 import org.ofbiz.product.product.ProductWorker;
 import org.ofbiz.webapp.website.WebSiteWorker
 import java.text.NumberFormat;
+import java.math.BigDecimal;
 
 //either optProduct, optProductId or productId must be specified
 product = request.getAttribute("optProduct");
@@ -250,6 +251,15 @@ if (UtilValidate.isNotEmpty(productContentAndInfoDefault)) {
             context.productImageThumb = contentAssocThumb.drObjectInfo;
         }
     }
+}
+
+productAttribute = delegator.findOne("ProductAttribute", [productId : productId, attrName : "STOCK"], true);
+if (productAttribute) {
+    BigDecimal stock = new BigDecimal(productAttribute.attrValue);
+	context.stock = stock;
+} else {
+    inventorySummary = dispatcher.runSync("getProductInventoryAvailable", UtilMisc.toMap("productId", productId));
+    context.stock = inventorySummary.availableToPromiseTotal;
 }
 
 context.product = product;

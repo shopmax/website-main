@@ -343,10 +343,11 @@ def getProductDetail(productIds) {
             
             productAttribute = delegator.findOne("ProductAttribute", [productId : productId, attrName : "STOCK"], true);
             if (productAttribute) {
-                productMap.stock = productAttribute.attrValue;
+                BigDecimal stock = new BigDecimal(productAttribute.attrValue);
+                context.stock = stock;
             } else {
                 inventorySummary = dispatcher.runSync("getProductInventoryAvailable", UtilMisc.toMap("productId", productId));
-                productMap.stock = inventorySummary.availableToPromiseTotal;
+                context.stock = inventorySummary.availableToPromiseTotal;
             }
             
             resultMap.add(productMap);
