@@ -23,10 +23,10 @@ import org.ofbiz.entity.util.*;
 def supplierOrderItemsMap = [:];
 
 def getSupplierName(partyId) {
-	def getPartyNameForDateInMap = ["partyId": partyId, "userLogin": delegator.findOne("UserLogin", ["userLoginId": "system"], false)];
-	def results = dispatcher.runSync("getPartyNameForDate", getPartyNameForDateInMap);
-	def fullName = results.fullName;
-	return fullName;
+    def getPartyNameForDateInMap = ["partyId": partyId, "userLogin": delegator.findOne("UserLogin", ["userLoginId": "system"], false)];
+    def results = dispatcher.runSync("getPartyNameForDate", getPartyNameForDateInMap);
+    def fullName = results.fullName;
+    return fullName;
 }
 
 def getSupplierOrderItems(partyId, supplierOrderItemsMap) {
@@ -43,25 +43,39 @@ def getSupplierOrderItems(partyId, supplierOrderItemsMap) {
 //Get Order Items
 
 if(orderItems) {
-	orderItems.each { orderItem ->
-		def product = orderItem.getRelatedOne("Product", false);
-		def productPrices = product.getRelated("ProductPrice", null, null, false);
-		
-		def conds = [];
-		conds.add(EntityCondition.makeCondition("productId", product.productId))
-		
-		if (productPrices) {
-			conds.add(EntityCondition.makeCondition("currencyUomId", productPrices[0].currencyUomId));
-		}
-		conds.add(EntityUtil.getFilterByDateExpr("availableFromDate", "availableThruDate"))
-		def supplierProducts = delegator.findList("SupplierProduct", EntityCondition.makeCondition(conds), null, null, null, false);
-		if (supplierProducts) {
-			def partyId = supplierProducts[0].partyId;
-			def supplierOrderItems = getSupplierOrderItems(partyId, supplierOrderItemsMap);
-			supplierOrderItems.add(orderItem);
-		}
-		
-	}
+    orderItems.each { orderItem ->
+        def product = orderItem.getRelatedOne("Product", false);
+        def productPrices = product.getRelated("ProductPrice", null, null, false);
+        
+        def conds = [];
+        conds.add(EntityCondition.makeCondition("productId", product.productId))
+        
+        if (productPrices) {
+            conds.add(EntityCondition.makeCondition("currencyUomId", productPrices[0].currencyUomId));
+        }
+        conds.add(EntityUtil.getFilterByDateExpr("availableFromDate", "availableThruDate"))
+        def supplierProducts = delegator.findList("SupplierProduct", EntityCondition.makeCondition(conds), null, null, null, false);
+        if (supplierProducts) {
+            def partyId = supplierProducts[0].partyId;
+            def supplierOrderItems = getSupplierOrderItems(partyId, supplierOrderItemsMap);
+            supplierOrderItems.add(orderItem);
+        }
+        
+    }
+}
+
+if(parameters.scBranchStore){
+    branchStoreDetailLists = parameters.scBranchStore;
+    branchStoreList = [];
+    for(branchStoreDetailList in branchStoreDetailLists) {
+        branchStoreDetail = branchStoreDetailList.split("-");
+        branchStoreDetailMap = [:];
+        branchStoreDetailMap.typeShipping = branchStoreDetail[0];
+        branchStoreDetailMap.contactMechId = branchStoreDetail[1];
+        branchStoreDetailMap.shopPartyId = branchStoreDetail[2];
+        branchStoreList.add(branchStoreDetailMap);
+    }
+    context.branchStoreList = branchStoreList;
 }
 
 context.supplierOrderItemsMap = supplierOrderItemsMap;

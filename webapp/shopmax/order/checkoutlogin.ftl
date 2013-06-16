@@ -598,6 +598,11 @@ under the License.
     <div class="row">
         <#include "component://shopmax/webapp/shopmax/order/ordersummary.ftl" />
         <form id="orderSummarySubmitForm" action="<@ofbizUrl>onePageProcess</@ofbizUrl>" method="post">
+            <#if branchStoreList?has_content>
+                <#list branchStoreList as branchStore>
+                    <input type="hidden" name="scBranchStore" value="${branchStore}"/>
+                </#list>
+            </#if>
             <#if userLogin?has_content>
                 <#assign partyName = delegator.findOne("PartyNameView", {"partyId" : userLogin.partyId}, true) />
             </#if> 

@@ -33,5 +33,10 @@ def getSupplierName(partyId) {
 getSupplierShoppingCartItemsMapInMap = ["shoppingCart": ShoppingCartEvents.getCartObject(request)];
 def results = dispatcher.runSync("getSupplierShoppingCartItemsMap", getSupplierShoppingCartItemsMapInMap);
 
+if(parameters.scBranchStore){
+    branchStoreList = parameters.scBranchStore;
+    context.branchStoreList = branchStoreList;
+}
+
 context.supplierCartItemsMap = results.supplierShoppingCartItemsMap;
 context.cartContext = this;

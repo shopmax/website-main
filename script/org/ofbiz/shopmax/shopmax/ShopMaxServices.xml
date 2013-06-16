@@ -543,10 +543,11 @@ under the License.
                     </iterate>
                     
                     <set field="physicalDateTimes" value="${groovy: if(physicalDateTimeList[i]){physicalDateTimes = physicalDateTimeList[i].split(&quot;,&quot;); return physicalDateTimes.toList();}}" type="List"/>
-                    <iterate entry="physicalDateTime" list="physicalDateTimes">
+                    <iterate entry="physicalDateTime" list="physicalDateTimes" >
                         <set field="physicalDateTimeGroup" value="${groovy: if(physicalDateTime){physicalDateTimeGroups = physicalDateTime.split(&quot;-&quot;); return physicalDateTimeGroups.toList();}}" type="List"/>
                         <set field="createPhysicalDateTimeMap.contactMechId" from-field="addressPurposeContext.contactMechId"/>
                         <set field="createPhysicalDateTimeMap.day" from-field="physicalDateTimeGroup[0]"/>
+                        <set field="createPhysicalDateTimeMap.sequenceNum" from-field="physicalDateTimeGroup[5]" type="Long"/>
                         <set field="createPhysicalDateTimeMap.openHour" from-field="physicalDateTimeGroup[1]"/>
                         <set field="createPhysicalDateTimeMap.openMin" from-field="physicalDateTimeGroup[2]"/>
                         <set field="createPhysicalDateTimeMap.closeHour" from-field="physicalDateTimeGroup[3]"/>
@@ -1984,6 +1985,7 @@ under the License.
         <make-value entity-name="PhysicalStoreDateTime" value-field="newEntity"/>
         <set field="newEntity.contactMechId" from-field="parameters.contactMechId"/>
         <set field="newEntity.day" from-field="parameters.day"/>
+        <set field="newEntity.sequenceNum" from-field="parameters.sequenceNum"/>
         <set field="newEntity.openHour" from-field="parameters.openHour"/>
         <set field="newEntity.openMin" from-field="parameters.openMin"/>
         <set field="newEntity.closeHour" from-field="parameters.closeHour"/>

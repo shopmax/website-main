@@ -49,19 +49,19 @@ $(function(){
                 tempPhoneText = $('#phy_phone_text_'+i).val();
                 tempFaxText = $('#phy_fax_text_'+i).val();
                 if($('#mon_check_'+i).is(":checked")){
-                    mon = 'MON-'+$('#mon_o_0_'+i).val()+'-'+$('#mon_o_1_'+i).val()+'-'+$('#mon_c_0_'+i).val()+'-'+$('#mon_c_1_'+i).val()+',';}
+                    mon = 'Monday-'+$('#mon_o_0_'+i).val()+'-'+$('#mon_o_1_'+i).val()+'-'+$('#mon_c_0_'+i).val()+'-'+$('#mon_c_1_'+i).val()+'-1'+',';}
                 if($('#tue_check_'+i).is(":checked")){
-                    tue = 'TUE-'+$('#tue_o_0_'+i).val()+'-'+$('#tue_o_1_'+i).val()+'-'+$('#tue_c_0_'+i).val()+'-'+$('#tue_c_1_'+i).val()+',';}
+                    tue = 'Tuesday-'+$('#tue_o_0_'+i).val()+'-'+$('#tue_o_1_'+i).val()+'-'+$('#tue_c_0_'+i).val()+'-'+$('#tue_c_1_'+i).val()+'-2'+',';}
                 if($('#wed_check_'+i).is(":checked")){
-                    wed = 'WED-'+$('#wed_o_0_'+i).val()+'-'+$('#wed_o_1_'+i).val()+'-'+$('#wed_c_0_'+i).val()+'-'+$('#wed_c_1_'+i).val()+',';}
+                    wed = 'Wednesday-'+$('#wed_o_0_'+i).val()+'-'+$('#wed_o_1_'+i).val()+'-'+$('#wed_c_0_'+i).val()+'-'+$('#wed_c_1_'+i).val()+'-3'+',';}
                 if($('#thu_check_'+i).is(":checked")){
-                    thu = 'THU-'+$('#thu_o_0_'+i).val()+'-'+$('#thu_o_1_'+i).val()+'-'+$('#thu_c_0_'+i).val()+'-'+$('#thu_c_1_'+i).val()+',';}
+                    thu = 'Thursday-'+$('#thu_o_0_'+i).val()+'-'+$('#thu_o_1_'+i).val()+'-'+$('#thu_c_0_'+i).val()+'-'+$('#thu_c_1_'+i).val()+'-4'+',';}
                 if($('#fri_check_'+i).is(":checked")){
-                    fri = 'FRI-'+$('#fri_o_0_'+i).val()+'-'+$('#fri_o_1_'+i).val()+'-'+$('#fri_c_0_'+i).val()+'-'+$('#fri_c_1_'+i).val()+',';}
+                    fri = 'Friday-'+$('#fri_o_0_'+i).val()+'-'+$('#fri_o_1_'+i).val()+'-'+$('#fri_c_0_'+i).val()+'-'+$('#fri_c_1_'+i).val()+'-5'+',';}
                 if($('#sat_check_'+i).is(":checked")){
-                    sat = 'SAT-'+$('#sat_o_0_'+i).val()+'-'+$('#sat_o_1_'+i).val()+'-'+$('#sat_c_0_'+i).val()+'-'+$('#sat_c_1_'+i).val()+',';}
+                    sat = 'Saturday-'+$('#sat_o_0_'+i).val()+'-'+$('#sat_o_1_'+i).val()+'-'+$('#sat_c_0_'+i).val()+'-'+$('#sat_c_1_'+i).val()+'-6'+',';}
                 if($('#sun_check_'+i).is(":checked")){
-                    sun = 'SUN-'+$('#sun_o_0_'+i).val()+'-'+$('#sun_o_1_'+i).val()+'-'+$('#sun_c_0_'+i).val()+'-'+$('#sun_c_1_'+i).val();}
+                    sun = 'Sunday-'+$('#sun_o_0_'+i).val()+'-'+$('#sun_o_1_'+i).val()+'-'+$('#sun_c_0_'+i).val()+'-'+$('#sun_c_1_'+i).val()+'-7';}
                 
                 if(tempPhoneText){
                     phoneNumber = "STORE_PHONE_NUMBER:"+phonePrefix+"-"+tempPhoneText;

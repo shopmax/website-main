@@ -59,7 +59,6 @@ under the License.
                         </table>
                     </div>
                 </div>
-                
                 <#list supplierOrderItemsMap.entrySet() as entry>
                     <#assign partyId = entry.getKey()/>
                     <#assign supplierOrderItems = entry.getValue()/>
@@ -107,40 +106,60 @@ under the License.
                         
                         <div class="shop_address clearfix">
                             <p>You have selected to pick this item up from the store listed below. Your <strong>Order Number: ${orderId?if_exists}</strong>. You Must present this to the shop in order to pick up your purchase.</p>
-                            <div class="row">
-                                <div class="span5">
-                                    <div class="column_1">
-                                        <h5>Store address</h5>
-                                        <ul>
-                                            <li>${productStore.storeName?if_exists}</li><#--Store Name -->
-                                            <#assign facilityContactMechValueMaps = Static["org.ofbiz.party.contact.ContactMechWorker"].getFacilityContactMechValueMaps(delegator, productStore.inventoryFacilityId, false, "POSTAL_ADDRESS") />
-                                            <#if facilityContactMechValueMaps?has_content>
-                                                <#assign postalAddress = facilityContactMechValueMaps.postalAddress />
-                                                <#assign proviceStateGeo = postalAddress.getRelatedOne("ProvinceStateGeo")/>
-                                                <li>${postalAddress.address1}</li><#--Street Address Line one -->
-                                                <li>${postalAddress.address2}</li><#--Street Address Line two -->
-                                                <li>${postalAddress.city}</li><#--State -->
-                                            </#if>
-                                            
-                                            <#assign facilityContactMechValueMaps = Static["org.ofbiz.party.contact.ContactMechWorker"].getFacilityContactMechValueMaps(delegator, productStore.inventoryFacilityId, false, "TELECOM_NUMBER") />
-                                            <#if facilityContactMechValueMaps?has_content>
-                                                <#assign telecomNumber = facilityContactMechValueMaps.telecomNumber />
-                                                <li>Phone number ${telecomNumber.countryCode?if_exists} <#if telecomNumber.areaCode?exists>${telecomNumber.areaCode}-</#if>${telecomNumber.contactNumber}</li>
-                                            </#if>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="span4">
-                                    <div class="column_2">
-                                        <h5>Pickup hours</h5>
-                                        <ul>
-                                            <li>Monday - Friday: 9am - 6p</li>
-                                            <li>Saturday: 10am - 4pm</li>
-                                            <li>Sunday: Closed</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            <#if branchStoreList?has_content>
+                                <#list branchStoreList as branchStore>
+                                    <#if branchStore.shopPartyId == partyId>
+                                        <div class="row">
+                                            <div class="span5">
+                                                <div class="column_1">
+                                                    <h5>Store address</h5>
+                                                    <ul>
+                                                        <#assign branchStoreName = delegator.findOne("PostalAddress", {"contactMechId" : branchStore.contactMechId},true)>
+                                                        <#if branchStoreName?has_content>
+                                                            <li>${branchStoreName.toName?if_exists}</li>
+                                                            <li>${branchStoreName.address1?if_exists}</li>
+                                                            <li>${branchStoreName.address2?if_exists}</li>
+                                                            <li>${branchStoreName.city?if_exists}</li>
+                                                            <#assign branchStorePhones = delegator.findByAnd("ContactMechAttribute", {"contactMechId" : branchStore.contactMechId, "attrName" : "STORE_PHONE_NUMBER"}, null, true)>
+                                                            <#if branchStorePhones?has_content>
+                                                                <#assign branchStorePhone = Static["org.ofbiz.entity.util.EntityUtil"].getFirst(branchStorePhones)/>
+                                                                <li>Phone number ${branchStorePhone.attrValue?if_exists}</li>
+                                                            </#if>
+                                                            <#--<#assign facilityContactMechValueMaps = Static["org.ofbiz.party.contact.ContactMechWorker"].getFacilityContactMechValueMaps(delegator, productStore.inventoryFacilityId, false, "POSTAL_ADDRESS") />
+                                                            <#if facilityContactMechValueMaps?has_content>
+                                                                <#assign postalAddress = facilityContactMechValueMaps.postalAddress />
+                                                                <#assign proviceStateGeo = postalAddress.getRelatedOne("ProvinceStateGeo")/>
+                                                                <li>${postalAddress.address1}</li>
+                                                                <li>${postalAddress.address2}</li>
+                                                                <li>${postalAddress.city}</li>
+                                                            </#if>
+                                                            
+                                                            <#assign facilityContactMechValueMaps = Static["org.ofbiz.party.contact.ContactMechWorker"].getFacilityContactMechValueMaps(delegator, productStore.inventoryFacilityId, false, "TELECOM_NUMBER") />
+                                                            <#if facilityContactMechValueMaps?has_content>
+                                                                <#assign telecomNumber = facilityContactMechValueMaps.telecomNumber />
+                                                                <li>Phone number ${telecomNumber.countryCode?if_exists} <#if telecomNumber.areaCode?exists>${telecomNumber.areaCode}-</#if>${telecomNumber.contactNumber}</li>
+                                                            </#if>-->
+                                                        </#if>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="span4">
+                                                <div class="column_2">
+                                                    <h5>Pickup hours</h5>
+                                                    <ul>
+                                                        <#assign branchDateTimes = delegator.findByAnd("PhysicalStoreDateTime", {"contactMechId" : branchStore.contactMechId}, ["sequenceNum"], false)>
+                                                        <#if branchDateTimes?has_content>
+                                                            <#list branchDateTimes as branchDateTime>
+                                                                <li>${branchDateTime.day?if_exists} : ${branchDateTime.openHour?if_exists}.${branchDateTime.openMin?if_exists} - ${branchDateTime.closeHour?if_exists}.${branchDateTime.closeMin?if_exists}</li>
+                                                            </#list>
+                                                        </#if>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </#if>
+                                </#list>
+                            </#if>
                         </div>
                     </div>
                 </#list>

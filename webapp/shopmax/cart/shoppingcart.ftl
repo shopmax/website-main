@@ -156,12 +156,15 @@ under the License.
                                         <option value="NO_SHIPPING-${entry_index?if_exists}" selected="selected">Pick up in store</option>
                                         <option value="DELIVERY_TO-${entry_index?if_exists}">Delivery to me</option>
                                     </select>
-                                    <#assign branchStoreNameList = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("PartyContactDetailByPurpose", {"partyId" : partyId, "contactMechPurposeTypeId" : "PHYS_STORE_LOCATION"}, null, false))>
+                                    <#assign branchStoreList = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("PartyContactMechPurpose", {"partyId" : partyId, "contactMechPurposeTypeId" : "PHYS_STORE_LOCATION"}, null, false))>
                                     <select name="scBranchStore" class="drop-select chosen combo scBranchStore" id="scBranchStore_${entry_index?if_exists}" data-search-bar="true">
                                         <option value="" selected="selected">Select Branch Store</option>
-                                        <#if branchStoreNameList?has_content>
-                                            <#list branchStoreNameList as branchStoreName>
-                                                <option value="${branchStoreName.contactMechId}">${branchStoreName.toName}</option>
+                                        <#if branchStoreList?has_content>
+                                            <#list branchStoreList as branchStore>
+                                                <#assign branchStoreName = delegator.findOne("PostalAddress", {"contactMechId" : branchStore.contactMechId},true)>
+                                                <#if branchStoreName?has_content>
+                                                    <option value="NO_SHIPPING-${branchStoreName.contactMechId}-${partyId}">${branchStoreName.toName}</option>
+                                                </#if>
                                             </#list>
                                         </#if>
                                     </select>

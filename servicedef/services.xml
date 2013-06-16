@@ -306,6 +306,7 @@ under the License.
         <description>Remove Product From Shopmax</description>
         <attribute name="contactMechId" mode="IN" type="String" optional="false"/>
         <attribute name="day" mode="IN" type="String" optional="false"/>
+        <attribute name="sequenceNum" mode="IN" type="Long" optional="true"/>
         <attribute name="openHour" mode="IN" type="String" optional="true"/>
         <attribute name="openMin" mode="IN" type="String" optional="true"/>
         <attribute name="closeHour" mode="IN" type="String" optional="true"/>

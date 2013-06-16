@@ -31,6 +31,7 @@ under the License.
     <entity entity-name="PhysicalStoreDateTime" package-name="org.ofbiz.entity.shopmax">
         <field name="contactMechId" type="id-ne"/>
         <field name="day" type="long-varchar"/>
+        <field name="sequenceNum" type="numeric"/>
         <field name="openHour" type="value"/>
         <field name="openMin" type="value"/>
         <field name="closeHour" type="value"/>
