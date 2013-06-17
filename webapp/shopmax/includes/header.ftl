@@ -122,6 +122,11 @@ under the License.
     .input-error2{
         color:red;
     }
+    .input-error3{
+        color:red;
+        display:block;
+        margin: -10px 20px 10px;
+    }
 </style>
 <div style="display: none;">
     <div id="inline1" style="overflow:auto;">
@@ -170,14 +175,14 @@ under the License.
                     </div>
                     <div style="display:none;" id="forgotPasswordDiv">
                         <ul>
-                            <form name="forgotPassword" id="forgotPassword" method="post">
+                            <form name="forgotpassword" id="forgotPassword" method="post" action="<@ofbizUrl>forgotPassword${previousParams?if_exists}</@ofbizUrl>" >
                                 <li>
                                     <label class="input-error hidden" style="padding-left: 0px;" id="emailWarning">Please enter an email</label>
                                     <label class="label-1 forgot-password" id="emailPasswordText">Email password</label>
-                                    <input type="text" class="input-1 forgot-password reWhiteForgotSide" id="emailPassword">
+                                    <input type="text" name="USERNAME" class="input-1 forgot-password reWhiteForgotSide" id="emailPassword" value="<#if requestParameters.USERNAME?has_content>${requestParameters.USERNAME}<#elseif autoUserLogin?has_content>${autoUserLogin.userLoginId}</#if>"/>
                                 </li>
                                 <li>
-                                    <input type="button" name="" value="E-mail Password" class="log_btn forgot-password" id="emailPasswordButton" style="width: 125px; margin-left: 100px; float:left;">
+                                    <input type="button" name="EMAIL_PASSWORD" value="${uiLabelMap.CommonEmailPassword}" class="log_btn forgot-password" id="emailPasswordButton" style="width: 125px; margin-left: 100px; float:left;">
                                     <a href="#" class="return forgot-password" style="margin-left: 15px;">Login?</a>
                                 </li>
                             </form>

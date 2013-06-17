@@ -44,7 +44,7 @@ under the License.
             </div><!-- /.span3.sidebar -->
         <!-- MAIN CONTENT -->
             <!-- sliderdiv -->
-            <div class="span9 main-content" id="abc">
+            <div class="span9 main-content" id="registrationForm">
                 <form action="<@ofbizUrl>createCustomer</@ofbizUrl>" id="createcustomer" name="createcustomer" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="productStoreId" value="${productStore.productStoreId?if_exists}"/>
                     <input type="hidden" name="businessUser" id="businessUser" value="N"/>
@@ -61,7 +61,7 @@ under the License.
                                 <td class="col1 form-horizontal pull-left">
                                     <p class="intro-txt"><strong>Create a new account profile by completing the new registration form. Once you are done and logged in, you can save shopping cart list, track your order history, manage addresses, and speed up the check out process</strong></p>
                                     <div class="control-group">
-                                        <label class="input-error hidden">Please fill in all required fields</label>
+                                        <a class="input-error3 hidden">Please fill in all required fields</a>
                                         <label class="control-label control-label-xlarge checkbox"><input type="checkbox" class="chk_regis" name="optionsRadios" id="optionsRadios1" >&nbsp; Registered as business user <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" /></label>
                                     </div>
                                     <div class="control-group">
@@ -198,6 +198,7 @@ under the License.
                                             <a class="btn-general-small upload-btn" onclick="getFile('')" id="browse0">BROWSE</a>-->
                                             <input id="upfile" type="file" name="uploadedFile"/>*
                                             <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
+                                            <a class="logoRequired">Required</a>
                                             <#--<div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile" type="file" onchange="sub(this,'')" name="uploadedFile"/></div>-->
                                         </div>
                                     </div>

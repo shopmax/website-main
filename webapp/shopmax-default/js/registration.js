@@ -115,9 +115,13 @@ $(function(){
                 
                 if(!$(this).val().length){
                     $(this).addClass('required');
-                    $('.input-error').removeClass('hidden');
+                    $('.input-error3').removeClass('hidden');
                     $('html, body').animate({ scrollTop: 0 }, 0);
                     valid = false;
+                    if(!$('input[type=file]#upfile').val()){
+                        $('.logoRequired').removeClass('hidden');
+                        valid = false;
+                    }
                 }
                 else{
                     $(this).removeClass('required');
@@ -149,6 +153,10 @@ $(function(){
                     }
                     if(!$('#businessName').val().length){
                         $('#businessName').addClass('required');
+                        valid = false;
+                    }
+                    if(!$('input[type=file]#upfile').val()){
+                        $('.logoRequired').removeClass('hidden');
                         valid = false;
                     }
                     if(!$('#tradingName').val().length){
@@ -297,7 +305,7 @@ $(function(){
                 
                 if(!$(this).val().length){
                     $(this).addClass('required');
-                    $('.input-error').removeClass('hidden');
+                    $('.input-error3').removeClass('hidden');
                     valid = false;
                 }
                 else{
@@ -335,7 +343,7 @@ $(function(){
     });
     $('input.check').focus(function(){
         $('#'+this.id).removeClass('required');
-        $('.input-error').addClass('hidden');
+        $('.input-error3').addClass('hidden');
     });
     $('#firstNameOnCard').focus(function(){
         $('#firstNameOnCard').removeClass('required');
@@ -351,10 +359,10 @@ $(function(){
     });
     $('#subDomain').focus(function(){
         $('#subDomain').removeClass('required');
-        $('.input-error').addClass('hidden');
+        $('.input-error3').addClass('hidden');
     });
     $('#yourBtn2').focus(function(){
-        $('.input-error').addClass('hidden');
+        $('.input-error3').addClass('hidden');
     });
     $('#currentPassword').focus(function(){
         $('#currentPassword').removeClass('required');
@@ -414,7 +422,7 @@ $(function(){
             $('#subDomain').removeClass('check required');
             $('#domianName').addClass('check required');
             $('#subDomain').val('');
-            $('.input-error').addClass('hidden');
+            $('.input-error3').addClass('hidden');
             $('.form-inline').find('input.check').each(function(){
                 if($(this).val().length){
                     $(this).removeClass('check required');
@@ -426,7 +434,7 @@ $(function(){
             $('#domianName').removeClass('check required');
             $('#subDomain').addClass('check required');
             $('#domianName').val('');
-            $('.input-error').addClass('hidden');
+            $('.input-error3').addClass('hidden');
             $('.form-inline').find('input.check').each(function(){
                 if($(this).val().length){
                     $(this).removeClass('check required');
@@ -459,7 +467,7 @@ $(function(){
         }
     });
     $('#optionsRadios2').click(function(){
-        $('.input-error').addClass('hidden');
+        $('.input-error3').addClass('hidden');
         $('#firstNameOnCard').addClass('check required');
         $('#lastNameOnCard').addClass('check required');
         $('.cardNumber').addClass('check required');
@@ -489,7 +497,7 @@ $(function(){
         });
     });
     $('#optionsRadios3').click(function(){
-        $('.input-error').addClass('hidden');
+        $('.input-error3').addClass('hidden');
         $('#firstNameOnCard').removeClass('check required');
         $('#lastNameOnCard').removeClass('check required');
         $('.cardNumber').removeClass('check required');
@@ -701,11 +709,11 @@ $(function(){
         });
         $('#branchName_'+index).focus(function(){
             $('#branchName_'+index).removeClass('required');
-            $('.input-error').addClass('hidden');
+            $('.input-error3').addClass('hidden');
         });
         $('#inputLocation_'+index).focus(function(){
             $('#inputLocation_'+index).removeClass('required');
-            $('.input-error').addClass('hidden');
+            $('.input-error3').addClass('hidden');
         });
         
     });
@@ -758,6 +766,10 @@ $(function(){
     $('#browse0').click(function(){
     	$('#browse0').removeClass('check required');
         $('#yourBtn').css({'background-color':'#FFFFFF'});
+    });
+    $('#upfile').click(function(){
+    	$('.logoRequired').addClass('hidden');
+    	$('.input-error3').addClass('hidden');
     });
 });
 function isNumberKey(evt) {
