@@ -72,18 +72,23 @@ under the License.
     </div>
 </div>
 
-<div class="cat_viewing">
-    <#if productCategoryMembers?has_content>
-            <#list productCategoryMembers as productCategoryMember>
-                ${setRequestAttribute("optProductId", productCategoryMember.productId)}
-                ${setRequestAttribute("productCategoryMember", productCategoryMember)}
-                ${setRequestAttribute("listIndex", productCategoryMember_index)}
-                ${screens.render("component://shopmax/widget/CatalogScreens.xml#ProductSummary")}
-            </#list>
-    <#else>
-        <div>${uiLabelMap.ProductNoProductsInThisCategory}</div>
-    </#if>
-</div>
+<#if productCategoryMembers?has_content>
+    <div class="cat_viewing">
+    <#list productCategoryMembers as productCategoryMember>
+        ${setRequestAttribute("optProductId", productCategoryMember.productId)}
+        ${setRequestAttribute("productCategoryMember", productCategoryMember)}
+        ${setRequestAttribute("listIndex", productCategoryMember_index)}
+        ${screens.render("component://shopmax/widget/CatalogScreens.xml#ProductSummary")}
+        <#if productCategoryMember_index%4 == 3 && productCategoryMember_index != 0>
+            </div>
+            <div class="cat_viewing">
+        <#elseif productCategoryMember_index == productCategoryMembers?size-1>
+            </div>
+        </#if>
+    </#list>
+<#else>
+    <div>${uiLabelMap.ProductNoProductsInThisCategory}</div>
+</#if>
 
 <div class="add-product topviewbox clearfix">
     <span class="tital">SORT BY</span>
