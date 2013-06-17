@@ -225,7 +225,7 @@ under the License.
             }
         </script>
         <style> 
-        .btn-general1{
+            .btn-general1{
                 background: url("img/btn-general-rpt.png") repeat-x scroll 0 0 transparent;
                 border-radius: 3px 3px 3px 3px;
                 color: white;

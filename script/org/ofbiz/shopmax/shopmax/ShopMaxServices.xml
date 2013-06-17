@@ -182,7 +182,7 @@ under the License.
     </simple-method>
     
     <simple-method method-name="createShopmaxCustomer" short-description="Create Shopmax Customer" login-required="false">
-            <entity-one entity-name="UserLogin" value-field="systemUserLogin">
+        <entity-one entity-name="UserLogin" value-field="systemUserLogin">
             <field-map field-name="userLoginId" value="system"/>
         </entity-one>
         

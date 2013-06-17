@@ -102,8 +102,13 @@ under the License.
                 $('#forgotPassword').submit();
             }
         });
-        if($('#content-messages').length != 0){
-            $('.various').click();
+        if($('#content-messages-registration').length == 0){
+            if($('#content-messages').length != 0){
+                $('.various').click();
+            }
+        }
+        else{
+            $('#content-messages').remove();
         }
     });
 </script>

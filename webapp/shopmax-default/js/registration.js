@@ -344,6 +344,7 @@ $(function(){
     $('input.check').focus(function(){
         $('#'+this.id).removeClass('required');
         $('.input-error3').addClass('hidden');
+        $('#content-messages-registration').remove();
     });
     $('#firstNameOnCard').focus(function(){
         $('#firstNameOnCard').removeClass('required');
