@@ -163,10 +163,8 @@ public class OrderServices {
                                     sci.setOrderItemAssocTypeId("DROP_SHIPMENT");
                                     
                                     GenericValue productFacility = delegator.findOne("ProductFacility", UtilMisc.toMap( "productId", item.getString("productId"), "facilityId", "ShopMaxWarehouse"), false);
-                                    Debug.log("=====================productFacility===================== : "+productFacility, "");
                                     if (productFacility != null) {
                                         BigDecimal lastInventoryCount = productFacility.getBigDecimal("lastInventoryCount").subtract(item.getBigDecimal("quantity"));
-                                        Debug.log("=====================lastInventoryCount===================== : "+lastInventoryCount, "");
                                         Map<String, Object> updateProductFacilityMap = FastMap.newInstance();
                                         updateProductFacilityMap.put("userLogin", userLogin);
                                         updateProductFacilityMap.put("productId", item.getString("productId"));
