@@ -102,7 +102,8 @@ if(parameters.productId){
         
         productAttribute = delegator.findOne("ProductAttribute", [productId : product.productId, attrName : "SHIPPING_SIZE"], true);
         if (productAttribute) {
-            context.shippingSize = productAttribute.attrValue;
+            BigDecimal stock = new BigDecimal(productAttribute.attrValue);
+            context.stock = stock;
         }
         
         goodIdentification = delegator.findOne("GoodIdentification", [goodIdentificationTypeId : "SKU", productId : parameters.productId], true);

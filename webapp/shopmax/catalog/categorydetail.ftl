@@ -50,11 +50,12 @@ under the License.
 <div class="add-product topviewbox clearfix">
     <span class="tital">SORT BY</span>
     <select class="span2">
-        <option value="" selected="selected">Sort By</option>
-        <option value="price">Price</option>
-        <option value="name">Name</option>
-        <option value="stock">Stock</option>
+        <option value="">Sort By</option>
+        <option value="price" <#if parameters.sortBy?if_exists == "price">selected="selected"</#if>>Price</option>
+        <option value="name" <#if parameters.sortBy?if_exists == "name">selected="selected"</#if>>Name</option>
+        <option value="stock" <#if parameters.sortBy?if_exists == "stock">selected="selected"</#if>>Stock</option>
     </select>
+    
     <span class="tital">VIEW BY</span>
     <a href="<@ofbizUrl><#if headerItem?if_exists == "categorygridview" || headerItem?if_exists == "categorylistview">categorygridview?productCategoryId=${productCategoryId}<#else>shopcategorygridview?productCategoryId=${productCategoryId}</#if></@ofbizUrl>" class="grid_view"><span class="b"></span>Grid</a>
     <a href="<@ofbizUrl><#if headerItem?if_exists == "categorygridview" || headerItem?if_exists == "categorylistview">categorylistview?productCategoryId=${productCategoryId}<#else>shopcategorylistview?productCategoryId=${productCategoryId}</#if></@ofbizUrl>" class="list_view"><span class="b"></span>List</a>
@@ -73,12 +74,12 @@ under the License.
 
 <div class="cat_viewing">
     <#if productCategoryMembers?has_content>
-        <#list productCategoryMembers as productCategoryMember>
-            ${setRequestAttribute("optProductId", productCategoryMember.productId)}
-            ${setRequestAttribute("productCategoryMember", productCategoryMember)}
-            ${setRequestAttribute("listIndex", productCategoryMember_index)}
-            ${screens.render("component://shopmax/widget/CatalogScreens.xml#ProductSummary")}
-        </#list>
+            <#list productCategoryMembers as productCategoryMember>
+                ${setRequestAttribute("optProductId", productCategoryMember.productId)}
+                ${setRequestAttribute("productCategoryMember", productCategoryMember)}
+                ${setRequestAttribute("listIndex", productCategoryMember_index)}
+                ${screens.render("component://shopmax/widget/CatalogScreens.xml#ProductSummary")}
+            </#list>
     <#else>
         <div>${uiLabelMap.ProductNoProductsInThisCategory}</div>
     </#if>
@@ -88,9 +89,9 @@ under the License.
     <span class="tital">SORT BY</span>
     <select class="span2">
         <option value="" selected="selected">Sort By</option> 
-        <option value="price">Price</option>
-        <option value="name">Name</option>
-        <option value="stock">Stock</option>
+        <option value="price" <#if parameters.sortBy?if_exists == "price">selected="selected"</#if>>Price</option>
+        <option value="name" <#if parameters.sortBy?if_exists == "name">selected="selected"</#if>>Name</option>
+        <option value="stock" <#if parameters.sortBy?if_exists == "stock">selected="selected"</#if>>Stock</option>
     </select>
     <span class="tital">VIEW BY</span>
     <a href="<@ofbizUrl><#if headerItem?if_exists == "categorygridview" || headerItem?if_exists == "categorylistview">categorygridview?productCategoryId=${productCategoryId}<#else>shopcategorygridview?productCategoryId=${productCategoryId}</#if></@ofbizUrl>" class="grid_view"><span class="b"></span>Grid</a>

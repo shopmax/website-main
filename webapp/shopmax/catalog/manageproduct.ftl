@@ -145,6 +145,19 @@ under the License.
         }
         $('#li-'+index).addClass('uploaded');
     }
+    $(function(){
+        $('#sortBy').change(function(){
+            if(getUrlVars()["productCategoryId"]){
+                var lastURL = window.location.href.split('#')[0];
+                var uselocation = lastURL.split('&sortBy')[0];
+                window.location = uselocation+'&sortBy='+this.options[ this.selectedIndex ].value;
+            }else{
+                var lastURL = window.location.href.split('#')[0];
+                var uselocation = lastURL.split('?sortBy')[0];
+                window.location = uselocation+'?sortBy='+this.options[ this.selectedIndex ].value;
+            }
+        });
+    });
 </script>
 <style>
     .uploaded-image{
@@ -162,11 +175,11 @@ under the License.
         <div class="span9 main-content manage-product">
             <form class="form-inline form-search">
                 <label>Sort By</label>
-                <select name="SortBy" class="drop-select chosen combo sortBy" data-search-bar="true">
-                    <option value="" selected="selected">Sort By</option>
-                    <option value="price">Price</option>
-                    <option value="name">Name</option>
-                    <option value="stock">Stock</option>
+                <select name="SortBy" class="drop-select chosen combo sortBy" id="sortBy" data-search-bar="true">
+                    <option value="" <#if parameters.sortBy?if_exists == "">selected="selected"</#if>>Sort By</option>
+                    <option value="price" <#if parameters.sortBy?if_exists == "price">selected="selected"</#if>>Price</option>
+                    <option value="name" <#if parameters.sortBy?if_exists == "name">selected="selected"</#if>>Name</option>
+                    <option value="stock" <#if parameters.sortBy?if_exists == "stock">selected="selected"</#if>>Stock</option>
                 </select>
                 
                 <div class="input-search">
