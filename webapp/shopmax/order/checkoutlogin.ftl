@@ -621,7 +621,7 @@ under the License.
             </#list>
             <div class="span9 main-content">
                 <ul class="sc-step">
-                    <li><span class="badge badge-inactive">1</span>&nbsp;&nbsp;Shopping Cart</li>
+                    <li><span class="badge badge-inactive">1</span><a href="/control/shoppingcart" id="shoppingCartLink" style="text-decoration : none;">&nbsp;&nbsp;Shopping Cart</a></li>
                     <li class="step-active"><span class="badge badge-active">2</span>&nbsp;&nbsp;Billing & Delivery</li>
                     <li><span class="badge badge-inactive">3</span>&nbsp;&nbsp;Complete</li>
                 </ul>
