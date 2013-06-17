@@ -37,8 +37,6 @@ under the License.
         $('#sameAsShipping').click(function(){
             if($(this).is(":checked")){
                 $('#useShippingAddressForBilling').val('Y');
-                $('.processOrderSummaryButton').attr('style','display: none;');
-                $('.summaryButton2').attr('style','');
                 $('#billFirstName').attr('value',$('#shipFirstName').val());
                 $('#billLastName').attr('value',$('#shipLastName').val());
                 $('#billPhone').attr('value',$('#shipPhone').val());
@@ -78,8 +76,6 @@ under the License.
             }
             else{
                 $('#useShippingAddressForBilling').val('N');
-                $('.summaryButton2').attr('style','display: none;');
-                $('.processOrderSummaryButton').attr('style','');
                 $('#billToFaxNumber').attr('value','');
                 $('#billAddressInfo').attr('value','');
                 $('#billToAreaCode_chzn').find('span').text('03');
@@ -863,7 +859,6 @@ under the License.
                 </#if>
                 <#if !contactMechList?has_content && !billPaymentMethod?has_content>
                     <input type="button" style="" id="processOrderSummaryButton" name="processOrderSummaryButton" class="btn-general pull-right processOrderSummaryButton" value="Place Order" />
-                    <input type="button" style="display: none;" id="summaryButton2" name="summaryButton2" class="btn-general pull-right summaryButton2" value="Place Order" />
                 </#if>
             </form>
         </div><!-- /.span9 -->
