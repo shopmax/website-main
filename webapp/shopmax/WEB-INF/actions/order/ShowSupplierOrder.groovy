@@ -66,9 +66,20 @@ if(orderItems) {
 
 if(parameters.scBranchStore){
     branchStoreDetailLists = parameters.scBranchStore;
+    String branchStoreDetailString = branchStoreDetailLists.toString();
     branchStoreList = [];
-    for(branchStoreDetailList in branchStoreDetailLists) {
-        branchStoreDetail = branchStoreDetailList.split("-");
+    if(branchStoreDetailString.indexOf(',') != -1){
+        for(branchStoreDetailList in branchStoreDetailLists) {
+            branchStoreDetail = branchStoreDetailList.split("-");
+            branchStoreDetailMap = [:];
+            branchStoreDetailMap.typeShipping = branchStoreDetail[0];
+            branchStoreDetailMap.contactMechId = branchStoreDetail[1];
+            branchStoreDetailMap.shopPartyId = branchStoreDetail[2];
+            branchStoreList.add(branchStoreDetailMap);
+        }
+    }
+    else{
+        branchStoreDetail = branchStoreDetailLists.split("-");
         branchStoreDetailMap = [:];
         branchStoreDetailMap.typeShipping = branchStoreDetail[0];
         branchStoreDetailMap.contactMechId = branchStoreDetail[1];

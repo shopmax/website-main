@@ -581,9 +581,13 @@ under the License.
         <#include "component://shopmax/webapp/shopmax/order/ordersummary.ftl" />
         <form id="orderSummarySubmitForm" action="<@ofbizUrl>onePageProcess</@ofbizUrl>" method="post">
             <#if branchStoreList?has_content>
-                <#list branchStoreList as branchStore>
-                    <input type="hidden" name="scBranchStore" value="${branchStore}"/>
-                </#list>
+                <#if branchStoreList?is_sequence>
+                    <#list branchStoreList as branchStore>
+                        <input type="hidden" name="scBranchStore" value="${branchStore}"/>
+                    </#list>
+                <#else>
+                    <input type="hidden" name="scBranchStore" value="${branchStoreList}"/>
+                </#if>
             </#if>
             <#-- Shipping Options -->
             <#list supplierCarrierMap.keySet() as partyId>

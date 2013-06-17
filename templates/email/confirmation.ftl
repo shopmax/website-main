@@ -116,10 +116,10 @@ under the License.
                         <tr>
                             <td valign="top"  height="18" align="left"></td>
                         </tr>
-                        <tr>
-                            <#list supplierOrderItemsMap.entrySet() as entry>
-                                <#assign partyId = entry.getKey()/>
-                                <#assign supplierOrderItems = entry.getValue()/>
+                        <#list supplierOrderItemsMap.entrySet() as entry>
+                            <#assign partyId = entry.getKey()/>
+                            <#assign supplierOrderItems = entry.getValue()/>
+                            <tr>
                                 <td  valign="top" align="left" ><p style="margin:0;padding:10px 0 10px 10px;background:#84b234; font-family:Georgia, 'Times New Roman', Times, serif;font-style:italic;font-size:20px;color:#ffffff">${orderContext.getSupplierName(partyId)}</p>
                                     <table width="732"  cellspacing="0" cellpadding="0" bgcolor="#555555" style="margin:0 0 0 0px;">
                                         <tr>
@@ -208,8 +208,8 @@ under the License.
                                         </tr>
                                     </table>
                                 </td>
-                            </#list>
-                        </tr>
+                            </tr>
+                        </#list>
                     </table>
                     <table width="732" border="0" cellspacing="0" cellpadding="0"  style="border:1px solid #dcdcdc;" >
                         <tr>
