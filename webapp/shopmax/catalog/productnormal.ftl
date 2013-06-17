@@ -16,6 +16,15 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
+<script>
+    $(function(){
+        $('.additem-productdetail').click(function(){
+            var img1 = $('#product-image').find('img');
+            flyToElement($(img1), $('#cart-info'));
+            return false;
+        });
+    });
+</script>
 <style>
 .btn-large.grey {
     background-color:#8F8F8F;
@@ -29,7 +38,7 @@ under the License.
 <div class="row content-left">
     <div class="span6">
         <div class="product-wrapper">
-            <div class="product-inner">
+            <div class="product-inner" id="product-image">
                 <!-- <img src="http://placehold.it/472x472">  -->
                 <img src="<#if productImageList?has_content><@ofbizContentUrl>${productImageList[0].productImage}</@ofbizContentUrl><#else><@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl></#if>" width="472" style="height:472px;"/>
             </div>
@@ -126,7 +135,7 @@ under the License.
                         <#if !stock?has_content || "0" = stock.attrValue?if_exists>
                             <button class="btn-large grey cart" type="button" value="OUT OF STOCK">OUT OF STOCK</button>
                         <#else>
-                            <button class="btn-large blue cart" type="button" value="ADD TO CART" onclick="addItem('${product.productId}');">ADD TO CART</button>
+                            <a class="btn-large blue cart additem-productdetail" onclick="addItem('${product.productId}');">ADD TO CART</a>
                         </#if>
                         <ul class="selectAction">
                             <li><a href="#">Add to shopping list</a></li>
