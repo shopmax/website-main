@@ -117,121 +117,121 @@ under the License.
                             <td valign="top"  height="18" align="left"></td>
                         </tr>
                         <tr>
-                        <#list supplierOrderItemsMap.entrySet() as entry>
-                            <#assign partyId = entry.getKey()/>
-                            <#assign supplierOrderItems = entry.getValue()/>
-                            <td  valign="top" align="left" ><p style="margin:0;padding:10px 0 10px 10px;background:#84b234; font-family:Georgia, 'Times New Roman', Times, serif;font-style:italic;font-size:20px;color:#ffffff">${orderContext.getSupplierName(partyId)}</p>
-                                <table width="732"  cellspacing="0" cellpadding="0" bgcolor="#555555" style="margin:0 0 0 0px;">
-                                    <tr>
-                                        <td valign="top"  align="left" width="445"><p style="margin:0;padding:14px 0 14px 18px; font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#ffffff">PRODUCT</p></td>
-                                        <td valign="top"  align="left"><p style="margin:0;padding:14px 0 14px 18px;font-family:Arial, Helvetica, sans-serif;font-size:11px; color:#ffffff">UNITPRICE</p></td>
-                                        <td valign="top"  align="left"><p style="margin:0;padding:14px 0 14px 18px;font-family:Arial, Helvetica, sans-serif;font-size:11px; color:#ffffff">QUANTITY</p></td>
-                                        <td valign="top"  align="left"><p style="margin:0;padding:14px 0 14px 18px;font-family:Arial, Helvetica, sans-serif;font-size:11px; color:#ffffff">SUB TOTAL</p></td>
-                                    </tr>
-                                </table>
-                                <table width="729"  cellspacing="0" cellpadding="0" style="border:1px solid #e1e1e1">  
-                                    <tr>
-                                        <td valign="top"  align="left"  height="18">
-                                            <table width="730"  cellspacing="0" cellpadding="0" style="border-bottom:1px solid #e1e1e1">
-                                                <tr>
-                                                    <td valign="top"  align="left"  height="18"></td>
-                                                </tr>
-                                                <#list supplierOrderItems as orderItem>
-                                                    <#assign product = orderItem.getRelatedOne("Product", false)/>
-                                                    <#assign contentAssocThumbs = ""/>
-                                                    <#assign productContentAndInfoImages = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductContentAndInfo", {"productId" : product.productId, "productContentTypeId" : "IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"}, ["sequenceNum"], false))>
-                                                    <#if productContentAndInfoImages?has_content>
-                                                        <#assign contentAssocThumbs = delegator.findByAnd("ContentAssocDataResourceViewTo", {"contentIdStart" : productContentAndInfoImages[0].contentId, "caContentAssocTypeId" : "IMAGE_THUMBNAIL"}, null, false)>
-                                                    </#if>
+                            <#list supplierOrderItemsMap.entrySet() as entry>
+                                <#assign partyId = entry.getKey()/>
+                                <#assign supplierOrderItems = entry.getValue()/>
+                                <td  valign="top" align="left" ><p style="margin:0;padding:10px 0 10px 10px;background:#84b234; font-family:Georgia, 'Times New Roman', Times, serif;font-style:italic;font-size:20px;color:#ffffff">${orderContext.getSupplierName(partyId)}</p>
+                                    <table width="732"  cellspacing="0" cellpadding="0" bgcolor="#555555" style="margin:0 0 0 0px;">
+                                        <tr>
+                                            <td valign="top"  align="left" width="445"><p style="margin:0;padding:14px 0 14px 18px; font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#ffffff">PRODUCT</p></td>
+                                            <td valign="top"  align="left"><p style="margin:0;padding:14px 0 14px 18px;font-family:Arial, Helvetica, sans-serif;font-size:11px; color:#ffffff">UNITPRICE</p></td>
+                                            <td valign="top"  align="left"><p style="margin:0;padding:14px 0 14px 18px;font-family:Arial, Helvetica, sans-serif;font-size:11px; color:#ffffff">QUANTITY</p></td>
+                                            <td valign="top"  align="left"><p style="margin:0;padding:14px 0 14px 18px;font-family:Arial, Helvetica, sans-serif;font-size:11px; color:#ffffff">SUB TOTAL</p></td>
+                                        </tr>
+                                    </table>
+                                    <table width="729"  cellspacing="0" cellpadding="0" style="border:1px solid #e1e1e1">  
+                                        <tr>
+                                            <td valign="top"  align="left"  height="18">
+                                                <table width="730"  cellspacing="0" cellpadding="0" style="border-bottom:1px solid #e1e1e1">
                                                     <tr>
-                                                        <td valign="top"  align="left"  width="107" style="padding:0 0 0 20px"><a href="#"><img src="<#if contentAssocThumbs?has_content>${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}${contentAssocThumbs[0].drObjectInfo}<#else>${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/images/defaultImage.jpg</#if>" width="100px"/></a></td>
-                                                        <td valign="top"  align="left" width="326"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px;line-height:20px; color:#464646"><b>${product.productName?if_exists}</b></td>
-                                                        <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b><@ofbizCurrency amount=orderItem.unitPrice /></b></p></td>
-                                                        <td valign="top"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> ${orderItem.quantity?string.number}</b></p></td>
-                                                        <td valign="top"  align="right"><p style="margin:0;padding:0 29px 0 0px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> <@ofbizCurrency amount=Static["org.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments)/></b></p></td>
+                                                        <td valign="top"  align="left"  height="18"></td>
                                                     </tr>
-                                                </#list>
-                                                <tr>
-                                                    <td valign="top"  height="25" align="left">&nbsp;</td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <table width="732" border="0" cellspacing="0" cellpadding="0"  style="border:1px solid #dcdcdc;background:#f0f0f0;" >
-                                    <tr>
-                                        <td valign="top"  height="16" align="left"></td>
-                                    </tr>
-                                    <tr>
-                                        <td valign="top"  align="left"><p style="margin:0;padding:0px 0 0px 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646">You have selected to pick this item up from the store listed below. Your <b>Order Number: ${orderId?if_exists}</b> You Must present this to the shop in order to pick up your purchase.</p></td>
-                                    </tr>
-                                    <tr>
-                                        <td valign="top"  height="26" align="left">
-                                            <table width="730"  cellspacing="0" cellpadding="5" >
-                                                <tr>
-                                                    <td valign="top"  height="10" align="left"></td>
-                                                    <td valign="top"  height="10" align="left"></td>
-                                                    <td valign="top"  height="10" align="left"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">STORE ADDRESS</p></td> 
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">PICKUP HOURS</p></td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  height="0" align="left"></td>
-                                                    <td valign="top"  height="0" align="left"></td>
-                                                    <td valign="top"  height="0" align="left"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#--Store Name -->
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Monday - Friday: 9am - 6p -->
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Street Address Line one -->
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Saturday: 10am - 4pm -->
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Street Address Line two -->
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Sunday: Closed -->
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- State -->
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Phone number xxx xxx xxx -->
-                                                </tr>
-                                                <tr>
-                                                    <td valign="top"  height="18" align="left"></td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        </#list>
-                                    </tr>
-                                </table>
-                                <table width="732" border="0" cellspacing="0" cellpadding="0"  style="border:1px solid #dcdcdc;" >
-                                    <tr>
-                                        <td valign="top"  height="20" align="left"></td>
-                                    </tr>
-                                    <tr>
-                                        <td valign="top"  align="left"><p style="margin:0;padding:0px 0 0px 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646">You have received <b>$20 voucher</b> to spend in this shop for your next order.</p></td>
-                                    </tr>
-                                    <tr>
-                                        <td valign="top"  height="38" align="left"></td>
-                                    </tr>
-                                    <tr>
-                                        <td valign="top"  align="left"><p style="margin:0;padding:0px 0 0px 24px;font-family:Arial, Helvetica, sans-serif;font-size:24px; color:#464646">Just enter<font color="#84b234"> SHOP20OFF</font> at checkout</p></td>
-                                    </tr>
-                                    <tr>
-                                        <td valign="top"  height="14" align="left"></td>
-                                    </tr>
-                                    <tr>
-                                        <td valign="top"  align="left"><p style="margin:0;padding:0px 0 0px 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646">Voucher code expires 01/09/2013</p></td>
-                                    </tr>
-                                    <tr>
-                                        <td valign="top"  height="34" align="left"></td>
-                                    </tr>
-                                </table>
-                            </td>
+                                                    <#list supplierOrderItems as orderItem>
+                                                        <#assign product = orderItem.getRelatedOne("Product", false)/>
+                                                        <#assign contentAssocThumbs = ""/>
+                                                        <#assign productContentAndInfoImages = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductContentAndInfo", {"productId" : product.productId, "productContentTypeId" : "IMAGE", "statusId" : "IM_APPROVED", "drIsPublic" : "Y"}, ["sequenceNum"], false))>
+                                                        <#if productContentAndInfoImages?has_content>
+                                                            <#assign contentAssocThumbs = delegator.findByAnd("ContentAssocDataResourceViewTo", {"contentIdStart" : productContentAndInfoImages[0].contentId, "caContentAssocTypeId" : "IMAGE_THUMBNAIL"}, null, false)>
+                                                        </#if>
+                                                        <tr>
+                                                            <td valign="top"  align="left"  width="107" style="padding:0 0 0 20px"><a href="#"><img src="<#if contentAssocThumbs?has_content>${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}${contentAssocThumbs[0].drObjectInfo}<#else>${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/images/defaultImage.jpg</#if>" width="100px"/></a></td>
+                                                            <td valign="top"  align="left" width="326"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px;line-height:20px; color:#464646"><b>${product.productName?if_exists}</b></td>
+                                                            <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b><@ofbizCurrency amount=orderItem.unitPrice /></b></p></td>
+                                                            <td valign="top"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> ${orderItem.quantity?string.number}</b></p></td>
+                                                            <td valign="top"  align="right"><p style="margin:0;padding:0 29px 0 0px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> <@ofbizCurrency amount=Static["org.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments)/></b></p></td>
+                                                        </tr>
+                                                    </#list>
+                                                    <tr>
+                                                        <td valign="top"  height="25" align="left">&nbsp;</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table width="732" border="0" cellspacing="0" cellpadding="0"  style="border:1px solid #dcdcdc;background:#f0f0f0;" >
+                                        <tr>
+                                            <td valign="top"  height="16" align="left"></td>
+                                        </tr>
+                                        <tr>
+                                            <td valign="top"  align="left"><p style="margin:0;padding:0px 0 0px 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646">You have selected to pick this item up from the store listed below. Your <b>Order Number: ${orderId?if_exists}</b> You Must present this to the shop in order to pick up your purchase.</p></td>
+                                        </tr>
+                                        <tr>
+                                            <td valign="top"  height="26" align="left">
+                                                <table width="730"  cellspacing="0" cellpadding="5" >
+                                                    <tr>
+                                                        <td valign="top"  height="10" align="left"></td>
+                                                        <td valign="top"  height="10" align="left"></td>
+                                                        <td valign="top"  height="10" align="left"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">STORE ADDRESS</p></td> 
+                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">PICKUP HOURS</p></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td valign="top"  height="0" align="left"></td>
+                                                        <td valign="top"  height="0" align="left"></td>
+                                                        <td valign="top"  height="0" align="left"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#--Store Name -->
+                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Monday - Friday: 9am - 6p -->
+                                                    </tr>
+                                                    <tr>
+                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Street Address Line one -->
+                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Saturday: 10am - 4pm -->
+                                                    </tr>
+                                                    <tr>
+                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Street Address Line two -->
+                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Sunday: Closed -->
+                                                    </tr>
+                                                    <tr>
+                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- State -->
+                                                    </tr>
+                                                    <tr>
+                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Phone number xxx xxx xxx -->
+                                                    </tr>
+                                                    <tr>
+                                                        <td valign="top"  height="18" align="left"></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </#list>
+                        </tr>
+                    </table>
+                    <table width="732" border="0" cellspacing="0" cellpadding="0"  style="border:1px solid #dcdcdc;" >
+                        <tr>
+                            <td valign="top"  height="20" align="left"></td>
+                        </tr>
+                        <tr>
+                            <td valign="top"  align="left"><p style="margin:0;padding:0px 0 0px 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646">You have received <b>$20 voucher</b> to spend in this shop for your next order.</p></td>
+                        </tr>
+                        <tr>
+                            <td valign="top"  height="38" align="left"></td>
+                        </tr>
+                        <tr>
+                            <td valign="top"  align="left"><p style="margin:0;padding:0px 0 0px 24px;font-family:Arial, Helvetica, sans-serif;font-size:24px; color:#464646">Just enter<font color="#84b234"> SHOP20OFF</font> at checkout</p></td>
+                        </tr>
+                        <tr>
+                            <td valign="top"  height="14" align="left"></td>
+                        </tr>
+                        <tr>
+                            <td valign="top"  align="left"><p style="margin:0;padding:0px 0 0px 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646">Voucher code expires 01/09/2013</p></td>
+                        </tr>
+                        <tr>
+                            <td valign="top"  height="34" align="left"></td>
                         </tr>
                     </table>
                     <table width="732"  align="center" cellspacing="0" cellpadding="2" style= "border:1px solid #e1e1e1;">

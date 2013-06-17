@@ -752,12 +752,6 @@ under the License.
             <set field="receiveCtx.quantityRejected" value="0" type="BigDecimal"/>
             <set field="receiveCtx.inventoryItemTypeId" value="NON_SERIAL_INV_ITEM"/>
             <call-service service-name="receiveInventoryProduct" in-map-name="receiveCtx"/>
-            
-            <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
-            <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
-            <set field="createProductAttributeMap.attrName" value="STOCK"/>
-            <set field="createProductAttributeMap.attrValue" from-field="parameters.stock"/>
-            <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
         </if-not-empty>
         
         <if-not-empty field="parameters.productSKU">
@@ -883,11 +877,11 @@ under the License.
         </if-not-empty>
         
         <if-not-empty field="parameters.stock">
-            <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
-            <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
-            <set field="createProductAttributeMap.attrName" value="STOCK"/>
-            <set field="createProductAttributeMap.attrValue" from-field="parameters.stock"/>
-            <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
+            <set field="createProductFacilityMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createProductFacilityMap.productId" from-field="parameters.productId"/>
+            <set field="createProductFacilityMap.facilityId" value="ShopMaxWarehouse"/>
+            <set field="createProductFacilityMap.lastInventoryCount" from-field="parameters.stock" type="BigDecimal"/>
+            <call-service service-name="createProductFacility" in-map-name="createProductFacilityMap"/>
         </if-not-empty>
         
         <if-not-empty field="parameters.shippingSize">
@@ -1571,25 +1565,6 @@ under the License.
             <set field="receiveCtx.quantityRejected" value="0" type="BigDecimal"/>
             <set field="receiveCtx.inventoryItemTypeId" value="NON_SERIAL_INV_ITEM"/>
             <call-service service-name="receiveInventoryProduct" in-map-name="receiveCtx"/>
-            
-            <entity-one value-field="productAttribute" entity-name="ProductAttribute">
-                <field-map field-name="productId" from-field="parameters.productId"/>
-                <field-map field-name="attrName" value="STOCK"/>
-            </entity-one>
-            <if-empty field="productAttribute">
-                <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
-                <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
-                <set field="createProductAttributeMap.attrName" value="STOCK"/>
-                <set field="createProductAttributeMap.attrValue" from-field="parameters.stock"/>
-                <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
-            <else>
-                <set field="updateProductAttributeMap.userLogin" from-field="systemUserLogin"/>
-                <set field="updateProductAttributeMap.productId" from-field="productAttribute.productId"/>
-                <set field="updateProductAttributeMap.attrName" from-field="productAttribute.attrName"/>
-                <set field="updateProductAttributeMap.attrValue" from-field="parameters.stock"/>
-                <call-service service-name="updateProductAttribute" in-map-name="updateProductAttributeMap"/>
-            </else>
-            </if-empty>
         </if-compare>
         
         <entity-one value-field="productAttribute" entity-name="ProductAttribute">
@@ -1848,24 +1823,26 @@ under the License.
             </if-empty>
         </if-not-empty>
         
-        <entity-one value-field="productAttribute" entity-name="ProductAttribute">
+        <entity-one value-field="productFacility" entity-name="ProductFacility">
             <field-map field-name="productId" from-field="parameters.productId"/>
-            <field-map field-name="attrName" value="STOCK"/>
+            <field-map field-name="facilityId" value="ShopMaxWarehouse"/>
         </entity-one>
-        <if-empty field="productAttribute">
-            <set field="createProductAttributeMap.userLogin" from-field="systemUserLogin"/>
-            <set field="createProductAttributeMap.productId" from-field="parameters.productId"/>
-            <set field="createProductAttributeMap.attrName" value="STOCK"/>
-            <set field="createProductAttributeMap.attrValue" from-field="parameters.stock"/>
-            <call-service service-name="createProductAttribute" in-map-name="createProductAttributeMap"/>
-        <else>
-            <set field="updateProductAttributeMap.userLogin" from-field="systemUserLogin"/>
-            <set field="updateProductAttributeMap.productId" from-field="productAttribute.productId"/>
-            <set field="updateProductAttributeMap.attrName" from-field="productAttribute.attrName"/>
-            <set field="updateProductAttributeMap.attrValue" from-field="parameters.stock"/>
-            <call-service service-name="updateProductAttribute" in-map-name="updateProductAttributeMap"/>
-        </else>
-        </if-empty>
+        <if-not-empty field="parameters.stock">
+            <if-empty field="productFacility">
+                <set field="createProductFacilityMap.userLogin" from-field="systemUserLogin"/>
+                <set field="createProductFacilityMap.productId" from-field="parameters.productId"/>
+                <set field="createProductFacilityMap.facilityId" value="ShopMaxWarehouse"/>
+                <set field="createProductFacilityMap.lastInventoryCount" from-field="parameters.stock" type="BigDecimal"/>
+                <call-service service-name="createProductFacility" in-map-name="createProductFacilityMap"/>
+            <else>
+                <set field="updateProductFacilityMap.userLogin" from-field="systemUserLogin"/>
+                <set field="updateProductFacilityMap.productId" from-field="parameters.productId"/>
+                <set field="updateProductFacilityMap.facilityId" value="ShopMaxWarehouse"/>
+                <set field="updateProductFacilityMap.lastInventoryCount" from-field="parameters.stock" type="BigDecimal"/>
+                <call-service service-name="updateProductFacility" in-map-name="updateProductFacilityMap"/>
+            </else>
+            </if-empty>
+        </if-not-empty>
         
         <entity-one value-field="productAttribute" entity-name="ProductAttribute">
             <field-map field-name="productId" from-field="parameters.productId"/>

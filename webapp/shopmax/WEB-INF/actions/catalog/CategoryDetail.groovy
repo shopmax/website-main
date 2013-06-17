@@ -196,13 +196,12 @@ def getProductDetail(productIds) {
                 productMap.promoPrice = promoPrice.price;
             }
             
-            productAttribute = delegator.findOne("ProductAttribute", [productId : productId, attrName : "STOCK"], true);
-            if (productAttribute) {
-                BigDecimal stock = new BigDecimal(productAttribute.attrValue);
-                context.stock = stock;
+            productFacility = delegator.findOne("ProductFacility", [productId : productId, facilityId : "ShopMaxWarehouse"], false);
+            if (productFacility) {
+                productMap.stock = productFacility.lastInventoryCount;
             } else {
                 inventorySummary = dispatcher.runSync("getProductInventoryAvailable", UtilMisc.toMap("productId", productId));
-                context.stock = inventorySummary.availableToPromiseTotal;
+                productMap.stock = inventorySummary.availableToPromiseTotal;
             }
             
             resultMap.add(productMap);

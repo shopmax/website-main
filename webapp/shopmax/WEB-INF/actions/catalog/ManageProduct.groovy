@@ -284,7 +284,9 @@ if (productCategoryMembers) {
         productMap.productImageList = productImageList;
         
         inventorySummary = dispatcher.runSync("getProductInventoryAvailable", UtilMisc.toMap("productId", product.productId));
-        productMap.stock = inventorySummary.availableToPromiseTotal;
+        if (inventorySummary) {
+            productMap.stock = inventorySummary.availableToPromiseTotal;
+        }
         
         productAttribute = delegator.findOne("ProductAttribute", [productId : product.productId, attrName : "SHIPPING_SIZE"], true);
         if (productAttribute) {
@@ -341,13 +343,9 @@ def getProductDetail(productIds) {
                 productMap.promoPrice = promoPrice.price;
             }
             
-            productAttribute = delegator.findOne("ProductAttribute", [productId : productId, attrName : "STOCK"], true);
-            if (productAttribute) {
-                BigDecimal stock = new BigDecimal(productAttribute.attrValue);
-                context.stock = stock;
-            } else {
-                inventorySummary = dispatcher.runSync("getProductInventoryAvailable", UtilMisc.toMap("productId", productId));
-                context.stock = inventorySummary.availableToPromiseTotal;
+            inventorySummary = dispatcher.runSync("getProductInventoryAvailable", UtilMisc.toMap("productId", productId));
+            if (inventorySummary) {
+                productMap.stock = inventorySummary.availableToPromiseTotal;
             }
             
             resultMap.add(productMap);

@@ -253,10 +253,9 @@ if (UtilValidate.isNotEmpty(productContentAndInfoDefault)) {
     }
 }
 
-productAttribute = delegator.findOne("ProductAttribute", [productId : productId, attrName : "STOCK"], true);
-if (productAttribute) {
-    BigDecimal stock = new BigDecimal(productAttribute.attrValue);
-	context.stock = stock;
+productFacility = delegator.findOne("ProductFacility", [productId : productId, facilityId : "ShopMaxWarehouse"], false);
+if (productFacility) {
+    context.stock = productFacility.lastInventoryCount;
 } else {
     inventorySummary = dispatcher.runSync("getProductInventoryAvailable", UtilMisc.toMap("productId", productId));
     context.stock = inventorySummary.availableToPromiseTotal;

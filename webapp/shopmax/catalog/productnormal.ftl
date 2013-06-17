@@ -115,12 +115,7 @@ under the License.
                 </div>
             </#if>
             
-            <#assign stock = (delegator.findOne("ProductAttribute", {"productId" : product.productId, "attrName" : "STOCK"}, true))?if_exists>
-            <#if stock?has_content>
-                Quantity: <strong>${stock.attrValue?if_exists} in stock</strong> <br /> <br />
-            <#else>
-                Quantity: <strong>${availableInventory?default(0)} in stock</strong> <br /> <br />
-            </#if>
+            Quantity: <strong>${availableInventory?default(0)} in stock</strong> <br /> <br />
             
             <div id="addItemForm">
                 <form method="post" action="<@ofbizUrl>additem</@ofbizUrl>" id="${product.productId}" name="addform"  style="margin: 0;">
@@ -132,7 +127,7 @@ under the License.
                         <#else>
                             <input type="hidden" name="price" value="${price.price}" />
                         </#if>
-                        <#if !stock?has_content || "0" = stock.attrValue?if_exists>
+                        <#if !availableInventory?has_content || 0 = availableInventory?if_exists>
                             <button class="btn-large grey cart" type="button" value="OUT OF STOCK">OUT OF STOCK</button>
                         <#else>
                             <a class="btn-large blue cart additem-productdetail" onclick="addItem('${product.productId}');">ADD TO CART</a>

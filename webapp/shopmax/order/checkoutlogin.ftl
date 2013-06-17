@@ -646,6 +646,7 @@ under the License.
                                         <h5>ship to</h5>
                                         <ul>
                                             <li>${shipToName?if_exists}</li>
+                                            <li>${emailAddress?if_exists}</li>
                                             <li>${shipToAddress1?if_exists}</li>
                                             <li>${shipToAddress2?if_exists}</li>
                                             <li>${shipToCity?if_exists}</li>
@@ -760,6 +761,7 @@ under the License.
                                         <h5>bill to</h5>
                                         <ul>
                                             <li>${billToName?if_exists}</li>
+                                            <li>${emailAddress?if_exists}</li>
                                             <li>${billToAddress1?if_exists}</li>
                                             <li>${billToAddress2?if_exists}</li>
                                             <li>${billToCity?if_exists}</li>

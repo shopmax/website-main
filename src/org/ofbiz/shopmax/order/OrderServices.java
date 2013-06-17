@@ -161,6 +161,19 @@ public class OrderServices {
                                     sci.setAssociatedOrderId(orderId);
                                     sci.setAssociatedOrderItemSeqId(item.getString("orderItemSeqId"));
                                     sci.setOrderItemAssocTypeId("DROP_SHIPMENT");
+                                    
+                                    GenericValue productFacility = delegator.findOne("ProductFacility", UtilMisc.toMap( "productId", item.getString("productId"), "facilityId", "ShopMaxWarehouse"), false);
+                                    Debug.log("=====================productFacility===================== : "+productFacility, "");
+                                    if (productFacility != null) {
+                                        BigDecimal lastInventoryCount = productFacility.getBigDecimal("lastInventoryCount").subtract(item.getBigDecimal("quantity"));
+                                        Debug.log("=====================lastInventoryCount===================== : "+lastInventoryCount, "");
+                                        Map<String, Object> updateProductFacilityMap = FastMap.newInstance();
+                                        updateProductFacilityMap.put("userLogin", userLogin);
+                                        updateProductFacilityMap.put("productId", item.getString("productId"));
+                                        updateProductFacilityMap.put("facilityId", "ShopMaxWarehouse");
+                                        updateProductFacilityMap.put("lastInventoryCount", lastInventoryCount);
+                                        dispatcher.runSync("updateProductFacility", updateProductFacilityMap);
+                                    }
                                 } catch (Exception e) {
                                     return ServiceUtil.returnError(UtilProperties.getMessage(resource, 
                                             "OrderOrderCreatingDropShipmentsError", 
