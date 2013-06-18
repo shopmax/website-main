@@ -20,7 +20,7 @@ under the License.
 
 <entity-engine-xml>
     <Party partyId="SHOPMAX_SELLER" partyTypeId="PARTY_GROUP"/>
-    <PartyGroup partyId="SHOPMAX_SELLER" groupName="Demo Shop 1" logoImageUrl="/shopmax-default/img/logo_imp.png"/>
+    <PartyGroup partyId="SHOPMAX_SELLER" groupName="Demo Shop 1"/>
     <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="BILL_FROM_VENDOR"/>
     <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="BILL_TO_CUSTOMER"/>
     <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="INTERNAL_ORGANIZATIO"/>
@@ -28,40 +28,9 @@ under the License.
     <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="ACCOUNT"/>
     <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="SUPPLIER"/>
     <PartyRole partyId="SHOPMAX_SELLER" roleTypeId="_NA_"/>
-    <ContactMech contactMechId="SELLER_EMAIL" contactMechTypeId="EMAIL_ADDRESS" infoString="ofbiztest@example.com"/>
-    <PartyContactMech partyId="SHOPMAX_SELLER" contactMechId="SELLER_EMAIL" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
-    <PartyContactMechPurpose partyId="SHOPMAX_SELLER" contactMechId="SELLER_EMAIL" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2013-04-01 00:00:00"/>
-    <ContactMech contactMechId="SELLER_ADDRESS" contactMechTypeId="POSTAL_ADDRESS"/>
-    <PartyContactMech partyId="SHOPMAX_SELLER" contactMechId="SELLER_ADDRESS" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
-    <PostalAddress contactMechId="SELLER_ADDRESS" toName="Shopmax Seller Company" address1="777 Factory Blvd" city="City of Seller" postalCode="90000" countryGeoId="USA" stateProvinceGeoId="CA"/>
-    <PartyContactMechPurpose partyId="SHOPMAX_SELLER" contactMechId="SELLER_ADDRESS" contactMechPurposeTypeId="BILLING_LOCATION" fromDate="2013-04-01 00:00:00"/>
-    <PartyContactMechPurpose partyId="SHOPMAX_SELLER" contactMechId="SELLER_ADDRESS" contactMechPurposeTypeId="GENERAL_LOCATION" fromDate="2013-04-01 00:00:00"/>
-    <PartyContactMechPurpose partyId="SHOPMAX_SELLER" contactMechId="SELLER_ADDRESS" contactMechPurposeTypeId="PAYMENT_LOCATION" fromDate="2013-04-01 00:00:00"/>
-    <ContactMech contactMechId="SELLER_PHYS_STORE_1" contactMechTypeId="POSTAL_ADDRESS"/>
-    <PartyContactMech partyId="SHOPMAX_SELLER" contactMechId="SELLER_PHYS_STORE_1" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
-    <PostalAddress contactMechId="SELLER_PHYS_STORE_1" toName="Shopmax Store 1" address1="111 Factory Blvd" city="City of Store 1" postalCode="90000" countryGeoId="NZL" stateProvinceGeoId="_NA_"/>
-    <PartyContactMechPurpose partyId="SHOPMAX_SELLER" contactMechId="SELLER_PHYS_STORE_1" contactMechPurposeTypeId="PHYS_STORE_LOCATION" fromDate="2013-04-01 00:00:00"/>
-    <ContactMechAttribute contactMechId="SELLER_PHYS_STORE_1" attrName="STORE_PHONE_NUMBER" attrValue="03-1111111111"/>
-    <ContactMechAttribute contactMechId="SELLER_PHYS_STORE_1" attrName="STORE_FAX_NUMBER" attrValue="09-2222222222"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_1" day="Monday" sequenceNum="1" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_1" day="Tuesday" sequenceNum="2" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_1" day="Wednesday" sequenceNum="3" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_1" day="Thursday" sequenceNum="4" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_1" day="Friday" sequenceNum="5" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <ContactMech contactMechId="SELLER_PHYS_STORE_2" contactMechTypeId="POSTAL_ADDRESS"/>
-    <PartyContactMech partyId="SHOPMAX_SELLER" contactMechId="SELLER_PHYS_STORE_2" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
-    <PostalAddress contactMechId="SELLER_PHYS_STORE_2" toName="Shopmax Store 2" address1="222 Factory Blvd" city="City of Store" postalCode="90000" countryGeoId="NZL" stateProvinceGeoId="_NA_"/>
-    <PartyContactMechPurpose partyId="SHOPMAX_SELLER" contactMechId="SELLER_PHYS_STORE_2" contactMechPurposeTypeId="PHYS_STORE_LOCATION" fromDate="2013-04-01 00:00:00"/>
-    <ContactMechAttribute contactMechId="SELLER_PHYS_STORE_2" attrName="STORE_PHONE_NUMBER" attrValue="03-333333333"/>
-    <ContactMechAttribute contactMechId="SELLER_PHYS_STORE_2" attrName="STORE_FAX_NUMBER" attrValue="09-4444444444"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_2" day="Monday" sequenceNum="1" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_2" day="Tuesday" sequenceNum="2" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_2" day="Wednesday" sequenceNum="3" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_2" day="Thursday" sequenceNum="4" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_2" day="Friday" sequenceNum="5" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
     
     <Party partyId="SHOPMAX_SELLER2" partyTypeId="PARTY_GROUP"/>
-    <PartyGroup partyId="SHOPMAX_SELLER2" groupName="Demo Shop 2" logoImageUrl="/shopmax-default/img/logo_imp.png"/>
+    <PartyGroup partyId="SHOPMAX_SELLER2" groupName="Demo Shop 2"/>
     <PartyRole partyId="SHOPMAX_SELLER2" roleTypeId="BILL_FROM_VENDOR"/>
     <PartyRole partyId="SHOPMAX_SELLER2" roleTypeId="BILL_TO_CUSTOMER"/>
     <PartyRole partyId="SHOPMAX_SELLER2" roleTypeId="INTERNAL_ORGANIZATIO"/>
@@ -69,37 +38,6 @@ under the License.
     <PartyRole partyId="SHOPMAX_SELLER2" roleTypeId="ACCOUNT"/>
     <PartyRole partyId="SHOPMAX_SELLER2" roleTypeId="SUPPLIER"/>
     <PartyRole partyId="SHOPMAX_SELLER2" roleTypeId="_NA_"/>
-    <ContactMech contactMechId="SELLER_EMAIL2" contactMechTypeId="EMAIL_ADDRESS" infoString="shopMaxSeller2@example.com"/>
-    <PartyContactMech partyId="SHOPMAX_SELLER2" contactMechId="SELLER_EMAIL2" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
-    <PartyContactMechPurpose partyId="SHOPMAX_SELLER2" contactMechId="SELLER_EMAIL2" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2013-04-01 00:00:00"/>
-    <ContactMech contactMechId="SELLER_ADDRESS2" contactMechTypeId="POSTAL_ADDRESS"/>
-    <PartyContactMech partyId="SHOPMAX_SELLER2" contactMechId="SELLER_ADDRESS2" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
-    <PostalAddress contactMechId="SELLER_ADDRESS2" toName="Shopmax Seller Company 2" address1="888 Factory Blvd" city="City of Seller 2" postalCode="90000" countryGeoId="USA" stateProvinceGeoId="CA"/>
-    <PartyContactMechPurpose partyId="SHOPMAX_SELLER2" contactMechId="SELLER_ADDRESS2" contactMechPurposeTypeId="BILLING_LOCATION" fromDate="2013-04-01 00:00:00"/>
-    <PartyContactMechPurpose partyId="SHOPMAX_SELLER2" contactMechId="SELLER_ADDRESS2" contactMechPurposeTypeId="GENERAL_LOCATION" fromDate="2013-04-01 00:00:00"/>
-    <PartyContactMechPurpose partyId="SHOPMAX_SELLER2" contactMechId="SELLER_ADDRESS2" contactMechPurposeTypeId="PAYMENT_LOCATION" fromDate="2013-04-01 00:00:00"/>
-    <ContactMech contactMechId="SELLER_PHYS_STORE_3" contactMechTypeId="POSTAL_ADDRESS"/>
-    <PartyContactMech partyId="SHOPMAX_SELLER2" contactMechId="SELLER_PHYS_STORE_3" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
-    <PostalAddress contactMechId="SELLER_PHYS_STORE_3" toName="Shopmax Store 3" address1="333 Factory Blvd" city="City of Store 3" postalCode="90000" countryGeoId="NZL" stateProvinceGeoId="_NA_"/>
-    <PartyContactMechPurpose partyId="SHOPMAX_SELLER2" contactMechId="SELLER_PHYS_STORE_3" contactMechPurposeTypeId="PHYS_STORE_LOCATION" fromDate="2013-04-01 00:00:00"/>
-    <ContactMechAttribute contactMechId="SELLER_PHYS_STORE_3" attrName="STORE_PHONE_NUMBER" attrValue="03-5555555555"/>
-    <ContactMechAttribute contactMechId="SELLER_PHYS_STORE_3" attrName="STORE_FAX_NUMBER" attrValue="09-6666666666"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_3" day="Monday" sequenceNum="1" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_3" day="Tuesday" sequenceNum="2" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_3" day="Wednesday" sequenceNum="3" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_3" day="Thursday" sequenceNum="4" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_3" day="Friday" sequenceNum="5" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <ContactMech contactMechId="SELLER_PHYS_STORE_4" contactMechTypeId="POSTAL_ADDRESS"/>
-    <PartyContactMech partyId="SHOPMAX_SELLER2" contactMechId="SELLER_PHYS_STORE_4" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
-    <PostalAddress contactMechId="SELLER_PHYS_STORE_4" toName="Shopmax Store 4" address1="444 Factory Blvd" city="City of Store 4" postalCode="90000" countryGeoId="NZL" stateProvinceGeoId="_NA_"/>
-    <PartyContactMechPurpose partyId="SHOPMAX_SELLER2" contactMechId="SELLER_PHYS_STORE_4" contactMechPurposeTypeId="PHYS_STORE_LOCATION" fromDate="2013-04-01 00:00:00"/>
-    <ContactMechAttribute contactMechId="SELLER_PHYS_STORE_4" attrName="STORE_PHONE_NUMBER" attrValue="03-5555555555"/>
-    <ContactMechAttribute contactMechId="SELLER_PHYS_STORE_4" attrName="STORE_FAX_NUMBER" attrValue="09-6666666666"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_4" day="Monday" sequenceNum="1" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_4" day="Tuesday" sequenceNum="2" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_4" day="Wednesday" sequenceNum="3" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_4" day="Thursday" sequenceNum="4" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
-    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_4" day="Friday" sequenceNum="5" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
     
     <Party partyId="shopmaxseller" partyTypeId="PERSON"/>
     <Person partyId="shopmaxseller" firstName="Demo" lastName="Seller"/>
@@ -108,6 +46,37 @@ under the License.
     <PartyRole partyId="shopmaxseller" roleTypeId="SELLER"/>
     <PartyRole partyId="shopmaxseller" roleTypeId="BUYER"/>
     <PartyRole partyId="shopmaxseller" roleTypeId="EMPLOYEE"/>
+    <ContactMech contactMechId="SELLER_EMAIL" contactMechTypeId="EMAIL_ADDRESS" infoString="ofbiztest@example.com"/>
+    <PartyContactMech partyId="shopmaxseller" contactMechId="SELLER_EMAIL" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PartyContactMechPurpose partyId="shopmaxseller" contactMechId="SELLER_EMAIL" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2013-04-01 00:00:00"/>
+    <ContactMech contactMechId="SELLER_ADDRESS" contactMechTypeId="POSTAL_ADDRESS"/>
+    <PartyContactMech partyId="shopmaxseller" contactMechId="SELLER_ADDRESS" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PostalAddress contactMechId="SELLER_ADDRESS" toName="Shopmax Seller Company" address1="777 Factory Blvd" city="City of Seller" postalCode="90000" countryGeoId="USA" stateProvinceGeoId="CA"/>
+    <PartyContactMechPurpose partyId="shopmaxseller" contactMechId="SELLER_ADDRESS" contactMechPurposeTypeId="BILLING_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <PartyContactMechPurpose partyId="shopmaxseller" contactMechId="SELLER_ADDRESS" contactMechPurposeTypeId="GENERAL_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <PartyContactMechPurpose partyId="shopmaxseller" contactMechId="SELLER_ADDRESS" contactMechPurposeTypeId="PAYMENT_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <ContactMech contactMechId="SELLER_PHYS_STORE_1" contactMechTypeId="POSTAL_ADDRESS"/>
+    <PartyContactMech partyId="shopmaxseller" contactMechId="SELLER_PHYS_STORE_1" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PostalAddress contactMechId="SELLER_PHYS_STORE_1" toName="Shopmax Store 1" address1="111 Factory Blvd" city="City of Store 1" postalCode="90000" countryGeoId="NZL" stateProvinceGeoId="_NA_"/>
+    <PartyContactMechPurpose partyId="shopmaxseller" contactMechId="SELLER_PHYS_STORE_1" contactMechPurposeTypeId="PHYS_STORE_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <ContactMechAttribute contactMechId="SELLER_PHYS_STORE_1" attrName="STORE_PHONE_NUMBER" attrValue="03-1111111111"/>
+    <ContactMechAttribute contactMechId="SELLER_PHYS_STORE_1" attrName="STORE_FAX_NUMBER" attrValue="09-2222222222"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_1" day="Monday" sequenceNum="1" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_1" day="Tuesday" sequenceNum="2" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_1" day="Wednesday" sequenceNum="3" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_1" day="Thursday" sequenceNum="4" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_1" day="Friday" sequenceNum="5" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <ContactMech contactMechId="SELLER_PHYS_STORE_2" contactMechTypeId="POSTAL_ADDRESS"/>
+    <PartyContactMech partyId="shopmaxseller" contactMechId="SELLER_PHYS_STORE_2" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PostalAddress contactMechId="SELLER_PHYS_STORE_2" toName="Shopmax Store 2" address1="222 Factory Blvd" city="City of Store" postalCode="90000" countryGeoId="NZL" stateProvinceGeoId="_NA_"/>
+    <PartyContactMechPurpose partyId="shopmaxseller" contactMechId="SELLER_PHYS_STORE_2" contactMechPurposeTypeId="PHYS_STORE_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <ContactMechAttribute contactMechId="SELLER_PHYS_STORE_2" attrName="STORE_PHONE_NUMBER" attrValue="03-333333333"/>
+    <ContactMechAttribute contactMechId="SELLER_PHYS_STORE_2" attrName="STORE_FAX_NUMBER" attrValue="09-4444444444"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_2" day="Monday" sequenceNum="1" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_2" day="Tuesday" sequenceNum="2" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_2" day="Wednesday" sequenceNum="3" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_2" day="Thursday" sequenceNum="4" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_2" day="Friday" sequenceNum="5" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
     <ContactMech contactMechId="SELLER_PHONE" contactMechTypeId="TELECOM_NUMBER"/>
     <TelecomNumber contactMechId="SELLER_PHONE" contactNumber="64279612838"/>
     <PartyContactMech partyId="shopmaxseller" contactMechId="SELLER_PHONE" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
@@ -115,6 +84,52 @@ under the License.
     <UserLoginSecurityGroup groupId="SHOPMAX_SELLER" userLoginId="DemoSeller" fromDate="2013-04-01 00:00:00"/>
     
     <PartyRelationship partyIdFrom="SHOPMAX_SELLER" partyIdTo="shopmaxseller" partyRelationshipTypeId="EMPLOYMENT" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="EMPLOYEE" fromDate="2013-04-01 00:00:00"/>
+    
+    <Party partyId="shopmaxseller2" partyTypeId="PERSON"/>
+    <Person partyId="shopmaxseller2" firstName="Demo" lastName="Seller2"/>
+    <UserLogin partyId="shopmaxseller2" userLoginId="DemoSeller2" currentPassword="{SHA}47b56994cbc2b6d10aa1be30f70165adb305a41a"/>
+    <PartyRole partyId="shopmaxseller2" roleTypeId="CUSTOMER"/>
+    <PartyRole partyId="shopmaxseller2" roleTypeId="SELLER"/>
+    <PartyRole partyId="shopmaxseller2" roleTypeId="BUYER"/>
+    <PartyRole partyId="shopmaxseller2" roleTypeId="EMPLOYEE"/>
+    <ContactMech contactMechId="SELLER_EMAIL2" contactMechTypeId="EMAIL_ADDRESS" infoString="shopMaxSeller2@example.com"/>
+    <PartyContactMech partyId="shopmaxseller2" contactMechId="SELLER_EMAIL2" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PartyContactMechPurpose partyId="shopmaxseller2" contactMechId="SELLER_EMAIL2" contactMechPurposeTypeId="PRIMARY_EMAIL" fromDate="2013-04-01 00:00:00"/>
+    <ContactMech contactMechId="SELLER_ADDRESS2" contactMechTypeId="POSTAL_ADDRESS"/>
+    <PartyContactMech partyId="shopmaxseller2" contactMechId="SELLER_ADDRESS2" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PostalAddress contactMechId="SELLER_ADDRESS2" toName="Shopmax Seller Company 2" address1="888 Factory Blvd" city="City of Seller 2" postalCode="90000" countryGeoId="USA" stateProvinceGeoId="CA"/>
+    <PartyContactMechPurpose partyId="shopmaxseller2" contactMechId="SELLER_ADDRESS2" contactMechPurposeTypeId="BILLING_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <PartyContactMechPurpose partyId="shopmaxseller2" contactMechId="SELLER_ADDRESS2" contactMechPurposeTypeId="GENERAL_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <PartyContactMechPurpose partyId="shopmaxseller2" contactMechId="SELLER_ADDRESS2" contactMechPurposeTypeId="PAYMENT_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <ContactMech contactMechId="SELLER_PHYS_STORE_3" contactMechTypeId="POSTAL_ADDRESS"/>
+    <PartyContactMech partyId="shopmaxseller2" contactMechId="SELLER_PHYS_STORE_3" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PostalAddress contactMechId="SELLER_PHYS_STORE_3" toName="Shopmax Store 3" address1="333 Factory Blvd" city="City of Store 3" postalCode="90000" countryGeoId="NZL" stateProvinceGeoId="_NA_"/>
+    <PartyContactMechPurpose partyId="shopmaxseller2" contactMechId="SELLER_PHYS_STORE_3" contactMechPurposeTypeId="PHYS_STORE_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <ContactMechAttribute contactMechId="SELLER_PHYS_STORE_3" attrName="STORE_PHONE_NUMBER" attrValue="03-5555555555"/>
+    <ContactMechAttribute contactMechId="SELLER_PHYS_STORE_3" attrName="STORE_FAX_NUMBER" attrValue="09-6666666666"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_3" day="Monday" sequenceNum="1" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_3" day="Tuesday" sequenceNum="2" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_3" day="Wednesday" sequenceNum="3" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_3" day="Thursday" sequenceNum="4" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_3" day="Friday" sequenceNum="5" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <ContactMech contactMechId="SELLER_PHYS_STORE_4" contactMechTypeId="POSTAL_ADDRESS"/>
+    <PartyContactMech partyId="shopmaxseller2" contactMechId="SELLER_PHYS_STORE_4" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PostalAddress contactMechId="SELLER_PHYS_STORE_4" toName="Shopmax Store 4" address1="444 Factory Blvd" city="City of Store 4" postalCode="90000" countryGeoId="NZL" stateProvinceGeoId="_NA_"/>
+    <PartyContactMechPurpose partyId="shopmaxseller2" contactMechId="SELLER_PHYS_STORE_4" contactMechPurposeTypeId="PHYS_STORE_LOCATION" fromDate="2013-04-01 00:00:00"/>
+    <ContactMechAttribute contactMechId="SELLER_PHYS_STORE_4" attrName="STORE_PHONE_NUMBER" attrValue="03-5555555555"/>
+    <ContactMechAttribute contactMechId="SELLER_PHYS_STORE_4" attrName="STORE_FAX_NUMBER" attrValue="09-6666666666"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_4" day="Monday" sequenceNum="1" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_4" day="Tuesday" sequenceNum="2" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_4" day="Wednesday" sequenceNum="3" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_4" day="Thursday" sequenceNum="4" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <PhysicalStoreDateTime contactMechId="SELLER_PHYS_STORE_4" day="Friday" sequenceNum="5" openHour="09" openMin="00" closeHour="17" closeMin="00"/>
+    <ContactMech contactMechId="SELLER_PHONE" contactMechTypeId="TELECOM_NUMBER"/>
+    <TelecomNumber contactMechId="SELLER_PHONE" contactNumber="64279612838"/>
+    <PartyContactMech partyId="shopmaxseller2" contactMechId="SELLER_PHONE" fromDate="2013-04-01 00:00:00" allowSolicitation="Y"/>
+    <PartyContactMechPurpose partyId="shopmaxseller2" contactMechId="SELLER_PHONE" contactMechPurposeTypeId="PHONE_MOBILE" fromDate="2013-04-01 00:00:00"/>
+    <UserLoginSecurityGroup groupId="SHOPMAX_SELLER" userLoginId="DemoSeller2" fromDate="2013-04-01 00:00:00"/>
+    
+    <PartyRelationship partyIdFrom="SHOPMAX_SELLER2" partyIdTo="shopmaxseller2" partyRelationshipTypeId="EMPLOYMENT" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="EMPLOYEE" fromDate="2013-04-01 00:00:00"/>
     
     <PartyAttribute partyId="shopmaxseller" attrName="DOMAIN_NAME" attrValue="seller.shopmax.localhost"/>
     
