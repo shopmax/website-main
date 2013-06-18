@@ -77,7 +77,7 @@ Index: framework/entity/config/entityengine.xml
      <!-- need to at least define a name for each component to use -->
 Index: framework/webapp/config/url.properties
 ===================================================================
---- framework/webapp/config/url.properties	(revision 1487148)
+--- framework/webapp/config/url.properties	(revision 1494034)
 +++ framework/webapp/config/url.properties	(working copy)
 @@ -22,11 +22,11 @@
  
