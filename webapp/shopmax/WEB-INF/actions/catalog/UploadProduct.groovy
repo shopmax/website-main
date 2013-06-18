@@ -98,15 +98,16 @@ if(parameters.productId){
         context.productImageList = productImageList;
         
         inventorySummary = dispatcher.runSync("getProductInventoryAvailable", UtilMisc.toMap("productId", product.productId));
-        context.stock = inventorySummary.availableToPromiseTotal;
+        if (inventorySummary) {
+            context.stock = inventorySummary.availableToPromiseTotal;
+        }
         
         productAttribute = delegator.findOne("ProductAttribute", [productId : product.productId, attrName : "SHIPPING_SIZE"], true);
         if (productAttribute) {
-            BigDecimal stock = new BigDecimal(productAttribute.attrValue);
-            context.stock = stock;
+            context.shippingSize = productAttribute.attrValue;
         }
         
-        goodIdentification = delegator.findOne("GoodIdentification", [goodIdentificationTypeId : "SKU", productId : parameters.productId], true);
+        goodIdentification = delegator.findOne("GoodIdentification", [goodIdentificationTypeId : "SKU", productId : product.productId], true);
         if (goodIdentification) {
             context.productSKU = goodIdentification.idValue;
         }

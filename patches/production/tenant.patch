@@ -1,0 +1,47 @@
+Index: hot-deploy/tenant/ofbiz-component.xml
+===================================================================
+--- hot-deploy/tenant/ofbiz-component.xml	(revision 297)
++++ hot-deploy/tenant/ofbiz-component.xml	(working copy)
+@@ -23,7 +23,7 @@
+     <entity-resource type="model" reader-name="main" loader="main" location="entitydef/entitymodel.xml"/>
+     <entity-resource type="eca" reader-name="main" loader="main" location="entitydef/eecas.xml"/>
+     <entity-resource type="data" reader-name="seed" loader="main" location="data/TenantTypeData.xml"/>
+-    <entity-resource type="data" reader-name="demo" loader="main" location="data/TenantDemoData.xml"/>
++    <!-- <entity-resource type="data" reader-name="demo" loader="main" location="data/TenantDemoData.xml"/> -->
+ 
+     <!-- service resources: model(s), eca(s) and group definitions -->
+     <service-resource type="model" loader="main" location="servicedef/services.xml"/>
+Index: hot-deploy/tenant/config/default-tenant.xml
+===================================================================
+--- hot-deploy/tenant/config/default-tenant.xml	(revision 297)
++++ hot-deploy/tenant/config/default-tenant.xml	(working copy)
+@@ -1,16 +1,10 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <default-tenant>
+-    <component name="growerpbackend"/>
+-    <component name="growerpwebsite"/>
+-    <component name="growerpsaas"/>
++    <component name="shopmax"/>
+     
+     <!-- frontend -->
+-    <domain name="growerpsaas.localhost" initial-path="/"/>
+-    <domain name="growerpsaas.ofbizdemo.com" initial-path="/"/>
+-    <domain name="saas.growerp.com" initial-path="/"/>
++    <domain name="shopmax.co.nz" initial-path="/"/>
+     
+     <!-- backend -->
+-    <domain name="growerpsaasbackend.localhost" initial-path="/backend"/>
+-    <domain name="growerpsaasbackend.ofbizdemo.com" initial-path="/backend"/>
+-    <domain name="saasbackend.growerp.com" initial-path="/backend"/>
++    <domain name="backend.shopmax.co.nz" initial-path="/catalog"/>
+ </default-tenant>
+Index: hot-deploy/tenant/config/tenant.properties
+===================================================================
+--- hot-deploy/tenant/config/tenant.properties	(revision 297)
++++ hot-deploy/tenant/config/tenant.properties	(working copy)
+@@ -27,5 +27,5 @@
+ jdbcPassword=ofbiz
+ 
+ # -- Y if you want a tenant always include demo data and have message at the top
+-isDemo=N
++isDemo=Y
