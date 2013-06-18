@@ -33,7 +33,7 @@ under the License.
                 </div>
                 <span>About 6,970 results</span>
             </div>
-            <#include "component://shopmax/webapp/shopmax/catalog/productlistview.ftl" />
+            <#--<#include "component://shopmax/webapp/shopmax/catalog/categorydetail.ftl" />-->
         </div><!-- /.span9 -->
         <div class="span3 sidebar" id="side-menu">
             <#include "component://shopmax/webapp/shopmax/catalog/categorylist.ftl" />

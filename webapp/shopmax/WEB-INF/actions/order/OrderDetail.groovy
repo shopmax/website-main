@@ -39,55 +39,55 @@ context.orderId = orderId;
 
 if (orderId) {
     orderHeader = delegator.findOne("OrderHeader", [orderId : orderId], false);
-}
-
-if (orderHeader) {
-    orderReadHelper = new OrderReadHelper(orderHeader);
-    orderItems = orderReadHelper.getOrderItems();
-    orderAdjustments = orderReadHelper.getAdjustments();
-    orderHeaderAdjustments = orderReadHelper.getOrderHeaderAdjustments();
-    orderSubTotal = orderReadHelper.getOrderItemsSubTotal();
-    orderTerms = orderHeader.getRelated("OrderTerm", null, null, false);
     
-    context.orderHeader = orderHeader;
-    context.orderReadHelper = orderReadHelper;
-    context.orderItems = orderItems;
-    context.orderAdjustments = orderAdjustments;
-    context.orderHeaderAdjustments = orderHeaderAdjustments;
-    context.orderSubTotal = orderSubTotal;
-    context.currencyUomId = orderReadHelper.getCurrency();
-    context.orderTerms = orderTerms;
-    
-    orderParty = orderReadHelper.getPlacingParty();
-    customerName = PartyHelper.getPartyName(orderParty);
-    context.customerName = customerName;
-    
-    billingAddress = orderReadHelper.getBillingAddress();
-    context.billingAddress = billingAddress;
-    
-    shippingAddress = orderReadHelper.getShippingAddress();
-    context.shippingAddress = shippingAddress;
-    
-    emailAddress = orderReadHelper.getOrderEmailString();
-    context.emailAddress = emailAddress;
-    
-    canceledPromoOrderItem = [:];
-    orderItemList = orderReadHelper.getOrderItems();
-    orderItemList.each { orderItem ->
-        if("Y".equals(orderItem.get("isPromo")) && "ITEM_CANCELLED".equals(orderItem.get("statusId"))) {
-            canceledPromoOrderItem = orderItem;
+    if (orderHeader) {
+        orderReadHelper = new OrderReadHelper(orderHeader);
+        orderItems = orderReadHelper.getOrderItems();
+        orderAdjustments = orderReadHelper.getAdjustments();
+        orderHeaderAdjustments = orderReadHelper.getOrderHeaderAdjustments();
+        orderSubTotal = orderReadHelper.getOrderItemsSubTotal();
+        orderTerms = orderHeader.getRelated("OrderTerm", null, null, false);
+        
+        context.orderHeader = orderHeader;
+        context.orderReadHelper = orderReadHelper;
+        context.orderItems = orderItems;
+        context.orderAdjustments = orderAdjustments;
+        context.orderHeaderAdjustments = orderHeaderAdjustments;
+        context.orderSubTotal = orderSubTotal;
+        context.currencyUomId = orderReadHelper.getCurrency();
+        context.orderTerms = orderTerms;
+        
+        orderParty = orderReadHelper.getPlacingParty();
+        customerName = PartyHelper.getPartyName(orderParty);
+        context.customerName = customerName;
+        
+        billingAddress = orderReadHelper.getBillingAddress();
+        context.billingAddress = billingAddress;
+        
+        shippingAddress = orderReadHelper.getShippingAddress();
+        context.shippingAddress = shippingAddress;
+        
+        emailAddress = orderReadHelper.getOrderEmailString();
+        context.emailAddress = emailAddress;
+        
+        canceledPromoOrderItem = [:];
+        orderItemList = orderReadHelper.getOrderItems();
+        orderItemList.each { orderItem ->
+            if("Y".equals(orderItem.get("isPromo")) && "ITEM_CANCELLED".equals(orderItem.get("statusId"))) {
+                canceledPromoOrderItem = orderItem;
+            }
+            orderItemList.remove(canceledPromoOrderItem);
         }
-        orderItemList.remove(canceledPromoOrderItem);
+        context.orderItemList = orderItemList;
+        
+        grandTotal = OrderReadHelper.getOrderGrandTotal(orderItems, orderAdjustments);
+        context.grandTotal = grandTotal;
+        
+        shippingAmount = OrderReadHelper.getAllOrderItemsAdjustmentsTotal(orderItems, orderAdjustments, false, false, true);
+        shippingAmount = shippingAmount.add(OrderReadHelper.calcOrderAdjustments(orderHeaderAdjustments, orderSubTotal, false, false, true));
+        context.shippingAmount = shippingAmount;
+        
+        shipGroup = EntityUtil.getFirst(delegator.findByAnd("OrderItemShipGroup", [orderId : orderId], ["shipGroupSeqId"], false));
+        context.shipGroup = shipGroup;
     }
-    context.orderItemList = orderItemList;
-    
-    grandTotal = OrderReadHelper.getOrderGrandTotal(orderItems, orderAdjustments);
-    context.grandTotal = grandTotal;
-    
-    shippingAmount = OrderReadHelper.getAllOrderItemsAdjustmentsTotal(orderItems, orderAdjustments, false, false, true);
-    shippingAmount = shippingAmount.add(OrderReadHelper.calcOrderAdjustments(orderHeaderAdjustments, orderSubTotal, false, false, true));
-    context.shippingAmount = shippingAmount;
-    
-    shipGroup = EntityUtil.getFirst(delegator.findByAnd("OrderItemShipGroup", [orderId : orderId], ["shipGroupSeqId"], false));
-    context.shipGroup = shipGroup;
 }
