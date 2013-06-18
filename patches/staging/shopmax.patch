@@ -138,26 +138,36 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
 Index: hot-deploy/shopmax/webapp/shopmax-default/css/main.css
 ===================================================================
---- hot-deploy/shopmax/webapp/shopmax-default/css/main.css	(revision 443)
+--- hot-deploy/shopmax/webapp/shopmax-default/css/main.css	(revision 444)
 +++ hot-deploy/shopmax/webapp/shopmax-default/css/main.css	(working copy)
-@@ -52,10 +52,21 @@
+@@ -36,6 +36,7 @@
+ -----------------------------------------------------------------*/
+ #topnav {background:#302f2f;
+     border-bottom:1px solid #3C4D5D;
++    margin-top: 31px;
+ }
+ 
+ .container {position:relative;top:0;}
+@@ -51,11 +52,22 @@
+ #personal {margin-right:32px;}
  #cart-info {width:108px;margin:0 0;}
  #mainnav {background:#469BEB url('../img/mainnav-bg.png') repeat-x 0 100%;
-    ;margin-bottom:0;display:block;padding:0 0 21px 0;z-index:1;overflow:hidden;
-+   margin-top: 31px;
+-   ;margin-bottom:0;display:block;padding:0 0 21px 0;z-index:1;overflow:hidden;
++    margin-bottom:0;display:block;padding:0 0 21px 0;z-index:1;overflow:hidden;
++    margin-top: 31px;
  }
  #mainnav .navbar-inner {min-height:29px;}
  .navbar-inner {min-height:100%;}
  
 +/*Demo Message*/
 +.demoMessage{
-+   width:100%;
-+   background:#ffffff url('../img/body-bg.png') repeat;
-+   z-index:99999;
-+   position: fixed;
-+   text-align: center;
-+   margin: 0;
-+   top:0;
++    width:100%;
++    background:#ffffff url('../img/body-bg.png') repeat;
++    z-index:99999;
++    position: fixed;
++    text-align: center;
++    margin: 0;
++    top:0;
 +}
  
  /* top menu */
