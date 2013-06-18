@@ -156,9 +156,11 @@ under the License.
                                         <option value="NO_SHIPPING-${entry_index?if_exists}" selected="selected">Pick up in store</option>
                                         <option value="DELIVERY_TO-${entry_index?if_exists}">Delivery to me</option>
                                     </select>
-                                    <#assign branchStoreList = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("PartyContactMechPurpose", {"partyId" : partyId, "contactMechPurposeTypeId" : "PHYS_STORE_LOCATION"}, null, false))>
+                                    <#assign partyRelationship = Static["org.ofbiz.entity.util.EntityUtil"].getFirst(Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("PartyRelationship", Static["org.ofbiz.base.util.UtilMisc"].toMap("partyIdFrom", partyId, "roleTypeIdFrom", "INTERNAL_ORGANIZATIO", "roleTypeIdTo", "EMPLOYEE", "partyRelationshipTypeId", "EMPLOYMENT"), null, true), true))?if_exists>
+                                    <#if partyRelationship?has_content>
+                                        <#assign branchStoreList = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("PartyContactMechPurpose", {"partyId" : partyRelationship.partyIdTo, "contactMechPurposeTypeId" : "PHYS_STORE_LOCATION"}, null, false))>
+                                    </#if>
                                     <select name="scBranchStore" class="drop-select chosen combo scBranchStore" id="scBranchStore_${entry_index?if_exists}" data-search-bar="true">
-                                        <option value="" selected="selected">Select Branch Store</option>
                                         <#if branchStoreList?has_content>
                                             <#list branchStoreList as branchStore>
                                                 <#assign branchStoreName = delegator.findOne("PostalAddress", {"contactMechId" : branchStore.contactMechId},true)>
