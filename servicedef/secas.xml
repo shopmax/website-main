@@ -63,6 +63,6 @@ under the License.
     
     <eca service="createSaleOrderToSeller" event="return">
         <condition field-name="tenantId" operator="is-not-empty"/>
-        <action service="sendOrderSMSToSeller" mode="sync"/>
+        <action service="sendOrderSMSToSeller" mode="async"/>
     </eca>
 </service-eca>

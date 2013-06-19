@@ -32,152 +32,167 @@ under the License.
     </simple-method>
     
     <simple-method method-name="createProductCategoryToSeller" short-description="Create Product Category To Seller">
-        <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
-        <if-compare field="tenantId" operator="equals" value="default">
-            <entity-one entity-name="ProductCategory" value-field="productCategory">
-                <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
-            </entity-one>
-            <if-not-empty field="productCategory">
-                <entity-one entity-name="UserLogin" value-field="sysUserLogin">
-                    <field-map field-name="userLoginId" value="system"/>
+        <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+        <if-compare field="shopmaxTenant" operator="equals" value="Y">
+            <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+            <if-compare field="tenantId" operator="equals" value="default">
+                <entity-one entity-name="ProductCategory" value-field="productCategory">
+                    <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
                 </entity-one>
-                <set field="createProductCategoryMap" value="${groovy: import org.ofbiz.entity.util.EntityUtil;
-                Map productCategoryMap = productCategory.getAllFields();
-                productCategoryMap.remove('createdStamp');
-                productCategoryMap.remove('createdTxStamp');
-                productCategoryMap.remove('lastUpdatedStamp');
-                productCategoryMap.remove('lastUpdatedTxStamp');
-                if (productCategoryMap) return productCategoryMap;}" type="Map"/>
-                <set field="createProductCategoryMap.userLogin" from-field="sysUserLogin"/>
-                <entity-and entity-name="PartyRole" list="partyRoles">
-                    <field-map field-name="roleTypeId" value="SELLER"/>
-                </entity-and>
-                <iterate entry="partyRole" list="partyRoles">
-                    <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
-                    <set field="runTenantServiceInMap.serviceName" value="createProductCategory"/>
-                    <set field="runTenantServiceInMap.serviceParameters" from-field="createProductCategoryMap"/>
-                    <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-                </iterate>
-            </if-not-empty>
+                <if-not-empty field="productCategory">
+                    <entity-one entity-name="UserLogin" value-field="sysUserLogin">
+                        <field-map field-name="userLoginId" value="system"/>
+                    </entity-one>
+                    <set field="createProductCategoryMap" value="${groovy: import org.ofbiz.entity.util.EntityUtil;
+                    Map productCategoryMap = productCategory.getAllFields();
+                    productCategoryMap.remove('createdStamp');
+                    productCategoryMap.remove('createdTxStamp');
+                    productCategoryMap.remove('lastUpdatedStamp');
+                    productCategoryMap.remove('lastUpdatedTxStamp');
+                    if (productCategoryMap) return productCategoryMap;}" type="Map"/>
+                    <set field="createProductCategoryMap.userLogin" from-field="sysUserLogin"/>
+                    <entity-and entity-name="PartyRole" list="partyRoles">
+                        <field-map field-name="roleTypeId" value="SELLER"/>
+                    </entity-and>
+                    <iterate entry="partyRole" list="partyRoles">
+                        <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
+                        <set field="runTenantServiceInMap.serviceName" value="createProductCategory"/>
+                        <set field="runTenantServiceInMap.serviceParameters" from-field="createProductCategoryMap"/>
+                        <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+                    </iterate>
+                </if-not-empty>
+            </if-compare>
         </if-compare>
     </simple-method>
     
     <simple-method method-name="updateProductCategoryToSeller" short-description="Update Product Category To Seller">
-        <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
-        <if-compare field="tenantId" operator="equals" value="default">
-            <entity-one entity-name="ProductCategory" value-field="productCategory">
-                <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
-            </entity-one>
-            <if-not-empty field="productCategory">
-                <entity-one entity-name="UserLogin" value-field="sysUserLogin">
-                    <field-map field-name="userLoginId" value="system"/>
+        <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+        <if-compare field="shopmaxTenant" operator="equals" value="Y">
+            <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+            <if-compare field="tenantId" operator="equals" value="default">
+                <entity-one entity-name="ProductCategory" value-field="productCategory">
+                    <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
                 </entity-one>
-                <set field="updateProductCategoryMap" value="${groovy: import org.ofbiz.entity.util.EntityUtil;
-                Map productCategoryMap = productCategory.getAllFields();
-                productCategoryMap.remove('createdStamp');
-                productCategoryMap.remove('createdTxStamp');
-                productCategoryMap.remove('lastUpdatedStamp');
-                productCategoryMap.remove('lastUpdatedTxStamp');
-                if (productCategoryMap) return productCategoryMap;}" type="Map"/>
-                <set field="updateProductCategoryMap.userLogin" from-field="sysUserLogin"/>
-                <entity-and entity-name="PartyRole" list="partyRoles">
-                    <field-map field-name="roleTypeId" value="SELLER"/>
-                </entity-and>
-                <iterate entry="partyRole" list="partyRoles">
-                    <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
-                    <set field="runTenantServiceInMap.serviceName" value="updateProductCategory"/>
-                    <set field="runTenantServiceInMap.serviceParameters" from-field="updateProductCategoryMap"/>
-                    <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-                </iterate>
-            </if-not-empty>
+                <if-not-empty field="productCategory">
+                    <entity-one entity-name="UserLogin" value-field="sysUserLogin">
+                        <field-map field-name="userLoginId" value="system"/>
+                    </entity-one>
+                    <set field="updateProductCategoryMap" value="${groovy: import org.ofbiz.entity.util.EntityUtil;
+                    Map productCategoryMap = productCategory.getAllFields();
+                    productCategoryMap.remove('createdStamp');
+                    productCategoryMap.remove('createdTxStamp');
+                    productCategoryMap.remove('lastUpdatedStamp');
+                    productCategoryMap.remove('lastUpdatedTxStamp');
+                    if (productCategoryMap) return productCategoryMap;}" type="Map"/>
+                    <set field="updateProductCategoryMap.userLogin" from-field="sysUserLogin"/>
+                    <entity-and entity-name="PartyRole" list="partyRoles">
+                        <field-map field-name="roleTypeId" value="SELLER"/>
+                    </entity-and>
+                    <iterate entry="partyRole" list="partyRoles">
+                        <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
+                        <set field="runTenantServiceInMap.serviceName" value="updateProductCategory"/>
+                        <set field="runTenantServiceInMap.serviceParameters" from-field="updateProductCategoryMap"/>
+                        <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+                    </iterate>
+                </if-not-empty>
+            </if-compare>
         </if-compare>
     </simple-method>
     
     <simple-method method-name="createCategoryRollUpToSeller" short-description="Create Parent and Child Category in RollUp To Seller">
-        <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
-        <if-compare field="tenantId" operator="equals" value="default">
-            <entity-one entity-name="ProductCategoryRollup" value-field="productCategoryRollup">
-                <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
-                <field-map field-name="parentProductCategoryId" from-field="parameters.parentProductCategoryId"/>
-                <field-map field-name="fromDate" from-field="parameters.fromDate"/>
-            </entity-one>
-            <if-not-empty field="productCategoryRollup">
-                <entity-one entity-name="UserLogin" value-field="sysUserLogin">
-                    <field-map field-name="userLoginId" value="system"/>
+        <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+        <if-compare field="shopmaxTenant" operator="equals" value="Y">
+            <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+            <if-compare field="tenantId" operator="equals" value="default">
+                <entity-one entity-name="ProductCategoryRollup" value-field="productCategoryRollup">
+                    <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
+                    <field-map field-name="parentProductCategoryId" from-field="parameters.parentProductCategoryId"/>
+                    <field-map field-name="fromDate" from-field="parameters.fromDate"/>
                 </entity-one>
-                <set field="createProductCategoryRollUpMap" value="${groovy: import org.ofbiz.entity.util.EntityUtil;
-                Map productCategoryRollUpMap = productCategoryRollup.getAllFields();
-                productCategoryRollUpMap.remove('createdStamp');
-                productCategoryRollUpMap.remove('createdTxStamp');
-                productCategoryRollUpMap.remove('lastUpdatedStamp');
-                productCategoryRollUpMap.remove('lastUpdatedTxStamp');
-                if (productCategoryRollUpMap) return productCategoryRollUpMap;}" type="Map"/>
-                <set field="createProductCategoryRollUpMap.userLogin" from-field="sysUserLogin"/>
-                <entity-and entity-name="PartyRole" list="partyRoles">
-                    <field-map field-name="roleTypeId" value="SELLER"/>
-                </entity-and>
-                <iterate entry="partyRole" list="partyRoles">
-                    <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
-                    <set field="runTenantServiceInMap.serviceName" value="safeAddProductCategoryToCategory"/>
-                    <set field="runTenantServiceInMap.serviceParameters" from-field="createProductCategoryRollUpMap"/>
-                    <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-                </iterate>
-            </if-not-empty>
+                <if-not-empty field="productCategoryRollup">
+                    <entity-one entity-name="UserLogin" value-field="sysUserLogin">
+                        <field-map field-name="userLoginId" value="system"/>
+                    </entity-one>
+                    <set field="createProductCategoryRollUpMap" value="${groovy: import org.ofbiz.entity.util.EntityUtil;
+                    Map productCategoryRollUpMap = productCategoryRollup.getAllFields();
+                    productCategoryRollUpMap.remove('createdStamp');
+                    productCategoryRollUpMap.remove('createdTxStamp');
+                    productCategoryRollUpMap.remove('lastUpdatedStamp');
+                    productCategoryRollUpMap.remove('lastUpdatedTxStamp');
+                    if (productCategoryRollUpMap) return productCategoryRollUpMap;}" type="Map"/>
+                    <set field="createProductCategoryRollUpMap.userLogin" from-field="sysUserLogin"/>
+                    <entity-and entity-name="PartyRole" list="partyRoles">
+                        <field-map field-name="roleTypeId" value="SELLER"/>
+                    </entity-and>
+                    <iterate entry="partyRole" list="partyRoles">
+                        <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
+                        <set field="runTenantServiceInMap.serviceName" value="safeAddProductCategoryToCategory"/>
+                        <set field="runTenantServiceInMap.serviceParameters" from-field="createProductCategoryRollUpMap"/>
+                        <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+                    </iterate>
+                </if-not-empty>
+            </if-compare>
         </if-compare>
     </simple-method>
     
    <simple-method method-name="updateCategoryRollUpToSeller" short-description="Update Parent and Child Category in RollUp To Seller">
-        <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
-        <if-compare field="tenantId" operator="equals" value="default">
-            <entity-one entity-name="ProductCategoryRollup" value-field="productCategoryRollup">
-                <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
-                <field-map field-name="parentProductCategoryId" from-field="parameters.parentProductCategoryId"/>
-                <field-map field-name="fromDate" from-field="parameters.fromDate"/>
-            </entity-one>
-            <if-not-empty field="productCategoryRollup">
+        <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+        <if-compare field="shopmaxTenant" operator="equals" value="Y">
+            <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+            <if-compare field="tenantId" operator="equals" value="default">
+                <entity-one entity-name="ProductCategoryRollup" value-field="productCategoryRollup">
+                    <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
+                    <field-map field-name="parentProductCategoryId" from-field="parameters.parentProductCategoryId"/>
+                    <field-map field-name="fromDate" from-field="parameters.fromDate"/>
+                </entity-one>
+                <if-not-empty field="productCategoryRollup">
+                    <entity-one entity-name="UserLogin" value-field="sysUserLogin">
+                        <field-map field-name="userLoginId" value="system"/>
+                    </entity-one>
+                    <set field="updateProductCategoryRollUpMap" value="${groovy: import org.ofbiz.entity.util.EntityUtil;
+                    Map productCategoryRollUpMap = productCategoryRollup.getAllFields();
+                    productCategoryRollUpMap.remove('createdStamp');
+                    productCategoryRollUpMap.remove('createdTxStamp');
+                    productCategoryRollUpMap.remove('lastUpdatedStamp');
+                    productCategoryRollUpMap.remove('lastUpdatedTxStamp');
+                    if (productCategoryRollUpMap) return productCategoryRollUpMap;}" type="Map"/>
+                    <set field="updateProductCategoryRollUpMap.userLogin" from-field="sysUserLogin"/>
+                    <entity-and entity-name="PartyRole" list="partyRoles">
+                        <field-map field-name="roleTypeId" value="SELLER"/>
+                    </entity-and>
+                    <iterate entry="partyRole" list="partyRoles">
+                        <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
+                        <set field="runTenantServiceInMap.serviceName" value="updateProductCategoryToCategory"/>
+                        <set field="runTenantServiceInMap.serviceParameters" from-field="updateProductCategoryRollUpMap"/>
+                        <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+                    </iterate>
+                </if-not-empty>
+            </if-compare>
+        </if-compare>
+    </simple-method>
+    
+    <simple-method method-name="deleteCategoryRollUpToSeller" short-description="Delete Parent and Child Category in RollUp To Seller">
+        <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+        <if-compare field="shopmaxTenant" operator="equals" value="Y">
+            <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+            <if-compare field="tenantId" operator="equals" value="default">
                 <entity-one entity-name="UserLogin" value-field="sysUserLogin">
                     <field-map field-name="userLoginId" value="system"/>
                 </entity-one>
-                <set field="updateProductCategoryRollUpMap" value="${groovy: import org.ofbiz.entity.util.EntityUtil;
-                Map productCategoryRollUpMap = productCategoryRollup.getAllFields();
-                productCategoryRollUpMap.remove('createdStamp');
-                productCategoryRollUpMap.remove('createdTxStamp');
-                productCategoryRollUpMap.remove('lastUpdatedStamp');
-                productCategoryRollUpMap.remove('lastUpdatedTxStamp');
-                if (productCategoryRollUpMap) return productCategoryRollUpMap;}" type="Map"/>
-                <set field="updateProductCategoryRollUpMap.userLogin" from-field="sysUserLogin"/>
+                <set field="deleteProductCategoryRollUpMap.productCategoryId" from-field="parameters.productCategoryId"/>
+                <set field="deleteProductCategoryRollUpMap.parentProductCategoryId" from-field="parameters.parentProductCategoryId"/>
+                <set field="deleteProductCategoryRollUpMap.fromDate" from-field="parameters.fromDate"/>
+                <set field="deleteProductCategoryRollUpMap.userLogin" from-field="sysUserLogin"/>
                 <entity-and entity-name="PartyRole" list="partyRoles">
                     <field-map field-name="roleTypeId" value="SELLER"/>
                 </entity-and>
                 <iterate entry="partyRole" list="partyRoles">
                     <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
-                    <set field="runTenantServiceInMap.serviceName" value="updateProductCategoryToCategory"/>
-                    <set field="runTenantServiceInMap.serviceParameters" from-field="updateProductCategoryRollUpMap"/>
+                    <set field="runTenantServiceInMap.serviceName" value="removeProductCategoryFromCategory"/>
+                    <set field="runTenantServiceInMap.serviceParameters" from-field="deleteProductCategoryRollUpMap"/>
                     <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
                 </iterate>
-            </if-not-empty>
-        </if-compare>
-    </simple-method>
-    
-    <simple-method method-name="deleteCategoryRollUpToSeller" short-description="Delete Parent and Child Category in RollUp To Seller">
-       <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
-        <if-compare field="tenantId" operator="equals" value="default">
-            <entity-one entity-name="UserLogin" value-field="sysUserLogin">
-                <field-map field-name="userLoginId" value="system"/>
-            </entity-one>
-            <set field="deleteProductCategoryRollUpMap.productCategoryId" from-field="parameters.productCategoryId"/>
-            <set field="deleteProductCategoryRollUpMap.parentProductCategoryId" from-field="parameters.parentProductCategoryId"/>
-            <set field="deleteProductCategoryRollUpMap.fromDate" from-field="parameters.fromDate"/>
-            <set field="deleteProductCategoryRollUpMap.userLogin" from-field="sysUserLogin"/>
-            <entity-and entity-name="PartyRole" list="partyRoles">
-                <field-map field-name="roleTypeId" value="SELLER"/>
-            </entity-and>
-            <iterate entry="partyRole" list="partyRoles">
-                <set field="runTenantServiceInMap.tenantId" from-field="partyRole.partyId"/>
-                <set field="runTenantServiceInMap.serviceName" value="removeProductCategoryFromCategory"/>
-                <set field="runTenantServiceInMap.serviceParameters" from-field="deleteProductCategoryRollUpMap"/>
-                <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-            </iterate>
+            </if-compare>
         </if-compare>
     </simple-method>
     
@@ -765,11 +780,14 @@ under the License.
         <set field="success" value="true"/>
         <field-to-result field="success" result-name="uploadsuccess"/>
         
-        <set field="parameters.partyId" from-field="userLogin.partyId"/>
-        <set field="runTenantServiceInMap.tenantId" value="default"/>
-        <set field="runTenantServiceInMap.serviceName" value="uploadProductToShopmax"/>
-        <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
-        <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+        <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+        <if-compare field="shopmaxTenant" operator="equals" value="Y">
+            <set field="parameters.partyId" from-field="userLogin.partyId"/>
+            <set field="runTenantServiceInMap.tenantId" value="default"/>
+            <set field="runTenantServiceInMap.serviceName" value="uploadProductToShopmax"/>
+            <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
+            <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+        </if-compare>
     </simple-method>
     
     <simple-method method-name="uploadProductToShopmax" short-description="Upload Product To Shopmax">
@@ -1054,264 +1072,266 @@ under the License.
         <entity-one value-field="systemUserLogin" entity-name="UserLogin">
             <field-map field-name="userLoginId" value="system"/>
         </entity-one>
-        
-        <set field="tenantId" from-field="parameters.partyId"/>
-        
-        <entity-one value-field="party" entity-name="Party">
-            <field-map field-name="partyId" from-field="parameters.partyId"/>
-        </entity-one>
-        
-        <entity-one value-field="person" entity-name="Person">
-            <field-map field-name="partyId" from-field="parameters.partyId"/>
-        </entity-one>
-        
-        <entity-and list="userLoginSellers" entity-name="UserLogin">
-            <field-map field-name="partyId" from-field="parameters.partyId"/>
-        </entity-and>
-        <first-from-list entry="userLoginSeller" list="userLoginSellers"/>
-        
-        <script>groovy:
-            import org.ofbiz.entity.DelegatorFactory;
-            def tenantDelegator = DelegatorFactory.getDelegator(delegator.getDelegatorBaseName() + "#" + tenantId);
-            def tenantParty = tenantDelegator.makeValue("Party");
-            tenantParty = party;
-            tenantDelegator.create(tenantParty);
+        <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+        <if-compare field="shopmaxTenant" operator="equals" value="Y">
+            <set field="tenantId" from-field="parameters.partyId"/>
             
-            def tenantPerson = tenantDelegator.makeValue("Person");
-            tenantPerson = person;
-            tenantDelegator.create(tenantPerson);
-            
-            def tenantUserLogin = tenantDelegator.makeValue("UserLogin");
-            tenantUserLogin = userLoginSeller;
-            tenantDelegator.create(tenantUserLogin);
-        </script>
-        
-        <entity-one value-field="partyAttribute" entity-name="PartyAttribute">
-            <field-map field-name="partyId" from-field="parameters.partyId"/>
-            <field-map field-name="attrName" value="DOMAIN_NAME"/>
-        </entity-one>
-        <if-not-empty field="partyAttribute">
-            <set field="createPartyAttributeMap.userLogin" from-field="systemUserLogin"/>
-            <set field="createPartyAttributeMap.partyId" from-field="parameters.partyId"/>
-            <set field="createPartyAttributeMap.attrName" value="DOMAIN_NAME"/>
-            <set field="createPartyAttributeMap.attrValue" from-field="partyAttribute.attrValue"/>
-            <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
-            <set field="runTenantServiceInMap.serviceName" value="createPartyAttribute"/>
-            <set field="runTenantServiceInMap.serviceParameters" from-field="createPartyAttributeMap"/>
-            <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-        </if-not-empty>
-        
-        <entity-and list="partyRelationships" entity-name="PartyRelationship" filter-by-date="true">
-            <field-map field-name="partyIdTo" from-field="parameters.partyId"/>
-            <field-map field-name="roleTypeIdFrom" value="INTERNAL_ORGANIZATIO"/>
-            <field-map field-name="roleTypeIdTo" value="EMPLOYEE"/>
-            <field-map field-name="partyRelationshipTypeId" value="EMPLOYMENT"/>
-        </entity-and>
-        <if-not-empty field="partyRelationships">
-            <first-from-list entry="partyRelationship" list="partyRelationships"/>
-            <set field="partyGroupPartyId" from-field="partyRelationship.partyIdFrom"/>
-            <entity-one value-field="partyPartyGroup" entity-name="Party">
-                <field-map field-name="partyId" from-field="partyGroupPartyId"/>
-            </entity-one>
-            <entity-one value-field="partyGroup" entity-name="PartyGroup">
-                <field-map field-name="partyId" from-field="partyGroupPartyId"/>
+            <entity-one value-field="party" entity-name="Party">
+                <field-map field-name="partyId" from-field="parameters.partyId"/>
             </entity-one>
             
-            <set field="createCustomerRoleCtx.userLogin" from-field="systemUserLogin"/>
-            <set field="createCustomerRoleCtx.partyId" from-field="parameters.partyId"/>
-            <set field="createCustomerRoleCtx.roleTypeId" value="CUSTOMER"/>
-            <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
-            <set field="runTenantServiceInMap.serviceName" value="createPartyRole"/>
-            <set field="runTenantServiceInMap.serviceParameters" from-field="createCustomerRoleCtx"/>
-            <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+            <entity-one value-field="person" entity-name="Person">
+                <field-map field-name="partyId" from-field="parameters.partyId"/>
+            </entity-one>
             
-            <set field="createSellerRoleCtx.userLogin" from-field="systemUserLogin"/>
-            <set field="createSellerRoleCtx.partyId" from-field="parameters.partyId"/>
-            <set field="createSellerRoleCtx.roleTypeId" value="SELLER"/>
-            <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
-            <set field="runTenantServiceInMap.serviceName" value="createPartyRole"/>
-            <set field="runTenantServiceInMap.serviceParameters" from-field="createSellerRoleCtx"/>
-            <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+            <entity-and list="userLoginSellers" entity-name="UserLogin">
+                <field-map field-name="partyId" from-field="parameters.partyId"/>
+            </entity-and>
+            <first-from-list entry="userLoginSeller" list="userLoginSellers"/>
             
-            <set field="createEmployeeRoleCtx.userLogin" from-field="systemUserLogin"/>
-            <set field="createEmployeeRoleCtx.partyId" from-field="parameters.partyId"/>
-            <set field="createEmployeeRoleCtx.roleTypeId" value="EMPLOYEE"/>
-            <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
-            <set field="runTenantServiceInMap.serviceName" value="createPartyRole"/>
-            <set field="runTenantServiceInMap.serviceParameters" from-field="createEmployeeRoleCtx"/>
-            <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-            
-            <!-- Create party group -->
             <script>groovy:
                 import org.ofbiz.entity.DelegatorFactory;
                 def tenantDelegator = DelegatorFactory.getDelegator(delegator.getDelegatorBaseName() + "#" + tenantId);
                 def tenantParty = tenantDelegator.makeValue("Party");
-                tenantParty = partyPartyGroup;
+                tenantParty = party;
                 tenantDelegator.create(tenantParty);
                 
-                def tenantPartyGroup = tenantDelegator.makeValue("PartyGroup");
-                tenantPartyGroup = partyGroup;
-                tenantDelegator.create(tenantPartyGroup);
+                def tenantPerson = tenantDelegator.makeValue("Person");
+                tenantPerson = person;
+                tenantDelegator.create(tenantPerson);
                 
-                def tenantProductStore = tenantDelegator.findOne("ProductStore", ["productStoreId" : "ShopMaxSellerStore"], false);
-                tenantProductStore.payToPartyId = partyGroupPartyId;
-                tenantDelegator.store(tenantProductStore);
-                
-                def tenantFacility = tenantDelegator.findOne("Facility", ["facilityId" : "SellerWarehouse"], false);
-                tenantFacility.ownerPartyId = partyGroupPartyId;
-                tenantDelegator.store(tenantFacility);
+                def tenantUserLogin = tenantDelegator.makeValue("UserLogin");
+                tenantUserLogin = userLoginSeller;
+                tenantDelegator.create(tenantUserLogin);
             </script>
             
-            <!-- Create organization role -->
-            <set field="createOrganizationRoleCtx.userLogin" from-field="systemUserLogin"/>
-            <set field="createOrganizationRoleCtx.partyId" from-field="partyGroupPartyId"/>
-            <set field="createOrganizationRoleCtx.roleTypeId" value="INTERNAL_ORGANIZATIO"/>
-            <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
-            <set field="runTenantServiceInMap.serviceName" value="createPartyRole"/>
-            <set field="runTenantServiceInMap.serviceParameters" from-field="createOrganizationRoleCtx"/>
-            <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-            
-            <!-- Create party relationship company and person -->
-            <set field="partyRelationshipCtx.userLogin" from-field="systemUserLogin"/>
-            <set field="partyRelationshipCtx.partyIdFrom" from-field="partyGroupPartyId"/>
-            <set field="partyRelationshipCtx.partyIdTo" from-field="parameters.partyId"/>
-            <set field="partyRelationshipCtx.roleTypeIdFrom" value="INTERNAL_ORGANIZATIO"/>
-            <set field="partyRelationshipCtx.roleTypeIdTo" value="EMPLOYEE"/>
-            <set field="partyRelationshipCtx.partyRelationshipTypeId" value="EMPLOYMENT"/>
-            <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
-            <set field="runTenantServiceInMap.serviceName" value="createPartyRelationship"/>
-            <set field="runTenantServiceInMap.serviceParameters" from-field="partyRelationshipCtx"/>
-            <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-            
-            <!-- Create email address -->
-            <entity-and list="emailAddressList" entity-name="PartyContactDetailByPurpose" filter-by-date="true">
+            <entity-one value-field="partyAttribute" entity-name="PartyAttribute">
                 <field-map field-name="partyId" from-field="parameters.partyId"/>
-                <field-map field-name="contactMechPurposeTypeId" value="PRIMARY_EMAIL"/>
+                <field-map field-name="attrName" value="DOMAIN_NAME"/>
+            </entity-one>
+            <if-not-empty field="partyAttribute">
+                <set field="createPartyAttributeMap.userLogin" from-field="systemUserLogin"/>
+                <set field="createPartyAttributeMap.partyId" from-field="parameters.partyId"/>
+                <set field="createPartyAttributeMap.attrName" value="DOMAIN_NAME"/>
+                <set field="createPartyAttributeMap.attrValue" from-field="partyAttribute.attrValue"/>
+                <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
+                <set field="runTenantServiceInMap.serviceName" value="createPartyAttribute"/>
+                <set field="runTenantServiceInMap.serviceParameters" from-field="createPartyAttributeMap"/>
+                <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+            </if-not-empty>
+            
+            <entity-and list="partyRelationships" entity-name="PartyRelationship" filter-by-date="true">
+                <field-map field-name="partyIdTo" from-field="parameters.partyId"/>
+                <field-map field-name="roleTypeIdFrom" value="INTERNAL_ORGANIZATIO"/>
+                <field-map field-name="roleTypeIdTo" value="EMPLOYEE"/>
+                <field-map field-name="partyRelationshipTypeId" value="EMPLOYMENT"/>
             </entity-and>
-            <if-not-empty field="emailAddressList">
-                <first-from-list entry="emailAddress" list="emailAddressList"/>
-                <entity-one value-field="emailAddressContactMech" entity-name="ContactMech">
-                    <field-map field-name="contactMechId" from-field="emailAddress.contactMechId"/>
+            <if-not-empty field="partyRelationships">
+                <first-from-list entry="partyRelationship" list="partyRelationships"/>
+                <set field="partyGroupPartyId" from-field="partyRelationship.partyIdFrom"/>
+                <entity-one value-field="partyPartyGroup" entity-name="Party">
+                    <field-map field-name="partyId" from-field="partyGroupPartyId"/>
                 </entity-one>
-                <entity-and list="emailAddressPartyContactMechs" entity-name="PartyContactMech">
-                    <field-map field-name="partyId" from-field="parameters.partyId"/>
-                    <field-map field-name="contactMechId" from-field="emailAddress.contactMechId"/>
-                </entity-and>
-                <first-from-list entry="emailAddressPartyContactMech" list="emailAddressPartyContactMechs"/>
+                <entity-one value-field="partyGroup" entity-name="PartyGroup">
+                    <field-map field-name="partyId" from-field="partyGroupPartyId"/>
+                </entity-one>
+                
+                <set field="createCustomerRoleCtx.userLogin" from-field="systemUserLogin"/>
+                <set field="createCustomerRoleCtx.partyId" from-field="parameters.partyId"/>
+                <set field="createCustomerRoleCtx.roleTypeId" value="CUSTOMER"/>
+                <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
+                <set field="runTenantServiceInMap.serviceName" value="createPartyRole"/>
+                <set field="runTenantServiceInMap.serviceParameters" from-field="createCustomerRoleCtx"/>
+                <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+                
+                <set field="createSellerRoleCtx.userLogin" from-field="systemUserLogin"/>
+                <set field="createSellerRoleCtx.partyId" from-field="parameters.partyId"/>
+                <set field="createSellerRoleCtx.roleTypeId" value="SELLER"/>
+                <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
+                <set field="runTenantServiceInMap.serviceName" value="createPartyRole"/>
+                <set field="runTenantServiceInMap.serviceParameters" from-field="createSellerRoleCtx"/>
+                <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+                
+                <set field="createEmployeeRoleCtx.userLogin" from-field="systemUserLogin"/>
+                <set field="createEmployeeRoleCtx.partyId" from-field="parameters.partyId"/>
+                <set field="createEmployeeRoleCtx.roleTypeId" value="EMPLOYEE"/>
+                <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
+                <set field="runTenantServiceInMap.serviceName" value="createPartyRole"/>
+                <set field="runTenantServiceInMap.serviceParameters" from-field="createEmployeeRoleCtx"/>
+                <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+                
+                <!-- Create party group -->
                 <script>groovy:
                     import org.ofbiz.entity.DelegatorFactory;
                     def tenantDelegator = DelegatorFactory.getDelegator(delegator.getDelegatorBaseName() + "#" + tenantId);
-                    def tenantContactMech = tenantDelegator.makeValue("ContactMech");
-                    tenantContactMech = emailAddressContactMech;
-                    tenantDelegator.create(tenantContactMech);
+                    def tenantParty = tenantDelegator.makeValue("Party");
+                    tenantParty = partyPartyGroup;
+                    tenantDelegator.create(tenantParty);
                     
-                    def tenantPartyContactMech = tenantDelegator.makeValue("PartyContactMech");
-                    tenantPartyContactMech = emailAddressPartyContactMech;
-                    tenantDelegator.create(tenantPartyContactMech);
+                    def tenantPartyGroup = tenantDelegator.makeValue("PartyGroup");
+                    tenantPartyGroup = partyGroup;
+                    tenantDelegator.create(tenantPartyGroup);
+                    
+                    def tenantProductStore = tenantDelegator.findOne("ProductStore", ["productStoreId" : "ShopMaxSellerStore"], false);
+                    tenantProductStore.payToPartyId = partyGroupPartyId;
+                    tenantDelegator.store(tenantProductStore);
+                    
+                    def tenantFacility = tenantDelegator.findOne("Facility", ["facilityId" : "SellerWarehouse"], false);
+                    tenantFacility.ownerPartyId = partyGroupPartyId;
+                    tenantDelegator.store(tenantFacility);
                 </script>
                 
-                <set field="emailPurposeContext.userLogin" from-field="systemUserLogin"/>
-                <set field="emailPurposeContext.partyId" from-field="parameters.partyId"/>
-                <set field="emailPurposeContext.contactMechId" from-field="emailAddress.contactMechId"/>
-                <set field="emailPurposeContext.contactMechPurposeTypeId" value="PRIMARY_EMAIL"/>
+                <!-- Create organization role -->
+                <set field="createOrganizationRoleCtx.userLogin" from-field="systemUserLogin"/>
+                <set field="createOrganizationRoleCtx.partyId" from-field="partyGroupPartyId"/>
+                <set field="createOrganizationRoleCtx.roleTypeId" value="INTERNAL_ORGANIZATIO"/>
                 <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
-                <set field="runTenantServiceInMap.serviceName" value="createPartyContactMechPurpose"/>
-                <set field="runTenantServiceInMap.serviceParameters" from-field="emailPurposeContext"/>
+                <set field="runTenantServiceInMap.serviceName" value="createPartyRole"/>
+                <set field="runTenantServiceInMap.serviceParameters" from-field="createOrganizationRoleCtx"/>
                 <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-            </if-not-empty>
-            
-            <!-- Create the contact phone number -->
-            <entity-and list="contactPhoneNumberList" entity-name="PartyContactDetailByPurpose" filter-by-date="true">
-                <field-map field-name="partyId" from-field="parameters.partyId"/>
-                <field-map field-name="contactMechPurposeTypeId" value="PRIMARY_PHONE"/>
-            </entity-and>
-            <if-not-empty field="contactPhoneNumberList">
-                <first-from-list entry="contactPhoneNumber" list="contactPhoneNumberList"/>
-                <entity-one value-field="contactPhoneNumberContactMech" entity-name="ContactMech">
-                    <field-map field-name="contactMechId" from-field="contactPhoneNumber.contactMechId"/>
-                </entity-one>
-                <entity-and list="contactPhoneNumberPartyContactMechs" entity-name="PartyContactMech">
+                
+                <!-- Create party relationship company and person -->
+                <set field="partyRelationshipCtx.userLogin" from-field="systemUserLogin"/>
+                <set field="partyRelationshipCtx.partyIdFrom" from-field="partyGroupPartyId"/>
+                <set field="partyRelationshipCtx.partyIdTo" from-field="parameters.partyId"/>
+                <set field="partyRelationshipCtx.roleTypeIdFrom" value="INTERNAL_ORGANIZATIO"/>
+                <set field="partyRelationshipCtx.roleTypeIdTo" value="EMPLOYEE"/>
+                <set field="partyRelationshipCtx.partyRelationshipTypeId" value="EMPLOYMENT"/>
+                <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
+                <set field="runTenantServiceInMap.serviceName" value="createPartyRelationship"/>
+                <set field="runTenantServiceInMap.serviceParameters" from-field="partyRelationshipCtx"/>
+                <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+                
+                <!-- Create email address -->
+                <entity-and list="emailAddressList" entity-name="PartyContactDetailByPurpose" filter-by-date="true">
                     <field-map field-name="partyId" from-field="parameters.partyId"/>
-                    <field-map field-name="contactMechId" from-field="contactPhoneNumber.contactMechId"/>
+                    <field-map field-name="contactMechPurposeTypeId" value="PRIMARY_EMAIL"/>
                 </entity-and>
-                <first-from-list entry="contactPhoneNumberPartyContactMech" list="contactPhoneNumberPartyContactMechs"/>
-                <script>groovy:
-                    import org.ofbiz.entity.DelegatorFactory;
-                    def tenantDelegator = DelegatorFactory.getDelegator(delegator.getDelegatorBaseName() + "#" + tenantId);
-                    def tenantContactMech = tenantDelegator.makeValue("ContactMech");
-                    tenantContactMech = contactPhoneNumberContactMech;
-                    tenantDelegator.create(tenantContactMech);
+                <if-not-empty field="emailAddressList">
+                    <first-from-list entry="emailAddress" list="emailAddressList"/>
+                    <entity-one value-field="emailAddressContactMech" entity-name="ContactMech">
+                        <field-map field-name="contactMechId" from-field="emailAddress.contactMechId"/>
+                    </entity-one>
+                    <entity-and list="emailAddressPartyContactMechs" entity-name="PartyContactMech">
+                        <field-map field-name="partyId" from-field="parameters.partyId"/>
+                        <field-map field-name="contactMechId" from-field="emailAddress.contactMechId"/>
+                    </entity-and>
+                    <first-from-list entry="emailAddressPartyContactMech" list="emailAddressPartyContactMechs"/>
+                    <script>groovy:
+                        import org.ofbiz.entity.DelegatorFactory;
+                        def tenantDelegator = DelegatorFactory.getDelegator(delegator.getDelegatorBaseName() + "#" + tenantId);
+                        def tenantContactMech = tenantDelegator.makeValue("ContactMech");
+                        tenantContactMech = emailAddressContactMech;
+                        tenantDelegator.create(tenantContactMech);
+                        
+                        def tenantPartyContactMech = tenantDelegator.makeValue("PartyContactMech");
+                        tenantPartyContactMech = emailAddressPartyContactMech;
+                        tenantDelegator.create(tenantPartyContactMech);
+                    </script>
                     
-                    def tenantPartyContactMech = tenantDelegator.makeValue("PartyContactMech");
-                    tenantPartyContactMech = contactPhoneNumberPartyContactMech;
-                    tenantDelegator.create(tenantPartyContactMech);
-                </script>
+                    <set field="emailPurposeContext.userLogin" from-field="systemUserLogin"/>
+                    <set field="emailPurposeContext.partyId" from-field="parameters.partyId"/>
+                    <set field="emailPurposeContext.contactMechId" from-field="emailAddress.contactMechId"/>
+                    <set field="emailPurposeContext.contactMechPurposeTypeId" value="PRIMARY_EMAIL"/>
+                    <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
+                    <set field="runTenantServiceInMap.serviceName" value="createPartyContactMechPurpose"/>
+                    <set field="runTenantServiceInMap.serviceParameters" from-field="emailPurposeContext"/>
+                    <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+                </if-not-empty>
                 
-                <set field="homePhonePurposeContext.userLogin" from-field="systemUserLogin"/>
-                <set field="homePhonePurposeContext.partyId" from-field="parameters.partyId"/>
-                <set field="homePhonePurposeContext.contactMechId" from-field="contactPhoneNumber.contactMechId"/>
-                <set field="homePhonePurposeContext.contactMechPurposeTypeId" value="PRIMARY_PHONE"/>
-                <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
-                <set field="runTenantServiceInMap.serviceName" value="createPartyContactMechPurpose"/>
-                <set field="runTenantServiceInMap.serviceParameters" from-field="homePhonePurposeContext"/>
-                <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-            </if-not-empty>
-            
-            <!-- Create the notification phone number -->
-            <entity-and list="notificationPhoneNumberList" entity-name="PartyContactDetailByPurpose" filter-by-date="true">
-                <field-map field-name="partyId" from-field="parameters.partyId"/>
-                <field-map field-name="contactMechPurposeTypeId" value="PHONE_MOBILE"/>
-            </entity-and>
-            <if-not-empty field="notificationPhoneNumberList">
-                <first-from-list entry="notificationPhoneNumber" list="notificationPhoneNumberList"/>
-                <entity-one value-field="notificationPhoneNumberContactMech" entity-name="ContactMech">
-                    <field-map field-name="contactMechId" from-field="notificationPhoneNumber.contactMechId"/>
-                </entity-one>
-                <entity-and list="notificationPhoneNumberPartyContactMechs" entity-name="PartyContactMech">
+                <!-- Create the contact phone number -->
+                <entity-and list="contactPhoneNumberList" entity-name="PartyContactDetailByPurpose" filter-by-date="true">
                     <field-map field-name="partyId" from-field="parameters.partyId"/>
-                    <field-map field-name="contactMechId" from-field="notificationPhoneNumber.contactMechId"/>
+                    <field-map field-name="contactMechPurposeTypeId" value="PRIMARY_PHONE"/>
                 </entity-and>
-                <first-from-list entry="notificationPhoneNumberPartyContactMech" list="notificationPhoneNumberPartyContactMechs"/>
-                <script>groovy:
-                    import org.ofbiz.entity.DelegatorFactory;
-                    def tenantDelegator = DelegatorFactory.getDelegator(delegator.getDelegatorBaseName() + "#" + tenantId);
-                    def tenantContactMech = tenantDelegator.makeValue("ContactMech");
-                    tenantContactMech = notificationPhoneNumberContactMech;
-                    tenantDelegator.create(tenantContactMech);
+                <if-not-empty field="contactPhoneNumberList">
+                    <first-from-list entry="contactPhoneNumber" list="contactPhoneNumberList"/>
+                    <entity-one value-field="contactPhoneNumberContactMech" entity-name="ContactMech">
+                        <field-map field-name="contactMechId" from-field="contactPhoneNumber.contactMechId"/>
+                    </entity-one>
+                    <entity-and list="contactPhoneNumberPartyContactMechs" entity-name="PartyContactMech">
+                        <field-map field-name="partyId" from-field="parameters.partyId"/>
+                        <field-map field-name="contactMechId" from-field="contactPhoneNumber.contactMechId"/>
+                    </entity-and>
+                    <first-from-list entry="contactPhoneNumberPartyContactMech" list="contactPhoneNumberPartyContactMechs"/>
+                    <script>groovy:
+                        import org.ofbiz.entity.DelegatorFactory;
+                        def tenantDelegator = DelegatorFactory.getDelegator(delegator.getDelegatorBaseName() + "#" + tenantId);
+                        def tenantContactMech = tenantDelegator.makeValue("ContactMech");
+                        tenantContactMech = contactPhoneNumberContactMech;
+                        tenantDelegator.create(tenantContactMech);
+                        
+                        def tenantPartyContactMech = tenantDelegator.makeValue("PartyContactMech");
+                        tenantPartyContactMech = contactPhoneNumberPartyContactMech;
+                        tenantDelegator.create(tenantPartyContactMech);
+                    </script>
                     
-                    def tenantPartyContactMech = tenantDelegator.makeValue("PartyContactMech");
-                    tenantPartyContactMech = notificationPhoneNumberPartyContactMech;
-                    tenantDelegator.create(tenantPartyContactMech);
-                </script>
+                    <set field="homePhonePurposeContext.userLogin" from-field="systemUserLogin"/>
+                    <set field="homePhonePurposeContext.partyId" from-field="parameters.partyId"/>
+                    <set field="homePhonePurposeContext.contactMechId" from-field="contactPhoneNumber.contactMechId"/>
+                    <set field="homePhonePurposeContext.contactMechPurposeTypeId" value="PRIMARY_PHONE"/>
+                    <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
+                    <set field="runTenantServiceInMap.serviceName" value="createPartyContactMechPurpose"/>
+                    <set field="runTenantServiceInMap.serviceParameters" from-field="homePhonePurposeContext"/>
+                    <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+                </if-not-empty>
                 
-                <set field="mobilePhonePurposeContext.userLogin" from-field="systemUserLogin"/>
-                <set field="mobilePhonePurposeContext.partyId" from-field="parameters.partyId"/>
-                <set field="mobilePhonePurposeContext.contactMechId" from-field="notificationPhoneNumber.contactMechId"/>
-                <set field="mobilePhonePurposeContext.contactMechPurposeTypeId" value="PHONE_MOBILE"/>
-                <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
-                <set field="runTenantServiceInMap.serviceName" value="createPartyContactMechPurpose"/>
-                <set field="runTenantServiceInMap.serviceParameters" from-field="mobilePhonePurposeContext"/>
-                <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+                <!-- Create the notification phone number -->
+                <entity-and list="notificationPhoneNumberList" entity-name="PartyContactDetailByPurpose" filter-by-date="true">
+                    <field-map field-name="partyId" from-field="parameters.partyId"/>
+                    <field-map field-name="contactMechPurposeTypeId" value="PHONE_MOBILE"/>
+                </entity-and>
+                <if-not-empty field="notificationPhoneNumberList">
+                    <first-from-list entry="notificationPhoneNumber" list="notificationPhoneNumberList"/>
+                    <entity-one value-field="notificationPhoneNumberContactMech" entity-name="ContactMech">
+                        <field-map field-name="contactMechId" from-field="notificationPhoneNumber.contactMechId"/>
+                    </entity-one>
+                    <entity-and list="notificationPhoneNumberPartyContactMechs" entity-name="PartyContactMech">
+                        <field-map field-name="partyId" from-field="parameters.partyId"/>
+                        <field-map field-name="contactMechId" from-field="notificationPhoneNumber.contactMechId"/>
+                    </entity-and>
+                    <first-from-list entry="notificationPhoneNumberPartyContactMech" list="notificationPhoneNumberPartyContactMechs"/>
+                    <script>groovy:
+                        import org.ofbiz.entity.DelegatorFactory;
+                        def tenantDelegator = DelegatorFactory.getDelegator(delegator.getDelegatorBaseName() + "#" + tenantId);
+                        def tenantContactMech = tenantDelegator.makeValue("ContactMech");
+                        tenantContactMech = notificationPhoneNumberContactMech;
+                        tenantDelegator.create(tenantContactMech);
+                        
+                        def tenantPartyContactMech = tenantDelegator.makeValue("PartyContactMech");
+                        tenantPartyContactMech = notificationPhoneNumberPartyContactMech;
+                        tenantDelegator.create(tenantPartyContactMech);
+                    </script>
+                    
+                    <set field="mobilePhonePurposeContext.userLogin" from-field="systemUserLogin"/>
+                    <set field="mobilePhonePurposeContext.partyId" from-field="parameters.partyId"/>
+                    <set field="mobilePhonePurposeContext.contactMechId" from-field="notificationPhoneNumber.contactMechId"/>
+                    <set field="mobilePhonePurposeContext.contactMechPurposeTypeId" value="PHONE_MOBILE"/>
+                    <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
+                    <set field="runTenantServiceInMap.serviceName" value="createPartyContactMechPurpose"/>
+                    <set field="runTenantServiceInMap.serviceParameters" from-field="mobilePhonePurposeContext"/>
+                    <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+                </if-not-empty>
+                
+                <entity-and list="userLoginSelllerList" entity-name="UserLogin">
+                    <field-map field-name="partyId" from-field="parameters.partyId"/>
+                </entity-and>
+                <if-not-empty field="userLoginSelllerList">
+                    <first-from-list entry="userLoginSelller" list="userLoginSelllerList"/>
+                    <set field="addSellerSecurityGroupMap.userLogin" from-field="systemUserLogin"/>
+                    <set field="addSellerSecurityGroupMap.userLoginId" from-field="userLoginSelller.userLoginId"/>
+                    <set field="addSellerSecurityGroupMap.groupId" value="SHOPMAX_SELLER"/>
+                    <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
+                    <set field="runTenantServiceInMap.serviceName" value="addUserLoginToSecurityGroup"/>
+                    <set field="runTenantServiceInMap.serviceParameters" from-field="addSellerSecurityGroupMap"/>
+                    <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+                </if-not-empty>
             </if-not-empty>
-            
-            <entity-and list="userLoginSelllerList" entity-name="UserLogin">
-                <field-map field-name="partyId" from-field="parameters.partyId"/>
-            </entity-and>
-            <if-not-empty field="userLoginSelllerList">
-                <first-from-list entry="userLoginSelller" list="userLoginSelllerList"/>
-                <set field="addSellerSecurityGroupMap.userLogin" from-field="systemUserLogin"/>
-                <set field="addSellerSecurityGroupMap.userLoginId" from-field="userLoginSelller.userLoginId"/>
-                <set field="addSellerSecurityGroupMap.groupId" value="SHOPMAX_SELLER"/>
-                <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
-                <set field="runTenantServiceInMap.serviceName" value="addUserLoginToSecurityGroup"/>
-                <set field="runTenantServiceInMap.serviceParameters" from-field="addSellerSecurityGroupMap"/>
-                <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-            </if-not-empty>
-        </if-not-empty>
+        </if-compare>
     </simple-method>
     
     <simple-method method-name="setCategoryHasProduct" short-description="Set Category Has Product">
-        <if-compare field="showInSelect" operator="equals" value="Y">
+        <if-compare field="parameters.showInSelect" operator="equals" value="Y">
             <entity-one value-field="productCategory" entity-name="ProductCategory">
                 <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
             </entity-one>
@@ -1619,11 +1639,14 @@ under the License.
         
         <field-to-result field="parameters.productId" result-name="productId"/>
         
-        <set field="parameters.partyId" from-field="userLogin.partyId"/>
-        <set field="runTenantServiceInMap.tenantId" value="default"/>
-        <set field="runTenantServiceInMap.serviceName" value="updateProductToShopmax"/>
-        <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
-        <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+        <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+        <if-compare field="shopmaxTenant" operator="equals" value="Y">
+            <set field="parameters.partyId" from-field="userLogin.partyId"/>
+            <set field="runTenantServiceInMap.tenantId" value="default"/>
+            <set field="runTenantServiceInMap.serviceName" value="updateProductToShopmax"/>
+            <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
+            <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+        </if-compare>
     </simple-method>
     
     <simple-method method-name="updateProductToShopmax" short-description="Update Product To Shopmax">
@@ -1924,10 +1947,13 @@ under the License.
         
         <field-to-result field="parameters.productId" result-name="productId"/>
         
-        <set field="runTenantServiceInMap.tenantId" value="default"/>
-        <set field="runTenantServiceInMap.serviceName" value="removeProductFromShopmax"/>
-        <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
-        <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+        <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+        <if-compare field="shopmaxTenant" operator="equals" value="Y">
+            <set field="runTenantServiceInMap.tenantId" value="default"/>
+            <set field="runTenantServiceInMap.serviceName" value="removeProductFromShopmax"/>
+            <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
+            <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+        </if-compare>
     </simple-method>
     
     <simple-method method-name="removeProductFromShopmax" short-description="Remove Product From Shopmax">
@@ -2038,10 +2064,14 @@ under the License.
             <set field="removeProductImageShopmaxMap.productId" from-field="lookedUpValue.productId"/>
             <set field="removeProductImageShopmaxMap.productContentTypeId" from-field="lookedUpValue.productContentTypeId"/>
             <set field="removeProductImageShopmaxMap.sequenceNum" from-field="lookedUpValue.sequenceNum"/>
-            <set field="runTenantServiceInMap.tenantId" value="default"/>
-            <set field="runTenantServiceInMap.serviceName" value="removeProductContentAndImageFileShopmax"/>
-            <set field="runTenantServiceInMap.serviceParameters" from-field="removeProductImageShopmaxMap"/>
-            <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+            
+            <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+            <if-compare field="shopmaxTenant" operator="equals" value="Y">
+                <set field="runTenantServiceInMap.tenantId" value="default"/>
+                <set field="runTenantServiceInMap.serviceName" value="removeProductContentAndImageFileShopmax"/>
+                <set field="runTenantServiceInMap.serviceParameters" from-field="removeProductImageShopmaxMap"/>
+                <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+            </if-compare>
         </if-not-empty>
     </simple-method>
     

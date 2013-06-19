@@ -57,12 +57,15 @@ public class ShopMaxServices {
         List<Map<String, Object>> sendSMS = FastList.newInstance();
         Delegator delegator = ctx.getDelegator();
         String tenantId = (String) context.get("tenantId");
-        String messageSMS = "You&nbsp;have&nbsp;sale&nbsp;order&nbsp;from&nbsp;Shopmax";
         String contactNumber = null;
         
         Map<String, Object> result = FastMap.newInstance();
         
-        String sellerSMS = UtilProperties.getPropertyValue("shopmax.properties", "shopmax.seller.sms");
+        String sellerSMS = UtilProperties.getPropertyValue("shopmax.properties", "shopmax.seller.sms.enabled");
+        String usernameSMS = UtilProperties.getPropertyValue("shopmax.properties", "shopmax.seller.sms.username");
+        String passwordSMS = UtilProperties.getPropertyValue("shopmax.properties", "shopmax.seller.sms.password");
+        String messageSMS = UtilProperties.getPropertyValue("shopmax.properties", "shopmax.seller.sms.message");
+        
         if (sellerSMS.equals("Y")) {
             String response = null;
             
@@ -72,7 +75,7 @@ public class ShopMaxServices {
             }
             
             if (UtilValidate.isNotEmpty(contactNumber)) {
-                String confirmationSMSUrl = "http://shopmax.dyndns.biz:9710/http/send-message?username=" + "admin" + "&password=" + "admin" + "&to=%2B" + contactNumber + "&message-type=sms.automatic" + "&message=" + messageSMS;
+                String confirmationSMSUrl = "http://shopmax.dyndns.biz:9710/http/send-message?username=" + usernameSMS + "&password=" + passwordSMS + "&to=%2B" + contactNumber + "&message-type=sms.automatic" + "&message=" + messageSMS;
                 Debug.log("------------------------- SMS URL ------------------------- : " + confirmationSMSUrl);
                 
                 try {
