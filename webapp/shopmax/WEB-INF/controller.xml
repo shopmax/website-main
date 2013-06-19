@@ -545,14 +545,6 @@ under the License.
         <response name="success" type="view" value="ViewSimpleContent"/>
     </request-map>
     
-    <!-- Test Index headerHead -->
-    <request-map uri="testindexheaderhead">
-        <security auth="false" https="false"/>
-        <response name="success" type="view" value="testindexheaderhead"/>
-    </request-map>
-    
-    <view-map name="testindexheaderhead" type="screen" page="component://shopmax/widget/ShopMaxEmailScreens.xml#TestIndexHeaderHead"/>
-    
     <!-- View Mappings -->
     <view-map name="main" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#main"/>
     <view-map name="helpcenter" type="screen" page="component://shopmax/widget/ShopMaxScreens.xml#HelpCenter"/>

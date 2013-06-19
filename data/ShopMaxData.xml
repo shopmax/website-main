@@ -31,4 +31,6 @@ under the License.
     
     <DataResource dataResourceId="DIRECT_DEBIT_FORM" dataResourceName="direct_debit.pdf" dataResourceTypeId="OFBIZ_FILE" dataTemplateTypeId="NONE" mimeTypeId="application/pdf" objectInfo="hot-deploy/shopmax/documents/direct_debit.pdf" statusId="CTNT_PUBLISHED"/>
     <Content contentId="DIRECT_DEBIT_FORM" contentName="direct_debit.pdf" description="Direct Debit Form" contentTypeId="TEMPLATE" dataResourceId="DIRECT_DEBIT_FORM" mimeTypeId="application/pdf" statusId="CTNT_AVAILABLE" createdDate="2013-04-01 00:00:00"/>
+    
+    <Enumeration description="Notification" enumCode="ODR_NOTI" enumId="PRDS_ODR_NOTI" enumTypeId="PRDS_EMAIL"/>
 </entity-engine-xml>

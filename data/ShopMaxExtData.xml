@@ -66,7 +66,8 @@ under the License.
     <ProductStorePaymentSetting productStoreId="ShopMaxStore" paymentMethodTypeId="EXT_OFFLINE" paymentServiceTypeEnumId="PRDS_PAY_EXTERNAL" paymentService="" paymentCustomMethodId=""/>
     
     <ProductStoreEmailSetting productStoreId="ShopMaxStore" emailType="PRDS_CUST_REGISTER" bodyScreenLocation="component://shopmax/widget/ShopMaxEmailScreens.xml#CreatePartyNotification" subject="New Account Created" bccAddress="ofbiztest@example.com" fromAddress="ofbiztest@example.com"/>
-    <ProductStoreEmailSetting productStoreId="ShopMaxStore" emailType="PRDS_ODR_CONFIRM" bodyScreenLocation="component://shopmax/widget/ShopMaxEmailScreens.xml#Confirmation" subject="Confirmation" bccAddress="ofbiztest@example.com" fromAddress="ofbiztest@example.com"/>
+    <ProductStoreEmailSetting productStoreId="ShopMaxStore" emailType="PRDS_ODR_CONFIRM" bodyScreenLocation="component://shopmax/widget/ShopMaxEmailScreens.xml#OrderConfirmation" subject="Order Confirmation #${orderId}" bccAddress="ofbiztest@example.com" fromAddress="ofbiztest@example.com"/>
+    <ProductStoreEmailSetting productStoreId="ShopMaxStore" emailType="PRDS_ODR_NOTI" bodyScreenLocation="component://shopmax/widget/ShopMaxEmailScreens.xml#OrderNotification" subject="Order Notification #${orderId}" bccAddress="ofbiztest@example.com" fromAddress="ofbiztest@example.com"/>
     
     <ProductPromo productPromoId="DISCOUNTED_PROMO" promoName="Product On Discounted Price" userEntered="N" showToCustomer="Y" requireCode="N"/>
     <ProductPromoRule productPromoId="DISCOUNTED_PROMO" productPromoRuleId="01" ruleName="Product On Discounted Price"/>

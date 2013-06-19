@@ -193,6 +193,9 @@ public class OrderServices {
                             CheckOutHelper coh = new CheckOutHelper(dispatcher, delegator, cart);
                             coh.createOrder(userLogin);
                             //dispatcher.runAsync("createSaleOrderToSeller", UtilMisc.toMap("orderId", orderId, "userLogin", userLogin));
+                            
+                            // order notification email
+                            sendOrderNotificationScreen(ctx, context, "PRDS_ODR_NOTI", supplierPartyId);
                         } else {
                             // if there are no items to drop ship, then clear out the supplier partyId
                             Debug.logWarning("No drop ship items found for order [" + shipGroup.getString("orderId") + "] and ship group [" + shipGroup.getString("shipGroupSeqId") + "] and supplier party [" + shipGroup.getString("supplierPartyId") + "].  Supplier party information will be cleared for this ship group", module);
@@ -314,5 +317,178 @@ public class OrderServices {
         
         successResult.put("tenantId", tenantId);
         return successResult;
+    }
+
+    protected static Map<String, Object> sendOrderNotificationScreen(DispatchContext dctx, Map<String, ? extends Object> context, String emailType, String supplierPartyId) {
+        LocalDispatcher dispatcher = dctx.getDispatcher();
+        Delegator delegator = dctx.getDelegator();
+        GenericValue userLogin = (GenericValue) context.get("userLogin");
+        String orderId = (String) context.get("orderId");
+        String orderItemSeqId = (String) context.get("orderItemSeqId");
+        String sendTo = (String) context.get("sendTo");
+        String sendCc = (String) context.get("sendCc");
+        String note = (String) context.get("note");
+        String screenUri = (String) context.get("screenUri");
+        GenericValue temporaryAnonymousUserLogin = (GenericValue) context.get("temporaryAnonymousUserLogin");
+        Locale localePar = (Locale) context.get("locale");
+        String partyId = null;
+        String contactMechId = null;
+        if (userLogin == null) {
+            // this may happen during anonymous checkout, try to the special case user
+            userLogin = temporaryAnonymousUserLogin;
+        }
+        
+        GenericValue partyRelationship = null;
+        try {
+            partyRelationship = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdFrom", supplierPartyId, "roleTypeIdFrom", "INTERNAL_ORGANIZATIO", "roleTypeIdTo", "EMPLOYEE", "partyRelationshipTypeId", "EMPLOYMENT"), null, true), true));
+            partyId = partyRelationship.getString("partyIdTo");
+        } catch (GenericEntityException e) {
+            Debug.logError(e, "Problem getting PartyRelationship", module);
+        }
+        
+        GenericValue getContactMech = null;
+        try {
+            getContactMech = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("PartyContactMechPurpose", UtilMisc.toMap("partyId", partyId, "contactMechPurposeTypeId", "PRIMARY_EMAIL"), null, true), true));
+            contactMechId = getContactMech.getString("contactMechId");
+        } catch (GenericEntityException e) {
+            Debug.logError(e, "Problem getting PartyContactMechPurpose", module);
+        }
+        if(contactMechId != null){
+            GenericValue getSentToEmail = null;
+            try {
+                getSentToEmail = EntityUtil.getFirst(delegator.findByAnd("ContactMech", UtilMisc.toMap("contactMechId", contactMechId, "contactMechTypeId", "EMAIL_ADDRESS"),null , true));
+                sendTo = getSentToEmail.getString("infoString");
+            } catch (GenericEntityException e) {
+                Debug.logError(e, "Problem getting getSentToEmail", module);
+            }
+        }
+        // prepare the order information
+        Map<String, Object> sendMap = FastMap.newInstance();
+        
+        // get the order header and store
+        GenericValue orderHeader = null;
+        try {
+            orderHeader = delegator.findOne("OrderHeader", UtilMisc.toMap("orderId", orderId), false);
+        } catch (GenericEntityException e) {
+            Debug.logError(e, "Problem getting OrderHeader", module);
+        }
+        
+        if (orderHeader == null) {
+            return ServiceUtil.returnFailure(UtilProperties.getMessage(resource, 
+                    "OrderOrderNotFound", UtilMisc.toMap("orderId", orderId), localePar));
+        }
+        
+        if (orderHeader.get("webSiteId") == null) {
+            return ServiceUtil.returnFailure(UtilProperties.getMessage(resource, 
+                    "OrderOrderWithoutWebSite", UtilMisc.toMap("orderId", orderId), localePar));
+        }
+        
+        GenericValue productStoreEmail = null;
+        try {
+            productStoreEmail = delegator.findOne("ProductStoreEmailSetting", UtilMisc.toMap("productStoreId", orderHeader.get("productStoreId"), "emailType", emailType), false);
+        } catch (GenericEntityException e) {
+            Debug.logError(e, "Problem getting the ProductStoreEmailSetting for productStoreId=" + orderHeader.get("productStoreId") + " and emailType=" + emailType, module);
+        }
+        if (productStoreEmail == null) {
+            return ServiceUtil.returnFailure(UtilProperties.getMessage(resourceProduct, 
+                    "ProductProductStoreEmailSettingsNotValid", 
+                    UtilMisc.toMap("productStoreId", orderHeader.get("productStoreId"), 
+                            "emailType", emailType), localePar));
+        }
+        
+        // the override screenUri
+        if (UtilValidate.isEmpty(screenUri)) {
+            String bodyScreenLocation = productStoreEmail.getString("bodyScreenLocation");
+            if (UtilValidate.isEmpty(bodyScreenLocation)) {
+                bodyScreenLocation = ProductStoreWorker.getDefaultProductStoreEmailScreenLocation(emailType);
+            }
+            sendMap.put("bodyScreenUri", bodyScreenLocation);
+            String xslfoAttachScreenLocation = productStoreEmail.getString("xslfoAttachScreenLocation");
+            sendMap.put("xslfoAttachScreenLocation", xslfoAttachScreenLocation);
+        } else {
+            sendMap.put("bodyScreenUri", screenUri);
+        }
+        
+        // website
+        sendMap.put("webSiteId", orderHeader.get("webSiteId"));
+        
+        OrderReadHelper orh = new OrderReadHelper(orderHeader);
+        String emailString = orh.getOrderEmailString();
+        if (UtilValidate.isEmpty(emailString)) {
+            Debug.logInfo("Customer is not setup to receive emails; no address(s) found [" + orderId + "]", module);
+            return ServiceUtil.returnFailure(UtilProperties.getMessage(resource, 
+                    "OrderOrderWithoutEmailAddress", UtilMisc.toMap("orderId", orderId), localePar));
+        }
+        
+        // where to get the locale... from PLACING_CUSTOMER's UserLogin.lastLocale,
+        // or if not available then from ProductStore.defaultLocaleString
+        // or if not available then the system Locale
+        Locale locale = null;
+        GenericValue placingParty = orh.getPlacingParty();
+        GenericValue placingUserLogin = placingParty == null ? null : PartyWorker.findPartyLatestUserLogin(placingParty.getString("partyId"), delegator);
+        if (locale == null && placingParty != null) {
+            locale = PartyWorker.findPartyLastLocale(placingParty.getString("partyId"), delegator);
+        }
+        
+        // for anonymous orders, use the temporaryAnonymousUserLogin as the placingUserLogin will be null
+        if (placingUserLogin == null) {
+            placingUserLogin = temporaryAnonymousUserLogin;
+        }
+        
+        GenericValue productStore = OrderReadHelper.getProductStoreFromOrder(orderHeader);
+        if (locale == null && productStore != null) {
+            String localeString = productStore.getString("defaultLocaleString");
+            if (UtilValidate.isNotEmpty(localeString)) {
+                locale = UtilMisc.parseLocale(localeString);
+            }
+        }
+        if (locale == null) {
+            locale = Locale.getDefault();
+        }
+        
+        Map<String, Object> bodyParameters = UtilMisc.<String, Object>toMap("orderId", orderId, "orderItemSeqId", orderItemSeqId, "userLogin", placingUserLogin, "locale", locale, "partyIdTo", partyId);
+        if (placingParty!= null) {
+            bodyParameters.put("partyId", placingParty.get("partyId"));
+        }
+        bodyParameters.put("note", note);
+        sendMap.put("bodyParameters", bodyParameters);
+        sendMap.put("userLogin",userLogin);
+        
+        String subjectString = productStoreEmail.getString("subject");
+        sendMap.put("subject", subjectString);
+        
+        sendMap.put("contentType", productStoreEmail.get("contentType"));
+        sendMap.put("sendFrom", productStoreEmail.get("fromAddress"));
+        sendMap.put("sendCc", productStoreEmail.get("ccAddress"));
+        sendMap.put("sendBcc", productStoreEmail.get("bccAddress"));
+        if ((sendTo != null) && UtilValidate.isEmail(sendTo)) {
+            sendMap.put("sendTo", sendTo);
+        } else {
+            sendMap.put("sendTo", emailString);
+        }
+        if ((sendCc != null) && UtilValidate.isEmail(sendCc)) {
+            sendMap.put("sendCc", sendCc);
+        } else {
+            sendMap.put("sendCc", productStoreEmail.get("ccAddress"));
+        }
+        
+        // send the notification
+        Map<String, Object> sendResp = null;
+        try {
+            sendResp = dispatcher.runSync("sendMailFromScreen", sendMap);
+        } catch (Exception e) {
+            Debug.logError(e, module);
+            return ServiceUtil.returnError(UtilProperties.getMessage(resource_error, 
+                    "OrderServiceExceptionSeeLogs",locale));
+        }
+        
+        // check for errors
+        if (sendResp != null && !ServiceUtil.isError(sendResp)) {
+            sendResp.put("emailType", emailType);
+        }
+        if (UtilValidate.isNotEmpty(orderId)) {
+            sendResp.put("orderId", orderId);
+        }
+        return sendResp;
     }
 }

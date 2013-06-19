@@ -59,6 +59,8 @@ under the License.
                         </table>
                     </div>
                 </div>
+                <#assign totalPrice = 0>
+                <#assign orderAdjustmentsTotal = 0/>
                 <#list supplierOrderItemsMap.entrySet() as entry>
                     <#assign partyId = entry.getKey()/>
                     <#assign supplierOrderItems = entry.getValue()/>
@@ -90,8 +92,10 @@ under the License.
                                         <td class="col3 col_3 alighright">
                                             <#assign defaultPrice = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : product.productId, "productPriceTypeId" : "DEFAULT_PRICE"}, null, false))>
                                             <#assign promoPrice = Static["org.ofbiz.entity.util.EntityUtil"].filterByDate(delegator.findByAnd("ProductPrice", {"productId" : product.productId, "productPriceTypeId" : "SPECIAL_PROMO_PRICE"}, null, false))>
+                                            <#assign orderAdjustmentsTotal = Static["org.ofbiz.order.order.OrderReadHelper"].getOrderItemAdjustmentsTotal(orderItem, orderAdjustments, true, false, false) + orderAdjustmentsTotal/>
                                             <#if promoPrice?has_content>
                                                 <div class="old"><@ofbizCurrency amount=defaultPrice[0].price/></div>
+                                                <#assign totalPrice = defaultPrice[0].price + totalPrice/>
                                                 <strong><@ofbizCurrency amount=promoPrice[0].price/></strong>
                                             <#else>
                                                 <strong><@ofbizCurrency amount=defaultPrice[0].price/></strong>
@@ -190,13 +194,9 @@ under the License.
                                 <td colspan="2" class="bl-table-estimate-shipping">
                                     <table class="table table-condensed">
                                         <tbody>
-                                            <tr><td class="rightalign">Shopping cart Sub total</td><td class="col1 rightalign"><@ofbizCurrency amount=orderSubTotal/></td></tr>
+                                            <tr><td class="rightalign">Shopping cart Sub total</td><td class="col1 rightalign"><@ofbizCurrency amount=totalPrice/></td></tr>
                                             <tr><td class="rightalign">Shipping</td><td class="col1 rightalign"><@ofbizCurrency amount=shippingAmount /></td></tr>
                                             <tr><td class="rightalign">Discount</td><td class="col1 rightalign">
-                                                    <#assign orderAdjustmentsTotal = 0  />
-                                                    <#list shoppingCart.getAdjustments() as cartAdjustment>
-                                                      <#assign orderAdjustmentsTotal = orderAdjustmentsTotal + Static["org.ofbiz.order.order.OrderReadHelper"].calcOrderAdjustment(cartAdjustment, shoppingCart.getSubTotal()) />
-                                                    </#list>
                                                     <@ofbizCurrency amount=orderAdjustmentsTotal />
                                                 </td>
                                             </tr>

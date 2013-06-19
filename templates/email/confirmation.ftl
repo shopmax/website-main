@@ -116,6 +116,8 @@ under the License.
                         <tr>
                             <td valign="top"  height="18" align="left"></td>
                         </tr>
+                        <#assign totalPrice = 0/>
+                        <#assign orderAdjustmentsTotal = 0/>
                         <#list supplierOrderItemsMap.entrySet() as entry>
                             <#assign partyId = entry.getKey()/>
                             <#assign supplierOrderItems = entry.getValue()/>
@@ -150,6 +152,8 @@ under the License.
                                                             <td valign="top"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> ${orderItem.quantity?string.number}</b></p></td>
                                                             <td valign="top"  align="right"><p style="margin:0;padding:0 29px 0 0px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> <@ofbizCurrency amount=Static["org.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments)/></b></p></td>
                                                         </tr>
+                                                        <#assign orderAdjustmentsTotal = Static["org.ofbiz.order.order.OrderReadHelper"].getOrderItemAdjustmentsTotal(orderItem, orderAdjustments, true, false, false) + orderAdjustmentsTotal/>
+                                                        <#assign totalPrice = orderItem.unitPrice + totalPrice/>
                                                     </#list>
                                                     <tr>
                                                         <td valign="top"  height="25" align="left">&nbsp;</td>
@@ -244,15 +248,15 @@ under the License.
                                     </tr>
                                     <tr>
                                         <td valign="top"  align="right" ><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">SHOPPING CART SUB TOTAL</p></td> 
-                                        <td valign="top"  align="right" ><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"><@ofbizCurrency amount=Static["org.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments)/></p></td>  
+                                        <td valign="top"  align="right" ><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"><@ofbizCurrency amount=totalPrice/></p></td>  
                                     </tr>
                                     <tr>
                                         <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">SHIPPING</p></td> 
-                                        <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"><@ofbizCurrency amount=shippingAmount/></p></td>  
+                                        <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"><@ofbizCurrency amount=shippingAmount/></p></td>
                                     </tr>
                                     <tr>
                                         <td valign="top" align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">DISCOUNT</p></td>
-                                        <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"><@ofbizCurrency amount=Static["org.ofbiz.order.order.OrderReadHelper"].getOrderItemAdjustmentsTotal(orderItem, orderAdjustments, true, false, false)/></p></td>  
+                                        <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"><@ofbizCurrency amount=orderAdjustmentsTotal/></p></td>
                                     </tr>
                                     <tr>
                                         <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">SALES TAX</p></td> 
