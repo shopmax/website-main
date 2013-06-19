@@ -1,30 +1,41 @@
-Index: hot-deploy/shopmax/ofbiz-component.xml
+Index: hot-deploy/shopmax/templates/email/confirmation.ftl
 ===================================================================
---- hot-deploy/shopmax/ofbiz-component.xml	(revision 400)
-+++ hot-deploy/shopmax/ofbiz-component.xml	(working copy)
-@@ -44,6 +44,7 @@
-     <entity-resource type="data" reader-name="ext-demo" loader="main" location="data/ShopMaxExtDemoData.xml"/>
-     <entity-resource type="data" reader-name="demo" loader="main" location="data/ShopMaxSecurityGroupDemoData.xml"/>
-     <entity-resource type="data" reader-name="demo" loader="main" location="data/ShopMaxDemoData.xml"/>
-+    <entity-resource type="data" reader-name="tenant" loader="main" location="data/TenantData.xml"/>
- 
-     <!-- service resources: model(s), eca(s) and group definitions -->
-     <service-resource type="model" loader="main" location="servicedef/services.xml"/>
-Index: hot-deploy/shopmax/widget/CommonScreens.xml
+--- hot-deploy/shopmax/templates/email/confirmation.ftl	(revision 456)
++++ hot-deploy/shopmax/templates/email/confirmation.ftl	(working copy)
+@@ -33,7 +33,7 @@
+                             <td valign="top"  height="26" align="left">&nbsp;</td>
+                         </tr>
+                         <tr>
+-                            <td valign="top"  align="left"  height="48" style="padding:0 0 0 18px"><a href="http://shopmax.co.nz"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/logo-img.png" width="202" height="57" alt="img" border="0" align="left"></a></td>
++                            <td valign="top"  align="left"  height="48" style="padding:0 0 0 18px"><a href="http://shopmax.ofbizdemo.com"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/logo-img.png" width="202" height="57" alt="img" border="0" align="left"></a></td>
+                         </tr>
+                         <tr>
+                             <td valign="top"  align="left" height="0" style="padding:0 0 0 18px"><p style="margin:0;padding:0;font-family:Georgia, 'Times New Roman', Times, serif;font-style:italic;font-size:19px;color:#469beb">Buy from pros, not Joes</p></td>
+Index: hot-deploy/shopmax/templates/email/registration.ftl
 ===================================================================
---- hot-deploy/shopmax/widget/CommonScreens.xml	(revision 400)
-+++ hot-deploy/shopmax/widget/CommonScreens.xml	(working copy)
-@@ -59,6 +59,7 @@
-                     <field-map field-name="themeResources" from-field="layoutSettings" />
-                 </service>
-                 <set field="layoutSettings" from-field="themeResources" default-value="${layoutSettings}" global="true" />
-+                <set field="isDemo" value="${groovy:org.ofbiz.base.component.ComponentConfig.componentExists(&quot;ofbizdemo&quot;)}" type="Boolean"/>
-                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/shopmax/Shopmax.groovy"/>
-                 <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/cart/ShowCart.groovy"/>
-                 <set field="userLoginPartyId" from-field="userLogin.partyId"/>
+--- hot-deploy/shopmax/templates/email/registration.ftl	(revision 456)
++++ hot-deploy/shopmax/templates/email/registration.ftl	(working copy)
+@@ -32,7 +32,7 @@
+                             <td valign="top"  height="26" align="left"></td>
+                         </tr>
+                         <tr>
+-                            <td valign="top"  align="left"  style="padding:0 0 0 18px"><a href="http://shopmax.co.nz"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/logo-img.png" width="202" height="57" alt="logo" border="0" align="left"></a></td>
++                            <td valign="top"  align="left"  style="padding:0 0 0 18px"><a href="http://shopmax.ofbizdemo.com"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/logo-img.png" width="202" height="57" alt="logo" border="0" align="left"></a></td>
+                         </tr>
+                         <tr>
+                             <td valign="top"  align="left" ><p style="padding:0;margin:0 0 0 38px;font-family:Georgia, 'Times New Roman', Times, serif;font-style:italic;font-size:19px;color:#469beb">Buy from pros, not Joes</p></td>
+@@ -96,7 +96,7 @@
+                                                     <td valign="top"  height="26" align="left"></td>
+                                                 </tr>
+                                                 <tr>
+-                                                    <td valign="top"  align="left" style="padding:0 0 0 32px"><a href="http://shopmax.co.nz"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/sharp-btn-img.png" width="138" height="31" alt="start shopping" border="0" align="left"></a></td>
++                                                    <td valign="top"  align="left" style="padding:0 0 0 32px"><a href="http://shopmax.ofbizdemo.com"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/sharp-btn-img.png" width="138" height="31" alt="start shopping" border="0" align="left"></a></td>
+                                                 </tr>
+                                                 <tr>
+                                                     <td valign="top"  height="28" align="left"></td>
 Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
 ===================================================================
---- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 443)
+--- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 456)
 +++ hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(working copy)
 @@ -23,7 +23,7 @@
  
@@ -35,52 +46,52 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              <add-error>
                  <fail-message message="Can't create Product"/>
              </add-error>
-@@ -33,7 +33,7 @@
-     
-     <simple-method method-name="createProductCategoryToSeller" short-description="Create Product Category To Seller">
-         <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
--        <if-compare field="tenantId" operator="equals" value="default">
-+        <if-compare field="tenantId" operator="equals" value="shopmax">
-             <entity-one entity-name="ProductCategory" value-field="productCategory">
-                 <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
-             </entity-one>
-@@ -64,7 +64,7 @@
-     
-     <simple-method method-name="updateProductCategoryToSeller" short-description="Update Product Category To Seller">
-         <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
--        <if-compare field="tenantId" operator="equals" value="default">
-+        <if-compare field="tenantId" operator="equals" value="shopmax">
-             <entity-one entity-name="ProductCategory" value-field="productCategory">
-                 <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
-             </entity-one>
-@@ -95,7 +95,7 @@
-     
-     <simple-method method-name="createCategoryRollUpToSeller" short-description="Create Parent and Child Category in RollUp To Seller">
-         <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
--        <if-compare field="tenantId" operator="equals" value="default">
-+        <if-compare field="tenantId" operator="equals" value="shopmax">
-             <entity-one entity-name="ProductCategoryRollup" value-field="productCategoryRollup">
-                 <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
-                 <field-map field-name="parentProductCategoryId" from-field="parameters.parentProductCategoryId"/>
-@@ -128,7 +128,7 @@
-     
-    <simple-method method-name="updateCategoryRollUpToSeller" short-description="Update Parent and Child Category in RollUp To Seller">
-         <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
--        <if-compare field="tenantId" operator="equals" value="default">
-+        <if-compare field="tenantId" operator="equals" value="shopmax">
-             <entity-one entity-name="ProductCategoryRollup" value-field="productCategoryRollup">
-                 <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
-                 <field-map field-name="parentProductCategoryId" from-field="parameters.parentProductCategoryId"/>
-@@ -161,7 +161,7 @@
-     
-     <simple-method method-name="deleteCategoryRollUpToSeller" short-description="Delete Parent and Child Category in RollUp To Seller">
-        <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
--        <if-compare field="tenantId" operator="equals" value="default">
-+        <if-compare field="tenantId" operator="equals" value="shopmax">
-             <entity-one entity-name="UserLogin" value-field="sysUserLogin">
-                 <field-map field-name="userLoginId" value="system"/>
-             </entity-one>
-@@ -444,8 +444,8 @@
+@@ -35,7 +35,7 @@
+         <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+         <if-compare field="shopmaxTenant" operator="equals" value="Y">
+             <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+-            <if-compare field="tenantId" operator="equals" value="default">
++            <if-compare field="tenantId" operator="equals" value="shopmax">
+                 <entity-one entity-name="ProductCategory" value-field="productCategory">
+                     <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
+                 </entity-one>
+@@ -69,7 +69,7 @@
+         <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+         <if-compare field="shopmaxTenant" operator="equals" value="Y">
+             <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+-            <if-compare field="tenantId" operator="equals" value="default">
++            <if-compare field="tenantId" operator="equals" value="shopmax">
+                 <entity-one entity-name="ProductCategory" value-field="productCategory">
+                     <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
+                 </entity-one>
+@@ -103,7 +103,7 @@
+         <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+         <if-compare field="shopmaxTenant" operator="equals" value="Y">
+             <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+-            <if-compare field="tenantId" operator="equals" value="default">
++            <if-compare field="tenantId" operator="equals" value="shopmax">
+                 <entity-one entity-name="ProductCategoryRollup" value-field="productCategoryRollup">
+                     <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
+                     <field-map field-name="parentProductCategoryId" from-field="parameters.parentProductCategoryId"/>
+@@ -139,7 +139,7 @@
+         <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+         <if-compare field="shopmaxTenant" operator="equals" value="Y">
+             <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+-            <if-compare field="tenantId" operator="equals" value="default">
++            <if-compare field="tenantId" operator="equals" value="shopmax">
+                 <entity-one entity-name="ProductCategoryRollup" value-field="productCategoryRollup">
+                     <field-map field-name="productCategoryId" from-field="parameters.productCategoryId"/>
+                     <field-map field-name="parentProductCategoryId" from-field="parameters.parentProductCategoryId"/>
+@@ -175,7 +175,7 @@
+         <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+         <if-compare field="shopmaxTenant" operator="equals" value="Y">
+             <set field="tenantId" value="${groovy:delegator.getDelegatorTenantId();}"/>
+-            <if-compare field="tenantId" operator="equals" value="default">
++            <if-compare field="tenantId" operator="equals" value="shopmax">
+                 <entity-one entity-name="UserLogin" value-field="sysUserLogin">
+                     <field-map field-name="userLoginId" value="system"/>
+                 </entity-one>
+@@ -459,8 +459,8 @@
                  <set field="parameters.domainName" value="${parameters.ownDomainName}"/>
                  <set field="parameters.domainNameBackend" value="backend.${parameters.ownDomainName}"/>
              <else>
@@ -91,7 +102,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              </else>
              </if-compare>
              
-@@ -605,7 +605,7 @@
+@@ -620,7 +620,7 @@
              <make-value value-field="tenantDomainName" entity-name="TenantDomainName"/>
              <set field="tenantDomainName.tenantId" from-field="tenantId"/>
              <set field="tenantDomainName.domainName" from-field="parameters.domainName"/>
@@ -100,45 +111,83 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              <create-value value-field="tenantDomainName"/>
              
              <!-- Create Tenant Backend Domain Name -->
-@@ -766,7 +766,7 @@
-         <field-to-result field="success" result-name="uploadsuccess"/>
-         
-         <set field="parameters.partyId" from-field="userLogin.partyId"/>
--        <set field="runTenantServiceInMap.tenantId" value="default"/>
-+        <set field="runTenantServiceInMap.tenantId" value="shopmax"/>
-         <set field="runTenantServiceInMap.serviceName" value="uploadProductToShopmax"/>
-         <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
-         <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-@@ -1620,7 +1620,7 @@
-         <field-to-result field="parameters.productId" result-name="productId"/>
-         
-         <set field="parameters.partyId" from-field="userLogin.partyId"/>
--        <set field="runTenantServiceInMap.tenantId" value="default"/>
-+        <set field="runTenantServiceInMap.tenantId" value="shopmax"/>
-         <set field="runTenantServiceInMap.serviceName" value="updateProductToShopmax"/>
-         <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
-         <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-@@ -1924,7 +1924,7 @@
-         
-         <field-to-result field="parameters.productId" result-name="productId"/>
-         
--        <set field="runTenantServiceInMap.tenantId" value="default"/>
-+        <set field="runTenantServiceInMap.tenantId" value="shopmax"/>
-         <set field="runTenantServiceInMap.serviceName" value="removeProductFromShopmax"/>
-         <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
-         <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-@@ -2038,7 +2038,7 @@
-             <set field="removeProductImageShopmaxMap.productId" from-field="lookedUpValue.productId"/>
-             <set field="removeProductImageShopmaxMap.productContentTypeId" from-field="lookedUpValue.productContentTypeId"/>
-             <set field="removeProductImageShopmaxMap.sequenceNum" from-field="lookedUpValue.sequenceNum"/>
+@@ -783,7 +783,7 @@
+         <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+         <if-compare field="shopmaxTenant" operator="equals" value="Y">
+             <set field="parameters.partyId" from-field="userLogin.partyId"/>
 -            <set field="runTenantServiceInMap.tenantId" value="default"/>
 +            <set field="runTenantServiceInMap.tenantId" value="shopmax"/>
-             <set field="runTenantServiceInMap.serviceName" value="removeProductContentAndImageFileShopmax"/>
-             <set field="runTenantServiceInMap.serviceParameters" from-field="removeProductImageShopmaxMap"/>
+             <set field="runTenantServiceInMap.serviceName" value="uploadProductToShopmax"/>
+             <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
              <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+@@ -1642,7 +1642,7 @@
+         <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+         <if-compare field="shopmaxTenant" operator="equals" value="Y">
+             <set field="parameters.partyId" from-field="userLogin.partyId"/>
+-            <set field="runTenantServiceInMap.tenantId" value="default"/>
++            <set field="runTenantServiceInMap.tenantId" value="shopmax"/>
+             <set field="runTenantServiceInMap.serviceName" value="updateProductToShopmax"/>
+             <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
+             <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+@@ -1949,7 +1949,7 @@
+         
+         <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+         <if-compare field="shopmaxTenant" operator="equals" value="Y">
+-            <set field="runTenantServiceInMap.tenantId" value="default"/>
++            <set field="runTenantServiceInMap.tenantId" value="shopmax"/>
+             <set field="runTenantServiceInMap.serviceName" value="removeProductFromShopmax"/>
+             <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
+             <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+@@ -2067,7 +2067,7 @@
+             
+             <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
+             <if-compare field="shopmaxTenant" operator="equals" value="Y">
+-                <set field="runTenantServiceInMap.tenantId" value="default"/>
++                <set field="runTenantServiceInMap.tenantId" value="shopmax"/>
+                 <set field="runTenantServiceInMap.serviceName" value="removeProductContentAndImageFileShopmax"/>
+                 <set field="runTenantServiceInMap.serviceParameters" from-field="removeProductImageShopmaxMap"/>
+                 <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+Index: hot-deploy/shopmax/config/shopmax.properties
+===================================================================
+--- hot-deploy/shopmax/config/shopmax.properties	(revision 456)
++++ hot-deploy/shopmax/config/shopmax.properties	(working copy)
+@@ -17,7 +17,7 @@
+ # under the License.
+ ###############################################################################
+ 
+-shopmax.central.domain=http://shopmax.localhost:8080/control/
++shopmax.central.domain=http://shopmax.ofbizdemo.com/control/
+ shopmax.tenant.enabled=Y
+ shopmax.product.category.cache=N
+ shopmax.seller.sms.enabled=N
+Index: hot-deploy/shopmax/ofbiz-component.xml
+===================================================================
+--- hot-deploy/shopmax/ofbiz-component.xml	(revision 456)
++++ hot-deploy/shopmax/ofbiz-component.xml	(working copy)
+@@ -44,6 +44,7 @@
+     <entity-resource type="data" reader-name="ext-demo" loader="main" location="data/ShopMaxExtDemoData.xml"/>
+     <entity-resource type="data" reader-name="demo" loader="main" location="data/ShopMaxSecurityGroupDemoData.xml"/>
+     <entity-resource type="data" reader-name="demo" loader="main" location="data/ShopMaxDemoData.xml"/>
++    <entity-resource type="data" reader-name="tenant" loader="main" location="data/TenantData.xml"/>
+ 
+     <!-- service resources: model(s), eca(s) and group definitions -->
+     <service-resource type="model" loader="main" location="servicedef/services.xml"/>
+Index: hot-deploy/shopmax/data/ShopMaxExtDemoData.xml
+===================================================================
+--- hot-deploy/shopmax/data/ShopMaxExtDemoData.xml	(revision 456)
++++ hot-deploy/shopmax/data/ShopMaxExtDemoData.xml	(working copy)
+@@ -130,7 +130,7 @@
+     
+     <PartyRelationship partyIdFrom="SHOPMAX_SELLER2" partyIdTo="shopmaxseller2" partyRelationshipTypeId="EMPLOYMENT" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="EMPLOYEE" fromDate="2013-04-01 00:00:00"/>
+     
+-    <PartyAttribute partyId="shopmaxseller" attrName="DOMAIN_NAME" attrValue="seller.shopmax.localhost"/>
++    <PartyAttribute partyId="shopmaxseller" attrName="DOMAIN_NAME" attrValue="shopmaxseller.ofbizdemo.com"/>
+     
+     <!-- DemoCustomer -->
+     <Party partyId="DemoCustomer" partyTypeId="PERSON"/>
 Index: hot-deploy/shopmax/webapp/shopmax-default/css/main.css
 ===================================================================
---- hot-deploy/shopmax/webapp/shopmax-default/css/main.css	(revision 444)
+--- hot-deploy/shopmax/webapp/shopmax-default/css/main.css	(revision 456)
 +++ hot-deploy/shopmax/webapp/shopmax-default/css/main.css	(working copy)
 @@ -36,6 +36,7 @@
  -----------------------------------------------------------------*/
@@ -172,21 +221,9 @@ Index: hot-deploy/shopmax/webapp/shopmax-default/css/main.css
  
  /* top menu */
  .navbar {margin-bottom:0;}
-Index: hot-deploy/shopmax/config/shopmax.properties
-===================================================================
---- hot-deploy/shopmax/config/shopmax.properties	(revision 400)
-+++ hot-deploy/shopmax/config/shopmax.properties	(working copy)
-@@ -18,5 +18,5 @@
- ###############################################################################
- 
- shopmax.product.category.cache=N
--shopmax.seller.sms=N
--shopmax.central.domain=http://shopmax.localhost:8080/control/
-+shopmax.seller.sms=Y
-+shopmax.central.domain=http://shopmax.ofbizdemo.com/control/
 Index: hot-deploy/shopmax/webapp/shopmax/includes/header.ftl
 ===================================================================
---- hot-deploy/shopmax/webapp/shopmax/includes/header.ftl	(revision 400)
+--- hot-deploy/shopmax/webapp/shopmax/includes/header.ftl	(revision 456)
 +++ hot-deploy/shopmax/webapp/shopmax/includes/header.ftl	(working copy)
 @@ -29,7 +29,7 @@
              alert("You do not have permission to view this page.");
@@ -197,51 +234,15 @@ Index: hot-deploy/shopmax/webapp/shopmax/includes/header.ftl
          }
      }
      $(function(){
-Index: hot-deploy/shopmax/data/ShopMaxExtDemoData.xml
+Index: hot-deploy/shopmax/widget/CommonScreens.xml
 ===================================================================
---- hot-deploy/shopmax/data/ShopMaxExtDemoData.xml	(revision 452)
-+++ hot-deploy/shopmax/data/ShopMaxExtDemoData.xml	(working copy)
-@@ -131,7 +131,7 @@
-     
-     <PartyRelationship partyIdFrom="SHOPMAX_SELLER2" partyIdTo="shopmaxseller2" partyRelationshipTypeId="EMPLOYMENT" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="EMPLOYEE" fromDate="2013-04-01 00:00:00"/>
-     
--    <PartyAttribute partyId="shopmaxseller" attrName="DOMAIN_NAME" attrValue="seller.shopmax.localhost"/>
-+    <PartyAttribute partyId="shopmaxseller" attrName="DOMAIN_NAME" attrValue="shopmaxseller.ofbizdemo.com"/>
-     
-     <!-- DemoCustomer -->
-     <Party partyId="DemoCustomer" partyTypeId="PERSON"/>
-Index: hot-deploy/shopmax/templates/email/registration.ftl
-===================================================================
---- hot-deploy/shopmax/templates/email/registration.ftl	(revision 400)
-+++ hot-deploy/shopmax/templates/email/registration.ftl	(working copy)
-@@ -32,7 +32,7 @@
-                             <td valign="top"  height="26" align="left"></td>
-                         </tr>
-                         <tr>
--                            <td valign="top"  align="left"  style="padding:0 0 0 18px"><a href="http://shopmax.co.nz"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/logo-img.png" width="202" height="57" alt="logo" border="0" align="left"></a></td>
-+                            <td valign="top"  align="left"  style="padding:0 0 0 18px"><a href="http://shopmax.ofbizdemo.com"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/logo-img.png" width="202" height="57" alt="logo" border="0" align="left"></a></td>
-                         </tr>
-                         <tr>
-                             <td valign="top"  align="left" ><p style="padding:0;margin:0 0 0 38px;font-family:Georgia, 'Times New Roman', Times, serif;font-style:italic;font-size:19px;color:#469beb">Buy from pros, not Joes</p></td>
-@@ -96,7 +96,7 @@
-                                                     <td valign="top"  height="26" align="left"></td>
-                                                 </tr>
-                                                 <tr>
--                                                    <td valign="top"  align="left" style="padding:0 0 0 32px"><a href="http://shopmax.co.nz"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/sharp-btn-img.png" width="138" height="31" alt="start shopping" border="0" align="left"></a></td>
-+                                                    <td valign="top"  align="left" style="padding:0 0 0 32px"><a href="http://shopmax.ofbizdemo.com"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/sharp-btn-img.png" width="138" height="31" alt="start shopping" border="0" align="left"></a></td>
-                                                 </tr>
-                                                 <tr>
-                                                     <td valign="top"  height="28" align="left"></td>
-Index: hot-deploy/shopmax/templates/email/confirmation.ftl
-===================================================================
---- hot-deploy/shopmax/templates/email/confirmation.ftl	(revision 400)
-+++ hot-deploy/shopmax/templates/email/confirmation.ftl	(working copy)
-@@ -33,7 +33,7 @@
-                             <td valign="top"  height="26" align="left">&nbsp;</td>
-                         </tr>
-                         <tr>
--                            <td valign="top"  align="left"  height="48" style="padding:0 0 0 18px"><a href="http://shopmax.co.nz"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/logo-img.png" width="202" height="57" alt="img" border="0" align="left"></a></td>
-+                            <td valign="top"  align="left"  height="48" style="padding:0 0 0 18px"><a href="http://shopmax.ofbizdemo.com"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/logo-img.png" width="202" height="57" alt="img" border="0" align="left"></a></td>
-                         </tr>
-                         <tr>
-                             <td valign="top"  align="left" height="0" style="padding:0 0 0 18px"><p style="margin:0;padding:0;font-family:Georgia, 'Times New Roman', Times, serif;font-style:italic;font-size:19px;color:#469beb">Buy from pros, not Joes</p></td>
+--- hot-deploy/shopmax/widget/CommonScreens.xml	(revision 456)
++++ hot-deploy/shopmax/widget/CommonScreens.xml	(working copy)
+@@ -59,6 +59,7 @@
+                     <field-map field-name="themeResources" from-field="layoutSettings" />
+                 </service>
+                 <set field="layoutSettings" from-field="themeResources" default-value="${layoutSettings}" global="true" />
++                <set field="isDemo" value="${groovy:org.ofbiz.base.component.ComponentConfig.componentExists(&quot;ofbizdemo&quot;)}" type="Boolean"/>
+                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/shopmax/Shopmax.groovy"/>
+                 <script location="component://ecommerce/webapp/ecommerce/WEB-INF/actions/cart/ShowCart.groovy"/>
+                 <set field="userLoginPartyId" from-field="userLogin.partyId"/>

@@ -1,9 +1,9 @@
 Index: hot-deploy/shopmax/data/ShopMaxExtData.xml
 ===================================================================
---- hot-deploy/shopmax/data/ShopMaxExtData.xml	(revision 348)
+--- hot-deploy/shopmax/data/ShopMaxExtData.xml	(revision 458)
 +++ hot-deploy/shopmax/data/ShopMaxExtData.xml	(working copy)
-@@ -74,8 +74,8 @@
-     <ProductPromoAction productPromoId="DISCOUNTED_PROMO" productPromoRuleId="01" productPromoActionSeqId="01" productPromoActionEnumId="PROMO_PROD_SPPRC" orderAdjustmentTypeId="PROMOTION_ADJUSTMENT" useCartQuantity="N"/>
+@@ -57,10 +57,10 @@
+         visualThemeId="SHOPMAX_THEME" prodSearchExcludeVariants="Y" autoApproveInvoice="Y" shipIfCaptureFails="Y" autoApproveOrder="Y" showOutOfStockProducts="N" usePrimaryEmailUsername="Y" autoApproveReviews="Y"/>
      
      <WebSite webSiteId="SHOPMAX" siteName="ShopMax Web Site" productStoreId="ShopMaxStore"
 -        httpHost="shopmax.localhost" httpPort="8080"
@@ -14,4 +14,6 @@ Index: hot-deploy/shopmax/data/ShopMaxExtData.xml
 +        httpsHost="shopmax.ofbizdemo.com" httpsPort="443"
 +        standardContentPrefix="http://shopmaxbackend.ofbizdemo.com"
 +        secureContentPrefix="https://shopmaxbackend.ofbizdemo.com"/>
- </entity-engine-xml>
+     
+     <ProductPromo productPromoId="DISCOUNTED_PROMO" promoName="Product On Discounted Price" userEntered="N" showToCustomer="Y" requireCode="N"/>
+     <ProductPromoRule productPromoId="DISCOUNTED_PROMO" productPromoRuleId="01" ruleName="Product On Discounted Price"/>
