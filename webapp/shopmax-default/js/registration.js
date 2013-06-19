@@ -115,7 +115,7 @@ $(function(){
                 
                 if(!$(this).val().length){
                     $(this).addClass('required');
-                    $('.input-error3').removeClass('hidden');
+                    $('#fieldsRequired').attr('style','');
                     $('html, body').animate({ scrollTop: 0 }, 0);
                     valid = false;
                     if(!$('input[type=file]#upfile').val()){
@@ -311,7 +311,7 @@ $(function(){
                 
                 if(!$(this).val().length){
                     $(this).addClass('required');
-                    $('.input-error3').removeClass('hidden');
+                    $('#fieldsRequired').attr('style','');
                     valid = false;
                 }
                 else{
@@ -355,8 +355,9 @@ $(function(){
     });
     $('input.check').focus(function(){
         $('#'+this.id).removeClass('required');
-        $('.input-error3').addClass('hidden');
+        $('#fieldsRequired').attr('style','display:none');
         $('#content-messages-registration').remove();
+        $('#wrongPassword').attr('style','display:none');
     });
     $('#firstNameOnCard').focus(function(){
         $('#firstNameOnCard').removeClass('required');
@@ -372,10 +373,10 @@ $(function(){
     });
     $('#subDomain').focus(function(){
         $('#subDomain').removeClass('required');
-        $('.input-error3').addClass('hidden');
+        $('#fieldsRequired').attr('style','display:none');
     });
     $('#yourBtn2').focus(function(){
-        $('.input-error3').addClass('hidden');
+        $('#fieldsRequired').attr('style','display:none');
     });
     $('#currentPassword').focus(function(){
         $('#currentPassword').removeClass('required');
@@ -437,7 +438,7 @@ $(function(){
             $('#subDomain').removeClass('check required');
             $('#domianName').addClass('check required');
             $('#subDomain').val('');
-            $('.input-error3').addClass('hidden');
+            $('#fieldsRequired').attr('style','display:none');
             $('.form-inline').find('input.check').each(function(){
                 if($(this).val().length){
                     $(this).removeClass('check required');
@@ -449,7 +450,7 @@ $(function(){
             $('#domianName').removeClass('check required');
             $('#subDomain').addClass('check required');
             $('#domianName').val('');
-            $('.input-error3').addClass('hidden');
+            $('#fieldsRequired').attr('style','display:none');
             $('.form-inline').find('input.check').each(function(){
                 if($(this).val().length){
                     $(this).removeClass('check required');
@@ -482,7 +483,7 @@ $(function(){
         }
     });
     $('#optionsRadios2').click(function(){
-        $('.input-error3').addClass('hidden');
+        $('#fieldsRequired').attr('style','display:none');
         $('#firstNameOnCard').addClass('check required');
         $('#lastNameOnCard').addClass('check required');
         $('.cardNumber').addClass('check required');
@@ -512,7 +513,7 @@ $(function(){
         });
     });
     $('#optionsRadios3').click(function(){
-        $('.input-error3').addClass('hidden');
+        $('#fieldsRequired').attr('style','display:none');
         $('#firstNameOnCard').removeClass('check required');
         $('#lastNameOnCard').removeClass('check required');
         $('.cardNumber').removeClass('check required');
@@ -724,11 +725,11 @@ $(function(){
         });
         $('#branchName_'+index).focus(function(){
             $('#branchName_'+index).removeClass('required');
-            $('.input-error3').addClass('hidden');
+            $('#fieldsRequired').attr('style','display:none');
         });
         $('#inputLocation_'+index).focus(function(){
             $('#inputLocation_'+index).removeClass('required');
-            $('.input-error3').addClass('hidden');
+            $('#fieldsRequired').attr('style','display:none');
         });
         
     });
@@ -784,7 +785,7 @@ $(function(){
     });
     $('#upfile').click(function(){
     	$('.logoRequired').addClass('hidden');
-    	$('.input-error3').addClass('hidden');
+    	$('#fieldsRequired').attr('style','display:none');
     });
 });
 function isNumberKey(evt) {

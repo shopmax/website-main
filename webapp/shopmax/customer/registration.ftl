@@ -73,7 +73,7 @@ under the License.
                                             </#if>
                                           </div>
                                         </#if>
-                                        <label class="input-error3 hidden">Please fill in all required fields</label>
+                                        <label class="input-error3" id="fieldsRequired" style="display:none">Please fill in all required fields</label>
                                         <label class="input-error4" id="wrongPassword" style="display:none">Password must be at least 5 characters long.</label>
                                         <label class="control-label control-label-xlarge checkbox"><input type="checkbox" class="chk_regis" name="optionsRadios" id="optionsRadios1" >&nbsp; Registered as business user <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" /></label>
                                     </div>
