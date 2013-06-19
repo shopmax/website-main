@@ -199,11 +199,11 @@ Index: hot-deploy/shopmax/webapp/shopmax/includes/header.ftl
      $(function(){
 Index: hot-deploy/shopmax/data/ShopMaxExtDemoData.xml
 ===================================================================
---- hot-deploy/shopmax/data/ShopMaxExtDemoData.xml	(revision 443)
+--- hot-deploy/shopmax/data/ShopMaxExtDemoData.xml	(revision 452)
 +++ hot-deploy/shopmax/data/ShopMaxExtDemoData.xml	(working copy)
-@@ -116,7 +116,7 @@
+@@ -131,7 +131,7 @@
      
-     <PartyRelationship partyIdFrom="SHOPMAX_SELLER" partyIdTo="shopmaxseller" partyRelationshipTypeId="EMPLOYMENT" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="EMPLOYEE" fromDate="2013-04-01 00:00:00"/>
+     <PartyRelationship partyIdFrom="SHOPMAX_SELLER2" partyIdTo="shopmaxseller2" partyRelationshipTypeId="EMPLOYMENT" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="EMPLOYEE" fromDate="2013-04-01 00:00:00"/>
      
 -    <PartyAttribute partyId="shopmaxseller" attrName="DOMAIN_NAME" attrValue="seller.shopmax.localhost"/>
 +    <PartyAttribute partyId="shopmaxseller" attrName="DOMAIN_NAME" attrValue="shopmaxseller.ofbizdemo.com"/>
