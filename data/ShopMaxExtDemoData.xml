@@ -130,7 +130,7 @@ under the License.
     
     <PartyRelationship partyIdFrom="SHOPMAX_SELLER2" partyIdTo="shopmaxseller2" partyRelationshipTypeId="EMPLOYMENT" roleTypeIdFrom="INTERNAL_ORGANIZATIO" roleTypeIdTo="EMPLOYEE" fromDate="2013-04-01 00:00:00"/>
     
-    <PartyAttribute partyId="shopmaxseller" attrName="DOMAIN_NAME" attrValue="shopmaxseller.ofbizdemo.com"/>
+    <PartyAttribute partyId="shopmaxseller" attrName="DOMAIN_NAME" attrValue="seller.shopmax.localhost"/>
     
     <!-- DemoCustomer -->
     <Party partyId="DemoCustomer" partyTypeId="PERSON"/>
