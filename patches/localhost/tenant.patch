@@ -1,6 +1,6 @@
 Index: hot-deploy/tenant/config/default-tenant.xml
 ===================================================================
---- hot-deploy/tenant/config/default-tenant.xml	(revision 300)
+--- hot-deploy/tenant/config/default-tenant.xml	(revision 299)
 +++ hot-deploy/tenant/config/default-tenant.xml	(working copy)
 @@ -1,16 +1,10 @@
  <?xml version="1.0" encoding="UTF-8"?>
@@ -24,7 +24,7 @@ Index: hot-deploy/tenant/config/default-tenant.xml
  </default-tenant>
 Index: hot-deploy/tenant/config/tenant.properties
 ===================================================================
---- hot-deploy/tenant/config/tenant.properties	(revision 300)
+--- hot-deploy/tenant/config/tenant.properties	(revision 299)
 +++ hot-deploy/tenant/config/tenant.properties	(working copy)
 @@ -27,5 +27,5 @@
  jdbcPassword=ofbiz
@@ -35,7 +35,7 @@ Index: hot-deploy/tenant/config/tenant.properties
  
 Index: hot-deploy/tenant/ofbiz-component.xml
 ===================================================================
---- hot-deploy/tenant/ofbiz-component.xml	(revision 300)
+--- hot-deploy/tenant/ofbiz-component.xml	(revision 299)
 +++ hot-deploy/tenant/ofbiz-component.xml	(working copy)
 @@ -23,7 +23,7 @@
      <entity-resource type="model" reader-name="main" loader="main" location="entitydef/entitymodel.xml"/>
