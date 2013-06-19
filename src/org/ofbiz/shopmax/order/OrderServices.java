@@ -192,10 +192,24 @@ public class OrderServices {
                             // create the order
                             CheckOutHelper coh = new CheckOutHelper(dispatcher, delegator, cart);
                             coh.createOrder(userLogin);
+                            
+                            // create the order to seller
                             //dispatcher.runAsync("createSaleOrderToSeller", UtilMisc.toMap("orderId", orderId, "userLogin", userLogin));
                             
+                            String sellerPartyId = null;
+                            GenericValue partyRelationship = null;
+                            try {
+                                partyRelationship = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdFrom", supplierPartyId, "roleTypeIdFrom", "INTERNAL_ORGANIZATIO", "roleTypeIdTo", "EMPLOYEE", "partyRelationshipTypeId", "EMPLOYMENT"), null, true), true));
+                                sellerPartyId = partyRelationship.getString("partyIdTo");
+                            } catch (GenericEntityException e) {
+                                Debug.logError(e, "Problem getting PartyRelationship", module);
+                            }
+                            
                             // order notification email
-                            sendOrderNotificationScreen(ctx, context, "PRDS_ODR_NOTI", supplierPartyId);
+                            sendOrderNotificationScreen(ctx, context, "PRDS_ODR_NOTI", sellerPartyId);
+                            
+                            // order notification sms
+                            dispatcher.runAsync("sendOrderSMSToSeller", UtilMisc.toMap("tenantId", sellerPartyId, "userLogin", userLogin));
                         } else {
                             // if there are no items to drop ship, then clear out the supplier partyId
                             Debug.logWarning("No drop ship items found for order [" + shipGroup.getString("orderId") + "] and ship group [" + shipGroup.getString("shipGroupSeqId") + "] and supplier party [" + shipGroup.getString("supplierPartyId") + "].  Supplier party information will be cleared for this ship group", module);
@@ -319,7 +333,7 @@ public class OrderServices {
         return successResult;
     }
 
-    protected static Map<String, Object> sendOrderNotificationScreen(DispatchContext dctx, Map<String, ? extends Object> context, String emailType, String supplierPartyId) {
+    protected static Map<String, Object> sendOrderNotificationScreen(DispatchContext dctx, Map<String, ? extends Object> context, String emailType, String sellerPartyId) {
         LocalDispatcher dispatcher = dctx.getDispatcher();
         Delegator delegator = dctx.getDelegator();
         GenericValue userLogin = (GenericValue) context.get("userLogin");
@@ -331,24 +345,15 @@ public class OrderServices {
         String screenUri = (String) context.get("screenUri");
         GenericValue temporaryAnonymousUserLogin = (GenericValue) context.get("temporaryAnonymousUserLogin");
         Locale localePar = (Locale) context.get("locale");
-        String partyId = null;
         String contactMechId = null;
         if (userLogin == null) {
             // this may happen during anonymous checkout, try to the special case user
             userLogin = temporaryAnonymousUserLogin;
         }
         
-        GenericValue partyRelationship = null;
-        try {
-            partyRelationship = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("PartyRelationship", UtilMisc.toMap("partyIdFrom", supplierPartyId, "roleTypeIdFrom", "INTERNAL_ORGANIZATIO", "roleTypeIdTo", "EMPLOYEE", "partyRelationshipTypeId", "EMPLOYMENT"), null, true), true));
-            partyId = partyRelationship.getString("partyIdTo");
-        } catch (GenericEntityException e) {
-            Debug.logError(e, "Problem getting PartyRelationship", module);
-        }
-        
         GenericValue getContactMech = null;
         try {
-            getContactMech = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("PartyContactMechPurpose", UtilMisc.toMap("partyId", partyId, "contactMechPurposeTypeId", "PRIMARY_EMAIL"), null, true), true));
+            getContactMech = EntityUtil.getFirst(EntityUtil.filterByDate(delegator.findByAnd("PartyContactMechPurpose", UtilMisc.toMap("partyId", sellerPartyId, "contactMechPurposeTypeId", "PRIMARY_EMAIL"), null, true), true));
             contactMechId = getContactMech.getString("contactMechId");
         } catch (GenericEntityException e) {
             Debug.logError(e, "Problem getting PartyContactMechPurpose", module);
@@ -446,7 +451,7 @@ public class OrderServices {
             locale = Locale.getDefault();
         }
         
-        Map<String, Object> bodyParameters = UtilMisc.<String, Object>toMap("orderId", orderId, "orderItemSeqId", orderItemSeqId, "userLogin", placingUserLogin, "locale", locale, "partyIdTo", partyId);
+        Map<String, Object> bodyParameters = UtilMisc.<String, Object>toMap("orderId", orderId, "orderItemSeqId", orderItemSeqId, "userLogin", placingUserLogin, "locale", locale, "partyIdTo", sellerPartyId);
         if (placingParty!= null) {
             bodyParameters.put("partyId", placingParty.get("partyId"));
         }
