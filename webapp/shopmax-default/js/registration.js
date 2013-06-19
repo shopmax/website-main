@@ -139,6 +139,12 @@ $(function(){
                         $('html, body').animate({ scrollTop: 0 }, 0);
                         valid = false;
                     }
+                    if($('#currentPassword').val().length<5){
+                        $('#currentPassword').addClass('required');
+                        $('#currentPasswordVerify').addClass('required');
+                        $('#wrongPassword').attr('style','');
+                        valid = false;
+                    }
                     if ($('#currentPassword').hasClass('required')){
                         $('html, body').animate({ scrollTop: 0 }, 0);
                         valid = false;
@@ -322,6 +328,12 @@ $(function(){
                         $('#currentPasswordVerify').addClass('required');
                         valid = false;
                     }
+                    if($('#currentPassword').val().length<5){
+                        $('#currentPassword').addClass('required');
+                        $('#currentPasswordVerify').addClass('required');
+                        $('#wrongPassword').attr('style','');
+                        valid = false;
+                    }
                     if($('#currentPassword').hasClass('required')){
                         valid = false;
                     }
@@ -368,10 +380,12 @@ $(function(){
     $('#currentPassword').focus(function(){
         $('#currentPassword').removeClass('required');
         $('#currentPasswordVerify').removeClass('required');
+        $('#wrongPassword').attr('style','display:none');
     });
     $('#currentPasswordVerify').focus(function(){
         $('#currentPassword').removeClass('required');
         $('#currentPasswordVerify').removeClass('required');
+        $('#wrongPassword').attr('style','display:none');
     });
     $('#expMonth_chzn').click(function(){
         document.getElementById('optionsRadios3').checked = false;
