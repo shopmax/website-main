@@ -4422,3 +4422,5 @@ overflow:hidden !important;
     height: 49px;
     font-size: 1.5em;
 }
+
+#upfile.error { border-color:red; }

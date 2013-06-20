@@ -62,10 +62,12 @@ under the License.
              $('#'+this.id).css({'background-color':'#FFFFFF'});
              $('#emailPasswordWarning').addClass('hidden');
              $('#emailWarning').addClass('hidden');
+             $('#content-messages').remove();
         });
         $('.reWhiteForgotSide').click(function(){
              $('#'+this.id).css({'background-color':'#FFFFFF'});
              $('#emailWarning').addClass('hidden');
+             $('#content-messages').remove();
         });
         $('.forgot').click(function(){
             $('#loginDiv').css({'display':'none'});
@@ -145,7 +147,7 @@ under the License.
             <div class="block-left">
                 <div class="box">
                     <#if (errorMessage?has_content || errorMessageList?has_content)>
-                      <div id="content-messages" class="content-messages errorMessage" onclick="document.getElementById('content-messages').parentNode.removeChild(this)">
+                      <div id="content-messages" class="content-messages errorMessage">
                         <#if errorMessage?has_content>
                           <p>${errorMessage}</p>
                         </#if>

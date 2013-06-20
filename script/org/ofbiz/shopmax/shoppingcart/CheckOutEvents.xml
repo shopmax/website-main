@@ -127,9 +127,60 @@ under the License.
             </iterate>
         </iterate>
         
+        <if-not-empty field="parameters.scBranchStoreList">
+            <iterate entry="branchStores" list="parameters.scBranchStoreList">
+                <if-not-empty field="branchStores">
+                    <set field="branchStore" value="${groovy: if(branchStores){branchStore = branchStores.split(&quot;-&quot;); return branchStore.toList();}}" type="List"/>
+                    <set field="supplierPartyId" from-field="branchStore[2]"/>
+                    <set field="shoppingCartItems" from-field="supplierShoppingCartItemsMap[supplierPartyId]"/>
+                    <iterate entry="shoppingCartItem" list="shoppingCartItems">
+                        <set field="carrierPartyId" value="_NA_"/>
+                        <set field="shipmentMethodTypeId" value="NO_SHIPPING"/>
+                        <set field="contactMechId" from-field="branchStore[1]"/>
+                        <call-object-method method-name="getItemIndex" obj-field="shoppingCart" ret-field="shoppingCartItemIndex">
+                            <field field="shoppingCartItem" type="org.ofbiz.order.shoppingcart.ShoppingCartItem"/>
+                        </call-object-method>
+                        <call-object-method method-name="getShipGroups" obj-field="shoppingCart" ret-field="itemShipGroups">
+                            <field field="shoppingCartItem" type="org.ofbiz.order.shoppingcart.ShoppingCartItem"/>
+                        </call-object-method>
+                        <!-- set carrier and shipment method -->
+                        <script>groovy:
+                            shoppingCart.setCarrierPartyId(shoppingCartItemIndex, carrierPartyId);
+                            shoppingCart.setShipmentMethodTypeId(shoppingCartItemIndex, shipmentMethodTypeId);
+                            shoppingCart.setShippingInstructions(shoppingCartItemIndex, contactMechId);
+                        </script>
+                    </iterate>
+                </if-not-empty>
+            </iterate>
+        </if-not-empty>
+        
+        <if-not-empty field="parameters.scBranchStores">
+            <set field="branchStores" from-field="parameters.scBranchStores"/>
+            <set field="branchStore" value="${groovy: if(branchStores){branchStore = branchStores.split(&quot;-&quot;); return branchStore.toList();}}" type="List"/>
+            <set field="supplierPartyId" from-field="branchStore[2]"/>
+            <set field="shoppingCartItems" from-field="supplierShoppingCartItemsMap[supplierPartyId]"/>
+            <iterate entry="shoppingCartItem" list="shoppingCartItems">
+                <set field="carrierPartyId" value="_NA_"/>
+                <set field="shipmentMethodTypeId" value="NO_SHIPPING"/>
+                <set field="contactMechId" from-field="branchStore[1]"/>
+                <call-object-method method-name="getItemIndex" obj-field="shoppingCart" ret-field="shoppingCartItemIndex">
+                    <field field="shoppingCartItem" type="org.ofbiz.order.shoppingcart.ShoppingCartItem"/>
+                </call-object-method>
+                <call-object-method method-name="getShipGroups" obj-field="shoppingCart" ret-field="itemShipGroups">
+                    <field field="shoppingCartItem" type="org.ofbiz.order.shoppingcart.ShoppingCartItem"/>
+                </call-object-method>
+                <!-- set carrier and shipment method -->
+                <script>groovy:
+                    shoppingCart.setCarrierPartyId(shoppingCartItemIndex, carrierPartyId);
+                    shoppingCart.setShipmentMethodTypeId(shoppingCartItemIndex, shipmentMethodTypeId);
+                    shoppingCart.setShippingInstructions(shoppingCartItemIndex, contactMechId);
+                </script>
+            </iterate>
+        </if-not-empty>
+        
         <session-to-field session-name="userLogin"/>
         <set field="parameters.partyId" from-field="userLogin.partyId"/>
-        <set field="parameters.setDefaultShipping" value="Y"/>
+        <!-- <set field="parameters.setDefaultShipping" value="Y"/> -->
         
         <if-empty field="parameters.shipToContactMechId">
             <property-to-field resource="general" property="country.geo.id.default" field="defaultCountryGeoId"/>

@@ -119,7 +119,11 @@ $(function(){
                     $('html, body').animate({ scrollTop: 0 }, 0);
                     valid = false;
                     if(!$('input[type=file]#upfile').val()){
-                        $('.logoRequired').removeClass('hidden');
+                        $('input[type=file]#upfile').css({"border-color":"red"});
+                        valid = false;
+                    }
+                    if(!$('input[type=file]#upfile1').val()){
+                        $('input[type=file]#upfile1').css({"border-color":"red"});
                         valid = false;
                     }
                 }
@@ -162,7 +166,15 @@ $(function(){
                         valid = false;
                     }
                     if(!$('input[type=file]#upfile').val()){
-                        $('.logoRequired').removeClass('hidden');
+                        $('input[type=file]#upfile').css({"border-color":"red"});
+                        $('#fieldsRequired').attr('style','');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid = false;
+                    }
+                    if(!$('input[type=file]#upfile1').val()){
+                        $('input[type=file]#upfile1').css({"border-color":"red"});
+                        $('#fieldsRequired').attr('style','');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
                         valid = false;
                     }
                     if(!$('#tradingName').val().length){
@@ -191,14 +203,14 @@ $(function(){
                         valid = false;
                     }*/
                     for(var i=0;i<physicalNumber;i++){
-	                    if(!$('#branchName_'+i).val().length){
-	                        $('#branchName_'+i).addClass('required');
-	                        valid = false;
-	                    }
-	                    if(!$('#inputLocation_'+i).val().length){
-	                        $('#inputLocation_'+i).addClass('required');
-	                        valid = false;
-	                    }
+                        if(!$('#branchName_'+i).val().length){
+                            $('#branchName_'+i).addClass('required');
+                            valid = false;
+                        }
+                        if(!$('#inputLocation_'+i).val().length){
+                            $('#inputLocation_'+i).addClass('required');
+                            valid = false;
+                        }
                     }
                     if($('#optionsRadios2').is(':checked')){
                         if(!$('#firstNameOnCard').val().length){
@@ -266,6 +278,14 @@ $(function(){
                     valid = false;
                 }
                 if(valid){
+                    $( "#createcustomer" ).validate({
+                        rules: {
+                            field: {
+                                required: true,
+                                accept: "image/*"
+                            }
+                        }
+                    });
                     $('#createcustomer').submit();
                 }
             });
@@ -776,16 +796,20 @@ $(function(){
         $('#cvcNumber').val('');
     });
     /*$('#yourBtn').click(function(){
-    	$('#yourBtn').removeClass('check required');
+        $('#yourBtn').removeClass('check required');
         $('#yourBtn').css({'background-color':'#FFFFFF'});
     });*/
     $('#browse0').click(function(){
-    	$('#browse0').removeClass('check required');
+        $('#browse0').removeClass('check required');
         $('#yourBtn').css({'background-color':'#FFFFFF'});
     });
     $('#upfile').click(function(){
-    	$('.logoRequired').addClass('hidden');
-    	$('#fieldsRequired').attr('style','display:none');
+        $('input[type=file]#upfile').attr("style","");
+        $('#fieldsRequired').attr('style','display:none');
+    });
+    $('#upfile1').click(function(){
+        $('input[type=file]#upfile1').attr("style","");
+        $('#fieldsRequired').attr('style','display:none');
     });
 });
 function isNumberKey(evt) {

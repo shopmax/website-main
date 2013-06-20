@@ -23,7 +23,8 @@ under the License.
     </script>
 <#else>
     <script src="<@ofbizContentUrl>/shopmax-default/js/registration.js</@ofbizContentUrl>" type="text/javascript"></script>
-    <script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"></script>
+    <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.validate.min.js</@ofbizContentUrl>" type="text/javascript"></script>
+    <script src="<@ofbizContentUrl>/shopmax-default/js/additional-methods.js</@ofbizContentUrl>" type="text/javascript"></script>
     <div class="container content">
         <div id="load-script"></div>
         <!-- include breadcrumb -->
@@ -62,7 +63,7 @@ under the License.
                                     <p class="intro-txt"><strong>Create a new account profile by completing the new registration form. Once you are done and logged in, you can save shopping cart list, track your order history, manage addresses, and speed up the check out process</strong></p>
                                     <div class="control-group">
                                         <#if (errorMessage?has_content || errorMessageList?has_content)>
-                                          <div id="content-messages-registration" class="content-messages errorMessage" onclick="document.getElementById('content-messages-registration').parentNode.removeChild(this)">
+                                          <div id="content-messages-registration" class="content-messages errorMessage">
                                             <#if errorMessageList?has_content>
                                               <#list errorMessageList as errorMsg>
                                                 <#if errorMsg == "Username in use, please choose another.">
@@ -209,9 +210,9 @@ under the License.
                                         <div class="pull-left">
                                             <#--<input type="text" class="input-xlarge pull-left check" id="yourBtn" onclick="getFile('')">*
                                             <a class="btn-general-small upload-btn" onclick="getFile('')" id="browse0">BROWSE</a>-->
-                                            <input id="upfile" type="file" name="uploadedFile"/>*
+                                            <input id="upfile" type="file" name="uploadedFile" accept="image/*" />*
                                             <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
-                                            <a class="logoRequired">Required</a>
+                                            <#--<a class="logoRequired">Required</a>-->
                                             <#--<div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile" type="file" onchange="sub(this,'')" name="uploadedFile"/></div>-->
                                         </div>
                                     </div>
@@ -354,7 +355,7 @@ under the License.
                                         <div class="pull-left">
                                             <#--<input type="text" class="input-xlarge pull-left" id="yourBtn1" onclick="getFile(1)">
                                             <a class="btn-general-small upload-btn" onclick="getFile(1)">BROWSE</a>-->
-                                            <input id="upfile1" type="file" name="uploadedFile1"/>
+                                            <input id="upfile1" type="file" name="uploadedFile1" accept="image/*"/>*
                                             <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" />
                                             <#-- <div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile1" type="file" onchange="sub(this,1)" name="uploadedFile1"/></div>-->
                                         </div>
@@ -431,7 +432,7 @@ under the License.
                                             <#--<input type="text" class="input-xlarge pull-left" id="yourBtn2" onclick="getFile(2)">
                                             <a class="btn-general-small upload-btn" onclick="getFile(2)" id="browse2">BROWSE</a>
                                             <div style='height: 0px;width:0px; overflow:hidden;'><input id="upfile2" type="file" onchange="sub(this,2)" name="uploadedFile2"/></div>-->
-                                            <input id="upfile1" type="file" name="uploadedFile2"/>
+                                            <input id="upfile2" type="file" name="uploadedFile2"/>
                                         </div>
                                     </div>
                                     <input type="hidden" name="paymentMethodOption" id="paymentMethodOption" value="N">
