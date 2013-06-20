@@ -1,6 +1,28 @@
+Index: applications/order/webapp/ordermgr/order/orderReportContactMechs.fo.ftl
+===================================================================
+--- applications/order/webapp/ordermgr/order/orderReportContactMechs.fo.ftl	(revision 1494668)
++++ applications/order/webapp/ordermgr/order/orderReportContactMechs.fo.ftl	(working copy)
+@@ -31,7 +31,7 @@
+                 <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2?if_exists}</fo:block></#if>
+                 <fo:block>
+                     <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId?if_exists}, false))?if_exists />
+-                    ${postalAddress.city}<#if stateGeo?has_content>, ${stateGeo.geoName?if_exists}</#if> ${postalAddress.postalCode?if_exists}
++                    ${postalAddress.city} ${postalAddress.postalCode?if_exists}
+                 </fo:block>
+                 <fo:block>
+                     <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId?if_exists}, false))?if_exists />
+@@ -63,7 +63,7 @@
+                 <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2?if_exists}</fo:block></#if>
+                 <fo:block>
+                     <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId?if_exists}, false))?if_exists />
+-                    ${postalAddress.city}<#if stateGeo?has_content>, ${stateGeo.geoName?if_exists}</#if> ${postalAddress.postalCode?if_exists}
++                    ${postalAddress.city} ${postalAddress.postalCode?if_exists}
+                 </fo:block>
+                 <fo:block>
+                     <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId?if_exists}, false))?if_exists />
 Index: applications/party/webapp/partymgr/WEB-INF/controller.xml
 ===================================================================
---- applications/party/webapp/partymgr/WEB-INF/controller.xml	(revision 1494467)
+--- applications/party/webapp/partymgr/WEB-INF/controller.xml	(revision 1494668)
 +++ applications/party/webapp/partymgr/WEB-INF/controller.xml	(working copy)
 @@ -1246,6 +1246,17 @@
          <security https="true" auth="true"/>
@@ -30,7 +52,7 @@ Index: applications/party/webapp/partymgr/WEB-INF/controller.xml
  </site-conf>
 Index: applications/party/widget/partymgr/PartyMenus.xml
 ===================================================================
---- applications/party/widget/partymgr/PartyMenus.xml	(revision 1494467)
+--- applications/party/widget/partymgr/PartyMenus.xml	(revision 1494668)
 +++ applications/party/widget/partymgr/PartyMenus.xml	(working copy)
 @@ -35,6 +35,7 @@
          </menu-item>
@@ -42,7 +64,7 @@ Index: applications/party/widget/partymgr/PartyMenus.xml
      <menu name="ProfileTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml"
 Index: applications/product/widget/catalog/CatalogMenus.xml
 ===================================================================
---- applications/product/widget/catalog/CatalogMenus.xml	(revision 1494467)
+--- applications/product/widget/catalog/CatalogMenus.xml	(revision 1494668)
 +++ applications/product/widget/catalog/CatalogMenus.xml	(working copy)
 @@ -145,6 +145,16 @@
                  <parameter param-name="productCategoryId"/>
@@ -63,7 +85,7 @@ Index: applications/product/widget/catalog/CatalogMenus.xml
      <menu name="CategorySubTabBar" menu-container-style="button-bar button-style-2" default-selected-style="selected">
 Index: applications/product/script/org/ofbiz/product/category/CategoryServices.xml
 ===================================================================
---- applications/product/script/org/ofbiz/product/category/CategoryServices.xml	(revision 1494467)
+--- applications/product/script/org/ofbiz/product/category/CategoryServices.xml	(revision 1494668)
 +++ applications/product/script/org/ofbiz/product/category/CategoryServices.xml	(working copy)
 @@ -277,6 +277,9 @@
          </if-empty>
@@ -86,7 +108,7 @@ Index: applications/product/script/org/ofbiz/product/category/CategoryServices.x
          <set value="removeProductCategoryFromCategory" field="callingMethodName"/>
 Index: applications/product/script/org/ofbiz/product/product/ProductServices.xml
 ===================================================================
---- applications/product/script/org/ofbiz/product/product/ProductServices.xml	(revision 1494467)
+--- applications/product/script/org/ofbiz/product/product/ProductServices.xml	(revision 1494668)
 +++ applications/product/script/org/ofbiz/product/product/ProductServices.xml	(working copy)
 @@ -33,6 +33,13 @@
          <set from-field="parameters.productId" field="newEntity.productId"/>
@@ -104,7 +126,7 @@ Index: applications/product/script/org/ofbiz/product/product/ProductServices.xml
              <check-errors />
 Index: applications/product/config/catalog.properties
 ===================================================================
---- applications/product/config/catalog.properties	(revision 1494467)
+--- applications/product/config/catalog.properties	(revision 1494668)
 +++ applications/product/config/catalog.properties	(working copy)
 @@ -36,8 +36,8 @@
  reactivate.product.from.receipt=Y
@@ -119,7 +141,7 @@ Index: applications/product/config/catalog.properties
  image.management.multipleApproval=N
 Index: applications/product/src/org/ofbiz/product/imagemanagement/ImageManagementServices.java
 ===================================================================
---- applications/product/src/org/ofbiz/product/imagemanagement/ImageManagementServices.java	(revision 1494467)
+--- applications/product/src/org/ofbiz/product/imagemanagement/ImageManagementServices.java	(revision 1494668)
 +++ applications/product/src/org/ofbiz/product/imagemanagement/ImageManagementServices.java	(working copy)
 @@ -93,6 +93,7 @@
          String uploadFileName = (String) context.get("_uploadedFile_fileName");
@@ -137,9 +159,31 @@ Index: applications/product/src/org/ofbiz/product/imagemanagement/ImageManagemen
              try {
                  dispatcher.runSync("createProductContent", productContentCtx);
              } catch (GenericServiceException e) {
+Index: applications/product/webapp/catalog/category/EditCategory.ftl
+===================================================================
+--- applications/product/webapp/catalog/category/EditCategory.ftl	(revision 1494668)
++++ applications/product/webapp/catalog/category/EditCategory.ftl	(working copy)
+@@ -194,6 +194,17 @@
+                     </td>
+                 </tr>
+                 <tr>
++                    <td width="26%" align="right" class="label">Show In Flyout</td>
++                    <td>&nbsp;</td>
++                    <td width="74%">
++                        <select name="showInFlyout" size="1">
++                            <#if productCategory?has_content><option>${productCategory.showInFlyout?if_exists}</option></#if>
++                            <option value="N">N</option>
++                            <option value="Y">Y</option>
++                        </select>
++                    </td>
++                </tr>
++                <tr>
+                     <td colspan="2">&nbsp;</td>
+                     <td><input type="submit" name="Update" value="${uiLabelMap.CommonUpdate}"/></td>
+                 </tr>
 Index: applications/product/webapp/catalog/WEB-INF/controller.xml
 ===================================================================
---- applications/product/webapp/catalog/WEB-INF/controller.xml	(revision 1494467)
+--- applications/product/webapp/catalog/WEB-INF/controller.xml	(revision 1494668)
 +++ applications/product/webapp/catalog/WEB-INF/controller.xml	(working copy)
 @@ -3072,6 +3072,44 @@
          <response name="success" type="request-redirect" value="EditProductTag"/>
@@ -194,31 +238,9 @@ Index: applications/product/webapp/catalog/WEB-INF/controller.xml
 +    <view-map name="EditProductCategoryFlyoutSub" type="screen" page="component://shopmax/widget/CatalogScreens.xml#EditProductCategoryFlyoutSub"/>
 +    <view-map name="EditProductCategoryRelated" type="screen" page="component://shopmax/widget/CatalogScreens.xml#EditProductCategoryRelated"/>
  </site-conf>
-Index: applications/product/webapp/catalog/category/EditCategory.ftl
-===================================================================
---- applications/product/webapp/catalog/category/EditCategory.ftl	(revision 1494467)
-+++ applications/product/webapp/catalog/category/EditCategory.ftl	(working copy)
-@@ -194,6 +194,17 @@
-                     </td>
-                 </tr>
-                 <tr>
-+                    <td width="26%" align="right" class="label">Show In Flyout</td>
-+                    <td>&nbsp;</td>
-+                    <td width="74%">
-+                        <select name="showInFlyout" size="1">
-+                            <#if productCategory?has_content><option>${productCategory.showInFlyout?if_exists}</option></#if>
-+                            <option value="N">N</option>
-+                            <option value="Y">Y</option>
-+                        </select>
-+                    </td>
-+                </tr>
-+                <tr>
-                     <td colspan="2">&nbsp;</td>
-                     <td><input type="submit" name="Update" value="${uiLabelMap.CommonUpdate}"/></td>
-                 </tr>
 Index: applications/product/servicedef/services.xml
 ===================================================================
---- applications/product/servicedef/services.xml	(revision 1494467)
+--- applications/product/servicedef/services.xml	(revision 1494668)
 +++ applications/product/servicedef/services.xml	(working copy)
 @@ -840,9 +840,9 @@
      <service name="safeAddProductCategoryToCategory" engine="simple"
@@ -244,25 +266,3 @@ Index: applications/product/servicedef/services.xml
          <attribute name="thruDate" type="Timestamp" mode="IN" optional="true"/>
          <attribute name="sequenceNum" type="Long" mode="IN" optional="true"/>
      </service>
-Index: applications/order/webapp/ordermgr/order/orderReportContactMechs.fo.ftl
-===================================================================
---- applications/order/webapp/ordermgr/order/orderReportContactMechs.fo.ftl	(revision 1494467)
-+++ applications/order/webapp/ordermgr/order/orderReportContactMechs.fo.ftl	(working copy)
-@@ -31,7 +31,7 @@
-                 <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2?if_exists}</fo:block></#if>
-                 <fo:block>
-                     <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId?if_exists}, false))?if_exists />
--                    ${postalAddress.city}<#if stateGeo?has_content>, ${stateGeo.geoName?if_exists}</#if> ${postalAddress.postalCode?if_exists}
-+                    ${postalAddress.city} ${postalAddress.postalCode?if_exists}
-                 </fo:block>
-                 <fo:block>
-                     <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId?if_exists}, false))?if_exists />
-@@ -63,7 +63,7 @@
-                 <#if postalAddress.address2?has_content><fo:block>${postalAddress.address2?if_exists}</fo:block></#if>
-                 <fo:block>
-                     <#assign stateGeo = (delegator.findOne("Geo", {"geoId", postalAddress.stateProvinceGeoId?if_exists}, false))?if_exists />
--                    ${postalAddress.city}<#if stateGeo?has_content>, ${stateGeo.geoName?if_exists}</#if> ${postalAddress.postalCode?if_exists}
-+                    ${postalAddress.city} ${postalAddress.postalCode?if_exists}
-                 </fo:block>
-                 <fo:block>
-                     <#assign countryGeo = (delegator.findOne("Geo", {"geoId", postalAddress.countryGeoId?if_exists}, false))?if_exists />
