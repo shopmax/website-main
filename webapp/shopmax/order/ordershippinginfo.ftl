@@ -29,7 +29,7 @@ under the License.
             <tr><td>${shippingAddress.toName?default("No Contact Name")}</td></tr><#-- Contact Name -->
             <tr><td>${shippingAddress.address1?if_exists}</td></tr><#-- Street Address Line one -->
             <#if shippingAddress.address2?exists><tr><td>${shippingAddress.address2}</td></tr></#if><#-- Street Address Line two -->
-            <tr><td>${shippingAddress.city?if_exists}</td></tr><#-- State -->
+            <tr><td>${shippingAddress.city?if_exists} ${shippingAddress.postalCode?if_exists}</td></tr><#-- State -->
         </#if>
         <#if shipToTelecomNumber?exists>
             <#-- <tr><td>Phone number ${shipToTelecomNumber.countryCode?if_exists} <#if shipToTelecomNumber.areaCode?exists>${shipToTelecomNumber.areaCode}-</#if>${shipToTelecomNumber.contactNumber}</td></tr> -->

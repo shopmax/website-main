@@ -187,25 +187,36 @@ under the License.
                                                         <td valign="top"  height="0" align="left"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#--Store Name -->
-                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Monday - Friday: 9am - 6p -->
-                                                    </tr>
-                                                    <tr>
-                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Street Address Line one -->
-                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Saturday: 10am - 4pm -->
-                                                    </tr>
-                                                    <tr>
-                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Street Address Line two -->
-                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Sunday: Closed -->
-                                                    </tr>
-                                                    <tr>
-                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- State -->
-                                                    </tr>
-                                                    <tr>
-                                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"></p></td> <#-- Phone number xxx xxx xxx -->
-                                                    </tr>
-                                                    <tr>
-                                                        <td valign="top"  height="18" align="left"></td>
+                                                        <td valign="top"  align="left" width="240">
+                                                            <#assign branchStores = delegator.findByAnd("OrderItemShipGroup", {"orderId" : orderId, "supplierPartyId" : partyId, "shipmentMethodTypeId" : "NO_SHIPPING", "carrierPartyId" : "_NA_"},null , true)>
+                                                            <#if branchStores?has_content>
+                                                                <#assign branchStore = Static["org.ofbiz.entity.util.EntityUtil"].getFirst(branchStores)/>
+                                                                <#assign branchStoreName = delegator.findOne("PostalAddress", {"contactMechId" : branchStore.shippingInstructions},true)>
+                                                                <#if branchStoreName?has_content>
+                                                                    <p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${branchStoreName.toName?if_exists}</p>
+                                                                    <p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${branchStoreName.address1?if_exists}</p>
+                                                                    <p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${branchStoreName.address2?if_exists}</p>
+                                                                    <p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${branchStoreName.city?if_exists}</p>
+                                                                    <#assign branchStorePhones = delegator.findByAnd("ContactMechAttribute", {"contactMechId" : branchStore.shippingInstructions, "attrName" : "STORE_PHONE_NUMBER"}, null, true)>
+                                                                    <#if branchStorePhones?has_content>
+                                                                        <#assign branchStorePhone = Static["org.ofbiz.entity.util.EntityUtil"].getFirst(branchStorePhones)/>
+                                                                        <p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Phone number ${branchStorePhone.attrValue?if_exists}</p>
+                                                                    </#if>
+                                                                </#if>
+                                                            </#if>
+                                                        </td> <#--Store Name -->
+                                                        <td valign="top"  align="left" width="240">
+                                                            <#assign branchStores = delegator.findByAnd("OrderItemShipGroup", {"orderId" : orderId, "supplierPartyId" : partyId, "shipmentMethodTypeId" : "NO_SHIPPING", "carrierPartyId" : "_NA_"}, null, true)>
+                                                            <#if branchStores?has_content>
+                                                                <#assign branchStore = Static["org.ofbiz.entity.util.EntityUtil"].getFirst(branchStores)/>
+                                                                <#assign branchDateTimes = delegator.findByAnd("PhysicalStoreDateTime", {"contactMechId" : branchStore.shippingInstructions}, ["sequenceNum"], false)>
+                                                                <#if branchDateTimes?has_content>
+                                                                    <#list branchDateTimes as branchDateTime>
+                                                                        <p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${branchDateTime.day?if_exists} : ${branchDateTime.openHour?if_exists}.${branchDateTime.openMin?if_exists} - ${branchDateTime.closeHour?if_exists}.${branchDateTime.closeMin?if_exists}</p>
+                                                                    </#list>
+                                                                </#if>
+                                                            </#if>
+                                                        </td> <#-- Monday - Friday: 9am - 6p -->
                                                     </tr>
                                                 </table>
                                             </td>

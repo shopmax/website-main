@@ -29,7 +29,7 @@ under the License.
             <tr><td>${billingAddress.toName?default("No Contact Name")}</td></tr><#-- Contact Name -->
             <tr><td>${billingAddress.address1?if_exists}</td></tr><#-- Street Address Line one -->
             <#if billingAddress.address2?exists><tr><td>${billingAddress.address2}</td></tr></#if><#-- Street Address Line two -->
-            <tr><td>${billingAddress.city?if_exists}</td></tr><#-- State -->
+            <tr><td>${billingAddress.city?if_exists} ${billingAddress.postalCode?if_exists}</td></tr><#-- State -->
         </#if>
         <#if billToTelecomNumber?exists>
             <#-- <tr><td>Phone number ${billToTelecomNumber.countryCode?if_exists} <#if billToTelecomNumber.areaCode?exists>${billToTelecomNumber.areaCode}-</#if>${billToTelecomNumber.contactNumber}</td></tr> -->

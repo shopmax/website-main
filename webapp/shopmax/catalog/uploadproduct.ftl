@@ -217,7 +217,6 @@ under the License.
                             <div class="controls controls-row select-category pull-left">
                                 <div class="span3">
                                     <select size=9 id="category_1">
-                                        ${categoryList}
                                         <#if categoryList?has_content>
                                             <#list categoryList as category>
                                                 <#assign productCatelogId = category.productCategoryId/>

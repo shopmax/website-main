@@ -34,8 +34,21 @@ getSupplierShoppingCartItemsMapInMap = ["shoppingCart": ShoppingCartEvents.getCa
 def results = dispatcher.runSync("getSupplierShoppingCartItemsMap", getSupplierShoppingCartItemsMapInMap);
 
 if(parameters.scBranchStore){
+    orderContactMechs = [];
     branchStoreList = parameters.scBranchStore;
+    String branchStoreDetailString = branchStoreList.toString();
+    if(branchStoreDetailString.indexOf(',') != -1){
+        for(branchStoreDetailList in branchStoreList) {
+            branchStoreDetail = branchStoreDetailList.split("-");
+            orderContactMechs.add(branchStoreDetail[1]);
+        }
+    }
+    else{
+        branchStoreDetail = branchStoreList.split("-");
+        orderContactMechs.add(branchStoreDetail[1]);
+    }
     context.branchStoreList = branchStoreList;
+    context.orderContactMechs = orderContactMechs;
 }
 
 context.supplierCartItemsMap = results.supplierShoppingCartItemsMap;

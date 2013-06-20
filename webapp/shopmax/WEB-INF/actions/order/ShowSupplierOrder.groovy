@@ -64,28 +64,28 @@ if(orderItems) {
     }
 }
 
-if(parameters.scBranchStore){
-    branchStoreDetailLists = parameters.scBranchStore;
-    String branchStoreDetailString = branchStoreDetailLists.toString();
+if(parameters.scBranchStoreList){
+    branchStoreDetailLists = parameters.scBranchStoreList;
     branchStoreList = [];
-    if(branchStoreDetailString.indexOf(',') != -1){
-        for(branchStoreDetailList in branchStoreDetailLists) {
-            branchStoreDetail = branchStoreDetailList.split("-");
-            branchStoreDetailMap = [:];
-            branchStoreDetailMap.typeShipping = branchStoreDetail[0];
-            branchStoreDetailMap.contactMechId = branchStoreDetail[1];
-            branchStoreDetailMap.shopPartyId = branchStoreDetail[2];
-            branchStoreList.add(branchStoreDetailMap);
-        }
-    }
-    else{
-        branchStoreDetail = branchStoreDetailLists.split("-");
+    for(branchStoreDetailList in branchStoreDetailLists) {
+        branchStoreDetail = branchStoreDetailList.split("-");
         branchStoreDetailMap = [:];
         branchStoreDetailMap.typeShipping = branchStoreDetail[0];
         branchStoreDetailMap.contactMechId = branchStoreDetail[1];
         branchStoreDetailMap.shopPartyId = branchStoreDetail[2];
         branchStoreList.add(branchStoreDetailMap);
     }
+    context.branchStoreList = branchStoreList;
+}
+if(parameters.scBranchStores){
+	branchStoreList = [];
+    branchStoreDetailLists = parameters.scBranchStores;
+    branchStoreDetail = branchStoreDetailLists.split("-");
+    branchStoreDetailMap = [:];
+    branchStoreDetailMap.typeShipping = branchStoreDetail[0];
+    branchStoreDetailMap.contactMechId = branchStoreDetail[1];
+    branchStoreDetailMap.shopPartyId = branchStoreDetail[2];
+    branchStoreList.add(branchStoreDetailMap);
     context.branchStoreList = branchStoreList;
 }
 

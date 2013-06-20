@@ -689,13 +689,22 @@ under the License.
     <div class="row">
         <#include "component://shopmax/webapp/shopmax/order/ordersummary.ftl" />
         <form id="orderSummarySubmitForm" action="<@ofbizUrl>onePageProcess</@ofbizUrl>" method="post">
+            <#if shoppingCartItems?has_content>
+                <#if shoppingCartItems?is_sequence>
+                    <#list shoppingCartItems as shoppingCartItem>
+                        <input type="hidden" name="shoppingCartItems" value="${shoppingCartItem}"/>
+                    </#list>
+                <#else>
+                    <input type="hidden" name="shoppingCartItems" value="${shoppingCartItem}"/>
+                </#if>
+            </#if>
             <#if branchStoreList?has_content>
                 <#if branchStoreList?is_sequence>
                     <#list branchStoreList as branchStore>
-                        <input type="hidden" name="scBranchStore" value="${branchStore}"/>
+                        <input type="hidden" name="scBranchStoreList" value="${branchStore}"/>
                     </#list>
                 <#else>
-                    <input type="hidden" name="scBranchStore" value="${branchStoreList}"/>
+                    <input type="hidden" name="scBranchStores" value="${branchStoreList}"/>
                 </#if>
             </#if>
             <#if userLogin?has_content>
