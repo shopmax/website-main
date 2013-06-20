@@ -318,7 +318,7 @@ under the License.
         $('.summaryButton1').click(function(){
             $('.main-content').find('input.check').each(function(){
                 var valid = false;
-                var y=document.forms["orderSummarySubmitForm"]["CUSTOMER_EMAILS"].value;
+                var y=document.forms["orderSummarySubmitForm"]["billEmail"].value;
                 var atpos1=y.indexOf("@");
                 var dotpos1=y.lastIndexOf(".");
                 
@@ -411,7 +411,7 @@ under the License.
                 var x=document.forms["orderSummarySubmitForm"]["CUSTOMER_EMAIL"].value;
                 var atpos=x.indexOf("@");
                 var dotpos=x.lastIndexOf(".");
-                var y=document.forms["orderSummarySubmitForm"]["CUSTOMER_EMAILS"].value;
+                var y=document.forms["orderSummarySubmitForm"]["billEmail"].value;
                 var atpos1=y.indexOf("@");
                 var dotpos1=y.lastIndexOf(".");
                 
@@ -715,13 +715,13 @@ under the License.
             <#list supplierCarrierMap.keySet() as partyId>
                 <#assign supplierIndex = supplierIndex + 1/>
                 <#assign carrierPartyId = supplierCarrierMap.get(partyId)/>
-                <input name="shipmentCarrierPartyId:${partyId}_o_${supplierIndex}" value="${carrierPartyId}" type="hidden"/>
+                <input type="hidden" name="shipmentCarrierPartyId:${partyId}_o_${supplierIndex}" value="${carrierPartyId}"/>
             </#list>
             <#assign supplierIndex = -1/>
             <#list supplierShipmentMethodTypeMap.keySet() as partyId>
                 <#assign supplierIndex = supplierIndex + 1/>
                 <#assign shipmentMethodTypeId = supplierShipmentMethodTypeMap.get(partyId)/>
-                <input name="shipmentMethodTypeId:${partyId}_o_${supplierIndex}" value="${shipmentMethodTypeId}" type="hidden"/>
+                <input" type="hidden" name="shipmentMethodTypeId:${partyId}_o_${supplierIndex}" value="${shipmentMethodTypeId}/>
             </#list>
             <div class="span9 main-content">
                 <ul class="sc-step">
@@ -732,7 +732,7 @@ under the License.
                 <br />
                 <div class="billing_de">
                     <#if contactMechList?has_content>
-                        <input type="hidden" value="64" name="shipToCountryCode">
+                        <input type="hidden" value="${shipToTelecomNumber.contactMechId}" name="shipToPhoneContactMechId">
                         <div class="shipp_info">
                             <div class="tital_1">Shipping Information</div>
                             <div class="row">
@@ -753,7 +753,7 @@ under the License.
                                             <li>${emailAddress?if_exists}</li>
                                             <li>${shipToAddress1?if_exists}</li>
                                             <li>${shipToAddress2?if_exists}</li>
-                                            <li>${shipToCity?if_exists}</li>
+                                            <li>${shipToCity?if_exists} ${shipToPostalCode?if_exists}</li>
                                             <li>Phone number <#if shipToTelecomNumber.areaCode?exists>${shipToTelecomNumber.areaCode}-</#if>${shipToTelecomNumber.contactNumber}</li>
                                         </ul>
                                     </div>
@@ -764,10 +764,9 @@ under the License.
                             </div>
                         </div>
                     <#else>
-                        <input type="hidden" name="shipMethod" value="NO_SHIPPING"/>
-                        <input type="hidden" value="64" name="shipToCountryCode">
-                        <input type="hidden" value="" name="shipToExtension">
-                        
+                        <input type="hidden" name="keepAddressBook" value="Y">
+                        <input type="hidden" name="setDefaultShipping" value="Y">
+                        <input type="hidden" name="shipToCountryCode" value="64">
                         <table class="table table-condensed sc-table sc-table-shipping">
                           <thead>
                             <tr class="sc-table-product-header">
@@ -816,7 +815,6 @@ under the License.
                             <tr>
                                 <td class="col1">
                                     <h5 class="heading">Shipping Address</h5>
-                                    <input type="hidden" name="shipMethod" value="NO_SHIPPING"/>
                                     <div class="form-inline">
                                         <input type="text" id="shipStreetAddress" class="input-xxxlarge check required" name="shipToAddress1" placeholder="Street Address" />
                                         <input type="text" id="shipPostal" class="input-xxlarge check required" name="shipToPostalCode" onkeypress="return isNumberKey(event)" placeholder="Zip/ Postal Code" />
@@ -838,17 +836,18 @@ under the License.
                     
                     <#if billPaymentMethod?has_content && billToName?has_content>
                         <#-- Billing Informatioin -->
-                        <input name="billToContactMechId" value="${billToContactMechId?if_exists}" type="hidden"/>
-                        <input name="billToName" value="${billToName?if_exists}" type="hidden"/>
-                        <input name="billToAttnName" value="${billToAttnName?if_exists}" type="hidden"/>
-                        <input name="billToAddress1" value="${billToAddress1?if_exists}" type="hidden"/>
-                        <input name="billToAddress2" value="${billToAddress2?if_exists}" type="hidden"/>
-                        <input name="billToCity" value="${billToCity?if_exists}" type="hidden"/>
-                        <input name="billToPostalCode" value="${billToPostalCode?if_exists}" type="hidden"/>
-                        <input name="billToStateProvinceGeoId" value="${billToStateProvinceGeoId?if_exists}" type="hidden"/>
-                        <input name="billToContactNumber" value="${billToTelecomNumber.contactNumber?if_exists}" type="hidden"/>
-                        <input name="billToAreaCode" value="${billToTelecomNumber.areaCode?if_exists}" type="hidden"/>
-                        <input name="billToCountryCode" value="${billToTelecomNumber.countryCode?if_exists}" type="hidden"/>
+                        <input type="hidden" name="billToContactMechId" value="${billToContactMechId?if_exists}"/>
+                        <input type="hidden" name="billToName" value="${billToName?if_exists}"/>
+                        <input type="hidden" name="billToAttnName" value="${billToAttnName?if_exists}"/>
+                        <input type="hidden" name="billToAddress1" value="${billToAddress1?if_exists}"/>
+                        <input type="hidden" name="billToAddress2" value="${billToAddress2?if_exists}"/>
+                        <input type="hidden" name="billToCity" value="${billToCity?if_exists}"/>
+                        <input type="hidden" name="billToPostalCode" value="${billToPostalCode?if_exists}"/>
+                        <input type="hidden" name="billToStateProvinceGeoId" value="${billToStateProvinceGeoId?if_exists}"/>
+                        <input type="hidden" name="billToPhoneContactMechId" value="${billToTelecomNumber.contactMechId}">
+                        <input type="hidden" name="billToCountryCode" value="${billToTelecomNumber.countryCode?if_exists}"/>
+                        <input type="hidden" name="billToAreaCode" value="${billToTelecomNumber.areaCode?if_exists}"/>
+                        <input type="hidden" name="billToContactNumber" value="${billToTelecomNumber.contactNumber?if_exists}"/>
                         <div class="shipp_info">
                             <div class="tital_1">Billing Information</div>
                             <div class="row">
@@ -868,7 +867,7 @@ under the License.
                                             <li>${emailAddress?if_exists}</li>
                                             <li>${billToAddress1?if_exists}</li>
                                             <li>${billToAddress2?if_exists}</li>
-                                            <li>${billToCity?if_exists}</li>
+                                            <li>${billToCity?if_exists} ${billToPostalCode?if_exists}</li>
                                             <li>Phone number <#if billToTelecomNumber.areaCode?exists>${billToTelecomNumber.areaCode}-</#if>${billToTelecomNumber.contactNumber}</li>
                                         </ul>
                                     </div>
@@ -896,11 +895,10 @@ under the License.
                         <#-- Billing Information -->
                         <input type="hidden" id="paymentMethodId" name="paymentMethodId" value="${paymentMethodId?if_exists}" />
                         <input type="hidden" id="paymentMethodTypeId" name="paymentMethodTypeId" value="${paymentMethodTypeId?default("CREDIT_CARD")}" />
-                        <input type="hidden" value="Y" name="keepAddressBook">
-                        <input type="hidden" value="Y" name="setDefaultBilling">
-                        <input type="hidden" value="64" name="billToCountryCode">
-                        <input type="hidden" value="" name="billToExtension">
-                        <input type="hidden" value="N" name="useShippingAddressForBilling" id="useShippingAddressForBilling">
+                        <input type="hidden" name="keepAddressBook" value="Y">
+                        <input type="hidden" name="setDefaultBilling" value="Y">
+                        <input type="hidden" name="billToCountryCode" value="64">
+                        <input type="hidden" id="useShippingAddressForBilling" name="useShippingAddressForBilling" value="N">
                         
                         <table class="table table-condensed sc-table sc-table-shipping">
                           <thead>
@@ -938,7 +936,7 @@ under the License.
                                             <option>0800</option>
                                         </select>
                                         <input name="billToContactNumber" type="text" id="billPhone" class="input-xxlarge check required" placeholder="Phone Number" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
-                                        <input type="text" id="billEmail" class="input-xxlarge check required" name="CUSTOMER_EMAILS" placeholder="Email Address" value="${userLogin.userLoginId?if_exists}" />
+                                        <input type="text" id="billEmail" class="input-xxlarge check required" name="billEmail" placeholder="Email Address" value="${userLogin.userLoginId?if_exists}" />
                                         <select name="billToFaxNumberArea" id="billToFaxNumberArea" class="chosen contactNumber" style="width: 60px;">
                                             <option selected="selected">03</option>
                                             <option>04</option>

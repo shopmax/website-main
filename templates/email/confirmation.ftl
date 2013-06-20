@@ -259,7 +259,7 @@ under the License.
                                     </tr>
                                     <tr>
                                         <td valign="top"  align="right" ><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">SHOPPING CART SUB TOTAL</p></td> 
-                                        <td valign="top"  align="right" ><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"><@ofbizCurrency amount=totalPrice/></p></td>  
+                                        <td valign="top"  align="right" ><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"><@ofbizCurrency amount=orderSubTotal/></p></td>  
                                     </tr>
                                     <tr>
                                         <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">SHIPPING</p></td> 
@@ -267,7 +267,7 @@ under the License.
                                     </tr>
                                     <tr>
                                         <td valign="top" align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">DISCOUNT</p></td>
-                                        <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"><@ofbizCurrency amount=orderAdjustmentsTotal/></p></td>
+                                        <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555"><@ofbizCurrency amount=otherAdjAmount/></p></td>
                                     </tr>
                                     <tr>
                                         <td valign="top"  align="right"  width="240"><p style="margin:0;padding:0 0 0 15px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">SALES TAX</p></td> 

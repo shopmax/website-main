@@ -32,7 +32,6 @@ under the License.
             <tr><td>${billingAddress.city?if_exists} ${billingAddress.postalCode?if_exists}</td></tr><#-- State -->
         </#if>
         <#if billToTelecomNumber?exists>
-            <#-- <tr><td>Phone number ${billToTelecomNumber.countryCode?if_exists} <#if billToTelecomNumber.areaCode?exists>${billToTelecomNumber.areaCode}-</#if>${billToTelecomNumber.contactNumber}</td></tr> -->
             <tr><td>Phone number <#if billToTelecomNumber.areaCode?exists>${billToTelecomNumber.areaCode}-</#if>${billToTelecomNumber.contactNumber?if_exists}</td></tr>
         </#if>
     </tbody>

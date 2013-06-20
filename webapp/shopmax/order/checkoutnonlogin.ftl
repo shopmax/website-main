@@ -304,7 +304,7 @@ under the License.
         $('.summaryButton1').click(function(){
             $('.main-content').find('input.check').each(function(){
                 var valid = false;
-                var y=document.forms["orderSummarySubmitForm"]["CUSTOMER_EMAILS"].value;
+                var y=document.forms["orderSummarySubmitForm"]["billEmail"].value;
                 var atpos1=y.indexOf("@");
                 var dotpos1=y.lastIndexOf(".");
                 
@@ -397,7 +397,7 @@ under the License.
                 var x=document.forms["orderSummarySubmitForm"]["CUSTOMER_EMAIL"].value;
                 var atpos=x.indexOf("@");
                 var dotpos=x.lastIndexOf(".");
-                var y=document.forms["orderSummarySubmitForm"]["CUSTOMER_EMAILS"].value;
+                var y=document.forms["orderSummarySubmitForm"]["billEmail"].value;
                 var atpos1=y.indexOf("@");
                 var dotpos1=y.lastIndexOf(".");
                 
@@ -688,11 +688,11 @@ under the License.
             <#-- Shipping Options -->
             <#list supplierCarrierMap.keySet() as partyId>
                 <#assign carrierPartyId = supplierCarrierMap.get(partyId)/>
-                <input name="carrierPartyId:${partyId}" value="${carrierPartyId}" type="hidden"/>
+                <input type="hidden" name="carrierPartyId:${partyId}" value="${carrierPartyId}"/>
             </#list>
             <#list supplierShipmentMethodTypeMap.keySet() as partyId>
                 <#assign shipmentMethodTypeId = supplierShipmentMethodTypeMap.get(partyId)/>
-                <input name="shipmentMethodTypeId:${partyId}" value="${shipmentMethodTypeId}" type="hidden"/>
+                <input type="hidden" name="shipmentMethodTypeId:${partyId}" value="${shipmentMethodTypeId}"/>
             </#list>
             
             <div class="span9 main-content">
@@ -721,9 +721,9 @@ under the License.
                 </div>
                 
                 <#-- Shipping Information -->
-                <input type="hidden" name="shipMethod" value="NO_SHIPPING"/>
-                <input type="hidden" value="64" name="shipToCountryCode">
-                <input type="hidden" value="" name="shipToExtension">
+                <input type="hidden" name="keepAddressBook" value="N" />
+                <input type="hidden" name="setDefaultShipping" value="Y">
+                <input type="hidden" name="shipToCountryCode" value="64">
                 
                 <table class="table table-condensed sc-table sc-table-shipping">
                   <thead>
@@ -774,7 +774,6 @@ under the License.
                     <tr>
                         <td class="col1 shipTB">
                             <h5 class="heading">Shipping Address</h5>
-                            <input type="hidden" name="shipMethod" value="NO_SHIPPING"/>
                             <div class="form-inline">
                                 <input type="text" id="shipStreetAddress" class="input-xxxlarge check required" name="shipToAddress1" placeholder="Street Address" />
                                 <input type="text" id="shipPostal" class="input-xxlarge check required" name="shipToPostalCode" onkeypress="return isNumberKey(event)" placeholder="Zip/ Postal Code" />
@@ -796,11 +795,10 @@ under the License.
                 <#-- Billing Information -->
                 <input type="hidden" id="paymentMethodId" name="paymentMethodId" value="${paymentMethodId?if_exists}" />
                 <input type="hidden" id="paymentMethodTypeId" name="paymentMethodTypeId" value="${paymentMethodTypeId?default("CREDIT_CARD")}" />
-                <input type="hidden" value="Y" name="keepAddressBook">
-                <input type="hidden" value="Y" name="setDefaultBilling">
-                <input type="hidden" value="64" name="billToCountryCode">
-                <input type="hidden" value="" name="billToExtension">
-                <input type="hidden" value="N" name="useShippingAddressForBilling" id="useShippingAddressForBilling">
+                <input type="hidden" name="keepAddressBook" value="N">
+                <input type="hidden" name="setDefaultBilling" value="Y">
+                <input type="hidden" name="billToCountryCode" value="64">
+                <input type="hidden" id="useShippingAddressForBilling" name="useShippingAddressForBilling" value="N">
                 
                 <table class="table table-condensed sc-table sc-table-shipping">
                   <thead>
@@ -838,7 +836,7 @@ under the License.
                                     <option>0800</option>
                                 </select>
                                 <input name="billToContactNumber" type="text" id="billPhone" class="input-xxlarge check required" placeholder="Phone Number" onkeypress="return isNumberKey(event)" style="width: 135px;"/>
-                                <input type="text" id="billEmail" class="input-xxlarge check required" name="CUSTOMER_EMAILS" placeholder="Email Address" />
+                                <input type="text" id="billEmail" class="input-xxlarge check required" name="billEmail" placeholder="Email Address" />
                                 <select name="billToFaxNumberArea" id="billToFaxNumberArea" class="chosen contactNumber" style="width: 60px;">
                                     <option selected="selected">03</option>
                                     <option>04</option>

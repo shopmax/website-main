@@ -194,12 +194,9 @@ under the License.
                                 <td colspan="2" class="bl-table-estimate-shipping">
                                     <table class="table table-condensed">
                                         <tbody>
-                                            <tr><td class="rightalign">Shopping cart Sub total</td><td class="col1 rightalign"><@ofbizCurrency amount=totalPrice/></td></tr>
+                                            <tr><td class="rightalign">Shopping cart Sub total</td><td class="col1 rightalign"><@ofbizCurrency amount=orderSubTotal/></td></tr>
                                             <tr><td class="rightalign">Shipping</td><td class="col1 rightalign"><@ofbizCurrency amount=shippingAmount /></td></tr>
-                                            <tr><td class="rightalign">Discount</td><td class="col1 rightalign">
-                                                    <@ofbizCurrency amount=orderAdjustmentsTotal />
-                                                </td>
-                                            </tr>
+                                            <tr><td class="rightalign">Discount</td><td class="col1 rightalign"><@ofbizCurrency amount=otherAdjAmount /></td></tr>
                                             <tr><td class="rightalign">Sales Tax</td><td class="col1 rightalign"><@ofbizCurrency amount=taxAmount /></td></tr>
                                         </tbody>
                                         <tfoot>

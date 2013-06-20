@@ -32,7 +32,6 @@ under the License.
             <tr><td>${shippingAddress.city?if_exists} ${shippingAddress.postalCode?if_exists}</td></tr><#-- State -->
         </#if>
         <#if shipToTelecomNumber?exists>
-            <#-- <tr><td>Phone number ${shipToTelecomNumber.countryCode?if_exists} <#if shipToTelecomNumber.areaCode?exists>${shipToTelecomNumber.areaCode}-</#if>${shipToTelecomNumber.contactNumber}</td></tr> -->
             <tr><td>Phone number <#if shipToTelecomNumber.areaCode?exists>${shipToTelecomNumber.areaCode}-</#if>${shipToTelecomNumber.contactNumber?if_exists}</td></tr>
         </#if>
     </tbody>

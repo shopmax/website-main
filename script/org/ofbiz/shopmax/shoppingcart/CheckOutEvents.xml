@@ -28,6 +28,7 @@ under the License.
             </else>
         </if-not-empty>
     </simple-method>
+    
     <simple-method method-name="createAccount" short-description="Create account to cart" login-required="false">
         <entity-one value-field="sysUserLogin" entity-name="UserLogin">
             <field-map field-name="userLoginId" value="system"/>
@@ -180,7 +181,6 @@ under the License.
         
         <session-to-field session-name="userLogin"/>
         <set field="parameters.partyId" from-field="userLogin.partyId"/>
-        <!-- <set field="parameters.setDefaultShipping" value="Y"/> -->
         
         <if-empty field="parameters.shipToContactMechId">
             <property-to-field resource="general" property="country.geo.id.default" field="defaultCountryGeoId"/>
@@ -189,14 +189,16 @@ under the License.
             <set field="parameters.shipToName" value="${parameters.USER_FIRST_NAME} ${parameters.USER_LAST_NAME}"/>
             <set field="parameters.partyId" from-field="userLogin.partyId"/>
             <set field="parameters.emailAddress" from-field="parameters.CUSTOMER_EMAIL"/>
+            
             <!-- fax phone -->
             <if-not-empty field="parameters.shipToFaxNumber">
+                <set field="faxPhoneContext.countryCode" from-field="parameters.shipToCountryCode"/>
                 <set field="faxPhoneContext.areaCode" from-field="parameters.shipToFaxNumberArea"/>
                 <set field="faxPhoneContext.contactNumber" from-field="parameters.shipToFaxNumber"/>
                 <call-service service-name="createPartyTelecomNumber" in-map-name="faxPhoneContext">
                     <result-to-field result-name="contactMechId" field="faxPhonePurposeContext.contactMechId"/>
                 </call-service>
-                <set field="faxPhonePurposeContext.partyId" from-field="tempMap.partyId"/>
+                <set field="faxPhonePurposeContext.partyId" from-field="parameters.partyId"/>
                 <set field="faxPhonePurposeContext.contactMechPurposeTypeId" value="FAX_SHIPPING"/>
                 <call-service service-name="createPartyContactMechPurpose" in-map-name="faxPhonePurposeContext"/>
             </if-not-empty>
@@ -214,42 +216,42 @@ under the License.
                     <set field="parameters.lastName" from-field="parameters.USER_LAST_NAME"/>
                 </else>
             </if-not-empty>
+        <else>
+            <!-- set person -->
+            <set field="getPersonInMap.partyId" from-field="parameters.partyId"/>
+            <call-service service-name="getPerson" in-map-name="getPersonInMap">
+               <result-to-field result-name="lookupPerson"/>
+            </call-service>
+            <set field="parameters.firstName" from-field="lookupPerson.firstName"/>
+            <set field="parameters.lastName" from-field="lookupPerson.lastName"/>
+           
+            <!-- set postal address -->
+            <entity-one value-field="postalAddress" entity-name="PostalAddress">
+                <field-map field-name="contactMechId" from-field="parameters.shipToContactMechId"/>
+            </entity-one>
+            <set field="parameters.shipToName" from-field="postalAddress.toName"/>
+            <set field="parameters.shipToAddress1" from-field="postalAddress.address1"/>
+            <set field="parameters.shipToAddress2" from-field="postalAddress.address2"/>
+            <set field="parameters.shipToCity" from-field="postalAddress.city"/>
+            <set field="parameters.shipToStateProvinceGeoId" from-field="postalAddress.stateProvinceGeoId"/>
+            <set field="parameters.shipToCountryGeoId" from-field="postalAddress.countryGeoId"/>
+            <set field="parameters.shipToPostalCode" from-field="postalAddress.postalCode"/>
             
-            <else>
-                <!-- set person -->
-                <set field="getPersonInMap.partyId" from-field="parameters.partyId"/>
-                <call-service service-name="getPerson" in-map-name="getPersonInMap">
-                   <result-to-field result-name="lookupPerson"/>
-                </call-service>
-                <set field="parameters.firstName" from-field="lookupPerson.firstName"/>
-                <set field="parameters.lastName" from-field="lookupPerson.lastName"/>
-               
-               <!-- set postal address -->
-               <entity-one value-field="postalAddress" entity-name="PostalAddress">
-                   <field-map field-name="contactMechId" from-field="parameters.shipToContactMechId"/>
-               </entity-one>
-                <set field="parameters.shipToName" from-field="postalAddress.toName"/>
-                <set field="parameters.shipToAddress1" from-field="postalAddress.address1"/>
-                <set field="parameters.shipToCity" from-field="postalAddress.city"/>
-                <set field="parameters.shipToStateProvinceGeoId" from-field="postalAddress.stateProvinceGeoId"/>
-                <set field="parameters.shipToCountryGeoId" from-field="postalAddress.countryGeoId"/>
-                <set field="parameters.shipToPostalCode" from-field="postalAddress.postalCode"/>
-                
-                <!-- set email address -->
-                <set field="getPartyEmailInMap.partyId" from-field="parameters.partyId"/>
-                <call-service service-name="getPartyEmail" in-map-name="getPartyEmailInMap">
-                   <result-to-field result-name="emailAddress"/>
-                </call-service>
-                <set field="parameters.emailAddress" from-field="emailAddress"/>
-                
-                <!-- set telephone number -->
-                <set field="getPartyTelephoneInMap.partyId" from-field="parameters.partyId"/>
-                <call-service service-name="getPartyTelephone" in-map-name="getPartyTelephoneInMap">
-                   <result-to-field result-name="countryCode" field="parameters.shipToCountryCode"/>
-                   <result-to-field result-name="areaCode" field="parameters.shipToAreaCode"/>
-                   <result-to-field result-name="contactNumber" field="parameters.shipToContactNumber"/>
-                </call-service>
-            </else>
+            <!-- set email address -->
+            <set field="getPartyEmailInMap.partyId" from-field="parameters.partyId"/>
+            <call-service service-name="getPartyEmail" in-map-name="getPartyEmailInMap">
+               <result-to-field result-name="emailAddress"/>
+            </call-service>
+            <set field="parameters.emailAddress" from-field="emailAddress"/>
+            
+            <!-- set telephone number -->
+            <set field="getPartyTelephoneInMap.partyId" from-field="parameters.partyId"/>
+            <call-service service-name="getPartyTelephone" in-map-name="getPartyTelephoneInMap">
+               <result-to-field result-name="countryCode" field="parameters.shipToCountryCode"/>
+               <result-to-field result-name="areaCode" field="parameters.shipToAreaCode"/>
+               <result-to-field result-name="contactNumber" field="parameters.shipToContactNumber"/>
+            </call-service>
+        </else>
         </if-empty>
         
         <call-class-method method-name="getCartObject" class-name="org.ofbiz.order.shoppingcart.ShoppingCartEvents" ret-field="shoppingCart">
@@ -272,59 +274,49 @@ under the License.
         <set field="parameters.partyId" from-field="userLogin.partyId"/>
         <property-to-field resource="general" property="country.geo.id.default" field="defaultCountryGeoId"/>
         <set field="parameters.billToCountryGeoId" from-field="defaultCountryGeoId"/>
-        <if-compare operator="equals" value="Y" field="parameters.useShippingAddressForBilling">
-            <set field="parameters.billToContactNumber" from-field="parameters.shipToContactNumber"/>
-            <set field="parameters.shipToContactMechId" from-field="parameters.contactMechId"/>
-            <set field="parameters.billToContactMechId" from-field="parameters.contactMechId"/>
+        
+        <if-empty field="parameters.billToContactMechId">
+            <if-compare operator="equals" value="Y" field="parameters.useShippingAddressForBilling">
+                <set field="parameters.shipToContactMechId" from-field="parameters.contactMechId"/>
+                <set field="parameters.billToContactMechId" from-field="parameters.contactMechId"/>
+            </if-compare>
+            
+            <set field="parameters.billToName" value="${parameters.billFirstName} ${parameters.billLastName}"/>
+            <set field="parameters.billToStateProvinceGeoId" value="_NA_"/>
+            <set field="parameters.emailAddress" from-field="parameters.billEmail"/>
+            
             <!-- fax phone -->
-            <if-not-empty field="parameters.shipToFaxNumber">
-                <set field="faxPhoneContext.areaCode" from-field="parameters.shipToFaxNumberArea"/>
-                <set field="faxPhoneContext.contactNumber" from-field="parameters.shipToFaxNumber"/>
+            <if-not-empty field="parameters.billToFaxNumber">
+                <set field="faxPhoneContext.countryCode" from-field="parameters.billToCountryCode"/>
+                <set field="faxPhoneContext.areaCode" from-field="parameters.billToFaxNumberArea"/>
+                <set field="faxPhoneContext.contactNumber" from-field="parameters.billToFaxNumber"/>
                 <call-service service-name="createPartyTelecomNumber" in-map-name="faxPhoneContext">
                     <result-to-field result-name="contactMechId" field="faxPhonePurposeContext.contactMechId"/>
                 </call-service>
-                <set field="faxPhonePurposeContext.partyId" from-field="tempMap.partyId"/>
+                <set field="faxPhonePurposeContext.partyId" from-field="parameters.partyId"/>
                 <set field="faxPhonePurposeContext.contactMechPurposeTypeId" value="FAX_BILLING"/>
                 <call-service service-name="createPartyContactMechPurpose" in-map-name="faxPhonePurposeContext"/>
             </if-not-empty>
-            <else>
-                <if-empty field="parameters.billToContactMechId">
-                    <set field="parameters.billToName" value="${parameters.billFirstName} ${parameters.billLastName}"/>
-                    <set field="parameters.billToStateProvinceGeoId" value="_NA_"/>
-                    <set field="parameters.billToContactNumber" from-field="parameters.billToContactNumber"/>
-                    <set field="parameters.emailAddress" from-field="parameters.billToEmailAddress"/>
-                    <!-- fax phone -->
-                    <if-not-empty field="parameters.billToFaxNumber">
-                        <set field="faxPhoneContext.areaCode" from-field="parameters.billToFaxNumberArea"/>
-                        <set field="faxPhoneContext.contactNumber" from-field="parameters.billToFaxNumber"/>
-                        <call-service service-name="createPartyTelecomNumber" in-map-name="faxPhoneContext">
-                            <result-to-field result-name="contactMechId" field="faxPhonePurposeContext.contactMechId"/>
-                        </call-service>
-                        <set field="faxPhonePurposeContext.partyId" from-field="tempMap.partyId"/>
-                        <set field="faxPhonePurposeContext.contactMechPurposeTypeId" value="FAX_BILLING"/>
-                        <call-service service-name="createPartyContactMechPurpose" in-map-name="faxPhonePurposeContext"/>
-                    </if-not-empty>
-                    <else>
-                        <!-- set person -->
-                        <set field="getPersonInMap.partyId" from-field="parameters.partyId"/>
-                        <call-service service-name="getPerson" in-map-name="getPersonInMap">
-                           <result-to-field result-name="lookupPerson"/>
-                        </call-service>
-                        
-                        <!-- set credit card -->
-                        <entity-one value-field="creditCard" entity-name="CreditCard">
-                            <field-map field-name="paymentMethodId" from-field="parameters.paymentMethodId"/>
-                        </entity-one>
-                        <set field="parameters.firstNameOnCard" from-field="creditCard.firstNameOnCard"/>
-                        <set field="parameters.lastNameOnCard" from-field="creditCard.lastNameOnCard"/>
-                        <set field="parameters.cardNumber" from-field="creditCard.cardNumber"/>
-                        <set field="parameters.cardType" from-field="creditCard.cardType"/>
-                        <set field="parameters.expMonth" value="${groovy:(creditCard.expireDate).substring(0, 2)}"/>
-                        <set field="parameters.expYear" value="${groovy:(creditCard.expireDate).substring(3)}"/>
-                    </else>
-                </if-empty>
-            </else>
-        </if-compare>
+        <else>
+            <!-- set person -->
+            <set field="getPersonInMap.partyId" from-field="parameters.partyId"/>
+            <call-service service-name="getPerson" in-map-name="getPersonInMap">
+               <result-to-field result-name="lookupPerson"/>
+            </call-service>
+            
+            <!-- set credit card -->
+            <entity-one value-field="creditCard" entity-name="CreditCard">
+                <field-map field-name="paymentMethodId" from-field="parameters.paymentMethodId"/>
+            </entity-one>
+            <set field="parameters.firstNameOnCard" from-field="creditCard.firstNameOnCard"/>
+            <set field="parameters.lastNameOnCard" from-field="creditCard.lastNameOnCard"/>
+            <set field="parameters.cardNumber" from-field="creditCard.cardNumber"/>
+            <set field="parameters.cardType" from-field="creditCard.cardType"/>
+            <set field="parameters.expMonth" value="${groovy:(creditCard.expireDate).substring(0, 2)}"/>
+            <set field="parameters.expYear" value="${groovy:(creditCard.expireDate).substring(3)}"/>
+        </else>
+        </if-empty>
+        
         <call-class-method method-name="getCartObject" class-name="org.ofbiz.order.shoppingcart.ShoppingCartEvents" ret-field="parameters.shoppingCart">
             <field field="request" type="javax.servlet.http.HttpServletRequest"/>
         </call-class-method>
