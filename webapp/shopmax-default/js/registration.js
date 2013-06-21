@@ -120,10 +120,12 @@ $(function(){
                     valid = false;
                     if(!$('input[type=file]#upfile').val()){
                         $('input[type=file]#upfile').css({"border-color":"red"});
+                        $('#logoRequired').attr('style','');
                         valid = false;
                     }
                     if(!$('input[type=file]#upfile1').val()){
                         $('input[type=file]#upfile1').css({"border-color":"red"});
+                        $('#driverRequired').attr('style','');
                         valid = false;
                     }
                 }
@@ -134,12 +136,14 @@ $(function(){
                     }
                     if(atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length){
                         $('#emailAddress').addClass('required');
+                        $('#emailFormat').attr('style','');
                         $('html, body').animate({ scrollTop: 0 }, 0);
                         valid = false;
                     }
                     if($('#currentPassword').val() != $('#currentPasswordVerify').val()){
                         $('#currentPassword').addClass('required');
                         $('#currentPasswordVerify').addClass('required');
+                        $('#passwordNotMatch').attr('style','');
                         $('html, body').animate({ scrollTop: 0 }, 0);
                         valid = false;
                     }
@@ -167,13 +171,13 @@ $(function(){
                     }
                     if(!$('input[type=file]#upfile').val()){
                         $('input[type=file]#upfile').css({"border-color":"red"});
-                        $('#fieldsRequired').attr('style','');
+                        $('#logoRequired').attr('style','');
                         $('html, body').animate({ scrollTop: 0 }, 0);
                         valid = false;
                     }
                     if(!$('input[type=file]#upfile1').val()){
                         $('input[type=file]#upfile1').css({"border-color":"red"});
-                        $('#fieldsRequired').attr('style','');
+                        $('#driverRequired').attr('style','');
                         $('html, body').animate({ scrollTop: 0 }, 0);
                         valid = false;
                     }
@@ -278,14 +282,6 @@ $(function(){
                     valid = false;
                 }
                 if(valid){
-                    $( "#createcustomer" ).validate({
-                        rules: {
-                            field: {
-                                required: true,
-                                accept: "image/*"
-                            }
-                        }
-                    });
                     $('#createcustomer').submit();
                 }
             });
@@ -341,11 +337,13 @@ $(function(){
                     }
                     if(atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length){
                         $('#emailAddress').addClass('required');
+                        $('#emailFormat').attr('style','');
                         valid = false;
                     }
                     if($('#currentPassword').val() != $('#currentPasswordVerify').val()){
                         $('#currentPassword').addClass('required');
                         $('#currentPasswordVerify').addClass('required');
+                        $('#passwordNotMatch').attr('style','');
                         valid = false;
                     }
                     if($('#currentPassword').val().length<5){
@@ -378,6 +376,10 @@ $(function(){
         $('#fieldsRequired').attr('style','display:none');
         $('#content-messages-registration').remove();
         $('#wrongPassword').attr('style','display:none');
+        $('#passwordNotMatch').attr('style','display:none');
+        $('#logoRequired').attr('style','display:none');
+        $('#driverRequired').attr('style','display:none');
+        $('#emailFormat').attr('style','display:none');
     });
     $('#firstNameOnCard').focus(function(){
         $('#firstNameOnCard').removeClass('required');
@@ -402,11 +404,19 @@ $(function(){
         $('#currentPassword').removeClass('required');
         $('#currentPasswordVerify').removeClass('required');
         $('#wrongPassword').attr('style','display:none');
+        $('#passwordNotMatch').attr('style','display:none');
+        $('#logoRequired').attr('style','display:none');
+        $('#driverRequired').attr('style','display:none');
+        $('#emailFormat').attr('style','display:none');
     });
     $('#currentPasswordVerify').focus(function(){
         $('#currentPassword').removeClass('required');
         $('#currentPasswordVerify').removeClass('required');
         $('#wrongPassword').attr('style','display:none');
+        $('#passwordNotMatch').attr('style','display:none');
+        $('#logoRequired').attr('style','display:none');
+        $('#driverRequired').attr('style','display:none');
+        $('#emailFormat').attr('style','display:none');
     });
     $('#expMonth_chzn').click(function(){
         document.getElementById('optionsRadios3').checked = false;
@@ -806,10 +816,20 @@ $(function(){
     $('#upfile').click(function(){
         $('input[type=file]#upfile').attr("style","");
         $('#fieldsRequired').attr('style','display:none');
+        $('#passwordNotMatch').attr('style','display:none');
+        $('#wrongPassword').attr('style','display:none');
+        $('#logoRequired').attr('style','display:none');
+        $('#driverRequired').attr('style','display:none');
+        $('#emailFormat').attr('style','display:none');
     });
     $('#upfile1').click(function(){
         $('input[type=file]#upfile1').attr("style","");
         $('#fieldsRequired').attr('style','display:none');
+        $('#passwordNotMatch').attr('style','display:none');
+        $('#wrongPassword').attr('style','display:none');
+        $('#logoRequired').attr('style','display:none');
+        $('#driverRequired').attr('style','display:none');
+        $('#emailFormat').attr('style','display:none');
     });
 });
 function isNumberKey(evt) {

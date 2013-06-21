@@ -23,8 +23,8 @@ under the License.
     </script>
 <#else>
     <script src="<@ofbizContentUrl>/shopmax-default/js/registration.js</@ofbizContentUrl>" type="text/javascript"></script>
-    <script src="<@ofbizContentUrl>/shopmax-default/js/jquery.validate.min.js</@ofbizContentUrl>" type="text/javascript"></script>
-    <script src="<@ofbizContentUrl>/shopmax-default/js/additional-methods.js</@ofbizContentUrl>" type="text/javascript"></script>
+    <#--<script src="<@ofbizContentUrl>/shopmax-default/js/jquery.validate.min.js</@ofbizContentUrl>" type="text/javascript"></script>
+    <script src="<@ofbizContentUrl>/shopmax-default/js/additional-methods.js</@ofbizContentUrl>" type="text/javascript"></script>-->
     <div class="container content">
         <div id="load-script"></div>
         <!-- include breadcrumb -->
@@ -75,7 +75,11 @@ under the License.
                                           </div>
                                         </#if>
                                         <label class="input-error3" id="fieldsRequired" style="display:none">Please fill in all required fields.</label>
-                                        <label class="input-error4" id="wrongPassword" style="display:none">Password must be at least 5 characters long.</label>
+                                        <label class="input-error4" id="wrongPassword" style="display:none">Password must be at least 5 characters.</label>
+                                        <label class="input-error4" id="passwordNotMatch" style="display:none">Password must match.</label>
+                                        <label class="input-error4" id="logoRequired" style="display:none">Please insert logo.</label>
+                                        <label class="input-error4" id="driverRequired" style="display:none">Please upload driver license.</label>
+                                        <label class="input-error4" id="emailFormat" style="display:none">Please enter a valid email address.</label>
                                         <label class="control-label control-label-xlarge checkbox"><input type="checkbox" class="chk_regis" name="optionsRadios" id="optionsRadios1" >&nbsp; Registered as business user <img src="<@ofbizContentUrl>/shopmax-default/img/icon-question.png</@ofbizContentUrl>" rel="tooltip" data-original-title="If you are a business, you can become a Shopmax seller and create your online store" /></label>
                                     </div>
                                     <div class="control-group">

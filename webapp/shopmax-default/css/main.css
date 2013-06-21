@@ -1434,11 +1434,11 @@ ul li div.loadimage{
 
 input.required{
     background-color:#fef2ee;
-/*     border-color:red; */
+    border-color:red;
 }
 textarea.required{
     background-color:#fef2ee;
-/*     border-color:red; */
+    border-color:red;
 }
 .form-inline .input-small{
     width:75px;
