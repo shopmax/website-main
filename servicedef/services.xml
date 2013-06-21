@@ -370,4 +370,14 @@ under the License.
         <description>Delete a ProductCategoryRelated</description>
         <auto-attributes include="pk" mode="IN" optional="false"/>
     </service>
+    
+    <service name="importProductsFromCSV" engine="java"
+        location="org.ofbiz.shopmax.product.ImportServics" invoke="importProductsFromCSV" auth="true">
+        <description>Import seller product data.</description>
+    </service>
+    <service name="importProductCategoryFromCSV" engine="java"
+        location="org.ofbiz.shopmax.product.ImportServics" invoke="importProductCategoryFromCSV" auth="true">
+        <description>Import Category data</description>
+    </service>
+    
 </services>
