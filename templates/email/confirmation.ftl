@@ -148,7 +148,17 @@ under the License.
                                                         <tr>
                                                             <td valign="top"  align="left"  width="107" style="padding:0 0 0 20px"><a href="#"><img src="<#if contentAssocThumbs?has_content>${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}${contentAssocThumbs[0].drObjectInfo}<#else>${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/images/defaultImage.jpg</#if>" width="100px"/></a></td>
                                                             <td valign="top"  align="left" width="326"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px;line-height:20px; color:#464646"><b>${product.productName?if_exists}</b></td>
-                                                            <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b><@ofbizCurrency amount=orderItem.unitPrice /></b></p></td>
+                                                            <td valign="top"  align="left">
+                                                                <b>
+                                                                    <#assign promoPrice = Static["org.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments)/>
+                                                                    <#if promoPrice?has_content>
+                                                                        <p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif; color: #999999; font-size: 9px; text-decoration: line-through;"><@ofbizCurrency amount=orderItem.unitPrice/></p>
+                                                                        <p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><@ofbizCurrency amount=promoPrice/></p>
+                                                                    <#else>
+                                                                        <p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><@ofbizCurrency amount=promoPrice/></p>
+                                                                    </#if>
+                                                                </b>
+                                                            </td>
                                                             <td valign="top"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> ${orderItem.quantity?string.number}</b></p></td>
                                                             <td valign="top"  align="right"><p style="margin:0;padding:0 29px 0 0px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> <@ofbizCurrency amount=Static["org.ofbiz.order.order.OrderReadHelper"].getOrderItemSubTotal(orderItem, orderAdjustments)/></b></p></td>
                                                         </tr>
@@ -193,14 +203,14 @@ under the License.
                                                                 <#assign branchStore = Static["org.ofbiz.entity.util.EntityUtil"].getFirst(branchStores)/>
                                                                 <#assign branchStoreName = delegator.findOne("PostalAddress", {"contactMechId" : branchStore.shippingInstructions},true)>
                                                                 <#if branchStoreName?has_content>
-                                                                    <p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${branchStoreName.toName?if_exists}</p>
-                                                                    <p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${branchStoreName.address1?if_exists}</p>
-                                                                    <p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${branchStoreName.address2?if_exists}</p>
-                                                                    <p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${branchStoreName.city?if_exists}</p>
+                                                                    <#if branchStoreName.toName?has_content><p style="margin:0;padding:5px 0 5px 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${branchStoreName.toName?if_exists}</p></#if>
+                                                                    <#if branchStoreName.address1?has_content><p style="margin:0;padding:5px 0 5px 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${branchStoreName.address1?if_exists}</p></#if>
+                                                                    <#if branchStoreName.address2?has_content><p style="margin:0;padding:5px 0 5px 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${branchStoreName.address2?if_exists}</p></#if>
+                                                                    <#if branchStoreName.city?has_content><p style="margin:0;padding:5px 0 5px 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${branchStoreName.city?if_exists}</p></#if>
                                                                     <#assign branchStorePhones = delegator.findByAnd("ContactMechAttribute", {"contactMechId" : branchStore.shippingInstructions, "attrName" : "STORE_PHONE_NUMBER"}, null, true)>
                                                                     <#if branchStorePhones?has_content>
                                                                         <#assign branchStorePhone = Static["org.ofbiz.entity.util.EntityUtil"].getFirst(branchStorePhones)/>
-                                                                        <p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Phone number ${branchStorePhone.attrValue?if_exists}</p>
+                                                                        <p style="margin:0;padding:5px 0 5px 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">Phone number ${branchStorePhone.attrValue?if_exists}</p>
                                                                     </#if>
                                                                 </#if>
                                                             </#if>
@@ -212,7 +222,7 @@ under the License.
                                                                 <#assign branchDateTimes = delegator.findByAnd("PhysicalStoreDateTime", {"contactMechId" : branchStore.shippingInstructions}, ["sequenceNum"], false)>
                                                                 <#if branchDateTimes?has_content>
                                                                     <#list branchDateTimes as branchDateTime>
-                                                                        <p style="margin:0;padding:0 0 0 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${branchDateTime.day?if_exists} : ${branchDateTime.openHour?if_exists}.${branchDateTime.openMin?if_exists} - ${branchDateTime.closeHour?if_exists}.${branchDateTime.closeMin?if_exists}</p>
+                                                                        <p style="margin:0;padding:5px 0 5px 24px;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:bold; color:#555555">${branchDateTime.day?if_exists} : ${branchDateTime.openHour?if_exists}.${branchDateTime.openMin?if_exists} - ${branchDateTime.closeHour?if_exists}.${branchDateTime.closeMin?if_exists}</p>
                                                                     </#list>
                                                                 </#if>
                                                             </#if>
