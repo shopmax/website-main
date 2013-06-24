@@ -56,10 +56,15 @@ under the License.
         </#if>
         <#include "component://shopmax/webapp/shopmax/includes/mainjavascript.ftl" />
         <#include "component://shopmax/webapp/shopmax/includes/ratyjavascript.ftl" />
-        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&libraries=places&language=en-AU"></script>
+        <script type="text/javascript">
+           var gaJsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
+           document.write(unescape("%3Cscript src='" + gaJsHost + "maps.google.com/maps/api/js?sensor=false&libraries=places&language=en-AU' type='text/javascript'%3E%3C/script%3E"));
+           document.write("<style>@import url('"+gaJsHost+"fonts.googleapis.com/css?family=Lobster');</style>");
+        </script>
         
         <script type="text/javascript">
         $(document).ready(function() {
+            addItem();
             $.support.cors = true;
             $(".various").fancybox({
                 'titlePosition'     : 'inside',

@@ -197,6 +197,22 @@ under the License.
     </simple-method>
     
     <simple-method method-name="createShopmaxCustomer" short-description="Create Shopmax Customer" login-required="false">
+        <if-empty field="parameters.CUSTOMER_EMAIL">
+            <add-error><fail-message message="missing email"/></add-error>
+        </if-empty>
+        <if-empty field="parameters.PASSWORD">
+            <add-error><fail-message message="missing password"/></add-error>
+        </if-empty>
+        <if-empty field="parameters.CONFIRM_PASSWORD">
+            <add-error><fail-message message="missing confirm password"/></add-error>
+        </if-empty>
+        <if-empty field="parameters.USER_FIRST_NAME">
+            <add-error><fail-message message="missing first name"/></add-error>
+        </if-empty>
+        <if-empty field="parameters.USER_LAST_NAME">
+            <add-error><fail-message message="missing last name"/></add-error>
+        </if-empty>
+        
         <entity-one entity-name="UserLogin" value-field="systemUserLogin">
             <field-map field-name="userLoginId" value="system"/>
         </entity-one>
@@ -412,6 +428,35 @@ under the License.
         <field-to-result field="parameters.PASSWORD" result-name="PASSWORD"/>
         
         <if-compare field="parameters.businessUser" operator="equals" value="Y">
+            <if-empty field="parameters.officialBusinessName">
+                <add-error><fail-message message="missing officialBusinessName"/></add-error>
+            </if-empty>
+            <if-empty field="parameters.officialTradingName">
+                <add-error><fail-message message="missing officialTradingName"/></add-error>
+            </if-empty>
+            <if-empty field="parameters.contactPhoneNumber">
+                <add-error><fail-message message="missing contactPhoneNumber"/></add-error>
+            </if-empty>
+            <if-empty field="parameters.ownDomainName">
+                <if-empty field="parameters.freeDomainName">
+                    <add-error><fail-message message="missing freeDomainName"/></add-error>
+                </if-empty>
+            </if-empty>
+            <if-empty field="parameters.freeDomainName">
+                <if-empty field="parameters.ownDomainName">
+                    <add-error><fail-message message="missing ownDomainName"/></add-error>
+                </if-empty>
+            </if-empty>
+            <if-empty field="parameters.uploadedFile">
+                <add-error><fail-message message="missing logo image"/></add-error>
+            </if-empty>
+            <if-empty field="parameters.branchName">
+                <add-error><fail-message message="missing branchName"/></add-error>
+            </if-empty>
+            <if-empty field="parameters.uploadedFile1">
+                <add-error><fail-message message="missing driver license"/></add-error>
+            </if-empty>
+            
             <set field="tenantId" from-field="tempMap.partyId"/>
             
             <entity-one value-field="party" entity-name="Party">

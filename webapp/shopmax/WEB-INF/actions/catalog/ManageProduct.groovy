@@ -96,7 +96,7 @@ viewSize = parameters.VIEW_SIZE;
 viewIndex = parameters.VIEW_INDEX;
 
 // set the default view size
-defaultViewSize = 20;
+defaultViewSize = 12;
 context.defaultViewSize = defaultViewSize;
 
 // set the limit view
