@@ -286,7 +286,10 @@ under the License.
                         <#if sessionAttributes.autoName?has_content && userLogin?has_content>
                             <#assign partyName = delegator.findByPrimaryKey("PartyNameView", {"partyId" : userLogin.partyId?if_exists})?if_exists/>
                             <#if partyName?has_content>
-                                ${partyName.firstName?if_exists}
+                                <#if 15 <= partyName.firstName?length >
+                                    ${partyName.firstName?substring(0,12)}...
+                                <#else>${partyName.firstName}
+                                </#if>
                             </#if>
                         </#if>
                     </span></h4>

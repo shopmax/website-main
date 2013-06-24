@@ -101,7 +101,7 @@ under the License.
                                     <div class="control-group">
                                         <label class="control-label control-label-small" for="inputPromotionDescription">First Name</label>
                                         <div class="pull-left">
-                                            <input type="text" class="input-xlarge check" id="firstName" name="USER_FIRST_NAME">*
+                                            <input type="text" class="input-xlarge check" id="firstName" name="USER_FIRST_NAME" maxlength="60">*
                                         </div>
                                         <label class="control-label control-label-small" for="inputPromotionDescription" style="padding-left: 10px;">Last Name</label>
                                         <div class="pull-left">
