@@ -126,6 +126,7 @@ under the License.
                                             <#if productContentAndInfoImages?has_content>
                                                 <#assign contentAssocThumbs = delegator.findByAnd("ContentAssocDataResourceViewTo", {"contentIdStart" : productContentAndInfoImages[0].contentId, "caContentAssocTypeId" : "IMAGE_THUMBNAIL"}, null, false)>
                                             </#if>
+                                            <a href="<@ofbizUrl>product?product_id=${parentProductId}</@ofbizUrl>">
                                             <img src="<#if contentAssocThumbs?has_content><@ofbizContentUrl>${contentAssocThumbs[0].drObjectInfo}</@ofbizContentUrl><#else><@ofbizContentUrl>/images/defaultImage.jpg</@ofbizContentUrl></#if>" width="100px"/>
                                         </td>
                                         <td class="col2">

@@ -737,8 +737,8 @@ under the License.
                             <h5 class="heading">Shipping Contact</h5>
                             
                             <div class="form-inline">
-                                <input type="text" id="shipFirstName" class="input-xxlarge check required" name="USER_FIRST_NAME" placeholder="First Name" />
-                                <input type="text" id="shipLastName" class="input-xxlarge check required" name="USER_LAST_NAME" placeholder="Last Name" />
+                                <input type="text" id="shipFirstName" class="input-xxlarge check required" name="USER_FIRST_NAME" placeholder="First Name" maxlength="60"/>
+                                <input type="text" id="shipLastName" class="input-xxlarge check required" name="USER_LAST_NAME" placeholder="Last Name" maxlength="60"/>
                             </div>
                             <div class="form-inline">
                                 <select id="shipToAreaCode" name="shipToAreaCode" class="chosen contactNumber" style="width: 60px;">
