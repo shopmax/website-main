@@ -45,29 +45,32 @@ under the License.
                             <td valign="top" align="left" height="0" width="730"> <img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/border-img.gif" width="727" height="1" alt="line" border="0" align="left"></td>
                         </tr>
                     </table>
+                    <table>
+                        <#if orderHeader.orderDate?has_content>
+                            <#assign orderDate = Static["org.ofbiz.base.util.UtilDateTime"].toDateString(orderHeader.orderDate, "dd/MM/yyyy")/>
+                        </#if>
+                        <#if sellerPartyId?has_content>
+                            <#assign sellerName = delegator.findOne("Person", {"partyId" : sellerPartyId},true)>
+                        </#if>
+                        <tr>
+                            <td style="padding:10px 0 0 18px;">Hi ${sellerName.firstName?if_exists} ${sellerName.lastName?if_exists}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:2px 0 0 18px;">You have a new order</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:2px 0 0 18px;">order number: ${orderId?if_exists}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:2px 0 10px 18px;">Date: ${orderDate?if_exists}</td>
+                        </tr>
+                    </table>
                     <table width="730"  cellspacing="0" cellpadding="0" >
                         <tr>
                             <td valign="top"  align="left"  height="39"><a href="#"><img src="${StringUtil.wrapString(webSite.secureContentPrefix?if_exists)}/shopmax-default/img/order-img.jpg" width="732" height="39" alt="img" border="0" align="left"></a></td>
                         </tr>
                     </table>
                     <table width="730"  cellspacing="0" cellpadding="0" style="border:1px solid #e1e1e1">
-                        <tr>
-                            <td valign="top"  height="23" align="left">&nbsp;
-                                <table width="730"  cellspacing="0" cellpadding="0" style="border-bottom:1px solid #e1e1e1">
-                                    <tr>
-                                        <#if orderHeader.orderDate?has_content>
-                                            <#assign orderDate = Static["org.ofbiz.base.util.UtilDateTime"].toDateString(orderHeader.orderDate, "dd/MM/yyyy")/>
-                                        </#if>
-                                        <td valign="top"  align="left" width="240"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> Tax Invoice : ${orderId?if_exists}</b> </p></td> <#-- 0009439 -->
-                                        <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> Invoice Date : ${orderDate?if_exists}</b> </p></td> <#-- 09/08/2012 -->
-                                        <td valign="top"  align="left"><p style="margin:0;padding:0 0 0 18px;font-family:Arial, Helvetica, sans-serif;font-size:13px; color:#464646"><b> GST Number :</b> </p></td> <#-- 74-343-657 -->
-                                    </tr>
-                                    <tr>
-                                        <td valign="top"  height="25" align="left">&nbsp;</td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
                         <tr>
                             <td valign="top"  height="23" align="left">&nbsp;
                                 <table width="730"  cellspacing="0" cellpadding="5" >

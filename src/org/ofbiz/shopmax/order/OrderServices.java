@@ -456,6 +456,7 @@ public class OrderServices {
             bodyParameters.put("partyId", placingParty.get("partyId"));
         }
         bodyParameters.put("note", note);
+        bodyParameters.put("sellerPartyId", sellerPartyId);
         sendMap.put("bodyParameters", bodyParameters);
         sendMap.put("userLogin",userLogin);
         
