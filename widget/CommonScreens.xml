@@ -37,6 +37,7 @@ under the License.
                 <set field="layoutSettings.styleSheets[+0]" value="/shopmax-default/css/new_style.css" global="true"/>
                 <set field="layoutSettings.styleSheets[+0]" value="/shopmax-default/css/product_details.css" global="true"/>
                 
+                <set field="layoutSettings.javaScripts[+0]" value="/shopmax-default/js/jquery.placeholder.min.js" global="true"/>
                 <set field="layoutSettings.javaScripts[+0]" value="/shopmax-default/js/jquery.preimage.js" global="true"/>
                 <set field="layoutSettings.javaScripts[+0]" value="/shopmax-default/js/jquery.accordion.source.js" global="true"/>
                 <set field="layoutSettings.javaScripts[+0]" value="/shopmax-default/js/jquery.fancybox-1.3.4.js" global="true"/>

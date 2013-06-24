@@ -101,6 +101,23 @@ under the License.
                 $('#shipDropDown2_chzn').css({'pointer-events':'none'});
                 $('#billToAreaCode_chzn').css({'pointer-events':'none'});
                 $('#billToFaxNumberArea_chzn').css({'pointer-events':'none'});
+                if($('#returnShipName').val()){
+                    var fullName = $('#returnShipName').val();
+                    var splitName = fullName.split(" ");
+                    $('#billFirstName').val(splitName[0]);
+                    $('#billLastName').val(splitName[1]);
+                }
+                $('#billEmail').attr('value',$('#returnShipEmail').val());
+                if($('#returnShipTel').val()){
+                    var phoneNum = $('#returnShipTel').val();
+                    var splitName = phoneNum.split(" ");
+                    $('#billToAreaCode_chzn').find('span').text(splitName[0]);
+                    $('#billPhone').val(splitName[1]);
+                }
+                $('#billStreetAddress').attr('value',$('#returnShipAddress1').val());
+                $('#billAddressInfo').attr('value',$('#returnShipAddress2').val());
+                $('#shipDropDown2_chzn').find('span').text($('#returnShipCity').val());
+                $('#billPostal').attr('value',$('#returnShipPostal').val());
             }
             else{
                 $('#useShippingAddressForBilling').val('N');
@@ -131,6 +148,7 @@ under the License.
                     }
                     else if(!$(this).val().length){
                         $('#'+this.id).addClass('required');
+                        $('#'+this.id).removeAttr('readonly');
                     }
                 });
                 $('#shipDropDown2_chzn').css({'pointer-events':''});
@@ -140,6 +158,7 @@ under the License.
         });
     });
     $(function(){
+        $('input, textarea').placeholder();
         if($('#shipFirstName').val()){
             $('#shipFirstName').removeClass('required');
         }
@@ -733,6 +752,13 @@ under the License.
                 <div class="billing_de">
                     <#if contactMechList?has_content>
                         <input type="hidden" value="${shipToTelecomNumber.contactMechId}" name="shipToPhoneContactMechId">
+                        <input type="hidden" value="${shipToName?if_exists}" name="returnShipName" id="returnShipName">
+                        <input type="hidden" value="${emailAddress?if_exists}" name="returnShipEmail" id="returnShipEmail">
+                        <input type="hidden" value="${shipToAddress1?if_exists}" name="returnShipAddress1" id="returnShipAddress1">
+                        <input type="hidden" value="${shipToAddress2?if_exists}" name="returnShipAddress2" id="returnShipAddress2">
+                        <input type="hidden" value="${shipToPostalCode?if_exists}" name="returnShipPostal" id="returnShipPostal">
+                        <input type="hidden" value="${shipToCity?if_exists}" name="returnShipCity" id="returnShipCity">
+                        <input type="hidden" value="${shipToTelecomNumber.areaCode} ${shipToTelecomNumber.contactNumber}" name="returnShipTel" id="returnShipTel">
                         <div class="shipp_info">
                             <div class="tital_1">Shipping Information</div>
                             <div class="row">

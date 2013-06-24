@@ -147,6 +147,7 @@ under the License.
         });
     });
     $(function(){
+        $('input, textarea').placeholder();
         $('.cardNumber').change(function(){
             $('#cardNumber').val($('#cardNumber-0').val()+$('#cardNumber-1').val()+$('#cardNumber-2').val()+$('#cardNumber-3').val());
         });
