@@ -23,7 +23,7 @@ under the License.
             <th>Shipping Information</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="orderConfirm">
         <#if shippingAddress?has_content>
             <#assign stateProvinceGeo = shippingAddress.getRelatedOne("StateProvinceGeo", false)?if_exists>
             <tr><td>${shippingAddress.toName?default("No Contact Name")}</td></tr><#-- Contact Name -->

@@ -23,7 +23,7 @@ under the License.
             <th>Billing Information</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="orderConfirm">
         <#if billingAddress?has_content>
             <#assign stateProvinceGeo = billingAddress.getRelatedOne("StateProvinceGeo", false)?if_exists>
             <tr><td>${billingAddress.toName?default("No Contact Name")}</td></tr><#-- Contact Name -->
