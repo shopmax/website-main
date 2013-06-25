@@ -78,5 +78,5 @@ under the License.
     
     <ProductStoreEmailSetting productStoreId="ShopMaxStore" emailType="PRDS_CUST_REGISTER" bodyScreenLocation="component://shopmax/widget/ShopMaxEmailScreens.xml#CreatePartyNotification" subject="New Account Created" bccAddress="ofbiztest@example.com" fromAddress="ofbiztest@example.com"/>
     <ProductStoreEmailSetting productStoreId="ShopMaxStore" emailType="PRDS_ODR_CONFIRM" bodyScreenLocation="component://shopmax/widget/ShopMaxEmailScreens.xml#OrderConfirmation" subject="Order Confirmation #${orderId}" bccAddress="ofbiztest@example.com" fromAddress="ofbiztest@example.com"/>
-    <ProductStoreEmailSetting productStoreId="ShopMaxStore" emailType="PRDS_ODR_NOTI" bodyScreenLocation="component://shopmax/widget/ShopMaxEmailScreens.xml#OrderNotification" subject="Order Notification #${orderId}" bccAddress="ofbiztest@example.com" fromAddress="ofbiztest@example.com"/>
+    <ProductStoreEmailSetting productStoreId="ShopMaxStore" emailType="PRDS_ODR_NOTI" bodyScreenLocation="component://shopmax/widget/ShopMaxEmailScreens.xml#OrderNotification" subject="A New Order Has Arrived #${orderId}" bccAddress="ofbiztest@example.com" fromAddress="ofbiztest@example.com"/>
 </entity-engine-xml>
