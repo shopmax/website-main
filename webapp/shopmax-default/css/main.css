@@ -1434,7 +1434,7 @@ ul li div.loadimage{
 
 input.required{
     background-color:#fef2ee;
-    border-color:red;
+    border-color:red !important;
 }
 textarea.required{
     background-color:#fef2ee;
@@ -4431,3 +4431,35 @@ overflow:hidden !important;
     width:12em;
     word-wrap:break-word;
 }
+
+/* FlyOutCategory */
+.home .sidebar .tabcontent.hover_menu_main{ overflow:visible;}
+
+.home .sidebar .tabcontent.hover_menu_main ul{ overflow:visible;}
+.home .sidebar .tabcontent.hover_menu_main ul {
+position:relative; width:85%; margin:0 5% 0 10%; display:block; height:auto; list-style:none; 
+}
+.home .sidebar .tabcontent.hover_menu_main ul li{ width:92%; padding: 0 0 0 8%; display:block; height:40px; line-height:40px; float:left; }
+
+.home .sidebar .tabcontent.hover_menu_main ul li a{ line-height:40px; display:block; width:100%;}
+.home .sidebar .tabcontent.hover_menu_main ul li:hover a{ color:#fff; text-decoration:none;}
+.home .sidebar .tabcontent.hover_menu_main ul li:hover{background:url('../img/listmarker-cats_h.png') no-repeat 3px 50% #469BEB;}
+.home .sidebar .tabcontent.hover_menu_main ul li:hover ul.sub_list_menu{ display:block;}
+
+.home .sidebar .tabcontent.hover_menu_main ul li ul.sub_list_menu{ width:525px; height:350px; float:left; list-style:none; margin:0; padding:0; display:none; position:absolute; left:193px; top:-10px; background:#fff; white-space: normal; border:1px solid #469BEB; 
+-moz-border-radius:10px;
+-ms-border-radius:10px;
+-webkit-border-radius:10px;
+-o-border-radius:10px;
+border-radius:10px; padding:10px;   }
+
+.home .sidebar .tabcontent.hover_menu_main ul li ul.sub_list_menu li{ width:auto; height:350px; float:left; list-style:none; margin:0; padding:0; background:none; white-space: normal; border-bottom:none;}
+
+.categories{ float:left;}
+
+.box_coloum{ width:165px; height:auto; float:left; margin:0 5px;}
+.box_coloum h6{ font-style:normal; font-weight:bold; font-size:13px; line-height:28px; text-indent:0px; margin:0; color:#3b3b3b;}
+.box_coloum h6 a{ color:#3b3b3b;}
+.box_coloum ol{ width:100%; float:left; height:auto; list-style:none; margin:0; padding:0;}
+.home .sidebar .tabcontent.hover_menu_main ul li ul.sub_list_menu li .box_coloum ol li{ width:100%; height:auto; margin:3px 0; line-height:24px; font-size:13px; float:left; font-style:normal; }
+.home .sidebar .tabcontent.hover_menu_main ul li ul.sub_list_menu li .box_coloum ol li a{ color:#3b3b3b; line-height:24px; font-style:normal;}

@@ -909,7 +909,7 @@ under the License.
                                             <li>Exp:</li>
                                             <li class="lastbox">
                                                 <input type="text" id="exp" class="span1 textb check required" maxlength="4">
-                                                <div class="card"><img src="<@ofbizContentUrl>img/icon-card.gif</@ofbizContentUrl>" alt=""></div>
+                                                <div class="card"><img src="<@ofbizContentUrl>/shopmax-default/img/icon-card.gif</@ofbizContentUrl>" alt=""></div>
                                                 <a href="#" class="what">What is this ?</a>
                                             </li>
                                         </ul>
