@@ -121,11 +121,27 @@ under the License.
                             <li><h3>Services</h3></li>
                         </ul>
                     </div><!-- /.tabs-->
-                    <div id="product-tab" class="tabcontent">
+                    <div id="product-tab" class="tabcontent hover_menu_main">
                         <#if categoryList?has_content>
                             <ul>
                                 <#list categoryList as productCategory>
-                                    <li><a href="<@ofbizUrl>categorygridview?productCategoryId=${productCategory.productCategoryId}</@ofbizUrl>">${productCategory.categoryName}</a></li>
+                                    <li><a href="<@ofbizUrl>categorygridview?productCategoryId=${productCategory.productCategoryId}</@ofbizUrl>">${productCategory.categoryName}</a>
+                                        <#assign productCategoryFlyoutSubList = delegator.findByAnd("ProductCategoryFlyoutSub", {"productCategoryId" : productCategory.productCategoryId}, null, false)>
+                                        <#if productCategoryFlyoutSubList?has_content>
+                                            <ul class="sub_list_menu" >
+                                                <li>
+                                                    <div class="box_coloum">
+                                                        <ol>
+                                                            <#list productCategoryFlyoutSubList as productCategoryFlyoutSub>
+                                                                <#assign subProductCategory = delegator.findOne("ProductCategory", {"productCategoryId" : productCategoryFlyoutSub.subProductCategoryId},true)>
+                                                                <li><a href="<@ofbizUrl>categorygridview?productCategoryId=${subProductCategory.productCategoryId}</@ofbizUrl>">${subProductCategory.categoryName}</a></li>
+                                                            </#list>
+                                                        </ol>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </#if>
+                                    </li>
                                 </#list>
                             </ul>
                         </#if>
