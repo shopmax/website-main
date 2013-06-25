@@ -139,7 +139,7 @@ under the License.
         
         function addItem(productId){
             jQuery.ajax({
-                url: 'additem',
+                url: '<@ofbizUrl>additem</@ofbizUrl>',
                 type: 'POST',
                 data: $('#'+productId).serialize(),
                 success: function(data) {
