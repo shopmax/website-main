@@ -123,7 +123,6 @@ under the License.
                                                             <li>${branchStoreName.toName?if_exists}</li>
                                                             <li>${branchStoreName.address1?if_exists}</li>
                                                             <li>${branchStoreName.address2?if_exists}</li>
-                                                            <li>${branchStoreName.city?if_exists}</li>
                                                             <#assign branchStorePhones = delegator.findByAnd("ContactMechAttribute", {"contactMechId" : branchStore.contactMechId, "attrName" : "STORE_PHONE_NUMBER"}, null, true)>
                                                             <#if branchStorePhones?has_content>
                                                                 <#assign branchStorePhone = Static["org.ofbiz.entity.util.EntityUtil"].getFirst(branchStorePhones)/>
