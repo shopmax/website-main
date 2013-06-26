@@ -22,6 +22,8 @@ under the License.
     <SystemProperty systemResourceId="general" systemPropertyId="currency.uom.id.default" systemPropertyValue="NZD"/>
     <SystemProperty systemResourceId="general" systemPropertyId="country.geo.id.default" systemPropertyValue="NZL"/>
     
+    <SystemProperty systemResourceId="security" systemPropertyId="username.lowercase" systemPropertyValue="true"/>
+    
     <Party partyId="_NA_" partyTypeId="PERSON"/>
     <PartyRole partyId="_NA_" roleTypeId="CARRIER"/>
     <ShipmentMethodType description="No Shipping" shipmentMethodTypeId="NO_SHIPPING"/>

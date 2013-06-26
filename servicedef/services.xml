@@ -120,6 +120,13 @@ under the License.
         <override name="postalCode" mode="IN" optional="true"/>
     </service>
     
+    <service name="createBuyerToSeller" engine="simple"
+        location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="createBuyerToSeller" auth="true">
+            <description>Create Buyer To Seller</description>
+            <attribute name="partyId" type="String" mode="IN" optional="false"/>
+            <attribute name="tenantId" type="String" mode="IN" optional="false"/>
+    </service>
+    
     <service name="uploadProductToSeller" engine="simple"
         location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="uploadProductToSeller" auth="true">
         <description>Upload Product To Seller</description>
