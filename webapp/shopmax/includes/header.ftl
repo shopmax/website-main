@@ -39,6 +39,7 @@ under the License.
             $('input.check').each(function(){
                 $(this).removeClass('required');
                 if($('.required').length == 0){
+                    $('#username').val($('#username').val().toLowerCase());
                     valid = true;
                 }
                 if(!$('#username').val().length){

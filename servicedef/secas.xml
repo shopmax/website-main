@@ -61,11 +61,6 @@ under the License.
         <action service="createPersonAndCompanyToSeller" mode="sync"/>
     </eca>
     
-    <eca service="createTenantForSeller" event="return">
-        <condition field-name="partyId" operator="is-not-empty"/>
-        <action service="copyCutomerToNewSeller" mode="async"/>
-    </eca>
-    
     <!-- <eca service="createSaleOrderToSeller" event="return">
         <condition field-name="tenantId" operator="is-not-empty"/>
         <action service="sendOrderSMSToSeller" mode="async"/>
