@@ -105,7 +105,6 @@ under the License.
                 });
             });
         });
-        
         function makeAccordion($ul) {
             var $accordion = $($ul).accordion();
             $.each($accordion.find('a'), function(index, value) {
@@ -131,7 +130,7 @@ under the License.
                         pathName = currentPath[2];
                     }
                     pathName = pathName+"detail";
-                    $("#category-container").load(pathName + "?productCategoryId=" + productCategoryId);
+                    $(".main-content").load(pathName + "?productCategoryId=" + productCategoryId);
                     $("#breadcrum").load("breadcrumbsajax?productCategoryId=" + productCategoryId);
                 });
             });
