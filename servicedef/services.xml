@@ -68,6 +68,7 @@ under the License.
     <service name="createShopmaxCustomer" engine="simple" 
             location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="createShopmaxCustomer" auth="false">
         <description>Create Customer And Upload Images</description>
+        <attribute name="partyId" mode="OUT" type="String" optional="false"/>
         <attribute name="productStoreId" mode="IN" type="String" optional="false"/>
         <attribute name="PASSWORD" mode="INOUT" type="String" optional="false"/>
         <attribute name="CONFIRM_PASSWORD" mode="IN" type="String" optional="false"/>
@@ -118,13 +119,6 @@ under the License.
         <attribute name="sendEmail" mode="IN" type="String" optional="true"/>
         <override name="city" mode="IN" optional="true"/>
         <override name="postalCode" mode="IN" optional="true"/>
-    </service>
-    
-    <service name="createBuyerToSeller" engine="simple"
-        location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="createBuyerToSeller" auth="true">
-            <description>Create Buyer To Seller</description>
-            <attribute name="partyId" type="String" mode="IN" optional="false"/>
-            <attribute name="tenantId" type="String" mode="IN" optional="false"/>
     </service>
     
     <service name="uploadProductToSeller" engine="simple"
@@ -378,10 +372,30 @@ under the License.
         <auto-attributes include="pk" mode="IN" optional="false"/>
     </service>
     
+    <service name="createBuyerToSeller" engine="simple"
+        location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="createBuyerToSeller" auth="true">
+            <description>Create Buyer To Seller</description>
+            <attribute name="partyId" type="String" mode="IN" optional="false"/>
+            <attribute name="tenantId" type="String" mode="IN" optional="false"/>
+    </service>
+    
+    <service name="copyNewCutomerToAllSeller" engine="simple"
+        location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="copyNewCutomerToAllSeller" auth="false">
+            <description>Copy New Cutomer To All Seller</description>
+            <attribute name="partyId" type="String" mode="IN" optional="false"/>
+    </service>
+    
+    <service name="copyAllCutomerToNewSeller" engine="simple"
+        location="component://shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml" invoke="copyAllCutomerToNewSeller" auth="false">
+            <description>Copy All Cutomer To New Seller</description>
+            <attribute name="partyId" type="String" mode="IN" optional="false"/>
+    </service>
+    
     <service name="importProductsFromCSV" engine="java"
         location="org.ofbiz.shopmax.product.ImportServics" invoke="importProductsFromCSV" auth="true">
         <description>Import seller product data.</description>
     </service>
+    
     <service name="importProductCategoryFromCSV" engine="java"
         location="org.ofbiz.shopmax.product.ImportServics" invoke="importProductCategoryFromCSV" auth="true">
         <description>Import Category data</description>

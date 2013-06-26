@@ -424,6 +424,7 @@ under the License.
         <set value="TRUE" field="_LOGIN_PASSED_"/>
         <field-to-request field="_LOGIN_PASSED_"/>
         
+        <field-to-result field="tempMap.partyId" result-name="partyId"/>
         <field-to-result field="parameters.CUSTOMER_EMAIL" result-name="USERNAME"/>
         <field-to-result field="parameters.PASSWORD" result-name="PASSWORD"/>
         
@@ -690,114 +691,7 @@ under the License.
             <set field="tenantComponentShopmaxSeller.componentName" value="shopmaxseller"/>
             <set field="tenantComponentShopmaxSeller.sequenceNum" from-field="02" type="Long"/>
             <create-value value-field="tenantComponentShopmaxSeller"/>
-            
-            <else>
-                <entity-and list="tenantSellerList" entity-name="PartyAttribute">
-                    <field-map field-name="attrName" value="DOMAIN_NAME"/>
-                </entity-and>
-                <if-not-empty field="tenantSellerList">
-                    <iterate entry="tenantSeller" list="tenantSellerList">
-                        <set field="createCustomerToSellerMap.userLogin" from-field="systemUserLogin"/>
-                        <set field="createCustomerToSellerMap.partyId" from-field="tempMap.partyId"/>
-                        <set field="createCustomerToSellerMap.tenantId" from-field="tenantSeller.partyId"/>
-                        <call-service service-name="createBuyerToSeller" in-map-name="createCustomerToSellerMap"/>
-                    </iterate>
-                </if-not-empty>
-            </else>
          </if-compare>
-    </simple-method>
-    
-    <simple-method method-name="createBuyerToSeller" short-description="Create Buyer To Seller">
-        <entity-one value-field="systemUserLogin" entity-name="UserLogin">
-            <field-map field-name="userLoginId" value="system"/>
-        </entity-one>
-        
-        <set field="tenantId" from-field="parameters.tenantId"/>
-        <entity-one value-field="party" entity-name="Party">
-            <field-map field-name="partyId" from-field="parameters.partyId"/>
-        </entity-one>
-        <entity-one value-field="person" entity-name="Person">
-            <field-map field-name="partyId" from-field="parameters.partyId"/>
-        </entity-one>
-        <entity-and list="userLoginBuyers" entity-name="UserLogin">
-            <field-map field-name="partyId" from-field="parameters.partyId"/>
-        </entity-and>
-        <first-from-list entry="userLoginBuyer" list="userLoginBuyers"/>
-       
-        <script>groovy:
-            import org.ofbiz.entity.DelegatorFactory;
-            def tenantDelegator = DelegatorFactory.getDelegator(delegator.getDelegatorBaseName() + "#" + tenantId);
-            def tenantParty = tenantDelegator.makeValue("Party");
-            tenantParty = party;
-            tenantDelegator.create(tenantParty);
-           
-            def tenantPerson = tenantDelegator.makeValue("Person");
-            tenantPerson = person;
-            tenantDelegator.create(tenantPerson);
-           
-            def tenantUserLogin = tenantDelegator.makeValue("UserLogin");
-            tenantUserLogin = userLoginBuyer;
-            tenantDelegator.create(tenantUserLogin);
-        </script>
-       
-        <set field="createCustomerRoleCtx.userLogin" from-field="systemUserLogin"/>
-        <set field="createCustomerRoleCtx.partyId" from-field="parameters.partyId"/>
-        <set field="createCustomerRoleCtx.roleTypeId" value="CUSTOMER"/>
-        <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
-        <set field="runTenantServiceInMap.serviceName" value="createPartyRole"/>
-        <set field="runTenantServiceInMap.serviceParameters" from-field="createCustomerRoleCtx"/>
-        <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-       
-        <set field="createBuyerRoleCtx.userLogin" from-field="systemUserLogin"/>
-        <set field="createBuyerRoleCtx.partyId" from-field="parameters.partyId"/>
-        <set field="createBuyerRoleCtx.roleTypeId" value="BUYER"/>
-        <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
-        <set field="runTenantServiceInMap.serviceName" value="createPartyRole"/>
-        <set field="runTenantServiceInMap.serviceParameters" from-field="createBuyerRoleCtx"/>
-        <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-       
-        <!-- Create email address -->
-        <entity-and list="emailAddressList" entity-name="PartyContactDetailByPurpose" filter-by-date="true">
-            <field-map field-name="partyId" from-field="parameters.partyId"/>
-            <field-map field-name="contactMechPurposeTypeId" value="PRIMARY_EMAIL"/>
-        </entity-and>
-        <if-not-empty field="emailAddressList">
-            <first-from-list entry="emailAddress" list="emailAddressList"/>
-            <entity-one value-field="emailAddressContactMech" entity-name="ContactMech">
-                <field-map field-name="contactMechId" from-field="emailAddress.contactMechId"/>
-            </entity-one>
-            <entity-and list="emailAddressPartyContactMechs" entity-name="PartyContactMech">
-                <field-map field-name="partyId" from-field="parameters.partyId"/>
-                <field-map field-name="contactMechId" from-field="emailAddress.contactMechId"/>
-            </entity-and>
-            <first-from-list entry="emailAddressPartyContactMech" list="emailAddressPartyContactMechs"/>
-            <script>groovy:
-                import org.ofbiz.entity.DelegatorFactory;
-                def tenantDelegator = DelegatorFactory.getDelegator(delegator.getDelegatorBaseName() + "#" + tenantId);
-                def tenantContactMech = tenantDelegator.makeValue("ContactMech");
-                tenantContactMech = emailAddressContactMech;
-                tenantDelegator.create(tenantContactMech);
-               
-                def tenantPartyContactMech = tenantDelegator.makeValue("PartyContactMech");
-                tenantPartyContactMech = emailAddressPartyContactMech;
-                tenantDelegator.create(tenantPartyContactMech);
-            </script>
-           
-            <set field="emailPurposeContext.userLogin" from-field="systemUserLogin"/>
-            <set field="emailPurposeContext.partyId" from-field="parameters.partyId"/>
-            <set field="emailPurposeContext.contactMechId" from-field="emailAddress.contactMechId"/>
-            <set field="emailPurposeContext.contactMechPurposeTypeId" value="PRIMARY_EMAIL"/>
-            <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
-            <set field="runTenantServiceInMap.serviceName" value="createPartyContactMechPurpose"/>
-            <set field="runTenantServiceInMap.serviceParameters" from-field="emailPurposeContext"/>
-            <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-        </if-not-empty>
-    </simple-method>
-    
-    <simple-method method-name="copyCutomerToNewSeller" short-description="Copy Buyer To New Seller">
-        <if-not-empty field="parameters.partyId">
-            
-        </if-not-empty>
     </simple-method>
     
     <simple-method method-name="uploadProductToSeller" short-description="Upload Product To Seller">
@@ -2260,5 +2154,124 @@ under the License.
                 <call-service service-name="removeProductContentForImageManagement" in-map-name="removeContent"/>
             </iterate>
         </if-not-empty>
+    </simple-method>
+    
+    <simple-method method-name="createBuyerToSeller" short-description="Create Buyer To Seller">
+        <entity-one value-field="systemUserLogin" entity-name="UserLogin">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        
+        <set field="tenantId" from-field="parameters.tenantId"/>
+        <entity-one value-field="party" entity-name="Party">
+            <field-map field-name="partyId" from-field="parameters.partyId"/>
+        </entity-one>
+        <entity-one value-field="person" entity-name="Person">
+            <field-map field-name="partyId" from-field="parameters.partyId"/>
+        </entity-one>
+        <entity-and list="userLoginBuyers" entity-name="UserLogin">
+            <field-map field-name="partyId" from-field="parameters.partyId"/>
+        </entity-and>
+        <first-from-list entry="userLoginBuyer" list="userLoginBuyers"/>
+       
+        <script>groovy:
+            import org.ofbiz.entity.DelegatorFactory;
+            def tenantDelegator = DelegatorFactory.getDelegator(delegator.getDelegatorBaseName() + "#" + tenantId);
+            def tenantParty = tenantDelegator.makeValue("Party");
+            tenantParty = party;
+            tenantDelegator.create(tenantParty);
+           
+            def tenantPerson = tenantDelegator.makeValue("Person");
+            tenantPerson = person;
+            tenantDelegator.create(tenantPerson);
+           
+            def tenantUserLogin = tenantDelegator.makeValue("UserLogin");
+            tenantUserLogin = userLoginBuyer;
+            tenantDelegator.create(tenantUserLogin);
+        </script>
+       
+        <set field="createCustomerRoleCtx.userLogin" from-field="systemUserLogin"/>
+        <set field="createCustomerRoleCtx.partyId" from-field="parameters.partyId"/>
+        <set field="createCustomerRoleCtx.roleTypeId" value="CUSTOMER"/>
+        <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
+        <set field="runTenantServiceInMap.serviceName" value="createPartyRole"/>
+        <set field="runTenantServiceInMap.serviceParameters" from-field="createCustomerRoleCtx"/>
+        <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+       
+        <set field="createBuyerRoleCtx.userLogin" from-field="systemUserLogin"/>
+        <set field="createBuyerRoleCtx.partyId" from-field="parameters.partyId"/>
+        <set field="createBuyerRoleCtx.roleTypeId" value="BUYER"/>
+        <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
+        <set field="runTenantServiceInMap.serviceName" value="createPartyRole"/>
+        <set field="runTenantServiceInMap.serviceParameters" from-field="createBuyerRoleCtx"/>
+        <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+       
+        <!-- Create email address -->
+        <entity-and list="emailAddressList" entity-name="PartyContactDetailByPurpose" filter-by-date="true">
+            <field-map field-name="partyId" from-field="parameters.partyId"/>
+            <field-map field-name="contactMechPurposeTypeId" value="PRIMARY_EMAIL"/>
+        </entity-and>
+        <if-not-empty field="emailAddressList">
+            <first-from-list entry="emailAddress" list="emailAddressList"/>
+            <entity-one value-field="emailAddressContactMech" entity-name="ContactMech">
+                <field-map field-name="contactMechId" from-field="emailAddress.contactMechId"/>
+            </entity-one>
+            <entity-and list="emailAddressPartyContactMechs" entity-name="PartyContactMech">
+                <field-map field-name="partyId" from-field="parameters.partyId"/>
+                <field-map field-name="contactMechId" from-field="emailAddress.contactMechId"/>
+            </entity-and>
+            <first-from-list entry="emailAddressPartyContactMech" list="emailAddressPartyContactMechs"/>
+            <script>groovy:
+                import org.ofbiz.entity.DelegatorFactory;
+                def tenantDelegator = DelegatorFactory.getDelegator(delegator.getDelegatorBaseName() + "#" + tenantId);
+                def tenantContactMech = tenantDelegator.makeValue("ContactMech");
+                tenantContactMech = emailAddressContactMech;
+                tenantDelegator.create(tenantContactMech);
+               
+                def tenantPartyContactMech = tenantDelegator.makeValue("PartyContactMech");
+                tenantPartyContactMech = emailAddressPartyContactMech;
+                tenantDelegator.create(tenantPartyContactMech);
+            </script>
+           
+            <set field="emailPurposeContext.userLogin" from-field="systemUserLogin"/>
+            <set field="emailPurposeContext.partyId" from-field="parameters.partyId"/>
+            <set field="emailPurposeContext.contactMechId" from-field="emailAddress.contactMechId"/>
+            <set field="emailPurposeContext.contactMechPurposeTypeId" value="PRIMARY_EMAIL"/>
+            <set field="runTenantServiceInMap.tenantId" from-field="tenantId"/>
+            <set field="runTenantServiceInMap.serviceName" value="createPartyContactMechPurpose"/>
+            <set field="runTenantServiceInMap.serviceParameters" from-field="emailPurposeContext"/>
+            <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
+        </if-not-empty>
+    </simple-method>
+    
+    <simple-method method-name="copyNewCutomerToAllSeller" short-description="Copy New Customer To All Seller" login-required="false">
+        <entity-one value-field="systemUserLogin" entity-name="UserLogin">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        
+        <entity-and entity-name="PartyRole" list="partyRoles">
+            <field-map field-name="roleTypeId" value="SELLER"/>
+        </entity-and>
+        <iterate entry="partyRole" list="partyRoles">
+            <set field="createCustomerToSellerMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createCustomerToSellerMap.partyId" from-field="parameters.partyId"/>
+            <set field="createCustomerToSellerMap.tenantId" from-field="partyRole.partyId"/>
+            <call-service service-name="createBuyerToSeller" in-map-name="createCustomerToSellerMap"/>
+        </iterate>
+    </simple-method>
+    
+    <simple-method method-name="copyAllCutomerToNewSeller" short-description="Copy All Customer To New Seller" login-required="false">
+        <entity-one value-field="systemUserLogin" entity-name="UserLogin">
+            <field-map field-name="userLoginId" value="system"/>
+        </entity-one>
+        
+        <entity-and entity-name="PartyRole" list="partyRoles">
+            <field-map field-name="roleTypeId" value="BUYER"/>
+        </entity-and>
+        <iterate entry="partyRole" list="partyRoles">
+            <set field="createCustomerToSellerMap.userLogin" from-field="systemUserLogin"/>
+            <set field="createCustomerToSellerMap.partyId" from-field="partyRole.partyId"/>
+            <set field="createCustomerToSellerMap.tenantId" from-field="parameters.partyId"/>
+            <call-service service-name="createBuyerToSeller" in-map-name="createCustomerToSellerMap"/>
+        </iterate>
     </simple-method>
 </simple-methods>
