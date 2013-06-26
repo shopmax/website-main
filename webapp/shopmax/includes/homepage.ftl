@@ -131,6 +131,7 @@ under the License.
                                             <ul class="sub_list_menu" >
                                                 <li>
                                                     <div class="box_coloum">
+                                                        <h6>${productCategory.categoryName}</h6>
                                                         <ol>
                                                             <#list productCategoryFlyoutSubList as productCategoryFlyoutSub>
                                                                 <#assign subProductCategory = delegator.findOne("ProductCategory", {"productCategoryId" : productCategoryFlyoutSub.subProductCategoryId},true)>
