@@ -29,7 +29,7 @@ import org.ofbiz.entity.*;
 
 categoryList = [];
 
-productCategoryList = delegator.findByAnd("ProductCategory", [showInFlyout : "Y"], null, false);
+productCategoryList = delegator.findByAnd("ProductCategory", [showInFlyout : "Y"], ["categoryName"], false);
 productCategoryList.each { productCategory ->
     categoryList.add(productCategory);
 }

@@ -30,6 +30,7 @@ import org.ofbiz.entity.*;
 categoryList = [];
 CategoryWorker.getRelatedCategories(request, "topLevelList", CatalogWorker.getCatalogTopCategoryId(request, "SHOPMAX_CATALOG"), true, true);
 topLevelList = request.getAttribute("topLevelList");
+topLevelList = UtilMisc.sortMaps(topLevelList, UtilMisc.toList("categoryName"));
 topLevelList.each { topLevel ->
     if (topLevel.showInSelect == "Y") {
         categoryList.add(topLevel);

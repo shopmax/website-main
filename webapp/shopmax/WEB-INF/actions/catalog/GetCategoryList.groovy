@@ -30,6 +30,7 @@ import org.ofbiz.entity.*;
 categoryList = [];
 CategoryWorker.getRelatedCategories(request, "subLevelList", parameters.parentProductCategoryId, true, false);
 subLevelList = request.getAttribute("subLevelList");
+subLevelList = UtilMisc.sortMaps(subLevelList, UtilMisc.toList("categoryName"));
 subLevelList.each { subLevel ->
     if (subLevel.showInSelect == "Y") {
         categoryList.add(subLevel);

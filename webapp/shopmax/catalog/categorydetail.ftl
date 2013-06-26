@@ -25,7 +25,6 @@ under the License.
         });
         return vars;
     }
-    
     function paginationPage(index){
         var productCategoryId = getUrlVars()["productCategoryId"];
         var currentPathName = (window.location.pathname).split(';');
@@ -38,7 +37,7 @@ under the License.
             pathName = currentPath[2];
         }
         pathName = pathName+"detail";
-        $("#category-container").load(pathName + "?productCategoryId=" + productCategoryId + "&VIEW_INDEX=" + index);
+        $(".main-content").load(pathName + "?productCategoryId=" + productCategoryId + "&VIEW_INDEX=" + index);
     }
     $(function(){
         $('.span2').change(function(){
