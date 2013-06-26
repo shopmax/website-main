@@ -758,7 +758,7 @@ under the License.
                         <input type="hidden" value="${shipToAddress2?if_exists}" name="returnShipAddress2" id="returnShipAddress2">
                         <input type="hidden" value="${shipToPostalCode?if_exists}" name="returnShipPostal" id="returnShipPostal">
                         <input type="hidden" value="${shipToCity?if_exists}" name="returnShipCity" id="returnShipCity">
-                        <input type="hidden" value="${shipToTelecomNumber.areaCode} ${shipToTelecomNumber.contactNumber}" name="returnShipTel" id="returnShipTel">
+                        <input type="hidden" value="${shipToTelecomNumber.areaCode?if_exists} ${shipToTelecomNumber.contactNumber?if_exists}" name="returnShipTel" id="returnShipTel">
                         <div class="shipp_info">
                             <div class="tital_1">Shipping Information</div>
                             <div class="row">
@@ -780,7 +780,7 @@ under the License.
                                             <li>${shipToAddress1?if_exists}</li>
                                             <li>${shipToAddress2?if_exists}</li>
                                             <li>${shipToCity?if_exists} ${shipToPostalCode?if_exists}</li>
-                                            <li>Phone number <#if shipToTelecomNumber.areaCode?exists>${shipToTelecomNumber.areaCode}-</#if>${shipToTelecomNumber.contactNumber}</li>
+                                            <#if shipToTelecomNumber?has_content><li>Phone number ${shipToTelecomNumber.areaCode}-${shipToTelecomNumber.contactNumber}</li></#if>
                                         </ul>
                                     </div>
                                 </div>
@@ -894,7 +894,7 @@ under the License.
                                             <li>${billToAddress1?if_exists}</li>
                                             <li>${billToAddress2?if_exists}</li>
                                             <li>${billToCity?if_exists} ${billToPostalCode?if_exists}</li>
-                                            <li>Phone number <#if billToTelecomNumber.areaCode?exists>${billToTelecomNumber.areaCode}-</#if>${billToTelecomNumber.contactNumber}</li>
+                                            <#if billToTelecomNumber?has_content><li>Phone number ${billToTelecomNumber.areaCode}-${billToTelecomNumber.contactNumber}</li></#if>
                                         </ul>
                                     </div>
                                 </div>
