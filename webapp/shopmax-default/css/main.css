@@ -4432,6 +4432,10 @@ overflow:hidden !important;
     word-wrap:break-word;
 }
 
+.errorCreditCard{
+	color:red;
+}
+
 /* FlyOutCategory */
 .home .sidebar .tabcontent.hover_menu_main{ overflow:visible;}
 

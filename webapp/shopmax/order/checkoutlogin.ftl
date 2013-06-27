@@ -186,20 +186,26 @@ under the License.
         $('.main-content').find('input.check,.chzn-container-single').each(function(){
             $('input.check').focus(function(){
                 $('#'+this.id).removeClass('required');
+                $('#errorCreditCard').attr('style','display:none');
+                $('#errorSecure').attr('style','display:none');
+                $('#errorCreditExpire').attr('style','display:none');
             });
             $('.chzn-container-single').click(function(){
                 $('#'+this.id).css({'background-color':'#FFFFFF'});
                 $(this).removeClass('required');
                 $('#'+this.id).find('.chzn-single').each(function(){
                     $(this).css({'background-color':'#FFFFFF'});
+                    $('#errorCreditCard').attr('style','display:none');
+                    $('#errorSecure').attr('style','display:none');
+                    $('#errorCreditExpire').attr('style','display:none');
                 });
-                /*if($('#'+this.id).find('span').text() == 'Zip Return City, State' || $('#'+this.id).find('span').text() == 'Select Card Type' || $('#'+this.id).find('span').text() == 'Month' || $('#'+this.id).find('span').text() == 'Year'){
-                $('#'+this.id).css({'background-color':'#FEF2EE'});
-                $('#'+this.id).find('.chzn-single').each(function(){
-                    $(this).css({'background-color':'#FEF2EE'});
-                });
-                }*/
             });
+        });
+        $('#expMonth_chzn').click(function(){
+            $('#creditMonth').val($('#expMonth_chzn').find('span').text());
+        });
+        $('#expYear_chzn').click(function(){
+            $('#creditYear').val($('#expYear_chzn').find('span').text());
         });
         $('#shipAddressDrop').click(function(){
             $('#shipAddressDrop').css({'background-color':'#FFFFFF'});
@@ -433,6 +439,11 @@ under the License.
                 var y=document.forms["orderSummarySubmitForm"]["billEmail"].value;
                 var atpos1=y.indexOf("@");
                 var dotpos1=y.lastIndexOf(".");
+                var value = $('#cardNumber').val();
+                var nCheck = 0,
+                nDigit = 0,
+                bEven = false;
+                var currentTime = new Date()
                 
                 if(!$(this).val().length){
                     $(this).addClass('required');
@@ -635,6 +646,7 @@ under the License.
                     }
                     if(!$('#secureCode').val().length){
                         $('#secureCode').addClass('required');
+                        $('#errorSecure').attr('style','');
                         $('html, body').animate({ scrollTop: 0 }, 0);
                         valid = false;
                     }
@@ -670,6 +682,37 @@ under the License.
                         $('html, body').animate({ scrollTop: 0 }, 0);
                         valid = false;
                     }
+                    if($('#expYear_chzn').find('span').text() < currentTime.getFullYear()){
+                        valid = false;
+                    }
+                    if($('#expYear_chzn').find('span').text() == currentTime.getFullYear()){
+                        if($('#expMonth_chzn').find('span').text() < currentTime.getMonth() + 1){
+                        $('#errorCreditExpire').attr('style','');
+                        valid = false;
+                        }
+                    }
+                    
+                    for (var n = value.length - 1; n >= 0; n--) {
+                        var cDigit = value.charAt(n);
+                        nDigit = parseInt(cDigit, 10);
+                        if (bEven) {
+                            if ((nDigit *= 2) > 9) {
+                                nDigit -= 9;
+                            }
+                        }
+                        nCheck += nDigit;
+                        bEven = !bEven;
+                    }
+                    if(nCheck % 10 == 0){
+                        $('#errorCreditCard').attr('style','display:none');
+                    }
+                    else if(nCheck % 10 != 0){
+                        $('#errorCreditCard').attr('style','');
+                        $('.cardNumber').addClass('required');
+                        $('html, body').animate({ scrollTop: 0 }, 0);
+                        valid=false;
+                    }
+                    return (nCheck % 10) === 0;
                 }
                 if(valid){
                     $('#orderSummarySubmitForm').submit();
@@ -802,6 +845,9 @@ under the License.
                           <tbody>
                             <tr>
                                 <td class="col1">
+                                    <label id="errorCreditCard" name="errorCreditCard" class="errorCreditCard" style="display:none">Please enter a valid credit card number.</label>
+                                    <label id="errorSecure" name="errorCreditCard" class="errorCreditCard" style="display:none">Please enter a security code.</label>
+                                    <label id="errorCreditExpire" name="errorCreditCard" class="errorCreditCard" style="display:none">Expired credit card.</label>
                                     <h5 class="heading">Shipping Contact</h5>
                                     <div class="form-inline">
                                         <input type="text" id="shipFirstName" class="input-xxlarge check required" name="USER_FIRST_NAME" placeholder="First Name" value="${partyName.firstName?if_exists}" />
@@ -1035,6 +1081,8 @@ under the License.
                                                 <option value="">Year</option>
                                                 ${screens.render("component://common/widget/CommonScreens.xml#ccyears")}
                                             </select>
+                                            <input type="hidden" id="creditMonth" name="creditMonth"/>
+                                            <input type="hidden" id="creditYear" name="creditYear"/>
                                             <input name="billToCardSecurityCode" type="text" id="secureCode" class="input-medium check required" placeholder="Security Code" onkeypress="return isNumberKey(event)" maxlength="4" autocomplete="off"/>
                                         <img src="<@ofbizContentUrl>/shopmax-default/img/icon-card.gif</@ofbizContentUrl>" />
                                         <a href="#">What is this?</a>
