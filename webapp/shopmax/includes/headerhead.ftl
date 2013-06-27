@@ -64,7 +64,6 @@ under the License.
         
         <script type="text/javascript">
         $(document).ready(function() {
-            addItem();
             $.support.cors = true;
             $(".various").fancybox({
                 'titlePosition'     : 'inside',

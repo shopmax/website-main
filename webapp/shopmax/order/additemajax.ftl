@@ -16,12 +16,6 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-<script language="javascript" type="text/javascript" src="<@ofbizContentUrl>/shopmax-default/js/vendor/jquery-1.8.3.min.js</@ofbizContentUrl>"></script>
-<script>
-if($('header').length == 0){
-    window.location.href=window.location.href;
-}
-</script>
 <h3>${shoppingCartSize} Items</h3>
 <#if shoppingCartSize &gt; 0>
     <p><a href="<@ofbizUrl>shoppingcart</@ofbizUrl>" class="btn-flat round">View Cart</a></p>

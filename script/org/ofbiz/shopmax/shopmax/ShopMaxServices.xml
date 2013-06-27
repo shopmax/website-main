@@ -2055,17 +2055,6 @@ under the License.
         </if-not-empty> 
     </simple-method>
     
-    <simple-method method-name="updatePhysicalDateTime" short-description="Update Date and Time To Physical Store">
-        <entity-one entity-name="PhysicalStoreDateTime" value-field="physicalStoreDateTime">
-            <field-map field-name="contactMechId" from-field="parameters.contactMechId"/>
-            <field-map field-name="day" from-field="parameters.day"/>
-        </entity-one>
-        <if-not-empty field="physicalStoreDateTime">
-            <set-nonpk-fields value-field="physicalStoreDateTime" map="parameters"/>
-            <store-value value-field="physicalStoreDateTime"/>
-        </if-not-empty> 
-    </simple-method>
-    
     <simple-method method-name="deletePhysicalDateTime" short-description="Delete Date and Time To Physical Store">
         <entity-one entity-name="PhysicalStoreDateTime" value-field="physicalStoreDateTime">
             <field-map field-name="contactMechId" from-field="parameters.contactMechId"/>
@@ -2268,10 +2257,21 @@ under the License.
             <field-map field-name="roleTypeId" value="BUYER"/>
         </entity-and>
         <iterate entry="partyRole" list="partyRoles">
-            <set field="createCustomerToSellerMap.userLogin" from-field="systemUserLogin"/>
-            <set field="createCustomerToSellerMap.partyId" from-field="partyRole.partyId"/>
-            <set field="createCustomerToSellerMap.tenantId" from-field="parameters.partyId"/>
-            <call-service service-name="createBuyerToSeller" in-map-name="createCustomerToSellerMap"/>
+            <if>
+                <condition>
+                    <and>
+                        <if-compare operator="equals" value="DemoCustomer" field="partyRole.partyId"/>
+                        <if-compare operator="equals" value="shopmaxseller" field="partyRole.partyId"/>
+                        <if-compare operator="equals" value="shopmaxseller2" field="partyRole.partyId"/>
+                    </and>
+                </condition>
+                <then>
+                    <set field="createCustomerToSellerMap.userLogin" from-field="systemUserLogin"/>
+                    <set field="createCustomerToSellerMap.partyId" from-field="partyRole.partyId"/>
+                    <set field="createCustomerToSellerMap.tenantId" from-field="parameters.partyId"/>
+                    <call-service service-name="createBuyerToSeller" in-map-name="createCustomerToSellerMap"/>
+                </then>
+            </if>
         </iterate>
     </simple-method>
 </simple-methods>
