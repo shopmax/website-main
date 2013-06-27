@@ -95,9 +95,9 @@ Index: framework/webapp/config/url.properties
  # Static Content URLs to make it easy to move the serving load for static content to other machines
 Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
 ===================================================================
---- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 456)
+--- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 499)
 +++ hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(working copy)
-@@ -459,8 +459,8 @@
+@@ -505,8 +505,8 @@
                  <set field="parameters.domainName" value="${parameters.ownDomainName}"/>
                  <set field="parameters.domainNameBackend" value="backend.${parameters.ownDomainName}"/>
              <else>

@@ -1,6 +1,6 @@
 Index: hot-deploy/tenant/config/default-tenant.xml
 ===================================================================
---- hot-deploy/tenant/config/default-tenant.xml	(revision 299)
+--- hot-deploy/tenant/config/default-tenant.xml	(revision 304)
 +++ hot-deploy/tenant/config/default-tenant.xml	(working copy)
 @@ -1,16 +1,10 @@
  <?xml version="1.0" encoding="UTF-8"?>
@@ -22,20 +22,9 @@ Index: hot-deploy/tenant/config/default-tenant.xml
 -    <domain name="saasbackend.growerp.com" initial-path="/backend"/>
 +    <domain name="backend.shopmax.co.nz" initial-path="/catalog"/>
  </default-tenant>
-Index: hot-deploy/tenant/config/tenant.properties
-===================================================================
---- hot-deploy/tenant/config/tenant.properties	(revision 299)
-+++ hot-deploy/tenant/config/tenant.properties	(working copy)
-@@ -27,5 +27,5 @@
- jdbcPassword=ofbiz
- 
- # -- Y if you want a tenant always include demo data and have message at the top
--isDemo=N
-+isDemo=Y
- 
 Index: hot-deploy/tenant/ofbiz-component.xml
 ===================================================================
---- hot-deploy/tenant/ofbiz-component.xml	(revision 299)
+--- hot-deploy/tenant/ofbiz-component.xml	(revision 304)
 +++ hot-deploy/tenant/ofbiz-component.xml	(working copy)
 @@ -23,7 +23,7 @@
      <entity-resource type="model" reader-name="main" loader="main" location="entitydef/entitymodel.xml"/>
