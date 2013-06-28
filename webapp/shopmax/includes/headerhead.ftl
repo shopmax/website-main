@@ -115,7 +115,12 @@ under the License.
                     }).done(function (data) {
                         $($div).html(data);
                         makeAccordion($($div).find("ul")[0]);
-                        window.history.pushState("", "", '?productCategoryId='+productCategoryId);
+                        if(getUrlVars()["productCategoryId"]){
+                            window.location.hash = '&productCategoryId='+productCategoryId;
+                        }else{
+                            window.location.hash = '?productCategoryId='+productCategoryId;
+                        }
+                        //window.history.pushState("", "", '?productCategoryId='+productCategoryId);
                     });
                     
                     // load category screen
@@ -129,7 +134,7 @@ under the License.
                         pathName = currentPath[2];
                     }
                     pathName = pathName+"detail";
-                    $(".main-content").load(pathName + "?productCategoryId=" + productCategoryId);
+                    $(".category-container").load(pathName + "?productCategoryId=" + productCategoryId);
                     $("#breadcrum").load("breadcrumbsajax?productCategoryId=" + productCategoryId);
                 });
             });

@@ -18,11 +18,11 @@ under the License.
 -->
 
 <#if headerItem?if_exists == "categorygridview">
-    <div class="span9 main-content manage-product cat_grid_view">
+    <div class="span9 main-content manage-product cat_grid_view category-container">
         <#include "component://shopmax/webapp/shopmax/catalog/categorydetail.ftl" />
     </div><!-- /.span9 -->
 <#elseif headerItem?if_exists == "categorylistview">
-    <div class="span9 main-content manage-product cat_grid_view cat_list_view">
+    <div class="span9 main-content manage-product cat_grid_view cat_list_view category-container">
         <#include "component://shopmax/webapp/shopmax/catalog/categorydetail.ftl" />
     </div><!-- /.span9 -->
 </#if>

@@ -128,7 +128,7 @@ under the License.
             type: 'POST',
             data: {productCategoryId:productCategoryId,VIEW_INDEX: index},
             success: function(data) {
-                $('#category-container').html(data);
+                $('.category-container').html(data);
             }
         });
     }
@@ -190,7 +190,7 @@ under the License.
                 </div>
             </form>
             
-            <div id="category-container">
+            <div class="category-container">
                 <div class="add-product">
                     <a class="btn-general" href="<@ofbizUrl>uploadproduct</@ofbizUrl>">Add New Product</a>
                     <div class="paging">
