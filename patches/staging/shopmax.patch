@@ -35,7 +35,7 @@ Index: hot-deploy/shopmax/templates/email/registration.ftl
                                                      <td valign="top"  height="28" align="left"></td>
 Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
 ===================================================================
---- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 494)
+--- hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(revision 500)
 +++ hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml	(working copy)
 @@ -23,7 +23,7 @@
  
@@ -138,7 +138,7 @@ Index: hot-deploy/shopmax/script/org/ofbiz/shopmax/shopmax/ShopMaxServices.xml
              <set field="runTenantServiceInMap.serviceName" value="removeProductFromShopmax"/>
              <set field="runTenantServiceInMap.serviceParameters" from-field="parameters"/>
              <call-service service-name="runTenantService" in-map-name="runTenantServiceInMap"/>
-@@ -2115,7 +2115,7 @@
+@@ -2104,7 +2104,7 @@
              
              <property-to-field resource="shopmax" property="shopmax.tenant.enabled" field="shopmaxTenant"/>
              <if-compare field="shopmaxTenant" operator="equals" value="Y">
