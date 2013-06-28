@@ -72,7 +72,7 @@ under the License.
                 type: 'POST',
                 data: {productCategoryId: productCategoryId, productId: productId, contentId: contentId, fromDate: fromDate, productContentTypeId: productContentTypeId},
                 success: function(data) {
-                    $('#category-container').html(data);
+                    $('.category-container').html(data);
                     if($('#promo-datePickerFrom'+index).val()){
                         var getFromDate = $('#promo-datePickerFrom'+index).val().split(" ");
                         var fromDateFormat = getFromDate[0].split("-");
@@ -113,7 +113,7 @@ under the License.
                 type: 'POST',
                 data: {productId: productId, productCategoryId: productCategoryId},
                 success: function(data) {
-                    $('#category-container').html(data);
+                    $('.category-container').html(data);
                 }
             });
         }
