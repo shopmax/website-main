@@ -117,6 +117,8 @@ under the License.
             <actions>
                 <set field="titleProperty" value="PageTitleCategory"/>
                 <!-- <set field="breadcrumbTitle" value="Category"/> -->
+                
+                <set field="headerItem" value="categorylistview"/>
                 <set field="productCategoryId" from-field="parameters.productCategoryId"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/GetTopCategories.groovy"/>
                 <script location="component://shopmax/webapp/shopmax/WEB-INF/actions/catalog/CategoryDetail.groovy"/>
