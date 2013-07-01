@@ -50,6 +50,17 @@ under the License.
     }
     
     $(function(){
+        $('.shippingSize').click(function(){
+            if($('#shippingSize').val() == this.id){
+                $('#'+this.id).css({'color':'#FFFFFF'});
+                $('#shippingSize').val('');
+            }
+            else{
+                $('.shippingSize').css({'color':'#FFFFFF'});
+                $('#'+this.id).css({'color':'#358BDB'});
+                $('#shippingSize').val(this.id);
+            }
+        });
         $('#submit_uploadProductToSeller').click(function(){
             var valid = false;
             if(typeof getUrlVars()["productId"] != "undefined"){
@@ -285,6 +296,10 @@ under the License.
                             <input type="hidden" name="productImageReview2" id="productImageReview2"/>
                             <input type="hidden" name="productImageReview3" id="productImageReview3"/>
                             <input type="hidden" name="productImageReview4" id="productImageReview4"/>
+                            <input type="hidden" name="categoryFirstId" id="categoryFirstId"/>
+                            <input type="hidden" name="categorySecondId" id="categorySecondId"/>
+                            <input type="hidden" name="categoryThirdId" id="categoryThirdId"/>
+                            <input type="hidden" name="categoryFourthId" id="categoryFourthId"/>
                             <div class="control-group">
                                 <label for="inputProductName" class="control-label">Product name</label>
                                 <div class="controls">

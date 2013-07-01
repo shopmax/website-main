@@ -2,12 +2,10 @@ $(function(){
     $("#category_1").change(function(event){
         $("option:selected", $(this)).each(function(){
             var obj = this.id;
-            //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+this.id);
-            if(getUrlVars()["productId"]){
-                window.location.hash = '&categoryFirstId='+this.id;
-            }else{
-                window.location.hash = '?categoryFirstId='+this.id;
-            }
+            $('#categoryFirstId').val(this.id);
+            $('#categorySecondId').val("");
+            $('#categoryThirdId').val("");
+            $('#categoryFourthId').val("");
             $.ajax({
                 url: 'uploadproductajax',
                 type: 'POST',
@@ -25,17 +23,13 @@ $(function(){
     $("#category_2").change(function(event){
         $("option:selected", $(this)).each(function(){
             var obj = this.id;
-            var categoryFirstId = getUrlVars()["categoryFirstId"];
-            //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+this.id);
-            if(getUrlVars()["productId"]){
-                window.location.hash = '&categoryFirstId='+categoryFirstId+'&categorySecondId='+this.id;
-            }else{
-                window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+this.id;
-            }
+            $('#categorySecondId').val(this.id);
+            $('#categoryThirdId').val("");
+            $('#categoryFourthId').val("");
             $.ajax({
                 url: 'uploadproductajax',
                 type: 'POST',
-                data: { categoryFirstId: categoryFirstId, categorySecondId: this.id},
+                data: { categoryFirstId: $('#categoryFirstId').val(), categorySecondId: this.id},
                 success: function(data) {
                     if ($(data).find('#errorExits').length > 0) {
                       window.location.href = "/";
@@ -49,18 +43,12 @@ $(function(){
     $("#category_3").change(function(event){
         $("option:selected", $(this)).each(function(){
             var obj = this.id;
-            var categoryFirstId = getUrlVars()["categoryFirstId"];
-            var categorySecondId = getUrlVars()["categorySecondId"];
-            //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+this.id);
-            if(getUrlVars()["productId"]){
-                window.location.hash = '&categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+this.id;
-            }else{
-                window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+this.id;
-            }
+            $('#categoryThirdId').val(this.id);
+            $('#categoryFourthId').val("");
             $.ajax({
                 url: 'uploadproductajax',
                 type: 'POST',
-                data: { categoryFirstId: categoryFirstId, categorySecondId: categorySecondId, categoryThirdId: this.id},
+                data: { categoryFirstId: $('#categoryFirstId').val(), categorySecondId: $('#categorySecondId').val(), categoryThirdId: this.id},
                 success: function(data) {
                     if ($(data).find('#errorExits').length > 0) {
                       window.location.href = "/";
@@ -74,19 +62,11 @@ $(function(){
     $("#category_4").change(function(event){
         $("option:selected", $(this)).each(function(){
             var obj = this.id;
-            var categoryFirstId = getUrlVars()["categoryFirstId"];
-            var categorySecondId = getUrlVars()["categorySecondId"];
-            var categoryThirdId = getUrlVars()["categoryThirdId"];
-          //window.history.pushState("", "", 'uploadproduct?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+categoryThirdId+'&categoryFourthId='+this.id);
-            if(getUrlVars()["productId"]){
-                window.location.hash = '&categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+categoryThirdId+'&categoryFourthId='+this.id;
-            }else{
-                window.location.hash = '?categoryFirstId='+categoryFirstId+'&categorySecondId='+categorySecondId+'&categoryThirdId='+categoryThirdId+'&categoryFourthId='+this.id;
-            }
+            $('#categoryFourthId').val(this.id);
             $.ajax({
                 url: 'uploadproductajax',
                 type: 'POST',
-                data: { categoryFirstId: categoryFirstId, categorySecondId: categorySecondId, categoryThirdId: categoryThirdId, categoryFourthId: this.id},
+                data: { categoryFirstId: $('#categoryFirstId').val(), categorySecondId: $('#categorySecondId').val(), categoryThirdId: $('#categoryThirdId').val(), categoryFourthId: this.id},
                 success: function(data) {
                     if ($(data).find('#errorExits').length > 0) {
                       window.location.href = "/";
@@ -101,23 +81,23 @@ $(function(){
         $('.input-error2').addClass('hidden');
         var formUpload = document.getElementById('uploadAndUpdateProduct');
         formUpload.getElementsByTagName('input').checked=true;
-        if(typeof getUrlVars()["categoryFirstId"] != "undefined"){
-            var categoryFirstId = getUrlVars()["categoryFirstId"];
+        if($('#categoryFirstId').val() != ""){
+            var categoryFirstId = $('#categoryFirstId').val();
             var categoryName = ($('#'+categoryFirstId).val()).split("-");
             var categoryFirstName = categoryName[1];
         }
-        if(typeof getUrlVars()["categorySecondId"] != "undefined"){
-            var categorySecondId = getUrlVars()["categorySecondId"];
+        if($('#categorySecondId').val() != ""){
+            var categorySecondId = $('#categorySecondId').val();
             var categoryName = ($('#'+categorySecondId).val()).split("-");
             var categorySecondName = categoryName[1];
         }
-        if(typeof getUrlVars()["categoryThirdId"] != "undefined"){
-            var categoryThirdId = getUrlVars()["categoryThirdId"];
+        if($('#categoryThirdId').val()){
+            var categoryThirdId = $('#categoryThirdId').val();
             var categoryName = ($('#'+categoryThirdId).val()).split("-");
             var categoryThirdName = categoryName[1];
         }
-        if(typeof getUrlVars()["categoryFourthId"] != "undefined"){
-            var categoryFourthId = getUrlVars()["categoryFourthId"];
+        if($('#categoryFourthId').val()){
+            var categoryFourthId = $('#categoryFourthId').val();
             var categoryName = ($('#'+categoryFourthId).val()).split("-");
             var categoryFourthName = categoryName[1];
         }
@@ -164,18 +144,6 @@ $(function(){
     $("#datepicker2").datepicker();
     $("#datepickerimage2").click(function() { 
         $("#datepicker2").datepicker( "show" );
-    });
-    
-    $('.shippingSize').click(function(){
-        if($('#shippingSize').val() == this.id){
-            $('#'+this.id).css({'color':'#FFFFFF'});
-            $('#shippingSize').val('');
-        }
-        else{
-            $('.shippingSize').css({'color':'#FFFFFF'});
-            $('#'+this.id).css({'color':'#358BDB'});
-            $('#shippingSize').val(this.id);
-        }
     });
     
     $('#datepicker1').change(function(){
