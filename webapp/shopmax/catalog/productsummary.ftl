@@ -48,8 +48,8 @@ under the License.
             <div class="stars">
                 <div class="raty" data-rating="${averageRating?if_exists}"></div>
             </div>
-            <p> <#if 28 <= product.longDescription?length >
-                    ${product.longDescription?substring(0,25)}...
+            <p> <#if 27 <= product.longDescription?length >
+                    ${product.longDescription?substring(0,24)}...
                 <#else>${product.longDescription?if_exists}
                 </#if>
             </p>
@@ -89,11 +89,13 @@ under the License.
                     <div class="raty" data-rating="${averageRating?if_exists}"></div>
                 </div>
             </div>
-            <p> <#if 100 <= product.longDescription?length >
-                    ${product.longDescription?substring(0,97)}...
-                <#else>${product.longDescription?if_exists}
-                </#if>
-            </p>
+            <div class="pricestar">
+                <p><#if 100 <= product.longDescription?length >
+                        ${product.longDescription?substring(0,97)}...
+                    <#else>${product.longDescription?if_exists}
+                    </#if>
+                </p>
+            </div>
             <div class="distancebox"><p>Shop: <strong>${shopName?if_exists}</strong><span></span>Destance: <strong>About 1km</strong></p></div>
             <div class="buttonbox">
                 <form method="post" id="${product.productId}" name="addform" style="margin: 0;">

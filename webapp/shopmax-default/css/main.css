@@ -3853,7 +3853,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#56cae4', end
 .cat_list_view .cat_viewing { margin:0;}
 .cat_list_view .cat_viewing .block_1 { float:none; overflow:hidden; margin:0; width:auto; padding:25px 0; border-bottom:solid 1px #b1b2b3;}
 .cat_list_view .cat_viewing .block_1 .image { float:left; margin:0 15px 0 0;}
-.cat_list_view .cat_viewing .block_1 .pricestar { overflow:hidden;}
+.cat_list_view .cat_viewing .block_1 .pricestar { overflow:hidden; word-wrap:break-word;}
 .cat_list_view .cat_viewing .block_1 .price { float:left;}
 .cat_list_view .cat_viewing .block_1 .price span { float:left; display:block; margin:0 5px 0 0;}
 .cat_list_view .cat_viewing .block_1 .stars { float:right;}
