@@ -105,9 +105,12 @@ under the License.
                 $('#billToFaxNumberArea_chzn').find('.chzn-single').each(function(){
                 $(this).css({'background-color':'#EEEEEE'});
                 });
-                $('#shipDropDown2_chzn').css({'pointer-events':'none'});
-                $('#billToAreaCode_chzn').css({'pointer-events':'none'});
-                $('#billToFaxNumberArea_chzn').css({'pointer-events':'none'});
+                var position = $('#billToAreaCode_chzn').position().left;
+                $('#canvas').attr('style','z-index: 20; left:'+position1+'px;');
+                var position1 = $('#billToFaxNumberArea_chzn').position().left;
+                $('#canvas1').attr('style','z-index: 20; left:'+position1+'px;');
+                var position2 = $('#shipDropDown2_chzn').position().left;
+                $('#canvas2').attr('style','z-index: 20; width: 210px; height: 40px; left:'+position2+'px;');
             }
             else{
                 $('#useShippingAddressForBilling').val('N');
@@ -140,9 +143,9 @@ under the License.
                         $('#'+this.id).addClass('required');
                     }
                 });
-                $('#shipDropDown2_chzn').css({'pointer-events':''});
-                $('#billToAreaCode_chzn').css({'pointer-events':''});
-                $('#billToFaxNumberArea_chzn').css({'pointer-events':''});
+                $('#canvas').attr('style','z-index: 20; display:none');
+                $('#canvas1').attr('style','z-index: 20; display:none');
+                $('#canvas2').attr('style','z-index: 20; display:none');
             }
         });
     });
@@ -704,6 +707,15 @@ under the License.
         return true;
     }
 </script>
+<style>
+    canvas{
+        width: 65px;
+        height: 40px;
+        /*border: 1px solid black;*/
+        display: block;
+        position: absolute;
+    }
+</style>
 <div class="container content shopping-cart">
     <!-- include breadcrumb -->
     ${screens.render("component://shopmax/widget/ShopMaxScreens.xml#Breadcrumbs")}
@@ -866,6 +878,8 @@ under the License.
                                 <input type="text" name="billLastName" id="billLastName" class="input-xxlarge check required" placeholder="Last Name" />
                             </div>
                             <div class="form-inline">
+                                <canvas id="canvas" style="z-index: 20; display:none" oncontextmenu="return false;"></canvas>
+                                <canvas id="canvas1" style="z-index: 20; display:none" oncontextmenu="return false;"></canvas>
                                 <select id="billToAreaCode" name="billToAreaCode" class="chosen contactNumber" style="width: 60px;">
                                     <option selected="selected">03</option>
                                     <option>04</option>
@@ -905,6 +919,7 @@ under the License.
                                 <input type="text" id="billPostal" class="input-xxlarge check required" name="billToPostalCode" onkeypress="return isNumberKey(event)" placeholder="Zip/ Postal Code" />
                             </div>
                             <div class="form-inline">
+                                <canvas id="canvas2" style="z-index: 20; width: 210px; height: 40px; display:none" oncontextmenu="return false;"></canvas>
                                 <input type="text" class="input-xxxlarge" id="billAddressInfo" name="billToAddress2" placeholder="Additional Address Info (optional)" />
                                 <select id="shipDropDown2" name="billToCity" class="drop-select chosen combo" data-search-bar="true">
                                     <option value="" selected="selected">Zip Return City, State</option>
