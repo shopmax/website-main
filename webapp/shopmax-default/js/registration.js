@@ -282,6 +282,7 @@ $(function(){
                     valid = false;
                 }
                 if(valid){
+                    $('#emailAddress').val($('#emailAddress').val().toLowerCase());
                     $('#createcustomer').submit();
                 }
             });
@@ -365,6 +366,7 @@ $(function(){
                     }
                 }
                 if(valid){
+                    $('#emailAddress').val($('#emailAddress').val().toLowerCase());
                     $('#createcustomer').submit();
                 }
             });
