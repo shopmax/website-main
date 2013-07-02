@@ -690,7 +690,6 @@ under the License.
                         $('html, body').animate({ scrollTop: 0 }, 0);
                         valid=false;
                     }
-                    return (nCheck % 10) === 0;
                 }
                 if(valid){
                     $('#orderSummarySubmitForm').submit();
