@@ -392,13 +392,19 @@ under the License.
     </service>
     
     <service name="importProductsFromCSV" engine="java"
-        location="org.ofbiz.shopmax.product.ImportServics" invoke="importProductsFromCSV" auth="true">
+        location="org.ofbiz.shopmax.product.ImportServices" invoke="importProductsFromCSV" auth="true">
         <description>Import seller product data.</description>
+        <attribute name="fileLocation" type="String" mode="IN" optional="false"/>
     </service>
     
     <service name="importProductCategoryFromCSV" engine="java"
-        location="org.ofbiz.shopmax.product.ImportServics" invoke="importProductCategoryFromCSV" auth="true">
+        location="org.ofbiz.shopmax.product.ImportServices" invoke="importProductCategoryFromCSV" auth="true">
         <description>Import Category data</description>
     </service>
-    
+
+    <service name="importProductsFromMultipleCSVs" engine="java"
+        location="org.ofbiz.shopmax.product.ImportServices" invoke="importProductsFromMultipleCSVs" auth="true" >
+        <description>Import Products data from multiple csv files</description>
+    </service>
+
 </services>
