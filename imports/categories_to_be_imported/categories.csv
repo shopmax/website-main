@@ -1,0 +1,11 @@
+CategoryName,CategoryID,ShowOnHomePage
+Apparel,apparel,Y
+Baby,apparel/baby,Y
+Newborn & Baby (0-24 months),apparel/baby/nb-baby-0-24-months,Y
+Newborn Boy (0-12 months),apparel/baby/nb-baby-0-24-months/nb-boy-0-12-months,N
+Newborn Girl (0-12 months),apparel/baby/nb-baby-0-24-months/nb-girl-0-12-months,Y
+Baby Boy (12-24 months),apparel/baby/nb-baby-0-24-months/bb-12-24-months,Y
+Baby Girl (12-24 months),apparel/baby/nb-baby-0-24-months/bg-12-24-months,N
+Electronix,electronics,N
+Audio and Mp3,electronics/audio-and-mp3,N
+Earphones,electronics/audio-and-mp3/earphones,Y
