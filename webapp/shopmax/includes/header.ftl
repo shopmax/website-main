@@ -29,7 +29,7 @@ under the License.
             alert("You do not have permission to view this page.");
         }
         else{
-            window.location.href = "http://${shopmaxSellerDomain?if_exists}:8080/control/"+pathRequest+"?partyId=${userLoginPartyId?if_exists}";
+            window.location.href = "https://${shopmaxSellerDomain?if_exists}:8443/control/"+pathRequest+"?partyId=${userLoginPartyId?if_exists}";
         }
     }
     $(function(){
