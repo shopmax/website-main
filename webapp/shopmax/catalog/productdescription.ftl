@@ -18,33 +18,33 @@ under the License.
 -->
 
 <div class="row content-left">
-    <div class="span12 product-detail product-tab">
+    <div class="span12 product-detail product-tab" id="test">
         <ul class="nav nav-tabs georgia" id="myTab">
           <li class="active"><a data-toggle="tab" href="#prdDesc">Product Description</a></li>
           <li class=""><a data-toggle="tab" href="#prdReviews">Reviews</a></li>
         </ul>
         <div class="tab-content" id="myTabContent">
-          <div id="prdDesc" class="tab-pane fade active in">
-            <p>${product.longDescription?if_exists}</p>
-          </div>
-          <div id="prdReviews" class="tab-pane fade">
-              <#if productReviews?has_content>
-                  <#list productReviews as productReview>
-                      <#assign postedUserLogin = productReview.getRelatedOne("UserLogin", false) />
-                      <#assign postedPerson = postedUserLogin.getRelatedOne("Person", false)?if_exists />
-                      <p>
-                          <#--
-                          <div><strong>${uiLabelMap.CommonBy}: </strong><#if productReview.postedAnonymous?default("N") == "Y"> ${uiLabelMap.OrderAnonymous}<#else> ${postedPerson.firstName} ${postedPerson.lastName}&nbsp;</#if></div>
-                          <div><strong>${uiLabelMap.CommonAt}: </strong>${productReview.postedDateTime?if_exists}&nbsp;</div>
-                          <div><strong>${uiLabelMap.OrderRanking}: </strong>${productReview.productRating?if_exists?string}</div>
-                          <div>&nbsp;</div>
-                          -->
-                          <div>${productReview.productReview?if_exists}</div>
-                          <hr />
-                      </p>
-                  </#list>
-              </#if>
-          </div>
+            <div id="prdDesc" class="tab-pane fade active in" style="word-wrap:break-word; width:939px;">
+                <p>${product.longDescription?if_exists}</p>
+            </div>
+            <div id="prdReviews" class="tab-pane fade">
+                <#if productReviews?has_content>
+                    <#list productReviews as productReview>
+                        <#assign postedUserLogin = productReview.getRelatedOne("UserLogin", false) />
+                        <#assign postedPerson = postedUserLogin.getRelatedOne("Person", false)?if_exists />
+                        <p>
+                        <#--
+                        <div><strong>${uiLabelMap.CommonBy}: </strong><#if productReview.postedAnonymous?default("N") == "Y"> ${uiLabelMap.OrderAnonymous}<#else> ${postedPerson.firstName} ${postedPerson.lastName}&nbsp;</#if></div>
+                        <div><strong>${uiLabelMap.CommonAt}: </strong>${productReview.postedDateTime?if_exists}&nbsp;</div>
+                        <div><strong>${uiLabelMap.OrderRanking}: </strong>${productReview.productRating?if_exists?string}</div>
+                        <div>&nbsp;</div>
+                        -->
+                        <div>${productReview.productReview?if_exists}</div>
+                        <hr />
+                        </p>
+                    </#list>
+                </#if>
+            </div>
         </div>
     </div>
 </div>
