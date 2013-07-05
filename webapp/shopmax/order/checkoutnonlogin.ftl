@@ -37,19 +37,21 @@ under the License.
         $('#sameAsShipping').click(function(){
             if($(this).is(":checked")){
                 $('#useShippingAddressForBilling').val('Y');
-                $('#billFirstName').attr('value',$('#shipFirstName').val());
-                $('#billLastName').attr('value',$('#shipLastName').val());
-                $('#billPhone').attr('value',$('#shipPhone').val());
-                $('#billEmail').attr('value',$('#shipEmail').val());
-                $('#billStreetAddress').attr('value',$('#shipStreetAddress').val());
-                $('#billPostal').attr('value',$('#shipPostal').val());
-                $('#billToFaxNumber').attr('value',$('#shipToFaxNumber').val());
-                $('#billAddressInfo').attr('value',$('#shipAddressInfo').val());
+                $('#billFirstName').val($('#shipFirstName').val());
+                $('#billLastName').val($('#shipLastName').val());
+                $('#billPhone').val($('#shipPhone').val());
+                $('#billEmail').val($('#shipEmail').val());
+                $('#billStreetAddress').val($('#shipStreetAddress').val());
+                $('#billPostal').val($('#shipPostal').val());
+                $('#billToFaxNumber').val($('#shipToFaxNumber').val());
+                $('#billAddressInfo').val($('#shipAddressInfo').val());
                 if($('#billToAreaCode_chzn').find('span').text() != $('#shipToAreaCode_chzn').find('span').text()){
                     $('#billToAreaCode_chzn').find('span').text($('#shipToAreaCode_chzn').find('span').text());
+                    $('#billToAreaCode').val($('#billToAreaCode_chzn').find('span').text());
                 }
                 if($('#billToFaxNumberArea_chzn').find('span').text() != $('#shipToFaxNumberArea_chzn').find('span').text()){
                     $('#billToFaxNumberArea_chzn').find('span').text($('#shipToFaxNumberArea_chzn').find('span').text());
+                    $('#billToFaxNumberArea').val($('#billToFaxNumberArea_chzn').find('span').text());
                 }
                 if($('#shipDropDown2_chzn').find('span').text() != $('#shipDropDown1_chzn').find('span').text()){
                     $('#shipDropDown2_chzn').find('span').text($('#shipDropDown1_chzn').find('span').text());
@@ -86,9 +88,11 @@ under the License.
                 });
                 $('#shipToAreaCode').change(function(){
                     $('#billToAreaCode_chzn').find('span').text($('#shipToAreaCode_chzn').find('span').text());
+                    $('#billToAreaCode').val($('#billToAreaCode_chzn').find('span').text());
                 });
                 $('#shipToFaxNumberArea').change(function(){
                     $('#billToFaxNumberArea_chzn').find('span').text($('#shipToFaxNumberArea_chzn').find('span').text());
+                    $('#billToFaxNumberArea').val($('#billToFaxNumberArea_chzn').find('span').text());
                 });
                 $('#shipDropDown1').change(function(){
                     $('#shipDropDown2_chzn').find('span').text($('#shipDropDown1_chzn').find('span').text());
